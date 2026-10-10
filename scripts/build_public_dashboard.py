@@ -14,6 +14,7 @@ import shutil
 
 from build_dashboard import build
 from build_dashboard_overview import build as build_overview
+from dashboard_qualitative import validated as validate_qualitative
 
 
 LOCAL_PATH = re.compile(r"/(?:orcd|home|tmp|scratch|workspace)/[^\s\"'<>`\\)\],;]+")
@@ -35,14 +36,37 @@ def public_data(value):
     return public_text(value) if isinstance(value, str) else value
 
 
+def development_figure_files(directory, source_sha256):
+    data=json.loads((directory/'figure-data.json').read_text())
+    if data.get('reviewed_by')!='root' or data['source']['sha256']!=source_sha256:
+        raise ValueError('Development figures must bind the reviewed scaling source')
+    pins={row['path']:row['sha256'] for row in data['files']}
+    names=('development-scaling-cell.png','development-scaling-cell.pdf',
+           'development-scaling-item.png','development-scaling-item.pdf')
+    paths=[]
+    for name in names:
+        path=directory/name
+        if hashlib.sha256(path.read_bytes()).hexdigest()!=pins.get(name):
+            raise ValueError('Development figure bytes differ from their reviewed receipt')
+        paths.append(path)
+    return paths
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--development-figures", type=Path,
+                        help="Explicit reviewed development-scaling-v2 figure directory")
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[1]
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=True)
     source = json.loads((root / "dashboard/report.json").read_text())
+    qualitative=source.get('qualitative_reviews')
+    if qualitative:
+        validate_qualitative(qualitative)
+        if public_data(qualitative)!=qualitative:
+            raise ValueError('Reviewed case quotes must not be silently redacted')
     report = public_data(source)
     page = build(report)
     page = page.replace('<a href="../docs/REPORT.md">Working research report (local Markdown)</a>',
@@ -51,6 +75,8 @@ def main():
     (output / "details.html").write_text(page)
     (output / "index.html").write_text(build_overview(report))
     (output / "report.json").write_text(json.dumps(report, ensure_ascii=False) + "\n")
+    if qualitative:
+        (output / 'qualitative-evidence.json').write_text(json.dumps(qualitative,ensure_ascii=False)+'\n')
     markdown = public_text((root / "docs/REPORT.md").read_text())
     # Keep genuine web citations and packaged figures; local-only evidence is
     # named as text rather than presented as a broken public hyperlink.
@@ -67,7 +93,14 @@ def main():
             destination.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(path, destination)
             cards.append(f'<li><a href="{html.escape(relative.as_posix())}">{html.escape(directory + ": " + path.name)}</a></li>')
-    (output / "figures.html").write_text('<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Oracle Lens charts</title><style>body{font:17px/1.6 system-ui;max-width:850px;margin:3rem auto;padding:0 1rem;color:#172b35}a{color:#147a9b}</style><a href="/">← Research dashboard</a><h1>Validation charts</h1><p>These are validation results. Error bars and limitations are explained in the dashboard.</p><ul>' + ''.join(cards) + '</ul></html>')
+    if args.development_figures:
+        for path in development_figure_files(args.development_figures,source['development_scaling']['source_sha256']):
+            name=path.name
+            relative=Path('figures')/'development-scaling-v2'/name
+            destination=output/relative;destination.parent.mkdir(parents=True,exist_ok=True)
+            shutil.copyfile(path,destination)
+            cards.append(f'<li><a href="{html.escape(relative.as_posix())}">Development: {html.escape(name)}</a></li>')
+    (output / "figures.html").write_text('<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Oracle Lens charts</title><style>body{font:17px/1.6 system-ui;max-width:850px;margin:3rem auto;padding:0 1rem;color:#172b35}a{color:#147a9b}</style><a href="index.html">← Research dashboard</a><h1>Development and validation charts</h1><p>Files are labeled by study stage. Error bars, sample sizes and limitations are explained in the dashboard.</p><ul>' + ''.join(cards) + '</ul></html>')
     files = []
     for path in sorted(output.rglob("*")):
         if not path.is_file():

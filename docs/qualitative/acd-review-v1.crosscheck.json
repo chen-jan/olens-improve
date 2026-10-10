@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "status": "root_approved_and_independently_crosschecked",
+  "reviewed_utc": "2026-10-10T15:05:29.986700+00:00",
+  "primary_reviewer": "compute_storage_audit",
+  "independent_reviewer": "GPT-6.1 Sol /root/adversarial_evaluation",
+  "root_approval": "Root approved after independent evaluation-agent verification of all326 output references.",
+  "primary_annotations": {
+    "path": "docs/qualitative/acd-review-v1.json",
+    "sha256": "f0e3b28fb37622a01c949d7e1f64402279dcf2a4fee3142cc8c806afe32fe2f8"
+  },
+  "full_evidence": {
+    "path": "${OLENS_DATA_ROOT}/analysis/qualitative-shared-v1/acd-review.json",
+    "sha256": "da61cff192ed155fc775805debe861ef6b596485b31f20ada1e70fbeddc3eaeb"
+  },
+  "checks": [
+    "All326 compact text-hash references verified.",
+    "Eight fixed anchors and six bounded supplements checked against exact output and retained endpoint evidence.",
+    "Unjudged variants remain missing; official judgments unchanged."
+  ],
+  "disagreements": [],
+  "corrections_requested": [],
+  "interpretation": "The independent review agrees with the entity, arithmetic, deletion and judge-sensitivity caveats; no population or whole-output truth claim is established."
+}

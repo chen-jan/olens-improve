@@ -1,0 +1,362 @@
+{
+  "schema_version": 1,
+  "status": "primary_review_complete_pending_independent_crosscheck",
+  "reviewer": "GPT-6.1 Sol",
+  "reviewed_utc": "2026-10-10T15:10:42.115870+00:00",
+  "panel": {
+    "path": "${OLENS_REPO_ROOT}/configs/qualitative_shared_panel_v1.json",
+    "sha256": "36aa5977c631a84b1fceca0cfd22d60de7de58e124930ab7503ed617acefc5cf"
+  },
+  "full_evidence": {
+    "path": "${OLENS_DATA_ROOT}/analysis/qualitative-shared-v1/b-combinations-review.json",
+    "sha256": "6752b5d44bc856fd7f9492eb79ac037a95ecc465b87150f11b8c23a1821cecde",
+    "bytes": 10293366
+  },
+  "extraction_parent": {
+    "path": "${OLENS_DATA_ROOT}/analysis/qualitative-shared-v1/b-combinations-review-extracted-v1.json",
+    "sha256": "7ae95440423b8eab24362a00240636612167e9275b55c4e7cd572bbe13f4cf34",
+    "unchanged": true
+  },
+  "coverage": {
+    "conditions": 38,
+    "fixed_anchors_per_condition": 8,
+    "fixed_anchor_cases": 304,
+    "selected_supplement_cases": 34,
+    "missing_fixed_anchors": 0
+  },
+  "review_scope": {
+    "fixed_anchor_unique_proposed_texts_reviewed": 106,
+    "unique_selected_baseline_proposed_pairs_reviewed": 25,
+    "case_annotations": {
+      "fixed_anchor": 304,
+      "selected_supplement": 34
+    },
+    "all8contexts_reviewed": true,
+    "test_outcomes_accessed": false,
+    "official_verdicts_changed": false,
+    "helper_pair_audits_are_separate_from_readout_supplements": true
+  },
+  "helper_audit_refs": [
+    {
+      "path": "${OLENS_DATA_ROOT}/runs/helper-semantic-repaired-pilot-v1/audits/B-v5-fresh40-manual.json",
+      "sha256": "0dfc94bd9091680131fd39109760880a937bfaba72183e2608ead19503dc715e"
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/runs/helper-semantic-repaired-pilot-v1/audits/B-v5-five-merge-mapping-audit.json",
+      "sha256": "235547ea4952b2c22edbbad171450755d8c19303635bf3696c3d19b774dc221e"
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/runs/helper-semantic-medium-reconfirmation-v1/audits/B-medium-fresh-audit.json",
+      "sha256": "02e0a06dd66b8f1179948eb2f390874b28fc58b1ab11f8035314ee27532980a8"
+    }
+  ],
+  "comparisons": [
+    {
+      "condition": "consensus_exact_support0-n16",
+      "baseline_condition": "best_n_exact-n16",
+      "n": 16,
+      "fixed_anchors": 8,
+      "selected_supplements": 0,
+      "supplement_cap_scope": "This materially distinct frozen variant; at most one apparent win and one regression. Conceptual-method public previews remain capped at two."
+    },
+    {
+      "condition": "consensus_semantic_v4_support0_compatoff-n16",
+      "baseline_condition": "best_n_exact-n16",
+      "n": 16,
+      "fixed_anchors": 8,
+      "selected_supplements": 0,
+      "supplement_cap_scope": "This materially distinct frozen variant; at most one apparent win and one regression. Conceptual-method public previews remain capped at two."
+    },
+    {
+      "condition": "consensus_semantic_v4_support0_compaton-n16",
+      "baseline_condition": "best_n_exact-n16",
+      "n": 16,
+      "fixed_anchors": 8,
+      "selected_supplements": 0,
+      "supplement_cap_scope": "This materially distinct frozen variant; at most one apparent win and one regression. Conceptual-method public previews remain capped at two."
+    },
+    {
+      "condition": "consensus_exact_support0.125-n16",
+      "baseline_condition": "best_n_exact-n16",
+      "n": 16,
+      "fixed_anchors": 8,
+      "selected_supplements": 2,
+      "supplement_cap_scope": "This materially distinct frozen variant; at most one apparent win and one regression. Conceptual-method public previews remain capped at two."
+    },
+    {
+      "condition": "consensus_semantic_v4_support0.125_compatoff-n16",
+      "baseline_condition": "best_n_exact-n16",
+      "n": 16,
+      "fixed_anchors": 8,
+      "selected_supplements": 1,
+      "supplement_cap_scope": "This materially distinct frozen variant; at most one apparent win and one regression. Conceptual-method public previews remain capped at two."
+    },
+    {
+      "condition": "consensus_semantic_v4_support0.125_compaton-n16",
+      "baseline_condition": "best_n_exact-n16",
+      "n": 16,
+      "fixed_anchors": 8,
+      "selected_supplements": 1,
+      "supplement_cap_scope": "This materially distinct frozen variant; at most one apparent win and one regression. Conceptual-method public previews remain capped at two."
+    },
+    {
+      "condition": "consensus_exact_support0.25-n16",
+      "baseline_condition": "best_n_exact-n16",
+      "n": 16,
+      "fixed_anchors": 8,
+      "selected_supplements": 2,
+      "supplement_cap_scope": "This materially distinct frozen variant; at most one apparent win and one regression. Conceptual-method public previews remain capped at two."
+    },
+    {
+      "condition": "consensus_semantic_v4_support0.25_compatoff-n16",
+      "baseline_condition": "best_n_exact-n16",
+      "n": 16,
+      "fixed_anchors": 8,
+      "selected_supplements": 2,
+      "supplement_cap_scope": "This materially distinct frozen variant; at most one apparent win and one regression. Conceptual-method public previews remain capped at two."
+    },
+    {
+      "condition": "consensus_semantic_v4_support0.25_compaton-n16",
+      "baseline_condition": "best_n_exact-n16",
+      "n": 16,
+      "fixed_anchors": 8,
+      "selected_supplements": 2,
+      "supplement_cap_scope": "This materially distinct frozen variant; at most one apparent win and one regression. Conceptual-method public previews remain capped at two."
+    },
+    {
+      "condition": "pooled_greedy_swap_then_prune_0.001-n32",
+      "baseline_condition": "pooled_greedy_swap-n32",
+      "n": 32,
+      "fixed_anchors": 8,
+      "selected_supplements": 1,
+      "supplement_cap_scope": "This materially distinct frozen variant; at most one apparent win and one regression. Conceptual-method public previews remain capped at two."
+    },
+    {
+      "condition": "pooled_greedy_swap_random_delete_matched_0.001-n32",
+      "baseline_condition": "pooled_greedy_swap-n32",
+      "n": 32,
+      "fixed_anchors": 8,
+      "selected_supplements": 1,
+      "supplement_cap_scope": "This materially distinct frozen variant; at most one apparent win and one regression. Conceptual-method public previews remain capped at two."
+    },
+    {
+      "condition": "pooled_greedy_swap_then_prune_0.005-n32",
+      "baseline_condition": "pooled_greedy_swap-n32",
+      "n": 32,
+      "fixed_anchors": 8,
+      "selected_supplements": 1,
+      "supplement_cap_scope": "This materially distinct frozen variant; at most one apparent win and one regression. Conceptual-method public previews remain capped at two."
+    },
+    {
+      "condition": "pooled_greedy_swap_random_delete_matched_0.005-n32",
+      "baseline_condition": "pooled_greedy_swap-n32",
+      "n": 32,
+      "fixed_anchors": 8,
+      "selected_supplements": 1,
+      "supplement_cap_scope": "This materially distinct frozen variant; at most one apparent win and one regression. Conceptual-method public previews remain capped at two."
+    },
+    {
+      "condition": "best_n_specificity_mean_then_prune_0.001-n32",
+      "baseline_condition": "best_n_specificity_mean-n32",
+      "n": 32,
+      "fixed_anchors": 8,
+      "selected_supplements": 2,
+      "supplement_cap_scope": "This materially distinct frozen variant; at most one apparent win and one regression. Conceptual-method public previews remain capped at two."
+    },
+    {
+      "condition": "best_n_specificity_mean_random_delete_matched_0.001-n32",
+      "baseline_condition": "best_n_specificity_mean-n32",
+      "n": 32,
+      "fixed_anchors": 8,
+      "selected_supplements": 1,
+      "supplement_cap_scope": "This materially distinct frozen variant; at most one apparent win and one regression. Conceptual-method public previews remain capped at two."
+    },
+    {
+      "condition": "best_n_specificity_mean_then_prune_0.005-n32",
+      "baseline_condition": "best_n_specificity_mean-n32",
+      "n": 32,
+      "fixed_anchors": 8,
+      "selected_supplements": 1,
+      "supplement_cap_scope": "This materially distinct frozen variant; at most one apparent win and one regression. Conceptual-method public previews remain capped at two."
+    },
+    {
+      "condition": "best_n_specificity_mean_random_delete_matched_0.005-n32",
+      "baseline_condition": "best_n_specificity_mean-n32",
+      "n": 32,
+      "fixed_anchors": 8,
+      "selected_supplements": 1,
+      "supplement_cap_scope": "This materially distinct frozen variant; at most one apparent win and one regression. Conceptual-method public previews remain capped at two."
+    },
+    {
+      "condition": "editing_round2_then_prune_0.001-n32",
+      "baseline_condition": "editing_round2-n32",
+      "n": 32,
+      "fixed_anchors": 8,
+      "selected_supplements": 0,
+      "supplement_cap_scope": "This materially distinct frozen variant; at most one apparent win and one regression. Conceptual-method public previews remain capped at two."
+    },
+    {
+      "condition": "editing_round2_random_delete_matched_0.001-n32",
+      "baseline_condition": "editing_round2-n32",
+      "n": 32,
+      "fixed_anchors": 8,
+      "selected_supplements": 0,
+      "supplement_cap_scope": "This materially distinct frozen variant; at most one apparent win and one regression. Conceptual-method public previews remain capped at two."
+    },
+    {
+      "condition": "editing_round2_then_prune_0.005-n32",
+      "baseline_condition": "editing_round2-n32",
+      "n": 32,
+      "fixed_anchors": 8,
+      "selected_supplements": 1,
+      "supplement_cap_scope": "This materially distinct frozen variant; at most one apparent win and one regression. Conceptual-method public previews remain capped at two."
+    },
+    {
+      "condition": "editing_round2_random_delete_matched_0.005-n32",
+      "baseline_condition": "editing_round2-n32",
+      "n": 32,
+      "fixed_anchors": 8,
+      "selected_supplements": 2,
+      "supplement_cap_scope": "This materially distinct frozen variant; at most one apparent win and one regression. Conceptual-method public previews remain capped at two."
+    },
+    {
+      "condition": "pooling_exact_support_lambda0-n16",
+      "baseline_condition": "pooled_greedy_swap-n16",
+      "n": 16,
+      "fixed_anchors": 8,
+      "selected_supplements": 0,
+      "supplement_cap_scope": "This materially distinct frozen variant; at most one apparent win and one regression. Conceptual-method public previews remain capped at two."
+    },
+    {
+      "condition": "pooling_exact_support_lambda0.05-n16",
+      "baseline_condition": "pooled_greedy_swap-n16",
+      "n": 16,
+      "fixed_anchors": 8,
+      "selected_supplements": 0,
+      "supplement_cap_scope": "This materially distinct frozen variant; at most one apparent win and one regression. Conceptual-method public previews remain capped at two."
+    },
+    {
+      "condition": "pooling_exact_support_lambda0.2-n16",
+      "baseline_condition": "pooled_greedy_swap-n16",
+      "n": 16,
+      "fixed_anchors": 8,
+      "selected_supplements": 2,
+      "supplement_cap_scope": "This materially distinct frozen variant; at most one apparent win and one regression. Conceptual-method public previews remain capped at two."
+    },
+    {
+      "condition": "exact_support_only-n16",
+      "baseline_condition": "best_n_exact-n16",
+      "n": 16,
+      "fixed_anchors": 8,
+      "selected_supplements": 0,
+      "supplement_cap_scope": "This materially distinct frozen variant; at most one apparent win and one regression. Conceptual-method public previews remain capped at two."
+    },
+    {
+      "condition": "consensus_semantic_v5_support0_compatoff_vetooff-n16",
+      "baseline_condition": "best_n_exact-n16",
+      "n": 16,
+      "fixed_anchors": 8,
+      "selected_supplements": 1,
+      "supplement_cap_scope": "This materially distinct frozen variant; at most one apparent win and one regression. Conceptual-method public previews remain capped at two."
+    },
+    {
+      "condition": "consensus_semantic_v5_support0_compatoff_vetoon-n16",
+      "baseline_condition": "best_n_exact-n16",
+      "n": 16,
+      "fixed_anchors": 8,
+      "selected_supplements": 0,
+      "supplement_cap_scope": "This materially distinct frozen variant; at most one apparent win and one regression. Conceptual-method public previews remain capped at two."
+    },
+    {
+      "condition": "consensus_semantic_v5_support0_compaton_vetoon-n16",
+      "baseline_condition": "best_n_exact-n16",
+      "n": 16,
+      "fixed_anchors": 8,
+      "selected_supplements": 0,
+      "supplement_cap_scope": "This materially distinct frozen variant; at most one apparent win and one regression. Conceptual-method public previews remain capped at two."
+    },
+    {
+      "condition": "consensus_semantic_v5_support0.125_compatoff_vetoon-n16",
+      "baseline_condition": "best_n_exact-n16",
+      "n": 16,
+      "fixed_anchors": 8,
+      "selected_supplements": 2,
+      "supplement_cap_scope": "This materially distinct frozen variant; at most one apparent win and one regression. Conceptual-method public previews remain capped at two."
+    },
+    {
+      "condition": "consensus_semantic_v5_support0.125_compaton_vetoon-n16",
+      "baseline_condition": "best_n_exact-n16",
+      "n": 16,
+      "fixed_anchors": 8,
+      "selected_supplements": 2,
+      "supplement_cap_scope": "This materially distinct frozen variant; at most one apparent win and one regression. Conceptual-method public previews remain capped at two."
+    },
+    {
+      "condition": "pooled_specificity_mean-n32",
+      "baseline_condition": "pooled_greedy_swap-n32",
+      "n": 32,
+      "fixed_anchors": 8,
+      "selected_supplements": 1,
+      "supplement_cap_scope": "This materially distinct frozen variant; at most one apparent win and one regression. Conceptual-method public previews remain capped at two."
+    },
+    {
+      "condition": "pooled_specificity_mean_then_prune_0.005-n32",
+      "baseline_condition": "pooled_specificity_mean-n32",
+      "n": 32,
+      "fixed_anchors": 8,
+      "selected_supplements": 0,
+      "supplement_cap_scope": "This materially distinct frozen variant; at most one apparent win and one regression. Conceptual-method public previews remain capped at two."
+    },
+    {
+      "condition": "pooled_specificity_mean_random_delete_matched_0.005-n32",
+      "baseline_condition": "pooled_specificity_mean-n32",
+      "n": 32,
+      "fixed_anchors": 8,
+      "selected_supplements": 0,
+      "supplement_cap_scope": "This materially distinct frozen variant; at most one apparent win and one regression. Conceptual-method public previews remain capped at two."
+    },
+    {
+      "condition": "best_n_specificity_mean_abstain_nonpositive-n32",
+      "baseline_condition": "best_n_specificity_mean-n32",
+      "n": 32,
+      "fixed_anchors": 8,
+      "selected_supplements": 0,
+      "supplement_cap_scope": "This materially distinct frozen variant; at most one apparent win and one regression. Conceptual-method public previews remain capped at two."
+    },
+    {
+      "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+      "baseline_condition": "best_n_exact-n16",
+      "n": 16,
+      "fixed_anchors": 8,
+      "selected_supplements": 0,
+      "supplement_cap_scope": "This materially distinct frozen variant; at most one apparent win and one regression. Conceptual-method public previews remain capped at two."
+    },
+    {
+      "condition": "consensus_semantic_v5_medium_support0_compaton_vetoon-n16",
+      "baseline_condition": "best_n_exact-n16",
+      "n": 16,
+      "fixed_anchors": 8,
+      "selected_supplements": 0,
+      "supplement_cap_scope": "This materially distinct frozen variant; at most one apparent win and one regression. Conceptual-method public previews remain capped at two."
+    },
+    {
+      "condition": "consensus_semantic_v5_medium_support0.125_compatoff_vetoon-n16",
+      "baseline_condition": "best_n_exact-n16",
+      "n": 16,
+      "fixed_anchors": 8,
+      "selected_supplements": 2,
+      "supplement_cap_scope": "This materially distinct frozen variant; at most one apparent win and one regression. Conceptual-method public previews remain capped at two."
+    },
+    {
+      "condition": "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16",
+      "baseline_condition": "best_n_exact-n16",
+      "n": 16,
+      "fixed_anchors": 8,
+      "selected_supplements": 2,
+      "supplement_cap_scope": "This materially distinct frozen variant; at most one apparent win and one regression. Conceptual-method public previews remain capped at two."
+    }
+  ],
+  "source_registry_in_full_evidence": true,
+  "official_verdicts_unchanged": true,
+  "test_outcomes_accessed": false
+}

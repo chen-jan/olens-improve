@@ -1,6 +1,6 @@
 # Improving Oracle Lens with inference-time computation
 
-Working research report, 2026-10-10. **Validation is complete; final TEST evaluation is pending.**
+Working research report, 2026-10-10. **Validation and development sampling curves are complete; final TEST judging is running.**
 The findings below distinguish development from the fixed validation comparison;
 no final method recommendation has been validated on TEST. Live operational status is in
 [STATUS.md](STATUS.md); the [dashboard](../dashboard/index.html) provides
@@ -24,6 +24,31 @@ deletion. Its apparent pilot gains include judge-sensitive cases with remaining
 contradictions. Completed validation likewise does not support promoting pruning
 over matched-count random deletion. Whole-bullet consensus and free editing
 have not justified broad expansion on the evidence collected so far.
+
+## What changed in the actual explanations
+
+Three reviewers, with rotating independent checks, compared the same eight
+development examples across all method sections. The examples were fixed without
+looking at outcomes, with two per task. Separate rare-change examples are clearly
+labeled as selected afterward. They illustrate behavior, rather than estimating
+how frequently it occurs; unchanged outputs and missing diagnostics stay visible.
+
+Sampling and pooling sometimes recover the required phrase “Simula 67” while
+still inventing its collaborators. Repetition-based filtering can keep generic
+claims but discard that useful phrase or a needed intermediate number. Pruning
+can remove an incorrect chemical identity, yet leave no useful chemical fact;
+other apparent improvements retain the very statement previously flagged by the
+judge. These cases separate recovering a mention, removing information and
+correcting an explanation.
+
+Editing changes none of the eight shared outputs; its separately inspected rare
+changes include cleanup and added completions, without an established recovery
+gain. The independent token reader cannot distinguish a correct number from a
+longer number containing the same digit, or reversed relations with the same
+words. Contradictory reviewer and judge interpretations remain side by side.
+The dashboard's expandable method sections provide exact before/after text,
+source context, variant choices and retained judge evidence. The full review and
+coverage limits are recorded in [the qualitative inventory](QUALITATIVE_COVERAGE.md).
 
 ## Question and experimental controls
 
@@ -87,7 +112,7 @@ stay together when assigning development, validation and test groups.
 | Small development pilot | 31 | 189 | Method iteration and failure diagnosis; selected cells |
 | Full development | 121 | 5,236 | Larger method comparison using original complete read grids |
 | Validation | 80 | 3,485 | Twelve frozen comparisons; complete |
-| Test | 268 | 10,714 | Twelve comparisons frozen; selection complete, judging pending |
+| Test | 268 | 10,714 | Twelve comparisons frozen; judging running |
 
 The pilot is a subset of development. Cells from the same prompt are correlated.
 Paired uncertainty intervals resample related item groups, not individual cells.
@@ -155,11 +180,12 @@ contain false surrounding claims. See
 
 ## Larger development results
 
-Best-of-32 versus the capped single sample is complete on all 5,236 development
-cells. Other development comparisons remain partly incomplete; the remaining
-judge queues stopped at clean family boundaries to prioritize validation. Intervals below
+All six best-of-N prefixes, N=1/2/4/8/16/32, are complete on the same 5,236
+development cells, with separate raw and capped single-sample references. Other
+method comparisons have the coverage recorded individually below. Intervals
 resample related groups in pairs; these exploratory comparisons are not adjusted
-for the other methods examined during development.
+for the other methods examined during development. The late completed curves
+cannot change the already frozen TEST choices.
 
 | Endpoint | Capped single sample | Best-of-32 | Change in percentage points [95% interval] |
 |---|---:|---:|---:|
@@ -176,6 +202,16 @@ flagged wrong, but the total flagged false spans rises from 1,305 to 1,324.
 Span counts and supported-claim counts use different segmentation and cannot
 be combined into a claim-precision estimate. Off-topic outputs decrease from
 148 to 134. Both the favorable changes and these limits matter.
+
+The complete sampling curve is nonmonotonic in quality. Best-of-16 recovers
+48 bridge cells and 185 role cells, versus 43 and 182 at best-of-32; it recovers
+only 19 arithmetic-intermediate cells versus 30 at best-of-32. These are observed
+counts, not evidence of a universally optimal sample budget. The hallucination
+changes at both N16 and N32 have intervals spanning zero. The N1 reconstruction
+selector is distinct from the released baseline: score eligibility yields one
+empty hallucination output and eleven empty role outputs. Full per-prefix
+counts, cell/item intervals, paired changes, lengths and limitations are in
+[the completed development scaling record](experiments/034-development-scaling-completion.md).
 
 Systematic trace inspection confirms that recovery can coexist with error.
 One selected chain output contains the required intermediate 18 alongside an
@@ -302,7 +338,7 @@ outcomes are included here.
 
 | Approach | Completed evidence | Current interpretation |
 |---|---|---|
-| Sample selection | Shared N1–32 pilot; larger development comparison in progress | Better fit is reliable; useful recovery varies across tasks and sample counts. |
+| Sample selection | Shared N1–32 pilot and complete six-prefix development comparison | Better fit is reliable; useful recovery varies across tasks and sample counts. |
 | Consensus | Exact and semantic whole-bullet pilots, repaired helper and reasoning-enabled follow-up | Strict agreement removes useful coverage; audited semantic grouping still makes unsafe merges. Atomic-claim consensus remains unresolved. |
 | Pruning | Single-response and pooled/contrastive-parent deletion, with matched-count random controls | Deleting low-contribution text can preserve some recovery, but also deletes required concepts. Reconstruction contribution is not a truth score. |
 | Pooling | Greedy selection with joint refitting and local swaps at N16/32 | Complementary bullets improve bridge mention recovery in the pilot; selected sets can retain incompatible relationships. |
@@ -442,8 +478,8 @@ TEST judgments or quality inspection. The original six primary comparisons,
 settings and two validation-selected operating points remain unchanged.
 Small validation samples do not establish that excluded variants are inferior.
 All 342,848 TEST samples passed source and cell identity checks; reconstruction
-and selection are complete for all 10,714 sites. No TEST quality results are
-available yet. See the [original freeze](experiments/032-test-final-method-freeze.md)
+and selection are complete for all 10,714 sites. All four final evaluators
+launched at 14:58–14:59 UTC; no TEST quality results have been inspected yet. See the [original freeze](experiments/032-test-final-method-freeze.md)
 and [expanded comparison](experiments/038-expanded-heldout-comparison.md).
 Consensus and editing remain pilot evidence, and independent-reader checks
 remain diagnostics; the twelve-method comparison is not an exhaustive test of

@@ -1,0 +1,177 @@
+{
+  "status": "cross_review_complete_pending_root_presentation_review",
+  "reviewer": "GPT-6.1 Sol /root/model_scoring_audit",
+  "reviewed_utc": "2026-10-10T14:50:02.625307+00:00",
+  "full_artifact": {
+    "path": "${OLENS_DATA_ROOT}/analysis/qualitative-shared-v1/efg-review.json",
+    "sha256": "3316be52e8ed848861a59265f5c6dbff0e717c89b8166bb49264486557d2c52b",
+    "bytes": 2329731
+  },
+  "source_sha256": {
+    "configs/qualitative_shared_panel_v1.json": "36aa5977c631a84b1fceca0cfd22d60de7de58e124930ab7503ed617acefc5cf",
+    "configs/splits_pilot_shared_v2.json": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+    "docs/QUALITATIVE_REVIEW.md": "927c8e061f4cfe86a79ad09eff49e3b8478ff3b892e13e7f326e0b8431aa0ebe",
+    "scripts/analyze_consensus_conditions.py": "853827001140b7c7fd8aeb0be6b4485e2a02a7f3a2e5fbf61833efc6dedb40ce",
+    "scripts/analyze_signed_menu.py": "82afc579a36f1176465252c19cd8a3d300597f038e9cd9e2ca00d4dad8bc061d"
+  },
+  "coverage": {
+    "capped_n1-n1": {
+      "fixed_anchors": 8,
+      "available": 8,
+      "unchanged_text_vs_parent": 8,
+      "empty_outputs": 0,
+      "missing_verdicts": 0
+    },
+    "best_n_specificity_mean-n32": {
+      "fixed_anchors": 8,
+      "available": 8,
+      "unchanged_text_vs_parent": 6,
+      "empty_outputs": 0,
+      "missing_verdicts": 0
+    },
+    "best_n_specificity_max-n32": {
+      "fixed_anchors": 8,
+      "available": 8,
+      "unchanged_text_vs_parent": 3,
+      "empty_outputs": 0,
+      "missing_verdicts": 0
+    },
+    "likelihood_true_minus_mean_two_controls-n8": {
+      "fixed_anchors": 8,
+      "available": 8,
+      "unchanged_text_vs_parent": 2,
+      "empty_outputs": 0,
+      "missing_verdicts": 0
+    },
+    "own_mean_log_likelihood-n8": {
+      "fixed_anchors": 8,
+      "available": 8,
+      "unchanged_text_vs_parent": 0,
+      "empty_outputs": 0,
+      "missing_verdicts": 0
+    },
+    "control_mean_log_likelihood-n8": {
+      "fixed_anchors": 8,
+      "available": 8,
+      "unchanged_text_vs_parent": 1,
+      "empty_outputs": 0,
+      "missing_verdicts": 0
+    },
+    "editing_round1-n32": {
+      "fixed_anchors": 8,
+      "available": 8,
+      "unchanged_text_vs_parent": 8,
+      "empty_outputs": 0,
+      "missing_verdicts": 0
+    },
+    "editing_round2-n32": {
+      "fixed_anchors": 8,
+      "available": 8,
+      "unchanged_text_vs_parent": 8,
+      "empty_outputs": 0,
+      "missing_verdicts": 0
+    },
+    "best_n_specificity_mean_abstain_nonpositive-n32": {
+      "fixed_anchors": 8,
+      "available": 8,
+      "unchanged_text_vs_parent": 7,
+      "empty_outputs": 1,
+      "missing_verdicts": 0
+    },
+    "G": {
+      "fixed_anchors": 8,
+      "existing_instrument_anchors": 1,
+      "existing_controlled_pair_anchors": 3,
+      "missing_anchors": 4,
+      "prose_selector_outputs": 0
+    }
+  },
+  "anchors": [
+    {
+      "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+      "family": "hallucination",
+      "item_id": "chat-lmsys-0052",
+      "group_id": "hallucination:35f3492cdf5d57c7",
+      "layer": 20,
+      "position": 253
+    },
+    {
+      "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+      "family": "hallucination",
+      "item_id": "chat-lmsys-0023",
+      "group_id": "hallucination:5c85a16c7bca4791",
+      "layer": 60,
+      "position": 464
+    },
+    {
+      "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+      "family": "multihop_mt",
+      "item_id": "mhh-1967-norwegian-classes-objects-codesigner",
+      "group_id": "multihop_mt:bridge-component:a046b74450ba7c00",
+      "layer": 44,
+      "position": 28
+    },
+    {
+      "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+      "family": "multihop_mt",
+      "item_id": "mhh-mesopotamian-wildman-cedar",
+      "group_id": "multihop_mt:bridge-component:be6c03c9fb6be262",
+      "layer": 60,
+      "position": 46
+    },
+    {
+      "cell_id": "chain_intermediates|chain-w2-d2p-0013|L60|p00062",
+      "family": "chain_intermediates",
+      "item_id": "chain-w2-d2p-0013",
+      "group_id": "chain_intermediates:37eccc588aafa111",
+      "layer": 60,
+      "position": 62
+    },
+    {
+      "cell_id": "chain_intermediates|chain-d2p-0385|L20|p00066",
+      "family": "chain_intermediates",
+      "item_id": "chain-d2p-0385",
+      "group_id": "chain_intermediates:787ce21baf539c52",
+      "layer": 20,
+      "position": 66
+    },
+    {
+      "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+      "family": "role_bound_association",
+      "item_id": "oa-waiter-customer-apologize-ab",
+      "group_id": "role_bound_association:eeeaafd155b88847",
+      "layer": 20,
+      "position": 92
+    },
+    {
+      "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+      "family": "role_bound_association",
+      "item_id": "oa-comedian-heckler-humiliate-ab",
+      "group_id": "role_bound_association:678e30ea4ee5fd05",
+      "layer": 60,
+      "position": 178
+    }
+  ],
+  "F_supplements": [
+    "hallucination|chat-dailydialog-0047|L60|p00182",
+    "role_bound_association|oa-lawyer-witness-interrogate-ab|L60|p00150"
+  ],
+  "supplement_rule": {
+    "seed": 20261010,
+    "payload": "20261010|efg_rare_edit_v1|{cell_id}",
+    "eligible_count": 8,
+    "policy": "Two rare edits chosen by hash from the full changed-output pool; neither is claimed as a semantic win. Shared E/G anchors already illustrate the available changes/diagnostics; no supplements added."
+  },
+  "independent_review": {
+    "status": "complete",
+    "reviewer": "GPT-6.1 Sol /root/compute_storage_audit",
+    "scope": "All eight fixed anchor texts and retained evidence; comparator matching, unchanged F parents, G4 available/4missing; prior full editing audit bounds retained. Both rare F supplements independently checked.",
+    "verdict": "No evidence/count blocker; add explicit retained truncated DETR-D/DETR-T attribution caveat.",
+    "resolution": "Summary corrected; original immutable artifact unchanged. Separate receipt records the clarification.",
+    "receipt": {
+      "path": "${OLENS_DATA_ROOT}/analysis/qualitative-shared-v1/efg-review-independent-v1.json",
+      "sha256": "fb18839c9ee4eafb8a9122521ebadca3e2a8a066f1c25c3c8106929c0423926c"
+    }
+  },
+  "publication": "Full context/source payload is outside Git; export only bounded independently reviewed cards, removing infrastructure paths and request/response identifiers."
+}

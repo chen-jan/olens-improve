@@ -2,12 +2,16 @@
 import html
 import math
 import re
+try:
+    import dashboard_qualitative as qualitative
+except ModuleNotFoundError:
+    from scripts import dashboard_qualitative as qualitative
 
 TASKS = {'hallucination': 'Transcript contradictions', 'multihop_mt': 'Multi-hop facts',
          'chain_intermediates': 'Arithmetic steps', 'role_bound_association': 'Who did what'}
 METHODS = {
  'sample_selection': ('Choose a complete readout', 'Keep one of several descriptions.', '006-selector-pilot.md',
-   'Computed, but not all quality-judged: released 80-step solver and random choices at every prefix. Larger development sampling curves remain incomplete.'),
+   'Computed, but not all quality-judged: released 80-step solver and random choices at every prefix. The larger-development N1–32 curve is shown when its reviewed complete source is attached.'),
  'consensus': ('Keep repeated claims', 'Count agreement across distinct samples.', '015-consensus-pilot.md',
    'Whole-bullet exact and semantic variants were measured. Extracted-claim consensus stopped after eight audited cells: self-containedness failed; the planned 32-cell quality comparison was not completed. Unsafe merges remain a limitation.'),
  'pruning': ('Remove weak bullets', 'Delete bullets that contribute little to the reconstruction match.', '011-cached-combinations.md',
@@ -205,7 +209,7 @@ def traces(rows):
 def scaling(report):
     rows=[r for r in report.get('methods',{}).get('sample_selection',{}).get('scaling',[]) if r['label'].split(':')[0] in TASKS]
     if not rows:return ''
-    out='<section id="sampling"><div class="section-heading"><div><h2>Does asking for more samples help?</h2><p>All measured N1, 2, 4, 8, 16 and 32 pilot results. Error bars retain the source’s grouped 95% intervals.</p></div></div><div class="charts">'
+    out='<section id="sampling"><div class="section-heading"><div><h2>Does asking for more samples help?</h2><p>More samples can help some tasks and hurt others. Supplied error bars are grouped 95% intervals; missing intervals are not treated as zero uncertainty.</p></div></div>'+development_scaling(report)+'<details class="info"><summary>Earlier shared pilot: six saved prefixes, partial grids</summary><div class="charts">'
     for s in rows:
         family=s['label'].split(':')[0];points=s['points'];xs={n:48+48*i for i,n in enumerate((1,2,4,8,16,32))};y=lambda v:190-145*v
         if len({p['n'] for p in points})!=len(points) or any(p['n'] not in xs for p in points):raise ValueError('Duplicate or unsupported sampling prefix')
@@ -234,11 +238,81 @@ def scaling(report):
         if matches:out+='<p class="small">'+esc(matches[0].get('uncertainty','Group count not supplied'))+'</p>'
         out+='</details></article>'
     out+='</div><p class="small">Shared pilot: 31 development items, 189 sites, partial original grids; only 2–8 related groups per task. These are selections from saved prefixes, not six independent generation runs. These few observations do not establish a scaling law.</p>'
-    dev=full_dev_rows(report)
-    out+='<details class="info"><summary>Larger development: sparse comparisons, not a complete N1–32 curve</summary><p>121 items / 5,236 sites. Only the available complete baselines and best-of-32 evidence are shown here. N2/4/8/16 larger-development curve points are missing in this snapshot, not zero. Shortened original at N1 is a baseline, not an inferred best-of-1 curve point.</p>'
-    for family in TASKS:out+=rate_plot([r for r in dev if r['family']==family and r['condition'] in ('capped_n1-n1','best_n_exact-n32')],TASKS[family],'Full development')
     out+='</details><details class="info"><summary>Reconstruction and sample cost are separate from quality</summary><p>These curves show benchmark quality. No per-prefix reconstruction-fit curve is attached to this report snapshot; we do not infer one from quality. Reconstruction-fit diagnostics, when supplied, remain separate inside the contrastive-method tables. Sample count is the experimental prefix cost, not complete new-input latency or GPU dollars.</p>'+costs(report['methods']['sample_selection'].get('cost_components',[]))+'</details></section>'
     return out
+
+
+def development_scaling(report):
+    section=report.get('development_scaling')
+    if not section:
+        return '<p class="missing">The complete development curve is not attached to this snapshot; missing points are not zero.</p>'
+    expected=['raw_n1-n1','capped_n1-n1']+[f'best_n_exact-n{n}' for n in (1,2,4,8,16,32)]
+    if section.get('reviewed_by')!='root' or section.get('source_sha256')!='bc582289b378a286a72ce239148dfc6f22aece28e79f47124cfa9a2ee12cc5cf':
+        raise ValueError('Require the reviewed complete development scaling source')
+    measurement=section['measurement'];conditions=measurement['conditions']
+    if [c['condition'] for c in conditions]!=expected:
+        raise ValueError('Keep the exact eight development conditions')
+    out='<h3>Complete development comparison</h3><p class="small">121 items · 5,236 readout sites. The six points reuse nested prefixes of the same saved pool. Raw and shortened originals are separate reference lines. Rates need not improve steadily; these observations do not establish a scaling law.</p><div class="charts">'
+    rows=[]
+    xs={n:48+48*i for i,n in enumerate((1,2,4,8,16,32))}
+    for family,title in TASKS.items():
+        metrics=[];endpoint='contradiction_rate' if family=='hallucination' else 'cell_recovery'
+        for condition in conditions:
+            if not condition['measurement_complete'] or set(condition['families'])!=set(TASKS):
+                raise ValueError('Development curves require all complete families')
+            f=condition['families'][family]
+            if f['missing_stage1'] or f['missing_stage2']:raise ValueError('Missing development judgments')
+            m=f['metrics'][endpoint]
+            row={'family':family,'condition':condition['condition'],'endpoint':'Contradictions / specific readouts' if family=='hallucination' else 'Cell recovery',
+                'value':m['value'],'ci':m['ci95'],'numerator':m['numerator'],'denominator':m['denominator'],
+                'eligible_count':m['items'],'eligibility_unit':'items','missing_count':0,
+                'cohort':'Full development: complete original grids',
+                'uncertainty':f'{m["items"]} items; {m["independent_groups"]} related groups; grouped 95% interval'+('; '+m['warning'] if m.get('warning') else '')}
+            validate_row(row)
+            if row['value'] is not None and not 0<=row['value']<=1:raise ValueError('Development rates must lie in [0,1]')
+            rows.append(row);metrics.append((condition,m,row))
+        info=metrics[0][1]
+        upper=max([.05]+[m['value'] for _,m,_ in metrics if m['value'] is not None]+[m['ci95'][1] for _,m,_ in metrics if m['ci95']])
+        step=.05 if upper<=.25 else .1;maximum=min(1,math.ceil(upper/step)*step)
+        y=lambda v:190-145*v/maximum
+        out+=f'<article class="task-chart"><h3>{esc(title)}</h3><p class="small">Full development · {info["items"]} items · {info["independent_groups"]} related groups. '+('Lower' if family=='hallucination' else 'Higher')+f' is better. Zero-based axis: 0–{maximum*100:g}%.</p><svg class="sampling-plot" viewBox="0 0 350 235" role="img" aria-label="Complete development sampling curve, grouped intervals, original references">'
+        for v in (0,maximum/2,maximum):out+=f'<path d="M40 {y(v)}H310" stroke="#D6E1EC"/><text x="34" y="{y(v)+4}" text-anchor="end">{v*100:g}%</text>'
+        for (_,m,_),colour in zip(metrics[:2],('#7C8793','#BF7529')):
+            if m['value'] is not None:out+=f'<path d="M40 {y(m["value"])}H310" stroke="{colour}" stroke-dasharray="5 4"/>'
+        points=metrics[2:]
+        for (a,ma,_),(b,mb,_) in zip(points,points[1:]):
+            if ma['value'] is not None and mb['value'] is not None:out+=f'<path d="M{xs[a["n"]]} {y(ma["value"])}L{xs[b["n"]]} {y(mb["value"])}" fill="none" stroke="#246AB3"/>'
+        for c,m,_ in points:
+            x=xs[c['n']];ci=m['ci95']
+            if m['value'] is not None:
+                if ci:out+=f'<path d="M{x-4} {y(ci[0])}H{x+4}M{x} {y(ci[0])}V{y(ci[1])}M{x-4} {y(ci[1])}H{x+4}" stroke="#087F83"/>'
+                out+=f'<circle cx="{x}" cy="{y(m["value"])}" r="4" fill="#246AB3"/>'
+            out+=f'<text x="{x}" y="211" text-anchor="middle">{c["n"]}</text>'
+        out+='<text x="175" y="232" text-anchor="middle">Number of shared samples</text></svg><p class="small">Blue: best reconstruction · grey dashed: raw original · amber dashed: shortened original. Reference intervals appear in the table.</p><details><summary>Exact rates, intervals and count denominators</summary>'+table([r for r in rows if r['family']==family])+'</details></article>'
+    out+='</div><p class="small">Best of 1 also applies the selector’s eligibility checks. It is not the shortened original: one transcript site and eleven role sites have empty eligible selections. The curves above count readout sites, not whole items. Sites are correlated within items; arithmetic has only seven related groups.</p>'
+    original=[]
+    for c in conditions:
+        for family,f in c['families'].items():
+            if family=='hallucination':continue
+            for m in f.get('original_grid_metrics',{}).values():
+                original.append({'family':family,'condition':c['condition'],
+                    'endpoint':'Whole items: at least one passing site/layer',
+                    'value':m['value'],'ci':m['ci95'],'numerator':m['numerator'],
+                    'denominator':m['denominator'],'eligible_count':m['items'],'eligibility_unit':'items',
+                    'missing_count':0,'cohort':'Full development: original whole-item aggregation',
+                    'uncertainty':f'{m["independent_groups"]} related groups; grouped 95% interval'+('; '+m['warning'] if m.get('warning') else '')})
+    if original:out+='<details><summary>Whole-item recovery: any passing site counts once</summary><p class="small">This is the original benchmark aggregation over complete grids. Its denominator is items, unlike the readout-site curves above.</p>'+table(original)+'</details>'
+    out+='<details><summary>Paired changes, grouped by related examples</summary><p class="small">These intervals compare paired outputs. Overlapping absolute error bars do not establish the paired difference.</p>'
+    paired=[]
+    for r in measurement['paired_comparisons']:
+        if r['endpoint'] not in ('contradiction_rate','cell_recovery'):continue
+        paired.append({'family':r['family'],'condition':r['condition']+' vs '+r['baseline_condition'],
+            'endpoint':'Paired delta: Contradictions / specific readouts' if r['family']=='hallucination' else 'Paired delta: Cell recovery',
+            'value':r['delta'],'ci':r['ci95_delta'],'cohort':'Full development: complete original grids',
+            'eligible_count':r['items'],'eligibility_unit':'items','missing_count':0,
+            'uncertainty':f'{r["items"]} items; {r["independent_groups"]} related groups'+('; '+r['warning'] if r.get('warning') else '')})
+    for family in TASKS:out+='<details><summary>'+esc(TASKS[family])+'</summary>'+paired_plot(paired,family)+'</details>'
+    return out+'<details><summary>All paired values and exact intervals</summary>'+table(paired,True)+'</details></details>'
 
 
 def method_sections(report,details_url='details.html'):
@@ -324,7 +398,8 @@ def method_sections(report,details_url='details.html'):
               'unit':'USD / cell','scope':'Measured pilot component','measurement':'Usage-derived helper component only; excludes generation, encoding and judging'}])
         if not method.get('cost_components'):out+=costs(report.get('methods',{}).get('sample_selection',{}).get('cost_components',[])[:3])
         out+='<p class="small">Shared pool and cached work are reused across arms. These component costs are not a fresh-input end-to-end latency or a separate invoice for each variant. Missing prices and timers remain unknown.</p></details>'
-        out+='<details><summary>Examples, failures and interpretation</summary>'+traces(method.get('traces',[]))
+        out+=qualitative.method_cards(report.get('qualitative_reviews'),key)
+        out+='<details><summary>Additional examples, failures and interpretation</summary>'+traces(method.get('traces',[]))
         for finding in method.get('findings',[]):out+=f'<p>{esc(finding)}</p>'
         for limit in method.get('limits',[]):out+=f'<p class="small">{esc(limit)}</p>'
         out+='</details><details><summary>Source and exact identifiers</summary><p>Experiment record: '+esc(record)+'. Tables preserve the exact variant identifiers. Technical implementation and additional diagnostics are retained in the full study.</p><a href="'+esc(details_url)+'">Open source details</a></details></details>'

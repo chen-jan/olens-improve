@@ -1,0 +1,2598 @@
+{
+  "schema_version": 1,
+  "status": "primary_review_complete_pending_independent_crosscheck",
+  "reviewer": "compute_storage_audit",
+  "reviewed_utc": "2026-10-10T14:56:30.288547+00:00",
+  "full_evidence": {
+    "path": "${OLENS_DATA_ROOT}/analysis/qualitative-shared-v1/acd-review.json",
+    "sha256": "da61cff192ed155fc775805debe861ef6b596485b31f20ada1e70fbeddc3eaeb",
+    "bytes": 4015260
+  },
+  "panel": {
+    "path": "${OLENS_REPO_ROOT}/configs/qualitative_shared_panel_v1.json",
+    "sha256": "36aa5977c631a84b1fceca0cfd22d60de7de58e124930ab7503ed617acefc5cf"
+  },
+  "coverage": {
+    "fixed_cells": 8,
+    "variants_per_fixed_cell": 38,
+    "judged_variants_per_fixed_cell": 20,
+    "unjudged_variants_per_fixed_cell": 18,
+    "supplement_cells": 6,
+    "exact_output_records": 326,
+    "all_fixed_unique_texts_inspected": true,
+    "official_judgments_unchanged": true
+  },
+  "variant_notes": [
+    "All six exact/released80 sample-prefix choices have identical selected text on all8 fixed anchors. This is local text agreement, not numerical equivalence or population agreement.",
+    "N1-parent pruning, coefficient pruning, zero-threshold pruning and most matched-deletion outputs are numerical-only here; missing judgments are not zero quality.",
+    "Random16/32 are same-pool experimental controls; matching admissibility in deployment may require retries.",
+    "The manual review uses the pinned transcript/stimulus and retained judge evidence, not external world-fact verification."
+  ],
+  "cost_scope": {
+    "A": "N samples plus their candidate bullet AR encodings and numeric fits; raw/cappedN1 need no reconstruction encoder.",
+    "C": "Parent sampling/encoding and leave-one-out refits are recurring work; pruning from a cache does not make new-input inference free. No new helper calls or vectors for pruning itself.",
+    "D": "Same recorded sample budget plus bullet encoding, fully refitted pooled search and bounded swaps; no runtime helper calls in this method.",
+    "missing": "No per-case fresh latency or GPU-dollar cost inferred from the shared campaign. See source-bound cost evidence in031 and035."
+  },
+  "cases": [
+    {
+      "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+      "kind": "outcome_blind_shared_anchor",
+      "reviewer_interpretation": {
+        "A": "All sample-prefix choices remain about solubility but substitute other substances for sodium nitrite. A32 mentions benzoic acid; the retained judge flags that exact substance. Topic similarity is not correct chemical identity.",
+        "C": "Threshold .001 retains the wrong benzoic-acid bullet. Threshold .005 removes it and another bullet: 116→55 tokens, four→two bullets, official hallucinated→consistent. The surviving unfinished/general trends contain no sodium-nitrite value; stage2 reports zero supported claims and one unverifiable claim. This is removal of a contradiction, not recovery of the requested numeric fact.",
+        "D": "Pooling replaces the benzoic-acid bullet with an unsupported room-temperature numeric fragment. The subject remains unclear; the judge flags the 1g/100 fragment. Mixing similar chemical-reference bullets does not establish compatible substance/value relations.",
+        "labels": [
+          "entity_substitution",
+          "shortening",
+          "missing_numeric_fact",
+          "retained_unsupported_detail"
+        ]
+      },
+      "output_refs": [
+        {
+          "condition": "raw_n1-n1",
+          "text_sha256": "734e4cab45de42ed4655d6bf45a5f94e4a4cfda5dcc77344117376e4bb7c0fe9",
+          "token_count": 108,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "capped_n1-n1",
+          "text_sha256": "734e4cab45de42ed4655d6bf45a5f94e4a4cfda5dcc77344117376e4bb7c0fe9",
+          "token_count": 108,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_exact-n1",
+          "text_sha256": "734e4cab45de42ed4655d6bf45a5f94e4a4cfda5dcc77344117376e4bb7c0fe9",
+          "token_count": 108,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n1",
+          "text_sha256": "734e4cab45de42ed4655d6bf45a5f94e4a4cfda5dcc77344117376e4bb7c0fe9",
+          "token_count": 108,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n1",
+          "text_sha256": "734e4cab45de42ed4655d6bf45a5f94e4a4cfda5dcc77344117376e4bb7c0fe9",
+          "token_count": 108,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "best_n_exact-n2",
+          "text_sha256": "0bb69676fc29d0ebdf03b15bb947633bc7c01cdfcc7d2049ec664d9c1aa056c6",
+          "token_count": 99,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n2",
+          "text_sha256": "0bb69676fc29d0ebdf03b15bb947633bc7c01cdfcc7d2049ec664d9c1aa056c6",
+          "token_count": 99,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n2",
+          "text_sha256": "0bb69676fc29d0ebdf03b15bb947633bc7c01cdfcc7d2049ec664d9c1aa056c6",
+          "token_count": 99,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "best_n_exact-n4",
+          "text_sha256": "4d012bcdd4846636c47ad822f1b30be2896fa809e98a778540f9bb6e09a9a153",
+          "token_count": 101,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n4",
+          "text_sha256": "4d012bcdd4846636c47ad822f1b30be2896fa809e98a778540f9bb6e09a9a153",
+          "token_count": 101,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n4",
+          "text_sha256": "734e4cab45de42ed4655d6bf45a5f94e4a4cfda5dcc77344117376e4bb7c0fe9",
+          "token_count": 108,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "best_n_exact-n8",
+          "text_sha256": "e65eeaf2c1958c5a587243e0aa74999aac7f4d100eb381ae0ebff112ea876acb",
+          "token_count": 101,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n8",
+          "text_sha256": "e65eeaf2c1958c5a587243e0aa74999aac7f4d100eb381ae0ebff112ea876acb",
+          "token_count": 101,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n8",
+          "text_sha256": "0bb69676fc29d0ebdf03b15bb947633bc7c01cdfcc7d2049ec664d9c1aa056c6",
+          "token_count": 99,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "best_n_exact-n16",
+          "text_sha256": "e65eeaf2c1958c5a587243e0aa74999aac7f4d100eb381ae0ebff112ea876acb",
+          "token_count": 101,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n16",
+          "text_sha256": "e65eeaf2c1958c5a587243e0aa74999aac7f4d100eb381ae0ebff112ea876acb",
+          "token_count": 101,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n16",
+          "text_sha256": "88277315391257a9a6efd9f8c50c764e7c0cc454368a59377ea88fb3990b33b5",
+          "token_count": 113,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_exact-n32",
+          "text_sha256": "05ef85cdb77849ed0af5d4b887a22938ee5ab0d754d4d470ebbf00679baf912c",
+          "token_count": 116,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n32",
+          "text_sha256": "05ef85cdb77849ed0af5d4b887a22938ee5ab0d754d4d470ebbf00679baf912c",
+          "token_count": 116,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n32",
+          "text_sha256": "9eb3c6bbcf93c1e679e29e783b216701fbcba4bc190c367bbf6ba40d0ae4b1bc",
+          "token_count": 106,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "prune_loo_a32_0-n32",
+          "text_sha256": "f403fd39a33441dcdb623ce469e78f448c37fb686b79a61302da537c63ab8a07",
+          "token_count": 86,
+          "bullet_count": 3,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "random_delete_matched_a32_0-n32",
+          "text_sha256": "3de6826209c7546ccfa3fb74531f15bf2179e97ccec04ff2fde4c7b5ed59c860",
+          "token_count": 93,
+          "bullet_count": 3,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_loo_a32_0.001-n32",
+          "text_sha256": "f403fd39a33441dcdb623ce469e78f448c37fb686b79a61302da537c63ab8a07",
+          "token_count": 86,
+          "bullet_count": 3,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_delete_matched_a32_0.001-n32",
+          "text_sha256": "f403fd39a33441dcdb623ce469e78f448c37fb686b79a61302da537c63ab8a07",
+          "token_count": 86,
+          "bullet_count": 3,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_loo_a32_0.005-n32",
+          "text_sha256": "e28f37bc2fcef2b51b716a87f537962f12ff87368833a6b36a80c7b76266e254",
+          "token_count": 55,
+          "bullet_count": 2,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_delete_matched_a32_0.005-n32",
+          "text_sha256": "18eda09675a36de9f7bb898f00a6cce851980ac746d990452f0471336d3485c5",
+          "token_count": 53,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_coefficient_a32_0.01-n32",
+          "text_sha256": "f403fd39a33441dcdb623ce469e78f448c37fb686b79a61302da537c63ab8a07",
+          "token_count": 86,
+          "bullet_count": 3,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_coefficient_a32_0.05-n32",
+          "text_sha256": "f403fd39a33441dcdb623ce469e78f448c37fb686b79a61302da537c63ab8a07",
+          "token_count": 86,
+          "bullet_count": 3,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_loo_n1_0-n1",
+          "text_sha256": "734e4cab45de42ed4655d6bf45a5f94e4a4cfda5dcc77344117376e4bb7c0fe9",
+          "token_count": 108,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "random_delete_matched_n1_0-n1",
+          "text_sha256": "734e4cab45de42ed4655d6bf45a5f94e4a4cfda5dcc77344117376e4bb7c0fe9",
+          "token_count": 108,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_loo_n1_0.001-n1",
+          "text_sha256": "734e4cab45de42ed4655d6bf45a5f94e4a4cfda5dcc77344117376e4bb7c0fe9",
+          "token_count": 108,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "random_delete_matched_n1_0.001-n1",
+          "text_sha256": "734e4cab45de42ed4655d6bf45a5f94e4a4cfda5dcc77344117376e4bb7c0fe9",
+          "token_count": 108,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_loo_n1_0.005-n1",
+          "text_sha256": "4509dcf798e274bba75b575da2c9ced122dd26c0305dd2b1baf9d9223cbb5aec",
+          "token_count": 85,
+          "bullet_count": 3,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "random_delete_matched_n1_0.005-n1",
+          "text_sha256": "9db68a7dab9695ab47508b50555e1c3f2a0aa11b7b686546cd23790fc2e34743",
+          "token_count": 78,
+          "bullet_count": 3,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_coefficient_n1_0.01-n1",
+          "text_sha256": "734e4cab45de42ed4655d6bf45a5f94e4a4cfda5dcc77344117376e4bb7c0fe9",
+          "token_count": 108,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_coefficient_n1_0.05-n1",
+          "text_sha256": "734e4cab45de42ed4655d6bf45a5f94e4a4cfda5dcc77344117376e4bb7c0fe9",
+          "token_count": 108,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "pooled_greedy_swap-n16",
+          "text_sha256": "eb84d0fe7a0f4da8ad0086aa7bef21d24e52d773c839df0cece2b1f663887402",
+          "token_count": 117,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "pooled_greedy_swap-n32",
+          "text_sha256": "565260d9117e1ea331db2b6a8c7e83c84afe6c28e7b122af361e8ddfcb92dd36",
+          "token_count": 110,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        }
+      ]
+    },
+    {
+      "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+      "kind": "outcome_blind_shared_anchor",
+      "reviewer_interpretation": {
+        "A": "A16/A32 avoid the baseline DETR-D wording and receive consistent labels while retaining the source-supported small-object limitation. Additional query-alignment/positional-encoding/attention-cause explanations are not supplied by the transcript; stage2 leaves four claims unverifiable in A32.",
+        "C": "Both judged thresholds remove the first incomplete bullet, 101→82 tokens; consistent remains consistent. This removes repetition/incompleteness rather than showing a new factual correction.",
+        "D": "D16/D32 select identical text on this anchor. The final bullet calls later versions DETR, which the retained judge flags; other mechanistic explanations are still not established by the source.",
+        "labels": [
+          "supported_core",
+          "unverifiable_causal_detail",
+          "redundancy",
+          "judge_sensitive"
+        ]
+      },
+      "output_refs": [
+        {
+          "condition": "raw_n1-n1",
+          "text_sha256": "6f16c5477bec32456fdf659945ae72b7796939b6d350875835bb0a6ae70c462e",
+          "token_count": 96,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "capped_n1-n1",
+          "text_sha256": "6f16c5477bec32456fdf659945ae72b7796939b6d350875835bb0a6ae70c462e",
+          "token_count": 96,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_exact-n1",
+          "text_sha256": "6f16c5477bec32456fdf659945ae72b7796939b6d350875835bb0a6ae70c462e",
+          "token_count": 96,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n1",
+          "text_sha256": "6f16c5477bec32456fdf659945ae72b7796939b6d350875835bb0a6ae70c462e",
+          "token_count": 96,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n1",
+          "text_sha256": "6f16c5477bec32456fdf659945ae72b7796939b6d350875835bb0a6ae70c462e",
+          "token_count": 96,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "best_n_exact-n2",
+          "text_sha256": "6f16c5477bec32456fdf659945ae72b7796939b6d350875835bb0a6ae70c462e",
+          "token_count": 96,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n2",
+          "text_sha256": "6f16c5477bec32456fdf659945ae72b7796939b6d350875835bb0a6ae70c462e",
+          "token_count": 96,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n2",
+          "text_sha256": "6f16c5477bec32456fdf659945ae72b7796939b6d350875835bb0a6ae70c462e",
+          "token_count": 96,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "best_n_exact-n4",
+          "text_sha256": "7fb573b0091c10557ebd2e3af0a957f1e553efe253513c1eef26365fe98d5204",
+          "token_count": 97,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n4",
+          "text_sha256": "7fb573b0091c10557ebd2e3af0a957f1e553efe253513c1eef26365fe98d5204",
+          "token_count": 97,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n4",
+          "text_sha256": "7fb573b0091c10557ebd2e3af0a957f1e553efe253513c1eef26365fe98d5204",
+          "token_count": 97,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "best_n_exact-n8",
+          "text_sha256": "7fb573b0091c10557ebd2e3af0a957f1e553efe253513c1eef26365fe98d5204",
+          "token_count": 97,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n8",
+          "text_sha256": "7fb573b0091c10557ebd2e3af0a957f1e553efe253513c1eef26365fe98d5204",
+          "token_count": 97,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n8",
+          "text_sha256": "6f16c5477bec32456fdf659945ae72b7796939b6d350875835bb0a6ae70c462e",
+          "token_count": 96,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "best_n_exact-n16",
+          "text_sha256": "c3534239611eef6a2f4642627f420538368e2d202e8276625ee2cd4b146aaf73",
+          "token_count": 95,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n16",
+          "text_sha256": "c3534239611eef6a2f4642627f420538368e2d202e8276625ee2cd4b146aaf73",
+          "token_count": 95,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n16",
+          "text_sha256": "1a4d657d36373a29f7b397e9bfc2ce6173dfba6840658d92dfe634cddb56ae52",
+          "token_count": 97,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_exact-n32",
+          "text_sha256": "c15629f18d8f64a6bcf69ee807a3fa26de22cc36b0415f12bb39085c453d6ad2",
+          "token_count": 101,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n32",
+          "text_sha256": "c15629f18d8f64a6bcf69ee807a3fa26de22cc36b0415f12bb39085c453d6ad2",
+          "token_count": 101,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n32",
+          "text_sha256": "70c2f5e017d804b5eb98c71d29c546ceae58aa049337ee1d50f2262c63b01cbd",
+          "token_count": 103,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "prune_loo_a32_0-n32",
+          "text_sha256": "c15629f18d8f64a6bcf69ee807a3fa26de22cc36b0415f12bb39085c453d6ad2",
+          "token_count": 101,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "random_delete_matched_a32_0-n32",
+          "text_sha256": "c15629f18d8f64a6bcf69ee807a3fa26de22cc36b0415f12bb39085c453d6ad2",
+          "token_count": 101,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_loo_a32_0.001-n32",
+          "text_sha256": "f0f645153220b4b16bdf6eaa6df31bd0d020e671f613421483f2abecce65d315",
+          "token_count": 82,
+          "bullet_count": 3,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_delete_matched_a32_0.001-n32",
+          "text_sha256": "f0f645153220b4b16bdf6eaa6df31bd0d020e671f613421483f2abecce65d315",
+          "token_count": 82,
+          "bullet_count": 3,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_loo_a32_0.005-n32",
+          "text_sha256": "f0f645153220b4b16bdf6eaa6df31bd0d020e671f613421483f2abecce65d315",
+          "token_count": 82,
+          "bullet_count": 3,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_delete_matched_a32_0.005-n32",
+          "text_sha256": "f0f645153220b4b16bdf6eaa6df31bd0d020e671f613421483f2abecce65d315",
+          "token_count": 82,
+          "bullet_count": 3,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_coefficient_a32_0.01-n32",
+          "text_sha256": "f0f645153220b4b16bdf6eaa6df31bd0d020e671f613421483f2abecce65d315",
+          "token_count": 82,
+          "bullet_count": 3,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_coefficient_a32_0.05-n32",
+          "text_sha256": "f0f645153220b4b16bdf6eaa6df31bd0d020e671f613421483f2abecce65d315",
+          "token_count": 82,
+          "bullet_count": 3,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_loo_n1_0-n1",
+          "text_sha256": "6f16c5477bec32456fdf659945ae72b7796939b6d350875835bb0a6ae70c462e",
+          "token_count": 96,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "random_delete_matched_n1_0-n1",
+          "text_sha256": "6f16c5477bec32456fdf659945ae72b7796939b6d350875835bb0a6ae70c462e",
+          "token_count": 96,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_loo_n1_0.001-n1",
+          "text_sha256": "6f16c5477bec32456fdf659945ae72b7796939b6d350875835bb0a6ae70c462e",
+          "token_count": 96,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "random_delete_matched_n1_0.001-n1",
+          "text_sha256": "6f16c5477bec32456fdf659945ae72b7796939b6d350875835bb0a6ae70c462e",
+          "token_count": 96,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_loo_n1_0.005-n1",
+          "text_sha256": "8c035eedac96ed2fc9b126f87f167f8015884142e589251a9fc98c78cde0a3d8",
+          "token_count": 69,
+          "bullet_count": 3,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "random_delete_matched_n1_0.005-n1",
+          "text_sha256": "2d836782ba4a242f383100cfec25d9247490456d9722017cda1bf1c84be07343",
+          "token_count": 76,
+          "bullet_count": 3,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_coefficient_n1_0.01-n1",
+          "text_sha256": "6f16c5477bec32456fdf659945ae72b7796939b6d350875835bb0a6ae70c462e",
+          "token_count": 96,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_coefficient_n1_0.05-n1",
+          "text_sha256": "6f16c5477bec32456fdf659945ae72b7796939b6d350875835bb0a6ae70c462e",
+          "token_count": 96,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "pooled_greedy_swap-n16",
+          "text_sha256": "ca9f02091df93bef94814d43793f1492ceba2ec382c8388256f414a56456d278",
+          "token_count": 92,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "pooled_greedy_swap-n32",
+          "text_sha256": "ca9f02091df93bef94814d43793f1492ceba2ec382c8388256f414a56456d278",
+          "token_count": 92,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        }
+      ]
+    },
+    {
+      "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+      "kind": "outcome_blind_shared_anchor",
+      "reviewer_interpretation": {
+        "A": "A16/A32 acquire the required Simula67 bridge and pass the official language-hit endpoint, yet invent or confuse collaborators. A32 has Kai Nygaard rather than the source target Kristen Nygaard; the matcher also records a target hit, so that hit must not be paraphrased as exact correct identity.",
+        "C": "Both thresholds keep two wrong-collaborator bullets and delete the last two, including the target-bearing Kai Nygaard bullet: 97→38 tokens. The required bridge still passes, despite loss of optional target evidence and no repaired collaborator relation.",
+        "D": "D16/D32 keep the bridge while mixing additional collaborator names. This is a recovered bridge mention inside unreliable relations, not a coherent co-designer explanation.",
+        "labels": [
+          "bridge_mention_gain",
+          "wrong_entity_relation",
+          "optional_target_removed",
+          "partial_metric"
+        ]
+      },
+      "output_refs": [
+        {
+          "condition": "raw_n1-n1",
+          "text_sha256": "fc71a97c02082652baa73a72e5e165e5eebf085ae8c168c13823ed314106339b",
+          "token_count": 90,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "capped_n1-n1",
+          "text_sha256": "fc71a97c02082652baa73a72e5e165e5eebf085ae8c168c13823ed314106339b",
+          "token_count": 90,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_exact-n1",
+          "text_sha256": "fc71a97c02082652baa73a72e5e165e5eebf085ae8c168c13823ed314106339b",
+          "token_count": 90,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n1",
+          "text_sha256": "fc71a97c02082652baa73a72e5e165e5eebf085ae8c168c13823ed314106339b",
+          "token_count": 90,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n1",
+          "text_sha256": "fc71a97c02082652baa73a72e5e165e5eebf085ae8c168c13823ed314106339b",
+          "token_count": 90,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "best_n_exact-n2",
+          "text_sha256": "34869f680185839dcf115add2e50589cf1277d5b601ea43c3f3fff26f63f91ed",
+          "token_count": 103,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n2",
+          "text_sha256": "34869f680185839dcf115add2e50589cf1277d5b601ea43c3f3fff26f63f91ed",
+          "token_count": 103,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n2",
+          "text_sha256": "34869f680185839dcf115add2e50589cf1277d5b601ea43c3f3fff26f63f91ed",
+          "token_count": 103,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "best_n_exact-n4",
+          "text_sha256": "34869f680185839dcf115add2e50589cf1277d5b601ea43c3f3fff26f63f91ed",
+          "token_count": 103,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n4",
+          "text_sha256": "34869f680185839dcf115add2e50589cf1277d5b601ea43c3f3fff26f63f91ed",
+          "token_count": 103,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n4",
+          "text_sha256": "fc71a97c02082652baa73a72e5e165e5eebf085ae8c168c13823ed314106339b",
+          "token_count": 90,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "best_n_exact-n8",
+          "text_sha256": "34869f680185839dcf115add2e50589cf1277d5b601ea43c3f3fff26f63f91ed",
+          "token_count": 103,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n8",
+          "text_sha256": "34869f680185839dcf115add2e50589cf1277d5b601ea43c3f3fff26f63f91ed",
+          "token_count": 103,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n8",
+          "text_sha256": "4fab5c9a88a35ca115104fd7f4511c071a2f6fb8d55e31bed084ea1cd777bca8",
+          "token_count": 111,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "best_n_exact-n16",
+          "text_sha256": "34869f680185839dcf115add2e50589cf1277d5b601ea43c3f3fff26f63f91ed",
+          "token_count": 103,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n16",
+          "text_sha256": "34869f680185839dcf115add2e50589cf1277d5b601ea43c3f3fff26f63f91ed",
+          "token_count": 103,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n16",
+          "text_sha256": "6a28a3993183e8359e6383ca3a15bee9d75ff8fbab6ae38d3f987752e4b16108",
+          "token_count": 110,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_exact-n32",
+          "text_sha256": "d515a1ad1152747c682d4c8aaca5ddb73ed6c8310b94046e91fb1b6dca8e3257",
+          "token_count": 97,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n32",
+          "text_sha256": "d515a1ad1152747c682d4c8aaca5ddb73ed6c8310b94046e91fb1b6dca8e3257",
+          "token_count": 97,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n32",
+          "text_sha256": "35e1a591ba179fdf787372e184f0040af483aef222132336ebad164392e53c67",
+          "token_count": 94,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "prune_loo_a32_0-n32",
+          "text_sha256": "22c056225ab928590e38850585d4d08ad995f9c18a466bec702fdcc962dc454b",
+          "token_count": 38,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "random_delete_matched_a32_0-n32",
+          "text_sha256": "74e17182fccd1d3920baa2550751f36533d8149950baa8efbe23104a4de1eb77",
+          "token_count": 49,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_loo_a32_0.001-n32",
+          "text_sha256": "22c056225ab928590e38850585d4d08ad995f9c18a466bec702fdcc962dc454b",
+          "token_count": 38,
+          "bullet_count": 2,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_delete_matched_a32_0.001-n32",
+          "text_sha256": "1e8ea86a1ef65385114014049b5aeb6636421f2a0dcb8b8dda23db2ea0c1de48",
+          "token_count": 52,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_loo_a32_0.005-n32",
+          "text_sha256": "22c056225ab928590e38850585d4d08ad995f9c18a466bec702fdcc962dc454b",
+          "token_count": 38,
+          "bullet_count": 2,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_delete_matched_a32_0.005-n32",
+          "text_sha256": "c56799192282fc824ed343b497e637c363fd59870f0431f726f5851b0def74b2",
+          "token_count": 48,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_coefficient_a32_0.01-n32",
+          "text_sha256": "22c056225ab928590e38850585d4d08ad995f9c18a466bec702fdcc962dc454b",
+          "token_count": 38,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_coefficient_a32_0.05-n32",
+          "text_sha256": "22c056225ab928590e38850585d4d08ad995f9c18a466bec702fdcc962dc454b",
+          "token_count": 38,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_loo_n1_0-n1",
+          "text_sha256": "fc71a97c02082652baa73a72e5e165e5eebf085ae8c168c13823ed314106339b",
+          "token_count": 90,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "random_delete_matched_n1_0-n1",
+          "text_sha256": "fc71a97c02082652baa73a72e5e165e5eebf085ae8c168c13823ed314106339b",
+          "token_count": 90,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_loo_n1_0.001-n1",
+          "text_sha256": "fc71a97c02082652baa73a72e5e165e5eebf085ae8c168c13823ed314106339b",
+          "token_count": 90,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "random_delete_matched_n1_0.001-n1",
+          "text_sha256": "fc71a97c02082652baa73a72e5e165e5eebf085ae8c168c13823ed314106339b",
+          "token_count": 90,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_loo_n1_0.005-n1",
+          "text_sha256": "9aacba98ce38ed9a28a538e5e53dd745fbd32b80c104ffba0e7b201e18c49b36",
+          "token_count": 34,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "random_delete_matched_n1_0.005-n1",
+          "text_sha256": "d094975a2cf6489c8e8051b55892c0808e439a130722c13e932e634e1ac6d79b",
+          "token_count": 39,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_coefficient_n1_0.01-n1",
+          "text_sha256": "fc71a97c02082652baa73a72e5e165e5eebf085ae8c168c13823ed314106339b",
+          "token_count": 90,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_coefficient_n1_0.05-n1",
+          "text_sha256": "fc71a97c02082652baa73a72e5e165e5eebf085ae8c168c13823ed314106339b",
+          "token_count": 90,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "pooled_greedy_swap-n16",
+          "text_sha256": "65dda374f582928ecac8c1689c24387eadb9a3cc3edb5c3a6ffbcce08076ea5e",
+          "token_count": 105,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "pooled_greedy_swap-n32",
+          "text_sha256": "64b1601a3b081afb85d8a011a0ec8fca4c2a587af840e563bc6299639882aa0f",
+          "token_count": 107,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        }
+      ]
+    },
+    {
+      "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+      "kind": "outcome_blind_shared_anchor",
+      "reviewer_interpretation": {
+        "A": "A16 and A32 are text-identical. They add Enkidu and pass the required bridge while retaining invented aliases/attributes and the Gogmagog alternative. The context establishes Enkidu, king of Uruk and Humbaba; those additions are not supported by it.",
+        "C": "Both thresholds remove two bullets and retain Enkidu: 101→45 tokens. Some unsupported alternatives disappear, but the Gogmagog-or-Humbaba relation remains. A pass does not validate the remaining explanation.",
+        "D": "Pooling retains the bridge and combines Goliath/Yaksha, other aliases, guards and different descriptions. It does not resolve the core narrative inconsistency; mention coverage is preserved.",
+        "labels": [
+          "bridge_mention_gain",
+          "unsupported_aliases",
+          "shortening",
+          "mixed_relations"
+        ]
+      },
+      "output_refs": [
+        {
+          "condition": "raw_n1-n1",
+          "text_sha256": "1a1d504406f1d93204dc2fa8c0eecda5419af12ced9710240beaf2065d9f0f68",
+          "token_count": 86,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "capped_n1-n1",
+          "text_sha256": "1a1d504406f1d93204dc2fa8c0eecda5419af12ced9710240beaf2065d9f0f68",
+          "token_count": 86,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_exact-n1",
+          "text_sha256": "1a1d504406f1d93204dc2fa8c0eecda5419af12ced9710240beaf2065d9f0f68",
+          "token_count": 86,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n1",
+          "text_sha256": "1a1d504406f1d93204dc2fa8c0eecda5419af12ced9710240beaf2065d9f0f68",
+          "token_count": 86,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n1",
+          "text_sha256": "1a1d504406f1d93204dc2fa8c0eecda5419af12ced9710240beaf2065d9f0f68",
+          "token_count": 86,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "best_n_exact-n2",
+          "text_sha256": "c531d704df5e9cfe45528861c4c99dd2cb92e2d27cc96c17b24d3409bea2d084",
+          "token_count": 97,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n2",
+          "text_sha256": "c531d704df5e9cfe45528861c4c99dd2cb92e2d27cc96c17b24d3409bea2d084",
+          "token_count": 97,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n2",
+          "text_sha256": "1a1d504406f1d93204dc2fa8c0eecda5419af12ced9710240beaf2065d9f0f68",
+          "token_count": 86,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "best_n_exact-n4",
+          "text_sha256": "53e2e6f53a150bcb359b2166cdd1b2def432017c7e633f61d9f542e0f4986ac3",
+          "token_count": 106,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n4",
+          "text_sha256": "53e2e6f53a150bcb359b2166cdd1b2def432017c7e633f61d9f542e0f4986ac3",
+          "token_count": 106,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n4",
+          "text_sha256": "62421faa498bde43f64dc2d0b2257ae6ed106c91d5858b6248910bf87479f376",
+          "token_count": 100,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "best_n_exact-n8",
+          "text_sha256": "24db6530bcba126b0240cc18be0a43db8e007ecf40e6777e86ec84915d9b0347",
+          "token_count": 88,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n8",
+          "text_sha256": "24db6530bcba126b0240cc18be0a43db8e007ecf40e6777e86ec84915d9b0347",
+          "token_count": 88,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n8",
+          "text_sha256": "c531d704df5e9cfe45528861c4c99dd2cb92e2d27cc96c17b24d3409bea2d084",
+          "token_count": 97,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "best_n_exact-n16",
+          "text_sha256": "049a818c9c5e70198e6624d5328dda8279f196d5ef02cec10589fc59546168e3",
+          "token_count": 101,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n16",
+          "text_sha256": "049a818c9c5e70198e6624d5328dda8279f196d5ef02cec10589fc59546168e3",
+          "token_count": 101,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n16",
+          "text_sha256": "62421faa498bde43f64dc2d0b2257ae6ed106c91d5858b6248910bf87479f376",
+          "token_count": 100,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_exact-n32",
+          "text_sha256": "049a818c9c5e70198e6624d5328dda8279f196d5ef02cec10589fc59546168e3",
+          "token_count": 101,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n32",
+          "text_sha256": "049a818c9c5e70198e6624d5328dda8279f196d5ef02cec10589fc59546168e3",
+          "token_count": 101,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n32",
+          "text_sha256": "049a818c9c5e70198e6624d5328dda8279f196d5ef02cec10589fc59546168e3",
+          "token_count": 101,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "prune_loo_a32_0-n32",
+          "text_sha256": "6947009fbd8dc7cb7bc8c8d6e2baade3b881c656f6077804e8835b74fdde8832",
+          "token_count": 45,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "random_delete_matched_a32_0-n32",
+          "text_sha256": "f48a6961afca63020823a3ec2120b0c468c8be7e4135e27ee580d56fa3e085ce",
+          "token_count": 56,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_loo_a32_0.001-n32",
+          "text_sha256": "6947009fbd8dc7cb7bc8c8d6e2baade3b881c656f6077804e8835b74fdde8832",
+          "token_count": 45,
+          "bullet_count": 2,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_delete_matched_a32_0.001-n32",
+          "text_sha256": "6947009fbd8dc7cb7bc8c8d6e2baade3b881c656f6077804e8835b74fdde8832",
+          "token_count": 45,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_loo_a32_0.005-n32",
+          "text_sha256": "6947009fbd8dc7cb7bc8c8d6e2baade3b881c656f6077804e8835b74fdde8832",
+          "token_count": 45,
+          "bullet_count": 2,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_delete_matched_a32_0.005-n32",
+          "text_sha256": "2e7e8a921223e82e0a2c48e731166ad6629782f8f3a93a3165d1e9d3dc5eedf7",
+          "token_count": 52,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_coefficient_a32_0.01-n32",
+          "text_sha256": "6947009fbd8dc7cb7bc8c8d6e2baade3b881c656f6077804e8835b74fdde8832",
+          "token_count": 45,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_coefficient_a32_0.05-n32",
+          "text_sha256": "6947009fbd8dc7cb7bc8c8d6e2baade3b881c656f6077804e8835b74fdde8832",
+          "token_count": 45,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_loo_n1_0-n1",
+          "text_sha256": "9ce71056f8f52f979315e324120e63cf72c5528c561d47de3365c71d50e79c0a",
+          "token_count": 58,
+          "bullet_count": 3,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "random_delete_matched_n1_0-n1",
+          "text_sha256": "9ce71056f8f52f979315e324120e63cf72c5528c561d47de3365c71d50e79c0a",
+          "token_count": 58,
+          "bullet_count": 3,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_loo_n1_0.001-n1",
+          "text_sha256": "bf31eaa84761472d7d934e1126ea603fb02732bfcc94669679929ef39c5d22da",
+          "token_count": 29,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "random_delete_matched_n1_0.001-n1",
+          "text_sha256": "5affceb96eed49f268fe0803b5010e200251a2ba85dc3f9ad7570c8edbe32757",
+          "token_count": 44,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_loo_n1_0.005-n1",
+          "text_sha256": "bf31eaa84761472d7d934e1126ea603fb02732bfcc94669679929ef39c5d22da",
+          "token_count": 29,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "random_delete_matched_n1_0.005-n1",
+          "text_sha256": "bf31eaa84761472d7d934e1126ea603fb02732bfcc94669679929ef39c5d22da",
+          "token_count": 29,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_coefficient_n1_0.01-n1",
+          "text_sha256": "9ce71056f8f52f979315e324120e63cf72c5528c561d47de3365c71d50e79c0a",
+          "token_count": 58,
+          "bullet_count": 3,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_coefficient_n1_0.05-n1",
+          "text_sha256": "bf31eaa84761472d7d934e1126ea603fb02732bfcc94669679929ef39c5d22da",
+          "token_count": 29,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "pooled_greedy_swap-n16",
+          "text_sha256": "f3a3cb60898763bbb8c7621d03435a2fd5c02df8f9d3566f18a4703453444ed7",
+          "token_count": 97,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "pooled_greedy_swap-n32",
+          "text_sha256": "f6f90857d8abd990d0b6aca746e7c7d4e3e36dc7e8ade18ec3276b6946045cce",
+          "token_count": 103,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        }
+      ]
+    },
+    {
+      "cell_id": "chain_intermediates|chain-w2-d2p-0013|L60|p00062",
+      "kind": "outcome_blind_shared_anchor",
+      "reviewer_interpretation": {
+        "A": "The source starts2, adds3 to reach intermediate5, then adds9 to reach final14. All primary variants mention final14 but fail the intermediate endpoint; their extra computations use unrelated operands or malformed equations. A32 retains 9+15=2 and other contradictory fragments.",
+        "C": "Both thresholds reduce81→51 tokens, keeping the malformed 9+15=2 and 1401 fragments. They do not recover the intermediate5. Shortening is not a correctness fix.",
+        "D": "D16/D32 recombine several 14-prefixed fragments with incompatible calculations. The selected numbers are not the source chain, and all primary judgments remain nonpassing.",
+        "labels": [
+          "final_answer_not_intermediate",
+          "wrong_computation",
+          "no_gain",
+          "malformed_fragment"
+        ]
+      },
+      "output_refs": [
+        {
+          "condition": "raw_n1-n1",
+          "text_sha256": "a5053af6a6908754c376e975cca5bab0250522e7d8c961d7a183678fc2f1cec3",
+          "token_count": 78,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "capped_n1-n1",
+          "text_sha256": "a5053af6a6908754c376e975cca5bab0250522e7d8c961d7a183678fc2f1cec3",
+          "token_count": 78,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_exact-n1",
+          "text_sha256": "a5053af6a6908754c376e975cca5bab0250522e7d8c961d7a183678fc2f1cec3",
+          "token_count": 78,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n1",
+          "text_sha256": "a5053af6a6908754c376e975cca5bab0250522e7d8c961d7a183678fc2f1cec3",
+          "token_count": 78,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n1",
+          "text_sha256": "a5053af6a6908754c376e975cca5bab0250522e7d8c961d7a183678fc2f1cec3",
+          "token_count": 78,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "best_n_exact-n2",
+          "text_sha256": "a5053af6a6908754c376e975cca5bab0250522e7d8c961d7a183678fc2f1cec3",
+          "token_count": 78,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n2",
+          "text_sha256": "a5053af6a6908754c376e975cca5bab0250522e7d8c961d7a183678fc2f1cec3",
+          "token_count": 78,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n2",
+          "text_sha256": "a5053af6a6908754c376e975cca5bab0250522e7d8c961d7a183678fc2f1cec3",
+          "token_count": 78,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "best_n_exact-n4",
+          "text_sha256": "a5053af6a6908754c376e975cca5bab0250522e7d8c961d7a183678fc2f1cec3",
+          "token_count": 78,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n4",
+          "text_sha256": "a5053af6a6908754c376e975cca5bab0250522e7d8c961d7a183678fc2f1cec3",
+          "token_count": 78,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n4",
+          "text_sha256": "df4140b93d1bb8bea9c8034433df089ec401252193aa7f7a16087cf9ed084746",
+          "token_count": 56,
+          "bullet_count": 3,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "best_n_exact-n8",
+          "text_sha256": "a5053af6a6908754c376e975cca5bab0250522e7d8c961d7a183678fc2f1cec3",
+          "token_count": 78,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n8",
+          "text_sha256": "a5053af6a6908754c376e975cca5bab0250522e7d8c961d7a183678fc2f1cec3",
+          "token_count": 78,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n8",
+          "text_sha256": "bc2cda967dd53d6d3d61562e625e6cc1094c9c6054933aa15ca592be0f2132d0",
+          "token_count": 55,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "best_n_exact-n16",
+          "text_sha256": "a5053af6a6908754c376e975cca5bab0250522e7d8c961d7a183678fc2f1cec3",
+          "token_count": 78,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n16",
+          "text_sha256": "a5053af6a6908754c376e975cca5bab0250522e7d8c961d7a183678fc2f1cec3",
+          "token_count": 78,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n16",
+          "text_sha256": "04a80bece945b3a3722e63451fae4697300ab0b8409a449882bc73ed476ef8c4",
+          "token_count": 74,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_exact-n32",
+          "text_sha256": "e9544e15e02ad0fedd6cf9dea39554b95db3ea8ed4e02cf6d97fea08a3536d27",
+          "token_count": 81,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n32",
+          "text_sha256": "e9544e15e02ad0fedd6cf9dea39554b95db3ea8ed4e02cf6d97fea08a3536d27",
+          "token_count": 81,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n32",
+          "text_sha256": "fb3ee306e44cc53c828a721b85931f91c808611cce8a312f2e7c99dc66b8fc85",
+          "token_count": 88,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "prune_loo_a32_0-n32",
+          "text_sha256": "abaa46ac6038cac269e009f964abf2c9bdf65f7a44fffd2d673b59c88292700b",
+          "token_count": 51,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "random_delete_matched_a32_0-n32",
+          "text_sha256": "ecf7fbb030143b78daf092e84cff34d54929662daab543bc24d8846ee2cac6d2",
+          "token_count": 30,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_loo_a32_0.001-n32",
+          "text_sha256": "abaa46ac6038cac269e009f964abf2c9bdf65f7a44fffd2d673b59c88292700b",
+          "token_count": 51,
+          "bullet_count": 2,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_delete_matched_a32_0.001-n32",
+          "text_sha256": "6345431021e6c30cfd35bec26653d1ada241e802743a7f85c44fbb7abcc02db2",
+          "token_count": 40,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_loo_a32_0.005-n32",
+          "text_sha256": "abaa46ac6038cac269e009f964abf2c9bdf65f7a44fffd2d673b59c88292700b",
+          "token_count": 51,
+          "bullet_count": 2,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_delete_matched_a32_0.005-n32",
+          "text_sha256": "ecf7fbb030143b78daf092e84cff34d54929662daab543bc24d8846ee2cac6d2",
+          "token_count": 30,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_coefficient_a32_0.01-n32",
+          "text_sha256": "abaa46ac6038cac269e009f964abf2c9bdf65f7a44fffd2d673b59c88292700b",
+          "token_count": 51,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_coefficient_a32_0.05-n32",
+          "text_sha256": "abaa46ac6038cac269e009f964abf2c9bdf65f7a44fffd2d673b59c88292700b",
+          "token_count": 51,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_loo_n1_0-n1",
+          "text_sha256": "4b6a1912b8132f9fd91dee5ec2dcb4fad387252881601abc03d1ec5759951a03",
+          "token_count": 44,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "random_delete_matched_n1_0-n1",
+          "text_sha256": "ee00e1ffea6b05dcaefb946d27faec662262e423a89048e12fbf8b171485303c",
+          "token_count": 47,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_loo_n1_0.001-n1",
+          "text_sha256": "4b6a1912b8132f9fd91dee5ec2dcb4fad387252881601abc03d1ec5759951a03",
+          "token_count": 44,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "random_delete_matched_n1_0.001-n1",
+          "text_sha256": "17bc5281e4cddae46c589859c94e291c44f49aa585ef2b5237ec112bd6175092",
+          "token_count": 39,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_loo_n1_0.005-n1",
+          "text_sha256": "4b6a1912b8132f9fd91dee5ec2dcb4fad387252881601abc03d1ec5759951a03",
+          "token_count": 44,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "random_delete_matched_n1_0.005-n1",
+          "text_sha256": "115bb146591e0e6c9028daa01b409c36aa14f31f3500ed4c92d5d2549f9d182c",
+          "token_count": 31,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_coefficient_n1_0.01-n1",
+          "text_sha256": "4b6a1912b8132f9fd91dee5ec2dcb4fad387252881601abc03d1ec5759951a03",
+          "token_count": 44,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_coefficient_n1_0.05-n1",
+          "text_sha256": "4b6a1912b8132f9fd91dee5ec2dcb4fad387252881601abc03d1ec5759951a03",
+          "token_count": 44,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "pooled_greedy_swap-n16",
+          "text_sha256": "4f55c70f616e20e173f51d4f6c2833418d236d0e8749028473c6179a8d2fbdf8",
+          "token_count": 93,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "pooled_greedy_swap-n32",
+          "text_sha256": "ace2c0110521f44bd33a700073d2d9ff2b7c5e202f2e9a13e260ef7a8818c901",
+          "token_count": 105,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        }
+      ]
+    },
+    {
+      "cell_id": "chain_intermediates|chain-d2p-0385|L20|p00066",
+      "kind": "outcome_blind_shared_anchor",
+      "reviewer_interpretation": {
+        "A": "The source starts20, halves to intermediate10, then adds5 to15. Primary A variants instead describe subtraction, other starting numbers, repeated operations, and unrelated outputs. The reconstructor preserves the answer-instruction style rather than the actual chain.",
+        "C": "Both thresholds shorten88→49 tokens but retain a start9/subtract1 fragment. Neither parent nor pruned output mentions the required intermediate10 in the retained judge evidence.",
+        "D": "D32 combines start20 with subtract3/divide2 or rounding, producing135/17 fragments. Sharing the start value does not repair the operation sequence.",
+        "labels": [
+          "instruction_style_without_content",
+          "wrong_operation",
+          "shortening",
+          "no_gain"
+        ]
+      },
+      "output_refs": [
+        {
+          "condition": "raw_n1-n1",
+          "text_sha256": "9121afb97f1b67e0db2ad0856c0ccc74ac8a77549d1d5ccdadc9d9a175b4d2e2",
+          "token_count": 100,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "capped_n1-n1",
+          "text_sha256": "9121afb97f1b67e0db2ad0856c0ccc74ac8a77549d1d5ccdadc9d9a175b4d2e2",
+          "token_count": 100,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_exact-n1",
+          "text_sha256": "9121afb97f1b67e0db2ad0856c0ccc74ac8a77549d1d5ccdadc9d9a175b4d2e2",
+          "token_count": 100,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n1",
+          "text_sha256": "9121afb97f1b67e0db2ad0856c0ccc74ac8a77549d1d5ccdadc9d9a175b4d2e2",
+          "token_count": 100,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n1",
+          "text_sha256": "9121afb97f1b67e0db2ad0856c0ccc74ac8a77549d1d5ccdadc9d9a175b4d2e2",
+          "token_count": 100,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "best_n_exact-n2",
+          "text_sha256": "9121afb97f1b67e0db2ad0856c0ccc74ac8a77549d1d5ccdadc9d9a175b4d2e2",
+          "token_count": 100,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n2",
+          "text_sha256": "9121afb97f1b67e0db2ad0856c0ccc74ac8a77549d1d5ccdadc9d9a175b4d2e2",
+          "token_count": 100,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n2",
+          "text_sha256": "c081a457c8ec7ecc0510fab7ec4eec2d3323cfdcf6716959f1ec0f9d401829d6",
+          "token_count": 101,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "best_n_exact-n4",
+          "text_sha256": "f251823553cb641450879dc914a7a59c42349373635a8a802bd0e571694c5e00",
+          "token_count": 91,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n4",
+          "text_sha256": "f251823553cb641450879dc914a7a59c42349373635a8a802bd0e571694c5e00",
+          "token_count": 91,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n4",
+          "text_sha256": "f251823553cb641450879dc914a7a59c42349373635a8a802bd0e571694c5e00",
+          "token_count": 91,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "best_n_exact-n8",
+          "text_sha256": "f251823553cb641450879dc914a7a59c42349373635a8a802bd0e571694c5e00",
+          "token_count": 91,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n8",
+          "text_sha256": "f251823553cb641450879dc914a7a59c42349373635a8a802bd0e571694c5e00",
+          "token_count": 91,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n8",
+          "text_sha256": "a3d6ae43aecab02c59e4999a633ac581161147408e0d443a9cdc6f84629395b7",
+          "token_count": 98,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "best_n_exact-n16",
+          "text_sha256": "629c970b5dec0a2b3a6f93f6c3e521bb2c754574d16f1b43f715e156358b9dfd",
+          "token_count": 105,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n16",
+          "text_sha256": "629c970b5dec0a2b3a6f93f6c3e521bb2c754574d16f1b43f715e156358b9dfd",
+          "token_count": 105,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n16",
+          "text_sha256": "3bd304b4e6776935b6cb834f9840889a6da8c8b4db0d7f6daf3d1d2740966853",
+          "token_count": 112,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_exact-n32",
+          "text_sha256": "95ef1829d01a8cb0652fd2e5a95a01bd1c45ecd0cace7ad621b33663ba95e571",
+          "token_count": 88,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n32",
+          "text_sha256": "95ef1829d01a8cb0652fd2e5a95a01bd1c45ecd0cace7ad621b33663ba95e571",
+          "token_count": 88,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n32",
+          "text_sha256": "95ef1829d01a8cb0652fd2e5a95a01bd1c45ecd0cace7ad621b33663ba95e571",
+          "token_count": 88,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "prune_loo_a32_0-n32",
+          "text_sha256": "4341733075ad68316dc5c4b309564b207d4682dce06cb38319334620a2978666",
+          "token_count": 60,
+          "bullet_count": 3,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "random_delete_matched_a32_0-n32",
+          "text_sha256": "831003ee5ebb2cb3e56fda823943e156c8baa3d70cf15bda80b603336418fa17",
+          "token_count": 64,
+          "bullet_count": 3,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_loo_a32_0.001-n32",
+          "text_sha256": "704ab59e8c88a9a7acc72179d1bedfce61a46355b79817c00f2a3cc4feb1f7b1",
+          "token_count": 49,
+          "bullet_count": 2,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_delete_matched_a32_0.001-n32",
+          "text_sha256": "cd696ef8156e3f1d34341f160f0b910572c1e73eeaed07b2fc8d787cef0d7ef3",
+          "token_count": 36,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_loo_a32_0.005-n32",
+          "text_sha256": "704ab59e8c88a9a7acc72179d1bedfce61a46355b79817c00f2a3cc4feb1f7b1",
+          "token_count": 49,
+          "bullet_count": 2,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_delete_matched_a32_0.005-n32",
+          "text_sha256": "1d87c6d39ef382e62b82ace4d8014935c491acd73c8f92e7744bea0ab5329ecc",
+          "token_count": 39,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_coefficient_a32_0.01-n32",
+          "text_sha256": "4341733075ad68316dc5c4b309564b207d4682dce06cb38319334620a2978666",
+          "token_count": 60,
+          "bullet_count": 3,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_coefficient_a32_0.05-n32",
+          "text_sha256": "704ab59e8c88a9a7acc72179d1bedfce61a46355b79817c00f2a3cc4feb1f7b1",
+          "token_count": 49,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_loo_n1_0-n1",
+          "text_sha256": "425911fe0fe85cbb13b2a76f6c3734a4e2db26c2eea359ba425e9082c234f768",
+          "token_count": 54,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "random_delete_matched_n1_0-n1",
+          "text_sha256": "db44b661d94f4aa7fd5df43b40f3adf650320a30438c3e8e78d5f373bba589bc",
+          "token_count": 40,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_loo_n1_0.001-n1",
+          "text_sha256": "425911fe0fe85cbb13b2a76f6c3734a4e2db26c2eea359ba425e9082c234f768",
+          "token_count": 54,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "random_delete_matched_n1_0.001-n1",
+          "text_sha256": "db44b661d94f4aa7fd5df43b40f3adf650320a30438c3e8e78d5f373bba589bc",
+          "token_count": 40,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_loo_n1_0.005-n1",
+          "text_sha256": "425911fe0fe85cbb13b2a76f6c3734a4e2db26c2eea359ba425e9082c234f768",
+          "token_count": 54,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "random_delete_matched_n1_0.005-n1",
+          "text_sha256": "dcce720c1702828f907b118aca37f395bdd6ec83b73c7eb5dbe8076a45050acd",
+          "token_count": 46,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_coefficient_n1_0.01-n1",
+          "text_sha256": "425911fe0fe85cbb13b2a76f6c3734a4e2db26c2eea359ba425e9082c234f768",
+          "token_count": 54,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_coefficient_n1_0.05-n1",
+          "text_sha256": "425911fe0fe85cbb13b2a76f6c3734a4e2db26c2eea359ba425e9082c234f768",
+          "token_count": 54,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "pooled_greedy_swap-n16",
+          "text_sha256": "2d7b55e0fa76a0dc272605ad86012cf01b2b2e8c27da70c3da05af88bfd1b4c8",
+          "token_count": 118,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "pooled_greedy_swap-n32",
+          "text_sha256": "59c1c65139e9464c1a1b7d94423fcb1a591b91aaca4aa392fbe4209ae6c64a8f",
+          "token_count": 100,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        }
+      ]
+    },
+    {
+      "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+      "kind": "outcome_blind_shared_anchor",
+      "reviewer_interpretation": {
+        "A": "All selected outputs are incomplete requests to summarize, often naming unrelated people, rather than a readout of waiterMarcus apologizing to customerPriya. The judge explicitly abstains on all three questions. Increasing the prefix does not turn the template into an explanation.",
+        "C": "Pruning reaches76→15 tokens with one instruction about Elias, losing text without adding agent/action/patient evidence. The task still fails.",
+        "D": "Pooling mixes summarization prompts with invented dinner/financial routines involving other people. These continuations are not evidence of the waiter/customer relation.",
+        "labels": [
+          "template_only",
+          "abstention",
+          "unrelated_people",
+          "no_gain"
+        ]
+      },
+      "output_refs": [
+        {
+          "condition": "raw_n1-n1",
+          "text_sha256": "8219d97a4ae9a888658e099406ec06b4f72a333f90e6ae92d0d6eaf5a176576b",
+          "token_count": 86,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "capped_n1-n1",
+          "text_sha256": "8219d97a4ae9a888658e099406ec06b4f72a333f90e6ae92d0d6eaf5a176576b",
+          "token_count": 86,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_exact-n1",
+          "text_sha256": "8219d97a4ae9a888658e099406ec06b4f72a333f90e6ae92d0d6eaf5a176576b",
+          "token_count": 86,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n1",
+          "text_sha256": "8219d97a4ae9a888658e099406ec06b4f72a333f90e6ae92d0d6eaf5a176576b",
+          "token_count": 86,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n1",
+          "text_sha256": "8219d97a4ae9a888658e099406ec06b4f72a333f90e6ae92d0d6eaf5a176576b",
+          "token_count": 86,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "best_n_exact-n2",
+          "text_sha256": "b285b4e7f68aff433a5012226325912abe377defe40e9d561d974f8a58c8bea2",
+          "token_count": 92,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n2",
+          "text_sha256": "b285b4e7f68aff433a5012226325912abe377defe40e9d561d974f8a58c8bea2",
+          "token_count": 92,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n2",
+          "text_sha256": "8219d97a4ae9a888658e099406ec06b4f72a333f90e6ae92d0d6eaf5a176576b",
+          "token_count": 86,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "best_n_exact-n4",
+          "text_sha256": "6b3a4f7ce27c027284c89b12a9f6cf93b55a4201ccfe32d034703d8e389496f6",
+          "token_count": 82,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n4",
+          "text_sha256": "6b3a4f7ce27c027284c89b12a9f6cf93b55a4201ccfe32d034703d8e389496f6",
+          "token_count": 82,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n4",
+          "text_sha256": "8219d97a4ae9a888658e099406ec06b4f72a333f90e6ae92d0d6eaf5a176576b",
+          "token_count": 86,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "best_n_exact-n8",
+          "text_sha256": "6b3a4f7ce27c027284c89b12a9f6cf93b55a4201ccfe32d034703d8e389496f6",
+          "token_count": 82,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n8",
+          "text_sha256": "6b3a4f7ce27c027284c89b12a9f6cf93b55a4201ccfe32d034703d8e389496f6",
+          "token_count": 82,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n8",
+          "text_sha256": "d212dcf880f8ddbb9516d05cf24f6629e79767cc508a88a0fde0b9562123071b",
+          "token_count": 83,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "best_n_exact-n16",
+          "text_sha256": "6b3a4f7ce27c027284c89b12a9f6cf93b55a4201ccfe32d034703d8e389496f6",
+          "token_count": 82,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n16",
+          "text_sha256": "6b3a4f7ce27c027284c89b12a9f6cf93b55a4201ccfe32d034703d8e389496f6",
+          "token_count": 82,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n16",
+          "text_sha256": "9534b27d6594bb8726efb32d7d5cf08e0fc0f058fb16e0f8a27c638f9b8b9969",
+          "token_count": 94,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_exact-n32",
+          "text_sha256": "67d7b20e4d53e502e798f4631c4f73f70e088ac73e76f8f3b36447c5a0863704",
+          "token_count": 76,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n32",
+          "text_sha256": "67d7b20e4d53e502e798f4631c4f73f70e088ac73e76f8f3b36447c5a0863704",
+          "token_count": 76,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n32",
+          "text_sha256": "ba4c91cd80632fc6bfaa1c32d5d27c4821e944cb8b76e4bbba7181545a5612d6",
+          "token_count": 89,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "prune_loo_a32_0-n32",
+          "text_sha256": "097fff45425a4264d1624c144509c8d0f98de79b86647ca811a3076b21903213",
+          "token_count": 35,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "random_delete_matched_a32_0-n32",
+          "text_sha256": "097fff45425a4264d1624c144509c8d0f98de79b86647ca811a3076b21903213",
+          "token_count": 35,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_loo_a32_0.001-n32",
+          "text_sha256": "097fff45425a4264d1624c144509c8d0f98de79b86647ca811a3076b21903213",
+          "token_count": 35,
+          "bullet_count": 2,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_delete_matched_a32_0.001-n32",
+          "text_sha256": "097fff45425a4264d1624c144509c8d0f98de79b86647ca811a3076b21903213",
+          "token_count": 35,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_loo_a32_0.005-n32",
+          "text_sha256": "237ead4d38e917652bf5d705ccf409dbcf735afd50b763e9db3b3ddd792f40bf",
+          "token_count": 15,
+          "bullet_count": 1,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_delete_matched_a32_0.005-n32",
+          "text_sha256": "699730740ff975b62b423a9bbb2018f6e2e189faa4adcb9ce2a7501ff3167378",
+          "token_count": 23,
+          "bullet_count": 1,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_coefficient_a32_0.01-n32",
+          "text_sha256": "097fff45425a4264d1624c144509c8d0f98de79b86647ca811a3076b21903213",
+          "token_count": 35,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_coefficient_a32_0.05-n32",
+          "text_sha256": "097fff45425a4264d1624c144509c8d0f98de79b86647ca811a3076b21903213",
+          "token_count": 35,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_loo_n1_0-n1",
+          "text_sha256": "e619f735965e01e08a7f762c1a35fc1077d5301e19571e4470ad13117d0a4ec2",
+          "token_count": 49,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "random_delete_matched_n1_0-n1",
+          "text_sha256": "c771fe716062c4c369ba53c99e4c193ca8fb58b3b0ae9d117a2188b49551db30",
+          "token_count": 37,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_loo_n1_0.001-n1",
+          "text_sha256": "409d7cb0234091aa4da5e0edcc0ccfb920962042dd9043f92e2e1db09d96c373",
+          "token_count": 24,
+          "bullet_count": 1,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "random_delete_matched_n1_0.001-n1",
+          "text_sha256": "409d7cb0234091aa4da5e0edcc0ccfb920962042dd9043f92e2e1db09d96c373",
+          "token_count": 24,
+          "bullet_count": 1,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_loo_n1_0.005-n1",
+          "text_sha256": "409d7cb0234091aa4da5e0edcc0ccfb920962042dd9043f92e2e1db09d96c373",
+          "token_count": 24,
+          "bullet_count": 1,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "random_delete_matched_n1_0.005-n1",
+          "text_sha256": "913ab65883bd3d4756cada025ff3429faf230058663039deae8f22595a3c7fe6",
+          "token_count": 19,
+          "bullet_count": 1,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_coefficient_n1_0.01-n1",
+          "text_sha256": "e619f735965e01e08a7f762c1a35fc1077d5301e19571e4470ad13117d0a4ec2",
+          "token_count": 49,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_coefficient_n1_0.05-n1",
+          "text_sha256": "e619f735965e01e08a7f762c1a35fc1077d5301e19571e4470ad13117d0a4ec2",
+          "token_count": 49,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "pooled_greedy_swap-n16",
+          "text_sha256": "ab23866ddff6253decd9ec47902722de7cd46fcdcf22c045b7b2463bef86a14c",
+          "token_count": 89,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "pooled_greedy_swap-n32",
+          "text_sha256": "56b8b8505a1926b639b4f04c8fbe502ec22da0164eac88d1c66e102f0d35fbe5",
+          "token_count": 94,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        }
+      ]
+    },
+    {
+      "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+      "kind": "outcome_blind_shared_anchor",
+      "reviewer_interpretation": {
+        "A": "CappedN1 already passes. A16 loses the action choice even though it still describes silencing a heckler; A32 passes again through scathing-comeback wording. A32 also introduces comedianTyler alongside Marcus. The pass concerns the directed role/action task, not every named detail.",
+        "C": "Both thresholds retain two Marcus/heckler bullets, remove the Tyler bullet and another continuation, and preserve pass:114→55 tokens. This is a useful identity cleanup on the shown text, not a newly recovered role relation.",
+        "D": "D16 fails the action choice; D32 passes after including the scathing-comeback bullet. D32 also names MatthewReily and Chris in other bullets. Correct inferred direction coexists with incompatible extra identities; lack of the heckler name is not itself failure under this role task.",
+        "labels": [
+          "already_passing_baseline",
+          "nonmonotonic_judgment",
+          "identity_cleanup",
+          "incompatible_extra_people"
+        ]
+      },
+      "output_refs": [
+        {
+          "condition": "raw_n1-n1",
+          "text_sha256": "00a6a2c0134650024f306e8a0e039e480bae464eaf3166c9d6d3f33e41595f0e",
+          "token_count": 114,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "capped_n1-n1",
+          "text_sha256": "00a6a2c0134650024f306e8a0e039e480bae464eaf3166c9d6d3f33e41595f0e",
+          "token_count": 114,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_exact-n1",
+          "text_sha256": "00a6a2c0134650024f306e8a0e039e480bae464eaf3166c9d6d3f33e41595f0e",
+          "token_count": 114,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n1",
+          "text_sha256": "00a6a2c0134650024f306e8a0e039e480bae464eaf3166c9d6d3f33e41595f0e",
+          "token_count": 114,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n1",
+          "text_sha256": "00a6a2c0134650024f306e8a0e039e480bae464eaf3166c9d6d3f33e41595f0e",
+          "token_count": 114,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "best_n_exact-n2",
+          "text_sha256": "00a6a2c0134650024f306e8a0e039e480bae464eaf3166c9d6d3f33e41595f0e",
+          "token_count": 114,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n2",
+          "text_sha256": "00a6a2c0134650024f306e8a0e039e480bae464eaf3166c9d6d3f33e41595f0e",
+          "token_count": 114,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n2",
+          "text_sha256": "da3ac0620302a3e91d59efa24d9624acc0e7261eadb9ac93035e5fb973a5e307",
+          "token_count": 107,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "best_n_exact-n4",
+          "text_sha256": "ddcb5d846f07adca02443ef582c1e602ef7a9033b517fd60e9ca3445b8424c3a",
+          "token_count": 108,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n4",
+          "text_sha256": "ddcb5d846f07adca02443ef582c1e602ef7a9033b517fd60e9ca3445b8424c3a",
+          "token_count": 108,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n4",
+          "text_sha256": "960955b7d00cd470553fce85357d08acde112dc56940e0bef90f35c22d1904f7",
+          "token_count": 102,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "best_n_exact-n8",
+          "text_sha256": "2f6ec5b6ae0954d7a85388fbcb10c67321dd34051e339c28cd73c9f8c6977e79",
+          "token_count": 100,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n8",
+          "text_sha256": "2f6ec5b6ae0954d7a85388fbcb10c67321dd34051e339c28cd73c9f8c6977e79",
+          "token_count": 100,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n8",
+          "text_sha256": "2f6ec5b6ae0954d7a85388fbcb10c67321dd34051e339c28cd73c9f8c6977e79",
+          "token_count": 100,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "best_n_exact-n16",
+          "text_sha256": "2f6ec5b6ae0954d7a85388fbcb10c67321dd34051e339c28cd73c9f8c6977e79",
+          "token_count": 100,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n16",
+          "text_sha256": "2f6ec5b6ae0954d7a85388fbcb10c67321dd34051e339c28cd73c9f8c6977e79",
+          "token_count": 100,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n16",
+          "text_sha256": "00a6a2c0134650024f306e8a0e039e480bae464eaf3166c9d6d3f33e41595f0e",
+          "token_count": 114,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_exact-n32",
+          "text_sha256": "a586c6454c76e0a97e146b5ef9bb1ad99bf0daa0fa98fb6d892a487186fca532",
+          "token_count": 114,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_released80-n32",
+          "text_sha256": "a586c6454c76e0a97e146b5ef9bb1ad99bf0daa0fa98fb6d892a487186fca532",
+          "token_count": 114,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_complete-n32",
+          "text_sha256": "da3ac0620302a3e91d59efa24d9624acc0e7261eadb9ac93035e5fb973a5e307",
+          "token_count": 107,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "prune_loo_a32_0-n32",
+          "text_sha256": "8af6f4a33758aedc12e118699ed1d026351a873caaa18ae7546aef556f938b1c",
+          "token_count": 86,
+          "bullet_count": 3,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "random_delete_matched_a32_0-n32",
+          "text_sha256": "3b4e53a5c951602c492ae50bdf8408b410dadf027ac172bf3a4810562d5c4a51",
+          "token_count": 83,
+          "bullet_count": 3,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_loo_a32_0.001-n32",
+          "text_sha256": "543e1c7f58391d45aa47b78aad76085150c691a44c0cd5a871bd07f1b73135cf",
+          "token_count": 55,
+          "bullet_count": 2,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_delete_matched_a32_0.001-n32",
+          "text_sha256": "814fc642724a2fed1e37c37639a314c17fb714603b38dbb13b6f0deacf88479d",
+          "token_count": 59,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_loo_a32_0.005-n32",
+          "text_sha256": "543e1c7f58391d45aa47b78aad76085150c691a44c0cd5a871bd07f1b73135cf",
+          "token_count": 55,
+          "bullet_count": 2,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "random_delete_matched_a32_0.005-n32",
+          "text_sha256": "5fd3555f6bfe369a5d49fe2a9d8d3346b9ae77cbbcb6ff10ebc422f574bf8e75",
+          "token_count": 52,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_coefficient_a32_0.01-n32",
+          "text_sha256": "8af6f4a33758aedc12e118699ed1d026351a873caaa18ae7546aef556f938b1c",
+          "token_count": 86,
+          "bullet_count": 3,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_coefficient_a32_0.05-n32",
+          "text_sha256": "543e1c7f58391d45aa47b78aad76085150c691a44c0cd5a871bd07f1b73135cf",
+          "token_count": 55,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_loo_n1_0-n1",
+          "text_sha256": "00a6a2c0134650024f306e8a0e039e480bae464eaf3166c9d6d3f33e41595f0e",
+          "token_count": 114,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "random_delete_matched_n1_0-n1",
+          "text_sha256": "00a6a2c0134650024f306e8a0e039e480bae464eaf3166c9d6d3f33e41595f0e",
+          "token_count": 114,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_loo_n1_0.001-n1",
+          "text_sha256": "00a6a2c0134650024f306e8a0e039e480bae464eaf3166c9d6d3f33e41595f0e",
+          "token_count": 114,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "random_delete_matched_n1_0.001-n1",
+          "text_sha256": "00a6a2c0134650024f306e8a0e039e480bae464eaf3166c9d6d3f33e41595f0e",
+          "token_count": 114,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_loo_n1_0.005-n1",
+          "text_sha256": "29c8f61d9964d1612cabdcf6713f6b796007a40fd21e572f3cc46cd941c80b1d",
+          "token_count": 56,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "random_delete_matched_n1_0.005-n1",
+          "text_sha256": "39592480bb79caa89fb2988a8dc5f1386458b5aeae99475b5702876d3c882c4d",
+          "token_count": 64,
+          "bullet_count": 2,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_coefficient_n1_0.01-n1",
+          "text_sha256": "00a6a2c0134650024f306e8a0e039e480bae464eaf3166c9d6d3f33e41595f0e",
+          "token_count": 114,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "prune_coefficient_n1_0.05-n1",
+          "text_sha256": "00a6a2c0134650024f306e8a0e039e480bae464eaf3166c9d6d3f33e41595f0e",
+          "token_count": 114,
+          "bullet_count": 4,
+          "quality_evidence_status": "missing_not_judged_in_authoritative_pilot"
+        },
+        {
+          "condition": "pooled_greedy_swap-n16",
+          "text_sha256": "f7f5d831f55a71a32da1893b76f7eee4a8cba2f345d6dc16ee93fab43ca243c5",
+          "token_count": 97,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "pooled_greedy_swap-n32",
+          "text_sha256": "f1bae61cc861d73fccbb77c1340c9982389ef3b63d6bd86b0781cc50ce8e4a2d",
+          "token_count": 108,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        }
+      ]
+    },
+    {
+      "cell_id": "hallucination|chat-lmsys-0023|L60|p00020",
+      "kind": "outcome_selected_method_supplement",
+      "reviewer_interpretation": {
+        "A": "Official win keeps an explicit ViT/GoogleResearch bullet absent from the DETR source. Stage2 marks two off-topic claims and only one supported claim. This is fewer flagged contradictions with continuing entity contamination, not a wholly faithful DETR readout.",
+        "labels": [
+          "judge_sensitive",
+          "retained_unrelated_model"
+        ],
+        "outcome_selected": true
+      },
+      "output_refs": [
+        {
+          "condition": "raw_n1-n1",
+          "text_sha256": "e65fd511a5da17997c235d4f9dba8e95750d4c51291fbefda4eb78363a974afa",
+          "token_count": 106,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "capped_n1-n1",
+          "text_sha256": "e65fd511a5da17997c235d4f9dba8e95750d4c51291fbefda4eb78363a974afa",
+          "token_count": 106,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_exact-n32",
+          "text_sha256": "9935295a10b2205eff9607547780116483c3902294062722a720d08c52caf813",
+          "token_count": 106,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        }
+      ],
+      "supplement": {
+        "cell_id": "hallucination|chat-lmsys-0023|L60|p00020",
+        "method_group": "A",
+        "category": "apparent_win",
+        "baseline_condition": "capped_n1-n1",
+        "condition": "best_n_exact-n32",
+        "outcome_selected": true
+      }
+    },
+    {
+      "cell_id": "hallucination|chat-lmsys-0026|L60|p00471",
+      "kind": "outcome_selected_method_supplement",
+      "reviewer_interpretation": {
+        "A": "Official regression adds Annex6/PANS-OPS wording that the judge flags. The baseline already has four unverifiable claims and zero supported claims; neither output is a validated summary of the source changes. No external aviation fact check was performed.",
+        "labels": [
+          "new_flagged_detail",
+          "unverifiable_baseline"
+        ],
+        "outcome_selected": true
+      },
+      "output_refs": [
+        {
+          "condition": "raw_n1-n1",
+          "text_sha256": "00007f072e4288681bd476c3996f41c76f90a86bb5526c5e00cb4fc1344d3815",
+          "token_count": 117,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "capped_n1-n1",
+          "text_sha256": "78bf58e5ac69d514d28443b38c438b70a4dfe38e97c592f152a398045e20d53f",
+          "token_count": 94,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_exact-n32",
+          "text_sha256": "d170f3005b4a88d1f2a5b311043507f5a051a5c5775ac4de24eaa9548938a9bd",
+          "token_count": 95,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        }
+      ],
+      "supplement": {
+        "cell_id": "hallucination|chat-lmsys-0026|L60|p00471",
+        "method_group": "A",
+        "category": "apparent_regression",
+        "baseline_condition": "capped_n1-n1",
+        "condition": "best_n_exact-n32",
+        "outcome_selected": true
+      }
+    },
+    {
+      "cell_id": "hallucination|chat-lmsys-0023|L60|p00279",
+      "kind": "outcome_selected_method_supplement",
+      "reviewer_interpretation": {
+        "C": "The exact previously flagged sentence beginning Since DETR lacks anchor boxes remains verbatim after pruning, yet the official label flips hallucinated→consistent and false1→0. The label change cannot be explained as removing that asserted relation; preserve this direct judge disagreement rather than call it a textual correction.",
+        "labels": [
+          "retained_flagged_span",
+          "judge_disagreement"
+        ],
+        "outcome_selected": true
+      },
+      "output_refs": [
+        {
+          "condition": "raw_n1-n1",
+          "text_sha256": "a925b53356ff3dd8e18e4fc63f278a04c5c764807156148099c6d42e030686db",
+          "token_count": 99,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "capped_n1-n1",
+          "text_sha256": "a925b53356ff3dd8e18e4fc63f278a04c5c764807156148099c6d42e030686db",
+          "token_count": 99,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_exact-n32",
+          "text_sha256": "898dee195e0699cfa6fd453f8ee5c81efdca8e602814ff0f0587fb0c29ee5526",
+          "token_count": 106,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "prune_loo_a32_0.005-n32",
+          "text_sha256": "9ba6163b7e7366b860504d4e8079315281e56284aaa2d3863ac5ca7869f25dad",
+          "token_count": 62,
+          "bullet_count": 2,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        }
+      ],
+      "supplement": {
+        "cell_id": "hallucination|chat-lmsys-0023|L60|p00279",
+        "method_group": "C",
+        "category": "apparent_win",
+        "baseline_condition": "best_n_exact-n32",
+        "condition": "prune_loo_a32_0.005-n32",
+        "outcome_selected": true
+      }
+    },
+    {
+      "cell_id": "chain_intermediates|chain-w2-d2p-0013|L44|p00062",
+      "kind": "outcome_selected_method_supplement",
+      "reviewer_interpretation": {
+        "C": "The passing parent mentions intermediate5 inside incorrect or mismatched calculations. Pruning retains only a start5/add2/add3 calculation and loses the benchmark hit. This is a real loss of mention coverage, but not deletion of an otherwise correct step-by-step derivation.",
+        "labels": [
+          "useful_mention_deleted",
+          "unreliable_parent",
+          "metric_regression"
+        ],
+        "outcome_selected": true
+      },
+      "output_refs": [
+        {
+          "condition": "raw_n1-n1",
+          "text_sha256": "eb1c25035f27100043d87b8d1b4faa285d6469ff9e217a60006e63d4eb329a61",
+          "token_count": 103,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "capped_n1-n1",
+          "text_sha256": "8aea544609b541ca36d2dba31f2242a1efa2ed96719dce607a1398bdaa1a2a54",
+          "token_count": 74,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_exact-n32",
+          "text_sha256": "a60620ecd4a161d2c1104a4ee686f6742c7de2439f5a9678c590ce903305ee7c",
+          "token_count": 91,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "prune_loo_a32_0.005-n32",
+          "text_sha256": "ce78e4b31c752038dc8182d167fbf418072e097e32bff9e942823ab9c607e10d",
+          "token_count": 35,
+          "bullet_count": 1,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        }
+      ],
+      "supplement": {
+        "cell_id": "chain_intermediates|chain-w2-d2p-0013|L44|p00062",
+        "method_group": "C",
+        "category": "apparent_regression",
+        "baseline_condition": "best_n_exact-n32",
+        "condition": "prune_loo_a32_0.005-n32",
+        "outcome_selected": true
+      }
+    },
+    {
+      "cell_id": "hallucination|chat-dailydialog-0027|L20|p00123",
+      "kind": "outcome_selected_method_supplement",
+      "reviewer_interpretation": {
+        "D": "Pooling receives a consistent label but retains draft-a-packing-list and adds an unsupported solo-outing experience. The baseline already had unsupported escape/packing/stay language. A class improvement does not demonstrate removal of every unsupported addition.",
+        "labels": [
+          "retained_unsupported_detail",
+          "judge_sensitive"
+        ],
+        "outcome_selected": true
+      },
+      "output_refs": [
+        {
+          "condition": "raw_n1-n1",
+          "text_sha256": "6597bb359c64a7cb0f249b26e385003f91272efe78d8a58a0b4e0a58cf119b0f",
+          "token_count": 111,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "capped_n1-n1",
+          "text_sha256": "6597bb359c64a7cb0f249b26e385003f91272efe78d8a58a0b4e0a58cf119b0f",
+          "token_count": 111,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_exact-n32",
+          "text_sha256": "3a67bc2874959d026fd34dec39582e17d9876a39025e15010847ac71d9fb72c8",
+          "token_count": 98,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "pooled_greedy_swap-n32",
+          "text_sha256": "8ebec575d1e0feba785a6208508cd4eec9907577c52f2e60eb53eeb558b72c12",
+          "token_count": 93,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        }
+      ],
+      "supplement": {
+        "cell_id": "hallucination|chat-dailydialog-0027|L20|p00123",
+        "method_group": "D",
+        "category": "apparent_win",
+        "baseline_condition": "best_n_exact-n32",
+        "condition": "pooled_greedy_swap-n32",
+        "outcome_selected": true
+      }
+    },
+    {
+      "cell_id": "role_bound_association|oa-father-daughter-worry-ba|L60|p00126",
+      "kind": "outcome_selected_method_supplement",
+      "reviewer_interpretation": {
+        "D": "The source has daughterNora worrying about fatherPeter's blood work. A32 passes despite references to their son, Dan and Peter being unaware. D adds Bill, David and Nora receiving a positive test, making the worry target unclear; the retained judge changes only the patient choice to cannot-tell. Both outputs already mix inconsistent identities and medical-event ownership.",
+        "labels": [
+          "entity_event_mixing",
+          "wrong_patient",
+          "unreliable_parent"
+        ],
+        "outcome_selected": true
+      },
+      "output_refs": [
+        {
+          "condition": "raw_n1-n1",
+          "text_sha256": "9b48bf460872ff226e2adae77e1450eb8045b82c7b961f9eca19a81e3c67096c",
+          "token_count": 98,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "capped_n1-n1",
+          "text_sha256": "9b48bf460872ff226e2adae77e1450eb8045b82c7b961f9eca19a81e3c67096c",
+          "token_count": 98,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "best_n_exact-n32",
+          "text_sha256": "620522c0ffae4e0242b66add088596644e369f63da0bf2f4f67cb7b79ffd061a",
+          "token_count": 103,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        },
+        {
+          "condition": "pooled_greedy_swap-n32",
+          "text_sha256": "d9dbc5850ccfc9647deb1634694626d73422875ee706c6e529f8150becdaa3ae",
+          "token_count": 115,
+          "bullet_count": 4,
+          "quality_evidence_status": "complete_retained_pilot_judgment"
+        }
+      ],
+      "supplement": {
+        "cell_id": "role_bound_association|oa-father-daughter-worry-ba|L60|p00126",
+        "method_group": "D",
+        "category": "apparent_regression",
+        "baseline_condition": "best_n_exact-n32",
+        "condition": "pooled_greedy_swap-n32",
+        "outcome_selected": true
+      }
+    }
+  ],
+  "limits": [
+    "38 numerical/output variants are available; only20 A/C/D/baseline/control variants have authoritative pilot judgments. Unjudged variants remain missing, not false or zero.",
+    "Eight shared anchors are illustrative, not representative; at most2 selected supplements per method group.",
+    "Full source context and retained evidence are evaluation-only; do not feed review feedback to selectors/helpers.",
+    "Method disagreement with retained judges is preserved in later reviewer annotations; official verdicts are never changed.",
+    "Primary human interpretation awaits independent review; supplements are selected examples, not rates."
+  ]
+}

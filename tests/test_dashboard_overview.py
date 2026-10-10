@@ -83,9 +83,35 @@ class OverviewTests(unittest.TestCase):
         self.assertIn('Number of shared samples',page)
         self.assertIn('10.00–50.00%',page)
         for n in ns:self.assertIn(f'<td>{n}</td><td>25.00%',page)
-        self.assertIn('N2/4/8/16 larger-development curve points are missing',page)
-        self.assertIn('not an inferred best-of-1 curve point',page)
+        self.assertIn('complete development curve is not attached',page)
+        self.assertIn('partial original grids',page)
         self.assertIn('No per-prefix reconstruction-fit curve',page)
+
+    def test_complete_development_curves_keep_reference_counts_and_warn_about_eligibility(self):
+        report=fixture();conditions=[]
+        ids=['raw_n1-n1','capped_n1-n1']+[f'best_n_exact-n{n}' for n in (1,2,4,8,16,32)]
+        for condition in ids:
+            families={}
+            for f in overview.FAMILIES:
+                endpoint='contradiction_rate' if f=='hallucination' else 'cell_recovery'
+                families[f]={'missing_stage1':0,'missing_stage2':0,'metrics':{endpoint:{
+                    'value':.25,'numerator':25,'denominator':100,'ci95':[.1,.5],
+                    'items':30,'independent_groups':7,'warning':'Few groups; interpret cautiously'}}}
+            conditions.append({'condition':condition,'n':int(condition.rsplit('n',1)[1]),
+                'measurement_complete':True,'families':families})
+        report['development_scaling']={'reviewed_by':'root',
+            'source_sha256':'bc582289b378a286a72ce239148dfc6f22aece28e79f47124cfa9a2ee12cc5cf',
+            'measurement':{'conditions':conditions,'paired_comparisons':[]}}
+        before=copy.deepcopy(report);text=overview.method_sections.development_scaling(report)
+        self.assertEqual(report,before)
+        self.assertEqual(text.count('class="task-chart"'),4)
+        self.assertIn('25/100',text);self.assertIn('10.00 to 50.00%',text)
+        self.assertIn('30 items · 7 related groups',text)
+        self.assertIn('one transcript site and eleven role sites',text)
+        self.assertIn('Few groups; interpret cautiously',text)
+        self.assertIn('grey dashed: raw original',text)
+        report['development_scaling']['measurement']['conditions'][0]['families']['hallucination']['missing_stage2']=1
+        with self.assertRaisesRegex(ValueError,'Missing'):overview.method_sections.development_scaling(report)
 
     def test_paired_validation_chart_never_claims_pilot_cohort(self):
         m=overview.method_sections

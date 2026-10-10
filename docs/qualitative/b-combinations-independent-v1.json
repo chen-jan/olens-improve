@@ -1,0 +1,18 @@
+{
+  "status": "independent_review_complete",
+  "reviewer": "GPT-6.1 Sol /root/model_scoring_audit",
+  "full_artifact_sha256": "6752b5d44bc856fd7f9492eb79ac037a95ecc465b87150f11b8c23a1821cecde",
+  "panel_sha256": "36aa5977c631a84b1fceca0cfd22d60de7de58e124930ab7503ed617acefc5cf",
+  "coverage_checked": {"fixed_cases": 304, "variants": 38, "anchors": 8, "supplement_cases": 34, "unique_supplement_pairs": 25},
+  "scope": "Parent condition/provenance and coverage checked across all cases; 106 distinct fixed proposed outputs and selected source context/evidence across all eight anchors; all unique supplement interpretations. No TEST outcomes or judge relabeling.",
+  "invariance": "Comparison with preserved bb2eaf59 artifact changes only 35 F-parent provenance objects, review timestamps and linked repair metadata. Exact output strings, verdict/evidence objects and interpretation strings remain unchanged.",
+  "findings": [
+    "Dropping Simula 67 or Enkidu is a concrete required-bridge loss; passing mention checks do not validate neighboring names or relations.",
+    "Several improved transcript classes retain the exact previously flagged phrase. Treat these as context-sensitive judgments, not demonstrated factual repairs.",
+    "The comedian action can be interpreted differently after surrounding bullets change. Descriptive roles are allowed; missing names alone are not failure.",
+    "Empty outputs are method abstentions, not missing records or successful recovery.",
+    "False semantic merges in selected helper audits are not a population error rate. Unknown verification remains unknown, not false."
+  ],
+  "public_presentation": "Approved for normalization subject to root payload review: retain all eight anchors and exact immediate parent labels; at most two supplements per conceptual method; preserve full sanitized audit download.",
+  "verdict": "No substantive evidence or coverage blocker found."
+}

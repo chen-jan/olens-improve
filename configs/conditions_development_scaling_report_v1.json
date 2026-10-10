@@ -1,0 +1,50 @@
+[
+  {
+    "method": "raw_n1",
+    "n": 1,
+    "condition_root": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1",
+    "selection_sha256": "acfcdefc425f48da612059f7bcb157bf037f91ba4e70fa9c68b0db142bfc46a4"
+  },
+  {
+    "method": "capped_n1",
+    "n": 1,
+    "condition_root": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1",
+    "selection_sha256": "acfcdefc425f48da612059f7bcb157bf037f91ba4e70fa9c68b0db142bfc46a4"
+  },
+  {
+    "method": "best_n_exact",
+    "n": 1,
+    "condition_root": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1",
+    "selection_sha256": "acfcdefc425f48da612059f7bcb157bf037f91ba4e70fa9c68b0db142bfc46a4"
+  },
+  {
+    "method": "best_n_exact",
+    "n": 2,
+    "condition_root": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1",
+    "selection_sha256": "acfcdefc425f48da612059f7bcb157bf037f91ba4e70fa9c68b0db142bfc46a4"
+  },
+  {
+    "method": "best_n_exact",
+    "n": 4,
+    "condition_root": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1",
+    "selection_sha256": "acfcdefc425f48da612059f7bcb157bf037f91ba4e70fa9c68b0db142bfc46a4"
+  },
+  {
+    "method": "best_n_exact",
+    "n": 8,
+    "condition_root": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1",
+    "selection_sha256": "acfcdefc425f48da612059f7bcb157bf037f91ba4e70fa9c68b0db142bfc46a4"
+  },
+  {
+    "method": "best_n_exact",
+    "n": 16,
+    "condition_root": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1",
+    "selection_sha256": "acfcdefc425f48da612059f7bcb157bf037f91ba4e70fa9c68b0db142bfc46a4"
+  },
+  {
+    "method": "best_n_exact",
+    "n": 32,
+    "condition_root": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1",
+    "selection_sha256": "acfcdefc425f48da612059f7bcb157bf037f91ba4e70fa9c68b0db142bfc46a4"
+  }
+]
