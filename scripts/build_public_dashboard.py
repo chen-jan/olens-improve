@@ -52,12 +52,85 @@ def development_figure_files(directory, source_sha256):
     return paths
 
 
+def descriptive_site_files(review_path, expected_review_sha256):
+    """Validate the optional complete DEV/VAL map bundle before copying it."""
+    from render_descriptive_grid import FAMILIES, validate_artifact
+    raw = Path(review_path).read_bytes()
+    if hashlib.sha256(raw).hexdigest() != expected_review_sha256:
+        raise ValueError('Descriptive review pin differs')
+    review = json.loads(raw)
+    if review.get('status') != 'root_reviewed' or review.get('reviewed_by') != 'root':
+        raise ValueError('Descriptive maps require root review')
+    sources = {}
+    for kind in ('analysis', 'figures'):
+        pin = review['sources'][kind]
+        content = Path(pin['path']).read_bytes()
+        if hashlib.sha256(content).hexdigest() != pin['sha256']:
+            raise ValueError('Descriptive source receipt pin differs: ' + kind)
+        sources[kind] = json.loads(content)
+    data, receipt = sources['analysis'], sources['figures']
+    validate_artifact(data)
+    if {s['stage'] for s in data['stages']} != {'development', 'validation'} or len(data['stages']) != 2:
+        raise ValueError('Expected exactly the descriptive DEV/VAL stages')
+    if (receipt.get('source_sha256') != review['sources']['analysis']['sha256']
+            or receipt.get('test_outcomes_accessed') is not False
+            or receipt.get('metrics_and_intervals_recomputed') is not False):
+        raise ValueError('Descriptive figures do not bind unchanged DEV/VAL data')
+    expected = {f'{stage}-{family}.{extension}' for stage in ('development', 'validation')
+                for family in FAMILIES for extension in ('png', 'pdf')}
+    paths = []
+    for pin in receipt['figures']:
+        path = Path(pin['path'])
+        if path.name not in expected or path.name in {p.name for p in paths}:
+            raise ValueError('Unexpected or duplicate descriptive figure')
+        if hashlib.sha256(path.read_bytes()).hexdigest() != pin['sha256']:
+            raise ValueError('Descriptive figure bytes differ from reviewed receipt')
+        paths.append(path)
+    if {p.name for p in paths} != expected:
+        raise ValueError('Expected all 16 descriptive figures')
+    sanitized = public_data(data)
+    serialized = json.dumps(sanitized, ensure_ascii=False)
+    if LOCAL_PATH.search(serialized) or INFRA_TEXT.search(serialized) or SECRET.search(serialized):
+        raise ValueError('Descriptive data contains private references or credentials')
+    return paths, sanitized, public_data(review)
+
+
+def package_descriptive_sites(bundle, output):
+    paths, data, review = bundle
+    directory = output / 'figures/read-sites'
+    directory.mkdir(parents=True, exist_ok=True)
+    cards = []
+    for path in paths:
+        shutil.copyfile(path, directory / path.name)
+    families = {'hallucination': 'Transcript contradictions', 'multihop_mt': 'Multi-hop facts',
+                'chain_intermediates': 'Arithmetic steps', 'role_bound_association': 'Who did what'}
+    for stage, stage_label in (('development', 'Development'), ('validation', 'Validation')):
+        for family, family_label in families.items():
+            title = stage_label + ': ' + family_label
+            links = []
+            for extension in ('png', 'pdf'):
+                target = f'figures/read-sites/{stage}-{family}.{extension}'
+                links.append(f'<a href="{target}" aria-label="{html.escape(title)} {extension.upper()}">{extension.upper()}</a>')
+            cards.append(f'<li class="map-download"><span>{html.escape(title)}</span><span class="formats">' + ' · '.join(links) + '</span></li>')
+    (directory / 'grid-data.json').write_text(json.dumps(data, ensure_ascii=False) + '\n')
+    (directory / 'review.json').write_text(json.dumps(review, ensure_ascii=False) + '\n')
+    cards.append('<li><a href="figures/read-sites/grid-data.json">Descriptive DEV/VAL site counts and grouped intervals (JSON)</a> · <a href="figures/read-sites/review.json">Review and source hashes</a></li>')
+    return cards
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--development-figures", type=Path,
                         help="Explicit reviewed development-scaling-v2 figure directory")
+    parser.add_argument('--descriptive-review', type=Path,
+                        help='Optional root-reviewed descriptive DEV/VAL site-map receipt')
+    parser.add_argument('--descriptive-review-sha256', help='Exact SHA256 of that reviewed receipt')
     args = parser.parse_args()
+    if bool(args.descriptive_review) != bool(args.descriptive_review_sha256):
+        parser.error('Pass both descriptive review path and SHA256')
+    descriptive = (descriptive_site_files(args.descriptive_review, args.descriptive_review_sha256)
+                   if args.descriptive_review else None)
     root = Path(__file__).resolve().parents[1]
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=True)
@@ -100,7 +173,10 @@ def main():
             destination=output/relative;destination.parent.mkdir(parents=True,exist_ok=True)
             shutil.copyfile(path,destination)
             cards.append(f'<li><a href="{html.escape(relative.as_posix())}">Development: {html.escape(name)}</a></li>')
-    (output / "figures.html").write_text('<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Oracle Lens charts</title><style>body{font:17px/1.6 system-ui;max-width:850px;margin:3rem auto;padding:0 1rem;color:#172b35}a{color:#147a9b}</style><a href="index.html">← Research dashboard</a><h1>Development and validation charts</h1><p>Files are labeled by study stage. Error bars, sample sizes and limitations are explained in the dashboard.</p><ul>' + ''.join(cards) + '</ul></html>')
+    if descriptive:
+        cards.extend(package_descriptive_sites(descriptive, output))
+    map_note = ('<p>Read-site maps describe the unchanged development and validation grids. Position rank orders selected positions within each item; it does not align token meaning across items. The separate JSON contains exact counts, missingness and exploratory grouped intervals. These maps do not select a better layer or position.</p>' if descriptive else '')
+    (output / "figures.html").write_text('<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Oracle Lens charts</title><style>body{font:17px/1.6 system-ui;max-width:850px;margin:3rem auto;padding:0 1rem;color:#172b35}a{color:#147a9b}a:focus-visible{outline:2px solid #147a9b;outline-offset:3px}.map-download{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.2rem 1rem;padding:.45rem 0;border-bottom:1px solid #dce5e8}.formats{white-space:nowrap}.map-download span:first-child{max-width:100%}</style><a href="index.html">← Research dashboard</a><h1>Development and validation charts</h1><p>Files are labeled by study stage. Error bars, sample sizes and limitations are explained in the dashboard.</p>' + map_note + '<ul>' + ''.join(cards) + '</ul></html>')
     files = []
     for path in sorted(output.rglob("*")):
         if not path.is_file():

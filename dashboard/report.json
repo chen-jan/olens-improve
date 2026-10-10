@@ -1,6 +1,6 @@
 {
   "title": "Readouts: what is established",
-  "updated_utc": "2026-10-10T15:47:48.429889+00:00",
+  "updated_utc": "2026-10-10T16:40:27.551610+00:00",
   "cohort": "development",
   "run_ids": [
     "development-shared-pilot-v2",
@@ -65,11 +65,11 @@
     }
   ],
   "progress": {
-    "phase": "TEST reconstruction: four GPUs",
-    "completed_cells": 3485,
-    "expected_cells": 3485,
-    "elapsed_hours": 11.228538777777779,
-    "completed_label": "VAL cells: 12 settings"
+    "phase": "Luna judging: two of four task families finished",
+    "completed_cells": 10714,
+    "expected_cells": 10714,
+    "elapsed_hours": 15.25,
+    "completed_label": "TEST sites with fixed method outputs"
   },
   "api": {
     "status": "observed_read_only",
@@ -86,7 +86,7 @@
     "observed_utc": "2026-10-10T12:19:21.032834+00:00",
     "pricing_revision": "luna-cache-write-v1",
     "invoice_reconciled": false,
-    "pricing_status": "Usage-derived campaign estimate including cache writes; not invoice reconciled. Reserved totals include uncertain unknown holds. Shared research caches do not make fresh deployment free.",
+    "pricing_status": "Historical usage snapshot at its displayed observed timestamp; later judging charges are not included. Usage-derived estimate including cache writes, not invoice reconciled. Unknown holds remain reserved. Current monitoring reads can time out; this is not a current live balance.",
     "snapshot_path": "${OLENS_COMPUTE_ROOT}/watcher/latest.json",
     "snapshot_sha256": "de6fe105864db35c953f29d8370d2d6cf94000f854d9c406bffc047bf2894f44"
   },
@@ -19836,7 +19836,7 @@
     "limits": "These are observed DEV losses, not a new held-out comparison. Mention recovery does not certify the calculation. No new interval is inferred."
   },
   "activity": {
-    "checked_utc": "2026-10-10T14:26:44.825472+00:00",
+    "checked_utc": "2026-10-10T16:39:18.540857+00:00",
     "validation_ar_status": "complete",
     "validation_new_ar_vectors": 421716,
     "shared_zero_copy_catalog_vectors": 1063925,
@@ -19888,16 +19888,16 @@
         "expected_cells": 2598
       }
     ],
-    "validation_judging_status": "All 48 validation method-family comparisons and their reviewed analysis are complete. The N=2 development role judging queue completed successfully after recovery. Additional scaling prefixes remain incomplete.",
-    "quality_status": "Twelve held-out comparisons were fixed before any test judgments: six original primary comparisons and six additional validation variants as secondary comparisons. Sampling, reconstruction and selection are complete for all 10,714 held-out sites. Exact judging export and quality evaluation are pending. No overall faithfulness winner is established.",
+    "validation_judging_status": "All 48 validation method-family comparisons and their reviewed analysis are complete. All six development sampling prefixes and grouped comparisons are complete.",
+    "quality_status": "All 10,714 held-out sites have samples, reconstruction and fixed method outputs. Exact twelve-method judging export is complete. Multi-hop and arithmetic judging have finished; hallucination and role judging remain active. No held-out quality result has been inspected; no overall faithfulness winner is established.",
     "generation_metadata_source": "${OLENS_DATA_ROOT}/runs/test-blind-preparation-v1/throughput-observation-v25.json",
     "generation_metadata_sha256": "30f500f0a6dcb8aef0e6eb61af811d161130348b35df46214c12855de77f0d35",
     "heldout_items": 268,
     "heldout_cells": 10714,
-    "previous_activity_checked_utc": "2026-10-10T13:08:33.909842+00:00",
+    "previous_activity_checked_utc": "2026-10-10T16:20:34+00:00",
     "overview_status": {
       "development": "All six sampling prefixes complete; eight shared cases reviewed across methods, with independent crosschecks.",
-      "test": "Twelve fixed comparisons are in progress. Multi-hop and arithmetic evaluation completed. Hallucination and role judging resumed from saved results after a local ledger-lock interruption; final quality remains unreviewed.",
+      "test": "Twelve fixed comparisons are in progress. Multi-hop and arithmetic judging have finished. Hallucination and role judging resumed after storage-lock failures; both are completing new requests. Final quality remains unreviewed.",
       "heldout_conditions": 12
     },
     "heldout_comparison_amendment": {
@@ -19952,7 +19952,24 @@
         "shard_count": 4,
         "full_cohort_cell_count": 10714
       }
-    ]
+    ],
+    "judging_health": {
+      "observed_utc": "2026-10-10T16:39:18.540857+00:00",
+      "scope": "Latest100-attempt windows only; not cumulative throughput. Both workers use reviewed lock-acquisition retries.",
+      "hallucination": {
+        "settled": 95,
+        "active": 5,
+        "new_unknown": 0
+      },
+      "role_bound_association": {
+        "settled": 94,
+        "active": 6,
+        "new_unknown": 0
+      },
+      "existing_test_unknown_holds_usd": 0.05425425,
+      "receipt_sha256": "849be81b2ac2c8a7369cbd2514fe9b3fa0ea468530a71843fd327391fadddbb9"
+    },
+    "operational_limits": "Recent completed requests confirm progress, not a sustained speed guarantee. Saved results and all uncertain charges are retained."
   },
   "signed_comparisons": {
     "validation": {
