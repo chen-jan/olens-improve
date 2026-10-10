@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "node": "node1600",
+  "job_id": "25474685",
+  "ledger": "${OLENS_DATA_ROOT}/budget/ledger.sqlite3",
+  "run_id": "development-full-grid-methods-v1",
+  "confirmed_absent_worker_pids": [
+    3279480,
+    3279481,
+    3279482
+  ],
+  "incident": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1/transport-incident-v2.json",
+  "incident_sha256": "e34c50f8522581a6c219fdd45830fa72d3113dbc010c4780eb3b28f1e5d23bfa",
+  "nfs_smoke_report": "${OLENS_DATA_ROOT}/diagnostics/ledger-index-nfs-smoke-v1/report.json",
+  "nfs_smoke_report_sha256": "81944c015349cde4e5a2833f61b03c9b71ba28a26d269a090f99a3336c7071d3",
+  "prechange_snapshot": "${OLENS_DATA_ROOT}/diagnostics/ledger-index-application-v1/prechange.sqlite3",
+  "report": "${OLENS_DATA_ROOT}/diagnostics/ledger-index-application-v1/application.json",
+  "abandoned_reservations": [
+    {
+      "attempt_id": "e7cb9670-4960-4eb6-8629-04310071bc7c",
+      "prior_status": "reserved",
+      "reserved_nanodollars": 5526125,
+      "pid": 3279480,
+      "created_utc": "2026-10-10T06:36:02.295128+00:00",
+      "has_physical_response": false,
+      "classification": "abandoned_uncertain_hold",
+      "amount_released_nanodollars": 0
+    },
+    {
+      "attempt_id": "4918ff2c-a60d-4ca3-927c-a33a65cbec67",
+      "prior_status": "reserved",
+      "reserved_nanodollars": 5508000,
+      "pid": 3279480,
+      "created_utc": "2026-10-10T06:36:02.727103+00:00",
+      "has_physical_response": false,
+      "classification": "abandoned_uncertain_hold",
+      "amount_released_nanodollars": 0
+    },
+    {
+      "attempt_id": "9ec5738f-560f-4881-bc39-8428126d02a8",
+      "prior_status": "reserved",
+      "reserved_nanodollars": 5507125,
+      "pid": 3279480,
+      "created_utc": "2026-10-10T06:36:03.309623+00:00",
+      "has_physical_response": false,
+      "classification": "abandoned_uncertain_hold",
+      "amount_released_nanodollars": 0
+    },
+    {
+      "attempt_id": "fd58be2f-860c-4d49-baaa-08f7b5df1abb",
+      "prior_status": "reserved",
+      "reserved_nanodollars": 4846375,
+      "pid": 3279482,
+      "created_utc": "2026-10-10T06:36:04.642656+00:00",
+      "has_physical_response": false,
+      "classification": "abandoned_uncertain_hold",
+      "amount_released_nanodollars": 0
+    },
+    {
+      "attempt_id": "15a2b7a0-9565-45bf-ae0b-6ae654986e5d",
+      "prior_status": "reserved",
+      "reserved_nanodollars": 5550375,
+      "pid": 3279480,
+      "created_utc": "2026-10-10T06:36:39.848192+00:00",
+      "has_physical_response": false,
+      "classification": "abandoned_uncertain_hold",
+      "amount_released_nanodollars": 0
+    },
+    {
+      "attempt_id": "3b0d886b-e62c-43ee-bcbc-4b258769220d",
+      "prior_status": "reserved",
+      "reserved_nanodollars": 5507000,
+      "pid": 3279480,
+      "created_utc": "2026-10-10T06:39:54.939082+00:00",
+      "has_physical_response": false,
+      "classification": "abandoned_uncertain_hold",
+      "amount_released_nanodollars": 0
+    },
+    {
+      "attempt_id": "fedbb601-fc28-4ee7-9a56-f55790bae1df",
+      "prior_status": "reserved",
+      "reserved_nanodollars": 4843500,
+      "pid": 3279482,
+      "created_utc": "2026-10-10T06:40:47.367120+00:00",
+      "has_physical_response": false,
+      "classification": "abandoned_uncertain_hold",
+      "amount_released_nanodollars": 0
+    },
+    {
+      "attempt_id": "48415036-49d6-422f-a00e-cd2a66c856ed",
+      "prior_status": "reserved",
+      "reserved_nanodollars": 5508250,
+      "pid": 3279480,
+      "created_utc": "2026-10-10T06:41:12.554123+00:00",
+      "has_physical_response": false,
+      "classification": "abandoned_uncertain_hold",
+      "amount_released_nanodollars": 0
+    },
+    {
+      "attempt_id": "a597cf9e-8dff-4ec7-b0ae-f414dbe70294",
+      "prior_status": "reserved",
+      "reserved_nanodollars": 5577375,
+      "pid": 3279480,
+      "created_utc": "2026-10-10T06:42:48.736996+00:00",
+      "has_physical_response": false,
+      "classification": "abandoned_uncertain_hold",
+      "amount_released_nanodollars": 0
+    },
+    {
+      "attempt_id": "eb6e5880-8208-4fa2-a413-30afd883fe21",
+      "prior_status": "reserved",
+      "reserved_nanodollars": 5533000,
+      "pid": 3279480,
+      "created_utc": "2026-10-10T06:43:14.172188+00:00",
+      "has_physical_response": false,
+      "classification": "abandoned_uncertain_hold",
+      "amount_released_nanodollars": 0
+    }
+  ],
+  "financial_release_authorized": false,
+  "index_identity_check_before_status_transition": true
+}

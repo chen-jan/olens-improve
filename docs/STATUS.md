@@ -1,6 +1,6 @@
 # Execution status
 
-Updated: 2026-10-10, approximately 06:35 UTC.
+Updated: 2026-10-10, approximately 07:08 UTC.
 Started: 2026-10-10 01:25:36 UTC (October 9, 21:25:36 EDT).
 Target finish: 2026-10-10 21:25:36 UTC. Execution remains active and authorized.
 
@@ -73,7 +73,7 @@ first source-checked dashboard with grouped intervals. Nothing has been pushed.
 | Single-method pilots | A/B/C/D/E1/E3/F judged; E2/G diagnostics complete with limits; exact-claim-span v3 stopped after its eight-cell contract audit, without benchmark-quality measurement |
 | Combinations | 65 unique pilot conditions judged and source-checked; larger E1-plus-pruning outputs complete and awaiting judging |
 | Additional controls | All32 judgments and matched-donor N1 complete; all requested cells/stages covered |
-| Held-out evaluation | Blind fixed-pool validation generation is being prepared; analysis remains closed until the DEV shortlist is frozen. Test remains closed. |
+| Held-out evaluation | Blind fixed-pool validation generation is running on all four main GPUs; analysis remains closed until the DEV shortlist is frozen. Test remains closed. |
 
 Combination comparisons retain unchanged parents, component-off outputs, and
 random deletion matched on retained bullet count. Fixed support weights are
@@ -87,8 +87,13 @@ The corresponding role cell count is only 151/3,420: an item passes when any
 inspected site passes, so item recovery must not be read as uniformly faithful
 readouts. These are original-grid development scores, not held-out results.
 
-Next: resume the frozen 24-condition development comparison on the fresh CPU
-allocation after its successful one-request health check. Exact-request cost
+Next: measure the indexed judge queue and increase throughput at a completed
+condition boundary if its error and latency checks pass. The five query indexes
+were applied after a successful three-worker shared-storage smoke. Exact
+accounting was preserved, including all uncertain charges. A single Luna health
+request succeeded in 1.59 seconds, and judging resumed at 07:07 UTC with eight
+slots and 200 requests/minute per family. The earlier fresh-CPU recovery had
+stalled with a SQLite database-lock error; its workers are gone. Exact-request cost
 forecast and compact export are complete; the forecast is $10.19 and the shared
 run ceiling remains $20. At the transport pause, all 24 multihop conditions,
 seven chain conditions, and both baselines for hallucination and role were
@@ -131,8 +136,9 @@ the complete fresh-install deployment path has not yet been tested.
   A watcher checks every 600 seconds until 21:25:36 UTC; its process and last
   check are recorded under the fast project's `watcher/` directory. An agent
   stopping does not itself guarantee that this process remains healthy.
-- Recorded API usage at approximately 06:34 UTC: **$5.19455**, with **$4.23970**
-  unresolved reservations; later activity is accounted in the ledger.
+- Recorded API usage at approximately 07:08 UTC: **$5.23344**, with **$4.35235**
+  unknown-charge holds and **$0.08615** in-flight reservations. These amounts
+  change as the active queue progresses; the ledger remains authoritative.
   The earlier cache-write pricing correction added $0.30592
   to settled usage and $0.02011 to unknown-request reservations; original events
   and the previous ledger snapshot are preserved. These are usage-based estimates,
@@ -148,9 +154,25 @@ The full-development judge queue later developed 21 connection failures and
 successful cached verdicts are preserved. The cause is unresolved: observed
 CPU cgroup pressure and failure timing do not establish causation. A single
 unchanged Luna request on the isolated CPU allocation succeeded in 2.29 seconds.
-Recovery is authorized at eight slots and 200 requests/minute per family with a
+Recovery was authorized at eight slots and 200 requests/minute per family with a
 new documented epoch, the same run cap, and all old holds retained. See experiment
 019 and the immutable incident snapshot. No concurrency increase is automatic.
+
+That fresh-CPU recovery settled its first 226 requests without transport errors,
+then stalled. Workers were observed waiting on disk, and the chain worker exited
+with a database-lock error. All three were gone by 06:49:52 UTC. Ten reservations
+belonging to dead workers had no saved response evidence and must remain held as
+unknown; no charge is released because a worker exits. A copied-ledger audit found
+unindexed request-origin and reservation queries. Five indexes preserve exact
+query results and accounting; the slowest measured local-copy lookup fell from
+152.05 ms to 0.0116 ms. This does not establish NFS write/locking performance;
+a bounded shared-storage check subsequently passed 30 accounting cycles across
+three workers without lock errors. Production indexes were applied at 07:00 UTC
+after an immutable backup. Accounting remained identical; ten abandoned requests
+were separately marked unknown while retaining their full holds. The successful
+07:01 health request supports the bounded recovery launched at 07:07, but sustained
+throughput remains to be measured. See experiment 023 and the indexed recovery
+specification `configs/judging_main_recovery_v2.json`.
 
 Earlier, the donor judge run developed connection failures without provider status codes.
 It was stopped, preserving cached successes and uncertain reservations. A
@@ -178,6 +200,9 @@ forecast. Only operational counts, hashes, and timing may be inspected before
 the development shortlist is frozen. A separate analysis gate is required for
 validation export, reconstruction, selection, judging, and example inspection.
 Test generation remains gated on the later validation decision.
+All four generation workers are active. At 07:02 UTC, 1,167/3,485 cells were
+complete. The observed rate of about 56 cells/minute suggests about 42 minutes
+of generation remained then, excluding reconstruction, selectors and judging.
 
 ## Recovery and artifact map
 

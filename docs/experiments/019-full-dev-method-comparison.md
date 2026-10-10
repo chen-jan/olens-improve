@@ -1,6 +1,6 @@
 # 019: Larger development comparison
 
-Updated 2026-10-10 06:22 UTC: all 5,236×40 offline selector outputs and the four frozen E1 pruning controls are complete. Exact-output/provenance checks and the combined 24-condition forecast passed. Judging is **paused by the transport guard**; successful verdicts and every uncertain charge are retained. Multi-hop is complete for all 24 arms; other families have incomplete conditions. No complete four-family comparison is available yet. Validation and test outputs remain sealed.
+Updated 2026-10-10 07:10 UTC: all 5,236×40 offline selector outputs and the four frozen E1 pruning controls are complete. Exact-output/provenance checks and the combined 24-condition forecast passed. Main judging **resumed after the ledger-index repair**, at eight request slots and 200 RPM per family; successful verdicts and every uncertain charge are retained. The first indexed checkpoint has 1,129 settled responses and zero new unknowns. Multi-hop is complete for all 24 arms; other families have incomplete conditions. No complete four-family comparison is available yet. Blind validation generation has been authorized separately; validation outcomes and test outputs remain sealed. See [incident and repair evidence](023-judge-transport-recovery.md).
 
 Frozen before full-development method selections or judgments: 2026-10-10,
 approximately 04:17 UTC. This is an adaptive development follow-up to the
@@ -174,3 +174,26 @@ All twenty-four multi-hop conditions, seven chain conditions, and the two baseli
 Cause remains unresolved. Source inspection confirms each upstream async stream creates and closes its own client before its event loop exits; no cached client is reused across closed loops. Observed open descriptors were 16–24 versus a 131,072 limit. The existing allocation's memory cgroup was near its 128 GiB limit despite ample node RAM and small judge processes; resource ownership and unrelated work require separate handling. Neither concurrency, shared CPU affinity nor these timestamps establish why the requests failed.
 
 Future family workers support a **SIGUSR1** or `--stop-file` request to finish the current condition and stop before dispatching the next. This leaves prompts, caches and scientific identities unchanged. Two focused boundary tests plus the existing seven evaluation tests pass. The safety guard remains necessary within a long condition; a boundary stop is an operational scheduling control.
+
+## Isolated recovery and completed multi-hop evidence
+
+The single exact-request health check passed on the fresh allocation at 06:31:47.818715 UTC in 2.2926 seconds, with 573 input and 35 output tokens and no reasoning tokens. It retained the older unknown request and did not replace a primary verdict. The coordinator authorized recovery epoch `2026-10-10T06:32:00+00:00`. `configs/judging_main_recovery_v1.json` binds the fresh CPU/resource evidence, health/incident hashes and unchanged source/manifest/condition hashes. Its SHA256 is `356de39e8149d19e82c846457cfd7da0bcbb0465291d3aa0f4ac85b6ed72e99b`.
+
+Recovery runs through `infra/resume_main_judges.py` on allocation 25474685/node1600, eight physical CPUs and 32 GiB. Hall, chain and role use distinct CPU pairs, eight request slots/200 rpm per family, the original $20 ceiling, identical Standard Luna/none semantics and exact cached successes. All old holds remain reserved. There is no automatic ramp. Completed multi-hop judgments are not relaunched. The first 226 new physical responses settled with zero new unknowns; this early sample is not a sustained throughput guarantee.
+
+The completed multi-hop family uses **31 development items, 29 related groups and 341 cells**. Its endpoint requires bridge-string recovery using the frozen regex, rather than checking the truth of all emitted relations. Both the original item-ANY aggregation and cell recovery are preserved:
+
+| Arm | Items with any passing cell / 31 | Passing cells / 341 |
+| --- | ---: | ---: |
+| Capped N1 | 11 | 29 |
+| Best reconstruction N16 | 14 | 48 |
+| Best reconstruction N32 | 14 | 43 |
+| Random complete sample N32 | 12 | 45 |
+| Pooled N16 | 17 | 54 |
+| Pooled N32 | 14 | 56 |
+| Mean specificity N32 | 14 | 41 |
+| Mean specificity then .005 pruning | 10 | 34 |
+
+The paired 29-group interval for A32 versus capped N1 is **+4.11 percentage points in cells [1.82, 6.61]** and **+9.68 points in item ANY [0, 22.58]**. Pooled N32 versus A32 adds 3.81 cell points [.91, 7.04], but item ANY is tied with an interval of [-15.63, 15.63] points. Pooled N16 versus A16 adds 1.76 cell points [-1.25, 4.69] and 9.68 item points [-6.45, 25]. These exploratory comparisons are unadjusted; wide intervals do not make an observed gain worthless, and a family-specific gain does not select a global winner.
+
+`scripts/analyze_completed_mt.py` produced `judgments-methods-v1/mt-paired-analysis-v1.json` with all 24 source-checked conditions, paired intervals and deterministic/seeded traces. At `mhh-1967-norwegian-classes-objects-codesigner`, layers 28/44, the selected readouts recover **Simula 67** while still listing competing collaborator names. The endpoint verifies the bridge phrase, not those names or their relations. At `mhh-mesopotamian-wildman-cedar`, layer 52, pooling removes **Enkidu** while retaining Humbaba and adding different role relationships; naming the final ogre cannot replace recovery of the hidden bridge. At `mhh-pitchblende-jachymov`, layer 52, pooled text retains the town but drops the required ore name. These examples explain why mention recovery and a faithful complete explanation remain distinct. No validation decision follows from this family alone.

@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "run_id": "development-full-grid-methods-v1",
+  "run_cap_usd": 20,
+  "job_id": "25474685",
+  "node": "node1600",
+  "recovery_epoch": "2026-10-10T07:02:00+00:00",
+  "concurrency": 8,
+  "rpm": 200,
+  "tier": "default",
+  "reasoning_effort": "none",
+  "automatic_ramp": false,
+  "headroom_verified_utc": "2026-10-10T07:05:14+00:00",
+  "allocation_memory_gib": 32,
+  "memory_failures": 0,
+  "resource": "${OLENS_DATA_ROOT}/diagnostics/ledger-index-application-v1/headroom-v2.json",
+  "resource_sha256": "e597f95bd3d80cf01cdff5d2a09898908f3b88c1b7c90ebbc33e9262131cadeb",
+  "cpu_pairs": {
+    "hallucination": [
+      24,
+      30
+    ],
+    "chain_intermediates": [
+      33,
+      38
+    ],
+    "role_bound_association": [
+      81,
+      82
+    ]
+  },
+  "completed_family_not_relaunched": "multihop_mt",
+  "selections": "${OLENS_DATA_ROOT}/selections/development-full-grid-judging-v1/selections.jsonl",
+  "selection_sha256": "acfcdefc425f48da612059f7bcb157bf037f91ba4e70fa9c68b0db142bfc46a4",
+  "manifest": "configs/development-full-grid-v2.json",
+  "manifest_sha256": "dd382ff6e8bc8e70f1d13710e5235efd943537b4936921726b7d59655289ca80",
+  "conditions": "configs/conditions_full_dev_priority_v1.json",
+  "conditions_sha256": "8b71ce8177e126ab0e984286d103034a59b4b686c0a5a380983cdaf0e29180e6",
+  "healthcheck": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1/healthcheck-indexed-v2.json",
+  "healthcheck_sha256": "c8c0c7e51c85855db171c8a26ed853686306bd55db54cb92920cb75987acc7bf",
+  "incident": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1/transport-incident-v2.json",
+  "incident_sha256": "e34c50f8522581a6c219fdd45830fa72d3113dbc010c4780eb3b28f1e5d23bfa",
+  "ledger": "${OLENS_DATA_ROOT}/budget/ledger.sqlite3",
+  "judgments": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1",
+  "shared_cache": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments/shared-exact-cache",
+  "logs": "${OLENS_COMPUTE_ROOT}/logs",
+  "hold_policy": "Preserve all historical unknown charges, including the ten abandoned attempts now classified unknown. Reuse exact successful verdicts; no scientific condition or prompt changes. No automatic rate ramp.",
+  "recovery_label": "v2-indexed",
+  "index_application": "${OLENS_DATA_ROOT}/diagnostics/ledger-index-application-v1/application.json",
+  "index_application_sha256": "5e0e4580bb45337b9839fa687083137cfc0983a3bb99e4d3aac4b35653f71eaa",
+  "retained_main_unknown_attempt_count": 64,
+  "checkpoint_policy": {
+    "healthy_new_response_checkpoints": [
+      500,
+      1000
+    ],
+    "report_per_worker_latest_100": true,
+    "report_latency_and_unknown_growth": true,
+    "no_automatic_ramp": true,
+    "conditional_next_transport": {
+      "concurrency": 16,
+      "rpm": 400,
+      "requires_root_review": true,
+      "requires_natural_condition_boundary": true,
+      "minimum_healthy_physical_responses_per_family": 500,
+      "requires_complete_condition": true,
+      "requires_zero_new_unknowns": true,
+      "requires_stable_filesystem_and_sqlite": true
+    },
+    "pause_on_new_bookkeeping_lock_or_recurrent_transport_errors": true
+  }
+}

@@ -7,6 +7,7 @@ from hashlib import sha256
 import json
 import os
 from pathlib import Path
+import re
 import socket
 import sqlite3
 import subprocess
@@ -33,7 +34,10 @@ def main() -> None:
         raise SystemExit('Recovery must run on the reviewed isolated allocation')
     if (spec['concurrency'],spec['rpm'],spec['tier'],spec['reasoning_effort'],spec['automatic_ramp']) != (8,200,'default','none',False):
         raise SystemExit('Recovery transport differs from the reviewed policy')
-    for field in ('selections','manifest','conditions','healthcheck','incident','resource'):
+    evidence_fields = ['selections','manifest','conditions','healthcheck','incident','resource']
+    if 'index_application' in spec:
+        evidence_fields.append('index_application')
+    for field in evidence_fields:
         key = 'selection_sha256' if field=='selections' else field+'_sha256'
         if digest(Path(spec[field])) != spec[key]:
             raise SystemExit('Recovery source/evidence hash mismatch: '+field)
@@ -43,11 +47,19 @@ def main() -> None:
     if datetime.fromisoformat(spec['recovery_epoch']) <= datetime.fromisoformat(health['started_utc']):
         raise SystemExit('Recovery epoch must follow the retained healthcheck')
     incident = json.loads(Path(spec['incident']).read_text())
+    if 'index_application' in spec:
+        indexed = json.loads(Path(spec['index_application']).read_text())
+        if (indexed['status'] != 'applied' or indexed['before'] != indexed['after_indexes']
+                or indexed['financial_hold_released_nanodollars'] != 0
+                or indexed['after_abandoned_hold_classification']['committed_nanodollars']
+                    != indexed['before']['committed_nanodollars']):
+            raise SystemExit('Index application did not preserve the reviewed accounting contract')
     with sqlite3.connect(f"file:{spec['ledger']}?mode=ro",uri=True) as db:
         cap = db.execute('SELECT cap FROM run_limits WHERE run_id=?',(spec['run_id'],)).fetchone()
         if cap is None or cap[0]!=spec['run_cap_usd']*1e9:
             raise SystemExit('Shared run ceiling differs from the reviewed contract')
-        for attempt in incident['unknown_attempts']:
+        retained = incident['unknown_attempts'] + incident.get('abandoned_reserved_attempts', [])
+        for attempt in retained:
             state = db.execute('SELECT status FROM attempts WHERE attempt_id=?',(attempt['attempt_id'],)).fetchone()
             if state is None or state[0]!='unknown':
                 raise SystemExit('An original uncertain hold changed; explicit reconciliation review required')
@@ -61,15 +73,18 @@ def main() -> None:
     environment['OPENBLAS_NUM_THREADS'] = '1'
     environment['OMP_NUM_THREADS'] = '2'
     workers = []
+    label = spec.get('recovery_label','v1')
+    if not re.fullmatch('[a-z0-9-]{1,40}',label):
+        raise SystemExit('Recovery label must be a safe provenance suffix')
     for family, cpus in spec['cpu_pairs'].items():
-        log = Path(spec['logs'])/f'full-dev-judging-recovery-v1-{family}.log'
+        log = Path(spec['logs'])/f'full-dev-judging-recovery-{label}-{family}.log'
         command = ['taskset','-c',','.join(map(str,cpus)),sys.executable,'-m','olens_improve.evaluation',
             '--allow-paid','--family',family,'--selections',spec['selections'],'--manifest',spec['manifest'],
             '--output',spec['judgments'],'--method','raw_n1','--n','1',
             '--condition-list',spec['conditions'],'--run-id',spec['run_id'],'--run-cap-usd',str(spec['run_cap_usd']),
             '--ledger',spec['ledger'],'--tier',spec['tier'],'--concurrency',str(spec['concurrency']),
             '--rpm',str(spec['rpm']),'--shared-cache',spec['shared_cache'],
-            '--stop-file',str(Path(spec['judgments'])/f'stop-recovery-v1-{family}')]
+            '--stop-file',str(Path(spec['judgments'])/f'stop-recovery-{label}-{family}')]
         with log.open('a') as handle:
             worker = subprocess.Popen(command,stdout=handle,stderr=subprocess.STDOUT,env=environment)
         workers.append((family,worker))
