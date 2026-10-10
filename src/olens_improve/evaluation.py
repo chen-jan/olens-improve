@@ -21,6 +21,7 @@ import sqlite3
 import contextlib
 import inspect
 import math
+import signal
 from types import SimpleNamespace
 from typing import Any
 
@@ -29,6 +30,19 @@ from .data import BENCH_COMMIT, FAMILIES, SOURCE_ROOT, LAYERS, canonical, file_h
 
 JUDGE_MODEL = 'gpt-6-luna'
 BENCH_ROOT = SOURCE_ROOT / 'scratch/repos/workspace-bench-v2'
+
+
+class ConditionBoundaryStop:
+    """Operational stop request; never cancel the current judged condition."""
+    def __init__(self, request_file: Path | None = None):
+        self.request_file = request_file
+        self.signaled = False
+
+    def request(self, _signum=None, _frame=None) -> None:
+        self.signaled = True
+
+    def requested(self) -> bool:
+        return self.signaled or (self.request_file is not None and self.request_file.exists())
 
 
 def positive_rpm(value: Any) -> float:
@@ -556,19 +570,20 @@ def evaluate_condition(selections: Path, manifest: Path, out: Path, *, method: s
     execution = transport_settings(concurrency, rpm, service_tier)
     frozen = json.loads(manifest.read_text())
     selected = []
-    for line in selections.read_text().splitlines():
-        row = json.loads(line)
-        if 'selections' in row:
-            matches = [x for x in row['selections'] if x['method'] == method and x['n'] == n]
-            if len(matches) != 1:
-                raise ValueError(f'Require exactly one {method}/N{n} selection per cell')
-            text = matches[0]['text']
-        elif row.get('method') == method and row.get('pool_n', n) == n:
-            text = row['text']
-        else:
-            raise ValueError('Selected condition does not match declared method/budget')
-        selected.append({k: row[k] for k in ('cell_id','family','item_id','layer','position')} |
-                        {'text': text, 'sample_index': 0})
+    with selections.open() as source:
+        for line in source:
+            row = json.loads(line)
+            if 'selections' in row:
+                matches = [x for x in row['selections'] if x['method'] == method and x['n'] == n]
+                if len(matches) != 1:
+                    raise ValueError(f'Require exactly one {method}/N{n} selection per cell')
+                text = matches[0]['text']
+            elif row.get('method') == method and row.get('pool_n', n) == n:
+                text = row['text']
+            else:
+                raise ValueError('Selected condition does not match declared method/budget')
+            selected.append({k: row[k] for k in ('cell_id','family','item_id','layer','position')} |
+                            {'text': text, 'sample_index': 0})
     by_family, coverage = convert_selected_readouts(selected, frozen['cells'])
     if coverage['missing_cell_ids']:
         raise ValueError('Condition missing cells; write explicit empty abstentions instead')
@@ -713,6 +728,8 @@ def _main() -> None:
     p.add_argument('--family',choices=FAMILIES)
     p.add_argument('--shared-cache',type=Path)
     p.add_argument('--condition-list',type=Path,help='Sequential conditions within one family worker')
+    p.add_argument('--stop-file',type=Path,
+                   help='If this file exists, stop before the next condition; never cancel current calls. SIGUSR1 requests the same boundary stop in family workers.')
     p.add_argument('--all-families',action='store_true',help='Four processes, one cache writer/family; bounded calls per process')
     p.add_argument('--repeat-request-audit',type=Path,help='Frozen original requests; audit once without changing primary results')
     a = p.parse_args()
@@ -753,8 +770,15 @@ def _main() -> None:
         owner=(a.shared_cache/f'{a.family}.owner.lock').open('a')
         try:fcntl.flock(owner,fcntl.LOCK_EX|fcntl.LOCK_NB)
         except BlockingIOError:raise SystemExit('Another worker owns this family cache; no calls dispatched')
+    stop = ConditionBoundaryStop(a.stop_file)
+    signal.signal(signal.SIGUSR1, stop.request)
     conditions=json.loads(a.condition_list.read_text()) if a.condition_list else [{'method':a.method,'n':a.n}]
     for condition in conditions:
+        if stop.requested():
+            print(json.dumps({'status':'condition_queue_stopped_at_boundary','family':a.family,
+                'run_id':a.run_id,'next_condition':condition,
+                'reason':'SIGUSR1' if stop.signaled else 'stop_file'}),flush=True)
+            break
         out=a.output/f"{condition['method']}-n{condition['n']}" if a.condition_list else a.output
         result = evaluate_condition(a.selections, a.manifest, out, method=condition['method'],
             n=condition['n'], ledger_path=a.ledger, run_id=a.run_id, run_cap_usd=a.run_cap_usd,

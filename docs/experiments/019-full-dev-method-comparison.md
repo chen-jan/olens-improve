@@ -1,5 +1,7 @@
 # 019: Larger development comparison
 
+Updated 2026-10-10 06:22 UTC: all 5,236×40 offline selector outputs and the four frozen E1 pruning controls are complete. Exact-output/provenance checks and the combined 24-condition forecast passed. Judging is **paused by the transport guard**; successful verdicts and every uncertain charge are retained. Multi-hop is complete for all 24 arms; other families have incomplete conditions. No complete four-family comparison is available yet. Validation and test outputs remain sealed.
+
 Frozen before full-development method selections or judgments: 2026-10-10,
 approximately 04:17 UTC. This is an adaptive development follow-up to the
 189-cell pilot, not a preregistered confirmatory test. Validation and test
@@ -131,3 +133,44 @@ Local commit `3b96f8e` records the fix. A new four-shard run writes
 bound by `error-provenance.json`. The frozen scientific 24-condition list,
 candidate pools, controls and thresholds are unchanged. Check overlapping
 scientific outputs and all early baseline texts before judging v4.
+
+## Verified outputs and eligibility before judging
+
+The completed v4 merge contains all 5,236 cells and forty offline conditions, SHA256 `54ee50e61ebc11ac66d8d11c294dda60e17a7f9e06ad8632665e6bbb6505635e`, at `durable/selections/development-full-grid-v4/merged/selections.jsonl`. The four requested E1-pruning controls come from `durable/selections/development-full-grid-e1-pruning-v1/selections.jsonl`, SHA256 `a645983ab2e24eb4ef6f6fb298698405b4a2cee29c221af3da00d2e06ec6935a`. Original source samples, source IDs, read cells and scoring settings remain frozen.
+
+The baseline identity audit passed all **10,472 raw/capped outputs** across 5,236 cells, including exact text, Qwen-token counts, cell/vector identity and source hashes. Evidence is `merged/baseline-identity-audit.json`. `scripts/audit_selection_eligibility.py` independently checked the complete merged events on two allocated CPU cores; its artifact is `merged/eligibility-audit-v1.json`.
+
+| Family | Intended cells | Parsing-ineligible N32 samples | Samples with invalid AR atoms | Additional AR exclusions after parsing |
+| --- | ---: | ---: | ---: | ---: |
+| Hallucination | 1,145 | 40 | 0 | 0 |
+| Multi-hop | 341 | 0 | 0 | 0 |
+| Chain | 330 | 0 | 0 | 0 |
+| Role | 3,420 | 24 | 395 | 385 |
+
+The 395 role samples affect 103 cells and contain 523 invalid retained bullets; ten samples overlap parsing exclusions. These formatting/empty-cleanup cases are not false-claim labels. At N1, best-of-N differs from capped N1 only by twelve empty outputs: one hall preamble, one role preamble, and ten role samples with invalid AR atoms. Capped N1 remains nonempty in all twelve cases. Every unscoreable N1 pruning/matched-deletion branch leaves the parent unchanged on those ten role cells. Thus A1-versus-capped-N1 differences here are eligibility/abstention differences, not improved semantic ranking. Random N16/N32 retain twenty/six AR-unscoreable role outputs, while reconstruction-guided A/E cannot choose those complete samples. The full audit preserves prefix, per-arm, reason, null-fit and empty-output counts with the original intended denominators.
+
+## Compact input, forecast and frozen dispatch
+
+`scripts/export_judging_inputs.py` projects exact final text, token/bullet counts and provenance for the frozen 24 conditions. It verifies source SHAs, every cell/activation identity and full condition coverage without rewriting or re-tokenizing. The repeated E1 parent matches on all 5,236 cells; the v4 source stays authoritative. The compact immutable input is `durable/selections/development-full-grid-judging-v1/selections.jsonl`, **71.60 MB**, SHA256 `acfcdefc425f48da612059f7bcb157bf037f91ba4e70fa9c68b0db142bfc46a4`. Full fits/traces remain in the 1.425 GB parent. The evaluator now streams records, avoiding whole-file copies; seven focused offline evaluation/cache/transport tests passed.
+
+The same directory preserves `export.json`, `base20-forecast-v1.json` and `forecast-v1.json`; files copied from `/tmp` retain their exact byte hashes. `scripts/forecast_judging.py` uses the pinned upstream prompt builders, original validator source and exact request-cache identity. Its completed three-arm pilot check reproduced all 550 unique requests as validated cache hits. The combined forecast sees **12,557 new hall stage1 requests, up to 12,557 additional stage2 requests, 4,156 chain and 46,010 role requests**; multi-hop uses no API. New stage1 wrong spans are unavailable before judging, so stage2 cache/cost is explicitly conditional. The observed-mean usage forecast is **about $10.19**, not a guaranteed bound; the atomic $20 run ceiling, retry reservations and project ceiling govern dispatch.
+
+At eight request slots and 200 logical calls/minute per family, the idealized service/rate reference is 3.83 hours for the role critical path and 2.61 hours for hallucination; a p95-wave reference is 5.31 hours for role. These are not promised walltimes or statistical bounds. Queue/stage barriers, cache IO, startup, retries and transport incidents add time; healthy response averages may not represent every new context. Observed throughput controls subsequent adjustments rather than extrapolating the small pilot as a speed guarantee.
+
+The unchanged scientific list is reordered in `configs/conditions_full_dev_priority_v1.json`: raw/capped/A32, then E1 and its four shortening controls, then remaining scaling/pooling/pruning/random conditions. The first three use `conditions_full_dev_tranche1_v1.json`, SHA256 `5f80a746db27769b32a701ba3f71cd07bee96a580c05208d3b135dd5bf8505c2`; the remaining twenty-one use `conditions_full_dev_tranche2_v1.json`, SHA256 `7cf2ee9b644090b59f09b2c299cee4a2f5a10df2279736f6ffaebe1a0f10b881`. Their union is exactly the original 20+4 conditions. Both tranches share `development-full-grid-methods-v1`, the $20 ceiling, compact input, exact cache and frozen recovery epoch `2026-10-10T04:50:43+00:00`.
+
+Tranche1 was launched by the coordinator with Standard Luna, benchmark effort none, eight slots/200 rpm, SDK retries disabled and bounded outer attempts. Logs are `fast/logs/full-dev-judging-tranche1-v1.log`; outputs are `durable/runs/development-full-grid-v2/judgments-methods-v1`. Let it finish naturally. Before tranche2, the coordinator may approve sixteen slots/400 rpm only after at least 1,000 healthy new main requests, no new unknown reservations and latency review. Never interrupt in-flight calls merely to raise concurrency; retain existing holds and epoch. This changes transport throughput, not the scientific condition or judge semantics. Further ramps require fresh measured evidence. An incomplete arm remains incomplete, and these adaptive development comparisons cannot certify a chosen winner before the frozen validation/test procedure.
+
+The first cache-only baseline replay completed with zero new API charges. Within-family execution times for raw/capped N1 were hall 4.88/2.49 seconds, role 1.98/1.37 seconds and chain .81/.27 seconds; regex multi-hop was below .16 seconds. Including compact-input startup, all baseline-family stages finished within about nine seconds. The per-hit SQLite/local-cache IO is therefore not a measured bottleneck here. At the subsequent 1,126-new-response check, all physical attempts settled or remained in flight, with zero new unknown reservations; pooled p50/p95 physical latency was 2.98/5.84 seconds. Hall and role A32 were still active, so this observation permits a later reviewed ramp rather than interrupting them or declaring tranche1 complete.
+
+## Transport pause and recovery boundary
+
+After the healthy gate, chain tranche2 started at 06:11:53 UTC with sixteen slots/400 rpm; multi-hop completed its remaining conditions without API calls. Hall and role continued their original A32 runs at eight slots/200 rpm. The first new connection failure was reserved at 06:12:30 and marked uncertain at 06:12:53. Recurring errors preceded the shared guard pause around 06:22:17–20. No manual interrupt was sent by the boundary watcher.
+
+The immutable sanitized snapshot is `durable/runs/development-full-grid-v2/judgments-methods-v1/transport-incident-v1.json`, reproduced by `scripts/record_judge_incident.py`. It records **4,551 settled physical requests, $0.6401183 in usage-accounted spend, 42 uncertain attempts reserving $0.208778875, and zero live reservations**. Twenty-one failures have connection/read cause chains (fourteen ReadError and seven ConnectError); twenty-one further holds are cancellations during guard shutdown. This was a transport stop, not an exhausted $20 run ceiling. Retain all holds; later cache success cannot prove an earlier attempt was uncharged.
+
+All twenty-four multi-hop conditions, seven chain conditions, and the two baseline conditions in each remaining family completed. A32 hallucination/role and chain E1-matched deletion at .005 failed before terminal outputs; their successes remain in the exact cache. Report unfinished conditions as incomplete rather than zero scores or successful abstentions. Recovery must reuse identical source text, frozen conditions, original run ID/ceiling and exact caches on a reviewed fresh CPU allocation, initially eight slots/200 rpm. A new recovery epoch requires resource headroom and one bounded Luna health check; it does not erase prior uncertain holds.
+
+Cause remains unresolved. Source inspection confirms each upstream async stream creates and closes its own client before its event loop exits; no cached client is reused across closed loops. Observed open descriptors were 16–24 versus a 131,072 limit. The existing allocation's memory cgroup was near its 128 GiB limit despite ample node RAM and small judge processes; resource ownership and unrelated work require separate handling. Neither concurrency, shared CPU affinity nor these timestamps establish why the requests failed.
+
+Future family workers support a **SIGUSR1** or `--stop-file` request to finish the current condition and stop before dispatching the next. This leaves prompts, caches and scientific identities unchanged. Two focused boundary tests plus the existing seven evaluation tests pass. The safety guard remains necessary within a long condition; a boundary stop is an operational scheduling control.
