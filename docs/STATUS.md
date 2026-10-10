@@ -21,7 +21,9 @@ Target finish: 2026-10-10 21:25:36 UTC, subject to the first real throughput for
 - The four core read plans contain 19,435 cells. Grouped development, validation, and test manifests are frozen. The initial eight-cell N=1/2 instrument is complete; the representative pilot uses 189 cells from 31 development items, explicitly a partial-grid comparison.
 - WorkspaceBench remote HEAD was checked during execution and still equals the pinned revision `92d763e722377f5bfae045e829a308ab5919a820`. Its default O-lens points to the same source checkpoint as our paired release.
 - The two-pair contrastive diagnostic found correct role-direction ranking on both paired examples, but the numeric scorer preferred the same number across two different answers. A generic role description scored much higher than the detailed descriptions. These are instrument examples, not general performance estimates; see experiment 004.
-- All four existing H200s are generating the 189-cell shared N32 pool. Source hashes and batch provenance are recorded. Synthetic throughput improved from 288 to 660 output tokens/second with 128 independent sequences per batch; actual campaign throughput will be measured separately.
+- The 189-cell N32 pilot is complete: 6,048 distinct saved samples, contiguous indices 0–31 in every cell, no length-truncated generations, and the original 16 instrument samples preserved. Its 53 generation batches took 882.4 GPU-seconds in aggregate. Immutable pilot snapshots are saved before expanding the global journals.
+- Candidate encoding completed: 24,186 full-text bullet instances map to 23,750 distinct actual AR inputs; encoding took 323.94 seconds. Exact text, source spans, and scored/unscored token boundaries remain in the cache usage records.
+- Three existing H200s are expanding the shared pool to the complete 5,236-cell development grid while the fourth checks numerical batching stability. Validation and test readouts remain sealed. Initial sampling projection is approximately 25 GPU-hours for all 19,435 cells, or roughly 6–8 elapsed hours with four cards, before AR, selection, and judging overhead.
 
 ## Work in progress
 
@@ -45,7 +47,7 @@ Agents may inspect development traces after real runs. Held-out outputs remain s
 
 ## Next concrete milestone
 
-Finish the shared 189-cell N32 pool, encode its candidate bullets once, and compare selection methods on identical cells. Candidate-only semantic-helper prompts have been reviewed; a bounded $2 pilot will check synthetic traps and real candidate pairs before interpreting consensus gains. The current implementation passed 27 tests, including budget, resume, generation metadata, and selector invariants; the tests ran with temporary files on the actual durable storage.
+Judge the paired 189-cell selection comparisons and inspect wins, regressions, and unchanged examples. Candidate-only semantic helpers have a $2 pilot ceiling. The first audit caught unreliable model-produced character offsets; the repair asks for exact quotations and locates offsets locally, preserving failed paid responses. Verify the repaired helper and audit natural pairs before interpreting consensus gains. The implementation milestone passed 27 tests covering budget, resume, generation metadata, and selector invariants, with temporary files on actual durable storage; newer components have their own targeted checks.
 
 ## Recovery
 

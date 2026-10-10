@@ -45,36 +45,62 @@ def two_by_two(scores: Sequence[Sequence[float]], generic: Sequence[float]) -> d
 
 
 def teacher_forced_likelihood(lens: Any, activation: Any, layer: int, text: str) -> dict[str, Any]:
-    """E3 likelihood with the exact carrier/injection and proper causal token shift.
+    """Singleton wrapper around the identical batched causal likelihood contract."""
+    return teacher_forced_likelihood_batch(lens, [activation], layer, [text])[0]
 
-    Candidate-only text; full candidate length, no AR32-token truncation. This does
-    not generate new O-lens samples and exposes no original target prompt/context.
+
+def causal_candidate_logprobs(logits: Any, prefix_length: int, candidate_ids: Sequence[int]):
+    """Carrier last-token logit predicts first candidate; exclude padding and EOS."""
+    import torch
+    if prefix_length < 1 or not candidate_ids:
+        raise ValueError("Nonempty carrier and candidate required")
+    aligned = logits[prefix_length-1:prefix_length+len(candidate_ids)-1].float()
+    if len(aligned) != len(candidate_ids):
+        raise ValueError("Logits do not cover causal candidate positions")
+    targets = torch.tensor(candidate_ids, device=logits.device)
+    return -torch.nn.functional.cross_entropy(aligned, targets, reduction="none")
+
+
+def teacher_forced_likelihood_batch(lens: Any, activations: Sequence[Any], layer: int,
+                                    texts: Sequence[str]) -> list[dict[str, Any]]:
+    """Independent same-layer conditional likelihood rows, not jointly read cells.
+
+    Full capped candidate text with no EOS, exact carrier and unit16000 injection.
+    Each target/control uses identical candidate tokens. No target transcript input.
     """
     import torch
     from .models import carrier
-    if not text:
-        raise ValueError("Empty likelihood candidate")
-    ids, slot, marker = carrier(lens.tokenizer, layer)
-    candidate = lens.tokenizer(text, add_special_tokens=False)["input_ids"]
-    if not candidate:
-        raise ValueError("No candidate tokens")
-    if len(candidate) > 256:
-        raise ValueError("Likelihood candidate exceeds frozen256-token output limit")
-    v = activation.to(lens.device).float().reshape(-1)
-    if not torch.isfinite(v).all() or float(v.norm()) <= 1e-8:
-        raise ValueError("Invalid activation")
+    if not texts or len(texts) != len(activations):
+        raise ValueError("Aligned nonempty likelihood inputs required")
+    prefix, slot, marker = carrier(lens.tokenizer, layer)
+    candidates = [lens.tokenizer(text, add_special_tokens=False)["input_ids"] for text in texts]
+    if any(not row or len(row)>256 for row in candidates):
+        raise ValueError("Each likelihood candidate needs1..256tokens")
+    vectors = torch.stack([torch.as_tensor(v).reshape(-1) for v in activations]).to(lens.device).float()
+    norms = vectors.norm(dim=1, keepdim=True)
+    if not torch.isfinite(vectors).all() or bool((norms<=1e-8).any()):
+        raise ValueError("Invalid likelihood activation")
+    width = len(prefix)+max(map(len,candidates))
+    pad = lens.tokenizer.pad_token_id
+    if pad is None:
+        raise ValueError("Frozen tokenizer requires explicit pad token")
+    inputs = torch.full((len(texts),width),pad,dtype=torch.long,device=lens.device)
+    mask = torch.zeros_like(inputs)
+    for index,row in enumerate(candidates):
+        sequence=prefix+row
+        inputs[index,:len(sequence)] = torch.tensor(sequence,device=lens.device)
+        mask[index,:len(sequence)] = 1
     with torch.inference_mode():
-        embedding = lens.model.get_input_embeddings()
-        all_ids = torch.tensor([ids+candidate],device=lens.device)
-        embeds = embedding(all_ids)
-        embeds[0,slot,:] = (16000*v/v.norm()).to(embeds.dtype)
-        logits = lens.model(inputs_embeds=embeds,attention_mask=torch.ones_like(all_ids),
-                            use_cache=False).logits
-        # Logits at the carrier's last token predict the candidate's first token.
-        aligned = logits[0,len(ids)-1:len(ids)+len(candidate)-1].float()
-        targets = torch.tensor(candidate,device=lens.device)
-        logp = -torch.nn.functional.cross_entropy(aligned,targets,reduction="none")
-    return {"average_log_likelihood": float(logp.mean()), "sum_log_likelihood":float(logp.sum()),
-            "candidate_token_ids":candidate,"token_log_likelihoods":logp.cpu().tolist(),
-            "include_eos":False,"carrier_ids":ids,"slot":slot,"marker_id":marker,
-            "causal_shift":"carrier_last_logit_predicts_first_candidate_token"}
+        embeds=lens.model.get_input_embeddings()(inputs)
+        embeds[:,slot,:]=(16000*vectors/norms).to(embeds.dtype)
+        logits=lens.model(inputs_embeds=embeds,attention_mask=mask,use_cache=False).logits
+        outputs=[]
+        for index,row in enumerate(candidates):
+            logp=causal_candidate_logprobs(logits[index],len(prefix),row)
+            outputs.append({"average_log_likelihood":float(logp.mean()),"sum_log_likelihood":float(logp.sum()),
+                "candidate_token_ids":row,"candidate_token_count":len(row),
+                "token_log_likelihoods":logp.cpu().tolist(),"include_eos":False,
+                "carrier_ids":prefix,"slot":slot,"marker_id":marker,
+                "batch_size":len(texts),"padding":"right",
+                "causal_shift":"carrier_last_logit_predicts_first_candidate_token"})
+    return outputs

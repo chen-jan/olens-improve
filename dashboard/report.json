@@ -1,0 +1,216 @@
+{
+  "title": "Readouts: what is established",
+  "updated_utc": "2026-10-10T02:14:22.833046+00:00",
+  "cohort": "development",
+  "run_ids": [
+    "development-shared-pilot-v2",
+    "004-contrastive-diagnostic"
+  ],
+  "provenance": {
+    "scope": "cell_pilot and isolated known-label diagnostics",
+    "split_manifest_sha256": "8376fc51ffe8ff2e5425abc517aa9de6189e594481513d16529d027fb9b32319",
+    "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+    "source_commit": "e99f56777f851fb42913ebff2e045aeedaf847c5",
+    "artifact_sha256": "83a6834300befee9f99f5e7837c8308385390f9a4d75359e3975705eb5d63778"
+  },
+  "reviewed_findings": [
+    {
+      "claim": "No method improvement has been established yet.",
+      "detail": "The representative pool is complete: 189 cells with 32 saved samples each. Paired quality comparisons are pending.",
+      "evidence": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/snapshot.json",
+      "reviewed_by": "root"
+    },
+    {
+      "claim": "The reconstructor sees only 32 tokens per bullet.",
+      "detail": "The full output is judged. Details after the reconstruction prefix have no direct reconstruction evidence.",
+      "evidence": "docs/experiments/001-model-setup.md; pinned upstream source fixture",
+      "reviewed_by": "root"
+    },
+    {
+      "claim": "Tiny contrastive examples show uneven specificity.",
+      "detail": "Both role directions ranked correctly, but one of two number pairings failed. A generic role description scored much higher. These are only two known-answer pairs, not general accuracy or proof of represented content.",
+      "evidence": "${OLENS_COMPUTE_ROOT}/logs/contrastive_diagnostic.json SHA256 dcf37d9033a109be2aa2e7fc767027c99620d9e574342fd5e1902ff3edf41409",
+      "reviewed_by": "root"
+    }
+  ],
+  "progress": {
+    "phase": "Representative N32 pool complete; paired quality comparison pending",
+    "completed_cells": 189,
+    "expected_cells": 189,
+    "elapsed_hours": 0.813
+  },
+  "api": {
+    "status": "observed_read_only",
+    "actual_usd": 0.00351744,
+    "reserved_usd": 2.0,
+    "unknown_usd": 2.0,
+    "committed_usd": 2.00351744,
+    "hard_usd": 300.0,
+    "target_usd": 200.0,
+    "attempt_counts": {
+      "settled": 12,
+      "unknown": 1
+    },
+    "observed_utc": "2026-10-10T02:10:06.174137+00:00"
+  },
+  "methods": {
+    "sample_selection": {
+      "status": "Pool complete; selection/scoring underway",
+      "hypothesis": "Does selecting the best persisted sample improve faithful recovery at a fixed sampling budget?",
+      "limits": [
+        "No quality gain measured yet. This pilot uses partial cell grids, not official benchmark item accuracy.",
+        "Raw N1 and the same-parser/same-cap N1 control remain separate."
+      ],
+      "next_action": "Encode original source bullets, score exact NNLS selections, and judge paired readouts."
+    },
+    "contrastive_checks": {
+      "status": "Two isolated known-label pairs measured",
+      "hypothesis": "Does reconstruction distinguish matched specifics from swapped alternatives and generic statements?",
+      "findings": [
+        "Reported values are exact-NNLS reconstruction diagnostics, not semantic quality or held-out benchmark accuracy."
+      ],
+      "metrics": [
+        {
+          "family": "intermediate_number",
+          "cohort": "development diagnostic",
+          "condition": "matched vs swapped",
+          "endpoint": "correct-pair FVE exceeds swapped",
+          "scope": "isolated_known_label_pair",
+          "value": 0.5,
+          "numerator": 1,
+          "denominator": 2,
+          "eligible_count": 2,
+          "missing_count": 0,
+          "uncertainty": "Not estimated:two isolated cells"
+        },
+        {
+          "family": "intermediate_number",
+          "cohort": "development diagnostic",
+          "condition": "matched specific; chain_intermediates|chain-d2p-0271|L44|p00066",
+          "endpoint": "FVE",
+          "scope": "isolated_cell",
+          "value": 0.015959885209490543,
+          "numerator": null,
+          "denominator": 1,
+          "eligible_count": 1,
+          "missing_count": 0,
+          "uncertainty": "Single diagnostic; no CI"
+        },
+        {
+          "family": "intermediate_number",
+          "cohort": "development diagnostic",
+          "condition": "generic; chain_intermediates|chain-d2p-0271|L44|p00066",
+          "endpoint": "FVE",
+          "scope": "isolated_cell",
+          "value": 0.013861156499262228,
+          "numerator": null,
+          "denominator": 1,
+          "eligible_count": 1,
+          "missing_count": 0,
+          "uncertainty": "Single diagnostic; no CI"
+        },
+        {
+          "family": "intermediate_number",
+          "cohort": "development diagnostic",
+          "condition": "matched specific; chain_intermediates|chain-d2p-0298|L44|p00066",
+          "endpoint": "FVE",
+          "scope": "isolated_cell",
+          "value": 0.016231378747657454,
+          "numerator": null,
+          "denominator": 1,
+          "eligible_count": 1,
+          "missing_count": 0,
+          "uncertainty": "Single diagnostic; no CI"
+        },
+        {
+          "family": "intermediate_number",
+          "cohort": "development diagnostic",
+          "condition": "generic; chain_intermediates|chain-d2p-0298|L44|p00066",
+          "endpoint": "FVE",
+          "scope": "isolated_cell",
+          "value": 0.01288370774460168,
+          "numerator": null,
+          "denominator": 1,
+          "eligible_count": 1,
+          "missing_count": 0,
+          "uncertainty": "Single diagnostic; no CI"
+        },
+        {
+          "family": "role_direction",
+          "cohort": "development diagnostic",
+          "condition": "matched vs swapped",
+          "endpoint": "correct-pair FVE exceeds swapped",
+          "scope": "isolated_known_label_pair",
+          "value": 1.0,
+          "numerator": 2,
+          "denominator": 2,
+          "eligible_count": 2,
+          "missing_count": 0,
+          "uncertainty": "Not estimated:two isolated cells"
+        },
+        {
+          "family": "role_direction",
+          "cohort": "development diagnostic",
+          "condition": "matched specific; role_bound_association|oa-comedian-heckler-humiliate-ab|L44|p00178",
+          "endpoint": "FVE",
+          "scope": "isolated_cell",
+          "value": 0.011490386334213398,
+          "numerator": null,
+          "denominator": 1,
+          "eligible_count": 1,
+          "missing_count": 0,
+          "uncertainty": "Single diagnostic; no CI"
+        },
+        {
+          "family": "role_direction",
+          "cohort": "development diagnostic",
+          "condition": "generic; role_bound_association|oa-comedian-heckler-humiliate-ab|L44|p00178",
+          "endpoint": "FVE",
+          "scope": "isolated_cell",
+          "value": 0.11810476892669708,
+          "numerator": null,
+          "denominator": 1,
+          "eligible_count": 1,
+          "missing_count": 0,
+          "uncertainty": "Single diagnostic; no CI"
+        },
+        {
+          "family": "role_direction",
+          "cohort": "development diagnostic",
+          "condition": "matched specific; role_bound_association|oa-comedian-heckler-humiliate-ba|L44|p00160",
+          "endpoint": "FVE",
+          "scope": "isolated_cell",
+          "value": 0.010103394717846714,
+          "numerator": null,
+          "denominator": 1,
+          "eligible_count": 1,
+          "missing_count": 0,
+          "uncertainty": "Single diagnostic; no CI"
+        },
+        {
+          "family": "role_direction",
+          "cohort": "development diagnostic",
+          "condition": "generic; role_bound_association|oa-comedian-heckler-humiliate-ba|L44|p00160",
+          "endpoint": "FVE",
+          "scope": "isolated_cell",
+          "value": 0.1280377761509287,
+          "numerator": null,
+          "denominator": 1,
+          "eligible_count": 1,
+          "missing_count": 0,
+          "uncertainty": "Single diagnostic; no CI"
+        }
+      ],
+      "limits": [
+        "Only two known-answer pairs, four cells total. No generalization or confidence interval is estimated."
+      ],
+      "next_action": "Audit representative matched contrasts without adapting gold-informed candidates."
+    }
+  },
+  "endpoint_notes": [
+    "FVE is reconstruction fraction of variance explained; higher fit is not proof of faithful content.",
+    "API amounts are observed ledger values at 2026-10-10T02:10:06.174137+00:00; reserved includes unknown-response reservations. No dollar cost is assigned to Slurm GPU time.",
+    "Original 16 instrument samples were preserved field-exact. All 6048 pilot samples have unique contiguous indexes 0..31; no sample hit the 256-token generation cap.",
+    "Official item-level scores require the original complete benchmark grids."
+  ]
+}

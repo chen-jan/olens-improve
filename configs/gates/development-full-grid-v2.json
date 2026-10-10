@@ -1,0 +1,20 @@
+{
+  "gate_id": "development-full-grid-v2",
+  "manifest_sha256": "dd382ff6e8bc8e70f1d13710e5235efd943537b4936921726b7d59655289ca80",
+  "fresh_index_sha256": "5a61cff89aca532f3e022233b6d2d8e12dab0d3a3f4f44085097bc6dc58fc385",
+  "capture_version": "fresh-core-v1",
+  "recapture_status": "passed",
+  "production_generation_authorized": true,
+  "historical_cache_reuse_authorized": false,
+  "frozen_test_authorized": false,
+  "maximum_samples_per_cell": 32,
+  "authorized_cells": 5236,
+  "author": "root",
+  "evidence": [
+    "All 5236 selected fresh FP32 activation hashes verified; matching frozen v2 split/group identities.",
+    "Exact independent WorkspaceBench instrument match and all 189 pilot cells persisted with 32 samples.",
+    "Root inspected twelve stratified deterministic N1 pilot traces; no new carrier mismatch.",
+    "Pilot immutable snapshots saved before any global journal append."
+  ],
+  "pool_policy": "Append to existing e8cfd09f7ff1c9195cfd4c3a pool; never regenerate saved samples; test and validation remain sealed."
+}

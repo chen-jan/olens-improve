@@ -5,8 +5,10 @@ from datetime import datetime, timezone
 import json
 import os
 from pathlib import Path
+import re
 import subprocess
 import sqlite3
+from zoneinfo import ZoneInfo
 
 
 def command(args):
@@ -93,10 +95,28 @@ def main():
         snapshot["jobs"][key] = command(["scontrol", "show", "job", key])
         detail = snapshot["jobs"][key]
         text = detail.get("stdout", "")
-        if "JobState=RUNNING" not in text:
+        fields = dict(re.findall(r"(?:^|\s)([A-Za-z][A-Za-z0-9_]*)=(\S*)", text))
+        detail["state"] = fields.get("JobState")
+        detail["reason"] = fields.get("Reason")
+        diagnostic = job in runtime.get("preemptable_allocations", [])
+        if diagnostic:
+            job.update(state=fields.get("JobState"), reason=fields.get("Reason"),
+                       node=fields.get("NodeList") or None, last_check_utc=now.isoformat())
+            detail["requested_utc"] = job["requested_utc"]
+            if fields.get("JobState") == "PENDING":
+                pending = (now-datetime.fromisoformat(job["requested_utc"].replace("Z", "+00:00"))).total_seconds()
+                detail["pending_seconds"] = pending
+                if pending > job.get("fallback_after_pending_seconds", 720):
+                    snapshot["alerts"].append(f"Diagnostic job {key} pending over12 minutes; consider an H100 replacement after memory-fit review")
+            elif fields.get("JobState") == "RUNNING":
+                job["progress"] = "Allocated; workload handoff/status must be recorded separately"
+        if fields.get("JobState") != "RUNNING" and not (diagnostic and fields.get("JobState") == "PENDING"):
             snapshot["alerts"].append(f"Job {key} is not confirmed RUNNING")
         if f"UserId=${USER}({runtime['gpu_owner_uid']})" not in text:
             snapshot["alerts"].append(f"Job {key} ownership needs verification")
+        live_end = fields.get("EndTime")
+        if live_end and live_end != "Unknown":
+            job["end_utc"] = datetime.fromisoformat(live_end).replace(tzinfo=ZoneInfo("America/New_York")).astimezone(timezone.utc).isoformat()
         if job.get("end_utc"):
             remaining = (datetime.fromisoformat(job["end_utc"].replace("Z", "+00:00")) - now).total_seconds()
             detail["configured_remaining_seconds"] = remaining

@@ -18,22 +18,26 @@ def main():
     parser.add_argument("--capture-version", required=True)
     parser.add_argument("--n", type=int, default=32)
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--shards", type=int, nargs="+", default=[0, 1, 2, 3])
     args = parser.parse_args()
     runtime = json.loads(Path(args.runtime).read_text())
     jobs = runtime["gpu_allocations"]
     if len(jobs) != 4:
         raise ValueError("This runner requires the frozen four existing main allocations")
+    if len(set(args.shards)) != len(args.shards) or any(index not in range(4) for index in args.shards):
+        raise ValueError("Select unique frozen shard indexes0..3")
     common = [runtime["paths"]["python"], "scripts/generate_samples.py", "--runtime", args.runtime,
         "--manifest", args.manifest, "--gate", args.gate, "--adapter", args.adapter,
         "--fresh-index", args.fresh_index, "--import-pool", args.import_pool,
         "--output", args.output, "--capture-version", args.capture_version, "--n", str(args.n),
         "--batch-size", "32", "--cells-per-batch", "4", "--maximum-batch-sequences", "128"]
-    for index in range(4):
+    for index in args.shards:
         subprocess.run(common + ["--shard-index", str(index), "--validate-only"], check=True)
     if args.dry_run:
         return
     # Recheck owned/running allocations immediately before touching them.
-    for job in jobs:
+    for index in args.shards:
+        job = jobs[index]
         result = subprocess.run(["scontrol", "show", "job", str(job["job_id"])], check=True, capture_output=True, text=True)
         if "JobState=RUNNING" not in result.stdout or f"UserId=${USER}({runtime['gpu_owner_uid']})" not in result.stdout:
             raise RuntimeError("Allocation ownership/state verification failed")
@@ -43,8 +47,9 @@ def main():
         if probe.stdout.strip():
             raise RuntimeError(f"GPU job{job['job_id']} still has an active compute process; wait for handoff")
     launches = []
-    for index, job in enumerate(jobs):
-        log = Path(runtime["paths"]["logs"]) / f"pilot-n{args.n}-shard-{index:03d}.log"
+    for index in args.shards:
+        job = jobs[index]
+        log = Path(runtime["paths"]["logs"]) / f"{Path(args.gate).stem}-n{args.n}-shard-{index:03d}.log"
         command = ["srun", f"--jobid={job['job_id']}", "--overlap", "-N1", "-n1", "-c8", "--gres=gpu:h200:1",
             f"--output={log}", f"--error={log}"] + common + ["--shard-index", str(index)]
         process = subprocess.Popen(command, start_new_session=True)
