@@ -1,0 +1,21 @@
+{
+  "gate_id": "development-shared-pilot-v2",
+  "manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+  "fresh_index_sha256": "5a61cff89aca532f3e022233b6d2d8e12dab0d3a3f4f44085097bc6dc58fc385",
+  "capture_version": "fresh-core-v1",
+  "recapture_status": "passed",
+  "production_generation_authorized": true,
+  "historical_cache_reuse_authorized": false,
+  "frozen_test_authorized": false,
+  "maximum_samples_per_cell": 32,
+  "authorized_cells": 189,
+  "author": "root coordinator",
+  "evidence": [
+    "all 189 fresh activation hashes and v2 split/group bindings verified",
+    "independent upstream seeded generation equality",
+    "matched AR source fixtures",
+    "real Luna instrument pipeline completed",
+    "27 offline checks passed"
+  ],
+  "pool_policy": "Preserve original16 instrument samples; append to one shared global32 pool; no test readouts."
+}

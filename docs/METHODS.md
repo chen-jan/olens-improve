@@ -16,6 +16,10 @@ Primary scoring atoms are raw source bullets; decomposed atomic claims are a sep
 
 Encode each distinct scoring string once per AR configuration and layer. Preserve exact layer tags and the validated whitening transform. Joint scoring means NNLS fits nonnegative weights for the selected text vectors against the target activation, using the exact validated FVE definition. Record coefficients, reconstruction error, and objective components. Do not substitute raw cosine similarity or treat good reconstruction as semantic truth. AR-dependent pilots wait for the loader/whitener checks; independent sampling and consensus can continue.
 
+**Numerical solver decision, frozen before method development:** use SciPy's NNLS solver (`scipy_exact`) for the main A/C/D selections and primary joint-fit metric. The source uses an 80-step projected-gradient approximation (`released80`); retain it as an explicitly labeled release-compatibility metric and a same-pool selection ablation. The initial 16 real sample scores differed by at most 0.000552, with no winner changes in eight two-candidate comparisons; exact fitting took 0.00525 seconds versus 0.0124 seconds for the approximate solver in this tiny timing. Larger pools may differ and must be checked. Exact fitting better matches the proposed best nonnegative reconstruction and its monotonic set-fit property. Do not silently equate the two numerical conventions or compare exact-fit scores with published values computed using the approximation.
+
+**Scorer visibility:** the released reward tokenizer scores only the first 32 text tokens of each bullet after its documented cleanup. Preserve and report the full emitted bullet and its original/scored lengths. Details beyond that boundary receive no direct evidence from this score. Output shortening is a separate condition, never an implicit claim that unseen suffixes were verified.
+
 Use compact, shared artifacts rather than a new framework:
 
 | Artifact | Minimum contents |

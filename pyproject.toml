@@ -1,0 +1,12 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "olens-improve"
+version = "0.1.0"
+description = "Frozen Oracle Lens inference-time experiments"
+requires-python = ">=3.12"
+
+[tool.setuptools.packages.find]
+where = ["src"]

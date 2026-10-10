@@ -1,0 +1,2158 @@
+{
+  "schema_version": 1,
+  "manifest_id": "grouped-splits-v2",
+  "seed": 20261010,
+  "benchmark_commit": "92d763e722377f5bfae045e829a308ab5919a820",
+  "access_boundary": "Grouping uses bank metadata/gold only; inference manifests exclude gold. No historical readouts inspected.",
+  "group_rules": {
+    "hallucination": "same source and normalized exact prompt",
+    "multihop_mt": "Transitive components sharing canonical bridge labels or bank-provided bridge aliases/forms; case/spacing/punctuation normalized; exact prompts also grouped",
+    "chain_intermediates": "same depth, conditional flag and ordered operation kinds (numeric parameters excluded)",
+    "role_bound_association": "explicit pair_id"
+  },
+  "families": {
+    "hallucination": {
+      "bank_path": "${OLENS_SOURCE_ROOT}/scratch/repos/workspace-bench-v2/evals/hallucination/items.json",
+      "bank_sha256": "cf84fee47c5c91fdb07f94f85f10de9c9b7b1352968444483bbc6a89eb1a8606",
+      "read_plan_path": "${OLENS_SOURCE_ROOT}/outputs/wsbench/plan/hallucination.jsonl",
+      "read_plan_sha256": "7150f81a6f2bdd9236dffb4d48d8d29b9f3fa9d018f9e5ecbf4e8a61ec9a857d",
+      "groups": {
+        "hallucination:73971e8215bf828f": [
+          "chat-lmsys-0000"
+        ],
+        "hallucination:b79e27e2096b1948": [
+          "chat-lmsys-0001"
+        ],
+        "hallucination:5de153b53b9be047": [
+          "chat-lmsys-0002"
+        ],
+        "hallucination:d791e30da133c77a": [
+          "chat-lmsys-0003"
+        ],
+        "hallucination:935d39269a132175": [
+          "chat-lmsys-0004"
+        ],
+        "hallucination:f6c18f83d38a0447": [
+          "chat-lmsys-0005"
+        ],
+        "hallucination:3a13e7b01c8b6066": [
+          "chat-lmsys-0006"
+        ],
+        "hallucination:db67c07cad450680": [
+          "chat-lmsys-0007"
+        ],
+        "hallucination:9c00c041fd2c9ee3": [
+          "chat-lmsys-0008"
+        ],
+        "hallucination:1e021db96ffaef50": [
+          "chat-lmsys-0009"
+        ],
+        "hallucination:9b46573c9e21753e": [
+          "chat-lmsys-0010"
+        ],
+        "hallucination:a72e7c3f9a37ead5": [
+          "chat-lmsys-0011"
+        ],
+        "hallucination:46255904baa65948": [
+          "chat-lmsys-0012"
+        ],
+        "hallucination:8a34e4b9496af1a9": [
+          "chat-lmsys-0014"
+        ],
+        "hallucination:b273127ddf5dbbbb": [
+          "chat-lmsys-0015"
+        ],
+        "hallucination:6a829f050aeed7c8": [
+          "chat-lmsys-0016"
+        ],
+        "hallucination:fa144b7ff4dd2d78": [
+          "chat-lmsys-0017"
+        ],
+        "hallucination:a35ef5fe7bef25c0": [
+          "chat-lmsys-0018"
+        ],
+        "hallucination:e48fe8c0e442e70f": [
+          "chat-lmsys-0019"
+        ],
+        "hallucination:57c0673a333da197": [
+          "chat-lmsys-0020"
+        ],
+        "hallucination:bd8fd111137aedd7": [
+          "chat-lmsys-0021"
+        ],
+        "hallucination:b51d8e3d66206469": [
+          "chat-lmsys-0022"
+        ],
+        "hallucination:5c85a16c7bca4791": [
+          "chat-lmsys-0023"
+        ],
+        "hallucination:46b51c04821234f3": [
+          "chat-lmsys-0024"
+        ],
+        "hallucination:3f2786298deb5de8": [
+          "chat-lmsys-0025"
+        ],
+        "hallucination:96415718800bae83": [
+          "chat-lmsys-0026"
+        ],
+        "hallucination:cdd4305e9573f1a4": [
+          "chat-lmsys-0027"
+        ],
+        "hallucination:88808cd488cc6ac9": [
+          "chat-lmsys-0028"
+        ],
+        "hallucination:f99015cd133650e8": [
+          "chat-lmsys-0029"
+        ],
+        "hallucination:206fbbd63bd73290": [
+          "chat-lmsys-0030"
+        ],
+        "hallucination:aaa5387ee2b9b4f8": [
+          "chat-lmsys-0031"
+        ],
+        "hallucination:3a49e00230b14c01": [
+          "chat-lmsys-0032"
+        ],
+        "hallucination:f3d91c6f20f12f67": [
+          "chat-lmsys-0033"
+        ],
+        "hallucination:f6ca7fbd7e5ef923": [
+          "chat-lmsys-0034"
+        ],
+        "hallucination:8b23fd72276ce840": [
+          "chat-lmsys-0035"
+        ],
+        "hallucination:79e636945acfe0f1": [
+          "chat-lmsys-0036"
+        ],
+        "hallucination:4ff0b151bc7b76c2": [
+          "chat-lmsys-0037"
+        ],
+        "hallucination:0863d099d5850436": [
+          "chat-lmsys-0038"
+        ],
+        "hallucination:f30850c7852aaf41": [
+          "chat-lmsys-0039"
+        ],
+        "hallucination:54680657882549a4": [
+          "chat-lmsys-0040"
+        ],
+        "hallucination:875bda5050f7c15b": [
+          "chat-lmsys-0041"
+        ],
+        "hallucination:12931e1460bfa635": [
+          "chat-lmsys-0042"
+        ],
+        "hallucination:7c4b6de871aabc3d": [
+          "chat-lmsys-0043"
+        ],
+        "hallucination:79d53a6e3e813a32": [
+          "chat-lmsys-0044"
+        ],
+        "hallucination:a92d502b0fc92f27": [
+          "chat-lmsys-0045"
+        ],
+        "hallucination:22c34fcaa7ecd0a1": [
+          "chat-lmsys-0046"
+        ],
+        "hallucination:15d52cb287fb617f": [
+          "chat-lmsys-0047"
+        ],
+        "hallucination:fc5030df334a7b3d": [
+          "chat-lmsys-0048"
+        ],
+        "hallucination:bd3e96fb564f3eca": [
+          "chat-lmsys-0049"
+        ],
+        "hallucination:fdfcabced265c83d": [
+          "chat-lmsys-0050"
+        ],
+        "hallucination:4f857327a8733c48": [
+          "chat-lmsys-0051"
+        ],
+        "hallucination:35f3492cdf5d57c7": [
+          "chat-lmsys-0052"
+        ],
+        "hallucination:4aa6cad322afadad": [
+          "chat-lmsys-0053"
+        ],
+        "hallucination:a72441df11630278": [
+          "chat-lmsys-0054"
+        ],
+        "hallucination:2ff2d64473841564": [
+          "chat-lmsys-0055"
+        ],
+        "hallucination:be8c1df60a0b7965": [
+          "chat-lmsys-0056"
+        ],
+        "hallucination:f7b4d2bc8167f658": [
+          "chat-lmsys-0057"
+        ],
+        "hallucination:81b72a9792bf391e": [
+          "chat-lmsys-0058"
+        ],
+        "hallucination:3335c6547baa6d68": [
+          "chat-lmsys-0059"
+        ],
+        "hallucination:ac3f351839b6b740": [
+          "chat-lmsys-0060"
+        ],
+        "hallucination:6718044822670d64": [
+          "chat-lmsys-0061"
+        ],
+        "hallucination:755b807891cc3951": [
+          "chat-lmsys-0062"
+        ],
+        "hallucination:e5ce4202165e5f77": [
+          "chat-lmsys-0063"
+        ],
+        "hallucination:faf1875e87d2f94d": [
+          "chat-lmsys-0064"
+        ],
+        "hallucination:54a9e0a50aded879": [
+          "chat-lmsys-0065"
+        ],
+        "hallucination:8219a1905a757f5f": [
+          "chat-lmsys-0066"
+        ],
+        "hallucination:b503ed9fc3be5111": [
+          "chat-lmsys-0067"
+        ],
+        "hallucination:cba42df1d77e6fcf": [
+          "chat-lmsys-0068"
+        ],
+        "hallucination:2e4222fad4ffc1fd": [
+          "chat-lmsys-0069"
+        ],
+        "hallucination:a99eb06d86386c34": [
+          "chat-lmsys-0070"
+        ],
+        "hallucination:548b2bdd6e90a3cb": [
+          "chat-lmsys-0071"
+        ],
+        "hallucination:dfc73b2f221dca25": [
+          "chat-lmsys-0072"
+        ],
+        "hallucination:9079f342078d2760": [
+          "chat-lmsys-0073"
+        ],
+        "hallucination:1c27439db3c6799d": [
+          "chat-lmsys-0074"
+        ],
+        "hallucination:4c0b238f299fc05a": [
+          "chat-dailydialog-0000"
+        ],
+        "hallucination:95f733241ae62a2f": [
+          "chat-dailydialog-0001"
+        ],
+        "hallucination:fbdd1f8ada6bd839": [
+          "chat-dailydialog-0002"
+        ],
+        "hallucination:829069305df23c00": [
+          "chat-dailydialog-0003"
+        ],
+        "hallucination:99410bdde08bd18f": [
+          "chat-dailydialog-0004"
+        ],
+        "hallucination:c06f8a26f28e2e7e": [
+          "chat-dailydialog-0005"
+        ],
+        "hallucination:a36d490f7b4503f5": [
+          "chat-dailydialog-0006"
+        ],
+        "hallucination:5b0b359bdb1a8d34": [
+          "chat-dailydialog-0007"
+        ],
+        "hallucination:1718ebd1ebe8b8b5": [
+          "chat-dailydialog-0008"
+        ],
+        "hallucination:e7958f1c1bc12dc5": [
+          "chat-dailydialog-0009"
+        ],
+        "hallucination:77735ae5b0757099": [
+          "chat-dailydialog-0010"
+        ],
+        "hallucination:80913a306fb7aba6": [
+          "chat-dailydialog-0011"
+        ],
+        "hallucination:4d576d90df8e780f": [
+          "chat-dailydialog-0012"
+        ],
+        "hallucination:8edb76e92eb2eb98": [
+          "chat-dailydialog-0013"
+        ],
+        "hallucination:4fd2f83e64ad69ef": [
+          "chat-dailydialog-0014"
+        ],
+        "hallucination:88b06f71550b4f85": [
+          "chat-dailydialog-0015"
+        ],
+        "hallucination:4fc1390555c53f09": [
+          "chat-dailydialog-0016"
+        ],
+        "hallucination:4ac6951fd01d2f56": [
+          "chat-dailydialog-0017"
+        ],
+        "hallucination:c1e536cfb2448fca": [
+          "chat-dailydialog-0018"
+        ],
+        "hallucination:a371cf6b5ffebd36": [
+          "chat-dailydialog-0019"
+        ],
+        "hallucination:be1b4b1a377cb39a": [
+          "chat-dailydialog-0020"
+        ],
+        "hallucination:412fd6b37956da85": [
+          "chat-dailydialog-0021"
+        ],
+        "hallucination:44254f615c7fc61d": [
+          "chat-dailydialog-0022"
+        ],
+        "hallucination:2372e3acd19dad01": [
+          "chat-dailydialog-0023"
+        ],
+        "hallucination:d6a1eaa5c0beaf47": [
+          "chat-dailydialog-0024"
+        ],
+        "hallucination:4d0273f4150dfce6": [
+          "chat-dailydialog-0025"
+        ],
+        "hallucination:f371e58d9b2a7d1b": [
+          "chat-dailydialog-0026"
+        ],
+        "hallucination:5481719846145d15": [
+          "chat-dailydialog-0027"
+        ],
+        "hallucination:7d7ffaa4fe4d61eb": [
+          "chat-dailydialog-0028"
+        ],
+        "hallucination:8d5129a95d008eab": [
+          "chat-dailydialog-0029"
+        ],
+        "hallucination:d00fca1389da004a": [
+          "chat-dailydialog-0030"
+        ],
+        "hallucination:2e89f8cc39186b61": [
+          "chat-dailydialog-0031"
+        ],
+        "hallucination:4d0118a99ffb2736": [
+          "chat-dailydialog-0032"
+        ],
+        "hallucination:c90cc784b90f9dca": [
+          "chat-dailydialog-0033"
+        ],
+        "hallucination:30b7c342bd4d2815": [
+          "chat-dailydialog-0034"
+        ],
+        "hallucination:cdd5d03c39d48e10": [
+          "chat-dailydialog-0035"
+        ],
+        "hallucination:f86154c183fd15fd": [
+          "chat-dailydialog-0036"
+        ],
+        "hallucination:2264bee43f4c2560": [
+          "chat-dailydialog-0037"
+        ],
+        "hallucination:149f54964ba63378": [
+          "chat-dailydialog-0038"
+        ],
+        "hallucination:aaa697988a13eafd": [
+          "chat-dailydialog-0039"
+        ],
+        "hallucination:85f88100e7728d7d": [
+          "chat-dailydialog-0040"
+        ],
+        "hallucination:07117e432cdc4948": [
+          "chat-dailydialog-0041"
+        ],
+        "hallucination:118d18d4478295d8": [
+          "chat-dailydialog-0042"
+        ],
+        "hallucination:3fa2cd582a592992": [
+          "chat-dailydialog-0043"
+        ],
+        "hallucination:d0e22b49476fcc71": [
+          "chat-dailydialog-0044"
+        ],
+        "hallucination:1f42952422265df9": [
+          "chat-dailydialog-0045"
+        ],
+        "hallucination:bba705ce6d992b15": [
+          "chat-dailydialog-0046"
+        ],
+        "hallucination:04993a8dfda56786": [
+          "chat-dailydialog-0047"
+        ],
+        "hallucination:e2c8da76064886ad": [
+          "chat-dailydialog-0048"
+        ],
+        "hallucination:2005926e431645eb": [
+          "chat-dailydialog-0049"
+        ],
+        "hallucination:e64d2a20b06a2177": [
+          "chat-dailydialog-0050"
+        ],
+        "hallucination:7a0aebd1c091dcbc": [
+          "chat-dailydialog-0051"
+        ],
+        "hallucination:3c88918a435c8834": [
+          "chat-dailydialog-0052"
+        ],
+        "hallucination:767ccd0ddfe5f783": [
+          "chat-dailydialog-0053"
+        ],
+        "hallucination:046bb9d2feabdcac": [
+          "chat-dailydialog-0054"
+        ],
+        "hallucination:004c7b09cdd1708c": [
+          "chat-dailydialog-0055"
+        ],
+        "hallucination:36299c8d00d17b8f": [
+          "chat-dailydialog-0056"
+        ],
+        "hallucination:11460a96d46a9231": [
+          "chat-dailydialog-0057"
+        ],
+        "hallucination:305bcd1bd6350bcf": [
+          "chat-dailydialog-0058"
+        ],
+        "hallucination:e7ad6c8209da9d80": [
+          "chat-dailydialog-0059"
+        ],
+        "hallucination:74da9253d2fe9e85": [
+          "chat-dailydialog-0060"
+        ],
+        "hallucination:32fce6073b42b319": [
+          "chat-dailydialog-0061"
+        ],
+        "hallucination:4d1e9523ee2f0b2f": [
+          "chat-dailydialog-0062"
+        ],
+        "hallucination:c7c3157d8fdfa94c": [
+          "chat-dailydialog-0063"
+        ],
+        "hallucination:93653936fd98f065": [
+          "chat-dailydialog-0064"
+        ],
+        "hallucination:79a316ddc7f1e133": [
+          "chat-dailydialog-0065"
+        ],
+        "hallucination:8312994e35f988e7": [
+          "chat-dailydialog-0066"
+        ],
+        "hallucination:7946a962fa70173c": [
+          "chat-dailydialog-0067"
+        ],
+        "hallucination:84184523ca9dea37": [
+          "chat-dailydialog-0068"
+        ],
+        "hallucination:0e5ece0d66b05fd6": [
+          "chat-dailydialog-0069"
+        ],
+        "hallucination:92728f71ce23f958": [
+          "chat-dailydialog-0070"
+        ],
+        "hallucination:9ce86e6cd21b99da": [
+          "chat-dailydialog-0071"
+        ],
+        "hallucination:551a9cad3af07925": [
+          "chat-dailydialog-0072"
+        ],
+        "hallucination:ac271a9e7411b171": [
+          "chat-dailydialog-0073"
+        ],
+        "hallucination:d2e1c119445171f3": [
+          "chat-dailydialog-0074"
+        ]
+      },
+      "splits": {
+        "development": {
+          "group_ids": [
+            "hallucination:04993a8dfda56786",
+            "hallucination:11460a96d46a9231",
+            "hallucination:118d18d4478295d8",
+            "hallucination:2e4222fad4ffc1fd",
+            "hallucination:2e89f8cc39186b61",
+            "hallucination:35f3492cdf5d57c7",
+            "hallucination:3a49e00230b14c01",
+            "hallucination:3f2786298deb5de8",
+            "hallucination:412fd6b37956da85",
+            "hallucination:5481719846145d15",
+            "hallucination:5c85a16c7bca4791",
+            "hallucination:79a316ddc7f1e133",
+            "hallucination:7a0aebd1c091dcbc",
+            "hallucination:84184523ca9dea37",
+            "hallucination:92728f71ce23f958",
+            "hallucination:96415718800bae83",
+            "hallucination:9c00c041fd2c9ee3",
+            "hallucination:9ce86e6cd21b99da",
+            "hallucination:cba42df1d77e6fcf",
+            "hallucination:cdd4305e9573f1a4",
+            "hallucination:cdd5d03c39d48e10",
+            "hallucination:d791e30da133c77a",
+            "hallucination:e7958f1c1bc12dc5",
+            "hallucination:f30850c7852aaf41",
+            "hallucination:f6c18f83d38a0447",
+            "hallucination:f86154c183fd15fd",
+            "hallucination:fa144b7ff4dd2d78",
+            "hallucination:fbdd1f8ada6bd839",
+            "hallucination:fc5030df334a7b3d",
+            "hallucination:fdfcabced265c83d"
+          ],
+          "item_ids": [
+            "chat-dailydialog-0002",
+            "chat-dailydialog-0009",
+            "chat-dailydialog-0021",
+            "chat-dailydialog-0027",
+            "chat-dailydialog-0031",
+            "chat-dailydialog-0035",
+            "chat-dailydialog-0036",
+            "chat-dailydialog-0042",
+            "chat-dailydialog-0047",
+            "chat-dailydialog-0051",
+            "chat-dailydialog-0057",
+            "chat-dailydialog-0065",
+            "chat-dailydialog-0068",
+            "chat-dailydialog-0070",
+            "chat-dailydialog-0071",
+            "chat-lmsys-0003",
+            "chat-lmsys-0005",
+            "chat-lmsys-0008",
+            "chat-lmsys-0017",
+            "chat-lmsys-0023",
+            "chat-lmsys-0025",
+            "chat-lmsys-0026",
+            "chat-lmsys-0027",
+            "chat-lmsys-0032",
+            "chat-lmsys-0039",
+            "chat-lmsys-0048",
+            "chat-lmsys-0050",
+            "chat-lmsys-0052",
+            "chat-lmsys-0068",
+            "chat-lmsys-0069"
+          ]
+        },
+        "validation": {
+          "group_ids": [
+            "hallucination:15d52cb287fb617f",
+            "hallucination:1718ebd1ebe8b8b5",
+            "hallucination:1c27439db3c6799d",
+            "hallucination:3335c6547baa6d68",
+            "hallucination:551a9cad3af07925",
+            "hallucination:755b807891cc3951",
+            "hallucination:77735ae5b0757099",
+            "hallucination:79d53a6e3e813a32",
+            "hallucination:81b72a9792bf391e",
+            "hallucination:88808cd488cc6ac9",
+            "hallucination:88b06f71550b4f85",
+            "hallucination:8d5129a95d008eab",
+            "hallucination:93653936fd98f065",
+            "hallucination:95f733241ae62a2f",
+            "hallucination:9b46573c9e21753e",
+            "hallucination:a72441df11630278",
+            "hallucination:be1b4b1a377cb39a",
+            "hallucination:c1e536cfb2448fca",
+            "hallucination:f371e58d9b2a7d1b",
+            "hallucination:f6ca7fbd7e5ef923"
+          ],
+          "item_ids": [
+            "chat-dailydialog-0001",
+            "chat-dailydialog-0008",
+            "chat-dailydialog-0010",
+            "chat-dailydialog-0015",
+            "chat-dailydialog-0018",
+            "chat-dailydialog-0020",
+            "chat-dailydialog-0026",
+            "chat-dailydialog-0029",
+            "chat-dailydialog-0064",
+            "chat-dailydialog-0072",
+            "chat-lmsys-0010",
+            "chat-lmsys-0028",
+            "chat-lmsys-0034",
+            "chat-lmsys-0044",
+            "chat-lmsys-0047",
+            "chat-lmsys-0054",
+            "chat-lmsys-0058",
+            "chat-lmsys-0059",
+            "chat-lmsys-0062",
+            "chat-lmsys-0074"
+          ]
+        },
+        "test": {
+          "group_ids": [
+            "hallucination:004c7b09cdd1708c",
+            "hallucination:046bb9d2feabdcac",
+            "hallucination:07117e432cdc4948",
+            "hallucination:0863d099d5850436",
+            "hallucination:0e5ece0d66b05fd6",
+            "hallucination:12931e1460bfa635",
+            "hallucination:149f54964ba63378",
+            "hallucination:1e021db96ffaef50",
+            "hallucination:1f42952422265df9",
+            "hallucination:2005926e431645eb",
+            "hallucination:206fbbd63bd73290",
+            "hallucination:2264bee43f4c2560",
+            "hallucination:22c34fcaa7ecd0a1",
+            "hallucination:2372e3acd19dad01",
+            "hallucination:2ff2d64473841564",
+            "hallucination:305bcd1bd6350bcf",
+            "hallucination:30b7c342bd4d2815",
+            "hallucination:32fce6073b42b319",
+            "hallucination:36299c8d00d17b8f",
+            "hallucination:3a13e7b01c8b6066",
+            "hallucination:3c88918a435c8834",
+            "hallucination:3fa2cd582a592992",
+            "hallucination:44254f615c7fc61d",
+            "hallucination:46255904baa65948",
+            "hallucination:46b51c04821234f3",
+            "hallucination:4aa6cad322afadad",
+            "hallucination:4ac6951fd01d2f56",
+            "hallucination:4c0b238f299fc05a",
+            "hallucination:4d0118a99ffb2736",
+            "hallucination:4d0273f4150dfce6",
+            "hallucination:4d1e9523ee2f0b2f",
+            "hallucination:4d576d90df8e780f",
+            "hallucination:4f857327a8733c48",
+            "hallucination:4fc1390555c53f09",
+            "hallucination:4fd2f83e64ad69ef",
+            "hallucination:4ff0b151bc7b76c2",
+            "hallucination:54680657882549a4",
+            "hallucination:548b2bdd6e90a3cb",
+            "hallucination:54a9e0a50aded879",
+            "hallucination:57c0673a333da197",
+            "hallucination:5b0b359bdb1a8d34",
+            "hallucination:5de153b53b9be047",
+            "hallucination:6718044822670d64",
+            "hallucination:6a829f050aeed7c8",
+            "hallucination:73971e8215bf828f",
+            "hallucination:74da9253d2fe9e85",
+            "hallucination:767ccd0ddfe5f783",
+            "hallucination:7946a962fa70173c",
+            "hallucination:79e636945acfe0f1",
+            "hallucination:7c4b6de871aabc3d",
+            "hallucination:7d7ffaa4fe4d61eb",
+            "hallucination:80913a306fb7aba6",
+            "hallucination:8219a1905a757f5f",
+            "hallucination:829069305df23c00",
+            "hallucination:8312994e35f988e7",
+            "hallucination:85f88100e7728d7d",
+            "hallucination:875bda5050f7c15b",
+            "hallucination:8a34e4b9496af1a9",
+            "hallucination:8b23fd72276ce840",
+            "hallucination:8edb76e92eb2eb98",
+            "hallucination:9079f342078d2760",
+            "hallucination:935d39269a132175",
+            "hallucination:99410bdde08bd18f",
+            "hallucination:a35ef5fe7bef25c0",
+            "hallucination:a36d490f7b4503f5",
+            "hallucination:a371cf6b5ffebd36",
+            "hallucination:a72e7c3f9a37ead5",
+            "hallucination:a92d502b0fc92f27",
+            "hallucination:a99eb06d86386c34",
+            "hallucination:aaa5387ee2b9b4f8",
+            "hallucination:aaa697988a13eafd",
+            "hallucination:ac271a9e7411b171",
+            "hallucination:ac3f351839b6b740",
+            "hallucination:b273127ddf5dbbbb",
+            "hallucination:b503ed9fc3be5111",
+            "hallucination:b51d8e3d66206469",
+            "hallucination:b79e27e2096b1948",
+            "hallucination:bba705ce6d992b15",
+            "hallucination:bd3e96fb564f3eca",
+            "hallucination:bd8fd111137aedd7",
+            "hallucination:be8c1df60a0b7965",
+            "hallucination:c06f8a26f28e2e7e",
+            "hallucination:c7c3157d8fdfa94c",
+            "hallucination:c90cc784b90f9dca",
+            "hallucination:d00fca1389da004a",
+            "hallucination:d0e22b49476fcc71",
+            "hallucination:d2e1c119445171f3",
+            "hallucination:d6a1eaa5c0beaf47",
+            "hallucination:db67c07cad450680",
+            "hallucination:dfc73b2f221dca25",
+            "hallucination:e2c8da76064886ad",
+            "hallucination:e48fe8c0e442e70f",
+            "hallucination:e5ce4202165e5f77",
+            "hallucination:e64d2a20b06a2177",
+            "hallucination:e7ad6c8209da9d80",
+            "hallucination:f3d91c6f20f12f67",
+            "hallucination:f7b4d2bc8167f658",
+            "hallucination:f99015cd133650e8",
+            "hallucination:faf1875e87d2f94d"
+          ],
+          "item_ids": [
+            "chat-dailydialog-0000",
+            "chat-dailydialog-0003",
+            "chat-dailydialog-0004",
+            "chat-dailydialog-0005",
+            "chat-dailydialog-0006",
+            "chat-dailydialog-0007",
+            "chat-dailydialog-0011",
+            "chat-dailydialog-0012",
+            "chat-dailydialog-0013",
+            "chat-dailydialog-0014",
+            "chat-dailydialog-0016",
+            "chat-dailydialog-0017",
+            "chat-dailydialog-0019",
+            "chat-dailydialog-0022",
+            "chat-dailydialog-0023",
+            "chat-dailydialog-0024",
+            "chat-dailydialog-0025",
+            "chat-dailydialog-0028",
+            "chat-dailydialog-0030",
+            "chat-dailydialog-0032",
+            "chat-dailydialog-0033",
+            "chat-dailydialog-0034",
+            "chat-dailydialog-0037",
+            "chat-dailydialog-0038",
+            "chat-dailydialog-0039",
+            "chat-dailydialog-0040",
+            "chat-dailydialog-0041",
+            "chat-dailydialog-0043",
+            "chat-dailydialog-0044",
+            "chat-dailydialog-0045",
+            "chat-dailydialog-0046",
+            "chat-dailydialog-0048",
+            "chat-dailydialog-0049",
+            "chat-dailydialog-0050",
+            "chat-dailydialog-0052",
+            "chat-dailydialog-0053",
+            "chat-dailydialog-0054",
+            "chat-dailydialog-0055",
+            "chat-dailydialog-0056",
+            "chat-dailydialog-0058",
+            "chat-dailydialog-0059",
+            "chat-dailydialog-0060",
+            "chat-dailydialog-0061",
+            "chat-dailydialog-0062",
+            "chat-dailydialog-0063",
+            "chat-dailydialog-0066",
+            "chat-dailydialog-0067",
+            "chat-dailydialog-0069",
+            "chat-dailydialog-0073",
+            "chat-dailydialog-0074",
+            "chat-lmsys-0000",
+            "chat-lmsys-0001",
+            "chat-lmsys-0002",
+            "chat-lmsys-0004",
+            "chat-lmsys-0006",
+            "chat-lmsys-0007",
+            "chat-lmsys-0009",
+            "chat-lmsys-0011",
+            "chat-lmsys-0012",
+            "chat-lmsys-0014",
+            "chat-lmsys-0015",
+            "chat-lmsys-0016",
+            "chat-lmsys-0018",
+            "chat-lmsys-0019",
+            "chat-lmsys-0020",
+            "chat-lmsys-0021",
+            "chat-lmsys-0022",
+            "chat-lmsys-0024",
+            "chat-lmsys-0029",
+            "chat-lmsys-0030",
+            "chat-lmsys-0031",
+            "chat-lmsys-0033",
+            "chat-lmsys-0035",
+            "chat-lmsys-0036",
+            "chat-lmsys-0037",
+            "chat-lmsys-0038",
+            "chat-lmsys-0040",
+            "chat-lmsys-0041",
+            "chat-lmsys-0042",
+            "chat-lmsys-0043",
+            "chat-lmsys-0045",
+            "chat-lmsys-0046",
+            "chat-lmsys-0049",
+            "chat-lmsys-0051",
+            "chat-lmsys-0053",
+            "chat-lmsys-0055",
+            "chat-lmsys-0056",
+            "chat-lmsys-0057",
+            "chat-lmsys-0060",
+            "chat-lmsys-0061",
+            "chat-lmsys-0063",
+            "chat-lmsys-0064",
+            "chat-lmsys-0065",
+            "chat-lmsys-0066",
+            "chat-lmsys-0067",
+            "chat-lmsys-0070",
+            "chat-lmsys-0071",
+            "chat-lmsys-0072",
+            "chat-lmsys-0073"
+          ]
+        }
+      },
+      "exclusions": [],
+      "layers": [
+        20,
+        36,
+        44,
+        52,
+        60
+      ],
+      "position_contract": "all_frozen_read_sites"
+    },
+    "multihop_mt": {
+      "bank_path": "${OLENS_SOURCE_ROOT}/scratch/repos/workspace-bench-v2/evals/multihop_mt/items.json",
+      "bank_sha256": "8f34a6c5852e20c4c7b284eb8ca2055135ac32eb25a88931a27968e3d0704fb1",
+      "read_plan_path": "${OLENS_SOURCE_ROOT}/outputs/wsbench/plan/multihop_mt.jsonl",
+      "read_plan_sha256": "fe064b2f284731d2b3f76dabbb58290f323b989750e97af7c3ca68abaebfac31",
+      "groups": {
+        "multihop_mt:bridge-component:a046b74450ba7c00": [
+          "mhh-1967-norwegian-classes-objects-codesigner",
+          "mhh-simula-norsk-regnesentral"
+        ],
+        "multihop_mt:bridge-component:f6ef836138a9b3ce": [
+          "mhh-1973-triple-crown-stud-farm"
+        ],
+        "multihop_mt:bridge-component:4ff0024e335d0017": [
+          "mhh-1975-kit-chip-designer"
+        ],
+        "multihop_mt:bridge-component:b7efd2136d4a71ec": [
+          "mhh-1976philadelphia-bacterium"
+        ],
+        "multihop_mt:bridge-component:bb4820fb6e9756e0": [
+          "mhh-adwa-victor-accord"
+        ],
+        "multihop_mt:bridge-component:8637330b00c75e28": [
+          "mhh-africa-cataract-range"
+        ],
+        "multihop_mt:bridge-component:72da1d3423fd09e0": [
+          "mhh-akbar-dinilahi"
+        ],
+        "multihop_mt:bridge-component:8d2e20555d1ac7d2": [
+          "mhh-altair-mits-albuquerque"
+        ],
+        "multihop_mt:bridge-component:accce8256f5b30ee": [
+          "mhh-angelfalls-auyantepui-canaima"
+        ],
+        "multihop_mt:bridge-component:969a747dea324352": [
+          "mhh-atsign-mail"
+        ],
+        "multihop_mt:bridge-component:c0d7dec06fb00fdf": [
+          "mhh-aztec-coatepec-sister"
+        ],
+        "multihop_mt:bridge-component:aa68a673ab53fd80": [
+          "mhh-barber-menotti-spoleto"
+        ],
+        "multihop_mt:bridge-component:c8f91c22e6b52675": [
+          "mhh-bellerophon-fountain"
+        ],
+        "multihop_mt:bridge-component:9e353195b62a3900": [
+          "mhh-brancusi-ensemble"
+        ],
+        "multihop_mt:bridge-component:c6225400a29d6147": [
+          "mhh-captive-caesar-relief-site",
+          "mhh-valerian-shapur-relief"
+        ],
+        "multihop_mt:bridge-component:cf84a125a2ee3f9f": [
+          "mhh-chicxulub-orizaba"
+        ],
+        "multihop_mt:bridge-component:b9d299eb2e3f287e": [
+          "mhh-cshell-author-firm-buyer"
+        ],
+        "multihop_mt:bridge-component:2668370a5496fe10": [
+          "mhh-derbyshire-unit"
+        ],
+        "multihop_mt:bridge-component:21cf16b7554ec7ba": [
+          "mhh-endpermian-volcanic-province"
+        ],
+        "multihop_mt:bridge-component:32606813477ca043": [
+          "mhh-eurasia-highest-active-volcano-center"
+        ],
+        "multihop_mt:bridge-component:f5eb66d420d131d3": [
+          "mhh-fourrow-layout"
+        ],
+        "multihop_mt:bridge-component:b884912fc5f8ed29": [
+          "mhh-funkbrothers-studio"
+        ],
+        "multihop_mt:bridge-component:0bae7b43fbb7b93a": [
+          "mhh-gentileschi-florence-body"
+        ],
+        "multihop_mt:bridge-component:c5240e75257fb04c": [
+          "mhh-hedren-daughter-film"
+        ],
+        "multihop_mt:bridge-component:6c55ca0a787ee2b4": [
+          "mhh-hisarlik-hoard-home",
+          "mhh-hisarlik-mycenae-display"
+        ],
+        "multihop_mt:bridge-component:ffd42ee9ae6d8ef7": [
+          "mhh-isenheim-unterlinden"
+        ],
+        "multihop_mt:bridge-component:8b5c0a38f3e60a81": [
+          "mhh-jpsi-slac"
+        ],
+        "multihop_mt:bridge-component:2c697e8688d48046": [
+          "mhh-kakania-author-birthplace"
+        ],
+        "multihop_mt:bridge-component:1221bab661ef832b": [
+          "mhh-kalevala-smith-sender"
+        ],
+        "multihop_mt:bridge-component:62efde5ecc970c85": [
+          "mhh-kinski-paristexas"
+        ],
+        "multihop_mt:bridge-component:0f20af4d8cfada82": [
+          "mhh-lassell-uranian-moons"
+        ],
+        "multihop_mt:bridge-component:7969de1288562552": [
+          "mhh-laughton-korda-henry"
+        ],
+        "multihop_mt:bridge-component:f960ff0b92219de9": [
+          "mhh-mansamusa-sahili"
+        ],
+        "multihop_mt:bridge-component:f2d8f11e5955d192": [
+          "mhh-martinson-cowinner"
+        ],
+        "multihop_mt:bridge-component:be6c03c9fb6be262": [
+          "mhh-mesopotamian-wildman-cedar"
+        ],
+        "multihop_mt:bridge-component:52506af7d5ae48c6": [
+          "mhh-moho-mohole"
+        ],
+        "multihop_mt:bridge-component:5f9f9093ba4e42e8": [
+          "mhh-motherdemos-lab-town"
+        ],
+        "multihop_mt:bridge-component:6ad66c4cb12db2d4": [
+          "mhh-norse-ratatoskr-worldtree"
+        ],
+        "multihop_mt:bridge-component:6936cf976cba49f4": [
+          "mhh-pitchblende-jachymov"
+        ],
+        "multihop_mt:bridge-component:efa3a2a1ff175580": [
+          "mhh-plinyelder-naturalis"
+        ],
+        "multihop_mt:bridge-component:2237ca526014f2f7": [
+          "mhh-prowse-clockwork"
+        ],
+        "multihop_mt:bridge-component:944a7148d964fc6c": [
+          "mhh-rhapsody-orchestrator"
+        ],
+        "multihop_mt:bridge-component:5aef85de14a9afe6": [
+          "mhh-rivera-detroit"
+        ],
+        "multihop_mt:bridge-component:b9f9b9d7e96ffe57": [
+          "mhh-samarkand-observatory-grandfather"
+        ],
+        "multihop_mt:bridge-component:55a879221007f5c6": [
+          "mhh-sampo-ilmarinen"
+        ],
+        "multihop_mt:bridge-component:c6e728e40a7988d0": [
+          "mhh-saratov-botanist-persecutor",
+          "mhh-vavilov-lysenkoism"
+        ],
+        "multihop_mt:bridge-component:071f2ded4d4cb91c": [
+          "mhh-satantango-director"
+        ],
+        "multihop_mt:bridge-component:36645af229e798a5": [
+          "mhh-satie-background-genre"
+        ],
+        "multihop_mt:bridge-component:5484031e3e35a81d": [
+          "mhh-ssem-williams-kilburn-tube"
+        ],
+        "multihop_mt:bridge-component:94be398b885e12f4": [
+          "mhh-streptomycin-griseus"
+        ],
+        "multihop_mt:bridge-component:27f7a9ffa7f8e323": [
+          "mhh-summer-winter-gold-host-town"
+        ],
+        "multihop_mt:bridge-component:fdbb8316d14dfbad": [
+          "mhh-tanganyika-outflow-3hop"
+        ],
+        "multihop_mt:bridge-component:58510fb804f17936": [
+          "mhh-ternary-moscow-brusentsov"
+        ],
+        "multihop_mt:bridge-component:782630160ce9722d": [
+          "mhh-tintinnabuli-elegy-town"
+        ],
+        "multihop_mt:bridge-component:f7e7d15aeb12e52c": [
+          "mhh-toland-wuthering"
+        ],
+        "multihop_mt:bridge-component:1ec74bdd56b01f3e": [
+          "mhh-tordesillas-zaragoza"
+        ],
+        "multihop_mt:bridge-component:73caaf38e7585619": [
+          "mhh-villalobos-birthplace"
+        ],
+        "multihop_mt:bridge-component:dcfd91a04ef991d7": [
+          "mhh-walcott-1909-quarry-preserve"
+        ],
+        "multihop_mt:bridge-component:7f10536c9471c529": [
+          "mhh-wohler-berzelius"
+        ],
+        "multihop_mt:bridge-component:198d1f05ee3445ab": [
+          "mhh-zhangzeduan-dynasty"
+        ],
+        "multihop_mt:bridge-component:bcf85b6bf7e45030": [
+          "mhh-adwa-baratieri"
+        ],
+        "multihop_mt:bridge-component:2719433c4ad74da0": [
+          "mhh-amur-accord-qing-ruler"
+        ],
+        "multihop_mt:bridge-component:a09ceff47b92003b": [
+          "mhh-bartholdi-belfort"
+        ],
+        "multihop_mt:bridge-component:e9b77ea9d672e77d": [
+          "mhh-boethius-amalasuintha"
+        ],
+        "multihop_mt:bridge-component:6ffda4fb3f3780d9": [
+          "mhh-borglum-son"
+        ],
+        "multihop_mt:bridge-component:422d99ef5255db74": [
+          "mhh-alexiad-adriatic-defeat"
+        ],
+        "multihop_mt:bridge-component:caa36364de619e47": [
+          "mhh-anlushan-xuanzong-suzong"
+        ],
+        "multihop_mt:bridge-component:3db8f0d89556e826": [
+          "mhh-arts-ghiberti-innocenti"
+        ],
+        "multihop_mt:bridge-component:775365993766b894": [
+          "mhh-brock-thermus-taq"
+        ],
+        "multihop_mt:bridge-component:40cd29ec1645d18d": [
+          "mhh-charlotte-guest-dowlais"
+        ],
+        "multihop_mt:bridge-component:c7390e6da2a4d080": [
+          "mhh-deinonychus-yale-newhaven"
+        ],
+        "multihop_mt:bridge-component:dc0847bfa6faaf51": [
+          "mhh-geo-sondoong-phongnha-quangbinh-2"
+        ],
+        "multihop_mt:bridge-component:ee05f5bc009c69eb": [
+          "mhh-grotius-mareliberum-selden"
+        ],
+        "multihop_mt:bridge-component:3e0e0be2f8f966b5": [
+          "mhh-lampedusa-gattopardo-director"
+        ],
+        "multihop_mt:bridge-component:be3eea30eab95c1a": [
+          "mhh-meitner-109-darmstadt",
+          "mhh-meitner-meitnerium-armbruster"
+        ],
+        "multihop_mt:bridge-component:48c4c5c2b46ed74e": [
+          "mhh-rublev-sacrifice-nykvist"
+        ],
+        "multihop_mt:bridge-component:d51171cf907c9882": [
+          "mhh-rufus-henry-whiteship"
+        ],
+        "multihop_mt:bridge-component:b6e1d44c2d113191": [
+          "mhh-slipher-lowell-tombaugh"
+        ],
+        "multihop_mt:bridge-component:a6d2118ccbce0619": [
+          "mhh-vaneyck-goldenfleece"
+        ],
+        "multihop_mt:bridge-component:7400d947ac0521f4": [
+          "mhh-wyeth-chaddsford",
+          "mhh-wyeth-ncwyeth-stevenson"
+        ],
+        "multihop_mt:bridge-component:8acc0b2b4b190939": [
+          "mhh-yuezhi-envoy-capital"
+        ],
+        "multihop_mt:bridge-component:bd3716d2251383c0": [
+          "mhh-belisarius-procopius-secret-history"
+        ],
+        "multihop_mt:bridge-component:c4c1178e9c0ad303": [
+          "mhh-ezana-frumentius-consecrator"
+        ],
+        "multihop_mt:bridge-component:b676ed12a1268ae5": [
+          "mhh-kalevala-lonnrot-kanteletar"
+        ],
+        "multihop_mt:bridge-component:8dcb3f7e191da792": [
+          "mhh-magellan-elcano-sanlucar"
+        ],
+        "multihop_mt:bridge-component:d17b68d81c6ea65a": [
+          "mhh-pilgrim-monk-novelist"
+        ],
+        "multihop_mt:bridge-component:f909d65267d3ced1": [
+          "mhh-rhys-bronte-currerbell"
+        ],
+        "multihop_mt:bridge-component:068d492644e92bd5": [
+          "mhh-wollaston-olbers"
+        ],
+        "multihop_mt:bridge-component:d180dfc867a9f851": [
+          "mhh-51peg-peebles"
+        ],
+        "multihop_mt:bridge-component:fcc923dd6be3230a": [
+          "mhh-barnard-lick"
+        ],
+        "multihop_mt:bridge-component:cc229477c365ddc4": [
+          "mhh-blinddoge-1204-latinruler"
+        ],
+        "multihop_mt:bridge-component:d9528c30237dc100": [
+          "mhh-charlesv-donjohn-escorial"
+        ],
+        "multihop_mt:bridge-component:e2592d0dc744d849": [
+          "mhh-riverblindness-ivermectin-strep"
+        ],
+        "multihop_mt:bridge-component:6c37ff23314987a1": [
+          "mhh-wallenstein-schiller-raeuber"
+        ]
+      },
+      "splits": {
+        "development": {
+          "group_ids": [
+            "multihop_mt:bridge-component:1221bab661ef832b",
+            "multihop_mt:bridge-component:21cf16b7554ec7ba",
+            "multihop_mt:bridge-component:27f7a9ffa7f8e323",
+            "multihop_mt:bridge-component:2c697e8688d48046",
+            "multihop_mt:bridge-component:5484031e3e35a81d",
+            "multihop_mt:bridge-component:55a879221007f5c6",
+            "multihop_mt:bridge-component:58510fb804f17936",
+            "multihop_mt:bridge-component:5f9f9093ba4e42e8",
+            "multihop_mt:bridge-component:6936cf976cba49f4",
+            "multihop_mt:bridge-component:6ad66c4cb12db2d4",
+            "multihop_mt:bridge-component:6ffda4fb3f3780d9",
+            "multihop_mt:bridge-component:7f10536c9471c529",
+            "multihop_mt:bridge-component:8b5c0a38f3e60a81",
+            "multihop_mt:bridge-component:944a7148d964fc6c",
+            "multihop_mt:bridge-component:a046b74450ba7c00",
+            "multihop_mt:bridge-component:a6d2118ccbce0619",
+            "multihop_mt:bridge-component:accce8256f5b30ee",
+            "multihop_mt:bridge-component:b676ed12a1268ae5",
+            "multihop_mt:bridge-component:b9d299eb2e3f287e",
+            "multihop_mt:bridge-component:bb4820fb6e9756e0",
+            "multihop_mt:bridge-component:be6c03c9fb6be262",
+            "multihop_mt:bridge-component:c5240e75257fb04c",
+            "multihop_mt:bridge-component:c6225400a29d6147",
+            "multihop_mt:bridge-component:c7390e6da2a4d080",
+            "multihop_mt:bridge-component:caa36364de619e47",
+            "multihop_mt:bridge-component:cf84a125a2ee3f9f",
+            "multihop_mt:bridge-component:d9528c30237dc100",
+            "multihop_mt:bridge-component:e9b77ea9d672e77d",
+            "multihop_mt:bridge-component:ffd42ee9ae6d8ef7"
+          ],
+          "item_ids": [
+            "mhh-1967-norwegian-classes-objects-codesigner",
+            "mhh-adwa-victor-accord",
+            "mhh-angelfalls-auyantepui-canaima",
+            "mhh-anlushan-xuanzong-suzong",
+            "mhh-boethius-amalasuintha",
+            "mhh-borglum-son",
+            "mhh-captive-caesar-relief-site",
+            "mhh-charlesv-donjohn-escorial",
+            "mhh-chicxulub-orizaba",
+            "mhh-cshell-author-firm-buyer",
+            "mhh-deinonychus-yale-newhaven",
+            "mhh-endpermian-volcanic-province",
+            "mhh-hedren-daughter-film",
+            "mhh-isenheim-unterlinden",
+            "mhh-jpsi-slac",
+            "mhh-kakania-author-birthplace",
+            "mhh-kalevala-lonnrot-kanteletar",
+            "mhh-kalevala-smith-sender",
+            "mhh-mesopotamian-wildman-cedar",
+            "mhh-motherdemos-lab-town",
+            "mhh-norse-ratatoskr-worldtree",
+            "mhh-pitchblende-jachymov",
+            "mhh-rhapsody-orchestrator",
+            "mhh-sampo-ilmarinen",
+            "mhh-simula-norsk-regnesentral",
+            "mhh-ssem-williams-kilburn-tube",
+            "mhh-summer-winter-gold-host-town",
+            "mhh-ternary-moscow-brusentsov",
+            "mhh-valerian-shapur-relief",
+            "mhh-vaneyck-goldenfleece",
+            "mhh-wohler-berzelius"
+          ]
+        },
+        "validation": {
+          "group_ids": [
+            "multihop_mt:bridge-component:0f20af4d8cfada82",
+            "multihop_mt:bridge-component:1ec74bdd56b01f3e",
+            "multihop_mt:bridge-component:2668370a5496fe10",
+            "multihop_mt:bridge-component:2719433c4ad74da0",
+            "multihop_mt:bridge-component:36645af229e798a5",
+            "multihop_mt:bridge-component:52506af7d5ae48c6",
+            "multihop_mt:bridge-component:6c55ca0a787ee2b4",
+            "multihop_mt:bridge-component:7400d947ac0521f4",
+            "multihop_mt:bridge-component:969a747dea324352",
+            "multihop_mt:bridge-component:aa68a673ab53fd80",
+            "multihop_mt:bridge-component:bd3716d2251383c0",
+            "multihop_mt:bridge-component:c0d7dec06fb00fdf",
+            "multihop_mt:bridge-component:c4c1178e9c0ad303",
+            "multihop_mt:bridge-component:c6e728e40a7988d0",
+            "multihop_mt:bridge-component:c8f91c22e6b52675",
+            "multihop_mt:bridge-component:e2592d0dc744d849",
+            "multihop_mt:bridge-component:fdbb8316d14dfbad"
+          ],
+          "item_ids": [
+            "mhh-amur-accord-qing-ruler",
+            "mhh-atsign-mail",
+            "mhh-aztec-coatepec-sister",
+            "mhh-barber-menotti-spoleto",
+            "mhh-belisarius-procopius-secret-history",
+            "mhh-bellerophon-fountain",
+            "mhh-derbyshire-unit",
+            "mhh-ezana-frumentius-consecrator",
+            "mhh-hisarlik-hoard-home",
+            "mhh-hisarlik-mycenae-display",
+            "mhh-lassell-uranian-moons",
+            "mhh-moho-mohole",
+            "mhh-riverblindness-ivermectin-strep",
+            "mhh-saratov-botanist-persecutor",
+            "mhh-satie-background-genre",
+            "mhh-tanganyika-outflow-3hop",
+            "mhh-tordesillas-zaragoza",
+            "mhh-vavilov-lysenkoism",
+            "mhh-wyeth-chaddsford",
+            "mhh-wyeth-ncwyeth-stevenson"
+          ]
+        },
+        "test": {
+          "group_ids": [
+            "multihop_mt:bridge-component:068d492644e92bd5",
+            "multihop_mt:bridge-component:071f2ded4d4cb91c",
+            "multihop_mt:bridge-component:0bae7b43fbb7b93a",
+            "multihop_mt:bridge-component:198d1f05ee3445ab",
+            "multihop_mt:bridge-component:2237ca526014f2f7",
+            "multihop_mt:bridge-component:32606813477ca043",
+            "multihop_mt:bridge-component:3db8f0d89556e826",
+            "multihop_mt:bridge-component:3e0e0be2f8f966b5",
+            "multihop_mt:bridge-component:40cd29ec1645d18d",
+            "multihop_mt:bridge-component:422d99ef5255db74",
+            "multihop_mt:bridge-component:48c4c5c2b46ed74e",
+            "multihop_mt:bridge-component:4ff0024e335d0017",
+            "multihop_mt:bridge-component:5aef85de14a9afe6",
+            "multihop_mt:bridge-component:62efde5ecc970c85",
+            "multihop_mt:bridge-component:6c37ff23314987a1",
+            "multihop_mt:bridge-component:72da1d3423fd09e0",
+            "multihop_mt:bridge-component:73caaf38e7585619",
+            "multihop_mt:bridge-component:775365993766b894",
+            "multihop_mt:bridge-component:782630160ce9722d",
+            "multihop_mt:bridge-component:7969de1288562552",
+            "multihop_mt:bridge-component:8637330b00c75e28",
+            "multihop_mt:bridge-component:8acc0b2b4b190939",
+            "multihop_mt:bridge-component:8d2e20555d1ac7d2",
+            "multihop_mt:bridge-component:8dcb3f7e191da792",
+            "multihop_mt:bridge-component:94be398b885e12f4",
+            "multihop_mt:bridge-component:9e353195b62a3900",
+            "multihop_mt:bridge-component:a09ceff47b92003b",
+            "multihop_mt:bridge-component:b6e1d44c2d113191",
+            "multihop_mt:bridge-component:b7efd2136d4a71ec",
+            "multihop_mt:bridge-component:b884912fc5f8ed29",
+            "multihop_mt:bridge-component:b9f9b9d7e96ffe57",
+            "multihop_mt:bridge-component:bcf85b6bf7e45030",
+            "multihop_mt:bridge-component:be3eea30eab95c1a",
+            "multihop_mt:bridge-component:cc229477c365ddc4",
+            "multihop_mt:bridge-component:d17b68d81c6ea65a",
+            "multihop_mt:bridge-component:d180dfc867a9f851",
+            "multihop_mt:bridge-component:d51171cf907c9882",
+            "multihop_mt:bridge-component:dc0847bfa6faaf51",
+            "multihop_mt:bridge-component:dcfd91a04ef991d7",
+            "multihop_mt:bridge-component:ee05f5bc009c69eb",
+            "multihop_mt:bridge-component:efa3a2a1ff175580",
+            "multihop_mt:bridge-component:f2d8f11e5955d192",
+            "multihop_mt:bridge-component:f5eb66d420d131d3",
+            "multihop_mt:bridge-component:f6ef836138a9b3ce",
+            "multihop_mt:bridge-component:f7e7d15aeb12e52c",
+            "multihop_mt:bridge-component:f909d65267d3ced1",
+            "multihop_mt:bridge-component:f960ff0b92219de9",
+            "multihop_mt:bridge-component:fcc923dd6be3230a"
+          ],
+          "item_ids": [
+            "mhh-1973-triple-crown-stud-farm",
+            "mhh-1975-kit-chip-designer",
+            "mhh-1976philadelphia-bacterium",
+            "mhh-51peg-peebles",
+            "mhh-adwa-baratieri",
+            "mhh-africa-cataract-range",
+            "mhh-akbar-dinilahi",
+            "mhh-alexiad-adriatic-defeat",
+            "mhh-altair-mits-albuquerque",
+            "mhh-arts-ghiberti-innocenti",
+            "mhh-barnard-lick",
+            "mhh-bartholdi-belfort",
+            "mhh-blinddoge-1204-latinruler",
+            "mhh-brancusi-ensemble",
+            "mhh-brock-thermus-taq",
+            "mhh-charlotte-guest-dowlais",
+            "mhh-eurasia-highest-active-volcano-center",
+            "mhh-fourrow-layout",
+            "mhh-funkbrothers-studio",
+            "mhh-gentileschi-florence-body",
+            "mhh-geo-sondoong-phongnha-quangbinh-2",
+            "mhh-grotius-mareliberum-selden",
+            "mhh-kinski-paristexas",
+            "mhh-lampedusa-gattopardo-director",
+            "mhh-laughton-korda-henry",
+            "mhh-magellan-elcano-sanlucar",
+            "mhh-mansamusa-sahili",
+            "mhh-martinson-cowinner",
+            "mhh-meitner-109-darmstadt",
+            "mhh-meitner-meitnerium-armbruster",
+            "mhh-pilgrim-monk-novelist",
+            "mhh-plinyelder-naturalis",
+            "mhh-prowse-clockwork",
+            "mhh-rhys-bronte-currerbell",
+            "mhh-rivera-detroit",
+            "mhh-rublev-sacrifice-nykvist",
+            "mhh-rufus-henry-whiteship",
+            "mhh-samarkand-observatory-grandfather",
+            "mhh-satantango-director",
+            "mhh-slipher-lowell-tombaugh",
+            "mhh-streptomycin-griseus",
+            "mhh-tintinnabuli-elegy-town",
+            "mhh-toland-wuthering",
+            "mhh-villalobos-birthplace",
+            "mhh-walcott-1909-quarry-preserve",
+            "mhh-wallenstein-schiller-raeuber",
+            "mhh-wollaston-olbers",
+            "mhh-yuezhi-envoy-capital",
+            "mhh-zhangzeduan-dynasty"
+          ]
+        }
+      },
+      "exclusions": [],
+      "layers": [
+        20,
+        24,
+        28,
+        32,
+        36,
+        40,
+        44,
+        48,
+        52,
+        56,
+        60
+      ],
+      "position_contract": "final_token",
+      "preserved_v1_development_items": [
+        "mhh-1967-norwegian-classes-objects-codesigner",
+        "mhh-adwa-victor-accord",
+        "mhh-angelfalls-auyantepui-canaima",
+        "mhh-anlushan-xuanzong-suzong",
+        "mhh-boethius-amalasuintha",
+        "mhh-borglum-son",
+        "mhh-captive-caesar-relief-site",
+        "mhh-charlesv-donjohn-escorial",
+        "mhh-chicxulub-orizaba",
+        "mhh-cshell-author-firm-buyer",
+        "mhh-deinonychus-yale-newhaven",
+        "mhh-endpermian-volcanic-province",
+        "mhh-hedren-daughter-film",
+        "mhh-isenheim-unterlinden",
+        "mhh-jpsi-slac",
+        "mhh-kakania-author-birthplace",
+        "mhh-kalevala-lonnrot-kanteletar",
+        "mhh-kalevala-smith-sender",
+        "mhh-mesopotamian-wildman-cedar",
+        "mhh-motherdemos-lab-town",
+        "mhh-norse-ratatoskr-worldtree",
+        "mhh-pitchblende-jachymov",
+        "mhh-rhapsody-orchestrator",
+        "mhh-sampo-ilmarinen",
+        "mhh-simula-norsk-regnesentral",
+        "mhh-ssem-williams-kilburn-tube",
+        "mhh-summer-winter-gold-host-town",
+        "mhh-ternary-moscow-brusentsov",
+        "mhh-vaneyck-goldenfleece",
+        "mhh-wohler-berzelius"
+      ],
+      "alias_closure_added_development_items": [
+        "mhh-valerian-shapur-relief"
+      ]
+    },
+    "chain_intermediates": {
+      "bank_path": "${OLENS_SOURCE_ROOT}/scratch/repos/workspace-bench-v2/evals/chain_intermediates/items.json",
+      "bank_sha256": "79c9ce395061e1214c2734237defcf86db2407b8245098d894fa9351c88c3f6f",
+      "read_plan_path": "${OLENS_SOURCE_ROOT}/outputs/wsbench/plan/chain_intermediates.jsonl",
+      "read_plan_sha256": "69d41739ca4342170efc25d8c8f7863e5b61a475448f87e505adb8351230543a",
+      "groups": {
+        "chain_intermediates:6c4b81365041c5ee": [
+          "chain-d3p-0611",
+          "chain-d3p-0711",
+          "chain-d3p-0768",
+          "chain-d3p-0791",
+          "chain-w2-d3p-0408",
+          "chain-w2-d3p-0422",
+          "chain-w2-d3p-0600",
+          "chain-w2-d3p-0676",
+          "chain-w2-d3p-0704",
+          "chain-w2-d3p-0881"
+        ],
+        "chain_intermediates:3460c92cfb729ad6": [
+          "chain-d3p-0637",
+          "chain-d3p-0640",
+          "chain-w2-d3p-0658"
+        ],
+        "chain_intermediates:d9a758e389eb4923": [
+          "chain-d3p-0707",
+          "chain-w2-d3p-0355",
+          "chain-w2-d3p-0599",
+          "chain-w2-d3p-0698"
+        ],
+        "chain_intermediates:f22481e36803ffe8": [
+          "chain-d3p-0737",
+          "chain-w2-d3p-0471",
+          "chain-w2-d3p-0547"
+        ],
+        "chain_intermediates:a88f8619032ce9ce": [
+          "chain-d3p-0753",
+          "chain-w2-d3p-0450"
+        ],
+        "chain_intermediates:38360f63ffcb6154": [
+          "chain-d3p-0758",
+          "chain-w2-d3p-0458",
+          "chain-w2-d3p-0829"
+        ],
+        "chain_intermediates:1ed329f272d6de20": [
+          "chain-w2-d3p-0341",
+          "chain-w2-d3p-0535",
+          "chain-w2-d3p-0644"
+        ],
+        "chain_intermediates:67e821d1cc865f09": [
+          "chain-w2-d3p-0374"
+        ],
+        "chain_intermediates:ec34217acc234174": [
+          "chain-w2-d3p-0419"
+        ],
+        "chain_intermediates:dba4059aed4974e0": [
+          "chain-w2-d3p-0552"
+        ],
+        "chain_intermediates:8c168a46a263636c": [
+          "chain-w2-d3p-0572"
+        ],
+        "chain_intermediates:456d6220e8d4e288": [
+          "chain-w2-d3p-0659"
+        ],
+        "chain_intermediates:e814d9d128d15fb2": [
+          "chain-w2-d3p-0684"
+        ],
+        "chain_intermediates:f95108b1ce32361f": [
+          "chain-w2-d3p-0848",
+          "chain-w2-d3p-0892"
+        ],
+        "chain_intermediates:3b882d2c9f2d242a": [
+          "chain-d2p-0200"
+        ],
+        "chain_intermediates:bbe713d5b26b232b": [
+          "chain-d2p-0206",
+          "chain-d2p-0392"
+        ],
+        "chain_intermediates:3f5f9c3419637d9b": [
+          "chain-d2p-0227",
+          "chain-w2-d2p-0081",
+          "chain-w2-d2p-0134",
+          "chain-w2-d2p-0199"
+        ],
+        "chain_intermediates:4bad98e0aa75e83c": [
+          "chain-d2p-0230",
+          "chain-d2p-0388",
+          "chain-w2-d2p-0294"
+        ],
+        "chain_intermediates:bfb81a6608a942c5": [
+          "chain-d2p-0231",
+          "chain-w2-d2p-0087",
+          "chain-w2-d2p-0222"
+        ],
+        "chain_intermediates:550576446c1dceb6": [
+          "chain-d2p-0234"
+        ],
+        "chain_intermediates:b5e2bddce2aca914": [
+          "chain-d2p-0238",
+          "chain-w2-d2p-0098",
+          "chain-w2-d2p-0250"
+        ],
+        "chain_intermediates:9ed5f08400706332": [
+          "chain-d2p-0239",
+          "chain-w2-d2p-0192",
+          "chain-w2-d2p-0203"
+        ],
+        "chain_intermediates:522cff9fdf7e9401": [
+          "chain-d2p-0240",
+          "chain-d2p-0295",
+          "chain-w2-d2p-0148"
+        ],
+        "chain_intermediates:d4c493ea941bbe4b": [
+          "chain-d2p-0244",
+          "chain-w2-d2p-0100",
+          "chain-w2-d2p-0220"
+        ],
+        "chain_intermediates:8a99740144456c9b": [
+          "chain-d2p-0256",
+          "chain-w2-d2p-0082",
+          "chain-w2-d2p-0163",
+          "chain-w2-d2p-0258"
+        ],
+        "chain_intermediates:2813bd9d6c9aa283": [
+          "chain-d2p-0263",
+          "chain-d2p-0330",
+          "chain-w2-d2p-0181"
+        ],
+        "chain_intermediates:787ce21baf539c52": [
+          "chain-d2p-0271",
+          "chain-d2p-0298",
+          "chain-d2p-0385"
+        ],
+        "chain_intermediates:990356a6dae7d103": [
+          "chain-d2p-0333",
+          "chain-d2p-0341"
+        ],
+        "chain_intermediates:da4134e3a39fb646": [
+          "chain-d2p-0352",
+          "chain-w2-d2p-0039",
+          "chain-w2-d2p-0270"
+        ],
+        "chain_intermediates:640761deadea5461": [
+          "chain-d2p-0360",
+          "chain-d2p-0396",
+          "chain-w2-d2p-0177",
+          "chain-w2-d2p-0196"
+        ],
+        "chain_intermediates:7b019c94fb12480d": [
+          "chain-d2p-0370",
+          "chain-w2-d2p-0142",
+          "chain-w2-d2p-0264"
+        ],
+        "chain_intermediates:4b2b434049479acc": [
+          "chain-d2p-0377",
+          "chain-w2-d2p-0078",
+          "chain-w2-d2p-0095",
+          "chain-w2-d2p-0230"
+        ],
+        "chain_intermediates:fff73f89bdf02082": [
+          "chain-d2p-0383"
+        ],
+        "chain_intermediates:5385a3e43833e516": [
+          "chain-d2p-0389",
+          "chain-w2-d2p-0086",
+          "chain-w2-d2p-0093"
+        ],
+        "chain_intermediates:763769ee465d6f8b": [
+          "chain-w2-d2p-0003",
+          "chain-w2-d2p-0066",
+          "chain-w2-d2p-0122"
+        ],
+        "chain_intermediates:eaa3d7d44de8532e": [
+          "chain-w2-d2p-0004",
+          "chain-w2-d2p-0014",
+          "chain-w2-d2p-0021",
+          "chain-w2-d2p-0172"
+        ],
+        "chain_intermediates:37eccc588aafa111": [
+          "chain-w2-d2p-0013",
+          "chain-w2-d2p-0108",
+          "chain-w2-d2p-0118",
+          "chain-w2-d2p-0171"
+        ],
+        "chain_intermediates:ba4ebc5182e0f628": [
+          "chain-w2-d2p-0040",
+          "chain-w2-d2p-0129",
+          "chain-w2-d2p-0254"
+        ],
+        "chain_intermediates:75575a5e4bfce6b7": [
+          "chain-w2-d2p-0048",
+          "chain-w2-d2p-0111",
+          "chain-w2-d2p-0214",
+          "chain-w2-d2p-0226"
+        ],
+        "chain_intermediates:af0d6da4ee9826a1": [
+          "chain-w2-d2p-0116",
+          "chain-w2-d2p-0201",
+          "chain-w2-d2p-0238"
+        ],
+        "chain_intermediates:b6769cc98b4128dc": [
+          "chain-w2-d2p-0128",
+          "chain-w2-d2p-0133",
+          "chain-w2-d2p-0136",
+          "chain-w2-d2p-0284"
+        ],
+        "chain_intermediates:c9710404ffae0c6e": [
+          "chain-w2-d2p-0135",
+          "chain-w2-d2p-0205",
+          "chain-w2-d2p-0271"
+        ]
+      },
+      "splits": {
+        "development": {
+          "group_ids": [
+            "chain_intermediates:37eccc588aafa111",
+            "chain_intermediates:6c4b81365041c5ee",
+            "chain_intermediates:787ce21baf539c52",
+            "chain_intermediates:7b019c94fb12480d",
+            "chain_intermediates:8a99740144456c9b",
+            "chain_intermediates:9ed5f08400706332",
+            "chain_intermediates:f22481e36803ffe8"
+          ],
+          "item_ids": [
+            "chain-d2p-0239",
+            "chain-d2p-0256",
+            "chain-d2p-0271",
+            "chain-d2p-0298",
+            "chain-d2p-0370",
+            "chain-d2p-0385",
+            "chain-d3p-0611",
+            "chain-d3p-0711",
+            "chain-d3p-0737",
+            "chain-d3p-0768",
+            "chain-d3p-0791",
+            "chain-w2-d2p-0013",
+            "chain-w2-d2p-0082",
+            "chain-w2-d2p-0108",
+            "chain-w2-d2p-0118",
+            "chain-w2-d2p-0142",
+            "chain-w2-d2p-0163",
+            "chain-w2-d2p-0171",
+            "chain-w2-d2p-0192",
+            "chain-w2-d2p-0203",
+            "chain-w2-d2p-0258",
+            "chain-w2-d2p-0264",
+            "chain-w2-d3p-0408",
+            "chain-w2-d3p-0422",
+            "chain-w2-d3p-0471",
+            "chain-w2-d3p-0547",
+            "chain-w2-d3p-0600",
+            "chain-w2-d3p-0676",
+            "chain-w2-d3p-0704",
+            "chain-w2-d3p-0881"
+          ]
+        },
+        "validation": {
+          "group_ids": [
+            "chain_intermediates:4bad98e0aa75e83c",
+            "chain_intermediates:522cff9fdf7e9401",
+            "chain_intermediates:640761deadea5461",
+            "chain_intermediates:bfb81a6608a942c5",
+            "chain_intermediates:c9710404ffae0c6e",
+            "chain_intermediates:d4c493ea941bbe4b",
+            "chain_intermediates:e814d9d128d15fb2"
+          ],
+          "item_ids": [
+            "chain-d2p-0230",
+            "chain-d2p-0231",
+            "chain-d2p-0240",
+            "chain-d2p-0244",
+            "chain-d2p-0295",
+            "chain-d2p-0360",
+            "chain-d2p-0388",
+            "chain-d2p-0396",
+            "chain-w2-d2p-0087",
+            "chain-w2-d2p-0100",
+            "chain-w2-d2p-0135",
+            "chain-w2-d2p-0148",
+            "chain-w2-d2p-0177",
+            "chain-w2-d2p-0196",
+            "chain-w2-d2p-0205",
+            "chain-w2-d2p-0220",
+            "chain-w2-d2p-0222",
+            "chain-w2-d2p-0271",
+            "chain-w2-d2p-0294",
+            "chain-w2-d3p-0684"
+          ]
+        },
+        "test": {
+          "group_ids": [
+            "chain_intermediates:1ed329f272d6de20",
+            "chain_intermediates:2813bd9d6c9aa283",
+            "chain_intermediates:3460c92cfb729ad6",
+            "chain_intermediates:38360f63ffcb6154",
+            "chain_intermediates:3b882d2c9f2d242a",
+            "chain_intermediates:3f5f9c3419637d9b",
+            "chain_intermediates:456d6220e8d4e288",
+            "chain_intermediates:4b2b434049479acc",
+            "chain_intermediates:5385a3e43833e516",
+            "chain_intermediates:550576446c1dceb6",
+            "chain_intermediates:67e821d1cc865f09",
+            "chain_intermediates:75575a5e4bfce6b7",
+            "chain_intermediates:763769ee465d6f8b",
+            "chain_intermediates:8c168a46a263636c",
+            "chain_intermediates:990356a6dae7d103",
+            "chain_intermediates:a88f8619032ce9ce",
+            "chain_intermediates:af0d6da4ee9826a1",
+            "chain_intermediates:b5e2bddce2aca914",
+            "chain_intermediates:b6769cc98b4128dc",
+            "chain_intermediates:ba4ebc5182e0f628",
+            "chain_intermediates:bbe713d5b26b232b",
+            "chain_intermediates:d9a758e389eb4923",
+            "chain_intermediates:da4134e3a39fb646",
+            "chain_intermediates:dba4059aed4974e0",
+            "chain_intermediates:eaa3d7d44de8532e",
+            "chain_intermediates:ec34217acc234174",
+            "chain_intermediates:f95108b1ce32361f",
+            "chain_intermediates:fff73f89bdf02082"
+          ],
+          "item_ids": [
+            "chain-d2p-0200",
+            "chain-d2p-0206",
+            "chain-d2p-0227",
+            "chain-d2p-0234",
+            "chain-d2p-0238",
+            "chain-d2p-0263",
+            "chain-d2p-0330",
+            "chain-d2p-0333",
+            "chain-d2p-0341",
+            "chain-d2p-0352",
+            "chain-d2p-0377",
+            "chain-d2p-0383",
+            "chain-d2p-0389",
+            "chain-d2p-0392",
+            "chain-d3p-0637",
+            "chain-d3p-0640",
+            "chain-d3p-0707",
+            "chain-d3p-0753",
+            "chain-d3p-0758",
+            "chain-w2-d2p-0003",
+            "chain-w2-d2p-0004",
+            "chain-w2-d2p-0014",
+            "chain-w2-d2p-0021",
+            "chain-w2-d2p-0039",
+            "chain-w2-d2p-0040",
+            "chain-w2-d2p-0048",
+            "chain-w2-d2p-0066",
+            "chain-w2-d2p-0078",
+            "chain-w2-d2p-0081",
+            "chain-w2-d2p-0086",
+            "chain-w2-d2p-0093",
+            "chain-w2-d2p-0095",
+            "chain-w2-d2p-0098",
+            "chain-w2-d2p-0111",
+            "chain-w2-d2p-0116",
+            "chain-w2-d2p-0122",
+            "chain-w2-d2p-0128",
+            "chain-w2-d2p-0129",
+            "chain-w2-d2p-0133",
+            "chain-w2-d2p-0134",
+            "chain-w2-d2p-0136",
+            "chain-w2-d2p-0172",
+            "chain-w2-d2p-0181",
+            "chain-w2-d2p-0199",
+            "chain-w2-d2p-0201",
+            "chain-w2-d2p-0214",
+            "chain-w2-d2p-0226",
+            "chain-w2-d2p-0230",
+            "chain-w2-d2p-0238",
+            "chain-w2-d2p-0250",
+            "chain-w2-d2p-0254",
+            "chain-w2-d2p-0270",
+            "chain-w2-d2p-0284",
+            "chain-w2-d3p-0341",
+            "chain-w2-d3p-0355",
+            "chain-w2-d3p-0374",
+            "chain-w2-d3p-0419",
+            "chain-w2-d3p-0450",
+            "chain-w2-d3p-0458",
+            "chain-w2-d3p-0535",
+            "chain-w2-d3p-0552",
+            "chain-w2-d3p-0572",
+            "chain-w2-d3p-0599",
+            "chain-w2-d3p-0644",
+            "chain-w2-d3p-0658",
+            "chain-w2-d3p-0659",
+            "chain-w2-d3p-0698",
+            "chain-w2-d3p-0829",
+            "chain-w2-d3p-0848",
+            "chain-w2-d3p-0892"
+          ]
+        }
+      },
+      "exclusions": [],
+      "layers": [
+        20,
+        24,
+        28,
+        32,
+        36,
+        40,
+        44,
+        48,
+        52,
+        56,
+        60
+      ],
+      "position_contract": "final_token"
+    },
+    "role_bound_association": {
+      "bank_path": "${OLENS_SOURCE_ROOT}/scratch/repos/workspace-bench-v2/evals/role_bound_association/items.json",
+      "bank_sha256": "ac3886011daa51c6b0967ba416b4db8c16eefd60f6b32e98d076771d46ab8541",
+      "read_plan_path": "${OLENS_SOURCE_ROOT}/outputs/wsbench/plan/role_bound_association.jsonl",
+      "read_plan_sha256": "86f704f3d1a6a2be030deb4e98558eb7ea1d01c39cd73dc710be1bd5fb64a289",
+      "groups": {
+        "role_bound_association:c9968597dbb972d8": [
+          "oa-police-thief-chase-ab",
+          "oa-police-thief-chase-ba"
+        ],
+        "role_bound_association:1bdfd77fbdcb8c34": [
+          "oa-doctor-patient-comfort-ab",
+          "oa-doctor-patient-comfort-ba"
+        ],
+        "role_bound_association:a5d71ddf0cd0d71a": [
+          "oa-teacher-student-scold-ab",
+          "oa-teacher-student-scold-ba"
+        ],
+        "role_bound_association:99a1755c9e7ed24c": [
+          "oa-lawyer-witness-interrogate-ab",
+          "oa-lawyer-witness-interrogate-ba"
+        ],
+        "role_bound_association:eeeaafd155b88847": [
+          "oa-waiter-customer-apologize-ab",
+          "oa-waiter-customer-apologize-ba"
+        ],
+        "role_bound_association:e61357bf3a8381ed": [
+          "oa-mother-son-angry-ab",
+          "oa-mother-son-angry-ba"
+        ],
+        "role_bound_association:5aa96712d847c3ba": [
+          "oa-boss-employee-envy-ab",
+          "oa-boss-employee-envy-ba"
+        ],
+        "role_bound_association:14fd44dd94bb9ebd": [
+          "oa-nurse-patient-lie-ab",
+          "oa-nurse-patient-lie-ba"
+        ],
+        "role_bound_association:93fd8b2add2eff42": [
+          "oa-landlord-tenant-avoid-ab",
+          "oa-landlord-tenant-avoid-ba"
+        ],
+        "role_bound_association:6f6027de17213c1d": [
+          "oa-coach-athlete-admire-ab",
+          "oa-coach-athlete-admire-ba"
+        ],
+        "role_bound_association:9f10d17a20d46a38": [
+          "oa-firefighter-homeowner-rescue-ab",
+          "oa-firefighter-homeowner-rescue-ba"
+        ],
+        "role_bound_association:f009ae591cf90e89": [
+          "oa-doctor-nurse-instruct-ab",
+          "oa-doctor-nurse-instruct-ba"
+        ],
+        "role_bound_association:a4187fc3b27aa15e": [
+          "oa-general-soldier-salute-ab",
+          "oa-general-soldier-salute-ba"
+        ],
+        "role_bound_association:cc79b93004329d07": [
+          "oa-king-servant-bow-ab",
+          "oa-king-servant-bow-ba"
+        ],
+        "role_bound_association:9b0eb8554884f2d3": [
+          "oa-celebrity-fan-photograph-ab",
+          "oa-celebrity-fan-photograph-ba"
+        ],
+        "role_bound_association:583580071c84b791": [
+          "oa-guard-visitor-search-ab",
+          "oa-guard-visitor-search-ba"
+        ],
+        "role_bound_association:56eec05cfc9731e2": [
+          "oa-librarian-borrower-fine-ab",
+          "oa-librarian-borrower-fine-ba"
+        ],
+        "role_bound_association:6987e704d23e44b3": [
+          "oa-referee-player-warn-ab",
+          "oa-referee-player-warn-ba"
+        ],
+        "role_bound_association:ae3b744f5a1677a9": [
+          "oa-journalist-politician-interview-ab",
+          "oa-journalist-politician-interview-ba"
+        ],
+        "role_bound_association:f9996fa38bfee72c": [
+          "oa-pilot-passenger-reassure-ab",
+          "oa-pilot-passenger-reassure-ba"
+        ],
+        "role_bound_association:518997fa71f8172f": [
+          "oa-babysitter-toddler-feed-ab",
+          "oa-babysitter-toddler-feed-ba"
+        ],
+        "role_bound_association:2c2ca9560b16cfc7": [
+          "oa-hairdresser-client-compliment-ab",
+          "oa-hairdresser-client-compliment-ba"
+        ],
+        "role_bound_association:a7b91dd89f1c18e2": [
+          "oa-mechanic-driver-bill-ab",
+          "oa-mechanic-driver-bill-ba"
+        ],
+        "role_bound_association:1e370ce6aaaa6382": [
+          "oa-paramedic-bystander-thank-ab",
+          "oa-paramedic-bystander-thank-ba"
+        ],
+        "role_bound_association:faf35d0b4469de85": [
+          "oa-professor-dean-report-ab",
+          "oa-professor-dean-report-ba"
+        ],
+        "role_bound_association:aca690a3ab4c50ce": [
+          "oa-tourist-local-ask-ab",
+          "oa-tourist-local-ask-ba"
+        ],
+        "role_bound_association:fda8f7afc3ca5f94": [
+          "oa-bouncer-patron-eject-ab",
+          "oa-bouncer-patron-eject-ba"
+        ],
+        "role_bound_association:35ce52d9c3e181f0": [
+          "oa-plumber-homeowner-overcharge-ab",
+          "oa-plumber-homeowner-overcharge-ba"
+        ],
+        "role_bound_association:29e5c59736749f28": [
+          "oa-child-grandparent-hug-ab",
+          "oa-child-grandparent-hug-ba"
+        ],
+        "role_bound_association:8f7c0d9a91998504": [
+          "oa-burglar-neighbor-spy-ab",
+          "oa-burglar-neighbor-spy-ba"
+        ],
+        "role_bound_association:0529f158867f8df9": [
+          "oa-father-daughter-worry-ab",
+          "oa-father-daughter-worry-ba"
+        ],
+        "role_bound_association:a2c6e05b63f527e6": [
+          "oa-sister-brother-tease-ab",
+          "oa-sister-brother-tease-ba"
+        ],
+        "role_bound_association:741405652694a33a": [
+          "oa-manager-intern-distrust-ab",
+          "oa-manager-intern-distrust-ba"
+        ],
+        "role_bound_association:c9dec6d1ce242066": [
+          "oa-veteran-recruit-lookdown-ab",
+          "oa-veteran-recruit-lookdown-ba"
+        ],
+        "role_bound_association:01187bfd8362bb91": [
+          "oa-starter-benchwarmer-pity-ab",
+          "oa-starter-benchwarmer-pity-ba"
+        ],
+        "role_bound_association:8d7b41fbfaa56162": [
+          "oa-teacher-parent-blame-ab",
+          "oa-teacher-parent-blame-ba"
+        ],
+        "role_bound_association:2e345be159647692": [
+          "oa-wife-husband-suspect-ab",
+          "oa-wife-husband-suspect-ba"
+        ],
+        "role_bound_association:d2dd6f819f6dd16c": [
+          "oa-grandmother-grandson-indulge-ab",
+          "oa-grandmother-grandson-indulge-ba"
+        ],
+        "role_bound_association:5296c15385e54d5f": [
+          "oa-officer-informant-protect-ab",
+          "oa-officer-informant-protect-ba"
+        ],
+        "role_bound_association:278304fb84c6d2fe": [
+          "oa-priest-parishioner-forgive-ab",
+          "oa-priest-parishioner-forgive-ba"
+        ],
+        "role_bound_association:bb38af49564bb9c0": [
+          "oa-guard-prisoner-fear-ab",
+          "oa-guard-prisoner-fear-ba"
+        ],
+        "role_bound_association:bbe6deebe7f044b0": [
+          "oa-ceo-janitor-resent-ab",
+          "oa-ceo-janitor-resent-ba"
+        ],
+        "role_bound_association:b9db501b40e1bd87": [
+          "oa-bride-caterer-yell-ab",
+          "oa-bride-caterer-yell-ba"
+        ],
+        "role_bound_association:6503f7fa6c02f60b": [
+          "oa-critic-musician-mock-ab",
+          "oa-critic-musician-mock-ba"
+        ],
+        "role_bound_association:cb69a3a2cfea8d4c": [
+          "oa-accountant-client-deceive-ab",
+          "oa-accountant-client-deceive-ba"
+        ],
+        "role_bound_association:114ace6841f3b0f6": [
+          "oa-principal-troublemaker-dread-ab",
+          "oa-principal-troublemaker-dread-ba"
+        ],
+        "role_bound_association:b9e36056fbebf3da": [
+          "oa-shopowner-supplier-cheat-ab",
+          "oa-shopowner-supplier-cheat-ba"
+        ],
+        "role_bound_association:7db68510103136bb": [
+          "oa-detective-suspect-follow-ab",
+          "oa-detective-suspect-follow-ba"
+        ],
+        "role_bound_association:39f4ed340255bc8f": [
+          "oa-heiress-butler-underestimate-ab",
+          "oa-heiress-butler-underestimate-ba"
+        ],
+        "role_bound_association:678e30ea4ee5fd05": [
+          "oa-comedian-heckler-humiliate-ab",
+          "oa-comedian-heckler-humiliate-ba"
+        ]
+      },
+      "splits": {
+        "development": {
+          "group_ids": [
+            "role_bound_association:0529f158867f8df9",
+            "role_bound_association:39f4ed340255bc8f",
+            "role_bound_association:56eec05cfc9731e2",
+            "role_bound_association:5aa96712d847c3ba",
+            "role_bound_association:678e30ea4ee5fd05",
+            "role_bound_association:6f6027de17213c1d",
+            "role_bound_association:93fd8b2add2eff42",
+            "role_bound_association:99a1755c9e7ed24c",
+            "role_bound_association:b9db501b40e1bd87",
+            "role_bound_association:bbe6deebe7f044b0",
+            "role_bound_association:c9968597dbb972d8",
+            "role_bound_association:cc79b93004329d07",
+            "role_bound_association:eeeaafd155b88847",
+            "role_bound_association:f009ae591cf90e89",
+            "role_bound_association:f9996fa38bfee72c"
+          ],
+          "item_ids": [
+            "oa-boss-employee-envy-ab",
+            "oa-boss-employee-envy-ba",
+            "oa-bride-caterer-yell-ab",
+            "oa-bride-caterer-yell-ba",
+            "oa-ceo-janitor-resent-ab",
+            "oa-ceo-janitor-resent-ba",
+            "oa-coach-athlete-admire-ab",
+            "oa-coach-athlete-admire-ba",
+            "oa-comedian-heckler-humiliate-ab",
+            "oa-comedian-heckler-humiliate-ba",
+            "oa-doctor-nurse-instruct-ab",
+            "oa-doctor-nurse-instruct-ba",
+            "oa-father-daughter-worry-ab",
+            "oa-father-daughter-worry-ba",
+            "oa-heiress-butler-underestimate-ab",
+            "oa-heiress-butler-underestimate-ba",
+            "oa-king-servant-bow-ab",
+            "oa-king-servant-bow-ba",
+            "oa-landlord-tenant-avoid-ab",
+            "oa-landlord-tenant-avoid-ba",
+            "oa-lawyer-witness-interrogate-ab",
+            "oa-lawyer-witness-interrogate-ba",
+            "oa-librarian-borrower-fine-ab",
+            "oa-librarian-borrower-fine-ba",
+            "oa-pilot-passenger-reassure-ab",
+            "oa-pilot-passenger-reassure-ba",
+            "oa-police-thief-chase-ab",
+            "oa-police-thief-chase-ba",
+            "oa-waiter-customer-apologize-ab",
+            "oa-waiter-customer-apologize-ba"
+          ]
+        },
+        "validation": {
+          "group_ids": [
+            "role_bound_association:01187bfd8362bb91",
+            "role_bound_association:14fd44dd94bb9ebd",
+            "role_bound_association:278304fb84c6d2fe",
+            "role_bound_association:29e5c59736749f28",
+            "role_bound_association:2e345be159647692",
+            "role_bound_association:518997fa71f8172f",
+            "role_bound_association:5296c15385e54d5f",
+            "role_bound_association:6503f7fa6c02f60b",
+            "role_bound_association:8f7c0d9a91998504",
+            "role_bound_association:9f10d17a20d46a38"
+          ],
+          "item_ids": [
+            "oa-babysitter-toddler-feed-ab",
+            "oa-babysitter-toddler-feed-ba",
+            "oa-burglar-neighbor-spy-ab",
+            "oa-burglar-neighbor-spy-ba",
+            "oa-child-grandparent-hug-ab",
+            "oa-child-grandparent-hug-ba",
+            "oa-critic-musician-mock-ab",
+            "oa-critic-musician-mock-ba",
+            "oa-firefighter-homeowner-rescue-ab",
+            "oa-firefighter-homeowner-rescue-ba",
+            "oa-nurse-patient-lie-ab",
+            "oa-nurse-patient-lie-ba",
+            "oa-officer-informant-protect-ab",
+            "oa-officer-informant-protect-ba",
+            "oa-priest-parishioner-forgive-ab",
+            "oa-priest-parishioner-forgive-ba",
+            "oa-starter-benchwarmer-pity-ab",
+            "oa-starter-benchwarmer-pity-ba",
+            "oa-wife-husband-suspect-ab",
+            "oa-wife-husband-suspect-ba"
+          ]
+        },
+        "test": {
+          "group_ids": [
+            "role_bound_association:114ace6841f3b0f6",
+            "role_bound_association:1bdfd77fbdcb8c34",
+            "role_bound_association:1e370ce6aaaa6382",
+            "role_bound_association:2c2ca9560b16cfc7",
+            "role_bound_association:35ce52d9c3e181f0",
+            "role_bound_association:583580071c84b791",
+            "role_bound_association:6987e704d23e44b3",
+            "role_bound_association:741405652694a33a",
+            "role_bound_association:7db68510103136bb",
+            "role_bound_association:8d7b41fbfaa56162",
+            "role_bound_association:9b0eb8554884f2d3",
+            "role_bound_association:a2c6e05b63f527e6",
+            "role_bound_association:a4187fc3b27aa15e",
+            "role_bound_association:a5d71ddf0cd0d71a",
+            "role_bound_association:a7b91dd89f1c18e2",
+            "role_bound_association:aca690a3ab4c50ce",
+            "role_bound_association:ae3b744f5a1677a9",
+            "role_bound_association:b9e36056fbebf3da",
+            "role_bound_association:bb38af49564bb9c0",
+            "role_bound_association:c9dec6d1ce242066",
+            "role_bound_association:cb69a3a2cfea8d4c",
+            "role_bound_association:d2dd6f819f6dd16c",
+            "role_bound_association:e61357bf3a8381ed",
+            "role_bound_association:faf35d0b4469de85",
+            "role_bound_association:fda8f7afc3ca5f94"
+          ],
+          "item_ids": [
+            "oa-accountant-client-deceive-ab",
+            "oa-accountant-client-deceive-ba",
+            "oa-bouncer-patron-eject-ab",
+            "oa-bouncer-patron-eject-ba",
+            "oa-celebrity-fan-photograph-ab",
+            "oa-celebrity-fan-photograph-ba",
+            "oa-detective-suspect-follow-ab",
+            "oa-detective-suspect-follow-ba",
+            "oa-doctor-patient-comfort-ab",
+            "oa-doctor-patient-comfort-ba",
+            "oa-general-soldier-salute-ab",
+            "oa-general-soldier-salute-ba",
+            "oa-grandmother-grandson-indulge-ab",
+            "oa-grandmother-grandson-indulge-ba",
+            "oa-guard-prisoner-fear-ab",
+            "oa-guard-prisoner-fear-ba",
+            "oa-guard-visitor-search-ab",
+            "oa-guard-visitor-search-ba",
+            "oa-hairdresser-client-compliment-ab",
+            "oa-hairdresser-client-compliment-ba",
+            "oa-journalist-politician-interview-ab",
+            "oa-journalist-politician-interview-ba",
+            "oa-manager-intern-distrust-ab",
+            "oa-manager-intern-distrust-ba",
+            "oa-mechanic-driver-bill-ab",
+            "oa-mechanic-driver-bill-ba",
+            "oa-mother-son-angry-ab",
+            "oa-mother-son-angry-ba",
+            "oa-paramedic-bystander-thank-ab",
+            "oa-paramedic-bystander-thank-ba",
+            "oa-plumber-homeowner-overcharge-ab",
+            "oa-plumber-homeowner-overcharge-ba",
+            "oa-principal-troublemaker-dread-ab",
+            "oa-principal-troublemaker-dread-ba",
+            "oa-professor-dean-report-ab",
+            "oa-professor-dean-report-ba",
+            "oa-referee-player-warn-ab",
+            "oa-referee-player-warn-ba",
+            "oa-shopowner-supplier-cheat-ab",
+            "oa-shopowner-supplier-cheat-ba",
+            "oa-sister-brother-tease-ab",
+            "oa-sister-brother-tease-ba",
+            "oa-teacher-parent-blame-ab",
+            "oa-teacher-parent-blame-ba",
+            "oa-teacher-student-scold-ab",
+            "oa-teacher-student-scold-ba",
+            "oa-tourist-local-ask-ab",
+            "oa-tourist-local-ask-ba",
+            "oa-veteran-recruit-lookdown-ab",
+            "oa-veteran-recruit-lookdown-ba"
+          ]
+        }
+      },
+      "exclusions": [],
+      "layers": [
+        20,
+        28,
+        36,
+        44,
+        52,
+        60
+      ],
+      "position_contract": "all_frozen_read_sites"
+    }
+  },
+  "supersedes_sha256": "e53e832d9a93feb0fe8a6988679c69bcd9987298fb7259ebb14426a2202b9d4a",
+  "created_utc": "2026-10-10T01:47:00.965380+00:00",
+  "revision_reason": "Canonical-only MT groups missed shared bank-provided bridge aliases. All v1 development items remain development under transitive alias closure.",
+  "content_sha256": "a04ddcbd5f0a5a0ec66640c2b6b5ba47563e13b3f3109fd61bc087b12ce3b40d"
+}

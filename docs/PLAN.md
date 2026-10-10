@@ -1,6 +1,6 @@
 # Frozen Oracle Lens: inference-time improvement plan
 
-Updated: 2026-10-09. Status: agreed research plan; implementation and new experiments have not started. The user has already authorized baseline runs, ordinary implementation, the $300 paid-API ceiling/$200 target, and conditional additional GPUs. Routine steps within that scope do not need fresh permission. This turn is documentation only, with execution deferred to the user's later execution request.
+Updated: 2026-10-10 UTC. Status: execution started at 2026-10-10 01:25:36 UTC (October 9, 21:25:36 EDT). The user has authorized autonomous implementation and experiments while away, within this plan's limits. Routine steps do not need fresh permission. See [STATUS.md](STATUS.md) for current progress and recovery instructions.
 
 Read [METHODS.md](METHODS.md) for concrete A–G algorithms, shared data flow, helper-model costs, failure checks, and the iterative development loop. This plan remains authoritative for scope, frozen contracts, evaluation, and resources.
 
@@ -26,11 +26,11 @@ Read with `concepts_raw` and inject `16000 * h / ||h||`; the supported band is l
 
 Validate that the adapter changes logits, merging preserves behavior if used, and capture is adapter-free. Unit normalization for injection is distinct from whitening for scoring. The AR maps text to activation predictions; misleading activation-to-text wording and inconsistent output-shape examples in the card must not define the implementation. Inspect the actual loader and checkpoint.
 
-Before trusting FVE, obtain the matching whitening statistics and verify centering, transformation, regularization, layer indexing, NNLS objective, denominator, aggregation, and clipping against source code and a reproducible fixture. The paired repository omits the whitening files; availability remains unresolved. Missing or invalid whitening blocks AR-guided scoring, not plain O-lens sampling or a consensus-only baseline; continue independent work. Do not substitute raw cosine similarity or another whitener and label it the published FVE.
+Before trusting FVE, obtain the matching whitening statistics and verify centering, transformation, regularization, layer indexing, NNLS objective, denominator, aggregation, and clipping against source code and a reproducible fixture. The paired repository omits the whitening files; access to the source dataset was resolved after the user accepted its agreement. The 11 needed files total 1.15 GB. Missing or invalid whitening blocks AR-guided scoring, not plain O-lens sampling or a consensus-only baseline; continue independent work. Do not substitute raw cosine similarity or another whitener and label it the published FVE.
 
 ## Existing material to reuse
 
-Treat `/orcd/home/002/chenjan/mats/neelnanda` as read-only. Preserve its checkouts, caches, results, and credentials. Useful paths relative to it:
+Treat `${OLENS_SOURCE_ROOT}` as read-only. Preserve its checkouts, caches, results, and credentials. Useful paths relative to it:
 
 - `docs/journal_entries/2026-09-30-wsbench-v2.md`: historical setup and limitations.
 - `experiments/wsbench/patches/openai_route.patch`: Luna judge routing recipe.
@@ -50,13 +50,15 @@ Start with four complementary families. Proposed counts refer to bank items:
 | Family | Total | Development | Validation | Test | Purpose |
 |---|---:|---:|---:|---:|---|
 | Hallucination | 149 | 30 | 20 | 99 | Transcript contradictions and verifiability |
-| Multi-hop, multi-token | 100 | 30 | 20 | 50 | Recovery of complete bridge concepts |
+| Multi-hop, multi-token | 100 | 31 | 20 | 49 | Recovery of complete bridge concepts |
 | Chain intermediates | 120 | 30 | 20 | 70 | Intermediate computational content |
 | Role-bound association | 100, in 50 pairs | 30 | 20 | 50 | Entity–role binding and swaps |
 
 Run these four core families first. Exclude jailbreak initially; reserve `arithmetic_intermediates` for later transfer, with `multi_concept_directed_modulation` an optional pooling diagnostic.
 
 Construct and freeze an item-level split manifest before new lens outputs. Keep role pairs together and group related examples, including chain templates; adjust counts if grouping requires it. Save IDs, group keys, seed, bank hashes, exclusions, and rationale. These historical banks were previously analyzed. The holdout measures generalization of the new scaffold; it is not previously unseen research data.
+
+The current manifest is `configs/splits_v2.json`. During the initial development-only audit, four multi-hop bridge aliases crossed the v1 boundaries. V2 groups canonical names and bank-provided aliases together, keeping all previously designated development items in development. This moved one additional item into development, yielding 31/20/49; no held-out readouts were inspected. V1 and the supersession record are retained for provenance. Activation rows are unchanged; their split/group bindings follow v2.
 
 Freeze shared representative development subsets: 5–10 items per family for the pilot, with pairs intact, then approximately 120 development items, a validation shortlist, and the frozen test. All runnable methods use the same subsets. Exact grids: hallucination `20,36,44,52,60`; role-bound `20,28,36,44,52,60`; multi-hop MT and chain `20,24,...,60`. Chain uses the final-token default, never accidental all-position evaluation. Manifest positions and cost units.
 
@@ -74,7 +76,7 @@ Report recovery separately by family, with words/tokens, claim count, uncertaint
 
 ## Baselines, methods, and diagnostics
 
-Retain the raw released baseline: temperature 1, top-p .95, top-k 64, maximum 256 new tokens, one sample. All proposed final readouts have at most four bullets. After the length pilot, freeze a shared output-token budget and handling of compound bullets, preventing phrase packing. Add a deterministic same-cap N=1 comparator without selecting its cap by FVE. Report length differences and matched shortening/random-deletion controls; never replace the raw baseline silently.
+Retain the raw released baseline: temperature 1, top-p .95, top-k 64, maximum 256 new tokens, one sample. All proposed final readouts have at most four bullets and 256 Qwen text tokens. The primary parser preserves each contiguous source block between dash-bullet markers, including continuation text; it never rewrites or deletes qualifications inside a bullet. Compound claims remain verbatim and are counted/audited separately rather than invoking a rewriting helper to enforce a claim count. The common token ceiling limits phrase packing. Non-bullet preambles are flagged as uncertain. Keep the initial strict single-line parser as a separate ablation: it rejected six of sixteen pilot samples, creating a substantial abstention confound. Add a deterministic same-cap N=1 comparator that drops complete trailing bullets to meet the cap, without selecting by FVE or cutting within a bullet. Report length differences and matched shortening/random-deletion controls; never replace the raw baseline silently.
 
 The current cap is **32 O-lens samples per activation/cell, shared across all methods**, not a fresh 32 for each method. Use nested prefixes N=1,2,4,8,16,32; samples above 32 are deferred until the user revisits the cap. Quality remains the priority within this limit. Prespecify prefix-escalation rules on development; report observed scaling/saturation without claiming a scaling law. Persist strings, order, seeds, batching, tokens, truncation, and AR predictions/scores. Batching changes RNG consumption; retain outputs. Bounded external-editor proposals are separately counted and logged, not new O-lens pools.
 
@@ -121,7 +123,7 @@ An approach omitted for time is **incomplete/time-limited**, not prerequisite-bl
 
 ## Twenty-hour execution target and final delivery
 
-Aim for a final result approximately 20 hours after execution actually starts. This documentation turn does not start the clock. The allocation is provisional and depends on working loaders/whitening and measured throughput; overlap independent work:
+Aim for a final result approximately 20 hours after execution starts: 2026-10-10 21:25:36 UTC. This is a target, subject to working loaders/whitening and measured throughput; overlap independent work:
 
 | Elapsed execution time | Main work |
 |---|---|
@@ -149,7 +151,7 @@ Use the four main H200 slots and up to four preemptable slots only for useful in
 
 Use resumable, balanced shards with explicit seeds, claims, atomic outputs, and duplicate detection. While execution is active, an assigned agent should periodically inspect preemptable jobs, shard progress, failures, stalled claims, allocation expiry, and budget; adapt the work queue rather than poll continuously. Record watcher identity and last check. Agent monitoring ends when its session stops; persistent logs, manifests, and checkpointing must support a paused chat and later recovery. The user selected Astra as coordinator and GPT-6.1 Sol workers with task-appropriate reasoning effort. An agent cannot change its own assigned model. Keep concurrent agents within available tool limits; GPU worker processes need not correspond one-to-one to agents.
 
-Use `/orcd/compute/pattie/001/` for fast working artifacts and `/orcd/data/pattie/001/` for durable results, distinct from the personal pool. The user authorizes approximately **500 GB aggregate across both locations**, not 500 GB each. No renewed permission is needed within that allowance; ask before a material increase beyond it. Verify access and actual group quotas first; filesystem `df` is insufficient. Aim for the leanest practical footprint, approximately **100–150 GB including a possible base-model copy**, with non-weight artifacts normally below 100 GB. These targets guide cleanup, not unnecessary execution blocks. Count physical copies across both locations; prefer reuse/symlinks. Keep bulky files and environments off HOME and outside the repo. Retain target activations, stochastic text, paid judgments, and reconstruction provenance; remove regenerable vector intermediates after validation. Prefer few large shards. Storage authorization is separate from the unchanged $200 API target/$300 hard ceiling. Neither location is a backup.
+Use `${LAB_COMPUTE_ROOT}/` for fast working artifacts and `${LAB_DATA_ROOT}/` for durable results, distinct from the personal pool. The user authorizes approximately **500 GB aggregate across both locations**, not 500 GB each. No renewed permission is needed within that allowance; ask before a material increase beyond it. Verify access and actual group quotas first; filesystem `df` is insufficient. Aim for the leanest practical footprint, approximately **100–150 GB including a possible base-model copy**, with non-weight artifacts normally below 100 GB. These targets guide cleanup, not unnecessary execution blocks. Count physical copies across both locations; prefer reuse/symlinks. Keep bulky files and environments off HOME and outside the repo. Retain target activations, stochastic text, paid judgments, and reconstruction provenance; remove regenerable vector intermediates after validation. Prefer few large shards. Storage authorization is separate from the unchanged $200 API target/$300 hard ceiling. Neither location is a backup.
 
 ## Git workflow
 
@@ -161,21 +163,21 @@ Make local commits at meaningful reviewed milestones, keeping code, documentatio
 |---|---|
 | Research scope, candidate methods, limits | Documented here |
 | Git workflow | Local main initialized; planning versioned in local commits; pushing handled by the user |
-| New project experiment implementation | Not started |
-| New inference, judging, or GPU execution | Not run |
-| Whitening access and exact scorer reproduction | Outstanding |
-| Real adapter activation and cache compatibility | Outstanding |
-| Runtime environment, allocation, quotas, actual cost | Outstanding |
+| New project experiment implementation | In progress: resource, model/scorer, and data/evaluation workers |
+| New inference, judging, or GPU execution | Eight-cell Luna instrument complete; representative 189-cell N32 generation running |
+| Whitening access and exact scorer reproduction | All 11 files downloaded; 18 math fixtures and real matched-AR reproduction passed |
+| Real adapter activation and cache compatibility | Adapter checks passed; all 19,435 core cells freshly captured, eight instrument vectors preserved exactly |
+| Runtime environment, allocation, quotas, actual cost | Four owned H200s in use; group quota unresolved; first paid instrument cost $0.00046255 |
 
 Maintain this durable handoff block after each experiment or material state change:
 
-- **Phase:** planning documentation.
-- **Execution clock:** not started; record start time and updated completion forecast when execution begins.
-- **Last completed experiment:** none in this project.
-- **Active Slurm IDs / watcher / last check:** none; monitoring inactive.
-- **Spend:** $0 recorded experimental API spend; target $200, ceiling $300, reserve $100. An optional Claude review attempt had a $2 cap and timed out after 90 seconds (exit 124), returning no output or charge data. Charge is unconfirmed; retain its $2 reservation pending reconciliation.
-- **Next action:** read-only prerequisite audit, then prepare the baseline pilot.
-- **Unresolved:** matching whiteners/scorer, adapter validation, cache compatibility, environment, allocation expiry, storage quotas, and measured costs.
+- **Phase:** representative development pilot and method implementation.
+- **Execution clock:** started 2026-10-10 01:25:36 UTC; target finish 2026-10-10 21:25:36 UTC. First throughput-based forecast due near 03:25 UTC.
+- **Last completed experiments:** eight-cell sample-0 Luna instrument, full fresh capture, and two-pair contrastive diagnostic; see experiments 001–004. None establishes a benchmark improvement.
+- **Active Slurm IDs / watcher / last check:** existing H200 jobs 25330001, 25330006, 25330007, 25417596; resource worker monitors them. Latest machine-readable check is in `configs/runtime.json` and the project watcher directory. No extra allocation requested.
+- **Spend:** $0.00046255 after the first instrument; the shared ledger is authoritative for later runs. Target $200, ceiling $300, reserve $100. An optional Claude review attempt had a $2 cap and timed out after 90 seconds (exit 124), returning no output or charge data. Charge is unconfirmed; retain its $2 reservation pending reconciliation.
+- **Next action:** finish the 189-cell shared N32 pool, encode candidates, run paired selection comparisons and bounded semantic-helper audits, then judge and inspect differences.
+- **Unresolved:** group storage quota, representative method performance, and measured full-grid costs/throughput. Model/scorer access and fresh-capture prerequisites are resolved.
 
 First execution actions: read AGENTS.md and this plan; inspect existing manifests read-only; establish project-owned artifact paths and ledger; freeze grouped splits; resolve the loader checks and, for AR-guided methods, whitening checks; prepare the real baseline pilot and its cost forecast. Review the pilot record before launching the full development run; this is an execution quality gate, not a new user-permission requirement.
 

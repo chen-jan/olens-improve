@@ -1,0 +1,9 @@
+{
+  "superseded_manifest": "configs/splits_v1.json",
+  "superseded_sha256": "e53e832d9a93feb0fe8a6988679c69bcd9987298fb7259ebb14426a2202b9d4a",
+  "current_manifest": "configs/splits_v2.json",
+  "current_sha256": "a04ddcbd5f0a5a0ec66640c2b6b5ba47563e13b3f3109fd61bc087b12ce3b40d",
+  "utc": "2026-10-10T01:47:00.965380+00:00",
+  "reason": "Canonical-only MT groups missed shared bank-provided bridge aliases. All v1 development items remain development under transitive alias closure.",
+  "observed_development_items_preserved": true
+}

@@ -6,4 +6,4 @@ The execution target is approximately 20 hours from the actual start, subject to
 
 Read [the execution plan](docs/PLAN.md) and [detailed method specifications](docs/METHODS.md) before continuing. Record each experiment using [the experiment template](docs/experiments/TEMPLATE.md), and follow [AGENTS.md](AGENTS.md) for cluster and storage rules.
 
-Current state: planning documentation only. No new experiment, model download, experiment API call, or GPU job has been run in this project.
+Current state: autonomous execution started on 2026-10-10 at 01:25:36 UTC. Prerequisite checks and implementation are in progress. See [the current status](docs/STATUS.md) for measured results, spending, active jobs, and recovery instructions. Local commits only; the user handles pushing.

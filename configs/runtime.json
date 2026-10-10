@@ -1,0 +1,93 @@
+{
+  "execution_started_utc": "2026-10-10T01:25:36Z",
+  "last_verified_utc": "2026-10-10T01:30:50Z",
+  "paths": {
+    "fast": "${OLENS_COMPUTE_ROOT}",
+    "durable": "${OLENS_DATA_ROOT}",
+    "environment": "${OLENS_COMPUTE_ROOT}/envs/runtime",
+    "python": "${OLENS_COMPUTE_ROOT}/envs/runtime/bin/python",
+    "reused_site_packages": "${OLENS_SCRATCH}/workspace/venvs/lens/lib/python3.12/site-packages",
+    "base_snapshot": "${OLENS_SCRATCH}/workspace/hf_cache/hub/models--Qwen--Qwen3.6-27B/snapshots/6a9e13bd6fc8f0983b9b99948120bc37f49c13e9",
+    "hf_home": "${OLENS_COMPUTE_ROOT}/cache/huggingface",
+    "pip_cache": "${OLENS_COMPUTE_ROOT}/cache/pip",
+    "torch_cache": "${OLENS_COMPUTE_ROOT}/cache/torch",
+    "logs": "${OLENS_COMPUTE_ROOT}/logs",
+    "activations": "${OLENS_COMPUTE_ROOT}/activations",
+    "vectors": "${OLENS_COMPUTE_ROOT}/vectors"
+  },
+  "cpu_allocation": {
+    "job_id": 25299630,
+    "node": "node3107",
+    "cpus": 32,
+    "ram_gib": 128,
+    "end_local": "2026-10-12T12:33:42",
+    "timezone": "America/New_York"
+  },
+  "gpu_allocations": [
+    {
+      "job_id": 25330001,
+      "node": "node3300",
+      "gpu": "h200",
+      "count": 1,
+      "cpus": 8,
+      "ram_gib": 64,
+      "end_utc": "2026-10-10T22:23:26Z"
+    },
+    {
+      "job_id": 25330006,
+      "node": "node3400",
+      "gpu": "h200",
+      "count": 1,
+      "cpus": 8,
+      "ram_gib": 64,
+      "end_utc": "2026-10-10T22:25:17Z"
+    },
+    {
+      "job_id": 25330007,
+      "node": "node3301",
+      "gpu": "h200",
+      "count": 1,
+      "cpus": 8,
+      "ram_gib": 64,
+      "end_utc": "2026-10-10T22:36:16Z"
+    },
+    {
+      "job_id": 25417596,
+      "node": "node3200",
+      "gpu": "h200",
+      "count": 1,
+      "cpus": 8,
+      "ram_gib": 64,
+      "end_utc": "2026-10-11T16:27:10Z"
+    }
+  ],
+  "gpu_partition": "${SLURM_GPU_PARTITION}",
+  "gpu_account": "${SLURM_GPU_ACCOUNT}",
+  "gpu_owner_uid": ${UID},
+  "gpu_memory_mib": 143771,
+  "storage_authorized_aggregate_bytes": 500000000000,
+  "storage_group_quota_status": "unresolved: quota client encounters unrelated stale NFS mount",
+  "existing_base_shards": 15,
+  "existing_base_missing_shards": [],
+  "existing_base_bytes": 55563006400,
+  "preemptable_allocations": [],
+  "watcher": {
+    "agent": "/root/compute_storage_audit",
+    "status": "active-session",
+    "last_check_utc": "2026-10-10T01:51:37.755085+00:00"
+  },
+  "environment_versions": {
+    "python": "3.12.13",
+    "torch": "2.13.0",
+    "transformers": "5.16.1",
+    "peft": "0.21.2",
+    "scipy": "1.18.1",
+    "numpy": "2.5.2",
+    "safetensors": "0.8.0",
+    "accelerate": "1.14.0",
+    "huggingface_hub": "1.29.0",
+    "openai": "3.6.0",
+    "pydra-config": "0.0.17.post1"
+  },
+  "environment_status": "imports verified; no model load"
+}
