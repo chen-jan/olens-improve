@@ -1,6 +1,6 @@
 # Execution status
 
-Updated: 2026-10-10, approximately 09:03 UTC.
+Updated: 2026-10-10, approximately 09:40 UTC.
 Started: 2026-10-10 01:25:36 UTC (October 9, 21:25:36 EDT).
 Target finish: 2026-10-10 21:25:36 UTC. Execution remains active and authorized.
 
@@ -81,7 +81,7 @@ first source-checked dashboard with grouped intervals. Nothing has been pushed.
 | Single-method pilots | A/B/C/D/E1/E3/F judged; E2/G diagnostics complete with limits; exact-claim-span v3 stopped after its eight-cell contract audit, without benchmark-quality measurement |
 | Combinations | 65 unique pilot conditions judged and source-checked; larger E1-plus-pruning outputs complete and awaiting judging |
 | Additional controls | All32 judgments and matched-donor N1 complete; all requested cells/stages covered |
-| Held-out evaluation | All 3,485 validation cells have immutable N32 pools; all AR, selectors, pruning and the exact twelve-arm export are complete. All four family evaluators launched; multi-hop is complete. Blind TEST sampling is running on four H200s; TEST analysis stays closed. |
+| Held-out evaluation | All 3,485 validation cells have immutable N32 pools; all AR, selectors, pruning and the exact twelve-arm export are complete. Multi-hop and chain judging are complete; hallucination and role judging remain active. Blind TEST sampling is running on four H200s; TEST analysis stays closed. |
 
 Combination comparisons retain unchanged parents, component-off outputs, and
 random deletion matched on retained bullet count. Fixed support weights are
@@ -99,16 +99,26 @@ Next: finish the twelve fixed validation comparisons, inspect systematic traces
 with their original judge evidence, and select at most two quality/cost operating
 points before freezing the TEST menu. The validation forecast is $4.7571 with a
 $15 atomic run cap. All four family evaluators launched after clean DEV cache
-handoffs; multi-hop is complete. At 09:00 UTC, 1,770 calls were settled with no
-new unknown charges, and current per-family p95 latency was 1.65–2.45 seconds.
+handoffs; multi-hop and chain are complete. At 09:32 UTC, 13,710 calls were
+settled with no new unknown charges; five hallucination and four role conditions
+were complete out of twelve each. Their recent p95 latencies were 2.97 and
+2.75 seconds. Root verified both remaining judge sessions still running at
+09:39 UTC. No validation quality conclusion or final method choice has been made.
 All prior uncertain charges stay reserved. See
 [experiment 029](experiments/029-validation-comparison.md).
 
 Blind TEST sampling started at 08:32 UTC after four validate-only checks and
-idle-resource verification. At 08:52:59, 1,128 of 10,714 cells were complete;
-measured rates forecast generation completion around 11:43–11:51 UTC if sustained.
+idle-resource verification. At 09:35:31, 3,525 of 10,714 cells were complete;
+recent rates forecast generation completion around 11:50 UTC if sustained.
 This is generation only. TEST text, AR, selection and judging remain sealed
 until the final method freeze and separate analysis gate.
+
+The 09:37:51 read-only resource watcher recorded $10.30764 in usage-based API
+charges plus $4.65983 reserved, including $4.59653 of unresolved charges. This
+is not invoice reconciliation. Project-owned storage was 48.06 GB logical
+across fast and durable locations, well within the aggregate allowance. All
+four H200 probes succeeded at 99–100% utilization; the judge CPU allocation
+used about 7.46 GB of its 32 GiB limit with no recorded memory-limit failures.
 
 The earlier DEV judging recovery used eight slots/200 RPM per family with fresh operational
 profiles and the same $20 run ceiling, exact requests, caches and uncertain

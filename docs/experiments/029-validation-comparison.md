@@ -1,8 +1,8 @@
 # Twelve frozen validation comparisons
 
-Status: running, 2026-10-10 09:03 UTC. All generation, reconstruction,
+Status: running, 2026-10-10 09:40 UTC. All generation, reconstruction,
 selection and exact-text exports are complete. All four family evaluators have
-started; multi-hop matching is complete. No validation quality conclusion is
+started; multi-hop matching and chain judging are complete. No validation quality conclusion is
 reported yet. TEST analysis remains closed.
 
 ## Question and decision
@@ -87,6 +87,22 @@ condition records at 08:52:09. Hallucination and role started around 09:00 UTC,
 PIDs 3372913 and 3373030. Partial completion must not be mistaken for twelve
 complete four-family comparisons. The analysis entrypoint requires all expected
 cells and stages before emitting its immutable comparison artifact.
+
+At 09:40:06 UTC, the read-only operational checkpoint recorded 16,415 settled
+requests, zero unknown requests and eight live requests, with $2.56375 in
+usage-based charges for this VAL run. Six hallucination and four role conditions
+were complete; those two evaluator sessions remain active. These are completion
+counts, not quality scores. The checkpoint is
+`judgments/checkpoint-launch-v1-window-v9.json` under this run's durable root.
+
+The optional active-PID observer now uses existing indexes for complete-run
+status totals and inspects only the recent attempts for the two active workers,
+while retaining every unknown hold and its available cause. Its first read took
+0.0117 seconds, versus 9.64 seconds for the previous monitor. Separate short
+read snapshots can differ slightly during active writes. Two synthetic checks
+verified preserved totals, old holds and read-only operation. No evaluator,
+database schema, ledger epoch, request rate or scientific settings changed;
+this does not establish the cause of earlier transport failures.
 
 ## Reporting still to complete
 
