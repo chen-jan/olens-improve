@@ -342,10 +342,22 @@ class AtomicBudget:
             self._event(db, attempt_id, 'released_uncharged', {'evidence': evidence})
 
     def snapshot(self) -> dict:
-        with self._transaction() as db:
+        # A status report needs one consistent read snapshot, not the sole
+        # RESERVED writer lock. Reservations remain authoritative and atomic.
+        db = sqlite3.connect(f'file:{self.path}?mode=ro', uri=True,
+                             timeout=30, isolation_level=None)
+        try:
+            db.execute('BEGIN')
             rows = db.execute('SELECT status,COUNT(*),SUM(reserved),SUM(actual) FROM attempts GROUP BY status').fetchall()
             committed = self._committed(db)
             halted = bool(db.execute("SELECT value FROM config WHERE key='halted'").fetchone()[0])
+            db.execute('COMMIT')
+        except BaseException:
+            if db.in_transaction:
+                db.execute('ROLLBACK')
+            raise
+        finally:
+            db.close()
         counts = {r[0]: r[1] for r in rows}
         actual = sum((r[3] or 0) for r in rows if r[0] == 'settled')
         reserved = sum((r[2] or 0) for r in rows if r[0] in ('reserved', 'unknown'))

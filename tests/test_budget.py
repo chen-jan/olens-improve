@@ -24,6 +24,30 @@ def _race(path, queue):
 
 
 class BudgetTests(unittest.TestCase):
+    def test_snapshot_reads_consistent_precommit_state_under_reserved_writer(self):
+        ledger = AtomicBudget(self.path, hard_usd='.01', target_usd='.01', bootstrap_claude=False)
+        aid = ledger.reserve_attempt(100, 10000, run_id='snapshot')
+        before = ledger.snapshot()
+        writer = sqlite3.connect(self.path, timeout=1, isolation_level=None)
+        try:
+            writer.execute('BEGIN IMMEDIATE')
+            writer.execute("UPDATE attempts SET status='unknown' WHERE attempt_id=?", (aid,))
+            writer.execute("UPDATE config SET value=1 WHERE key='halted'")
+            # A RESERVED writer permits readers; the reporting operation must
+            # neither request another writer lock nor expose uncommitted rows.
+            self.assertEqual(ledger.snapshot(), before)
+            writer.execute('COMMIT')
+        finally:
+            if writer.in_transaction: writer.execute('ROLLBACK')
+            writer.close()
+        after = ledger.snapshot()
+        self.assertEqual(after['attempt_counts'], {'unknown': 1})
+        self.assertEqual(after['committed_usd'], before['committed_usd'])
+        self.assertTrue(after['halted'])
+        # A previously permissive report never authorizes a new physical call:
+        # the unchanged writer transaction checks the current financial state.
+        with self.assertRaises(BudgetExceeded): ledger.reserve_attempt(1, 1, run_id='snapshot')
+
     def test_hotpath_indexes_preserve_accounting_and_latest_cache_origin(self):
         ledger = AtomicBudget(self.path, bootstrap_claude=False)
         first = ledger.reserve_attempt(100, 100, run_id='origin',

@@ -106,6 +106,33 @@ this does not establish the cause of earlier transport failures.
 
 ## Reporting still to complete
 
+### Accounting lock interruption, 10:08–10:14 UTC
+
+Both remaining evaluators exited with errors. Hallucination had completed eleven
+of twelve conditions and role association seven; multi-hop and chain were already
+complete. The hallucination stack failed at `BEGIN IMMEDIATE` inside the
+read-only budget `snapshot()` precheck. The role worker subsequently stopped at
+the shared uncertain-request guard. This identifies an unnecessary writer-lock
+request on a concrete failure path; it does not establish the cause of every
+earlier stall.
+
+At 10:14:43, the VAL ledger retained 25,944 settled attempts, thirteen unknown
+attempts holding $0.068209, and one abandoned reserved attempt holding
+$0.005490875. All thirteen recorded failures were cancellations. The absent
+worker owning the remaining reservation had no retained physical-response
+evidence, so its full amount must also remain uncertain. Completed verdicts and
+the original execution records are preserved. No charge has been released.
+
+The narrow repair gives `snapshot()` a separate read-only connection and a short
+consistent read transaction. Atomic reservation, settlement, spending limits,
+schema and transport guards are unchanged. Eighteen offline budget tests passed,
+including reading committed state while another connection holds a reserved
+writer lock, a two-process spending-cap race, and preservation of uncertain
+charges. Current node memory was 4.91/32 GiB with no memory-limit failures; both
+project storage roots are NFS. These observations do not demonstrate that future
+lock errors are impossible. Recovery of only the unfinished signed conditions
+is being prepared with fresh operational evidence; no scientific menu changes.
+
 Report the original contradiction denominator together with assertion share,
 off-topic rate and both hallucination stages. Keep false spans distinct from
 supported and unverifiable claims. Recovery and item-ANY scores do not certify
