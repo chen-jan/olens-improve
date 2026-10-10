@@ -1,0 +1,4 @@
+[
+  {"method": "capped_n1", "n": 1},
+  {"method": "best_n_exact", "n": 32}
+]

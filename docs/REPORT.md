@@ -125,8 +125,38 @@ and cannot be used to select a deployable answer. Passing candidates can still
 contain false surrounding claims. See
 [candidate ranking](experiments/012-all-candidate-diagnostic.md).
 
-The larger development comparison is incomplete. Its completed multi-hop family
-already shows why sample count and output quality need separate reporting:
+## Larger development results
+
+Best-of-32 versus the capped single sample is complete on all 5,236 development
+cells. The other method comparisons are still being judged. Intervals below
+resample related groups in pairs; these exploratory comparisons are not adjusted
+for the other methods examined during development.
+
+| Endpoint | Capped single sample | Best-of-32 | Change in percentage points [95% interval] |
+|---|---:|---:|---:|
+| Contradicted / specific readouts | 543/1,137 | 523/1,140 | −1.88 [−5.41, +1.76] |
+| Bridge recovery / 341 cells | 29 | 43 | +4.11 [+1.82, +6.61] |
+| Chain recovery / 330 cells | 26 | 30 | +1.21 [−3.16, +4.85] |
+| Role recovery / 3,420 cells | 151 | 182 | +0.91 [+0.15, +1.73] |
+
+The original item-level aggregation gives 11→14/31 bridge items, 15→19/30 chain
+items, and 23→23/30 role items. Thus more role cells pass without recovering an
+additional item. The chain comparison contains only seven independent template
+groups. The hallucination difference remains uncertain: fewer readouts are
+flagged wrong, but the total flagged false spans rises from 1,305 to 1,324.
+Span counts and supported-claim counts use different segmentation and cannot
+be combined into a claim-precision estimate. Off-topic outputs decrease from
+148 to 134. Both the favorable changes and these limits matter.
+
+Systematic trace inspection confirms that recovery can coexist with error.
+One selected chain output contains the required intermediate 18 alongside an
+incorrect account of how it was calculated and competing numbers. Some newly
+passing role descriptions retain unsupported names or details, with judgment
+sensitive to how unnamed roles are interpreted. The comparison changes both
+the number of samples and the selection rule; it does not isolate their effects.
+
+The completed multi-hop family also shows why sample count and output quality
+need separate reporting:
 best-of-4 recovers 15/31 items, best-of-32 14/31, pooled-16 17/31, and pooled-32
 14/31. Pooled-32 recovers more individual cells than pooled-16, 56/341 versus
 54/341, illustrating the difference between item coverage and repeated recovery

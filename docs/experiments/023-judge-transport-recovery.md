@@ -1,6 +1,6 @@
 # 023 — Donor-judge connection failures and bounded recovery
 
-Updated: 2026-10-10 UTC. Status: donor recovery completed; original uncertain charges retained. This is a transport incident, with unchanged benchmark prompts, Luna effort none, Standard destination and source text.
+Updated: 2026-10-10 07:36 UTC. Status: donor recovery completed; main-comparison dispatch is paused after a third transport incident. Original uncertain charges and successful verdicts are retained. Benchmark prompts, Luna effort none, Standard destination and source text remain unchanged.
 
 The full-development donor run began at 32 request slots and 600 rpm per family. Between 04:33:14 and 04:44:30 UTC it recorded 270 `APIConnectionError` attempts and 43 cancelled attempts when the active workers were stopped. Their 313 unresolved charges retain **$1.6103545**. Median failed latency was 24.4 seconds. Errors carried no HTTP status or provider error code; underlying cause classes were not recorded by that earlier wrapper. The outage cause is unknown. Failures began before the 04:40 CPU-selector launch, so concurrent CPU use does not establish the cause.
 
@@ -87,3 +87,15 @@ ramp is enabled; a reviewed increase to sixteen slots/400 RPM must occur at a
 natural completed-condition boundary with sustained healthy family evidence.
 Checkpoint source: `judgments-methods-v1/checkpoint-indexed-early-v1.json`;
 reproducer: `scripts/observe_judge_queue.py`.
+
+## Third incident after indexed recovery
+
+At 07:14:41 the indexed eight-slot queue had 2,951 settled responses and zero new unknowns. Following reviewed 500-response family gates and clean condition boundaries, chain and role resumed at sixteen slots/400 RPM around 07:18–19; hallucination remained at eight. No in-flight work was cancelled merely to raise concurrency, and the reviewed 07:02 epoch stayed unchanged.
+
+The larger setting did not show a throughput benefit in the measured window. At the 07:25 checkpoint, chain had 704 settled and five unknown attempts, approximately 117 responses/minute and p95 physical latency 10.69 seconds. Role had 568 settled and four unknown, approximately 89/minute and p95 15.80 seconds. Their earlier eight-slot checkpoint was approximately 155/minute with p95 2.90 seconds for chain and 143/minute with p95 3.40 seconds for role. These are different traffic windows and conditions, not a randomized concurrency experiment. Hallucination at eight also slowed. Local bookkeeping, NFS, client and provider effects remain under investigation; the comparison does not establish a cause.
+
+The shared transport guard stopped all remaining workers before the requested boundary downshift could be delivered. No additional SIGUSR1 or hard kill was sent. Resource inspection confirmed those PIDs absent with ample fresh-allocation headroom. `scripts/record_judge_incident.py` froze `judgments-methods-v1/transport-incident-v3.json` at **07:32:54 UTC**, SHA256 `b8458e67c7f1e95565e2ccaacc7c442d02ed456647740b5fac01e1718598444b`.
+
+Since the unchanged 07:02 epoch, **6,414 physical responses settled and 48 attempts remain unknown**, holding **$0.234553**: nine ReadError chains, thirteen ConnectError chains, and twenty-six guard-shutdown cancellations. Unknown counts are role16 22, chain16 25 and hall8 one. The entire main run has **11,206 settled attempts, $1.520503885 usage-accounted spend, 112 unknown holds totaling $0.555981, and zero still-reserved live attempts**. Usage accounting is not invoice reconciliation. The financial ceiling was not exhausted; shutdown cancellations remain charged-uncertain alongside the failed physical requests.
+
+Successful exact verdicts, all original attempts and incomplete-condition sidecars remain intact. Missing API results cannot become successful abstentions. No new paid dispatch, new epoch or cache migration is authorized by this snapshot; a bounded diagnostic/recovery plan must be reviewed first. Offline A32-versus-capped-N1 analysis is complete independently of the unfinished queue and is documented in [experiment 019](019-full-dev-method-comparison.md).

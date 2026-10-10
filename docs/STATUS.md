@@ -1,15 +1,23 @@
 # Execution status
 
-Updated: 2026-10-10, approximately 07:08 UTC.
+Updated: 2026-10-10, approximately 07:49 UTC.
 Started: 2026-10-10 01:25:36 UTC (October 9, 21:25:36 EDT).
 Target finish: 2026-10-10 21:25:36 UTC. Execution remains active and authorized.
 
 ## Findings so far
 
-No general improvement in explanation faithfulness is established yet. Method
-comparisons below use a shared **189-cell development pilot**, with only 2–8
-independent groups per family. The larger development baseline is now judged;
-comparisons on its complete grids are still pending.
+No general improvement in explanation faithfulness is established yet. The
+**5,236-cell development comparison of best-of-32 against capped N1 is complete**:
+contradicted readouts change from 543/1,137 to 523/1,140, a −1.88 percentage-point
+change with a paired group interval of [−5.41, +1.76]. Bridge, chain and role
+cell recovery increase from 29→43, 26→30 and 151→182, respectively. Item-level
+role recovery remains 23/30. The flagged false-span tally rises from 1,305 to
+1,324 despite fewer wrong readouts; inspected recovered concepts still occur
+inside incorrect explanations. See [the report](REPORT.md) and experiment 019.
+
+The remaining findings below come from the **189-cell development pilot** unless
+explicitly labeled otherwise. It contains only 2–8 independent groups per family.
+Other complete-grid method comparisons remain partly unfinished.
 
 - Selecting the best reconstruction from more samples reliably raises the
   reconstruction score. Quality moves differently across tasks. Best-of-32 has
@@ -87,17 +95,19 @@ The corresponding role cell count is only 151/3,420: an item passes when any
 inspected site passes, so item recovery must not be read as uniformly faithful
 readouts. These are original-grid development scores, not held-out results.
 
-Next: measure the indexed judge queue and increase throughput at a completed
-condition boundary if its error and latency checks pass. The five query indexes
-were applied after a successful three-worker shared-storage smoke. Exact
-accounting was preserved, including all uncertain charges. A single Luna health
-request succeeded in 1.59 seconds, and judging resumed at 07:07 UTC with eight
-slots and 200 requests/minute per family. The earlier fresh-CPU recovery had
-stalled with a SQLite database-lock error; its workers are gone. Exact-request cost
+Next: profile local accounting/cache time and event-loop responsiveness on a
+disposable ledger before another paid recovery. The indexed queue initially
+completed thousands of requests at eight slots/200 requests per minute without
+errors. After two families increased to sixteen slots/400 RPM at clean condition
+boundaries, throughput fell and connection failures accumulated. The shared
+transport guard stopped all workers. The 07:02 recovery epoch retained 6,414
+settled responses and 48 uncertain holds, including 26 shutdown cancellations;
+no live reservations remain. Memory headroom was ample and no new SQLite-lock
+error was found. The cause remains unresolved. Exact-request cost
 forecast and compact export are complete; the forecast is $10.19 and the shared
-run ceiling remains $20. At the transport pause, all 24 multihop conditions,
-seven chain conditions, and both baselines for hallucination and role were
-complete. Unfinished conditions remain incomplete. The
+run ceiling remains $20. At the latest transport pause, all 24 multihop conditions,
+21 chain conditions, four hallucination conditions and three role conditions
+were complete. Unfinished conditions remain incomplete. The
 merged selection SHA is `54ee50e61ebc11ac66d8d11c294dda60e17a7f9e06ad8632665e6bbb6505635e`;
 the baseline audit verifies all 10,472 raw/capped text-and-token pairs against
 the already judged baseline. Cache reuse does not create independent verdicts.
@@ -136,9 +146,9 @@ the complete fresh-install deployment path has not yet been tested.
   A watcher checks every 600 seconds until 21:25:36 UTC; its process and last
   check are recorded under the fast project's `watcher/` directory. An agent
   stopping does not itself guarantee that this process remains healthy.
-- Recorded API usage at approximately 07:08 UTC: **$5.23344**, with **$4.35235**
-  unknown-charge holds and **$0.08615** in-flight reservations. These amounts
-  change as the active queue progresses; the ledger remains authoritative.
+- Recorded API usage at approximately 07:34 UTC: **$6.07486**, with **$4.58690**
+  unknown-charge holds and no in-flight reservations. The ledger remains
+  authoritative as work resumes.
   The earlier cache-write pricing correction added $0.30592
   to settled usage and $0.02011 to unknown-request reservations; original events
   and the previous ledger snapshot are preserved. These are usage-based estimates,
