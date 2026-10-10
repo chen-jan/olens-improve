@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+from contextlib import closing
 from hashlib import sha256
 import json
 import os
@@ -51,7 +52,8 @@ def main() -> None:
     if process.exists() and process.read_text().rsplit(') ',1)[1].split()[0] != 'Z':
         raise SystemExit('Prior worker still active; preserve its in-flight work')
     incident = json.loads(Path(spec['incident']).read_text())
-    with sqlite3.connect(f"file:{spec['ledger']}?mode=ro",uri=True,timeout=30) as db:
+    with closing(sqlite3.connect(f"file:{spec['ledger']}?mode=ro",uri=True,timeout=30,
+                                isolation_level=None)) as db:
         cap = db.execute('SELECT cap FROM run_limits WHERE run_id=?',(spec['run_id'],)).fetchone()
         if cap is None or cap[0] != spec['run_cap_usd']*1e9:
             raise SystemExit('Frozen run cap differs')

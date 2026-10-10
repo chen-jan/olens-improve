@@ -90,5 +90,35 @@ class ObserverTests(unittest.TestCase):
         self.assertEqual(result['unknown_attempts'][0]['cause'],'ReadError')
         db.close()
 
+    def test_worker_start_bounds_pid_scan_without_changing_epoch_guard_or_totals(self):
+        db = self.fixture()
+        db.execute('PRAGMA query_only=OFF')
+        db.execute("UPDATE attempts SET created_utc='2026-10-10T08:00:00+00:00' WHERE attempt_id LIKE 'old%' AND status='settled'")
+        db.execute('PRAGMA query_only=ON')
+        metadata_reads = []
+        def extract(text, path):
+            if path=='$.pid': metadata_reads.append(text)
+            value=json.loads(text).get(path[2:])
+            return json.dumps(value) if isinstance(value,(list,dict)) else value
+        db.create_function('json_extract',2,extract)
+        result=observer.active_pid_checkpoint(db,'run','2026-10-10T08:00:00+00:00',[1],
+            worker_since='2026-10-10T09:00:00+00:00',
+            now=datetime(2026,10,10,9,5,tzinfo=timezone.utc))
+        self.assertEqual(result['epoch'],'2026-10-10T08:00:00+00:00')
+        self.assertEqual(result['worker_since_utc'],'2026-10-10T09:00:00+00:00')
+        self.assertEqual(result['all_workers']['attempt_counts'],
+                         {'reserved':2,'settled':10218,'unknown':1})
+        self.assertEqual(result['all_workers']['unknown_reserved_nanodollars'],123)
+        self.assertEqual(result['all_workers']['latest_100_unknown_count'],0)
+        self.assertFalse(any('history' in value for value in metadata_reads))
+        self.assertLess(len(metadata_reads),1000)
+        db.close()
+
+    def test_worker_start_cannot_precede_epoch_or_omit_timezone(self):
+        for start in ('2026-10-10T07:59:00+00:00','2026-10-10T09:00:00'):
+            with self.assertRaises(ValueError):
+                observer.active_pid_checkpoint(None,'run','2026-10-10T08:00:00+00:00',[1],
+                                                worker_since=start)
+
 
 if __name__=='__main__':unittest.main()

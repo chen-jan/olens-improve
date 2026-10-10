@@ -2,6 +2,7 @@
 
 import argparse
 import copy
+from contextlib import closing
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 import json
@@ -61,10 +62,18 @@ def budget_snapshot(path):
     if not path.exists():
         return {"status": "not_initialized", "path": str(path)}
     try:
-        with sqlite3.connect(path.as_uri() + "?mode=ro", uri=True, timeout=2) as database:
+        with closing(sqlite3.connect(path.as_uri() + "?mode=ro", uri=True, timeout=2,
+                                    isolation_level=None)) as database:
             database.execute("BEGIN")
-            rows = database.execute("SELECT status,COUNT(*),COALESCE(SUM(reserved),0),COALESCE(SUM(actual),0) FROM attempts GROUP BY status").fetchall()
-            config = dict(database.execute("SELECT key,value FROM config"))
+            try:
+                with closing(database.execute("SELECT status,COUNT(*),COALESCE(SUM(reserved),0),COALESCE(SUM(actual),0) FROM attempts GROUP BY status")) as cursor:
+                    rows = cursor.fetchall()
+                with closing(database.execute("SELECT key,value FROM config")) as cursor:
+                    config = dict(cursor)
+            finally:
+                # This is a read snapshot: end it before resource probes/output.
+                if database.in_transaction:
+                    database.execute("ROLLBACK")
         statuses = {row[0]: {"count": row[1], "reserved_usd": row[2] / 1e9, "actual_usd": row[3] / 1e9} for row in rows}
         actual = statuses.get("settled", {}).get("actual_usd", 0)
         reserved = sum(statuses.get(key, {}).get("reserved_usd", 0) for key in ("reserved", "unknown"))

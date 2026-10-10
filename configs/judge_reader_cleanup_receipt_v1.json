@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "status": "offline_validated_pending_independent_review",
+  "created_utc": "2026-10-10T13:26:18.792076+00:00",
+  "purpose": "Close operational read transactions promptly; preserve one authoritative writer and all financial semantics.",
+  "network_model_calls": 0,
+  "production_ledger_queries": 0,
+  "production_ledger_mutations": 0,
+  "changed_source_sha256": {
+    "scripts/observe_judge_queue.py": "366c24a7a618e0940d223a3ca8f540b6b173c6ecd7ecf90d5ce289b16dcc6f69",
+    "scripts/observe_judge_queue_window.py": "8695b42e55734684ba7a686d82d932cc5987314195e8807942843bdc4587f55a",
+    "infra/resume_main_judges.py": "4370d7d3de00609956b62fff2636c62fd1ab86520e6220afb3d01a07882989da",
+    "infra/resume_judge_family.py": "1cc85ae8f6775d492d1b0431b1c9263361867344d915ea9c0c710301f51f8d02",
+    "infra/watch_resources.py": "52eaf9ec0ab63fbc08ca46f0ecdfbbda0d952a3450afd87d1f7e635a3e265201",
+    "infra/watch_judge_boundary.py": "147ce16cf733d5711186d7321e81e720ce72c211870cdd30d5d4ef4f2dc6409d",
+    "scripts/judge_healthcheck.py": "1fa77a1e570ae00c43b59a02dbfdf12d192747a3985333b096255e098dc89358",
+    "tests/test_reader_transactions.py": "f0b77afdb3e47d4c414d05cb9e1ae1386b834c86cd3dc60baf067584ff0f4ace",
+    "tests/test_judge_queue_observer.py": "d3014664707e2c838c25d10bc09673c6cd6226ab64f9f0c65f7ede14993b54cc",
+    "tests/test_judge_healthcheck.py": "7684c4163e6f18bde0357635c77e40d0c91a303267c915f4ecb031fdbbb6c401"
+  },
+  "unchanged_financial_source_sha256": {
+    "src/olens_improve/budget.py": "90beef9da7905e57e1b0fad2e2affa14822033451a9f4d86b92bb7325e0fb182",
+    "src/olens_improve/evaluation.py": "5ae885ace1ecc974a59cddaef118c68285f4380f1a6fd259fed540e8f5d16039",
+    "src/olens_improve/performance.py": "d9f5b89d37d8f4eb379d33ada60f4cfc55e19fc3480ae735d3e2b5614e98033b"
+  },
+  "incident": "${OLENS_DATA_ROOT}/diagnostics/dev-scaling-completion-v1/role-terminal-incident-v1.json",
+  "incident_sha256": "0a613a4f973d4b2fe25fa08fe081fb2584e00d0da743e7241e2c3aef0ee3deec",
+  "tests": [
+    {
+      "pattern": "test_reader_transactions.py",
+      "passed": 6,
+      "seconds": 0.145
+    },
+    {
+      "pattern": "test_judge_queue_observer.py",
+      "passed": 4,
+      "seconds": 0.163
+    },
+    {
+      "pattern": "test_judge_healthcheck.py",
+      "passed": 5,
+      "seconds": 0.327
+    },
+    {
+      "pattern": "test_cpu_watch.py",
+      "passed": 6,
+      "seconds": 0.001
+    },
+    {
+      "pattern": "test_main_recovery_dispatch.py",
+      "passed": 4,
+      "seconds": 0.008
+    }
+  ],
+  "diff_check": "passed",
+  "worker_bound_policy": "Supply a known conservative UTC worker launch bound for new PID-only observations. This changes neither full-run aggregates, recovery guard epoch, nor unknown holds. No external ledger observation during the one-request canary.",
+  "limits": [
+    "Source and offline fixtures do not identify the live lock holder.",
+    "An open BEGIN read transaction blocks writer COMMIT in the disposable fixture; a consumed autocommit read permits COMMIT.",
+    "The active read-only observer preceded neither initial stalled reservations nor the initiating failure; no causal attribution.",
+    "No writer, journal mode, lock policy, fsync, pricing, hold classification, prompts, or verdict changes."
+  ]
+}

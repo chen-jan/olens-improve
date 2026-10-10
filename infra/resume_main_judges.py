@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+from contextlib import closing
 from datetime import datetime
 from hashlib import sha256
 import json
@@ -117,7 +118,8 @@ def main() -> None:
                 or indexed['after_abandoned_hold_classification']['committed_nanodollars']
                     != indexed['before']['committed_nanodollars']):
             raise SystemExit('Index application did not preserve the reviewed accounting contract')
-    with sqlite3.connect(f"file:{spec['ledger']}?mode=ro",uri=True) as db:
+    with closing(sqlite3.connect(f"file:{spec['ledger']}?mode=ro",uri=True,
+                                isolation_level=None)) as db:
         cap = db.execute('SELECT cap FROM run_limits WHERE run_id=?',(spec['run_id'],)).fetchone()
         if cap is None or cap[0]!=spec['run_cap_usd']*1e9:
             raise SystemExit('Shared run ceiling differs from the reviewed contract')

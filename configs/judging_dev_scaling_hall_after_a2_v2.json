@@ -1,0 +1,368 @@
+{
+  "schema_version": 1,
+  "run_id": "development-full-grid-methods-v1",
+  "run_cap_usd": 20,
+  "job_id": "25474685",
+  "node": "node1600",
+  "recovery_epoch": "2026-10-10T07:52:00+00:00",
+  "concurrency": 8,
+  "rpm": 200,
+  "tier": "default",
+  "reasoning_effort": "none",
+  "automatic_ramp": false,
+  "headroom_verified_utc": "2026-10-10T14:44:06.207209+00:00",
+  "allocation_memory_gib": 32,
+  "memory_failures": 0,
+  "resource": "${OLENS_DATA_ROOT}/diagnostics/dev-hall-scaling-after-a2-v2/preflight.json",
+  "resource_sha256": "dd97234bf113d27367b537c6049970bc8526f6181b0cb50f3160b5cefbe7120d",
+  "cpu_pairs": {
+    "hallucination": [
+      24,
+      30
+    ]
+  },
+  "completed_family_not_relaunched": "multihop_mt",
+  "selections": "${OLENS_DATA_ROOT}/selections/development-full-grid-judging-v1/selections.jsonl",
+  "selection_sha256": "acfcdefc425f48da612059f7bcb157bf037f91ba4e70fa9c68b0db142bfc46a4",
+  "manifest": "configs/development-full-grid-v2.json",
+  "manifest_sha256": "dd382ff6e8bc8e70f1d13710e5235efd943537b4936921726b7d59655289ca80",
+  "conditions": "configs/conditions_full_dev_priority_v1.json",
+  "conditions_sha256": "8b71ce8177e126ab0e984286d103034a59b4b686c0a5a380983cdaf0e29180e6",
+  "healthcheck": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1/healthcheck-profiled-v3.json",
+  "healthcheck_sha256": "fef36691048d71930b8c1ed1a9476e830eb089fdad5cbd677d3cbd98bd3ecb77",
+  "incident": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1/transport-incident-v3.json",
+  "incident_sha256": "b8458e67c7f1e95565e2ccaacc7c442d02ed456647740b5fac01e1718598444b",
+  "ledger": "${OLENS_DATA_ROOT}/budget/ledger.sqlite3",
+  "judgments": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1",
+  "shared_cache": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments/shared-exact-cache",
+  "logs": "${OLENS_COMPUTE_ROOT}/logs",
+  "hold_policy": "Retain every existing unknown or active reservation and its full amount. Do not release the original f2dc source hold or any charge because a later replay succeeded. Keep original 07:52 epoch, run $20 ceiling, project $300 hard ceiling/$200 target, exact requests and all scientific outputs/cache contracts unchanged.",
+  "recovery_label": "dev-hall-scaling-after-a2-v2",
+  "index_application": "${OLENS_DATA_ROOT}/diagnostics/ledger-index-application-v1/application.json",
+  "index_application_sha256": "5e0e4580bb45337b9839fa687083137cfc0983a3bb99e4d3aac4b35653f71eaa",
+  "retained_main_unknown_attempt_count": 124,
+  "checkpoint_policy": {
+    "healthy_new_response_checkpoints": [
+      100
+    ],
+    "no_external_sql_before_first_approximately_100_responses": true,
+    "monitor_mode": "After startup, optional bounded PID-only observer with a conservative actual worker launch timestamp; original epoch remains fixed.",
+    "report_latency_and_unknown_growth": true,
+    "report_per_worker_latest_100": true,
+    "report_terminal_operational_profile": true,
+    "no_automatic_ramp": true,
+    "pause_on_new_bookkeeping_lock_or_recurrent_transport_errors": true,
+    "guard_unchanged": "Latest 100 unknown >5 or epoch unknown holds >$0.10 stops new dispatch; all holds retained."
+  },
+  "performance_profile_dir": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1/performance-dev-hall-scaling-after-a2-v2",
+  "copied_load": "${OLENS_DATA_ROOT}/diagnostics/judge-local-load-v1/report.json",
+  "copied_load_sha256": "edd24c5314caa52f5d5aa75a5244f9978c65cb091b8908878793210880e578bf",
+  "implementation_source_sha256": {
+    "infra/resume_main_judges.py": "4370d7d3de00609956b62fff2636c62fd1ab86520e6220afb3d01a07882989da",
+    "src/olens_improve/evaluation.py": "5ae885ace1ecc974a59cddaef118c68285f4380f1a6fd259fed540e8f5d16039",
+    "src/olens_improve/performance.py": "d9f5b89d37d8f4eb379d33ada60f4cfc55e19fc3480ae735d3e2b5614e98033b",
+    "src/olens_improve/budget.py": "90beef9da7905e57e1b0fad2e2affa14822033451a9f4d86b92bb7325e0fb182"
+  },
+  "resume_reason": "Finish only the original DEVELOPMENT best-of-N scaling curve: repair the one missing hallucination A8 request in each stage, then materialize A16. Retain all other methods and completed prefixes unchanged. All late DEVELOPMENT results remain descriptive after the prospective TEST12 freeze.",
+  "status": "root_reviewed_ready",
+  "created_utc": "2026-10-10T14:40:19.812554+00:00",
+  "prospective_handoff_policy": {
+    "root_review_required_before_paid_dispatch": true,
+    "validation_signed_menu_complete_for_this_family_required": true,
+    "validation_worker_absent_and_family_cache_owner_released_required": true,
+    "validation_spec": "configs/judging_validation_v1.json",
+    "validation_spec_sha256": "1a5ba69c25afb3e64340c4e76ac38a0a506fb46adf51aea7a7921e593ec1e49d",
+    "signed_validation_freeze": "configs/validation_shortlist_freeze_v1.json",
+    "signed_validation_freeze_sha256": "30daad423ee9326971f5f08fa4f3a3e7eec37c857b3757a700a8fcbb3a7547e6",
+    "no_new_analysis_or_selection_authorization": true,
+    "development_evidence_cutoff_unchanged": true,
+    "test_has_priority_at_clean_condition_boundary": true,
+    "no_automatic_ramp": true,
+    "completed_conditions_in_paused_execution_at_preparation": [
+      {
+        "method": "best_n_exact",
+        "n": 1
+      },
+      {
+        "method": "best_n_exact",
+        "n": 2
+      },
+      {
+        "method": "best_n_exact",
+        "n": 4
+      },
+      {
+        "method": "best_n_exact",
+        "n": 32
+      }
+    ],
+    "unchanged_menu_remaining_order": [
+      {
+        "method": "best_n_exact",
+        "n": 8
+      },
+      {
+        "method": "best_n_exact",
+        "n": 16
+      }
+    ],
+    "fresh_stop_file": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1/stop-recovery-dev-hall-scaling-after-a2-v2-hallucination",
+    "no_further_health_call_or_epoch_reset": true
+  },
+  "dispatch_condition_files": {
+    "hallucination": {
+      "path": "configs/conditions_dev_scaling_hall_after_a2_v2.json",
+      "sha256": "2d957855befa7c3b559240b4930b6c3315f35a09ce5499cdefe3ce315fca0313"
+    }
+  },
+  "dispatch_policy": "Preserve the original 24-arm scientific menu. Dispatch only its ordered hallucination A8 repair/A16 subset. Exact cached successful responses are reused; A8 incomplete originals were snapshotted before repair. Root must seal and verify this family cache is unowned. No new prefix, output, judge prompt, or selection rule.",
+  "coverage_before": {
+    "path": "${OLENS_DATA_ROOT}/diagnostics/dev-scaling-completion-v1/coverage-before.json",
+    "sha256": "82829195ca7921e416c6d9713de5d7a739d04c1f9d45970355af27d190d597ac",
+    "scope": "Only original best_n_exact prefixes1/2/4/8/16/32; complete family artifacts are not replayed."
+  },
+  "final_test_freeze": {
+    "path": "configs/test_final_method_freeze_v2.json",
+    "sha256": "b46f00851efb71628faa2ffcb404011c4ef1f3543d68fc4f18d0ab6d74d95e86",
+    "policy": "The original primary six and selected A16/Emean32 points remain unchanged; all later DEV evidence is descriptive only."
+  },
+  "bounded_scheduling_policy": {
+    "dispatch": "Only hallucination best_n_exact N8 repair and N16; no other method or setting. Root decides whether to overlap the independently owned role scaling worker after source/cost/resource review.",
+    "test_priority": true,
+    "stop_action": "Request the fresh stop file at a completed-condition boundary when TEST needs this family cache. Preserve all active calls, successful results and uncertain charges.",
+    "no_automatic_concurrency_or_epoch_change": true,
+    "no_extra_sdk_probe": true,
+    "initial_response_checkpoint": 100
+  },
+  "owner_release": {
+    "path": "${OLENS_DATA_ROOT}/diagnostics/dev-scaling-completion-v1/owner-release.json",
+    "sha256": "a66d18f64e33100eaa3cb516f1f586bc7821f36b7720efb4270e03c42ab880d9",
+    "must_recheck_at_dispatch": true
+  },
+  "async_accounting_documentary_evidence": {
+    "applied_45_offline_tests": {
+      "path": "${OLENS_DATA_ROOT}/diagnostics/async-ledger-applied-v1/tests.json",
+      "sha256": "c3b322f95d3bd91b1a272528a9b7707cfedd107dc6aeecc8ae3ad969d92cd001"
+    },
+    "copied_ledger_fake_network_receipt": {
+      "path": "${OLENS_DATA_ROOT}/diagnostics/async-ledger-copy-load-v1/receipt.json",
+      "sha256": "c4a3a7f9081cbc2ff8a4cc65bf0e3c42049e714ef9d7bc259e15be09a8107a18"
+    },
+    "copied_ledger_profile": {
+      "path": "${OLENS_DATA_ROOT}/diagnostics/async-ledger-copy-load-v1/performance.json",
+      "sha256": "6757025dd7b217aaf98a8eea39f9f67635fe38548e2ce7a28b4450f966c39aa6"
+    },
+    "scope": "Additional source-bound documentary evidence only; no network/production numeric accounting changes. Preserve old copied_load field/schema for unchanged recovery-wrapper validation."
+  },
+  "async_accounting_evidence": {
+    "applied_tests": {
+      "path": "${OLENS_DATA_ROOT}/diagnostics/async-ledger-applied-v1/tests.json",
+      "sha256": "c3b322f95d3bd91b1a272528a9b7707cfedd107dc6aeecc8ae3ad969d92cd001"
+    },
+    "copied_ledger_load": {
+      "path": "${OLENS_DATA_ROOT}/diagnostics/async-ledger-copy-load-v1/receipt.json",
+      "sha256": "c4a3a7f9081cbc2ff8a4cc65bf0e3c42049e714ef9d7bc259e15be09a8107a18"
+    }
+  },
+  "prior_scaling_spec": {
+    "path": "configs/judging_dev_scaling_hall_v1.json",
+    "sha256": "945174f6474c08bdc22c460c27a2efd8f317416fe3e04e9e1ebf631ccc39bf38",
+    "preserved_unchanged": true
+  },
+  "historical_full_scaling_forecast": {
+    "path": "${OLENS_DATA_ROOT}/diagnostics/dev-scaling-completion-v1/forecast.json",
+    "sha256": "19deceb793b652d2a6da39b6eb658e8d9cb9d2b94c15c91f1457eae838f0e215",
+    "conditions": "configs/conditions_dev_scaling_remaining_v1.json",
+    "conditions_sha256": "092c30a3dfcd4991f0eaf3bb5522a6a80058102f440f1e03892f05cb515abc51",
+    "expected_incremental_usd_including_hall_stage2_upper": 0.5357069469651893,
+    "role_new_unique_requests": 4967,
+    "hall_stage1_new_unique_requests": 275,
+    "hall_stage2_new_unique_upper": 275,
+    "full_other_family_misses": 0,
+    "older_empirical_service_reference_s": {
+      "role_mean": 1490.1,
+      "role_p95_wave": 2065.444673348218,
+      "hall_mean": 205.55446330310178,
+      "hall_p95_wave": 388.7278744876385
+    },
+    "planned_completion_minutes": [
+      60,
+      75
+    ],
+    "limits": "Frozen historical service/rate references exclude startup, cached-row IO, retries and incidents; reforecast from observed progress without changing scientific requests."
+  },
+  "historical_guard_preview": {
+    "path": "${OLENS_DATA_ROOT}/diagnostics/dev-scaling-completion-v1/guard-preview.json",
+    "sha256": "710c6438a4255cdb86d99e6af46e2405b65475d1f84c36f3f9107daa6ba0a2ea",
+    "existing_epoch_unchanged": true,
+    "latest100_unknown": 2,
+    "epoch_unknown_hold_usd": 0.047253,
+    "numeric_guard_passed": true,
+    "live_reserved_at_observation": 0,
+    "read_only": true
+  },
+  "retained_main_unknown_count_observation_utc": "2026-10-10T14:23:56+00:00",
+  "successful_phase_canary": {
+    "response": {
+      "path": "${OLENS_DATA_ROOT}/diagnostics/judge-reader-cleanup-v1/health-guarded-phase-v2.json",
+      "sha256": "c16e986915f0705dcaf3e2e253e37dfc29391ae91dbdf8e9b8a496d00a58710a"
+    },
+    "operational_profile": {
+      "path": "${OLENS_DATA_ROOT}/diagnostics/judge-reader-cleanup-v1/health-guarded-phase-v2-profile.json",
+      "sha256": "6703118f8e3521bf6c08ce00b53361fba7fbacc4dbbde0901fb66a80fd758585"
+    },
+    "sql_phases": {
+      "path": "${OLENS_DATA_ROOT}/diagnostics/judge-reader-cleanup-v1/health-guarded-phase-v2-sql.json",
+      "sha256": "f183df4b8cc306c57b43ad17bcedf9912d6646febe618065b85af79fb46a52e9"
+    },
+    "interpretation": "One current successful observation: reservation66.993ms, total2.362s, original guard passed, no new unknowns. The earlier29.873s reservation and lock holder remain unexplained; no throughput guarantee."
+  },
+  "reader_cleanup_receipt": {
+    "path": "configs/judge_reader_cleanup_receipt_v1.json",
+    "sha256": "33182a0280e95b24bacb5a2f4df82e0f6187912f5fd5ad992bc54069e0abeb9b"
+  },
+  "sealed_phase_canary_spec": {
+    "path": "configs/judge_reader_phase_canary_v2.json",
+    "sha256": "26193585e3a25d6130a4f41bb78e2311535927a073fa08af2b8daac425b0ed23"
+  },
+  "latest_scaling_terminal_incident": {
+    "path": "${OLENS_DATA_ROOT}/diagnostics/dev-scaling-completion-v1/role-terminal-incident-v1.json",
+    "sha256": "0a613a4f973d4b2fe25fa08fe081fb2584e00d0da743e7241e2c3aef0ee3deec"
+  },
+  "fresh_execution_paths": {
+    "profile_root": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1/performance-dev-hall-scaling-after-a2-v2",
+    "stop": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1/stop-recovery-dev-hall-scaling-after-a2-v2-hallucination",
+    "log": "${OLENS_COMPUTE_ROOT}/logs/full-dev-judging-recovery-dev-hall-scaling-after-a2-v2-hallucination.log"
+  },
+  "prior_a2_spec": {
+    "path": "configs/judging_dev_role_a2_reader_recovery_v2.json",
+    "sha256": "99c5f0f0c71165092efe9340f6528f1fec85c94f684b54d6dcca23d875b6cca1",
+    "status": "root_reviewed_ready_and_completed_exit0_as_reported_by_root"
+  },
+  "historical_a2_dispatch_preflight": {
+    "path": "${OLENS_DATA_ROOT}/diagnostics/dev-role-a2-reader-v2/preflight.json",
+    "sha256": "62c978e80dd240a216876310c5482bf22255737ab85fc1d239828f2e15fa12b0"
+  },
+  "historical_global_budget_from_phase_canary": {
+    "actual_usd": 13.15336028,
+    "unknown_reserved_usd": 4.794718875,
+    "committed_usd": 17.948079155,
+    "settled_count": 83356,
+    "unknown_count": 547,
+    "halted": false,
+    "scope": "Root terminal phase-canary receipt; not a new observer query or invoice reconciliation."
+  },
+  "completed_a2_operational_evidence": {
+    "profile": {
+      "path": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1/performance-dev-role-a2-reader-v2/role_bound_association/role_bound_association-best_n_exact-n2.json",
+      "sha256": "cbe4ed0fb127810a5bf9ce79fe919efa80a7121d7191b02a6ad4822418b179de"
+    },
+    "checkpoint": {
+      "path": "${OLENS_DATA_ROOT}/diagnostics/dev-role-a2-reader-v2/elapsed-checkpoint-v1.json",
+      "sha256": "5bd880f8f20c7a829cfe527fe3433b0a9f0b596b29bbac63d3e67e7fe116ed99"
+    },
+    "paid_responses": 1556,
+    "task_wall_seconds": 505.421,
+    "responses_per_minute": 184.72,
+    "checkpoint_latest100_unknown": 0,
+    "profile_exceptions": 0,
+    "interpretation": "One complete solo-role condition; prior original-file lock cause remains unresolved. This is not a guarantee under concurrent TEST hallucination/chain writers.",
+    "terminal_confirmation": "Root reported A2 recovery session exit0; source-bound complete condition and operational profile retained."
+  },
+  "scaling_coverage_metadata_at_preparation": {
+    "recorded_utc": "2026-10-10T14:40:19.812554+00:00",
+    "family": "hallucination",
+    "conditions": {
+      "1": {
+        "path": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1/best_n_exact-n1/hallucination.summary.json",
+        "sha256": "9a2ec4b563e24b7d62815c14e48595205aea3585f16d4f94b0c156dd30e230c8",
+        "expected_cells": 1145,
+        "produced_cells": 1145,
+        "nonempty_cells": 1144,
+        "stage1_api_or_missing_readouts": 0,
+        "stage2_api_or_missing_readouts": 0,
+        "stage2_judged_readouts": 1144,
+        "stage2_complete_for_produced_readouts": true
+      },
+      "2": {
+        "path": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1/best_n_exact-n2/hallucination.summary.json",
+        "sha256": "d01b7c7a9ec60cb4b85a0a3445e645f627949a768c8161537fce063cc38c0205",
+        "expected_cells": 1145,
+        "produced_cells": 1145,
+        "nonempty_cells": 1144,
+        "stage1_api_or_missing_readouts": 0,
+        "stage2_api_or_missing_readouts": 0,
+        "stage2_judged_readouts": 1144,
+        "stage2_complete_for_produced_readouts": true
+      },
+      "4": {
+        "path": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1/best_n_exact-n4/hallucination.summary.json",
+        "sha256": "b7d89647906f1b3d3bd5667767ea6c152bc077aa8260b057ba3868dffc918c57",
+        "expected_cells": 1145,
+        "produced_cells": 1145,
+        "nonempty_cells": 1145,
+        "stage1_api_or_missing_readouts": 0,
+        "stage2_api_or_missing_readouts": 0,
+        "stage2_judged_readouts": 1145,
+        "stage2_complete_for_produced_readouts": true
+      },
+      "8": {
+        "path": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1/best_n_exact-n8/hallucination.summary.json",
+        "sha256": "003e2e8c1a88bdcac9209e7c6023ff3075fde1fbe46c0695b4e9e3715abd7b9e",
+        "expected_cells": 1145,
+        "produced_cells": 1145,
+        "nonempty_cells": 1145,
+        "stage1_api_or_missing_readouts": 1,
+        "stage2_api_or_missing_readouts": 1,
+        "stage2_judged_readouts": 1144,
+        "stage2_complete_for_produced_readouts": false
+      },
+      "16": {
+        "terminal_summary": "absent"
+      },
+      "32": {
+        "path": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1/best_n_exact-n32/hallucination.summary.json",
+        "sha256": "8736c725728f72bf21d707ea2a69688f4a205b34fe62021025a5d6294f42beaf",
+        "expected_cells": 1145,
+        "produced_cells": 1145,
+        "nonempty_cells": 1145,
+        "stage1_api_or_missing_readouts": 0,
+        "stage2_api_or_missing_readouts": 0,
+        "stage2_judged_readouts": 1145,
+        "stage2_complete_for_produced_readouts": true
+      }
+    },
+    "quality_outcomes_inspected": false
+  },
+  "forecast_policy": "The bound historical all-scaling forecast is an older reference, not a fresh remaining forecast. Hall first-stage exact cache misses were 275, including A8 repair, with at most 275 new stage-two requests; up to 550 first-attempt logical calls. Retries can add physical attempts. Existing run20/global caps and all holds remain authoritative. Root reviews actual remaining wall time before launch.",
+  "resource_scope": "Historical allocation headroom only. Root must verify current headroom, no hallucination worker/cache owner, and fresh execution paths before sealing/launch. A concurrent role worker does not confer hallucination-cache ownership.",
+  "prior_role_scaling_spec": {
+    "path": "configs/judging_dev_scaling_role_after_a2_v2.json",
+    "sha256": "b466d71ddb78c9972cac2bdbdcb1e3c859ee4e5705a32be2ddd4c1cc40686e0e",
+    "status": "root sealed and launched separately; preserve unchanged"
+  },
+  "incomplete_A8_parent_snapshot": {
+    "path": "${OLENS_DATA_ROOT}/diagnostics/dev-scaling-completion-v1/prior-hall-a8-provenance.json",
+    "sha256": "dae2f14cd2775ca6027fe507d56c37e11bc890d8061f8d9fc94e798f9eff01fc",
+    "repair": "Only missing exact requests can produce new calls; preserve old incomplete result/cache evidence, then rematerialize the same complete1145-cell condition from verified caches."
+  },
+  "independent_review": "pending; no dispatch authority",
+  "preparation_resource_receipt": {
+    "path": "${OLENS_DATA_ROOT}/diagnostics/dev-scaling-resource-v1/124409.json",
+    "sha256": "81cb3cedd942343e50505b61de8fbf835c783c9aa10ccbda1a13f80152853b23",
+    "observed_utc": "2026-10-10T12:44:09+00:00"
+  },
+  "dispatch_preflight": {
+    "path": "${OLENS_DATA_ROOT}/diagnostics/dev-hall-scaling-after-a2-v2/preflight.json",
+    "sha256": "dd97234bf113d27367b537c6049970bc8526f6181b0cb50f3160b5cefbe7120d"
+  },
+  "root_review": {
+    "reviewed_utc": "2026-10-10T14:44:41.423490+00:00",
+    "draft_sha256": "e283b0e53c2d8b12896e09ac1a7aab55ed6118c8c29e7688a57585dba0bb10e5",
+    "independent_reviewers": [
+      "compute_storage_audit",
+      "model_scoring_audit"
+    ],
+    "scope": "Repair existing incomplete DEV hallucination A8 and complete A16 only; original run/cap/epoch/request semantics and all uncertain holds unchanged. Existing role worker uses separate family cache/CPUs."
+  }
+}

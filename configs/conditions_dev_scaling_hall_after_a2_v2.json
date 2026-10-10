@@ -1,0 +1,10 @@
+[
+  {
+    "method": "best_n_exact",
+    "n": 8
+  },
+  {
+    "method": "best_n_exact",
+    "n": 16
+  }
+]

@@ -45,8 +45,9 @@ def fetch(db, sql, parameters=()):
         cursor.close()
 
 
-def active_pid_checkpoint(db, run_id, epoch, pids, *, now=None):
+def active_pid_checkpoint(db, run_id, epoch, pids, *, now=None, worker_since=None):
     """Exact run aggregates and bounded active-worker windows, without DDL."""
+    worker_since = worker_window_start(epoch, worker_since)
     aggregate = fetch(db,
         'SELECT status,COUNT(*) AS count,COALESCE(SUM(reserved),0) AS reserved,'
         'COALESCE(SUM(actual),0) AS actual FROM attempts INDEXED BY attempts_run_committed '
@@ -66,7 +67,7 @@ def active_pid_checkpoint(db, run_id, epoch, pids, *, now=None):
                    (run_id, epoch))
     workers = {str(pid):fetch(db, 'SELECT '+fields+' FROM attempts INDEXED BY attempts_run_recovery '
         "WHERE run_id=? AND created_utc>=? AND json_extract(metadata,'$.pid')=? "
-        'ORDER BY created_utc DESC LIMIT 100', (run_id, epoch, pid)) for pid in sorted(set(pids))}
+        'ORDER BY created_utc DESC LIMIT 100', (run_id, worker_since, pid)) for pid in sorted(set(pids))}
     selected = {row['attempt_id']:row for row in unknown+recent}
     for rows in workers.values():
         selected.update({row['attempt_id']:row for row in rows})
@@ -101,25 +102,37 @@ def active_pid_checkpoint(db, run_id, epoch, pids, *, now=None):
     output_workers = {}
     for pid, rows in workers.items():
         summary = summarize(rows, now)
-        summary['status_scope'] = 'Latest at most 100 epoch attempts for this requested PID; not cumulative worker counts.'
+        summary['status_scope'] = 'Latest at most 100 attempts for this requested PID after worker_since_utc; not cumulative worker counts.'
+        summary['worker_since_utc'] = worker_since
         summary['window_coverage'] = {'requested_attempts':100, 'available_attempts':len(rows),
             'physical_response_latencies_observed':sum(row['latency_seconds'] is not None for row in rows),
             'missing_latency_samples':sum(row['latency_seconds'] is None for row in rows)}
         output_workers[pid] = summary
     return {'monitor_mode':'indexed_active_pid', 'run_id':run_id, 'epoch':epoch,
-        'network_model_calls':0, 'active_pids':sorted(set(pids)),
+        'network_model_calls':0, 'active_pids':sorted(set(pids)), 'worker_since_utc':worker_since,
         'aggregate_scope':'Exact complete-run status aggregates; separate from epoch-filtered recent windows.',
         'status_snapshot':'Run aggregate, bounded attempts and events are separate autocommit read snapshots.',
-        'latency_window':'Latest at most 100 epoch attempts per requested active PID; inactive-worker latency omitted.',
+        'latency_window':'Latest at most 100 attempts since the explicitly recorded worker bound per requested active PID; inactive-worker latency omitted.',
         'all_workers':total, 'workers':output_workers,
         'unknown_attempts':[{'attempt_id':row['attempt_id'],'pid':row['pid'],
             'created_utc':row['created_utc'],'reserved_nanodollars':row['reserved'],'cause':row['cause']}
             for row in selected.values() if row['status']=='unknown'],
         'limits':['No ledger/evaluator change or epoch reset; existing indexes only.',
+            'Optional worker start bounds only PID windows; full-run totals, epoch guard window and retained unknowns keep the original scope.',
             'Worker counts and rates describe bounded recent windows, not cumulative worker throughput.',
             'Missing latency includes in-flight attempts or absent physical-response evidence.',
             'Settled can include malformed paid responses; this is not scientific coverage.',
             'All run unknown holds and their available causes are retained; no invoice reconciliation.']}
+
+
+def worker_window_start(epoch, worker_since):
+    if worker_since is None:
+        return epoch
+    start = datetime.fromisoformat(worker_since.replace('Z', '+00:00'))
+    original = datetime.fromisoformat(epoch.replace('Z', '+00:00'))
+    if start.utcoffset() is None or original.utcoffset() is None or start < original:
+        raise ValueError('Worker start must be an aware timestamp at or after the unchanged recovery epoch')
+    return start.astimezone(timezone.utc).isoformat()
 
 
 def main():
@@ -130,14 +143,27 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--active-pid', type=int, action='append',
                         help='Optional bounded active-worker path; exact run aggregates use existing covering indexes')
+    parser.add_argument('--worker-since', help='Known worker start UTC bound for PID windows only; leaves run totals/guard epoch unchanged')
     args = parser.parse_args()
+    if args.worker_since and not args.active_pid:
+        raise ValueError('Worker start requires explicit active PIDs')
+    worker_window_start(args.epoch, args.worker_since)
     if args.output.exists():
         raise SystemExit('Preserve checkpoint evidence; choose a new output path')
     started = time.monotonic()
     db = sqlite3.connect(f'file:{args.ledger}?mode=ro', uri=True, timeout=30, isolation_level=None)
+    try:
+        write_checkpoint(args, db, started)
+    finally:
+        # Normal paths close before formatting/writing; errors must also close.
+        db.close()
+
+
+def write_checkpoint(args, db, started):
     db.row_factory = sqlite3.Row
     if args.active_pid:
-        result = active_pid_checkpoint(db, args.run_id, args.epoch, args.active_pid)
+        result = active_pid_checkpoint(db, args.run_id, args.epoch, args.active_pid,
+                                       worker_since=args.worker_since)
         db.close()
         result.update(observed_utc=datetime.now(timezone.utc).isoformat(),
                       total_read_query_seconds=time.monotonic()-started)

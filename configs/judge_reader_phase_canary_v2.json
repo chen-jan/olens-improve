@@ -1,0 +1,149 @@
+{
+  "schema_version": 1,
+  "status": "root_reviewed_ready",
+  "created_utc": "2026-10-10T13:53:11.446577+00:00",
+  "purpose": "One guarded exact-request replay with opt-in SQL phase timings; the queue stays paused until root reviews the actual phases.",
+  "network_model_calls_authorized_for_root_review": 1,
+  "root_launch_required": true,
+  "project_root": "${OLENS_REPO_ROOT}",
+  "job_id": "25474685",
+  "node": "node1600",
+  "cpu_pair": [
+    81,
+    82
+  ],
+  "run_id": "development-full-grid-methods-v1",
+  "run_cap_usd": 20,
+  "global_hard_cap_usd": 300,
+  "global_target_usd": 200,
+  "recovery_epoch": "2026-10-10T07:52:00+00:00",
+  "epoch_reset": false,
+  "tier": "default",
+  "model": "gpt-6-luna",
+  "reasoning_effort": "none",
+  "concurrency": 1,
+  "sdk_retries": 0,
+  "source_unknown_attempt_id": "f2dc9208-2304-4725-99e6-698dfd7372d6",
+  "source_unknown_reserved_nanodollars": 4839250,
+  "source_request_policy": "Read exactly this retained unknown from the same run; require exact original request content hash and exact original recovery guard epoch before client creation.",
+  "ledger": "${OLENS_DATA_ROOT}/budget/ledger.sqlite3",
+  "incident": "${OLENS_DATA_ROOT}/diagnostics/dev-scaling-completion-v1/role-terminal-incident-v1.json",
+  "incident_sha256": "0a613a4f973d4b2fe25fa08fe081fb2584e00d0da743e7241e2c3aef0ee3deec",
+  "cleanup_receipt": "configs/judge_reader_cleanup_receipt_v1.json",
+  "cleanup_receipt_sha256": "33182a0280e95b24bacb5a2f4df82e0f6187912f5fd5ad992bc54069e0abeb9b",
+  "implementation_source_sha256": {
+    "scripts/observe_judge_queue.py": "366c24a7a618e0940d223a3ca8f540b6b173c6ecd7ecf90d5ce289b16dcc6f69",
+    "scripts/observe_judge_queue_window.py": "8695b42e55734684ba7a686d82d932cc5987314195e8807942843bdc4587f55a",
+    "infra/resume_main_judges.py": "4370d7d3de00609956b62fff2636c62fd1ab86520e6220afb3d01a07882989da",
+    "infra/resume_judge_family.py": "1cc85ae8f6775d492d1b0431b1c9263361867344d915ea9c0c710301f51f8d02",
+    "infra/watch_resources.py": "52eaf9ec0ab63fbc08ca46f0ecdfbbda0d952a3450afd87d1f7e635a3e265201",
+    "infra/watch_judge_boundary.py": "147ce16cf733d5711186d7321e81e720ce72c211870cdd30d5d4ef4f2dc6409d",
+    "scripts/judge_healthcheck.py": "d7372f2689555f58ec7f696bfbf0752c355df7a016ea10c525b21cf72ac7cd36",
+    "tests/test_reader_transactions.py": "f0b77afdb3e47d4c414d05cb9e1ae1386b834c86cd3dc60baf067584ff0f4ace",
+    "tests/test_judge_queue_observer.py": "d3014664707e2c838c25d10bc09673c6cd6226ab64f9f0c65f7ede14993b54cc",
+    "tests/test_judge_healthcheck.py": "25f289d64f1ca7061019b65b50dc85934ea63f67b5251b8999cf700636dacc4e",
+    "src/olens_improve/budget.py": "90beef9da7905e57e1b0fad2e2affa14822033451a9f4d86b92bb7325e0fb182",
+    "src/olens_improve/evaluation.py": "5ae885ace1ecc974a59cddaef118c68285f4380f1a6fd259fed540e8f5d16039",
+    "src/olens_improve/performance.py": "d9f5b89d37d8f4eb379d33ada60f4cfc55e19fc3480ae735d3e2b5614e98033b",
+    "scripts/profile_reservation_copy.py": "f9cc6f1232db659ef332872b3a7f22cf48619fb6b99cba0c8cf4876734ac5778",
+    "tests/test_reservation_copy_profile.py": "909f8956da5207e997c113b86d904c7f09392e21af6ae0bfb53719788b34a10b"
+  },
+  "environment": {
+    "OLENS_TRANSPORT_RECOVERY_SINCE": "2026-10-10T07:52:00+00:00",
+    "PYTHONPATH": "src",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1"
+  },
+  "python": "${OLENS_COMPUTE_ROOT}/envs/runtime/bin/python",
+  "argv": [
+    "scripts/judge_healthcheck.py",
+    "--allow-paid",
+    "--ledger",
+    "${OLENS_DATA_ROOT}/budget/ledger.sqlite3",
+    "--run-id",
+    "development-full-grid-methods-v1",
+    "--run-cap-usd",
+    "20",
+    "--attempt-id",
+    "f2dc9208-2304-4725-99e6-698dfd7372d6",
+    "--preserve-recovery-guard",
+    "--performance-profile",
+    "${OLENS_DATA_ROOT}/diagnostics/judge-reader-cleanup-v1/health-guarded-phase-v2-profile.json",
+    "--output",
+    "${OLENS_DATA_ROOT}/diagnostics/judge-reader-cleanup-v1/health-guarded-phase-v2.json",
+    "--transaction-phase-profile",
+    "${OLENS_DATA_ROOT}/diagnostics/judge-reader-cleanup-v1/health-guarded-phase-v2-sql.json"
+  ],
+  "output": "${OLENS_DATA_ROOT}/diagnostics/judge-reader-cleanup-v1/health-guarded-phase-v2.json",
+  "performance_profile": "${OLENS_DATA_ROOT}/diagnostics/judge-reader-cleanup-v1/health-guarded-phase-v2-profile.json",
+  "preflight_policy": [
+    "Root and compute independently review the source/spec hashes before launch.",
+    "Retain the same source unknown attempt, original recovery epoch, run/global caps, and every held charge.",
+    "No other paid worker or external SQL observer runs during this single request and accounting drain; root coordinates its owned persistent watcher.",
+    "Use all three fresh output paths. Do not resume a queue automatically even if the response succeeds."
+  ],
+  "review_after_drain": {
+    "reservation_max_seconds": 2,
+    "event_loop_max_lag_seconds": 1,
+    "wall_seconds": 60,
+    "required_errors": 0,
+    "required_new_unknown_attempts": 0,
+    "action_on_threshold": "Review only after request and accounting drain; never cancel to enforce diagnostic timing.",
+    "interpretation": "A single successful request establishes only this canary; no queue throughput or live lock-cause claim."
+  },
+  "primary_verdict_replaced": false,
+  "queue_dispatch_authorized": false,
+  "following_queue_policy": "Keep all paid queues paused after this canary until root reviews the actual transaction phases and any subsequent recovery plan. No relocation, guard reset, financial change, or automatic ramp.",
+  "transaction_phase_profile": "${OLENS_DATA_ROOT}/diagnostics/judge-reader-cleanup-v1/health-guarded-phase-v2-sql.json",
+  "previous_canary_spec": {
+    "path": "configs/judge_reader_cleanup_canary_v1.json",
+    "sha256": "bd037e9a67526b779f3a0714d5302a2d29b92ff5cd8bc7b23a186de822c035e9",
+    "preserved_unchanged": true
+  },
+  "phase_capture": {
+    "default_off": true,
+    "unchanged_methods_and_sql": true,
+    "one_actual_attempt_no_synthetic_production_attempt": true,
+    "timed_phases": [
+      "connect",
+      "pragma",
+      "begin",
+      "guard queries and materialization",
+      "global and run committed sums",
+      "cap and halt checks",
+      "attempt and event inserts",
+      "commit",
+      "close"
+    ],
+    "actual_workload_context": "Only request/metadata UTF-8 byte counts and main versus worker classification are recorded. Real request and metadata contents are never included in phase output.",
+    "copy_comparison_caveat": "Copies used small diagnostic metadata without a content cache key, on the main thread, and were warmed by copying/hash verification. They exclude original-file locks and do not reproduce all real write paths."
+  },
+  "matched_copy_evidence": {
+    "nfs": {
+      "path": "${OLENS_DATA_ROOT}/diagnostics/ledger-reserve-phase-v1/nfs-report.json",
+      "sha256": "7c5f29257758764c62fd3a95fe650a38c30dd4b322c47082c8524cb94b5350e9"
+    },
+    "local_xfs": {
+      "path": "${OLENS_DATA_ROOT}/diagnostics/ledger-reserve-phase-v1/xfs-report.json",
+      "sha256": "b80c2989b111e7cff0bd0e33fb387aa30d7a895fb319de5f1dd9b7d9526b9583"
+    },
+    "preparation": {
+      "path": "${OLENS_DATA_ROOT}/diagnostics/ledger-reserve-phase-v1/preparation.json",
+      "sha256": "4efb1baa67b750d5df6839987b3c77a4dd40bc94b1750df0bc54880667488ea0"
+    }
+  },
+  "tests": {
+    "pattern": "test_judge_healthcheck.py",
+    "passed": 7,
+    "seconds": 0.541,
+    "scope": "Fake SDK and disposable ledger only; no production access or paid calls."
+  },
+  "reviewed_utc": "2026-10-10T13:56:06.193564+00:00",
+  "review_author": "root",
+  "independent_review": "compute_storage_audit: source, 15 hashes, three fresh outputs, one request and preserved original accounting guard; no blocker",
+  "root_test_check": {
+    "passed": 12,
+    "scope": "healthcheck plus disposable phase-profiler tests; no paid calls"
+  }
+}
