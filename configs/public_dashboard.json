@@ -2,10 +2,10 @@
   "project_id": "appgprj_6aca37fc2878819185850105787209f9",
   "url": "https://olens-improve-research.jan618.chatgpt.site",
   "access_mode": "public",
-  "version_id": "appgprj_6aca37fc2878819185850105787209f9~appgver_b14c1e86afc88191aa810476c3e828ca",
-  "deployment_id": "appgdep_6aca778209288191a28dd357f85d0a43",
-  "site_source_commit": "fc1aece114df6ab08451e072be256bfb7a0c0870",
-  "published_utc": "2026-10-10T17:36:12.930112+00:00",
+  "version_id": "appgprj_6aca37fc2878819185850105787209f9~appgver_8bb290a5f3a88191a473508df0b2e536",
+  "deployment_id": "appgdep_6aca8357933081918e823db8a515251b",
+  "site_source_commit": "23700447ca944c37f31242f41e75c63d50e63044",
+  "published_utc": "2026-10-10T18:26:43.060387+00:00",
   "source_checkout": ".state/public-dashboard",
   "static_directory": ".state/public-dashboard/dist",
   "export_command": "python scripts/build_public_dashboard.py --output .state/public-dashboard/dist --development-figures ${OLENS_DATA_ROOT}/figures/development-scaling-v2 --descriptive-review configs/descriptive_grid_review_v1.json --descriptive-review-sha256 ed5b850a8921522350dc0854e75800c7011696c0c516ec966e85ec99286ff82c",
@@ -40,7 +40,19 @@
     "descriptive_grid_review_sha256": "ed5b850a8921522350dc0854e75800c7011696c0c516ec966e85ec99286ff82c",
     "source_report_sha256": "3bdf90842f8062dcf48d76cd2afd440bfc8d19a3501f4cb56100d91e54aabcd3",
     "user_browser_verified": false,
-    "qa_receipt_sha256": "602c93aebd6a644b549cad0ae9dc69c4ed991203622066d8389325b0c02b8eff"
+    "qa_receipt_sha256": "602c93aebd6a644b549cad0ae9dc69c4ed991203622066d8389325b0c02b8eff",
+    "latest_change_scope": "Operational metadata only; all scientific objects preserved exactly,33 figure/example assets byte-identical. No TEST quality read or published.",
+    "latest_local_review": ".state/public-dashboard-v8-metadata-review.json",
+    "browser_qa_for_latest_version": "Not repeated for status-only update; previous v7 desktop/mobile layout QA retained as historical evidence."
   },
-  "note": "Dedicated Sites repository only. The chen-jan/olens-improve GitHub repository was not pushed. Snapshot updates require a new Site version."
+  "note": "Dedicated Sites repository only. The chen-jan/olens-improve GitHub repository was not pushed. Snapshot updates require a new Site version.",
+  "publication_history": [
+    {
+      "version_id": "appgprj_6aca37fc2878819185850105787209f9~appgver_b14c1e86afc88191aa810476c3e828ca",
+      "deployment_id": "appgdep_6aca778209288191a28dd357f85d0a43",
+      "site_source_commit": "fc1aece114df6ab08451e072be256bfb7a0c0870",
+      "published_utc": "2026-10-10T17:36:12.930112+00:00"
+    }
+  ],
+  "source_report_sha256": "90ee3083524b57d82d1cbfd12942d96119398969886a2fb324c86362f09d9840"
 }

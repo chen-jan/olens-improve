@@ -1,0 +1,35 @@
+{
+  "status": "prepared_not_executed",
+  "created_utc": "2026-10-10T18:26:16.985243+00:00",
+  "reason": "Long shared-ledger holds and slower16/400trial; exact blocked operation not yet measured",
+  "logical_path": "${OLENS_DATA_ROOT}/budget/ledger.sqlite3",
+  "proposed_target": "${OLENS_COMPUTE_ROOT}/budget/ledger-v2.sqlite3",
+  "storage_hypothesis": "Both mounts are NFS. A fresh compute inode may reduce stalls, but this is unproven. Node-local XFS is not selected.",
+  "prerequisites": [
+    "Both current judge workers exit and family owner locks become free",
+    "Verify all other project ledger writers are stopped and finish or pause observers",
+    "Acquire and retain both original and destination persistent admission locks",
+    "No hot rollback journal or WAL state; if present stop and recover explicitly",
+    "Read-only source baseline and clone equality; no AtomicBudget constructor during verification"
+  ],
+  "transition": [
+    "Copy complete source to fresh temporary destination without opening it as an active ledger",
+    "fsync target, compare full SHA256, verify read-only SQLite integrity and exact accounting/config/event counts",
+    "Rename clone to final target, preserve old inode as dated read-only archive, atomically replace canonical name with prepared symlink, fsync affected directories",
+    "Verify canonical resolution and inode, no dangling target, identical full accounting and retained holds",
+    "Only then release admission locks and resume one family at8/200 with reviewed phase instrumentation"
+  ],
+  "preserved": [
+    "All attempts, events, caps, config, unknown charges and active/inactive reservations",
+    "Original07:52UTC recovery epoch",
+    "Existing exact caches and all scientific inputs"
+  ],
+  "no_stale_fallback": true,
+  "single_write_authority": true,
+  "executed": false,
+  "reviewers": [
+    "root",
+    "model_scoring_audit"
+  ],
+  "next_step": "Await clean condition boundaries and bounded health comparison before deciding whether migration remains justified"
+}
