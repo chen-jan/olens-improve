@@ -1,0 +1,19 @@
+# 022 — Cache-write accounting correction
+
+Updated: 2026-10-10 UTC. Status: **applied and independently previewed again**. This changes financial accounting only; candidate text, prompts, verdicts and scientific endpoints remain unchanged.
+
+The API reports cache-write tokens separately from cached reads and ordinary input. The initial ledger priced writes as ordinary input. After verifying the [official caching contract](https://developers.openai.com/api/docs/guides/prompt-caching) and [Luna model tariff](https://developers.openai.com/api/docs/models/gpt-6-luna), the corrected calculation is ordinary input = total input − cached reads − writes. Standard rates per million tokens are $0.10 ordinary, $0.01 cached reads, $0.125 writes and $0.50 output; Flex rates are half. Reasoning tokens are included in billed completion tokens.
+
+After all old-code all-candidate workers terminated, the approved atomic correction changed **8,842 settled attempts by +$0.305917495**. Usage-derived project spending increased from **$2.877595485 to $3.18351298**. It also increased eighty uncertain Luna reservations by **$0.020113525**, without releasing them. Total uncertain reservations are **$2.420567625**, including the unchanged historical $2 Claude hold. The project remains within its $200 target/$300 hard ceiling. No run cap or original reservation was exceeded, and the sticky accounting halt is false.
+
+These amounts reconstruct charges from retained API usage and the verified tariff. **They are not a reconciled provider invoice.** Every settled response had the required input, completion, cached-read and cache-write counts; missing and invalid counters were zero. The Claude hold lacks token bounds and remains separately identified, rather than guessed or repriced. Unknown Luna attempts remain committed even when another request later succeeded.
+
+The correction preserves every original response and settlement event, appending per-attempt before/after pricing evidence. Unknown reservation metadata and held amounts were increased conservatively. A raw SQLite backup was saved before application. A second read-only preview found **zero actual and reservation deltas**, verifying idempotence without applying another charge change.
+
+Artifacts: `${OLENS_DATA_ROOT}/budget/pricing-correction-v1/` contains `before.sqlite3`, `before.json`, `dryrun.json`, `applied.json`, `after.json` and `idempotence-preview.json`. The ledger remains `budget/ledger.sqlite3`. Original attempt/response IDs tie every correction to source usage; no secrets or large artifacts enter Git.
+
+New calls reserve the worst supported price: all upper-bound input tokens at the Standard cache-write rate, plus maximum output. Settlement accepts cached-read and write counts, validates their sum against total input, and applies the actual tier. Missing write counts are explicitly recorded and conservatively priced as all remaining noncached input, rather than assumed zero. Invalid usage must remain visible for reconciliation. Default/benchmark clients still require Luna with effort none; the separately authorized helper diagnostic may opt into medium without sampling/logprob overrides.
+
+Code: `src/olens_improve/budget.py`, the settlement wrapper in `evaluation.py`, and `scripts/reconcile_budget_pricing.py`. Preview is the CLI default; application requires `--apply` and explicit evidence. Five cache-price tests cover mixed input/Flex, invalid counts, all-write bounds, preserved events/idempotence and unknown/missing fields; the nine original financial-side-effect tests also pass. Costs-v1 remain historical snapshots; regenerated costs-v2 read corrected attempt amounts and retain prior-tariff figures separately.
+
+Validation/test access: none; this audit inspects billing metadata and retained usage only. No new model calls or benchmark outcomes were needed for reconciliation.

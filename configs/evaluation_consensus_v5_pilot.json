@@ -1,0 +1,8 @@
+[
+  {"method": "consensus_exact_support0", "n": 16},
+  {"method": "consensus_semantic_v5_support0_compatoff_vetooff", "n": 16},
+  {"method": "consensus_semantic_v5_support0_compatoff_vetoon", "n": 16},
+  {"method": "consensus_semantic_v5_support0_compaton_vetoon", "n": 16},
+  {"method": "consensus_semantic_v5_support0.125_compatoff_vetoon", "n": 16},
+  {"method": "consensus_semantic_v5_support0.125_compaton_vetoon", "n": 16}
+]

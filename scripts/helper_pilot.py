@@ -20,7 +20,7 @@ from olens_improve.evaluation import make_luna_client,request_cache_key
 from olens_improve.helpers import (HelperCache,LunaHelper,PROPOSAL_VERSION,MATCH_VERSION,
     PROPOSAL_SYSTEM,MATCH_SYSTEM,PROPOSAL_SCHEMA,MATCH_SCHEMA,PairRelation,clique_clusters,
     semantic_consensus,semantic_audit_pairs,distinct_owner_audit_pairs,confirm_pairs,audit_summary,
-    reselect_consensus,editing_proposals,EDIT_VERSION,EDIT_SYSTEM,EDIT_SCHEMA)
+    reselect_consensus,report_with_merge_veto,VETO_VERSION,editing_proposals,EDIT_VERSION,EDIT_SYSTEM,EDIT_SCHEMA)
 from olens_improve.selection import parse_bullets,exact_consensus,output_admissible
 
 
@@ -268,6 +268,7 @@ async def execute(args):
                 'manifest_sha256':hashlib.sha256(args.manifest.read_bytes()).hexdigest(),
                 'n':args.n,'support':args.support,'max_output_tokens':args.max_output_tokens,
                 'pair_cap':40,'proposal_version':PROPOSAL_VERSION,'matching_version':MATCH_VERSION,
+                'merge_veto_version':VETO_VERSION,
                 'tokenizer_snapshot':runtime['paths']['base_snapshot']}
             progress=CellProgress(out/'progress.sqlite3',identity)
             reports=progress.rows()
@@ -286,9 +287,11 @@ async def execute(args):
                 # Semantic no-filter arm reuses exact helper labels; make no extra calls.
                 report['exact_text']=exact.text;report['semantic_text']=semantic.text
                 report['exact_phrase_ids']=list(exact.phrase_ids)
-                report['threshold_sweep']=[reselect_consensus(samples,report,fraction=f,
-                    filter_compatibility=compatible,admissible=admissible)
-                    for f in (0.,.25,.5,.75,1.) for compatible in (False,True)]
+                report['threshold_sweep']=[{**reselect_consensus(samples,
+                    report_with_merge_veto(samples,report,enabled=veto),fraction=f,
+                    filter_compatibility=compatible,admissible=admissible),
+                    'merge_veto_enabled':veto,'merge_veto_version':VETO_VERSION}
+                    for f in (0.,.125,.25,.5,.75,1.) for compatible in (False,True) for veto in (False,True)]
                 row={'cell_id':cid,'family':allowed[cid]['family'],'item_id':allowed[cid]['item_id'],
                     'layer':allowed[cid]['layer'],'position':allowed[cid]['position'],'sample_index':0,
                     'method':semantic.method,'text':semantic.text,'pool_n':args.n,'report':report}

@@ -66,18 +66,25 @@ recorded beside physical attempts; upstream still owns validated-result caching.
 
 class BudgetedCompletions:
     def __init__(self, inner: Any, ledger: AtomicBudget, run_id: str,
-                 *, allow_paid: bool = False, metadata: dict | None = None):
+                 *, allow_paid: bool = False, metadata: dict | None = None,
+                 helper_reasoning_effort: str | None = None):
         self.inner = inner
         self.ledger = ledger
         self.run_id = run_id
         self.allow_paid = allow_paid
         self.metadata = metadata or {}
+        if helper_reasoning_effort not in (None, 'none', 'medium'):
+            raise ValueError('Helper diagnostic effort must be none or medium')
+        self.reasoning_effort = helper_reasoning_effort or 'none'
+        self.helper_diagnostic = helper_reasoning_effort is not None
 
     async def create(self, **request: Any) -> Any:
         if not self.allow_paid or os.environ.get('OLENS_ALLOW_PAID_CALLS') != '1':
             raise RuntimeError('Paid calls disabled; root must verify shared ledger and tiny run cap first')
-        if request.get('model') != JUDGE_MODEL or request.get('reasoning_effort') != 'none':
-            raise ValueError('Only frozen gpt-6-luna with reasoning_effort=none is authorized')
+        if request.get('model') != JUDGE_MODEL or request.get('reasoning_effort') != self.reasoning_effort:
+            raise ValueError('Model/effort differs from the frozen judge or explicit helper diagnostic')
+        if self.reasoning_effort != 'none' and any(k in request for k in ('temperature', 'top_p', 'logprobs', 'top_logprobs')):
+            raise ValueError('Non-none helper reasoning must omit sampling/logprob overrides')
         if request.get('service_tier') not in ('flex', 'default'):
             raise ValueError('Explicit service_tier flex/default required; no automatic/priority route')
         if 'extra_body' in request or 'extra_headers' in request or 'extra_query' in request:
@@ -93,6 +100,7 @@ class BudgetedCompletions:
         aid = self.ledger.reserve_attempt(input_bound, max_output, run_id=self.run_id,
                     metadata={**self.metadata, 'content_cache_key': content_key,
                               'request': serializable, 'pid': os.getpid(),
+                              'helper_effort_opt_in': self.helper_diagnostic,
                               'requested_tier': request['service_tier']})
         started = time.monotonic()
         try:
@@ -124,6 +132,13 @@ class BudgetedCompletions:
             self.ledger.mark_unknown(aid, 'Response landed without complete usage; reservation retained')
             return response
         cached = _get(_get(usage, 'prompt_tokens_details'), 'cached_tokens', 0) or 0
+        written = _get(_get(usage, 'prompt_tokens_details'), 'cache_write_tokens', None)
+        if written is None:
+            # Missing write counters are not evidence of zero writes. Settle at
+            # the worst remaining-input rate and preserve this uncertainty.
+            written = n_input - cached
+            self.ledger.record_evidence(aid, 'missing_cache_write_usage', {
+                'policy': 'Conservatively price remaining noncached input as writes; invoice unverified'})
         # Missing billed-tier metadata is conservatively settled at Standard.
         billed_tier = _get(response, 'service_tier') or 'default'
         if billed_tier not in ('flex', 'default', 'standard'):
@@ -133,16 +148,18 @@ class BudgetedCompletions:
         # responses are real charges, and every retry creates a new reservation.
         self.ledger.settle(aid, input_tokens=n_input, output_tokens=n_output,
                            cached_tokens=cached, billed_tier=billed_tier,
+                           cache_write_tokens=written,
                            response_id=_get(response, 'id'))
         return response
 
 
 class BudgetedClient:
     def __init__(self, inner: Any, ledger: AtomicBudget, run_id: str, *, allow_paid: bool,
-                 metadata: dict | None = None):
+                 metadata: dict | None = None, helper_reasoning_effort: str | None = None):
         self.inner = inner
         self.chat = SimpleNamespace(completions=BudgetedCompletions(
-            inner.chat.completions, ledger, run_id, allow_paid=allow_paid, metadata=metadata))
+            inner.chat.completions, ledger, run_id, allow_paid=allow_paid, metadata=metadata,
+            helper_reasoning_effort=helper_reasoning_effort))
 
     def __getattr__(self, name: str) -> Any:
         return getattr(self.inner, name)
@@ -156,6 +173,19 @@ def make_luna_client(ledger: AtomicBudget, run_id: str, *, allow_paid: bool = Fa
         raise ValueError('Custom OpenAI base URL is not part of the frozen pricing contract')
     inner = AsyncOpenAI(max_retries=0)
     return BudgetedClient(inner, ledger, run_id, allow_paid=allow_paid, metadata=metadata)
+
+
+def make_luna_helper_diagnostic_client(ledger: AtomicBudget, run_id: str, *,
+                                      reasoning_effort: str, allow_paid: bool = False) -> BudgetedClient:
+    """Explicit helper-only effort ablation; the benchmark factory remains none-only."""
+    from openai import AsyncOpenAI
+    if reasoning_effort not in ('none', 'medium'):
+        raise ValueError('Only the authorized none/medium helper diagnostic is supported')
+    if os.environ.get('OPENAI_BASE_URL'):
+        raise ValueError('Custom OpenAI base URL is not part of the frozen pricing contract')
+    return BudgetedClient(AsyncOpenAI(max_retries=0), ledger, run_id, allow_paid=allow_paid,
+        metadata={'purpose': 'candidate-only-helper-effort-diagnostic'},
+        helper_reasoning_effort=reasoning_effort)
 
 
 def load_upstream(root: Path = BENCH_ROOT) -> dict:

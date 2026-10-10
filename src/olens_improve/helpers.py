@@ -13,6 +13,8 @@ import hashlib
 import json
 from pathlib import Path
 import sqlite3
+import re
+import copy
 from typing import Any
 
 from .budget import BudgetExceeded
@@ -20,8 +22,9 @@ from .data import canonical
 from .evaluation import JUDGE_MODEL, request_cache_key
 from .selection import Bullet, Sample, Selection, render_bullets, parse_bullets
 
-PROPOSAL_VERSION = 'candidate-pair-proposal-v1'
-MATCH_VERSION = 'whole-bullet-equivalence-compatibility-v5'
+PROPOSAL_VERSION = 'candidate-pair-proposal-local-ids-v2'
+MATCH_VERSION = 'whole-bullet-equivalence-compatibility-v5-local-ids-v1'
+VETO_VERSION = 'restatement-temporal-merge-veto-v1'
 PROPOSAL_SYSTEM = """You shortlist pairs of text assertions that might express the SAME proposition.
 You see only noisy source bullets with opaque IDs. Propose likely paraphrases, including
 translations, for later verification. Do not rewrite, summarize or repair the bullets.
@@ -53,10 +56,8 @@ false means a contradiction, null means uncertainty. Compatibility is NOT equiva
 Do not silently assume different unnamed referents are the same, or vice versa.
 If simultaneous truth requires differently named people/entities to be identical,
 return uncertain/null unless the texts explicitly establish that identity. Do not infer aliases.
-For each bullet copy a short VERBATIM evidence span into a_span/b_span. Preserve its exact
-characters, case, punctuation and internal whitespace. Do not paraphrase and do not count
-character offsets: the caller will locate and validate the exact quote locally. Explain in at most
-400 characters per pair.
+Return the supplied pair_id exactly. Do not emit quotes or character offsets: the caller
+stores the complete original pair locally. Explain in at most 400 characters per pair.
 Return uncertain/null when in doubt; never fill gaps with benchmark or world-knowledge guesses."""
 
 
@@ -74,7 +75,6 @@ _MATCH_FIELDS = {
     'label': {'type': 'string', 'enum': ['equivalent','one-way entails','contradicts','related','uncertain']},
     'a_entails_b': {'type': ['boolean','null']}, 'b_entails_a': {'type': ['boolean','null']},
     'compatible': {'type': ['boolean','null']},
-    'a_span': {'type': 'string'}, 'b_span': {'type': 'string'},
     'reason': {'type': 'string'},
 }
 MATCH_SCHEMA = _schema('pair_relations', {'results': {'type': 'array', 'items': {
@@ -179,10 +179,13 @@ class HelperCache:
 class LunaHelper:
     """Use the reviewed BudgetedClient, with bounded logical retries and concurrency."""
     def __init__(self, client: Any, cache: HelperCache, *, service_tier: str = 'default',
-                 concurrency: int = 4, attempts: int = 2):
+                 concurrency: int = 4, attempts: int = 2, reasoning_effort: str = 'none'):
         if service_tier not in ('default','flex') or not 1 <= attempts <= 2:
             raise ValueError('Explicit tier and at most two logical attempts required')
+        if reasoning_effort not in ('none','medium'):
+            raise ValueError('Only none or the explicit medium helper diagnostic is supported')
         self.client, self.cache, self.tier = client, cache, service_tier
+        self.reasoning_effort = reasoning_effort
         self.attempts = attempts
         self.semaphore = asyncio.Semaphore(concurrency)
         self.events: list[dict] = []
@@ -190,10 +193,12 @@ class LunaHelper:
     async def call(self, system: str, payload: dict, schema: dict, *, version: str,
                    validate, max_output_tokens: int = 6000) -> dict | None:
         # No context, run IDs or provenance headings are inserted in the payload.
-        request = {'model': JUDGE_MODEL, 'reasoning_effort': 'none', 'service_tier': self.tier,
-            'temperature': 0, 'max_completion_tokens': max_output_tokens, 'timeout': 90,
+        request = {'model': JUDGE_MODEL, 'reasoning_effort': self.reasoning_effort, 'service_tier': self.tier,
+            'max_completion_tokens': max_output_tokens, 'timeout': 90,
             'messages': [{'role':'system','content':system}, {'role':'user','content':canonical(payload)}],
             'response_format': schema}
+        if self.reasoning_effort == 'none':
+            request['temperature'] = 0
         key = hashlib.sha256(canonical({'version':version,'request_key':request_cache_key(request)}).encode()).hexdigest()
         cached = self.cache.get(key)
         if cached is not None:
@@ -201,6 +206,7 @@ class LunaHelper:
             self.events.append({'version':version,'content_key':key,'cached':True})
             return cached
         for attempt in range(self.attempts):
+            response = None
             try:
                 async with self.semaphore:
                     response = await self.client.chat.completions.create(**request)
@@ -218,6 +224,7 @@ class LunaHelper:
             except Exception as error:
                 self.events.append({'version':version,'content_key':key,'cached':False,'attempt':attempt,
                                     'valid':False,'error_type':type(error).__name__,
+                                    'response_id':getattr(response,'id',None),
                                     'validation_error':str(error)[:400] if isinstance(error,(HelperValidationError,json.JSONDecodeError)) else None})
                 if attempt + 1 < self.attempts:
                     await asyncio.sleep(min(2 ** attempt, 4))
@@ -250,16 +257,33 @@ def _pair(a: str, b: str) -> tuple[str,str]:
 def validate_proposal(result: dict, texts: dict[str,str], limit: int) -> None:
     if not isinstance(result,dict) or set(result) != {'pairs'} or not isinstance(result['pairs'],list):
         raise HelperValidationError('Invalid proposal schema')
-    if len(result['pairs']) > limit:
-        raise HelperValidationError('Proposal pair budget exceeded')
-    seen = set()
     for row in result['pairs']:
-        if not isinstance(row,dict) or set(row) != {'a','b'} or row['a'] not in texts or row['b'] not in texts:
-            raise HelperValidationError('Invalid opaque source ID')
-        key = _pair(row['a'],row['b'])
-        if key in seen:
-            raise HelperValidationError('Duplicate proposed pair')
-        seen.add(key)
+        if not isinstance(row,dict) or set(row) != {'a','b'} or not all(isinstance(row[k],str) for k in ('a','b')):
+            raise HelperValidationError('Invalid proposal row structure')
+
+
+def canonicalize_proposals(result: dict | None, texts: dict[str,str], limit: int) -> tuple[list, list]:
+    """Repair bookkeeping locally; skipped proposals are never confident labels."""
+    if result is None:
+        return [], [{'reason': 'proposal_call_exhausted; candidate pair coverage unknown'}]
+    accepted, skipped, seen = [], [], set()
+    for index, row in enumerate(result['pairs']):
+        reason = None
+        if row['a'] not in texts or row['b'] not in texts:
+            reason = 'unknown_source_id'
+        elif row['a'] == row['b']:
+            reason = 'self_pair'
+        else:
+            key = tuple(sorted((row['a'],row['b'])))
+            if key in seen:
+                reason = 'duplicate_pair'
+            elif len(accepted) >= limit:
+                reason = 'beyond_fixed_pair_budget'
+            else:
+                seen.add(key); accepted.append(key)
+        if reason:
+            skipped.append({'provider_index': index, 'provider_pair': row, 'reason': reason})
+    return accepted, skipped
 
 
 def validate_matches(result: dict, payload_pairs: list[dict]) -> None:
@@ -293,33 +317,30 @@ def validate_matches(result: dict, payload_pairs: list[dict]) -> None:
             raise HelperValidationError('Uncertain compatibility must remain null')
         if not isinstance(row['reason'],str) or len(row['reason']) > 400:
             raise HelperValidationError('Invalid/excessive rationale')
-        for side in ('a','b'):
-            text = expected[pid][f'{side}_text']
-            span = row[f'{side}_span']
-            if not isinstance(span,str) or not span or span not in text:
-                raise HelperValidationError('Evidence quote absent from verbatim source')
     if seen != set(expected):
         raise HelperValidationError('Missing requested pair results')
 
 
 async def confirm_pairs(helper: LunaHelper, pairs: list[tuple[str,str]], texts: dict[str,str],
-                        *, chunk_size: int = 20) -> dict[tuple[str,str],PairRelation]:
+                        *, chunk_size: int = 20, max_output_tokens: int = 6000) -> dict[tuple[str,str],PairRelation]:
     if not 1 <= chunk_size <= 20:
         raise ValueError('Confirmation chunks must contain at most20 pairs')
     relations = {}
     async def chunk_call(chunk):
         payload_pairs = [{'pair_id':f'p{i:02d}','a_text':texts[a],'b_text':texts[b]}
                          for i,(a,b) in enumerate(chunk)]
-        result = await helper.call(MATCH_SYSTEM, {'pairs':payload_pairs}, MATCH_SCHEMA,
-            version=MATCH_VERSION, validate=lambda r:validate_matches(r,payload_pairs))
+        schema = copy.deepcopy(MATCH_SCHEMA)
+        schema['json_schema']['schema']['properties']['results']['items']['properties']['pair_id']['enum'] = [x['pair_id'] for x in payload_pairs]
+        result = await helper.call(MATCH_SYSTEM, {'pairs':payload_pairs}, schema,
+            version=MATCH_VERSION, validate=lambda r:validate_matches(r,payload_pairs),
+            max_output_tokens=max_output_tokens)
         if result is None:
             return
         for row in result['results']:
             index = int(row['pair_id'][1:])
             a,b = chunk[index]
-            evidence = {side:{'start':texts[uid].index(row[f'{side}_span']),
-                              'end':texts[uid].index(row[f'{side}_span'])+len(row[f'{side}_span']),
-                              'text':row[f'{side}_span']}
+            evidence = {side:{'start':0,'end':len(texts[uid]),'text':texts[uid],
+                              'source':'Complete local source text; not model-extracted evidence or truth verification.'}
                         for side,uid in [('a',a),('b',b)]}
             relations[_pair(a,b)] = PairRelation(a,b,row['label'],row['a_entails_b'],row['b_entails_a'],
                                                  row['compatible'],row['reason'],evidence)
@@ -361,11 +382,14 @@ async def semantic_consensus(samples: list[Sample], helper: LunaHelper, *,
     relation_budget = max_pairs - 6 if filter_compatibility else max_pairs
     proposal = None
     if len(texts) > 1:
+        schema = copy.deepcopy(PROPOSAL_SCHEMA)
+        for side in ('a','b'):
+            schema['json_schema']['schema']['properties']['pairs']['items']['properties'][side]['enum'] = list(texts)
         proposal = await helper.call(PROPOSAL_SYSTEM,
             {'bullets':[{'id':uid,'text':text} for uid,text in texts.items()], 'pair_limit':relation_budget},
-            PROPOSAL_SCHEMA,version=PROPOSAL_VERSION,max_output_tokens=1200,
+            schema,version=PROPOSAL_VERSION,max_output_tokens=1200,
             validate=lambda r:validate_proposal(r,texts,relation_budget))
-    proposed_pairs = [_pair(x['a'],x['b']) for x in proposal['pairs']] if proposal is not None else []
+    proposed_pairs, proposal_skipped = canonicalize_proposals(proposal,texts,relation_budget) if len(texts)>1 else ([],[])
     relations = await confirm_pairs(helper,proposed_pairs,texts)
     clusters = clique_clusters(list(texts),relations)
     # Supporting sample IDs are local bookkeeping; the helper never receives them.
@@ -408,7 +432,10 @@ async def semantic_consensus(samples: list[Sample], helper: LunaHelper, *,
     report = {
         'prompt_versions':[PROPOSAL_VERSION,MATCH_VERSION], 'unique_exact_groups':len(groups),
         'semantic_clusters':len(clusters),'proposal_pairs':len(proposed_pairs),
+        'proposal_skipped':proposal_skipped, 'equivalence_requested_pairs':[list(k) for k in proposed_pairs],
         'compatibility_pairs':len(compatibility_pairs),'verified_pairs':len(relations),
+        'compatibility_requested_pairs':[list(k) for k in compatibility_pairs],
+        'requested_but_unverified_pairs':[list(k) for k in proposed_pairs+compatibility_pairs if k not in relations],
         'budget_unverified_policy':'Leave unmatched pairs separate; compatibility-unknown tentative outputs abstain.',
         'clusters':[{'opaque_members':c,'source_phrase_ids':[b.phrase_id for uid in c for b in sources[uid]],
                      'supporting_samples':sorted({b.sample_id for uid in c for b in sources[uid]})} for c in clusters],
@@ -483,6 +510,51 @@ def reselect_consensus(samples: list[Sample], report: dict, *, fraction: float,
         'limitation':'Fixed pair-budget labels; agreement lower bound. Unchecked pairs stay separate.'}
 
 
+def conservative_merge_veto(left: str, right: str) -> list[str]:
+    """A visible conservative lexical veto, not semantic or truth verification."""
+    if ' '.join(left.split()) == ' '.join(right.split()):
+        return []
+    reasons = []
+    alternatives = r'\b(?:or more concisely|or rather|alternatively|in other words|here are (?:two|three|several) (?:versions|options)|option\s*\d+)\b'
+    if re.search(alternatives,left,re.I) or re.search(alternatives,right,re.I):
+        reasons.append('explicit_alternative_or_restatement_requires_preserving_every_version')
+    temporal = re.compile(r'\b(?:before|after|then|first|later|until|while|subsequent(?:ly)?|following)\b',re.I)
+    if sorted(x.lower() for x in temporal.findall(left)) != sorted(x.lower() for x in temporal.findall(right)):
+        reasons.append('unmatched_explicit_temporal_cues')
+    return reasons
+
+
+def report_with_merge_veto(samples: list[Sample], report: dict, *, enabled: bool) -> dict:
+    """Split existing clusters using the same evidence; never add a paid comparison."""
+    result = copy.deepcopy(report)
+    result['merge_veto'] = {'version': VETO_VERSION, 'enabled': enabled,
+        'meaning': 'Conservative lexical rejection; may create false splits and is not proof of correct remaining merges.'}
+    if not enabled:
+        return result
+    bullets = {b.phrase_id:b for s in samples for b in s.bullets}
+    mapping = report['source_mapping']
+    native = {_pair(r['a'],r['b']):PairRelation(**r) for r in report['relations']}
+    allowed = {}
+    vetoed = []
+    for key, relation in native.items():
+        a,b = key
+        reasons = conservative_merge_veto(bullets[mapping[a][0]].text,bullets[mapping[b][0]].text)
+        if relation.equivalent and reasons:
+            vetoed.append({'a':a,'b':b,'reasons':reasons})
+        else:
+            allowed[key] = relation
+    clusters = []
+    for cluster in report['clusters']:
+        for members in clique_clusters(cluster['opaque_members'],allowed):
+            ids = [pid for uid in members for pid in mapping[uid]]
+            clusters.append({'opaque_members': members, 'source_phrase_ids': ids,
+                'supporting_samples': sorted({bullets[pid].sample_id for pid in ids})})
+    result['clusters'] = clusters
+    result['semantic_clusters'] = len(clusters)
+    result['merge_veto']['vetoed_pairs'] = vetoed
+    return result
+
+
 def audit_summary(pairs: list[dict], relations: dict[tuple[str,str],PairRelation]) -> dict:
     rows = []
     for i,pair in enumerate(pairs):
@@ -499,4 +571,4 @@ def audit_summary(pairs: list[dict], relations: dict[tuple[str,str],PairRelation
             'false_merges':sum(r['false_merge'] for r in rows),'false_splits':sum(r['false_split'] for r in rows),
             'unsafe_compatibility':sum(r['unsafe_compatibility'] for r in rows),
             'label_errors':sum(r['label_error'] for r in rows),
-            'rows':rows,'limitation':'Synthetic repeated templates test instrument traps, not independent benchmark accuracy or activation truth.'}
+            'rows':rows,'limitation':'Candidate-text pair agreement is not independent benchmark accuracy or activation truth; disclose selection and any repeated templates.'}
