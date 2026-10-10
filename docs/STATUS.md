@@ -1,6 +1,6 @@
 # Execution status
 
-Updated: 2026-10-10, approximately 07:49 UTC.
+Updated: 2026-10-10, approximately 08:00 UTC.
 Started: 2026-10-10 01:25:36 UTC (October 9, 21:25:36 EDT).
 Target finish: 2026-10-10 21:25:36 UTC. Execution remains active and authorized.
 
@@ -81,7 +81,7 @@ first source-checked dashboard with grouped intervals. Nothing has been pushed.
 | Single-method pilots | A/B/C/D/E1/E3/F judged; E2/G diagnostics complete with limits; exact-claim-span v3 stopped after its eight-cell contract audit, without benchmark-quality measurement |
 | Combinations | 65 unique pilot conditions judged and source-checked; larger E1-plus-pruning outputs complete and awaiting judging |
 | Additional controls | All32 judgments and matched-donor N1 complete; all requested cells/stages covered |
-| Held-out evaluation | Blind fixed-pool validation generation is running on all four main GPUs; analysis remains closed until the DEV shortlist is frozen. Test remains closed. |
+| Held-out evaluation | All 3,485 validation cells have complete blind N32 pools. The twelve-arm shortlist is being sealed before a separate analysis gate. Test remains closed. |
 
 Combination comparisons retain unchanged parents, component-off outputs, and
 random deletion matched on retained bullet count. Fixed support weights are
@@ -95,31 +95,33 @@ The corresponding role cell count is only 151/3,420: an item passes when any
 inspected site passes, so item recovery must not be read as uniformly faithful
 readouts. These are original-grid development scores, not held-out results.
 
-Next: profile local accounting/cache time and event-loop responsiveness on a
-disposable ledger before another paid recovery. The indexed queue initially
-completed thousands of requests at eight slots/200 requests per minute without
-errors. After two families increased to sixteen slots/400 RPM at clean condition
-boundaries, throughput fell and connection failures accumulated. The shared
-transport guard stopped all workers. The 07:02 recovery epoch retained 6,414
-settled responses and 48 uncertain holds, including 26 shutdown cancellations;
-no live reservations remain. Memory headroom was ample and no new SQLite-lock
-error was found. The cause remains unresolved. Exact-request cost
-forecast and compact export are complete; the forecast is $10.19 and the shared
-run ceiling remains $20. At the latest transport pause, all 24 multihop conditions,
-21 chain conditions, four hallucination conditions and three role conditions
-were complete. Unfinished conditions remain incomplete. The
-merged selection SHA is `54ee50e61ebc11ac66d8d11c294dda60e17a7f9e06ad8632665e6bbb6505635e`;
-the baseline audit verifies all 10,472 raw/capped text-and-token pairs against
-the already judged baseline. Cache reuse does not create independent verdicts.
-The E1 pruning run used 235.75 seconds on four CPU threads, with no new model
-calls. Repaired consensus and pooling-plus-specificity pilots are judged.
-The repaired source-span diagnostic stopped after eight cells: numeric-only
-fragments were removed, but two accepted claims still depended on an unidentified
-paragraph. This failed the strict self-contained-claim contract; it does not
-establish that those statements are false or that claim consensus cannot work.
-The proposed 32-cell expansion remains incomplete. Review development outcomes before the validation
-shortlist, freeze, and test. A small gain with wide
-intervals can warrant follow-up; significance alone is not an expansion gate.
+Next: seal the twelve-arm validation shortlist and open only its authorized
+analysis stage. All validation generation finished blindly at 07:48 UTC. The
+prospective shortlist is based on the completed pilot and available larger
+DEV evidence, with unfinished comparisons explicitly recorded. Later DEV
+results cannot retune the menu or thresholds once validation opens. See
+experiment 027 for the decision procedure and component controls.
+
+DEV judging resumed at eight slots/200 RPM per family with fresh operational
+profiles and the same $20 run ceiling, exact requests, caches and uncertain
+holds. A single unchanged Luna request passed in 1.39 seconds. The copied-ledger
+load check completed 384 fake calls without network use or production accounting
+changes; sixteen slots were faster than eight in that instrument. Intermittent
+local I/O pauses exist, but this did not reproduce the real transport failure.
+The cause remains unresolved; there is no automatic concurrency increase.
+At the frozen evidence snapshot, 24 multihop, 21 chain, four hallucination and
+three role conditions were complete out of 24 per family. Incomplete conditions
+remain incomplete, even when partial verdicts are cached.
+
+The merged selection SHA is
+`54ee50e61ebc11ac66d8d11c294dda60e17a7f9e06ad8632665e6bbb6505635e`;
+all 10,472 raw/capped baseline text-and-token pairs passed identity checks.
+E1 pruning used 235.75 seconds on four CPU threads without new model calls.
+Repaired consensus and pooling-plus-specificity pilots are judged. The separate
+exact-source-span pilot stopped after eight contract audits; its planned
+32-cell expansion is incomplete. This does not establish that all claim-level
+consensus fails. Small gains with wide intervals can warrant follow-up, while
+substantial recovery losses require explicit practical tradeoffs.
 
 The full development audit found 523 bullets empty after AR token cleanup in
 103 role cells. Complete-candidate AR methods exclude unscoreable samples;
@@ -130,8 +132,11 @@ differences separately from selection gains; the fix is not a faithfulness resul
 
 A local vector-first CLI now supports immutable candidate generation and replay.
 One existing DEV A16 replay reproduced the exact output and phrase IDs with FVE
-drift 1.34e-8, without generation, GPU work or API calls. This is replay validation;
-the complete fresh-install deployment path has not yet been tested.
+drift 1.34e-8, without generation, GPU work or API calls. A separate synthetic
+N2 check then completed adapter-disabled capture, generation, eight new phrase
+encodings and identical cache-only replay in 156 seconds on one H200. This
+validates installed plumbing in the existing environment, not explanation
+quality or a complete dependency installation on another machine.
 
 ## Resources and limits
 

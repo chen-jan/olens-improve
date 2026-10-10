@@ -1,0 +1,14 @@
+[
+  {"method": "raw_n1", "n": 1},
+  {"method": "capped_n1", "n": 1},
+  {"method": "best_n_exact", "n": 16},
+  {"method": "best_n_exact", "n": 32},
+  {"method": "random_complete", "n": 32},
+  {"method": "pooled_greedy_swap", "n": 16},
+  {"method": "pooled_greedy_swap", "n": 32},
+  {"method": "best_n_specificity_mean", "n": 32},
+  {"method": "best_n_specificity_mean_then_prune_0.005", "n": 32},
+  {"method": "best_n_specificity_mean_random_delete_matched_0.005", "n": 32},
+  {"method": "prune_loo_a32_0.005", "n": 32},
+  {"method": "random_delete_matched_a32_0.005", "n": 32}
+]

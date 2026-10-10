@@ -1,6 +1,6 @@
 # 026: Synthetic fresh-input engineering smoke
 
-Status: prepared, not run. This checks installed-tool plumbing, not readout quality or a scientific method. Every artifact is marked `scientific_results_eligible=false` and excluded from benchmark exports, judging and aggregation. No API calls or training are involved.
+Status: completed on H200 allocation 25330006 using the installed wheel. This checks installed-tool plumbing, not readout quality or a scientific method. Every artifact is marked `scientific_results_eligible=false` and excluded from benchmark exports, judging and aggregation. No API calls or training were involved.
 
 The sole input is fixed text: “The library closes at six. Nora returns a borrowed book before walking home.” Capture one adapter-disabled final-token activation at supported layer 44, using the frozen base/pair. Generate exactly two samples, seed 20261010, with the released sampling settings. No benchmark manifest, activation, readout, answer or validation/test filename/content is an input. A caller supplies only explicit local model, adapter, AR and matched-whitener paths. The cache contract is metadata from the verified DEV encoder; no inherited vector data is copied.
 
@@ -8,7 +8,7 @@ The sole input is fixed text: “The library closes at six. Nora returns a borro
 
 The record retains prompt/token IDs, capture/sample/encoding/replay wall times, GPU allocation/reservation/peak memory, host peak RSS, local artifact and installed-source hashes, adapter-change guard, FP32 activation hash, sampling provenance and new cache lineage. A successful engineering run does not establish that its concepts are correct, that an external activation uses the intended site, or that an independent machine's complete dependency installation works.
 
-The coordinator may launch on **one freed main H200 only after its blind VAL generation finishes**, with allocation state and memory checked first. Prepared command (replace `FREE_MAIN_H200` with the verified allocation ID):
+The coordinator launched on one freed main H200 after its blind VAL shard finished. The prepared command below was used with `FREE_MAIN_H200=25330006`; preserve the completed directory rather than rerunning it:
 
 ```bash
 srun --jobid=FREE_MAIN_H200 --overlap -N1 -n1 -c8 --mem=64G --cpu-bind=cores \
@@ -21,4 +21,6 @@ srun --jobid=FREE_MAIN_H200 --overlap -N1 -n1 -c8 --mem=64G --cpu-bind=cores \
   --output ${OLENS_DATA_ROOT}/engineering/portable-fresh-input-v1
 ```
 
-Preparation checks only: CLI help, syntax and source review. Actual loader, GPU memory and end-to-end assertions remain unrun. Preserve a failed attempt and version any rerun directory; never silently regenerate an existing pool.
+Measured result: 155.817 seconds total; capture/load/release 52.923, generation 56.861, new AR encoding/selection 38.602, and cache-only replay 7.043 seconds. The adapter-disabled 15-token input produced one FP32 5,120-dimensional L44 vector and exactly two samples. Eight raw AR vectors were written only to this engineering cache; replay encoded zero. Both selections chose sample index 1 with identical text, source IDs and exact FVE `0.17866450397739786` (difference zero). Peak CUDA allocation was about 51.0 GiB; after all loaders were released, 32 MiB remained allocated/reserved. Host peak RSS was about 40.6 GiB.
+
+Evidence is in `${OLENS_DATA_ROOT}/engineering/portable-fresh-input-v1/{scope,capture,pool,selection-encoded,selection-cached,result}.json` and its activation/cache tensors. Result SHA256 is `b63bf4bc5bab810e1efe655c8a935823a2c7ca8a50fa948b17de729993fd661d`; activation-value hash is `825b7670774ff35d71ec8177e3c5a19ec93cc18b4ad3a538c4309d76a159665e`, and pool-file hash is `123ccffddeb7732450b979b567413ef093fab6ecefd3a330020dfa5001564e79`. Independent binary/metadata checks confirmed the activation bytes, contiguous sample indices, isolated cache paths, zero replay encodings and identical selections. This establishes installed capture-to-replay plumbing in the existing environment, without evaluating semantic quality or a fresh machine's complete dependency installation. Never silently regenerate an existing pool.

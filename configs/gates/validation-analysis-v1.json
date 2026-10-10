@@ -1,0 +1,27 @@
+{
+  "gate_id": "validation-analysis-v1",
+  "authorization_scope": "analysis",
+  "manifest_sha256": "9293de810635a5ee69fcee3c010ede25c7e147d12d172c2f637015c64042f19d",
+  "fresh_index_sha256": "5a61cff89aca532f3e022233b6d2d8e12dab0d3a3f4f44085097bc6dc58fc385",
+  "capture_version": "fresh-core-v1",
+  "recapture_status": "passed",
+  "production_generation_authorized": true,
+  "historical_cache_reuse_authorized": false,
+  "frozen_test_authorized": false,
+  "maximum_samples_per_cell": 32,
+  "authorized_cells": 3485,
+  "author": "root",
+  "authorized_utc": "2026-10-10T08:02:10.513119+00:00",
+  "freeze_path": "configs/validation_shortlist_freeze_v1.json",
+  "freeze_sha256": "30daad423ee9326971f5f08fa4f3a3e7eec37c857b3757a700a8fcbb3a7547e6",
+  "condition_list_path": "configs/conditions_validation_v1.json",
+  "condition_list_sha256": "bed944371e050eff7898d07fe0a2ccb39a49a3359779640525b06c4904aca82a",
+  "pool_policy": "Consume the unchanged terminal blind N32 pool e8cfd09f7ff1c9195cfd4c3a. Preserve blind-generation provenance. No resampling or additional sites.",
+  "analysis_policy": "Four-way B128 new-key AR with immutable inherited DEV vectors, shared catalog, frozen selectors and controls; reveal and judge only the twelve signed conditions. No held-out-driven threshold changes.",
+  "test_policy": "No TEST generation or analysis authority is granted by this validation gate.",
+  "evidence": [
+    "Prospective twelve-arm menu and settings reviewed by root and two independent agents before any validation outcome access.",
+    "Complete and incomplete development evidence is frozen in the source-bound snapshot. Later DEV results cannot revise the validation menu or thresholds.",
+    "All 3485 validation cells completed blind N32 generation. Terminal hashes and exact coverage must pass before downstream processing."
+  ]
+}

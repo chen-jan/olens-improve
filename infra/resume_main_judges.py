@@ -37,16 +37,25 @@ def main() -> None:
     evidence_fields = ['selections','manifest','conditions','healthcheck','incident','resource']
     if 'index_application' in spec:
         evidence_fields.append('index_application')
+    if 'copied_load' in spec:
+        evidence_fields.append('copied_load')
     for field in evidence_fields:
         key = 'selection_sha256' if field=='selections' else field+'_sha256'
         if digest(Path(spec[field])) != spec[key]:
             raise SystemExit('Recovery source/evidence hash mismatch: '+field)
+    for path, expected in spec.get('implementation_source_sha256', {}).items():
+        if digest(Path(path)) != expected:
+            raise SystemExit('Reviewed operational implementation changed: '+path)
     health = json.loads(Path(spec['healthcheck']).read_text())
     if health['status']!='success' or health['run_id']!=spec['run_id'] or not health['original_unknown_status_preserved']:
         raise SystemExit('Fresh bounded healthcheck did not pass the reviewed contract')
     if datetime.fromisoformat(spec['recovery_epoch']) <= datetime.fromisoformat(health['started_utc']):
         raise SystemExit('Recovery epoch must follow the retained healthcheck')
     incident = json.loads(Path(spec['incident']).read_text())
+    if 'copied_load' in spec:
+        load = json.loads(Path(spec['copied_load']).read_text())
+        if load['network_calls'] != 0 or not load['source_accounting_unchanged']:
+            raise SystemExit('Copied-load diagnostic did not preserve the reviewed no-network accounting contract')
     if 'index_application' in spec:
         indexed = json.loads(Path(spec['index_application']).read_text())
         if (indexed['status'] != 'applied' or indexed['before'] != indexed['after_indexes']
@@ -76,6 +85,9 @@ def main() -> None:
     label = spec.get('recovery_label','v1')
     if not re.fullmatch('[a-z0-9-]{1,40}',label):
         raise SystemExit('Recovery label must be a safe provenance suffix')
+    profile_root = Path(spec['performance_profile_dir']) if spec.get('performance_profile_dir') else None
+    if profile_root is not None and profile_root.exists():
+        raise SystemExit('Use a fresh execution-specific profile directory; preserve existing timing evidence')
     for family, cpus in spec['cpu_pairs'].items():
         log = Path(spec['logs'])/f'full-dev-judging-recovery-{label}-{family}.log'
         command = ['taskset','-c',','.join(map(str,cpus)),sys.executable,'-m','olens_improve.evaluation',
@@ -85,6 +97,8 @@ def main() -> None:
             '--ledger',spec['ledger'],'--tier',spec['tier'],'--concurrency',str(spec['concurrency']),
             '--rpm',str(spec['rpm']),'--shared-cache',spec['shared_cache'],
             '--stop-file',str(Path(spec['judgments'])/f'stop-recovery-{label}-{family}')]
+        if profile_root is not None:
+            command += ['--performance-profile-dir', str(profile_root/family)]
         with log.open('a') as handle:
             worker = subprocess.Popen(command,stdout=handle,stderr=subprocess.STDOUT,env=environment)
         workers.append((family,worker))

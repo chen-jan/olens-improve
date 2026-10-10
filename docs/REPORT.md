@@ -41,6 +41,11 @@ capped single-sample baseline isolates this restriction. We retain the unmodifie
 released baseline, including its 256-new-token generation limit. Only the explicitly labeled editing and source-span
 experiments change text within a bullet.
 
+With fixed candidate scores, the highest reconstruction score cannot decrease
+as a nested pool grows. Pooling also retains the best complete response as a
+fallback. These score guarantees follow from the selection rules; the empirical
+question is whether the resulting descriptions become more faithful.
+
 The reconstructor converts each phrase to a predicted activation. We center and
 whiten both predictions and target using matched released statistics, then
 normalize phrase directions while retaining the target's magnitude. Exact
@@ -263,17 +268,24 @@ uncertain-charge holds are in [STATUS.md](STATUS.md).
 
 ## Validation, test and release status
 
-The validation candidate pool is being generated without inspecting its text,
-scores, selected outputs or judgments. Development evidence will determine a
-small fixed shortlist and settings before a separate validation-analysis gate
-opens. Test remains closed until the final method, comparisons and decision rule
-are frozen. Held-out results and the final quality–cost tradeoff will be added
-here after those stages complete.
+The validation candidate pool was generated without inspecting its text,
+scores, selected outputs or judgments. A prospective twelve-arm shortlist
+preserves both sampling budgets, pooling, matched-control selection and the
+specificity/pruning component comparisons. Its evidence and selection procedure
+are recorded in [the validation freeze](experiments/027-validation-shortlist-freeze.md).
+Some development judging was unfinished at that decision; later development
+results cannot alter this menu or its thresholds after validation opens.
+Test analysis remains closed until the final methods, comparisons and decision
+rule are frozen. Held-out results will be added after those stages complete.
 
 The implementation provides a vector-first Python API and command-line tool,
 immutable candidate pools, cached phrase encodings and replayable selectors.
 An installed wheel replayed an existing development pool with identical selected
-text and phrase IDs, using existing third-party dependencies. A complete
-fresh-input deployment run has not yet been established. Installation and artifact requirements are in
+text and phrase IDs, using existing third-party dependencies. A separate
+synthetic-input check then completed adapter-disabled capture, N2 generation,
+eight new phrase encodings and an identical cache-only replay in 156 seconds
+on one H200. This validates the installed execution path in the existing
+environment; semantic quality and a complete dependency installation on another
+machine remain unvalidated. Installation and artifact requirements are in
 [README.md](../README.md). Code and documentation are committed locally in
 milestones; nothing has been pushed by this project run.
