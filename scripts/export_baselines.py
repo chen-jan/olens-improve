@@ -9,6 +9,7 @@ import random
 from transformers import AutoTokenizer
 from olens_improve.ar_cache import input_records
 from olens_improve.selection import PARSER_POLICY, parse_bullets, render_bullets
+from olens_improve.stage_io import validate_export_stage
 
 
 def main():
@@ -18,6 +19,7 @@ def main():
     parser.add_argument('--fresh-manifest', required=True)
     parser.add_argument('--output', required=True)
     parser.add_argument('--runtime', default='configs/runtime.json')
+    parser.add_argument('--gate')
     parser.add_argument('--all-candidates', action='store_true',
                         help='Diagnostic only: one separate condition for each of the frozen 32 samples')
     args = parser.parse_args()
@@ -25,15 +27,11 @@ def main():
         raise RuntimeError('Use allocated CPU resources')
     manifest_bytes = Path(args.manifest).read_bytes()
     manifest = json.loads(manifest_bytes)
-    cells = {c['cell_id']: c for c in manifest['cells']}
-    if len(cells) != len(manifest['cells']) or any(c['split'] != 'development' for c in cells.values()):
-        raise ValueError('Require unique frozen development cells')
     fresh_bytes = Path(args.fresh_manifest).read_bytes()
-    fresh = {c['cell_id']: c for c in json.loads(fresh_bytes)['cells']}
-    for cid, cell in cells.items():
-        if cid not in fresh or any(fresh[cid][k] != cell[k]
-                                  for k in ('family', 'item_id', 'layer', 'position', 'split')):
-            raise ValueError('Frozen cohort differs from fresh activation manifest')
+    gate_bytes = Path(args.gate).read_bytes() if args.gate else None
+    stage, cells, fresh = validate_export_stage(manifest_bytes, fresh_bytes, gate_bytes)
+    if args.all_candidates and stage != 'development':
+        raise ValueError('Every-candidate diagnostic remains development-only')
     runtime = json.loads(Path(args.runtime).read_text())
     tokenizer = AutoTokenizer.from_pretrained(runtime['paths']['base_snapshot'], local_files_only=True)
     def token_count(text):
@@ -53,6 +51,8 @@ def main():
             key = (cid, row['sample_index'])
             if key in originals:
                 raise ValueError('Duplicate source sample')
+            if any(row[k] != cells[cid][k] for k in ('family','item_id','layer','position')) or row.get('split',stage) != stage:
+                raise ValueError('Source sample identity/stage differs from frozen cohort')
             if row['activation_sha256'] != fresh[cid]['activation_sha256']:
                 raise ValueError('Activation provenance mismatch')
             originals[key] = row
@@ -79,6 +79,8 @@ def main():
     payload = ''.join(json.dumps(row)+'\n' for row in rows).encode()
     metadata = {'manifest_sha256': sha256(manifest_bytes).hexdigest(),
                 'fresh_manifest_sha256': sha256(fresh_bytes).hexdigest(),
+                'coordinator_gate_sha256': sha256(gate_bytes).hexdigest() if gate_bytes else None,
+                'split': stage,
                 'selection_sha256': sha256(payload).hexdigest(), 'sources': sources,
                 'cells': len(rows), 'parser': PARSER_POLICY, 'max_capped_tokens': 256,
                 'diagnostic_all_candidates': args.all_candidates,
