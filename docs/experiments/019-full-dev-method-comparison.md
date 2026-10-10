@@ -82,3 +82,52 @@ instability or increased errors elsewhere is not sufficient by itself. Preserve
 raw/capped N1 and best-of-N comparators, plus component-off and shortening
 controls for any advancing combination. Freeze the final selection before
 opening test results. Do not choose a favorable operating point on the test set.
+
+## Execution corrections before judging
+
+The first four CPU workers unintentionally shared the same four physical cores
+under overlapping Slurm steps. They were stopped with 21 complete cell records
+preserved, no malformed journal tail, and 3,075.95 summed process CPU-seconds
+recorded. The source samples, vectors and evaluation settings were unchanged.
+
+Before restarting, a coverage audit found two N1 samples with a non-bullet
+preamble. The random-control branch previously omitted its result when every
+sample in the prefix was parsing-ineligible. It now emits an explicit empty
+readout with `no_eligible_complete_sample`, matching best-of-N's handling of
+that case. Eligible seeded choices are unchanged; two regression tests pass.
+This concerns the auxiliary random-N1 diagnostic, not a change to the frozen
+20 base conditions above. The fix is local commit `7684d6f`.
+
+The corrected outputs use `durable/selections/development-full-grid-v3/`;
+the frozen cohort and sample snapshot remain development-full-grid-v2. Earlier
+partial outputs and logs remain under the previous selector directory. Four
+workers request the allocation-wide CPU set, then bind to disjoint four-core
+subsets. Validate overlapping old/new completed scientific outputs, the final
+cohort merge, and early raw/capped baseline identity before judging. Record the
+restart's compute in campaign cost rather than dropping the initial attempt.
+
+The v3 run then stopped at 2,018 committed cells because a bullet had no tokens
+after released AR cleanup. A complete source audit found 523 such bullets in
+395 samples and 103 role cells: 522 contain only formatting tags and one is
+whitespace. Ten N1 cells contain 17 affected bullets. Every span and activation
+hash matches the immutable generated pool; this is not a corrupted vector.
+The source reconstructor treats empty-cleaned inputs as invalid. Its zero
+placeholders must not be whitened and interpreted as concept predictions.
+
+The reviewed fix preserves raw/capped/random baseline text and records absent
+fits explicitly. Reconstruction-guided complete selection excludes an
+unscoreable complete sample. Pooling may use its valid individual bullets but
+cannot label a partial set as that complete-sample fallback. Pruning an
+unscoreable N1 parent leaves it unchanged with an explicit unavailable reason;
+its matched-count deletion control is likewise unchanged. A genuinely empty
+selected set retains the defined FVE of zero. Per-sample invalid atom provenance
+is included in every selection record. These eligibility differences must be
+reported, not hidden as zero scores or missing cells.
+
+Five focused tests and a two-cell real replay passed, including one affected
+N1 parent and the whitespace case, with all 40 offline condition rows retained.
+Local commit `3b96f8e` records the fix. A new four-shard run writes
+`durable/selections/development-full-grid-v4/`; v3 files remain unchanged and
+bound by `error-provenance.json`. The frozen scientific 24-condition list,
+candidate pools, controls and thresholds are unchanged. Check overlapping
+scientific outputs and all early baseline texts before judging v4.

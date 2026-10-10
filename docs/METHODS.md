@@ -149,6 +149,12 @@ Illustrative two-round Standard Luna costs at $0.10/$0.50 per million input/outp
 | 2,000 / 800 tokens | $0.0012 | $1.20 | $24 |
 | 8,000 / 2,000 tokens | $0.0036 | $3.60 | $72 |
 
+These two illustrations price ordinary input. If all input incurred the verified
+cache-write rate of $0.125 per million tokens, their two-round costs would be
+$0.0013 and $0.0040 per cell. The corrected ledger reserves that higher input
+rate; measured campaign figures include reported writes and remain separate
+from invoice reconciliation. See experiment 022 for the accounting correction.
+
 These are forecasts without assumed cache discounts or retries. Three variants over 20,000 cells would cost $72–216 just for editing; the $40–60 helper allocation is not a guarantee. Pilot 100–300 representative development cells, shortlist 1–2 variants, then use actual planned cell counts; running all variants on 20,000 cells is not required. Freeze one cell manifest shared with raw/capped N=1 and A controls. Report partial-grid pilots as cell-level metrics, not official full-grid item accuracy; final comparisons use the original complete family grids and official item aggregation.
 
 Every rewrite needs fresh AR encoding. Accept by local AR objective initially; separately test a development-fixed validated score combination. Luna never judges each proposal or supplies feedback to the editor. Judge final outputs for each condition; sampled intermediate audits occur only after selection, without feedback. Compare editing/encoding cost against A with a larger shared prefix up to 32 or measured compute; equal pools do not equalize cost. Check deleted true details and added unsupported ones.

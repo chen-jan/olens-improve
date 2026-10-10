@@ -1,6 +1,6 @@
 # Execution status
 
-Updated: 2026-10-10, approximately 04:13 UTC.
+Updated: 2026-10-10, approximately 05:20 UTC.
 Started: 2026-10-10 01:25:36 UTC (October 9, 21:25:36 EDT).
 Target finish: 2026-10-10 21:25:36 UTC. Execution remains active and authorized.
 
@@ -28,6 +28,12 @@ comparisons on its complete grids are still pending.
   still found five clear false equivalences. Four affected actual clusters.
   This audit is not a population error estimate; semantic variants remain
   diagnostic. Exact-repeat support plus pooling produced no recovery gain.
+- A bounded helper-effort audit rechecked the same 40 semantic pairs with Luna
+  reasoning enabled. It rejected all five previously flagged equivalences, but
+  also rejected two valid matches. This selected audit is not an accuracy
+  estimate. Confirmation on the existing 189-cell pair list is now judged and
+  does not establish better selected outputs. Strict filtering still removes
+  most coverage. The benchmark judge remains Luna with reasoning disabled.
 - Contrastive selection followed by pruning is a promising combination for
   larger measurement, with unchanged bridge recovery and three additional role
   cell passes in the pilot. Inspected role gains are judge-sensitive; the
@@ -40,6 +46,14 @@ comparisons on its complete grids are still pending.
   covering six items. Originals used Flex and repeats used Standard; this does
   not isolate a within-tier effect or establish which label is correct. Primary
   verdicts remain unchanged. See experiment 011 on judge repeatability.
+- All32 candidate judgments reveal missed opportunities: bridge mentions appear
+  in at least one candidate in 14/24 cells, while reconstruction selection
+  recovers them in 7/24. This is an evaluation-only availability ceiling; some
+  passing candidates still contain incorrect surrounding claims.
+- Matched unrelated donor activations reduce flagged hallucinations from
+  543/1,137 to 25/992 specific outputs, but 956/1,145 donor outputs are off-topic
+  and only 11 are consistent, versus 446 for the actual activations. An error
+  rate without useful coverage would misleadingly reward this control.
 
 Reviewed sources and paired examples are in the experiment records and
 [local dashboard](../dashboard/index.html). Local commit `f62adb6` contains the
@@ -53,11 +67,12 @@ first source-checked dashboard with grouped intervals. Nothing has been pushed.
 | Activations and splits | All 19,435 core cells freshly captured; grouped split v2 frozen |
 | Shared pilot | 189 cells × 32 samples complete and immutable |
 | Full development collection | All 5,236 cells × 32 samples frozen; 167,552 samples |
-| Full development reconstruction | One streaming writer; first snapshot complete, second snapshot and final tail running |
+| Full development reconstruction | Complete: 642,209 unique vectors covering all 5,236 cells |
+| Full development selectors | v4 running on four disjoint CPU groups after tested empty-atom fix; 2,018 v3 rows preserved for overlap verification |
 | Full development baseline | Raw and capped N1 judged, all stages/cells complete; pinned item aggregation verified |
-| Single-method pilots | A/C/D/E1/E3/F judged; repaired B export awaits judging; E2/G diagnostics complete with limits |
+| Single-method pilots | A/B/C/D/E1/E3/F judged; E2/G diagnostics complete with limits; separate exact-claim-span audit prepared |
 | Combinations | Pruning after pooling/contrastive selection/editing and exact-repeat support plus pooling judged and audited |
-| Additional controls | All32 candidate diagnostic and matched-donor N1 exported; bounded judging queued |
+| Additional controls | All32 judgments and matched-donor N1 complete; all requested cells/stages covered |
 | Held-out evaluation | Validation and test readouts remain sealed |
 
 Combination comparisons retain unchanged parents, component-off outputs, and
@@ -72,29 +87,46 @@ The corresponding role cell count is only 151/3,420: an item passes when any
 inspected site passes, so item recovery must not be read as uniformly faithful
 readouts. These are original-grid development scores, not held-out results.
 
-Next: finish reconstruction, run four independent CPU selection shards and
-validate their merge. Judge the all-candidate, repaired-consensus and wrong-
-activation diagnostics using the same bounded Luna queue. Review development outcomes
+Next: finish four independent CPU selection shards and validate their merge,
+including overlap with the preserved initial attempt and early baseline texts.
+The larger comparison is frozen at 24 conditions in
+experiment 019. Repaired consensus and pooling-plus-specificity pilots are judged.
+Audit source-preserving claim extraction on eight fixed cells before expanding
+that separate diagnostic. Review development outcomes
 before the validation shortlist, freeze, and test. A small gain with wide
 intervals can warrant follow-up; significance alone is not an expansion gate.
 
 ## Resources and limits
 
 - Four main H200 allocations: 25330001, 25330006, 25330007, 25417596.
-- Streaming AR: extra H200 allocation 25460532. Diagnostic allocation 25459615
-  was intentionally released after completing its tasks.
+- Both extra H200 allocations, 25460532 and 25459615, were intentionally
+  released after their encoding and diagnostic work completed. Four main
+  allocations remain available for the next scientifically authorized stage.
 - CPU allocation 25299630 runs lightweight judging, selection and monitoring.
   A watcher checks every 600 seconds until 21:25:36 UTC; its process and last
   check are recorded under the fast project's `watcher/` directory. An agent
   stopping does not itself guarantee that this process remains healthy.
-- Observed API usage at approximately 04:05 UTC: **$1.721**, with **$2.40045**
-  unresolved reservations. The ledger is authoritative, including retries and
-  malformed responses. Target $200; hard ceiling $300 including reservations.
+- Recorded API usage at approximately 05:20 UTC: **$4.48121**, with **$4.03092**
+  unresolved reservations; later activity is accounted in the ledger.
+  The earlier cache-write pricing correction added $0.30592
+  to settled usage and $0.02011 to unknown-request reservations; original events
+  and the previous ledger snapshot are preserved. These are usage-based estimates,
+  not reconciled invoice charges. Target $200; hard ceiling $300 including reservations.
 - Shared O-lens cap: 32 samples/cell across all methods. Editing has its separate
   two-round/eight-proposal cap. No training or new activation sites.
-- Project artifacts used approximately 21.70 GB logical at 04:05 UTC.
+- Project artifacts used approximately 26.72 GB logical at 04:45 UTC.
   The existing 55.56 GB base cache is reused without copying. Aggregate
   project allowance is approximately 500 GB; lab group quota remains unresolved.
+
+The donor judge run developed connection failures without provider status codes.
+It was stopped, preserving cached successes and uncertain reservations. A
+single-request check succeeded; an eight-slot restart with a shared transport
+failure guard completed 2,110 physical requests without another transport
+failure. The four subsequent diagnostic batches also completed without new
+unknown requests. The original cause remains unresolved. No unknown charge was released.
+Automatic approval review initially rejected the check/restart for missing
+authorization context; root's exact-scope submissions with the existing user
+authorization succeeded. This did not expand the model, endpoint, or data scope.
 
 Generation measured roughly 4.2 GPU-seconds/cell at N32. Streaming reconstruction
 measured about 98 new phrase vectors/s. These are batched task timings, not
@@ -121,8 +153,15 @@ records before continuing. Preserve the historical `mats/workspace` checkout.
   Report exact condition roots and selection hashes, not a directory glob.
 - Full development: immutable `runs/development-full-grid-v2`, baseline
   judgments in its `judgments-baselines` directory. Selector comparisons are
-  pending. A small parallel AR-cache extension is being prepared for later
-  validation/test; the active development writer remains unchanged.
+  pending. A parallel AR-cache extension preserved all keys and inherited
+  vectors in a four-cell real fixture, with no changed best-of-32 winner.
+  Its expanded 12-cell batch-size audit exceeded both provisional equivalence
+  guards: maximum FVE drift .003524, with 0/12 best-of-32 winners, 2/12 pooled
+  texts and 1/12 specificity-selected texts changing. Fixed B128 is accepted as
+  a declared implementation, not as numerically equivalent to B32. All method
+  arms share the same persisted vectors, batch/partition provenance is retained,
+  and near-threshold decisions remain explicitly sensitive. Production is unchanged;
+  validation/test access still requires a separate scientific stage gate.
 - API ledger: `budget/ledger.sqlite3`. Retain the unknown $2 Claude review
   reservation and 80 unknown Flex attempts unless billing evidence resolves them.
 - Runtime/allocation details: `configs/runtime.json`. Verify live state before
