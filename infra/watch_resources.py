@@ -26,7 +26,10 @@ def project_storage(roots, maximum_files=50000):
     """Bounded inspection of project-owned trees only; never follow symlinks."""
     logical = allocated = files = 0
     seen = set()
+    per_root = {str(root): {"logical_bytes": 0, "allocated_bytes": 0, "files": 0, "complete": False}
+                for root in roots}
     for root in roots:
+        root_counts = per_root[str(root)]
         for directory, _, names in os.walk(root, followlinks=False):
             for name in names:
                 path = Path(directory) / name
@@ -43,10 +46,15 @@ def project_storage(roots, maximum_files=50000):
                 logical += stat.st_size
                 allocated += stat.st_blocks * 512
                 files += 1
+                root_counts["logical_bytes"] += stat.st_size
+                root_counts["allocated_bytes"] += stat.st_blocks * 512
+                root_counts["files"] += 1
                 if files >= maximum_files:
                     return {"logical_bytes": logical, "allocated_bytes": allocated,
-                            "files": files, "complete": False, "limit": maximum_files}
-    return {"logical_bytes": logical, "allocated_bytes": allocated, "files": files, "complete": True}
+                            "files": files, "complete": False, "limit": maximum_files, "per_root": per_root}
+        root_counts["complete"] = True
+    return {"logical_bytes": logical, "allocated_bytes": allocated, "files": files,
+            "complete": True, "per_root": per_root}
 
 
 def budget_snapshot(path):

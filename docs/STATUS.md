@@ -160,9 +160,9 @@ quality or a complete dependency installation on another machine.
 - Both extra H200 allocations, 25460532 and 25459615, were intentionally
   released after their encoding and diagnostic work completed. Four main
   allocations remain available for the next scientifically authorized stage.
-- Scoped CPU allocation 25481193 supplies sixteen physical cores and 80 GiB
-  through 10:25 UTC for offline validation work. Four selectors used disjoint
-  physical cores; subsequent merge/pruning uses one four-core worker.
+- Scoped CPU allocation 25481193 was released after offline validation work,
+  with terminal cancellation confirmed at 09:07:04 UTC. It held sixteen physical
+  cores and 80 GiB for 41 minutes 30 seconds; no judge or GPU job was affected.
 - Fresh CPU allocation 25474685 provides eight physical cores and 32 GiB for
   judging through 21:25:37 UTC. The old allocation 25299630 reached its memory
   limit, predominantly in its external step; unrelated processes are preserved.
@@ -170,19 +170,21 @@ quality or a complete dependency installation on another machine.
   A watcher checks every 600 seconds until 21:25:36 UTC; its process and last
   check are recorded under the fast project's `watcher/` directory. An agent
   stopping does not itself guarantee that this process remains healthy.
-- Recorded API usage at approximately 07:34 UTC: **$6.07486**, with **$4.58690**
-  unknown-charge holds and no in-flight reservations. The ledger remains
-  authoritative as work resumes.
+- Recorded API usage at 09:07:42 UTC: **$8.54072**, with **$4.63148** reserved,
+  including **$4.59653** in unknown-charge holds. The ledger remains
+  authoritative as work continues.
   The earlier cache-write pricing correction added $0.30592
   to settled usage and $0.02011 to unknown-request reservations; original events
   and the previous ledger snapshot are preserved. These are usage-based estimates,
   not reconciled invoice charges. Target $200; hard ceiling $300 including reservations.
 - Shared O-lens cap: 32 samples/cell across all methods. Editing has its separate
   two-round/eight-proposal cap. No training or new activation sites.
-- Project artifacts used approximately 33.53 GB logical / 26.76 GB allocated
-  at the 07:57 UTC watcher checkpoint.
-  The existing 55.56 GB base cache is reused without copying. Aggregate
-  project allowance is approximately 500 GB; lab group quota remains unresolved.
+- Project artifacts used 47.76 GB logical at 09:07:42 UTC: 35.69 GB on fast
+  storage and 12.07 GB on durable storage. File-block allocation totals 38.56 GB;
+  this is not a quota reading. The existing 55.56 GB base cache is reused without
+  copying and excluded from those project totals. The projected final project
+  footprint is roughly 80–100 GB. Aggregate allowance is 500 GB; lab group quota
+  remains unresolved. See [the retention plan](experiments/storage-retention-plan.md).
 
 The full-development judge queue later developed 21 connection failures and
 21 cancellations during guard shutdown. All 42 uncertain holds remain reserved;
