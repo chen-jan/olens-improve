@@ -1,0 +1,313 @@
+{
+  "schema_version": 1,
+  "freeze_id": "test-final-method-v1",
+  "status": "root_reviewed_frozen",
+  "decision_authority": "Root accepted A16 and unpruned Emean32, and exactly six final TEST arms, after the complete signed VAL report and independent reviews; authority files still require final root sealing before processing.",
+  "decision_recorded_utc": "2026-10-10T12:29:19.966764+00:00",
+  "prepared_by": "adversarial_evaluation",
+  "test_outputs_inspected": false,
+  "test_selection_scores_inspected": false,
+  "test_quality_labels_inspected": false,
+  "test_analysis_launched": false,
+  "conditions_path": "configs/conditions_test_final_v1.json",
+  "conditions_sha256": "aaed61d8f14e3b214403ecd87bfea1d8deeb4f4824756327e306db8015cb120f",
+  "condition_count": 6,
+  "conditions": [
+    {
+      "method": "raw_n1",
+      "n": 1
+    },
+    {
+      "method": "capped_n1",
+      "n": 1
+    },
+    {
+      "method": "best_n_exact",
+      "n": 16
+    },
+    {
+      "method": "best_n_exact",
+      "n": 32
+    },
+    {
+      "method": "random_complete",
+      "n": 32
+    },
+    {
+      "method": "best_n_specificity_mean",
+      "n": 32
+    }
+  ],
+  "selected_quality_cost_operating_points": [
+    {
+      "method": "best_n_exact",
+      "n": 16,
+      "role": "Lower sample budget, balanced recovery profile"
+    },
+    {
+      "method": "best_n_specificity_mean",
+      "n": 32,
+      "role": "Unpruned specificity-adjusted quality profile"
+    }
+  ],
+  "controls": [
+    {
+      "method": "raw_n1",
+      "n": 1,
+      "role": "Original released raw sample0, exempt from final output cap"
+    },
+    {
+      "method": "capped_n1",
+      "n": 1,
+      "role": "Deterministic same-cap sample0 reference"
+    },
+    {
+      "method": "best_n_exact",
+      "n": 32,
+      "role": "Emean component-off same-pool/same-N/output-budget reconstruction selector, and A16 sample-budget comparator"
+    },
+    {
+      "method": "random_complete",
+      "n": 32,
+      "role": "Frozen same-pool complete-readout draw; controls selection, not a deployment requirement to generate32 unused samples"
+    }
+  ],
+  "validation_evidence": {
+    "signed_report_path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/signed-menu-analysis-v1.json",
+    "signed_report_sha256": "db223a374f51d9122f8cc430a347e4f82dea75ce3d449008e1def1f7cf89e918",
+    "signed_report_status": "complete_four_family_validation_comparison",
+    "shortlist_freeze_path": "configs/validation_shortlist_freeze_v1.json",
+    "shortlist_freeze_sha256": "30daad423ee9326971f5f08fa4f3a3e7eec37c857b3757a700a8fcbb3a7547e6",
+    "signed_validation_conditions_path": "configs/conditions_validation_v1.json",
+    "signed_validation_conditions_sha256": "bed944371e050eff7898d07fe0a2ccb39a49a3359779640525b06c4904aca82a",
+    "complete_conditions": 12,
+    "complete_family_condition_contracts": 48,
+    "families": [
+      "hallucination",
+      "multihop_mt",
+      "chain_intermediates",
+      "role_bound_association"
+    ],
+    "items_per_family": 20,
+    "independent_groups": {
+      "hallucination": 20,
+      "multihop_mt": 17,
+      "chain_intermediates": 7,
+      "role_bound_association": 10
+    },
+    "trace_sampling": "First three distinct items per changed category; three seeded unchanged cells; seed 20261010",
+    "reporting_implementation_sha256": {
+      "${OLENS_REPO_ROOT}/scripts/analyze_signed_menu.py": "82afc579a36f1176465252c19cd8a3d300597f038e9cd9e2ca00d4dad8bc061d",
+      "${OLENS_REPO_ROOT}/scripts/analyze_consensus_conditions.py": "853827001140b7c7fd8aeb0be6b4485e2a02a7f3a2e5fbf61833efc6dedb40ce",
+      "${OLENS_REPO_ROOT}/src/olens_improve/reporting.py": "7bc728136f19eac771ed3fb8c3b9077f416d047197bb3c9c0de2c431985ee319",
+      "${OLENS_REPO_ROOT}/src/olens_improve/evaluation.py": "91c5bf39cab00dd15dd0b9b0f9b02463bd7c648197db472ccf6d551de8de27dd",
+      "${OLENS_REPO_ROOT}/src/olens_improve/data.py": "d7c90871a0725ea0538c1a924da1b76e5651196bd6266fb2da5e07bbc3c715ae"
+    }
+  },
+  "reviewed_decision": [
+    {
+      "reviewer": "root",
+      "role": "Coordinator",
+      "decision": "Accept two promising experimental operating points A16/Emean32; exactly four controls, no pooling/pruning promotion; no further tuning after TEST opens."
+    },
+    {
+      "reviewer": "adversarial_evaluation",
+      "model": "GPT-6.1 Sol",
+      "role": "Independent adversarial evaluation review",
+      "decision": "A16 improves mean recovery in all three families atN16; Emean32 has the lowest unpruned observed hall error and restores numerical recovery relative toA32. Most paired uncertainty remains broad. Pooling loses numerical recovery; pruning gains are matched by random deletion with lower information retention.",
+      "specific_limits": [
+        "A16 role oa-burglar-neighbor-spy-ab L28p165 is a suspect direction-matching judge win.",
+        "Recovered numbers/names coexist with incompatible arithmetic/entities.",
+        "Some hall gains are wrong-to-off-topic transitions and unsupported-versus-contradictory classification is sensitive."
+      ]
+    },
+    {
+      "reviewer": "model_scoring_audit",
+      "role": "Second independent scientific trace review",
+      "decision": "Emean32 merits a held-out experimental tradeoff comparison; D16 remains a secondary diagnostic, not a selected explanation method. Support A16/Emean32 prospectively, with no established global faithfulness winner.",
+      "specific_limits": [
+        "Emean numerical wins often recover an intermediate amid wrong starts/operations; the intermediate endpoint differs from explanation correctness.",
+        "Role outcomes depend on inconsistent matching of descriptions and names; some D16 gains combine unrelated clauses.",
+        "Emean versusA32 class changes include wrong-to-off-topic and consistent-to-wrong changes."
+      ]
+    }
+  ],
+  "selection_rationale": {
+    "A16": "Against cappedN1: hall -0.84pp; MT +2.27pp; chain +0.91pp; role +0.53pp. N16 is the original nested prefix.",
+    "Emean32": "Against cappedN1: hall -2.47pp; MT +1.82pp; chain +0.45pp; role +0.44pp. AgainstA32, numerical recovery is +1.82pp with similar output length.",
+    "no_pruning_or_pooling_promotion": "Pruning approximately halves output length, loses MT/numerical recovery, and matched random deletion matches or improves hall error. Pooling adds compute/length without a balanced validation gain.",
+    "uncertainty": "Related-group bootstrap2000 draws by family, unadjusted exploratory intervals. Small family/group counts; no significance threshold and no hidden cross-family macro. Choices are promising, not established faithful improvements."
+  },
+  "test_cohort": {
+    "analysis_manifest_path": "configs/test-full-grid-analysis-v1.json",
+    "analysis_manifest_sha256": "cb3e868b23262509a1132533b7d9eaad5321f5cfed211d8808a17a649734ed76",
+    "original_blind_manifest_path": "configs/test-full-grid-blind-v1.json",
+    "original_blind_manifest_sha256": "4f11c14de794f7effdd8fea7a739a7eb5f02f02edb5f913156cddb29fd557f25",
+    "original_blind_gate_path": "configs/gates/test-full-grid-blind-v1.json",
+    "original_blind_gate_sha256": "bbd2ef9597cac1f31b438e2faacbe27653382873f73042f4f494bfd073592d40",
+    "cells": 10714,
+    "items": 268,
+    "independent_groups": 200,
+    "ordered_cells_content_sha256": "dcb26a6f04f7b83242871311e4e1fbb17b5586b5aed4732a306386e7390fcd4a",
+    "family_counts": {
+      "chain_intermediates": {
+        "cells": 770,
+        "items": 70,
+        "independent_groups": 28
+      },
+      "hallucination": {
+        "cells": 3705,
+        "items": 99,
+        "independent_groups": 99
+      },
+      "multihop_mt": {
+        "cells": 539,
+        "items": 49,
+        "independent_groups": 48
+      },
+      "role_bound_association": {
+        "cells": 5700,
+        "items": 50,
+        "independent_groups": 25
+      }
+    },
+    "scope": "All exact original grouped TEST cells and original family read grids; no new sites, donor redraw or changed grouping."
+  },
+  "candidate_budget_contract": {
+    "global_pool_id": "e8cfd09f7ff1c9195cfd4c3a",
+    "pool_configuration_path": "${OLENS_DATA_ROOT}/readouts/shared-global-v1/pool.json",
+    "pool_configuration_sha256": "37107fbc34846b24e6c151bdbb18fefa5404dbad4f90487851826a6d14b0976d",
+    "maximum_shared_samples_per_cell": 32,
+    "N16": "Original sample indices0..15 of the same immutableN32 pool",
+    "N32": "Original sample indices0..31",
+    "recipe": {
+      "base_revision": "6a9e13bd6fc8f0983b9b99948120bc37f49c13e9",
+      "adapter_revision": "c95215d5d2f6250f20c305ae55c6e4d7569f92dc",
+      "seed": 20261010,
+      "max_new_tokens": 256,
+      "temperature": 1.0,
+      "top_p": 0.95,
+      "top_k": 64,
+      "shard_count": 4,
+      "maximum_shared_samples_per_cell": 32,
+      "capture_version": "fresh-core-v1",
+      "target_n": 32,
+      "batch_size": 32,
+      "cells_per_batch": 4,
+      "maximum_batch_sequences": 128
+    },
+    "reuse_policy": "Consume unchanged blind-generation records and provenance only; no import, resampling, residual generation, cross-cell text aggregation or additional candidate samples."
+  },
+  "inference_contract": {
+    "project_configuration_path": "configs/project.json",
+    "project_configuration_sha256": "605358779353628c5814fdda629585d50766a60cc3b955875921c62b7c1fa2f8",
+    "current_scientific_source_sha256": {
+      "scripts/compare_selectors.py": "a8e11ee60318f19ee77cf680ca9cd91290487cde88392b07df956e6c781165b8",
+      "src/olens_improve/selection.py": "003c05f8bfbc1cc5b492faf0aaa11f53f8bdfd29750a3b93297b4462ab28e3c5",
+      "src/olens_improve/contrastive.py": "6a53d113aded850b108cebeb419cd5f2f71e1304a9eed123ac5adb56ab9bb90d",
+      "src/olens_improve/reconstruction.py": "aef42c5dd1d7493f26a961bb053381464009d446329939354f090c6ba4803c6a",
+      "src/olens_improve/ar_cache.py": "78751061a281a60a3334f46c7bcaa267769a6f15c0b923b36a4f8b08da0d00c5",
+      "scripts/partition_ar.py": "20c6190221a46dead4c189b451167bec0d4d5618ffe380f2ce1e9ae3c5cad10c",
+      "src/olens_improve/ar_partition.py": "4f250bd78e5adb81faed0568ad004bc8df62dd34d1daf94973ab13052e802499",
+      "src/olens_improve/stage_permissions.py": "7cfe9248e7b529ad38b46ebe46282c4132c366ab1af4ea945c5a85c054ff72bd"
+    },
+    "AR_vector_contract": {
+      "base_revision": "6a9e13bd6fc8f0983b9b99948120bc37f49c13e9",
+      "pair_revision": "c95215d5d2f6250f20c305ae55c6e4d7569f92dc",
+      "head_sha256": "9f4cb6d193679c8683d7b49c8d2821c71567b3fc720baa73d7dbddb95f4c2179",
+      "meta_sha256": "d87687fa9b55b95d714c33dd05436d65163ae214b2b39a73ed9cb36572e16a45",
+      "adapter_config_sha256": "f570eeac608af8453d6f2888f63aab3035fdfdc7af6c8207247902881a7ba716",
+      "adapter_sha256": "d90bb9df02c352ef19f28536374e4a333e6dae8a103ba37d9e1c4e5183654e8a",
+      "tokenizer_revision": "6a9e13bd6fc8f0983b9b99948120bc37f49c13e9",
+      "tokenizer_cleanup": "source_scaffolding_and_special_ids_v1",
+      "span_limit": 32,
+      "padding": "right_zero",
+      "head_layer_norm": true,
+      "head_layer_norm_epsilon": 1e-05,
+      "final_norm": "Identity",
+      "backbone_dtype": "bfloat16",
+      "head_dtype": "float32",
+      "key_policy": "effective_scored_tokens_and_tag_v1",
+      "sha256": "a451cf49d28ac74477229e74dfc738e51b8961b5376c688fd9e40abbd8c133b6"
+    },
+    "selection_solver": {
+      "primary": "scipy.optimize.nnls, scipy1.18.1, float64 solve",
+      "objective": "1 - squared_residual / max(squared_whitened_target,1e-12), unclipped",
+      "fit_inputs": "Centered/whitened target retains magnitude; centered/whitened phrase rows normalized by norm+1e-9",
+      "compatibility_only": "Released80-iteration projected-gradient fit is diagnostic only; exact SciPy NNLS is the final primary selector."
+    },
+    "whitening": {
+      "repository": "agu18dec/local-workspace",
+      "revision": "5653a7fead43ecbd87e3b6d2a2990a98b32843ca",
+      "prefix": "ckpts/ar/ptag/whiteners/whitening_iolens_pooled_L",
+      "keys": [
+        "mu",
+        "cov"
+      ],
+      "ridge_c": 0.1,
+      "convention": "Symmetrize covariance in float64; ridge=max(.1*mean(diag(cov)),1e-12); inverse sqrt of nonnegative eigenvalues plus ridge; transform=(x-mu)@W.T; source-bound in reconstruction.py"
+    },
+    "encoding_execution": {
+      "new_rows_batch_size": 128,
+      "partition_count": 4,
+      "partition_rule": "int(SHA256(effective-input cache key),16) %4",
+      "key_order": "First occurrence in immutable flat snapshot, sample order then parser bullet order; retain that order within partitions",
+      "shard_size": 4096,
+      "shared_catalog": "One common TEST catalog inherits immutable first-computed DEV/VAL effective-key rows. The prepared plan must bind exact partition input order/hashes and inherited catalog indexes/tensor provenance before encoding; no batch-equivalence claim.",
+      "sensitivity_document": "docs/experiments/018-parallel-ar-cache.md",
+      "sensitivity_document_sha256": "0e4ddbbab7371b2c6bf7c899d13d5d745e36a952ec44903b55f52264fcef11a8",
+      "limits": "Expanded DEV batch check failed provisional raw and FVE equivalence guards (max FVE drift .003524); D32 changed2/12 and E1 changed1/12 texts. Near-threshold/near-zero decisions remain sensitive; do not retune threshold using VAL.",
+      "inherited_DEV_and_VAL_rows": "Keep first-computed exact effective-key DEV/VAL rows unchanged, including recorded or explicitly unavailable historical batch metadata; no B32-to-B128 equivalence claim",
+      "partition_implementation_sha256": {
+        "scripts/partition_ar.py": "20c6190221a46dead4c189b451167bec0d4d5618ffe380f2ce1e9ae3c5cad10c",
+        "src/olens_improve/ar_partition.py": "4f250bd78e5adb81faed0568ad004bc8df62dd34d1daf94973ab13052e802499"
+      },
+      "inherit_catalog_path": "${OLENS_COMPUTE_ROOT}/vectors/validation-catalog-v1"
+    },
+    "fixed_DEV_control_bank": {
+      "metadata_path": "${OLENS_DATA_ROOT}/manifests/development-matched-controls-v2-metadata-v1.json",
+      "metadata_sha256": "ccca28d80794d4de7e612b3a7b1924a9f1e2a43259e31f3b77841e14a18be520",
+      "original_controls_manifest_sha256": "518e1e11df48d172c9e1d78e055af8e6724bd83de3a60b743e2b3c75bc8ac0d7",
+      "requested_controls_per_cell": 8,
+      "beta": 1.0,
+      "aggregation": "mean",
+      "policy": "Use unchanged previously assigned DEV donors and fixed read-site metadata; exclude target-related group; no VAL/TEST donor redraw or gold-derived control selection"
+    },
+    "randomness": {
+      "split_and_audit_seed": 20261010,
+      "random_complete": "seed=int(digest([random_complete_v1,cell_id,N])[:16],16)",
+      "digest": "SHA256 of canonical sort-key compact UTF8 JSON, ensure_ascii=False",
+      "policy": "Frozen per-cell seeds; no redraw based on observed outcomes"
+    },
+    "output_caps": {
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_release_N1_exempt": true,
+      "parser": "source_contiguous_dash_blocks_v1"
+    },
+    "invalid_AR_policy": "Keep raw/capped/random texts and nullable fits unchanged; A/E complete selection excludes samples containing invalid cleaned scoring atoms. Preserve fixed intended cell denominators and explicit empty/unavailable outcomes; no TEST-driven repair or alternative selection policy.",
+    "reviewed_VAL_producer_config_path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-0/config.json",
+    "reviewed_VAL_producer_config_sha256": "ff8baed042e99676d772e99da5a6a5c3208ea60b724e432fe2d80f505881c9e1",
+    "pruning": "Excluded from final TEST menu; historical .005 pruning settings remain unchanged in VAL/DEV evidence and are not tuned or run as final TEST arms."
+  },
+  "judgment_contract": {
+    "model": "gpt-6-luna",
+    "reasoning_effort": "none",
+    "tier": "default",
+    "benchmark_revision": "92d763e722377f5bfae045e829a308ab5919a820",
+    "recipe": "Same pinned upstream WorkspaceBench prompts/schema and aggregation as signedVAL. Both hallucination stages; MT regex; chain final-token original grid; role all frozen sites. Exact request caching preserves source response provenance.",
+    "operational_source_pins": "Bind current evaluation/budget/performance and launcher sources in the separate reviewed judging spec after pending operational changes; this scientific freeze does not require the pre-change evaluation.py hash.",
+    "financial_policy": "Existing shared300USD hard ceiling,200USD target, all uncertain charges retained. Separate exact-cache forecast and root-sealed run cap/CPU/profile are required before paid judging."
+  },
+  "final_evaluation": {
+    "headline_endpoints": "Hall wrong/(wrong+offtopic+consistent), assertion share and secondary wrong/(wrong+consistent); stage2 false-span/true-claim/unverifiable tallies with units explicit. Other families use frozen concept/intermediate/binding recovery, paired cells and upstream original-grid itemANY aggregation.",
+    "coverage": "All six conditions/all four original grids; API/instrument failures remain missing, never successful abstentions. Empty outputs separate from failures.",
+    "uncertainty": "Paired group bootstrap by family,2000 draws,seed20261010; separate family item/cell results; no hidden macro or within-item claim for cross-family tradeoff plots.",
+    "traces": "Same deterministic distinct-item wins/regressions and seeded unchanged sampling as signedVAL; retain exact texts, context and raw judge evidence. No selected-example proof.",
+    "cost": "Report new-input capture, candidate sampling, AR and control/refit CPU work separately from shared campaign-cache reuse and final judge charges. No invented GPU dollar price or measured serving latency.",
+    "no_further_selection": "Final settings and comparisons are fixed before any TEST readout/AR/quality access. Do not add arms, retune controls/thresholds, choose a new operating point, or reinterpret TEST as another development set. Subsequent DEV results remain descriptive only.",
+    "extra_offline_menu": "The existing selector may mechanically compute its fixed broader menu, but export/judge/interpret only these six signed arms; no additional test-selected scaling/composite arm.",
+    "completion": "Report incomplete/time-limited measurement honestly if original-grid coverage or deadline cannot be achieved; do not fabricate coverage or label unrun arms negative."
+  },
+  "documentation_path": "docs/experiments/032-test-final-method-freeze.md"
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "method": "raw_n1",
+    "n": 1
+  },
+  {
+    "method": "capped_n1",
+    "n": 1
+  },
+  {
+    "method": "best_n_exact",
+    "n": 16
+  },
+  {
+    "method": "best_n_exact",
+    "n": 32
+  },
+  {
+    "method": "random_complete",
+    "n": 32
+  },
+  {
+    "method": "best_n_specificity_mean",
+    "n": 32
+  }
+]
