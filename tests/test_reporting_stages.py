@@ -114,7 +114,10 @@ class ReportingStageTests(unittest.TestCase):
                 with self.assertRaises(ValueError):module.run(args)
             for k,v in self.kwargs(root).items():setattr(args,k,v)
             context={'a':{'exact_upstream_mc_block':'synthetic choices','gold_choice_indexes':[1,1,1]}}
-            with patch.object(module,'role_contexts',return_value=(context,{})):module.run(args)
+            hall={'a':{'source_bank_item':{'id':'a','prompt':'Exact synthetic prompt','response':'Exact synthetic response'},
+                       'bank_sha256':'synthetic-bank','evaluation_only':True}}
+            with patch.object(module,'role_contexts',return_value=(context,{})), \
+                 patch.object(module,'hall_contexts',return_value=(hall,{})):module.run(args)
             result=json.loads(args.output.read_text())
             self.assertEqual(result['status'],'complete_four_family_validation_comparison')
             self.assertEqual(result['lengths']['best_n_exact-n32']['hallucination']['outputs'],1)
@@ -123,10 +126,14 @@ class ReportingStageTests(unittest.TestCase):
             self.assertEqual(example['proposed']['evidence']['returned_choice_indexes'],[1,1,1])
             self.assertEqual(example['proposed']['evidence']['rationale'],'synthetic rationale')
             self.assertTrue(result['trace_evidence_source_sha256'])
+            hexample=result['paired_traces'][0]['families']['hallucination']['examples']['unchanged'][0]
+            self.assertEqual(hexample['proposed']['evaluation_context']['source_bank_item']['prompt'],'Exact synthetic prompt')
+            self.assertEqual(hexample['proposed']['evidence']['class'],'consistent')
             cache=root/'best_n_exact-n32/role_bound_association/cells.jsonl'
             body=json.loads(cache.read_text());body['result']['q1_choice']=2;cache.write_text(json.dumps(body)+'\n')
             args.output=root/'wrong-cache-analysis.json'
-            with patch.object(module,'role_contexts',return_value=(context,{})):
+            with patch.object(module,'role_contexts',return_value=(context,{})), \
+                 patch.object(module,'hall_contexts',return_value=(hall,{})):
                 with self.assertRaisesRegex(ValueError,'Retained role choices'):module.run(args)
 
     def test_component_and_budget_pairs_use_only_signed_arms(self):

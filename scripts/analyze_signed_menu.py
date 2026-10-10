@@ -90,13 +90,24 @@ def role_contexts(item_ids):
     return contexts, hashes
 
 
+def hall_contexts(item_ids):
+    """Retain exact bank prompt/response, without changing its judged verdict."""
+    from olens_improve.data import item_id, load_bank, paths
+    path = paths('hallucination')['bank']
+    before = digest(path)
+    items = unique(load_bank('hallucination'), item_id)
+    contexts = {ident:{'source_bank_item':items[ident], 'bank_path':str(path),
+                       'bank_sha256':before, 'evaluation_only':True} for ident in item_ids}
+    if digest(path) != before:
+        raise ValueError('Hallucination context bank changed during trace extraction')
+    return contexts, {str(path):before}
+
+
 def enrich_traces(traces, measurement, cells):
     """Attach retained verdicts to fixed sampled traces, never back to selection."""
     needed = defaultdict(dict)
     for comparison in traces:
         for family, details in comparison['families'].items():
-            if family == 'hallucination':
-                continue
             for examples in details['examples'].values():
                 for sample in examples:
                     for label, condition in [('baseline',comparison['baseline_condition']),
@@ -106,7 +117,15 @@ def enrich_traces(traces, measurement, cells):
     role_ids = {str(cells[cid]['item_id']) for (arm,family),rows in needed.items()
                 if family == 'role_bound_association' for cid,row in rows.items() if not row['empty']}
     contexts, hashes = role_contexts(role_ids) if role_ids else ({},{})
+    hall_ids = {str(cells[cid]['item_id']) for (arm,family),rows in needed.items()
+                if family=='hallucination' for cid in rows}
+    hall, hall_hashes = hall_contexts(hall_ids) if hall_ids else ({},{})
+    hashes.update(hall_hashes)
     for (condition,family), samples in needed.items():
+        if family=='hallucination':
+            for cid, sample in samples.items():
+                sample['evaluation_context'] = hall[str(cells[cid]['item_id'])]
+            continue
         folder = roots[condition]/family
         result_path = folder/'results.json'
         results = json.loads(result_path.read_text())['rows']
