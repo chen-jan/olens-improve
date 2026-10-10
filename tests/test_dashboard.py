@@ -31,6 +31,20 @@ class DashboardTests(unittest.TestCase):
         self.assertNotIn("</script><script>alert(1)</script>", output)
         self.assertIn("Not measured", output)
 
+    def test_cache_only_cost_cannot_silently_claim_full_inference(self):
+        with self.assertRaisesRegex(ValueError, 'scope'):
+            dashboard.build({'methods':{'sample_selection':{'cost_frontier':[{'label':'Incomplete cost','cost_unit':'GPU seconds','points':[{'cost':1,'value':.5}]}]}}})
+    def test_measured_curve_can_draw_ci_and_handle_missing_ci(self):
+        output = dashboard.build({"methods": {"sample_selection": {"scaling": [{
+            "label": "Toy recovery fixture", "cohort": "synthetic", "points": [
+                {"n": 1, "value": 0.4, "ci": [0.2, 0.6]},
+                {"n": 2, "value": 0.5, "ci": None}]}], "cost_frontier": [{
+                    "label": "Toy cost fixture", "cost_unit": "USD", "cost_scope":"deployment", "cost_definition":"Synthetic complete execution", "points": [
+                        {"condition": "toy", "value": 0.4, "cost": 1, "ci": [0.2, 0.6]}]}]}}})
+        self.assertIn('class="whisker"', output)
+        self.assertIn("[0.2, 0.6]", output)
+        self.assertIn("no fitted frontier is implied", output)
+
 
 if __name__ == "__main__":
     unittest.main()

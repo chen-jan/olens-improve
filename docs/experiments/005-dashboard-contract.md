@@ -42,3 +42,32 @@ including desktop and 390 px mobile screenshots, method-tab clicks and keyboard
 navigation, one visible panel, and no horizontal mobile overflow. The page
 had no console errors after a local favicon fix. This confirms local browser
 rendering only; the artifact has not been hosted or published.
+
+## Reproducible result aggregation
+
+`scripts/summarize_results.py` reads the frozen cohort and declared arms without
+any judge/API calls. `configs/reporting_pilot_v1.json` records the initial 22 arms
+from the Standard repair root and the three E3 arms from their original root.
+Every override explicitly declares its own condition root and selection hash;
+all arms must still match the same frozen cohort hash, cells and group identities.
+The compact JSON records individual input hashes and refuses a comparison when a
+terminal family summary, submitted readout or required stage 1/2 outcome is missing.
+Files must remain byte-identical throughout aggregation. An upstream partial-grid
+`complete=false` is preserved and is not mistaken for an API failure.
+
+Cell count pairs are summed by item, then `paired_group_interval` resamples whole
+related groups with 2,000 shared draws. Absolute intervals use the same group
+scheme. There are only 2 chain groups, 4 role groups, 7 bridge groups and 8 dialogue
+groups in this pilot; especially the two-group chain interval cannot establish
+robustness. The full hallucinated classification is used for the frozen headline;
+revocation adjustment is a distinct endpoint. Empty outputs are explicit
+abstentions, while API failures remain missing. False spans and true/unverifiable
+claims have different segmentation and are never labeled atomic precision.
+
+`scripts/populate_dashboard.py` attaches these measurements to reviewed prose and
+examples, preserving their editorial content. New conditions with another cohort
+require a separate report; they cannot silently enter this paired comparison.
+The table in experiment 009 is generated from the same compact measurement JSON.
+The HTML remains local. Cost charts require an explicit campaign, incremental
+cache or deployment scope plus a definition. A cache-only selector timing cannot
+be displayed as complete inference cost; GPU dollars remain unknown.
