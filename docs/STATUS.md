@@ -1,6 +1,6 @@
 # Execution status
 
-Updated: 2026-10-10, approximately 18:25 UTC.
+Updated: 2026-10-10, approximately 18:44 UTC.
 Started: 2026-10-10 01:25:36 UTC (October 9, 21:25:36 EDT).
 Target finish: 2026-10-10 21:25:36 UTC. Execution remains active and authorized.
 
@@ -10,7 +10,7 @@ Public dashboard version8 was published at18:26:43 UTC with the slower-concurren
 
 The initial higher-concurrency snapshot showed a slowdown, but the longer window recovered. At18:28:55 UTC, TEST had54,378 settled attempts and$7.79799183 estimated usage; all12 uncertain holds ($0.059636875) and the old inactive hall hold ($0.00538675) remained unchanged. The12.4-minute interval since18:16 added4,960 settlements, approximately400/minute combined. Role D16 closed at301 physical responses/minute with16/400; hall A32 closed at142/minute with8/200. These are different conditions and traffic, not a randomized concurrency comparison. Both profiles had zero ledger errors, despite individual waits exceeding100 seconds.
 
-Both workers exited0 after the requested boundary stops. At18:29:46 the exact PIDs were absent and their cache-owner locks were free. Hall has completed four of twelve comparisons; role seven; multi-hop and chains all twelve. Root began an independently source-reviewed, byte-preserving ledger move to fast compute storage at approximately18:31; completion is pending. Every charge, event, cap and hold must match before restarting a worker. Detailed phase timing has passed20 focused tests; a broader pre-existing async fixture stalls with both old and new transaction methods and remains unvalidated. No TEST quality has been inspected.
+Both workers exited0 after the requested boundary stops. At18:29:46 the exact PIDs were absent and their cache-owner locks were free. Hall has completed four of twelve comparisons; role seven; multi-hop and chains all twelve. The independently reviewed byte-preserving ledger move has completed. The canonical durable path now resolves to the fast-compute copy; the old inode is a read-only archive. Source/copy SHA, accounting equality and SQLite quick_check passed. Hall alone resumed at16/400 as PID3783545/session3933 at18:43. Role remains stopped until the18:48 health review. The first verification attempt was stopped before copying because its source query stalled; the copy-first retry succeeded. Detailed phase timing has passed20 focused tests; a broader pre-existing async fixture stalls with both old and new transaction methods and remains unvalidated. No TEST quality has been inspected.
 
 The final slide builder has passed synthetic visual checks for66-page complete and58-page TEST-preview layouts: no text overflow or out-of-canvas objects after correcting two paired-chart labels. Root inspected the findings and paired-chart pages. This validates layout fixtures, not real final findings or native PowerPoint rendering. Complete TEST and all469 descriptive inputs, their scientific review, final renders and publication remain required.
 
@@ -22,7 +22,7 @@ A reviewed one-family transport change is prepared: role judging can increase fr
 
 All required GPU work for the four-family study is complete. The retained pools cover all 469 items and 19,435 cells, with 621,920 samples. Reconstruction vectors, all twelve final TEST outputs, model artifacts and portable-tool checks are retained. The 17:58 live check found all four H200s idle. Remaining judging, analysis and presentation use CPUs and the API. The user reconfirmed that broader WorkspaceBench transfer is a second stage after these results; no additional families are being launched now.
 
-Current delivery planning allows roughly six to nine hours from the 17:58 update at the existing rate, including missing DEV judgments and final review. Four to six hours may be feasible if higher concurrency improves measured throughput; it is not yet established. GPU expiry does not prevent completion. The public dashboard remains reviewed DEV/VAL version7, with question-level recovery as its default. A source-reviewed final slide extension is ready; actual final data and visual review remain pending.
+Current delivery planning allows roughly six to nine hours from the 17:58 update at the existing rate, including missing DEV judgments and final review. Four to six hours may be feasible if higher concurrency improves measured throughput; it is not yet established. GPU expiry does not prevent completion. The public dashboard remains reviewed DEV/VAL version8, with question-level recovery as its default. A source-reviewed final slide extension is ready; actual final data and visual review remain pending.
 
 CPU job25508300 on node1603 lasts through 05:32 UTC on October11. Hall remains PID2407614/session73504. Old role PID2481603/session68888 is terminal exit0; current role PID3690209/session80782 uses16/400. Preserve the original accounting epoch, $40 TEST run cap, all twelve unknown TEST charges ($0.059636875) and the separate stopped-hall reservation ($0.00538675). The compute agent remains the sole bounded ledger observer. Research commits are local.
 

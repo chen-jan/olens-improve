@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "run_id": "development-full-grid-methods-v1",
+  "run_cap_usd": 20,
+  "job_id": "25508300",
+  "node": "node1603",
+  "recovery_epoch": "2026-10-10T07:52:00+00:00",
+  "concurrency": 8,
+  "rpm": 200,
+  "tier": "default",
+  "reasoning_effort": "none",
+  "automatic_ramp": false,
+  "cpu_pairs": {
+    "role_bound_association": [
+      13,
+      20
+    ]
+  },
+  "selections": "${OLENS_DATA_ROOT}/selections/development-full-grid-judging-v1/selections.jsonl",
+  "selection_sha256": "acfcdefc425f48da612059f7bcb157bf037f91ba4e70fa9c68b0db142bfc46a4",
+  "manifest": "configs/development-full-grid-v2.json",
+  "manifest_sha256": "dd382ff6e8bc8e70f1d13710e5235efd943537b4936921726b7d59655289ca80",
+  "conditions": "configs/conditions_full_dev_priority_v1.json",
+  "conditions_sha256": "8b71ce8177e126ab0e984286d103034a59b4b686c0a5a380983cdaf0e29180e6",
+  "healthcheck": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1/healthcheck-profiled-v3.json",
+  "healthcheck_sha256": "fef36691048d71930b8c1ed1a9476e830eb089fdad5cbd677d3cbd98bd3ecb77",
+  "incident": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1/transport-incident-v3.json",
+  "incident_sha256": "b8458e67c7f1e95565e2ccaacc7c442d02ed456647740b5fac01e1718598444b",
+  "ledger": "${OLENS_DATA_ROOT}/budget/ledger.sqlite3",
+  "judgments": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1",
+  "shared_cache": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments/shared-exact-cache",
+  "logs": "${OLENS_COMPUTE_ROOT}/logs",
+  "hold_policy": "Retain every existing unknown or active reservation and its full amount. Do not release the original f2dc source hold or any charge because a later replay succeeded. Keep original 07:52 epoch, run $20 ceiling, project $300 hard ceiling/$200 target, exact requests and all scientific outputs/cache contracts unchanged.",
+  "index_application": "${OLENS_DATA_ROOT}/diagnostics/ledger-index-application-v1/application.json",
+  "index_application_sha256": "5e0e4580bb45337b9839fa687083137cfc0983a3bb99e4d3aac4b35653f71eaa",
+  "copied_load": "${OLENS_DATA_ROOT}/diagnostics/judge-local-load-v1/report.json",
+  "copied_load_sha256": "edd24c5314caa52f5d5aa75a5244f9978c65cb091b8908878793210880e578bf",
+  "implementation_source_sha256": {
+    "infra/resume_main_judges.py": "4370d7d3de00609956b62fff2636c62fd1ab86520e6220afb3d01a07882989da",
+    "src/olens_improve/evaluation.py": "5ae885ace1ecc974a59cddaef118c68285f4380f1a6fd259fed540e8f5d16039",
+    "src/olens_improve/performance.py": "d9f5b89d37d8f4eb379d33ada60f4cfc55e19fc3480ae735d3e2b5614e98033b",
+    "src/olens_improve/budget.py": "ef38b1acab702bff67b7edf65fcf9d5fd6720c62842c84a7e53e53e66a09e276"
+  },
+  "status": "prepared_pending_root_TEST_family_exit_review",
+  "created_utc": "2026-10-10T18:45:06.684356+00:00",
+  "root_launch_only": true,
+  "recovery_label": "dev12-remaining-role-v2",
+  "resource": null,
+  "resource_sha256": null,
+  "performance_profile_dir": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1/performance-dev12-remaining-role-v2",
+  "dispatch_condition_files": {
+    "role_bound_association": {
+      "path": "configs/conditions_dev12_remaining_role_v1.json",
+      "sha256": "4504ab2af3d77f45be50b7cc6541cedec6cf93817f1ded2416e8e94227a03942"
+    }
+  },
+  "checkpoint_policy": {
+    "no_automatic_ramp": true,
+    "monitor_mode": "One bounded active-PID/actual-worker-since observation only when root authorizes; retain original guard epoch.",
+    "pause_on_new_bookkeeping_lock_or_recurrent_transport_errors": true
+  },
+  "prospective_handoff_policy": {
+    "root_review_required_before_paid_dispatch": true,
+    "validation_spec": "configs/judging_validation_v1.json",
+    "validation_spec_sha256": "1a5ba69c25afb3e64340c4e76ac38a0a506fb46adf51aea7a7921e593ec1e49d",
+    "signed_validation_freeze": "configs/validation_shortlist_freeze_v1.json",
+    "signed_validation_freeze_sha256": "30daad423ee9326971f5f08fa4f3a3e7eec37c857b3757a700a8fcbb3a7547e6",
+    "unchanged_menu_remaining_order": [
+      {
+        "method": "best_n_specificity_mean_random_delete_matched_0.005",
+        "n": 32
+      },
+      {
+        "method": "pooled_greedy_swap",
+        "n": 16
+      },
+      {
+        "method": "pooled_greedy_swap",
+        "n": 32
+      },
+      {
+        "method": "prune_loo_a32_0.005",
+        "n": 32
+      },
+      {
+        "method": "random_delete_matched_a32_0.005",
+        "n": 32
+      },
+      {
+        "method": "random_complete",
+        "n": 32
+      }
+    ],
+    "TEST_fixed_menu_complete_for_this_family_required": true,
+    "TEST_worker_absent_and_family_cache_owner_released_required": true,
+    "cache_aware_forecast_required_after_TEST_family_release": true,
+    "no_forecast_cache_scan_before_family_release": true,
+    "no_further_health_call_or_epoch_reset": true,
+    "preserve_37_existing_complete_contracts": true,
+    "fresh_stop_file": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1/stop-recovery-dev12-remaining-role-v2-role_bound_association"
+  },
+  "preparation_bindings": {
+    "coverage": {
+      "path": ".state/dev12-coverage-verified-v1.json",
+      "sha256": "6b89f8ff2818cd551b72328317292f2879c4666dcb785a84f94a2fa1e5160f18"
+    },
+    "fixed_12_menu": {
+      "path": "configs/conditions_test_final_v2.json",
+      "sha256": "111b0684c8f5eb780e2b3887218757dee9ef6cca25efd26a8c0a515d008f4807"
+    },
+    "TEST_spec_at_preparation": {
+      "path": "configs/judging_test_v2.json",
+      "sha256": "e052bc4cc8c00401dff62a0d1810760b09f0383e96cfa15252ac765b2d304941",
+      "purpose": "Historical scheduling provenance only; bind actual completed family and execution sources at handoff."
+    },
+    "parent_DEV_spec": {
+      "path": "configs/judging_dev_scaling_role_after_a2_v2.json",
+      "sha256": "b466d71ddb78c9972cac2bdbdcb1e3c859ee4e5705a32be2ddd4c1cc40686e0e"
+    },
+    "successor_CPU_template": {
+      "path": "configs/judge_cpu_successor_v1.json",
+      "sha256": "7c54efba718448bab677233d4f9d2e4a13688ba34832a8856a30d21bdfd160a0",
+      "review_request_at_utc": "2026-10-10T19:00:00+00:00"
+    },
+    "prior_prepared_spec": {
+      "path": "configs/judging_dev12_remaining_role_v1.prepared.json",
+      "sha256": "81ed922bf3d9af8f33508b1b6ed04c3fe656e570931f87ed40715ff57ab7e0b1",
+      "purpose": "Preserved v1 preparation; only placement, current implementation pins and fresh execution paths change."
+    }
+  },
+  "pending_before_root_seal": [
+    "Exact12 TEST family contracts complete, both hallucination stages when applicable.",
+    "TEST family worker absent and exclusive cache owner released.",
+    "Current allocation affinity/headroom/expiry receipt; fill resource and resource_sha256.",
+    "Bind completed ledger storage-move receipt and independently verify canonical path resolves to the sole compute ledger; preserve all holds/caps/epochs.",
+    "Bind actual terminal TEST family/worker/cache-owner evidence; do not treat earlier preparation as current completion proof.",
+    "Cache-aware forecast for this subset on released family caches, plus remaining run/global headroom review retaining all holds.",
+    "Recheck missing DEV contracts; if one completed meanwhile, prepare a new smaller subset rather than replay it.",
+    "Fresh execution profile/stop/log paths absent; current implementation hashes unchanged.",
+    "Root source review and explicit root_reviewed_ready seal."
+  ],
+  "dispatch_policy": "Only the exact missing fixed12 subset in original DEV24 order. Keep original source outputs/menu, run20, 07:52 epoch and all holds. No completed DEV contract replay, new scientific setting, automatic ramp or ledger authority change.",
+  "schedule_policy": {
+    "dependency": "After all12 TEST role_bound_association contracts are complete and its cache owner is released.",
+    "overlap": "After this TEST family is complete and its owner is released, this DEV family may overlap the other TEST family on disjoint verified CPUs and separate family caches.",
+    "priority": "TEST completion and final clean TEST analysis remain first.",
+    "successor": "Use CPU25508300/node1603 after a fresh affinity/headroom/expiry receipt. The old successor template is historical preparation only; no new allocation or ledger authority."
+  },
+  "fresh_execution_paths": {
+    "profile_root": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1/performance-dev12-remaining-role-v2",
+    "stop": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1/stop-recovery-dev12-remaining-role-v2-role_bound_association",
+    "log": "${OLENS_COMPUTE_ROOT}/logs/full-dev-judging-recovery-dev12-remaining-role-v2-role_bound_association.log"
+  },
+  "scientific_scope": "Late DEV is descriptive only. It cannot revise the selected operating points, fixed12 menu or parameters, and grants no new TEST outcome access.",
+  "ledger_storage_policy": {
+    "canonical_logical_path": "${OLENS_DATA_ROOT}/budget/ledger.sqlite3",
+    "expected_resolved_path": "${OLENS_COMPUTE_ROOT}/budget/ledger-v2.sqlite3",
+    "same_authority": true,
+    "required_before_seal": "Bind root-verified completed byte-preserving migration receipt; reject missing/dangling canonical target. No archive fallback or new ledger."
+  }
+}
