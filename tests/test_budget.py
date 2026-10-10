@@ -2,13 +2,15 @@
 import multiprocessing
 import asyncio
 import os
+import json
+import sqlite3
 from pathlib import Path
 import tempfile
 import unittest
 from types import SimpleNamespace
 from unittest.mock import patch
 
-from olens_improve.budget import AtomicBudget, BudgetExceeded, cost_units
+from olens_improve.budget import AtomicBudget, BudgetExceeded, HOTPATH_INDEX_SQL, cost_units
 from olens_improve.evaluation import BudgetedCompletions, request_cache_key
 
 
@@ -22,6 +24,46 @@ def _race(path, queue):
 
 
 class BudgetTests(unittest.TestCase):
+    def test_hotpath_indexes_preserve_accounting_and_latest_cache_origin(self):
+        ledger = AtomicBudget(self.path, bootstrap_claude=False)
+        first = ledger.reserve_attempt(100, 100, run_id='origin',
+            metadata={'content_cache_key':'exact-key','request':{'text':'first'}})
+        ledger.settle(first,input_tokens=10,output_tokens=5)
+        ledger.record_evidence(first,'physical_response',{'response_id':'first-response'})
+        second = ledger.reserve_attempt(100,100,run_id='origin',
+            metadata={'content_cache_key':'exact-key','request':{'text':'second'}})
+        ledger.settle(second,input_tokens=20,output_tokens=10)
+        ledger.record_evidence(second,'physical_response',{'response_id':'second-response'})
+        unknown = ledger.reserve_attempt(100,100,run_id='origin',
+            metadata={'content_cache_key':'exact-key','request':{'text':'unknown'}})
+        ledger.mark_unknown(unknown,'offline uncertain attempt')
+        other = ledger.reserve_attempt(100,100,run_id='another')
+        ledger.settle(other,input_tokens=30,output_tokens=15)
+        indexes = [statement.split(' ON ',1)[0].split()[-1] for statement in HOTPATH_INDEX_SQL]
+        origin_sql = "SELECT attempt_id,metadata FROM attempts WHERE status='settled' AND " \
+            "json_extract(metadata,'$.content_cache_key')=? ORDER BY created_utc DESC LIMIT 1"
+        event_sql = "SELECT details FROM events WHERE attempt_id=? AND kind='physical_response' " \
+            "ORDER BY sequence DESC LIMIT 1"
+        def values():
+            with sqlite3.connect(self.path) as db:
+                origin = db.execute(origin_sql,('exact-key',)).fetchone()
+                event = db.execute(event_sql,(origin[0],)).fetchone()[0]
+                return {'snapshot':ledger.snapshot(),'committed':ledger._committed(db),
+                    'run_committed':ledger._committed(db,'origin'),'origin':origin,'event':event}
+        with sqlite3.connect(self.path) as db:
+            for name in indexes: db.execute('DROP INDEX '+name)
+        before = values()
+        AtomicBudget(self.path,bootstrap_claude=False)
+        after = values()
+        self.assertEqual(before,after)
+        self.assertEqual(after['origin'][0],second)
+        self.assertEqual(json.loads(after['event'])['response_id'],'second-response')
+        with sqlite3.connect(self.path) as db:
+            plan = ' '.join(str(row) for row in db.execute('EXPLAIN QUERY PLAN '+origin_sql,('exact-key',)))
+            self.assertIn('attempts_request_origin',plan)
+            event_plan = ' '.join(str(row) for row in db.execute('EXPLAIN QUERY PLAN '+event_sql,(second,)))
+            self.assertIn('events_attempt_kind_sequence',event_plan)
+
     def test_shared_transport_guard_ignores_old_epoch_and_blocks_new_unknowns(self):
         ledger = AtomicBudget(self.path, bootstrap_claude=False)
         old = ledger.reserve_attempt(1, 1, run_id='recovery')

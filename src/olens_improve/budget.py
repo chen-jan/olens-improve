@@ -54,6 +54,20 @@ def _utc() -> str:
     return datetime.now(timezone.utc).isoformat()
 
 
+# Cover the rows read before each physical reservation and exact-verdict put.
+# Metadata/response JSON can be large; these indexes preserve the original SQL
+# semantics while avoiding repeated full-table JSON scans and row reads.
+HOTPATH_INDEX_SQL = (
+    "CREATE INDEX IF NOT EXISTS attempts_request_origin ON attempts("
+    "json_extract(metadata,'$.content_cache_key'),status,created_utc DESC)",
+    "CREATE INDEX IF NOT EXISTS events_attempt_kind_sequence ON events("
+    "attempt_id,kind,sequence DESC)",
+    "CREATE INDEX IF NOT EXISTS attempts_global_committed ON attempts(status,actual,reserved)",
+    "CREATE INDEX IF NOT EXISTS attempts_run_committed ON attempts(run_id,status,actual,reserved)",
+    "CREATE INDEX IF NOT EXISTS attempts_run_recovery ON attempts(run_id,created_utc DESC,status,reserved)",
+)
+
+
 class AtomicBudget:
     def __init__(self, path: str | Path, hard_usd: str | float = '300',
                  target_usd: str | float = '200', bootstrap_claude: bool = True):
@@ -74,6 +88,8 @@ class AtomicBudget:
                 sequence INTEGER PRIMARY KEY AUTOINCREMENT, attempt_id TEXT NOT NULL,
                 kind TEXT NOT NULL, details TEXT NOT NULL, utc TEXT NOT NULL)''')
             db.execute('CREATE TABLE IF NOT EXISTS run_limits (run_id TEXT PRIMARY KEY, cap INTEGER NOT NULL)')
+            for statement in HOTPATH_INDEX_SQL:
+                db.execute(statement)
             for key, value in [('hard', self.hard), ('target', self.target)]:
                 old = db.execute('SELECT value FROM config WHERE key=?', (key,)).fetchone()
                 if old is not None and old[0] != value:
