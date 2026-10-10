@@ -1,6 +1,7 @@
 # Experiment 006: independent J++ development reader
 
-Status: source fixture and eight-cell lexical diagnostic completed. This does
+Status: source fixtures, eight-cell lexical diagnostic and expanded paired
+development diagnostic completed. This does
 not establish a method improvement, semantic accuracy, or clean held-out result.
 
 Pinned source revision is `93f02cd6c27db765abb127f20eff656bb5d27340`; the

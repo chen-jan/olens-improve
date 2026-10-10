@@ -1,6 +1,6 @@
 # 008: AR throughput and resumable development encoding
 
-Status: fixed-input batch benchmark completed; one development streaming writer is active on extra H200 job 25460532. This changes encoding throughput, not the 32-sample O-lens cap. No production vector is overwritten, no new samples are generated, and no API calls are involved.
+Status: fixed-input batch benchmark and the single-writer encoding of all 5,236 development cells completed. The original run used extra H200 job 25460532. Later numerical limits are recorded in [018](018-parallel-ar-cache.md), and stage-gated preparation in [025](025-blind-validation-preparation.md). This changes encoding throughput, not the 32-sample O-lens cap. No production vector was overwritten, no new samples were generated, and no API calls were involved.
 
 The benchmark froze 512 existing development scorer inputs: all atoms from the previous four deterministic layer-44 N16 diagnostic cells, then additional effective-input keys in hash order. It measured two timed passes at batch sizes 32, 64 and 128 after warm-up, excluding model loading. Tokens per pass include the six layer-tag tokens plus the actual scored span; padded token counts are also recorded. Per-row tag metadata now uses the saved CPU tag IDs, avoiding repeated GPU synchronization without changing the forward computation.
 

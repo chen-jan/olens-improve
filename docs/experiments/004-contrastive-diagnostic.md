@@ -1,6 +1,6 @@
 # 004: Does the matched scorer distinguish number and relation changes?
 
-Status: initial and expanded development-only E2 diagnostics completed. E1 and E3 selection pilots are recorded in experiments 006 and 007; their semantic quality remains unjudged. No new O-lens samples or paid API calls. This is a small instrument diagnostic, not a benchmark improvement result.
+Status: initial and expanded development-only E2 diagnostics completed. E1 and E3 selection pilots and their blind judging also completed; see [006](006-selector-pilot.md), [009](009-pilot-grouped-comparisons.md) and [007](007-likelihood-pilot.md). This E2 diagnostic used no new O-lens samples or paid API calls. It is a small instrument diagnostic, not a benchmark improvement result.
 
 ## Fixed comparison
 

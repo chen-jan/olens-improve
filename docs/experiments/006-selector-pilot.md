@@ -1,6 +1,6 @@
 # 006: Shared-pool reconstruction selection pilot
 
-Status: AR encoding and offline A/C/D/E1 selections completed for the fixed **189 development cells**, with 32 existing O-lens samples each. Semantic quality remains unjudged. These incomplete family grids support cell-level diagnostics, not official item accuracy. No additional O-lens generations or paid API calls were used.
+Status: AR encoding, offline A/C/D/E1 selections and subsequent blind judging completed for the fixed **189 development cells**, with 32 existing O-lens samples each. Judged results and grouped comparisons are in [009](009-pilot-grouped-comparisons.md). These incomplete family grids support cell-level diagnostics, not official item accuracy. Selection used no additional O-lens generations or paid API calls; later judging is accounted separately.
 
 The immutable input snapshot is `${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2`. Its 6,048 samples belong to global pool `e8cfd09f7ff1c9195cfd4c3a`. The exact cohort is `configs/splits_pilot_shared_v2.json`: 72 hallucination cells, 24 multihop cells, 21 chain cells and 72 role cells. Related groups remain in development under split v2. Source journal bytes and their terminal hashes are bound in the comparison configuration.
 

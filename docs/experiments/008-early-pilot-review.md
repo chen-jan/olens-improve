@@ -1,9 +1,10 @@
 # 008: Early judged pilot and limits of recovery scores
 
-Status: interim development review, 2026-10-10 UTC. This is an interpretation of
+Status: historical interim development review, 2026-10-10 UTC. This is an interpretation of
 the shared 189-cell pilot, not a held-out result. Some pooled/pruned judgments
 were still being repaired when this review began. Grouped paired uncertainty
-estimates and the complete development grids are pending.
+estimates subsequently completed in [009](009-pilot-grouped-comparisons.md);
+the larger full-grid comparison is tracked separately in [019](019-full-dev-method-comparison.md).
 
 ## Findings and next decisions
 

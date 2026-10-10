@@ -1,6 +1,6 @@
 # 015 — Consensus support, missing labels, and false semantic merges
 
-Updated: 2026-10-10 UTC. Status: **v4 end-to-end diagnostic completed; v5 helper and manual audit completed; v5 benchmark evaluation completed**. Reviewer: GPT-6.1 Sol. All inspected outputs are development-only.
+Updated: 2026-10-10 UTC. Status: **v4 end-to-end diagnostic completed; v5 helper and manual audit completed; v5 benchmark evaluation completed**. The subsequent medium-effort confirmation and judging also completed in [021](021-medium-consensus-reconfirmation.md). Reviewer: GPT-6.1 Sol. All inspected outputs are development-only.
 
 Consensus has not established an improvement over the released lens. At N=16, ranking bullets by exact repeat counts recovered fewer multi-hop concepts than same-pool best-of-16: **4/24 versus 9/24 cells**. Semantic consensus with a compatibility filter reduced marked contradictions from **40/71 to 20/63 asserting hallucination readouts**, but shortened the average output from about 100 to 21 tokens and reduced recovery in all three other families. This is a coverage/length tradeoff, not established factual improvement.
 
