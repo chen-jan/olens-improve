@@ -10,6 +10,7 @@ LABELS={'contradiction_rate':'Transcript contradictions / specific readouts (low
 GRID_LABELS={'original_grid_item_pass_rate':'Original-grid DEV item recovery (ANY passing site/layer)','original_grid_contradiction_rate':'Original-grid DEV contradictions / specific readouts'}
 
 def method_tab(name):
+    if any(part in name for part in ('_then_prune_', '_random_delete_matched_', 'pooling_exact_support_', 'exact_support_only')): return 'combinations'
     if name.startswith(('prune_', 'loo_')): return 'pruning'
     if name.startswith(('pooled_', 'greedy_')): return 'pooling'
     if any(part in name.lower() for part in ('likelihood', 'log_likelihood', 'control_ll', 'own_ll', 'e3_', 'specificity')): return 'contrastive_checks'
@@ -24,7 +25,7 @@ def populate(report, measurements):
     partial=not bool(measurements.get('original_grid_contract'))
     diagnostic_scope='partial_grid_cell_diagnostic' if partial else 'full_grid_cell_diagnostic'
     cohort='Shared pilot: 31 development items / 189 cells' if partial else 'Complete original development grids'
-    for key in ('sample_selection','pruning','pooling','contrastive_checks','consensus','editing','independent_checks'):
+    for key in ('sample_selection','pruning','pooling','contrastive_checks','consensus','editing','independent_checks','combinations'):
         method=report['methods'].setdefault(key,{})
         method['metrics']=[m for m in method.get('metrics',[]) if m.get('scope') not in ('partial_grid_cell_diagnostic','full_grid_cell_diagnostic','original_grid_development')]
         method['status']='Not measured in this report'
@@ -51,8 +52,13 @@ def populate(report, measurements):
     report['methods']['sample_selection']['scaling']=list(scaling.values())+retained
     for method in report['methods'].values(): method['paired_metrics']=[]
     for row in measurements['paired_comparisons']:
-        if row['baseline_condition'] not in ('capped_n1-n1', f"best_n_exact-n{row['condition'].rsplit('-n',1)[1]}") or row['endpoint'] not in ('cell_recovery','contradiction_rate'): continue
         name=row['condition'].rsplit('-n',1)[0]
+        n=row['condition'].rsplit('-n',1)[1]
+        allowed={'capped_n1-n1',f'best_n_exact-n{n}'}
+        for separator in ('_then_prune_','_random_delete_matched_'):
+            if separator in name:allowed.add(name.split(separator,1)[0]+f'-n{n}')
+        if name.startswith('pooling_exact_support_') or name=='exact_support_only':allowed.update({'pooling_exact_support_lambda0-n16','pooled_greedy_swap-n16'})
+        if row['baseline_condition'] not in allowed or row['endpoint'] not in ('cell_recovery','contradiction_rate'): continue
         if name=='best_n_released80': continue
         method=method_tab(name)
         report['methods'][method]['paired_metrics'].append({'family':row['family'],'cohort':cohort,'condition':row['condition']+' vs '+row['baseline_condition'],'endpoint':'Paired delta: '+LABELS[row['endpoint']],'scope':diagnostic_scope,'value':row['delta'],'numerator':None,'denominator':None,'eligible_count':row['items'],'missing_count':0,'ci':row['ci95_delta'],'uncertainty':f"Whole-group 95% interval {['%.4f' % x for x in row['ci95_delta']] if row['ci95_delta'] else None}; {row['independent_groups']} groups; {row['warning'] or ''}"})

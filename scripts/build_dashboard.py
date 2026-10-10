@@ -56,6 +56,11 @@ def display_label(identifier, kind=None):
     method, separator, n = identifier.rpartition("-n")
     if not separator or not n.isdigit():
         method, n = identifier, None
+    for token, explanation in (('_then_prune_', ' then remove low-contribution bullets; threshold '),
+                               ('_random_delete_matched_', ' with random deletion matched to threshold ')):
+        if token in method:
+            parent,threshold=method.split(token,1)
+            return display_label(parent+(f'-n{n}' if n else ''))+explanation+threshold
     labels = {"raw_n1": "Original lens (1 sample)", "raw N1": "Original lens (1 sample)",
               "capped_n1": "Common-length baseline", "best_n_exact": "Best reconstruction",
               "best_n_released80": "Best reconstruction (published solver)",
@@ -66,7 +71,11 @@ def display_label(identifier, kind=None):
               "own_mean_log_likelihood": "Select by target likelihood",
               "control_mean_log_likelihood": "Select by control likelihood",
               "editing_round1": "Edit reconstruction, round 1", "editing_round2": "Edit reconstruction, round 2"}
-    if method.startswith("prune_loo_a32_"):
+    if method.startswith('pooling_exact_support_lambda'):
+        label='Pool bullets with repeat-support bonus '+method.removeprefix('pooling_exact_support_lambda')
+    elif method=='exact_support_only':
+        label='Select by exact whole-bullet support alone'
+    elif method.startswith("prune_loo_a32_"):
         label = "Remove low-contribution bullets (threshold " + method.rsplit("_", 1)[-1] + ")"
     elif method.startswith("consensus_"):
         label = method.replace("consensus_exact", "Exact consensus").replace("consensus_semantic_v4", "Semantic consensus, instrumentation-limited").replace("_", " ").replace("compatoff", "compatibility off").replace("compaton", "compatibility on")
@@ -83,10 +92,11 @@ def metrics_table(rows):
     for row in rows:
         metric_value = row.get("value")
         is_rate = any(term in str(row.get('endpoint', '')).lower() for term in ('recovery', 'rate', 'share', ' / ', 'exceeds', 'paired delta'))
-        shown_value = escape(f"{100*metric_value:.1f}%") if is_rate and isinstance(metric_value, (float, int)) else value(metric_value)
+        rate_unit=' pp' if str(row.get('endpoint','')).lower().startswith('paired delta') else '%'
+        shown_value = escape(f"{100*metric_value:.1f}{rate_unit}") if is_rate and isinstance(metric_value, (float, int)) else value(metric_value)
         uncertainty=row.get('uncertainty',row.get('ci'))
         if row.get('ci'):
-            bounds=', '.join(f'{100*x:.1f}%' if is_rate else f'{x:.4g}' for x in row['ci'])
+            bounds=', '.join(f'{100*x:.1f}{rate_unit}' if is_rate else f'{x:.4g}' for x in row['ci'])
             suffix=str(row.get('uncertainty','')).partition(';')[2]
             uncertainty=f'Whole-group 95% interval [{bounds}]'+(';' + suffix if suffix else '')
         cells = [escape(display_label(row.get("family", "Missing family"))) + " / " + escape(row.get("cohort", "Unspecified")),
@@ -123,13 +133,27 @@ def full_development_section(section):
     output+='<h3>Original item aggregation and cell coverage</h3>'+metrics_table(section['metrics'])
     output+='<details><summary>Original versus common-length baseline: paired whole-group uncertainty</summary>'+metrics_table(section['paired_metrics'])+'</details>'
     cost=section['judge_cost']
-    output+=paragraphs([f"The pre-correction ledger estimates ${cost['actual_usd']:.6f} across {cost['physical_attempts']:,} settled physical judge requests. Cache-write repricing is pending; this is not an invoice charge. Campaign judging cost is separate from deployment selection cost."])
+    pricing=('Audited usage including cache writes' if cost.get('pricing_revision')=='luna-cache-write-v1' else 'The pre-correction ledger')
+    status=('Provider invoice reconciliation remains unavailable.' if cost.get('pricing_revision')=='luna-cache-write-v1' else 'Cache-write repricing is pending; this is not an invoice charge.')
+    output+=paragraphs([f"{pricing} estimates ${cost['actual_usd']:.6f} across {cost['physical_attempts']:,} settled physical judge requests. {status} Campaign judging cost is separate from deployment selection cost."])
     output+='<details><summary>Four source-checked baseline audit examples</summary>'+traces(section['traces'])+'</details>'
     donor=section['donor_readiness']
     output+=paragraphs([f"Matched-donor diagnostic ready: {donor['cells']:,} target outputs use {donor['distinct_donors']:,} distinct frozen donors. Judging is pending.",section['donor_limits']])
     output+='<h3>Baseline limitations</h3>'+paragraphs(section['limits'])
     output+='<details><summary>Full DEV sources</summary>'+paragraphs([str(section['source_sha256'])])+'</details></details></section>'
     return output
+
+
+def combination_tables(rows):
+    groups={}
+    for row in rows:
+        condition=str(row.get('condition',''))
+        if 'random_delete_matched' in condition:group='Matched-count random deletion controls'
+        elif 'support' in condition:group='Repeat support with pooling'
+        elif 'specificity' in condition:group='Contrastive reconstruction followed by pruning'
+        else:group='Pooling or editing followed by pruning'
+        groups.setdefault(group,[]).append(row)
+    return ''.join('<details><summary>'+escape(label)+'</summary>'+metrics_table(items)+'</details>' for label,items in groups.items()) if groups else metrics_table([])
 
 
 def scaling_chart(rows):
@@ -249,7 +273,7 @@ def build(report):
         panel = f'<section class="method-panel" id="panel-{key}" role="tabpanel" aria-labelledby="tab-{key}" {"" if index==0 else "hidden"}><div class="method-heading"><h2>{label}</h2><span class="status">{escape(status)}</span></div>'
         panel += f'<p>{escape(method.get("hypothesis", "This comparison has not been specified in the current report."))}</p>'
         panel += paragraphs(method.get("findings", []))
-        panel += "<h3>Comparisons and coverage</h3>" + metrics_table(method.get("metrics", []))
+        panel += "<h3>Comparisons and coverage</h3>" + (combination_tables(method.get('metrics',[])) if key=='combinations' else metrics_table(method.get("metrics", [])))
         if method.get("paired_metrics"):
             panel += '<details><summary>Paired differences with whole-group uncertainty</summary>' + metrics_table(method["paired_metrics"]) + "</details>"
         panel += "<h3>Quality versus sampling budget</h3>" + scaling_chart(method.get("scaling", []))

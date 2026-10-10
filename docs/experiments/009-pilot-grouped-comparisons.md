@@ -1,4 +1,4 @@
-# Development pilot cell diagnostics
+# Development results
 
 partial-grid cell diagnostics. Grouped intervals resample whole related groups (2,000 paired draws). These are not official full-grid item scores.
 
@@ -40,6 +40,22 @@ partial-grid cell diagnostics. Grouped intervals resample whole related groups (
 | consensus_semantic_v4_support0.25_compaton-n16 | True | 0/1 | 0/24 | 1/21 | 0/72 |
 | editing_round1-n32 | True | 42/70 | 10/24 | 1/21 | 8/72 |
 | editing_round2-n32 | True | 42/69 | 10/24 | 1/21 | 8/72 |
+| pooled_greedy_swap_then_prune_0.001-n32 | True | 40/70 | 9/24 | 1/21 | 8/72 |
+| pooled_greedy_swap_random_delete_matched_0.001-n32 | True | 41/70 | 10/24 | 1/21 | 8/72 |
+| pooled_greedy_swap_then_prune_0.005-n32 | True | 39/72 | 6/24 | 0/21 | 8/72 |
+| pooled_greedy_swap_random_delete_matched_0.005-n32 | True | 33/72 | 7/24 | 0/21 | 7/72 |
+| best_n_specificity_mean_then_prune_0.001-n32 | True | 38/70 | 7/24 | 1/21 | 12/72 |
+| best_n_specificity_mean_random_delete_matched_0.001-n32 | True | 37/71 | 6/24 | 1/21 | 8/72 |
+| best_n_specificity_mean_then_prune_0.005-n32 | True | 36/72 | 7/24 | 1/21 | 12/72 |
+| best_n_specificity_mean_random_delete_matched_0.005-n32 | True | 37/72 | 5/24 | 0/21 | 7/72 |
+| editing_round2_then_prune_0.001-n32 | True | 42/69 | 9/24 | 1/21 | 8/72 |
+| editing_round2_random_delete_matched_0.001-n32 | True | 41/69 | 10/24 | 1/21 | 8/72 |
+| editing_round2_then_prune_0.005-n32 | True | 40/72 | 6/24 | 0/21 | 8/72 |
+| editing_round2_random_delete_matched_0.005-n32 | True | 37/70 | 8/24 | 0/21 | 7/72 |
+| pooling_exact_support_lambda0-n16 | True | 43/72 | 8/24 | 1/21 | 8/72 |
+| pooling_exact_support_lambda0.05-n16 | True | 43/72 | 8/24 | 1/21 | 8/72 |
+| pooling_exact_support_lambda0.2-n16 | True | 43/71 | 8/24 | 1/21 | 8/72 |
+| exact_support_only-n16 | True | 42/71 | 4/24 | 0/21 | 8/72 |
 
 | Condition vs baseline | Family / endpoint | Paired delta | Grouped 95% interval | Groups |
 |---|---|---:|---|---:|
@@ -183,3 +199,67 @@ partial-grid cell diagnostics. Grouped intervals resample whole related groups (
 | editing_round2-n32 vs capped N1 | multihop_mt / cell_recovery | 0.2500 | [0.09523809523809523, 0.3939393939393939] | 7 |
 | editing_round2-n32 vs capped N1 | chain_intermediates / cell_recovery | 0.0476 | [0.0, 0.08333333333333333] | 2 |
 | editing_round2-n32 vs capped N1 | role_bound_association / cell_recovery | 0.0000 | [-0.041666666666666664, 0.04166666666666666] | 4 |
+| pooled_greedy_swap_then_prune_0.001-n32 vs capped N1 | hallucination / contradiction_rate | -0.0765 | [-0.15714285714285714, 0.020238095238095166] | 8 |
+| pooled_greedy_swap_then_prune_0.001-n32 vs capped N1 | multihop_mt / cell_recovery | 0.2083 | [0.047619047619047616, 0.36666666666666664] | 7 |
+| pooled_greedy_swap_then_prune_0.001-n32 vs capped N1 | chain_intermediates / cell_recovery | 0.0476 | [0.0, 0.08333333333333333] | 2 |
+| pooled_greedy_swap_then_prune_0.001-n32 vs capped N1 | role_bound_association / cell_recovery | 0.0000 | [-0.041666666666666664, 0.04166666666666666] | 4 |
+| pooled_greedy_swap_random_delete_matched_0.001-n32 vs capped N1 | hallucination / contradiction_rate | -0.0622 | [-0.14492753623188404, 0.032539682539682535] | 8 |
+| pooled_greedy_swap_random_delete_matched_0.001-n32 vs capped N1 | multihop_mt / cell_recovery | 0.2500 | [0.09523809523809523, 0.3939393939393939] | 7 |
+| pooled_greedy_swap_random_delete_matched_0.001-n32 vs capped N1 | chain_intermediates / cell_recovery | 0.0476 | [0.0, 0.08333333333333333] | 2 |
+| pooled_greedy_swap_random_delete_matched_0.001-n32 vs capped N1 | role_bound_association / cell_recovery | 0.0000 | [-0.041666666666666664, 0.04166666666666666] | 4 |
+| pooled_greedy_swap_then_prune_0.005-n32 vs capped N1 | hallucination / contradiction_rate | -0.1062 | [-0.20169082125603865, -0.009585289514866924] | 8 |
+| pooled_greedy_swap_then_prune_0.005-n32 vs capped N1 | multihop_mt / cell_recovery | 0.0833 | [0.0, 0.16666666666666669] | 7 |
+| pooled_greedy_swap_then_prune_0.005-n32 vs capped N1 | chain_intermediates / cell_recovery | 0.0000 | [0.0, 0.0] | 2 |
+| pooled_greedy_swap_then_prune_0.005-n32 vs capped N1 | role_bound_association / cell_recovery | 0.0000 | [-0.041666666666666664, 0.04166666666666666] | 4 |
+| pooled_greedy_swap_random_delete_matched_0.005-n32 vs capped N1 | hallucination / contradiction_rate | -0.1896 | [-0.3472222222222222, -0.05555555555555558] | 8 |
+| pooled_greedy_swap_random_delete_matched_0.005-n32 vs capped N1 | multihop_mt / cell_recovery | 0.1250 | [0.04166666666666666, 0.2222222222222222] | 7 |
+| pooled_greedy_swap_random_delete_matched_0.005-n32 vs capped N1 | chain_intermediates / cell_recovery | 0.0000 | [0.0, 0.0] | 2 |
+| pooled_greedy_swap_random_delete_matched_0.005-n32 vs capped N1 | role_bound_association / cell_recovery | -0.0139 | [-0.055555555555555566, 0.027777777777777776] | 4 |
+| best_n_specificity_mean_then_prune_0.001-n32 vs capped N1 | hallucination / contradiction_rate | -0.1050 | [-0.2605633802816901, 0.07867494824016569] | 8 |
+| best_n_specificity_mean_then_prune_0.001-n32 vs capped N1 | multihop_mt / cell_recovery | 0.1250 | [0.04166666666666666, 0.23809523809523808] | 7 |
+| best_n_specificity_mean_then_prune_0.001-n32 vs capped N1 | chain_intermediates / cell_recovery | 0.0476 | [0.0, 0.08333333333333333] | 2 |
+| best_n_specificity_mean_then_prune_0.001-n32 vs capped N1 | role_bound_association / cell_recovery | 0.0556 | [0.013888888888888895, 0.09722222222222221] | 4 |
+| best_n_specificity_mean_random_delete_matched_0.001-n32 vs capped N1 | hallucination / contradiction_rate | -0.1268 | [-0.3098591549295775, 0.028169014084507005] | 8 |
+| best_n_specificity_mean_random_delete_matched_0.001-n32 vs capped N1 | multihop_mt / cell_recovery | 0.0833 | [0.0, 0.16666666666666669] | 7 |
+| best_n_specificity_mean_random_delete_matched_0.001-n32 vs capped N1 | chain_intermediates / cell_recovery | 0.0476 | [0.0, 0.08333333333333333] | 2 |
+| best_n_specificity_mean_random_delete_matched_0.001-n32 vs capped N1 | role_bound_association / cell_recovery | 0.0000 | [-0.04166666666666667, 0.04166666666666667] | 4 |
+| best_n_specificity_mean_then_prune_0.005-n32 vs capped N1 | hallucination / contradiction_rate | -0.1479 | [-0.29523809523809524, 0.02073552425665104] | 8 |
+| best_n_specificity_mean_then_prune_0.005-n32 vs capped N1 | multihop_mt / cell_recovery | 0.1250 | [0.04166666666666666, 0.23809523809523808] | 7 |
+| best_n_specificity_mean_then_prune_0.005-n32 vs capped N1 | chain_intermediates / cell_recovery | 0.0476 | [0.0, 0.08333333333333333] | 2 |
+| best_n_specificity_mean_then_prune_0.005-n32 vs capped N1 | role_bound_association / cell_recovery | 0.0556 | [0.05555555555555555, 0.055555555555555566] | 4 |
+| best_n_specificity_mean_random_delete_matched_0.005-n32 vs capped N1 | hallucination / contradiction_rate | -0.1340 | [-0.2777777777777778, -0.0134920634920635] | 8 |
+| best_n_specificity_mean_random_delete_matched_0.005-n32 vs capped N1 | multihop_mt / cell_recovery | 0.0417 | [0.0, 0.14285714285714285] | 7 |
+| best_n_specificity_mean_random_delete_matched_0.005-n32 vs capped N1 | chain_intermediates / cell_recovery | 0.0000 | [0.0, 0.0] | 2 |
+| best_n_specificity_mean_random_delete_matched_0.005-n32 vs capped N1 | role_bound_association / cell_recovery | -0.0139 | [-0.04166666666666667, 0.0] | 4 |
+| editing_round2_then_prune_0.001-n32 vs capped N1 | hallucination / contradiction_rate | -0.0392 | [-0.11649899396378272, 0.040182270091135064] | 8 |
+| editing_round2_then_prune_0.001-n32 vs capped N1 | multihop_mt / cell_recovery | 0.2083 | [0.047619047619047616, 0.36666666666666664] | 7 |
+| editing_round2_then_prune_0.001-n32 vs capped N1 | chain_intermediates / cell_recovery | 0.0476 | [0.0, 0.08333333333333333] | 2 |
+| editing_round2_then_prune_0.001-n32 vs capped N1 | role_bound_association / cell_recovery | 0.0000 | [-0.041666666666666664, 0.04166666666666666] | 4 |
+| editing_round2_random_delete_matched_0.001-n32 vs capped N1 | hallucination / contradiction_rate | -0.0537 | [-0.13888888888888895, 0.033333333333333326] | 8 |
+| editing_round2_random_delete_matched_0.001-n32 vs capped N1 | multihop_mt / cell_recovery | 0.2500 | [0.09523809523809523, 0.3939393939393939] | 7 |
+| editing_round2_random_delete_matched_0.001-n32 vs capped N1 | chain_intermediates / cell_recovery | 0.0476 | [0.0, 0.08333333333333333] | 2 |
+| editing_round2_random_delete_matched_0.001-n32 vs capped N1 | role_bound_association / cell_recovery | 0.0000 | [-0.041666666666666664, 0.04166666666666666] | 4 |
+| editing_round2_then_prune_0.005-n32 vs capped N1 | hallucination / contradiction_rate | -0.0923 | [-0.1780125195618154, -0.00860719874804372] | 8 |
+| editing_round2_then_prune_0.005-n32 vs capped N1 | multihop_mt / cell_recovery | 0.0833 | [0.0, 0.16666666666666669] | 7 |
+| editing_round2_then_prune_0.005-n32 vs capped N1 | chain_intermediates / cell_recovery | 0.0000 | [0.0, 0.0] | 2 |
+| editing_round2_then_prune_0.005-n32 vs capped N1 | role_bound_association / cell_recovery | 0.0000 | [-0.041666666666666664, 0.04166666666666666] | 4 |
+| editing_round2_random_delete_matched_0.005-n32 vs capped N1 | hallucination / contradiction_rate | -0.1193 | [-0.2564553990610329, 0.014084507042253502] | 8 |
+| editing_round2_random_delete_matched_0.005-n32 vs capped N1 | multihop_mt / cell_recovery | 0.1667 | [0.047619047619047616, 0.2857142857142857] | 7 |
+| editing_round2_random_delete_matched_0.005-n32 vs capped N1 | chain_intermediates / cell_recovery | 0.0000 | [0.0, 0.0] | 2 |
+| editing_round2_random_delete_matched_0.005-n32 vs capped N1 | role_bound_association / cell_recovery | -0.0139 | [-0.05555555555555555, 0.02777777777777779] | 4 |
+| pooling_exact_support_lambda0-n16 vs capped N1 | hallucination / contradiction_rate | -0.0507 | [-0.12323943661971826, 0.0199530516431925] | 8 |
+| pooling_exact_support_lambda0-n16 vs capped N1 | multihop_mt / cell_recovery | 0.1667 | [0.0, 0.33333333333333337] | 7 |
+| pooling_exact_support_lambda0-n16 vs capped N1 | chain_intermediates / cell_recovery | 0.0476 | [0.0, 0.08333333333333333] | 2 |
+| pooling_exact_support_lambda0-n16 vs capped N1 | role_bound_association / cell_recovery | 0.0000 | [-0.08333333333333333, 0.08333333333333334] | 4 |
+| pooling_exact_support_lambda0.05-n16 vs capped N1 | hallucination / contradiction_rate | -0.0507 | [-0.12323943661971826, 0.0199530516431925] | 8 |
+| pooling_exact_support_lambda0.05-n16 vs capped N1 | multihop_mt / cell_recovery | 0.1667 | [0.0, 0.33333333333333337] | 7 |
+| pooling_exact_support_lambda0.05-n16 vs capped N1 | chain_intermediates / cell_recovery | 0.0476 | [0.0, 0.08333333333333333] | 2 |
+| pooling_exact_support_lambda0.05-n16 vs capped N1 | role_bound_association / cell_recovery | 0.0000 | [-0.08333333333333333, 0.08333333333333334] | 4 |
+| pooling_exact_support_lambda0.2-n16 vs capped N1 | hallucination / contradiction_rate | -0.0423 | [-0.14084507042253513, 0.04347826086956519] | 8 |
+| pooling_exact_support_lambda0.2-n16 vs capped N1 | multihop_mt / cell_recovery | 0.1667 | [0.0, 0.33333333333333337] | 7 |
+| pooling_exact_support_lambda0.2-n16 vs capped N1 | chain_intermediates / cell_recovery | 0.0476 | [0.0, 0.08333333333333333] | 2 |
+| pooling_exact_support_lambda0.2-n16 vs capped N1 | role_bound_association / cell_recovery | 0.0000 | [-0.08333333333333333, 0.08333333333333334] | 4 |
+| exact_support_only-n16 vs capped N1 | hallucination / contradiction_rate | -0.0563 | [-0.11865079365079367, 0.0] | 8 |
+| exact_support_only-n16 vs capped N1 | multihop_mt / cell_recovery | 0.0000 | [0.0, 0.0] | 7 |
+| exact_support_only-n16 vs capped N1 | chain_intermediates / cell_recovery | 0.0000 | [0.0, 0.0] | 2 |
+| exact_support_only-n16 vs capped N1 | role_bound_association / cell_recovery | 0.0000 | [0.0, 0.0] | 4 |

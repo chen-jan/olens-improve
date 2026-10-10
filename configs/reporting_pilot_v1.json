@@ -181,5 +181,117 @@
     "condition_root": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments-editing",
     "selection_sha256": "6b820154f9bbea6839f205986218679ca21cca5d9d85daaa3ffe82ff7920816d",
     "selection_path": "${OLENS_DATA_ROOT}/selections/editing-pilot189-v1/selections.jsonl"
+  },
+  {
+    "method": "pooled_greedy_swap_then_prune_0.001",
+    "n": 32,
+    "condition_root": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments-combinations",
+    "selection_sha256": "c6737d69f467970cfdac49946bfe29c3c4cd79581a7736f2dbc42ac8ceef84b0",
+    "selection_path": "${OLENS_DATA_ROOT}/selections/combined-pruning-pilot189-v1/selections.jsonl"
+  },
+  {
+    "method": "pooled_greedy_swap_random_delete_matched_0.001",
+    "n": 32,
+    "condition_root": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments-combinations",
+    "selection_sha256": "c6737d69f467970cfdac49946bfe29c3c4cd79581a7736f2dbc42ac8ceef84b0",
+    "selection_path": "${OLENS_DATA_ROOT}/selections/combined-pruning-pilot189-v1/selections.jsonl"
+  },
+  {
+    "method": "pooled_greedy_swap_then_prune_0.005",
+    "n": 32,
+    "condition_root": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments-combinations",
+    "selection_sha256": "c6737d69f467970cfdac49946bfe29c3c4cd79581a7736f2dbc42ac8ceef84b0",
+    "selection_path": "${OLENS_DATA_ROOT}/selections/combined-pruning-pilot189-v1/selections.jsonl"
+  },
+  {
+    "method": "pooled_greedy_swap_random_delete_matched_0.005",
+    "n": 32,
+    "condition_root": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments-combinations",
+    "selection_sha256": "c6737d69f467970cfdac49946bfe29c3c4cd79581a7736f2dbc42ac8ceef84b0",
+    "selection_path": "${OLENS_DATA_ROOT}/selections/combined-pruning-pilot189-v1/selections.jsonl"
+  },
+  {
+    "method": "best_n_specificity_mean_then_prune_0.001",
+    "n": 32,
+    "condition_root": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments-combinations",
+    "selection_sha256": "c6737d69f467970cfdac49946bfe29c3c4cd79581a7736f2dbc42ac8ceef84b0",
+    "selection_path": "${OLENS_DATA_ROOT}/selections/combined-pruning-pilot189-v1/selections.jsonl"
+  },
+  {
+    "method": "best_n_specificity_mean_random_delete_matched_0.001",
+    "n": 32,
+    "condition_root": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments-combinations",
+    "selection_sha256": "c6737d69f467970cfdac49946bfe29c3c4cd79581a7736f2dbc42ac8ceef84b0",
+    "selection_path": "${OLENS_DATA_ROOT}/selections/combined-pruning-pilot189-v1/selections.jsonl"
+  },
+  {
+    "method": "best_n_specificity_mean_then_prune_0.005",
+    "n": 32,
+    "condition_root": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments-combinations",
+    "selection_sha256": "c6737d69f467970cfdac49946bfe29c3c4cd79581a7736f2dbc42ac8ceef84b0",
+    "selection_path": "${OLENS_DATA_ROOT}/selections/combined-pruning-pilot189-v1/selections.jsonl"
+  },
+  {
+    "method": "best_n_specificity_mean_random_delete_matched_0.005",
+    "n": 32,
+    "condition_root": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments-combinations",
+    "selection_sha256": "c6737d69f467970cfdac49946bfe29c3c4cd79581a7736f2dbc42ac8ceef84b0",
+    "selection_path": "${OLENS_DATA_ROOT}/selections/combined-pruning-pilot189-v1/selections.jsonl"
+  },
+  {
+    "method": "editing_round2_then_prune_0.001",
+    "n": 32,
+    "condition_root": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments-combinations",
+    "selection_sha256": "c6737d69f467970cfdac49946bfe29c3c4cd79581a7736f2dbc42ac8ceef84b0",
+    "selection_path": "${OLENS_DATA_ROOT}/selections/combined-pruning-pilot189-v1/selections.jsonl"
+  },
+  {
+    "method": "editing_round2_random_delete_matched_0.001",
+    "n": 32,
+    "condition_root": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments-combinations",
+    "selection_sha256": "c6737d69f467970cfdac49946bfe29c3c4cd79581a7736f2dbc42ac8ceef84b0",
+    "selection_path": "${OLENS_DATA_ROOT}/selections/combined-pruning-pilot189-v1/selections.jsonl"
+  },
+  {
+    "method": "editing_round2_then_prune_0.005",
+    "n": 32,
+    "condition_root": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments-combinations",
+    "selection_sha256": "c6737d69f467970cfdac49946bfe29c3c4cd79581a7736f2dbc42ac8ceef84b0",
+    "selection_path": "${OLENS_DATA_ROOT}/selections/combined-pruning-pilot189-v1/selections.jsonl"
+  },
+  {
+    "method": "editing_round2_random_delete_matched_0.005",
+    "n": 32,
+    "condition_root": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments-combinations",
+    "selection_sha256": "c6737d69f467970cfdac49946bfe29c3c4cd79581a7736f2dbc42ac8ceef84b0",
+    "selection_path": "${OLENS_DATA_ROOT}/selections/combined-pruning-pilot189-v1/selections.jsonl"
+  },
+  {
+    "method": "pooling_exact_support_lambda0",
+    "n": 16,
+    "condition_root": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments-support-pooling",
+    "selection_sha256": "d3532c5ee359914764a455fc1a3adcb483c7c5b5bd7e637b80b795c4a17d042c",
+    "selection_path": "${OLENS_DATA_ROOT}/selections/support-pooling-pilot189-v1/selections.jsonl"
+  },
+  {
+    "method": "pooling_exact_support_lambda0.05",
+    "n": 16,
+    "condition_root": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments-support-pooling",
+    "selection_sha256": "d3532c5ee359914764a455fc1a3adcb483c7c5b5bd7e637b80b795c4a17d042c",
+    "selection_path": "${OLENS_DATA_ROOT}/selections/support-pooling-pilot189-v1/selections.jsonl"
+  },
+  {
+    "method": "pooling_exact_support_lambda0.2",
+    "n": 16,
+    "condition_root": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments-support-pooling",
+    "selection_sha256": "d3532c5ee359914764a455fc1a3adcb483c7c5b5bd7e637b80b795c4a17d042c",
+    "selection_path": "${OLENS_DATA_ROOT}/selections/support-pooling-pilot189-v1/selections.jsonl"
+  },
+  {
+    "method": "exact_support_only",
+    "n": 16,
+    "condition_root": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments-support-pooling",
+    "selection_sha256": "d3532c5ee359914764a455fc1a3adcb483c7c5b5bd7e637b80b795c4a17d042c",
+    "selection_path": "${OLENS_DATA_ROOT}/selections/support-pooling-pilot189-v1/selections.jsonl"
   }
 ]
