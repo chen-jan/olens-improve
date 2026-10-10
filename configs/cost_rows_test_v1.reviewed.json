@@ -1,0 +1,910 @@
+{
+  "status": "root_reviewed_algorithmic_workload_only",
+  "created_utc": "2026-10-10T19:35:42.875051+00:00",
+  "scope": "Prepared without TEST outcomes or ledger reads; no transferred timing is claimed as TEST measurement.",
+  "conditions_sha256": "111b0684c8f5eb780e2b3887218757dee9ef6cca25efd26a8c0a515d008f4807",
+  "condition_ids": [
+    "raw_n1-n1",
+    "capped_n1-n1",
+    "best_n_exact-n16",
+    "best_n_exact-n32",
+    "random_complete-n32",
+    "best_n_specificity_mean-n32",
+    "pooled_greedy_swap-n16",
+    "pooled_greedy_swap-n32",
+    "best_n_specificity_mean_then_prune_0.005-n32",
+    "best_n_specificity_mean_random_delete_matched_0.005-n32",
+    "prune_loo_a32_0.005-n32",
+    "random_delete_matched_a32_0.005-n32"
+  ],
+  "cost_rows": [
+    {
+      "condition": "raw_n1-n1",
+      "components": [
+        {
+          "scope": "new_input",
+          "component": "experimental_candidate_budget",
+          "status": "specified",
+          "value": 1,
+          "unit": "samples",
+          "basis": "Frozen candidate prefix per activation cell",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/configs/conditions_test_final_v2.json",
+              "sha256": "111b0684c8f5eb780e2b3887218757dee9ef6cca25efd26a8c0a515d008f4807",
+              "field": "[0].n"
+            }
+          ],
+          "note": "The research campaign shares one N32 pool. A standalone method must generate its required candidate prefix."
+        },
+        {
+          "scope": "new_input",
+          "component": "recurring_helper",
+          "status": "specified",
+          "value": 0,
+          "unit": "calls",
+          "basis": "These twelve frozen methods select or delete original candidate bullets using cached reconstruction vectors and fixed controls, without helper/editor calls.",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/compare_selectors.py",
+              "sha256": "a8e11ee60318f19ee77cf680ca9cd91290487cde88392b07df956e6c781165b8",
+              "field": "main: cached A/C/D/E1 algorithms"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/combine_pruning.py",
+              "sha256": "f96fe1af7f445d3be7f72f5be54167ccb15a6cde7cab3c3b77110afc8967de94",
+              "field": "main: cached parent pruning"
+            }
+          ],
+          "note": "Benchmark judging is separate from inference."
+        },
+        {
+          "scope": "new_input",
+          "component": "complete_input_latency",
+          "status": "missing",
+          "value": null,
+          "unit": "wall-seconds",
+          "basis": "No measured end-to-end serving latency for every frozen method and batching configuration."
+        },
+        {
+          "scope": "campaign",
+          "component": "attributable_campaign_cost",
+          "status": "missing",
+          "value": null,
+          "unit": "USD",
+          "basis": "Shared generation/AR and aggregate campaign costs must not be charged independently to each method; final reconciliation is separate."
+        },
+        {
+          "scope": "cached_replay",
+          "component": "exact_test_selector_time",
+          "status": "missing",
+          "value": null,
+          "unit": "wall-seconds",
+          "basis": "No isolated TEST per-method replay timing attached; existing DEV timings are reported separately with their measured scope."
+        },
+        {
+          "scope": "benchmark_judging",
+          "component": "condition_judging_cost",
+          "status": "missing",
+          "value": null,
+          "unit": "USD",
+          "basis": "Final per-condition judging costs await completion; active ledger estimates are reported separately."
+        }
+      ]
+    },
+    {
+      "condition": "capped_n1-n1",
+      "components": [
+        {
+          "scope": "new_input",
+          "component": "experimental_candidate_budget",
+          "status": "specified",
+          "value": 1,
+          "unit": "samples",
+          "basis": "Frozen candidate prefix per activation cell",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/configs/conditions_test_final_v2.json",
+              "sha256": "111b0684c8f5eb780e2b3887218757dee9ef6cca25efd26a8c0a515d008f4807",
+              "field": "[1].n"
+            }
+          ],
+          "note": "The research campaign shares one N32 pool. A standalone method must generate its required candidate prefix."
+        },
+        {
+          "scope": "new_input",
+          "component": "recurring_helper",
+          "status": "specified",
+          "value": 0,
+          "unit": "calls",
+          "basis": "These twelve frozen methods select or delete original candidate bullets using cached reconstruction vectors and fixed controls, without helper/editor calls.",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/compare_selectors.py",
+              "sha256": "a8e11ee60318f19ee77cf680ca9cd91290487cde88392b07df956e6c781165b8",
+              "field": "main: cached A/C/D/E1 algorithms"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/combine_pruning.py",
+              "sha256": "f96fe1af7f445d3be7f72f5be54167ccb15a6cde7cab3c3b77110afc8967de94",
+              "field": "main: cached parent pruning"
+            }
+          ],
+          "note": "Benchmark judging is separate from inference."
+        },
+        {
+          "scope": "new_input",
+          "component": "complete_input_latency",
+          "status": "missing",
+          "value": null,
+          "unit": "wall-seconds",
+          "basis": "No measured end-to-end serving latency for every frozen method and batching configuration."
+        },
+        {
+          "scope": "campaign",
+          "component": "attributable_campaign_cost",
+          "status": "missing",
+          "value": null,
+          "unit": "USD",
+          "basis": "Shared generation/AR and aggregate campaign costs must not be charged independently to each method; final reconciliation is separate."
+        },
+        {
+          "scope": "cached_replay",
+          "component": "exact_test_selector_time",
+          "status": "missing",
+          "value": null,
+          "unit": "wall-seconds",
+          "basis": "No isolated TEST per-method replay timing attached; existing DEV timings are reported separately with their measured scope."
+        },
+        {
+          "scope": "benchmark_judging",
+          "component": "condition_judging_cost",
+          "status": "missing",
+          "value": null,
+          "unit": "USD",
+          "basis": "Final per-condition judging costs await completion; active ledger estimates are reported separately."
+        }
+      ]
+    },
+    {
+      "condition": "best_n_exact-n16",
+      "components": [
+        {
+          "scope": "new_input",
+          "component": "experimental_candidate_budget",
+          "status": "specified",
+          "value": 16,
+          "unit": "samples",
+          "basis": "Frozen candidate prefix per activation cell",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/configs/conditions_test_final_v2.json",
+              "sha256": "111b0684c8f5eb780e2b3887218757dee9ef6cca25efd26a8c0a515d008f4807",
+              "field": "[2].n"
+            }
+          ],
+          "note": "The research campaign shares one N32 pool. A standalone method must generate its required candidate prefix."
+        },
+        {
+          "scope": "new_input",
+          "component": "recurring_helper",
+          "status": "specified",
+          "value": 0,
+          "unit": "calls",
+          "basis": "These twelve frozen methods select or delete original candidate bullets using cached reconstruction vectors and fixed controls, without helper/editor calls.",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/compare_selectors.py",
+              "sha256": "a8e11ee60318f19ee77cf680ca9cd91290487cde88392b07df956e6c781165b8",
+              "field": "main: cached A/C/D/E1 algorithms"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/combine_pruning.py",
+              "sha256": "f96fe1af7f445d3be7f72f5be54167ccb15a6cde7cab3c3b77110afc8967de94",
+              "field": "main: cached parent pruning"
+            }
+          ],
+          "note": "Benchmark judging is separate from inference."
+        },
+        {
+          "scope": "new_input",
+          "component": "complete_input_latency",
+          "status": "missing",
+          "value": null,
+          "unit": "wall-seconds",
+          "basis": "No measured end-to-end serving latency for every frozen method and batching configuration."
+        },
+        {
+          "scope": "campaign",
+          "component": "attributable_campaign_cost",
+          "status": "missing",
+          "value": null,
+          "unit": "USD",
+          "basis": "Shared generation/AR and aggregate campaign costs must not be charged independently to each method; final reconciliation is separate."
+        },
+        {
+          "scope": "cached_replay",
+          "component": "exact_test_selector_time",
+          "status": "missing",
+          "value": null,
+          "unit": "wall-seconds",
+          "basis": "No isolated TEST per-method replay timing attached; existing DEV timings are reported separately with their measured scope."
+        },
+        {
+          "scope": "benchmark_judging",
+          "component": "condition_judging_cost",
+          "status": "missing",
+          "value": null,
+          "unit": "USD",
+          "basis": "Final per-condition judging costs await completion; active ledger estimates are reported separately."
+        }
+      ]
+    },
+    {
+      "condition": "best_n_exact-n32",
+      "components": [
+        {
+          "scope": "new_input",
+          "component": "experimental_candidate_budget",
+          "status": "specified",
+          "value": 32,
+          "unit": "samples",
+          "basis": "Frozen candidate prefix per activation cell",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/configs/conditions_test_final_v2.json",
+              "sha256": "111b0684c8f5eb780e2b3887218757dee9ef6cca25efd26a8c0a515d008f4807",
+              "field": "[3].n"
+            }
+          ],
+          "note": "The research campaign shares one N32 pool. A standalone method must generate its required candidate prefix."
+        },
+        {
+          "scope": "new_input",
+          "component": "recurring_helper",
+          "status": "specified",
+          "value": 0,
+          "unit": "calls",
+          "basis": "These twelve frozen methods select or delete original candidate bullets using cached reconstruction vectors and fixed controls, without helper/editor calls.",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/compare_selectors.py",
+              "sha256": "a8e11ee60318f19ee77cf680ca9cd91290487cde88392b07df956e6c781165b8",
+              "field": "main: cached A/C/D/E1 algorithms"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/combine_pruning.py",
+              "sha256": "f96fe1af7f445d3be7f72f5be54167ccb15a6cde7cab3c3b77110afc8967de94",
+              "field": "main: cached parent pruning"
+            }
+          ],
+          "note": "Benchmark judging is separate from inference."
+        },
+        {
+          "scope": "new_input",
+          "component": "complete_input_latency",
+          "status": "missing",
+          "value": null,
+          "unit": "wall-seconds",
+          "basis": "No measured end-to-end serving latency for every frozen method and batching configuration."
+        },
+        {
+          "scope": "campaign",
+          "component": "attributable_campaign_cost",
+          "status": "missing",
+          "value": null,
+          "unit": "USD",
+          "basis": "Shared generation/AR and aggregate campaign costs must not be charged independently to each method; final reconciliation is separate."
+        },
+        {
+          "scope": "cached_replay",
+          "component": "exact_test_selector_time",
+          "status": "missing",
+          "value": null,
+          "unit": "wall-seconds",
+          "basis": "No isolated TEST per-method replay timing attached; existing DEV timings are reported separately with their measured scope."
+        },
+        {
+          "scope": "benchmark_judging",
+          "component": "condition_judging_cost",
+          "status": "missing",
+          "value": null,
+          "unit": "USD",
+          "basis": "Final per-condition judging costs await completion; active ledger estimates are reported separately."
+        }
+      ]
+    },
+    {
+      "condition": "random_complete-n32",
+      "components": [
+        {
+          "scope": "new_input",
+          "component": "experimental_candidate_budget",
+          "status": "specified",
+          "value": 32,
+          "unit": "samples",
+          "basis": "Frozen candidate prefix per activation cell",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/configs/conditions_test_final_v2.json",
+              "sha256": "111b0684c8f5eb780e2b3887218757dee9ef6cca25efd26a8c0a515d008f4807",
+              "field": "[4].n"
+            }
+          ],
+          "note": "The research campaign shares one N32 pool. A standalone method must generate its required candidate prefix."
+        },
+        {
+          "scope": "new_input",
+          "component": "recurring_helper",
+          "status": "specified",
+          "value": 0,
+          "unit": "calls",
+          "basis": "These twelve frozen methods select or delete original candidate bullets using cached reconstruction vectors and fixed controls, without helper/editor calls.",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/compare_selectors.py",
+              "sha256": "a8e11ee60318f19ee77cf680ca9cd91290487cde88392b07df956e6c781165b8",
+              "field": "main: cached A/C/D/E1 algorithms"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/combine_pruning.py",
+              "sha256": "f96fe1af7f445d3be7f72f5be54167ccb15a6cde7cab3c3b77110afc8967de94",
+              "field": "main: cached parent pruning"
+            }
+          ],
+          "note": "Benchmark judging is separate from inference."
+        },
+        {
+          "scope": "new_input",
+          "component": "complete_input_latency",
+          "status": "missing",
+          "value": null,
+          "unit": "wall-seconds",
+          "basis": "No measured end-to-end serving latency for every frozen method and batching configuration."
+        },
+        {
+          "scope": "campaign",
+          "component": "attributable_campaign_cost",
+          "status": "missing",
+          "value": null,
+          "unit": "USD",
+          "basis": "Shared generation/AR and aggregate campaign costs must not be charged independently to each method; final reconciliation is separate."
+        },
+        {
+          "scope": "cached_replay",
+          "component": "exact_test_selector_time",
+          "status": "missing",
+          "value": null,
+          "unit": "wall-seconds",
+          "basis": "No isolated TEST per-method replay timing attached; existing DEV timings are reported separately with their measured scope."
+        },
+        {
+          "scope": "benchmark_judging",
+          "component": "condition_judging_cost",
+          "status": "missing",
+          "value": null,
+          "unit": "USD",
+          "basis": "Final per-condition judging costs await completion; active ledger estimates are reported separately."
+        }
+      ]
+    },
+    {
+      "condition": "best_n_specificity_mean-n32",
+      "components": [
+        {
+          "scope": "new_input",
+          "component": "experimental_candidate_budget",
+          "status": "specified",
+          "value": 32,
+          "unit": "samples",
+          "basis": "Frozen candidate prefix per activation cell",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/configs/conditions_test_final_v2.json",
+              "sha256": "111b0684c8f5eb780e2b3887218757dee9ef6cca25efd26a8c0a515d008f4807",
+              "field": "[5].n"
+            }
+          ],
+          "note": "The research campaign shares one N32 pool. A standalone method must generate its required candidate prefix."
+        },
+        {
+          "scope": "new_input",
+          "component": "recurring_helper",
+          "status": "specified",
+          "value": 0,
+          "unit": "calls",
+          "basis": "These twelve frozen methods select or delete original candidate bullets using cached reconstruction vectors and fixed controls, without helper/editor calls.",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/compare_selectors.py",
+              "sha256": "a8e11ee60318f19ee77cf680ca9cd91290487cde88392b07df956e6c781165b8",
+              "field": "main: cached A/C/D/E1 algorithms"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/combine_pruning.py",
+              "sha256": "f96fe1af7f445d3be7f72f5be54167ccb15a6cde7cab3c3b77110afc8967de94",
+              "field": "main: cached parent pruning"
+            }
+          ],
+          "note": "Benchmark judging is separate from inference."
+        },
+        {
+          "scope": "new_input",
+          "component": "complete_input_latency",
+          "status": "missing",
+          "value": null,
+          "unit": "wall-seconds",
+          "basis": "No measured end-to-end serving latency for every frozen method and batching configuration."
+        },
+        {
+          "scope": "campaign",
+          "component": "attributable_campaign_cost",
+          "status": "missing",
+          "value": null,
+          "unit": "USD",
+          "basis": "Shared generation/AR and aggregate campaign costs must not be charged independently to each method; final reconciliation is separate."
+        },
+        {
+          "scope": "cached_replay",
+          "component": "exact_test_selector_time",
+          "status": "missing",
+          "value": null,
+          "unit": "wall-seconds",
+          "basis": "No isolated TEST per-method replay timing attached; existing DEV timings are reported separately with their measured scope."
+        },
+        {
+          "scope": "benchmark_judging",
+          "component": "condition_judging_cost",
+          "status": "missing",
+          "value": null,
+          "unit": "USD",
+          "basis": "Final per-condition judging costs await completion; active ledger estimates are reported separately."
+        }
+      ]
+    },
+    {
+      "condition": "pooled_greedy_swap-n16",
+      "components": [
+        {
+          "scope": "new_input",
+          "component": "experimental_candidate_budget",
+          "status": "specified",
+          "value": 16,
+          "unit": "samples",
+          "basis": "Frozen candidate prefix per activation cell",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/configs/conditions_test_final_v2.json",
+              "sha256": "111b0684c8f5eb780e2b3887218757dee9ef6cca25efd26a8c0a515d008f4807",
+              "field": "[6].n"
+            }
+          ],
+          "note": "The research campaign shares one N32 pool. A standalone method must generate its required candidate prefix."
+        },
+        {
+          "scope": "new_input",
+          "component": "recurring_helper",
+          "status": "specified",
+          "value": 0,
+          "unit": "calls",
+          "basis": "These twelve frozen methods select or delete original candidate bullets using cached reconstruction vectors and fixed controls, without helper/editor calls.",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/compare_selectors.py",
+              "sha256": "a8e11ee60318f19ee77cf680ca9cd91290487cde88392b07df956e6c781165b8",
+              "field": "main: cached A/C/D/E1 algorithms"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/combine_pruning.py",
+              "sha256": "f96fe1af7f445d3be7f72f5be54167ccb15a6cde7cab3c3b77110afc8967de94",
+              "field": "main: cached parent pruning"
+            }
+          ],
+          "note": "Benchmark judging is separate from inference."
+        },
+        {
+          "scope": "new_input",
+          "component": "complete_input_latency",
+          "status": "missing",
+          "value": null,
+          "unit": "wall-seconds",
+          "basis": "No measured end-to-end serving latency for every frozen method and batching configuration."
+        },
+        {
+          "scope": "campaign",
+          "component": "attributable_campaign_cost",
+          "status": "missing",
+          "value": null,
+          "unit": "USD",
+          "basis": "Shared generation/AR and aggregate campaign costs must not be charged independently to each method; final reconciliation is separate."
+        },
+        {
+          "scope": "cached_replay",
+          "component": "exact_test_selector_time",
+          "status": "missing",
+          "value": null,
+          "unit": "wall-seconds",
+          "basis": "No isolated TEST per-method replay timing attached; existing DEV timings are reported separately with their measured scope."
+        },
+        {
+          "scope": "benchmark_judging",
+          "component": "condition_judging_cost",
+          "status": "missing",
+          "value": null,
+          "unit": "USD",
+          "basis": "Final per-condition judging costs await completion; active ledger estimates are reported separately."
+        }
+      ]
+    },
+    {
+      "condition": "pooled_greedy_swap-n32",
+      "components": [
+        {
+          "scope": "new_input",
+          "component": "experimental_candidate_budget",
+          "status": "specified",
+          "value": 32,
+          "unit": "samples",
+          "basis": "Frozen candidate prefix per activation cell",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/configs/conditions_test_final_v2.json",
+              "sha256": "111b0684c8f5eb780e2b3887218757dee9ef6cca25efd26a8c0a515d008f4807",
+              "field": "[7].n"
+            }
+          ],
+          "note": "The research campaign shares one N32 pool. A standalone method must generate its required candidate prefix."
+        },
+        {
+          "scope": "new_input",
+          "component": "recurring_helper",
+          "status": "specified",
+          "value": 0,
+          "unit": "calls",
+          "basis": "These twelve frozen methods select or delete original candidate bullets using cached reconstruction vectors and fixed controls, without helper/editor calls.",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/compare_selectors.py",
+              "sha256": "a8e11ee60318f19ee77cf680ca9cd91290487cde88392b07df956e6c781165b8",
+              "field": "main: cached A/C/D/E1 algorithms"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/combine_pruning.py",
+              "sha256": "f96fe1af7f445d3be7f72f5be54167ccb15a6cde7cab3c3b77110afc8967de94",
+              "field": "main: cached parent pruning"
+            }
+          ],
+          "note": "Benchmark judging is separate from inference."
+        },
+        {
+          "scope": "new_input",
+          "component": "complete_input_latency",
+          "status": "missing",
+          "value": null,
+          "unit": "wall-seconds",
+          "basis": "No measured end-to-end serving latency for every frozen method and batching configuration."
+        },
+        {
+          "scope": "campaign",
+          "component": "attributable_campaign_cost",
+          "status": "missing",
+          "value": null,
+          "unit": "USD",
+          "basis": "Shared generation/AR and aggregate campaign costs must not be charged independently to each method; final reconciliation is separate."
+        },
+        {
+          "scope": "cached_replay",
+          "component": "exact_test_selector_time",
+          "status": "missing",
+          "value": null,
+          "unit": "wall-seconds",
+          "basis": "No isolated TEST per-method replay timing attached; existing DEV timings are reported separately with their measured scope."
+        },
+        {
+          "scope": "benchmark_judging",
+          "component": "condition_judging_cost",
+          "status": "missing",
+          "value": null,
+          "unit": "USD",
+          "basis": "Final per-condition judging costs await completion; active ledger estimates are reported separately."
+        }
+      ]
+    },
+    {
+      "condition": "best_n_specificity_mean_then_prune_0.005-n32",
+      "components": [
+        {
+          "scope": "new_input",
+          "component": "experimental_candidate_budget",
+          "status": "specified",
+          "value": 32,
+          "unit": "samples",
+          "basis": "Frozen candidate prefix per activation cell",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/configs/conditions_test_final_v2.json",
+              "sha256": "111b0684c8f5eb780e2b3887218757dee9ef6cca25efd26a8c0a515d008f4807",
+              "field": "[8].n"
+            }
+          ],
+          "note": "The research campaign shares one N32 pool. A standalone method must generate its required candidate prefix."
+        },
+        {
+          "scope": "new_input",
+          "component": "recurring_helper",
+          "status": "specified",
+          "value": 0,
+          "unit": "calls",
+          "basis": "These twelve frozen methods select or delete original candidate bullets using cached reconstruction vectors and fixed controls, without helper/editor calls.",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/compare_selectors.py",
+              "sha256": "a8e11ee60318f19ee77cf680ca9cd91290487cde88392b07df956e6c781165b8",
+              "field": "main: cached A/C/D/E1 algorithms"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/combine_pruning.py",
+              "sha256": "f96fe1af7f445d3be7f72f5be54167ccb15a6cde7cab3c3b77110afc8967de94",
+              "field": "main: cached parent pruning"
+            }
+          ],
+          "note": "Benchmark judging is separate from inference."
+        },
+        {
+          "scope": "new_input",
+          "component": "complete_input_latency",
+          "status": "missing",
+          "value": null,
+          "unit": "wall-seconds",
+          "basis": "No measured end-to-end serving latency for every frozen method and batching configuration."
+        },
+        {
+          "scope": "campaign",
+          "component": "attributable_campaign_cost",
+          "status": "missing",
+          "value": null,
+          "unit": "USD",
+          "basis": "Shared generation/AR and aggregate campaign costs must not be charged independently to each method; final reconciliation is separate."
+        },
+        {
+          "scope": "cached_replay",
+          "component": "exact_test_selector_time",
+          "status": "missing",
+          "value": null,
+          "unit": "wall-seconds",
+          "basis": "No isolated TEST per-method replay timing attached; existing DEV timings are reported separately with their measured scope."
+        },
+        {
+          "scope": "benchmark_judging",
+          "component": "condition_judging_cost",
+          "status": "missing",
+          "value": null,
+          "unit": "USD",
+          "basis": "Final per-condition judging costs await completion; active ledger estimates are reported separately."
+        }
+      ]
+    },
+    {
+      "condition": "best_n_specificity_mean_random_delete_matched_0.005-n32",
+      "components": [
+        {
+          "scope": "new_input",
+          "component": "experimental_candidate_budget",
+          "status": "specified",
+          "value": 32,
+          "unit": "samples",
+          "basis": "Frozen candidate prefix per activation cell",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/configs/conditions_test_final_v2.json",
+              "sha256": "111b0684c8f5eb780e2b3887218757dee9ef6cca25efd26a8c0a515d008f4807",
+              "field": "[9].n"
+            }
+          ],
+          "note": "The research campaign shares one N32 pool. A standalone method must generate its required candidate prefix."
+        },
+        {
+          "scope": "new_input",
+          "component": "recurring_helper",
+          "status": "specified",
+          "value": 0,
+          "unit": "calls",
+          "basis": "These twelve frozen methods select or delete original candidate bullets using cached reconstruction vectors and fixed controls, without helper/editor calls.",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/compare_selectors.py",
+              "sha256": "a8e11ee60318f19ee77cf680ca9cd91290487cde88392b07df956e6c781165b8",
+              "field": "main: cached A/C/D/E1 algorithms"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/combine_pruning.py",
+              "sha256": "f96fe1af7f445d3be7f72f5be54167ccb15a6cde7cab3c3b77110afc8967de94",
+              "field": "main: cached parent pruning"
+            }
+          ],
+          "note": "Benchmark judging is separate from inference."
+        },
+        {
+          "scope": "new_input",
+          "component": "complete_input_latency",
+          "status": "missing",
+          "value": null,
+          "unit": "wall-seconds",
+          "basis": "No measured end-to-end serving latency for every frozen method and batching configuration."
+        },
+        {
+          "scope": "campaign",
+          "component": "attributable_campaign_cost",
+          "status": "missing",
+          "value": null,
+          "unit": "USD",
+          "basis": "Shared generation/AR and aggregate campaign costs must not be charged independently to each method; final reconciliation is separate."
+        },
+        {
+          "scope": "cached_replay",
+          "component": "exact_test_selector_time",
+          "status": "missing",
+          "value": null,
+          "unit": "wall-seconds",
+          "basis": "No isolated TEST per-method replay timing attached; existing DEV timings are reported separately with their measured scope."
+        },
+        {
+          "scope": "benchmark_judging",
+          "component": "condition_judging_cost",
+          "status": "missing",
+          "value": null,
+          "unit": "USD",
+          "basis": "Final per-condition judging costs await completion; active ledger estimates are reported separately."
+        }
+      ]
+    },
+    {
+      "condition": "prune_loo_a32_0.005-n32",
+      "components": [
+        {
+          "scope": "new_input",
+          "component": "experimental_candidate_budget",
+          "status": "specified",
+          "value": 32,
+          "unit": "samples",
+          "basis": "Frozen candidate prefix per activation cell",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/configs/conditions_test_final_v2.json",
+              "sha256": "111b0684c8f5eb780e2b3887218757dee9ef6cca25efd26a8c0a515d008f4807",
+              "field": "[10].n"
+            }
+          ],
+          "note": "The research campaign shares one N32 pool. A standalone method must generate its required candidate prefix."
+        },
+        {
+          "scope": "new_input",
+          "component": "recurring_helper",
+          "status": "specified",
+          "value": 0,
+          "unit": "calls",
+          "basis": "These twelve frozen methods select or delete original candidate bullets using cached reconstruction vectors and fixed controls, without helper/editor calls.",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/compare_selectors.py",
+              "sha256": "a8e11ee60318f19ee77cf680ca9cd91290487cde88392b07df956e6c781165b8",
+              "field": "main: cached A/C/D/E1 algorithms"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/combine_pruning.py",
+              "sha256": "f96fe1af7f445d3be7f72f5be54167ccb15a6cde7cab3c3b77110afc8967de94",
+              "field": "main: cached parent pruning"
+            }
+          ],
+          "note": "Benchmark judging is separate from inference."
+        },
+        {
+          "scope": "new_input",
+          "component": "complete_input_latency",
+          "status": "missing",
+          "value": null,
+          "unit": "wall-seconds",
+          "basis": "No measured end-to-end serving latency for every frozen method and batching configuration."
+        },
+        {
+          "scope": "campaign",
+          "component": "attributable_campaign_cost",
+          "status": "missing",
+          "value": null,
+          "unit": "USD",
+          "basis": "Shared generation/AR and aggregate campaign costs must not be charged independently to each method; final reconciliation is separate."
+        },
+        {
+          "scope": "cached_replay",
+          "component": "exact_test_selector_time",
+          "status": "missing",
+          "value": null,
+          "unit": "wall-seconds",
+          "basis": "No isolated TEST per-method replay timing attached; existing DEV timings are reported separately with their measured scope."
+        },
+        {
+          "scope": "benchmark_judging",
+          "component": "condition_judging_cost",
+          "status": "missing",
+          "value": null,
+          "unit": "USD",
+          "basis": "Final per-condition judging costs await completion; active ledger estimates are reported separately."
+        }
+      ]
+    },
+    {
+      "condition": "random_delete_matched_a32_0.005-n32",
+      "components": [
+        {
+          "scope": "new_input",
+          "component": "experimental_candidate_budget",
+          "status": "specified",
+          "value": 32,
+          "unit": "samples",
+          "basis": "Frozen candidate prefix per activation cell",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/configs/conditions_test_final_v2.json",
+              "sha256": "111b0684c8f5eb780e2b3887218757dee9ef6cca25efd26a8c0a515d008f4807",
+              "field": "[11].n"
+            }
+          ],
+          "note": "The research campaign shares one N32 pool. A standalone method must generate its required candidate prefix."
+        },
+        {
+          "scope": "new_input",
+          "component": "recurring_helper",
+          "status": "specified",
+          "value": 0,
+          "unit": "calls",
+          "basis": "These twelve frozen methods select or delete original candidate bullets using cached reconstruction vectors and fixed controls, without helper/editor calls.",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/compare_selectors.py",
+              "sha256": "a8e11ee60318f19ee77cf680ca9cd91290487cde88392b07df956e6c781165b8",
+              "field": "main: cached A/C/D/E1 algorithms"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/combine_pruning.py",
+              "sha256": "f96fe1af7f445d3be7f72f5be54167ccb15a6cde7cab3c3b77110afc8967de94",
+              "field": "main: cached parent pruning"
+            }
+          ],
+          "note": "Benchmark judging is separate from inference."
+        },
+        {
+          "scope": "new_input",
+          "component": "complete_input_latency",
+          "status": "missing",
+          "value": null,
+          "unit": "wall-seconds",
+          "basis": "No measured end-to-end serving latency for every frozen method and batching configuration."
+        },
+        {
+          "scope": "campaign",
+          "component": "attributable_campaign_cost",
+          "status": "missing",
+          "value": null,
+          "unit": "USD",
+          "basis": "Shared generation/AR and aggregate campaign costs must not be charged independently to each method; final reconciliation is separate."
+        },
+        {
+          "scope": "cached_replay",
+          "component": "exact_test_selector_time",
+          "status": "missing",
+          "value": null,
+          "unit": "wall-seconds",
+          "basis": "No isolated TEST per-method replay timing attached; existing DEV timings are reported separately with their measured scope."
+        },
+        {
+          "scope": "benchmark_judging",
+          "component": "condition_judging_cost",
+          "status": "missing",
+          "value": null,
+          "unit": "USD",
+          "basis": "Final per-condition judging costs await completion; active ledger estimates are reported separately."
+        }
+      ]
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 """Export source-supplied signed comparison values; no inference or aggregation."""
 import argparse
+import copy
 from datetime import datetime, timezone
 from hashlib import sha256
 import importlib.util
@@ -24,6 +25,16 @@ AXES = {
     'multihop_mt':'Bridge mentions / intended cells (%) - higher is better',
     'chain_intermediates':'Number recovery / intended cells (%) - higher is better',
     'role_bound_association':'Role task passes / intended cells (%) - higher is better'}
+QUESTION_AXES = {
+    'hallucination': AXES['hallucination'],
+    'multihop_mt': 'Questions recovering all required bridge names (%) - higher is better',
+    'chain_intermediates': 'Questions recovering the top named intermediate (%) - higher is better',
+    'role_bound_association': 'Questions passing all three role choices (%) - higher is better'}
+QUESTION_RULES = {
+    'hallucination': 'Native readout error rate; not a question accuracy score.',
+    'multihop_mt': 'All required names at the same layer; any layer in the original grid.',
+    'chain_intermediates': 'Top named computed intermediate; any layer in the original grid.',
+    'role_bound_association': 'All three MC answers at one site; any site in the original grid.'}
 SHORT_LABELS = {
     'raw_n1-n1':'Original lens (1 sample)',
     'capped_n1-n1':'Capped single response',
@@ -71,6 +82,76 @@ def figure_data(section):
             for f in FAMILIES}
 
 
+def question_data(section):
+    """Copy pinned item aggregation; hallucination keeps its native ratio."""
+    names = section['condition_ids']
+    rows = section['original_item_rows']
+    expected = {(name, family) for name in names for family in FAMILIES}
+    indexed = {(row['condition'], row['family']): row for row in rows}
+    if len(indexed) != len(rows) or set(indexed) != expected:
+        raise ValueError('Require the complete unique original-item figure grid')
+    cells = figure_data(section)
+    output = {family: [] for family in FAMILIES}
+    for family in FAMILIES:
+        endpoint = ('original_grid_contradiction_rate' if family == 'hallucination'
+                    else 'original_grid_item_pass_rate')
+        counts = section['family_counts'][family]
+        for i, name in enumerate(names):
+            row = indexed[name, family]
+            if row['endpoint'] != endpoint:
+                raise ValueError('Unexpected original-item figure endpoint')
+            metric = adapter.metric_checked(row['metric'], counts)
+            if metric['numerator'] > metric['denominator']:
+                raise ValueError('Question numerator exceeds its denominator')
+            if family == 'hallucination':
+                for key in ('numerator', 'denominator', 'value', 'ci95'):
+                    if metric.get(key) != cells[family][i].get(key):
+                        raise ValueError('Native hallucination rate must remain unchanged')
+            elif metric['denominator'] != counts['items']:
+                raise ValueError('Question denominator differs from intended items')
+            output[family].append({'condition': name, **metric})
+    return output
+
+
+def paired_data(section, scope):
+    """Copy supplied primary contrasts and attach their exact arm counts."""
+    if scope not in ('cell', 'original_item'):
+        raise ValueError('Unknown paired figure scope')
+    source = question_data(section) if scope == 'original_item' else figure_data(section)
+    indexed = {(row['condition'], family): row for family, rows in source.items() for row in rows}
+    output, seen = {family: [] for family in FAMILIES}, set()
+    for row in section['paired_rows']:
+        if row['scope'] not in ('cell', 'original_item'):
+            raise ValueError('Unknown supplied paired scope')
+        family = row['family']
+        if family not in FAMILIES:
+            raise ValueError('Foreign paired figure family')
+        endpoint = ('original_grid_contradiction_rate' if family == 'hallucination'
+                    else 'original_grid_item_pass_rate') if row['scope'] == 'original_item' else (
+                    'contradiction_rate' if family == 'hallucination' else 'cell_recovery')
+        if row['scope'] == 'original_item' and row['endpoint'] != endpoint:
+            raise ValueError('Unexpected original-item paired endpoint')
+        if row['scope'] != scope or row['endpoint'] != endpoint:
+            continue  # Auxiliary cell contrasts are not task recovery/error plots.
+        identity = (row['baseline_condition'], row['condition'], family)
+        if identity in seen:
+            raise ValueError('Duplicate primary paired figure contrast')
+        seen.add(identity)
+        try:
+            left, right = (indexed[name, family] for name in identity[:2])
+        except KeyError as error:
+            raise ValueError('Foreign paired figure condition') from error
+        delta = right['value'] - left['value'] if left['value'] is not None and right['value'] is not None else None
+        if (row['baseline'], row['proposed'], row['delta']) != (left['value'], right['value'], delta):
+            raise ValueError('Paired figure values differ from source arm metrics')
+        counts = section['family_counts'][family]
+        if row['items'] != counts['items'] or row['independent_groups'] != counts['groups']:
+            raise ValueError('Paired figure group/item cohort differs')
+        output[family].append({**copy.deepcopy(row), 'baseline_metric': copy.deepcopy(left),
+                               'proposed_metric': copy.deepcopy(right)})
+    return output
+
+
 def interval(ax, metric, at, *, vertical=False, color='#537990'):
     bounds = metric.get('ci95')
     if bounds is None:
@@ -84,7 +165,8 @@ def interval(ax, metric, at, *, vertical=False, color='#537990'):
         ax.vlines([low,high],at-.10,at+.10,color=color,linewidth=1)
 
 
-def export(section, output, *, cross_task=False, zoom_cross_task=False):
+def export(section, output, *, cross_task=False, zoom_cross_task=False,
+           question_level=False, paired_deltas=False):
     # Keep plotting caches off HOME; no dependency/model loads or installs.
     os.environ.setdefault('MPLCONFIGDIR','/tmp/olens-improve-matplotlib')
     import matplotlib
@@ -92,6 +174,9 @@ def export(section, output, *, cross_task=False, zoom_cross_task=False):
     import matplotlib.pyplot as plt
     from matplotlib.lines import Line2D
 
+    # Validate optional grids before creating an export directory.
+    questions = question_data(section) if question_level or paired_deltas else None
+    pairs = {scope: paired_data(section, scope) for scope in ('original_item', 'cell')} if paired_deltas else None
     output = Path(output)
     if output.exists():
         raise ValueError('Use a new figure directory; existing exports are immutable')
@@ -139,6 +224,72 @@ def export(section, output, *, cross_task=False, zoom_cross_task=False):
     fig.supxlabel('Cell scores do not establish whole-output truth. Missing intervals have no bar. '
                   'Source SHA-256 '+source[:12],fontsize=10)
     save(fig,'family-cell-rates')
+
+    if question_level:
+        fig, axes = plt.subplots(2, 2, figsize=(17, max(10, extent*.75)), layout='constrained')
+        for ax, family in zip(axes.flat, FAMILIES):
+            for i, row in enumerate(questions[family]):
+                at = positions[i]
+                if row['value'] is None:
+                    ax.text(2, at, 'Undefined', va='center', fontsize=9)
+                else:
+                    interval(ax, row, at)
+                    ax.plot(100*row['value'], at, 'o', color='#244e69', markersize=5)
+                count = f"{row['numerator']:,}/{row['denominator']:,}"
+                ax.text(1.02, at, count, transform=ax.get_yaxis_transform(), va='center', fontsize=9)
+            ax.set_yticks(positions, wrapped, fontsize=9)
+            ax.set_ylim(extent-.5, -.65)
+            ax.set_xlim(-1, 101)
+            ax.set_xlabel(QUESTION_AXES[family], fontsize=10)
+            groups = section['family_counts'][family]['groups']
+            ax.set_title(labels.display_label(family)+f' - {groups} related groups\n'+QUESTION_RULES[family], fontsize=10)
+            ax.grid(axis='x', alpha=.2)
+            ax.spines[['top', 'right']].set_visible(False)
+        fig.suptitle(prefix+stage+' original task endpoints\n'
+                     'Dots: supplied rates; bars: supplied grouped 95% intervals; labels: numerator/denominator', fontsize=14)
+        fig.supxlabel('Recovery is not complete explanation correctness. Hallucination keeps its readout denominator. '
+                      'Source SHA-256 '+source[:12], fontsize=10)
+        save(fig, 'family-question-rates')
+
+    if paired_deltas:
+        for scope, by_family in pairs.items():
+            pages = (max(len(rows) for rows in by_family.values())+7)//8
+            view = 'question' if scope == 'original_item' else 'cell'
+            for page in range(pages):
+                fig, axes = plt.subplots(2, 2, figsize=(20, 13), layout='constrained')
+                for ax, family in zip(axes.flat, FAMILIES):
+                    rows = by_family[family][page*8:(page+1)*8]
+                    descriptions = [method_labels([row['condition']])[0]+' minus '+
+                                    method_labels([row['baseline_condition']])[0] for row in rows]
+                    ticks, places, height = label_positions(descriptions)
+                    bounds = [100*x for row in rows for x in
+                              [row['delta'], *(row.get('ci95_delta') or [])] if x is not None]
+                    limit = max(5., max((abs(x) for x in bounds), default=0.)*1.1)
+                    ax.axvline(0, color='#555555', linewidth=1, linestyle='--')
+                    for at, row in zip(places, rows):
+                        if row['delta'] is None:
+                            ax.text(0, at, 'Undefined', va='center', fontsize=9)
+                        else:
+                            interval(ax, {'ci95': row.get('ci95_delta')}, at)
+                            ax.plot(100*row['delta'], at, 'o', color='#244e69', markersize=5)
+                        left, right = row['baseline_metric'], row['proposed_metric']
+                        count = f"{left['numerator']:,}/{left['denominator']:,} -> {right['numerator']:,}/{right['denominator']:,}"
+                        ax.text(1.02, at, count, transform=ax.get_yaxis_transform(), va='center', fontsize=8)
+                    if not rows:
+                        ax.text(.5, .5, 'No supplied comparisons on this page', transform=ax.transAxes, ha='center')
+                    ax.set_yticks(places, ticks, fontsize=9)
+                    ax.set_ylim(max(height-.5, .5), -.65)
+                    ax.set_xlim(-limit, limit)
+                    direction = 'left is lower error' if family == 'hallucination' else 'right is higher recovery'
+                    ax.set_xlabel('Proposed minus baseline (percentage points); '+direction, fontsize=10)
+                    ax.set_title(labels.display_label(family)+(' - native readout error' if family == 'hallucination' else f' - {view} recovery'), fontsize=11)
+                    ax.grid(axis='x', alpha=.2)
+                    ax.spines[['top', 'right']].set_visible(False)
+                fig.suptitle(prefix+stage+f' paired {view} contrasts - page {page+1}/{pages}\n'
+                             'Bars: supplied grouped 95% intervals; counts: baseline -> proposed', fontsize=14)
+                fig.supxlabel('Missing intervals have no bar. Supplied warnings remain in provenance. '
+                              'Intervals are unadjusted; no automatic ranking. Source SHA-256 '+source[:12], fontsize=10)
+                save(fig, f'paired-{view}-deltas-{page+1:02d}')
 
     if cross_task:
         fig, axes = plt.subplots(1,3,figsize=(17,max(8,len(names)*.4+3)))
@@ -190,6 +341,12 @@ def export(section, output, *, cross_task=False, zoom_cross_task=False):
         'plotted_cell_metrics':data,'axis_definitions':AXES,'files':files,'matplotlib_version':matplotlib.__version__,
         'limits':section['limits']+['No interval recomputation, aggregation, winner selection, cost total or GPU dollar estimate.',
             'Cross-task axes use distinct family cohorts; marginal intervals do not quantify joint dominance.']}
+    if questions is not None:
+        provenance.update(plotted_question_metrics=questions, question_axis_definitions=QUESTION_AXES,
+                          question_task_rules=QUESTION_RULES)
+    if pairs is not None:
+        provenance.update(plotted_paired_metrics=pairs, paired_contrasts_per_family_page=8,
+                          missing_paired_scopes=[scope for scope, rows in pairs.items() if not any(rows.values())])
     (output/'provenance.json').write_text(json.dumps(provenance,indent=2,allow_nan=False)+'\n')
     return provenance
 
@@ -202,10 +359,15 @@ def main():
     p.add_argument('--cross-task',action='store_true')
     p.add_argument('--zoom-cross-task',action='store_true',
                    help='Use clearly labeled supplied-interval axis ranges; no value or interval changes')
+    p.add_argument('--question-level', action='store_true',
+                   help='Also export original question aggregation; hallucination retains native readout error')
+    p.add_argument('--paired-deltas', action='store_true',
+                   help='Also export supplied primary question/cell contrasts with grouped intervals and exact arm counts')
     args = p.parse_args()
     section = load_section(args.analysis,args.review,args.expected_sha256)
     result = export(section,args.output,cross_task=args.cross_task or args.zoom_cross_task,
-                    zoom_cross_task=args.zoom_cross_task)
+                    zoom_cross_task=args.zoom_cross_task, question_level=args.question_level,
+                    paired_deltas=args.paired_deltas)
     print(json.dumps({'output':str(args.output),'stage':result['stage'],'source_sha256':result['source_sha256'],
                       'new_model_calls':0,'new_API_calls':0}))
 

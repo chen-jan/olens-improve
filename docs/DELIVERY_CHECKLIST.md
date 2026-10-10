@@ -78,3 +78,11 @@ User clarification at 13:18 UTC keeps the final scope to the four agreed familie
 The public dashboard must lead with concise findings and clear graphics, use plain language and readable labels, and put detailed explanations and technical provenance in expandable sections. Update the same public URL after review; a local render alone does not prove a published update.
 
 - [ ] After final scientific review, create a concise, visually polished slide deck with findings first, then comprehensive plots for the principal methods, combinations, quality/cost comparisons and ablations. Include representative successes and failures, visual explanations of how the methods work, uncertainty, denominator/split labels, and limitations. Use an appendix and speaker notes for detail instead of dense slide text. Every plotted result must map to its reviewed source. Deliver editable slides and a shareable PDF, inspect the rendered slides, and link them from the final dashboard/report.
+
+## Prepared final reporting inputs (19:35 UTC)
+
+These preparations did not inspect TEST quality. The exact DEV twelve-method export now exists at `durable/selections/development-full-grid-judging-v1/final12-exact-v2.jsonl`, SHA `a638c102a2e762543d0d81f28575fa2a46dd64ea7d12641b071622736a89c91e`, with adjacent `final12-exact-provenance-v2.json`. Use this 5,236-cell projection for the signed DEV reporter after the eleven missing judgments finish; the original 24-arm source remains immutable.
+
+[TEST workload metadata](../configs/cost_rows_test_v1.reviewed.json) provides the exact twelve candidate budgets and zero recurring helper calls. All timing and dollar quantities that are not yet separately measured remain explicitly missing. It can supply `cost_rows` to the eventual reviewed TEST section; it does not authorize outcome reveal or represent final financial reconciliation.
+
+The [final public packaging handoff](FINAL_PRESENTATION.md) documents reviewed source/figure/deck inputs. The figure exporter now supports `--question-level --paired-deltas`; new synthetic tests and independent review passed. The public exporter can attach the separately reviewed whole-469 appendix and exact reviewed deck/PDF/report downloads. Actual final data, visual checks and publication remain required.
