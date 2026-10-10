@@ -10,6 +10,10 @@ import json
 import math
 from pathlib import Path
 import re
+try:
+    import dashboard_method_sections as method_sections
+except ModuleNotFoundError:
+    from scripts import dashboard_method_sections as method_sections
 
 
 DEFAULT = ('raw_n1-n1','best_n_exact-n16','best_n_exact-n32','best_n_specificity_mean-n32')
@@ -132,6 +136,13 @@ def build(report,heldout_items=None,details_url='details.html'):
     api=data['api'];usage='Not measured' if api.get('actual_usd') is None else f'${api["actual_usd"]:.2f}'
     held='Unknown' if api.get('reserved_usd') is None else f'${api["reserved_usd"]:.2f}'
     stamp=esc(api.get('observed_utc','Timestamp not available'))
+    operational=data['activity'].get('overview_status',{})
+    development_status=esc(operational.get('development','Full baselines complete. Additional sampling measurements are incomplete.'))
+    test_status=esc(operational.get('test','Samples collected; quality results are pending.'))
+    count=operational.get('heldout_conditions')
+    if count is not None and (not isinstance(count,int) or isinstance(count,bool) or count<1):
+        raise ValueError('Invalid operational held-out comparison count')
+    test_menu=f'{count} preselected comparisons' if count is not None else 'Preselected comparisons'
     methods=[('sample_selection','Choose a complete readout','Ask for several descriptions and keep the one that best matches the internal snapshot.'),
         ('consensus','Keep repeated claims','Keep claims that recur across different samples. Agreement does not by itself establish truth.'),
         ('pruning','Remove weak bullets','Remove bullets that add little to the match. Check how much useful information is lost.'),
@@ -140,19 +151,20 @@ def build(report,heldout_items=None,details_url='details.html'):
         ('editing','Edit a readout','Propose small wording changes, then keep changes that improve the match. Check that meaning is preserved.'),
         ('independent_checks','Check with another reader','Look for supporting names and numbers with another released reader. Word presence does not verify who did what.'),
         ('combinations','Combine approaches','Combine parts, then remove each part to check what it contributes.')]
-    deep=''.join(f'<details class="method-info"><summary>{name}</summary><p>{esc(description)}</p><p>{esc(data["methods"].get(key,{}).get("status","Not measured"))}</p><a href="{details_url}">Open detailed comparisons</a></details>' for key,name,description in methods)
+    deep=method_sections.method_sections(report,details_url)
+    sampling=method_sections.scaling(report)
     payload={k:data[k] for k in ('metrics','names','families','default')};payload['condition_ids']=s['condition_ids'];payload['family_counts']=s['family_counts']
     serialized=json.dumps(payload,ensure_ascii=False,allow_nan=False).replace('<','\\u003c').replace('&','\\u0026')
     content=f'''<header class="top"><a class="brand" href="#">Oracle Lens research</a><nav><a href="#results">Results</a><a href="#methods">Methods</a><a href="{details_url}">Full study</a></nav></header>
 <main><section class="hero"><div><h1>A closer look<br>inside the model.</h1><p class="lead">One internal snapshot. Up to 32 possible descriptions. We test whether choosing or combining them gives a more useful readout.</p></div><aside class="verdict"><h2>No overall winner yet.</h2><p>Validation supports two options for final testing: <strong>Best of 16</strong> and <strong>Compare against other activations</strong>. Recovering a name or number can still leave the explanation wrong.</p><a href="#results">See the evidence</a></aside></section>
-<section class="stages" aria-label="Study status"><div><span class="stage-state complete">Complete comparisons</span><h2>Development</h2><p>Shared pilots and complete baselines.<br>Extra sampling curves are paused.</p></div><div><span class="stage-state complete">Complete</span><h2>Validation</h2><p>{validation_items} items · {len(s['condition_ids'])} methods<br>{cells:,} readout sites</p></div><div><span class="stage-state pending">Quality results pending</span><h2>Held-out test</h2><p>{data['heldout_items']} items · 6 frozen methods<br>Samples collected; reconstruction running.</p></div></section>
+<section class="stages" aria-label="Study status"><div><span class="stage-state complete">Complete comparisons</span><h2>Development</h2><p>Shared pilots and complete baselines.<br>{development_status}</p></div><div><span class="stage-state complete">Complete</span><h2>Validation</h2><p>{validation_items} items · {len(s['condition_ids'])} methods<br>{cells:,} readout sites</p></div><div><span class="stage-state pending">Quality results pending</span><h2>Held-out test</h2><p>{data['heldout_items']} items · {esc(test_menu)}<br>{test_status}</p></div></section>
 <section class="takeaways"><h2>What we know so far</h2><div class="takeaway-grid"><p><strong>Best of 16 is competitive.</strong><span>It uses half the candidates of Best of 32. More samples did not consistently help these validation tasks.</span></p><p><strong>Comparing other activations changes the tradeoff.</strong><span>Fewer contradiction flags can also mean more off-topic content.</span></p><p><strong>Shortening can lose useful details.</strong><span>Careful deletion did not generally beat equally short random deletion.</span></p></div></section>
 <section id="results"><div class="section-heading"><div><h2>Four tasks. Four separate checks.</h2><p>Validation results, with uncertainty. These are not held-out results or an overall accuracy score.</p></div><a href="figures.html">Download charts</a></div><div class="controls"><div class="segments" role="group" aria-label="Methods shown"><button data-menu="key" aria-pressed="true">4 key comparisons</button><button data-menu="all" aria-pressed="false">All 12 methods</button></div><label>Measure<select id="scope"><option value="cells">Readout sites</option><option value="items">Whole items: any passing site</option></select></label><label class="range"><input type="checkbox" id="full-range">Full 0–100% axes</label></div><div class="charts" id="charts">{plots}</div><details class="info"><summary>How to read these charts</summary><p>Rates use the exact counts shown under each percentage. The default axes start at zero and include every displayed uncertainty interval; use full axes to compare with the entire 0–100% range. Tasks measure different things, so their percentages are not combined.</p><p>Whole-item recovery counts an item as recovered when any preselected readout passes. The contradiction task retains its readout ratio in both views. Intervals describe each method separately; paired method differences and their intervals are in the full study.</p><p>A connecting-name mention, intermediate number or accepted role answer does not prove a correct explanation. The arithmetic checks have only {s['family_counts']['chain_intermediates']['groups']} related groups in validation. See the reviewed examples and limitations below.</p></details>{coverage(data)}</section>
 <section class="interpretation"><div class="section-heading"><div><h2>Why the caveats matter</h2><p>Reviewed conclusions and their exact supporting counts. Open only what you need.</p></div></div>{notes}</section>
 <section class="cost-section"><div><h2>What does each option require?</h2><p>Samples and runtime helper calls per new vector. These describe the fixed method, not a promised latency.</p><table><thead><tr><th>Method</th><th>Samples</th><th>API helper calls</th></tr></thead><tbody>{budgets}</tbody></table></div><aside class="cost-note"><h3>Research cost snapshot</h3><p class="cost-number">{usage}<small>estimated experimental API usage</small></p><p>{held} held for outstanding or uncertain charges. The benchmark judge is separate from these local selectors.</p><details><summary>Cost limits and timestamp</summary><p>Observed {stamp}. Not invoice reconciled. GPU dollar prices and complete new-input latency are not yet established. Reusing a research cache does not make new inputs free.</p></details></aside></section>
-<section id="methods"><div class="section-heading"><div><h2>Explore the methods</h2><p>Eight views of the same study: seven approaches and their combinations.</p></div><a href="{details_url}">All metrics and examples</a></div><div class="method-grid">{deep}</div></section>
+{sampling}<section id="methods"><div class="section-heading"><div><h2>Explore every tested approach</h2><p>Seven approaches and their combinations. Open a section for charts, all measured variants, uncertainty, costs and failures.</p></div><a href="{details_url}">Full technical study</a></div>{deep}</section>
 <footer><p>Public research snapshot · Updated {esc(updated)}. This page refreshes when a reviewed version is published; it is not an unattended live feed.</p><details><summary>Source and reproducibility</summary><p>Reviewed validation source: <code>{esc(s['source_sha256'])}</code>. All chart counts and intervals come from the same signed report as the full study. The model and released readers are frozen; no new training.</p></details><p><a href="report.md">Research report</a> · <a href="{details_url}">Detailed dashboard</a> · <a href="figures.html">Chart files</a></p></footer></main>'''
-    return TEMPLATE.replace('__CONTENT__',content).replace('__DATA__',serialized)
+    return TEMPLATE.replace('__CONTENT__',content).replace('__DATA__',serialized).replace('</style>',method_sections.CSS+'</style>').replace('</script></body>',method_sections.JS+'</script></body>')
 
 
 TEMPLATE='''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="A clear view of frozen Oracle Lens inference experiments: validation results, uncertainty, methods and limitations."><title>Oracle Lens — readouts under study</title><link rel="icon" href="data:,"><style>

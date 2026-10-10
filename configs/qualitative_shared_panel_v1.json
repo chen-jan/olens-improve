@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "panel_id": "qualitative-shared-panel-v1",
+  "status": "root_reviewed_fixed",
+  "created_utc": "2026-10-10T14:37:36.505052+00:00",
+  "source_cohort": {
+    "path": "configs/splits_pilot_shared_v2.json",
+    "sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+    "cells": 189,
+    "scope": "Partial original-grid development pilot; no validation/test anchors"
+  },
+  "seed": 20261010,
+  "selection_algorithm": {
+    "hash": "SHA256 UTF-8 hex digest; ascending lexicographic rank",
+    "payload": "f'{seed}|qualitative_anchor_panel_v1|{kind}|{value}'",
+    "family_order": [
+      "hallucination",
+      "multihop_mt",
+      "chain_intermediates",
+      "role_bound_association"
+    ],
+    "steps": [
+      "Within each family rank distinct group IDs with kind=group,value=family+|+group_id; take first two.",
+      "Within each selected group rank distinct item IDs with kind=item,value=family+|+group_id+|+item_id; take first.",
+      "Within each selected item/group rank eligible frozen cell IDs with kind=cell,value=cell_id; take first."
+    ],
+    "ties": "Break digest ties with the corresponding original identifier; no tie occurred in this panel.",
+    "outcome_information_used": false,
+    "post_selection_changes_allowed": false
+  },
+  "anchors": [
+    {
+      "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+      "family": "hallucination",
+      "item_id": "chat-lmsys-0052",
+      "group_id": "hallucination:35f3492cdf5d57c7",
+      "layer": 20,
+      "position": 253
+    },
+    {
+      "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+      "family": "hallucination",
+      "item_id": "chat-lmsys-0023",
+      "group_id": "hallucination:5c85a16c7bca4791",
+      "layer": 60,
+      "position": 464
+    },
+    {
+      "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+      "family": "multihop_mt",
+      "item_id": "mhh-1967-norwegian-classes-objects-codesigner",
+      "group_id": "multihop_mt:bridge-component:a046b74450ba7c00",
+      "layer": 44,
+      "position": 28
+    },
+    {
+      "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+      "family": "multihop_mt",
+      "item_id": "mhh-mesopotamian-wildman-cedar",
+      "group_id": "multihop_mt:bridge-component:be6c03c9fb6be262",
+      "layer": 60,
+      "position": 46
+    },
+    {
+      "cell_id": "chain_intermediates|chain-w2-d2p-0013|L60|p00062",
+      "family": "chain_intermediates",
+      "item_id": "chain-w2-d2p-0013",
+      "group_id": "chain_intermediates:37eccc588aafa111",
+      "layer": 60,
+      "position": 62
+    },
+    {
+      "cell_id": "chain_intermediates|chain-d2p-0385|L20|p00066",
+      "family": "chain_intermediates",
+      "item_id": "chain-d2p-0385",
+      "group_id": "chain_intermediates:787ce21baf539c52",
+      "layer": 20,
+      "position": 66
+    },
+    {
+      "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+      "family": "role_bound_association",
+      "item_id": "oa-waiter-customer-apologize-ab",
+      "group_id": "role_bound_association:eeeaafd155b88847",
+      "layer": 20,
+      "position": 92
+    },
+    {
+      "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+      "family": "role_bound_association",
+      "item_id": "oa-comedian-heckler-humiliate-ab",
+      "group_id": "role_bound_association:678e30ea4ee5fd05",
+      "layer": 60,
+      "position": 178
+    }
+  ],
+  "audit_policy": {
+    "same_cells_across_all_methods": true,
+    "baseline": "Retain raw/capped sample0 and applicable unchanged component parents.",
+    "supplements": "At most two separately labeled method-specific changed examples when fixed anchors miss changes; improvement/regression or explicit no-gain, with deterministic source/category selection. Never replace anchors.",
+    "missing_outputs": "Mark unavailable evidence as missing; empty abstentions and unchanged outputs remain valid observations.",
+    "independent_reader": "No new reader/model work; missing J++ anchor diagnostics stay missing. Existing instrument/E2 cases may supplement with separate scope.",
+    "feedback": "Evaluation-only retrospective qualitative review. No context, labels or reviewer annotations enter selectors/helpers or alter frozen menus."
+  },
+  "limits": [
+    "Eight illustrative development cells, two distinct items/related groups per family; not a population estimate or exhaustive variant review.",
+    "Claim support and relational correctness require source context; number/name mentions and judge passes alone do not establish faithfulness.",
+    "Rare-change supplements are deliberately selected and must not be treated as representative."
+  ],
+  "root_reviewed_utc": "2026-10-10T14:39:17.498473+00:00",
+  "review": "Root independently reproduced all eight anchors from cohort metadata and the stated hash ranking. No output, judge result or method gain used for selection.",
+  "artifact_policy": "Use actual retained frozen-run outputs and fresh-capture provenance for review. Older cache references in the split manifest establish cell metadata only; do not recapture or read old vectors for this audit."
+}

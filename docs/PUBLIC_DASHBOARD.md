@@ -23,3 +23,11 @@ python scripts/build_public_dashboard.py --output .state/public-dashboard/dist
 The isolated Site checkout and its hosting manifest are under `.state/public-dashboard`. Reuse the project ID recorded in `configs/public_dashboard.json`; obtain a fresh short-lived source credential through Sites and follow its source-packaging/save/deploy workflow. Pass credentials only through the helper's hidden standard input. Preserve public access. Record each successful version and deployment in the config. Do not create another Site or repurpose the main repository's Git remote.
 
 This publication uses the dedicated Sites source repository. The research repository remains locally committed; the user handles GitHub pushes.
+
+## All-method results update — 2026-10-10 14:35 UTC
+
+Version 3 is published at the same public URL. It adds eight expandable approach sections, every recorded pilot variant (423 metric rows), four N1–32 quality curves with source confidence intervals, stage-specific charts and exact tables, paired differences, available costs and collapsed examples. Small-pilot, larger-development and validation evidence remain separate. Independent-reader checks show diagnostic status without an invented quality score; unavailable intervals remain explicitly unestimated.
+
+Ten focused tests passed. Independent review corrected claims-per-output values that would otherwise have appeared as percentages and confirmed source warnings, units and missingness. Seven desktop/mobile views had no document overflow; all eight accordions and 55 stage/task selector choices worked. Root verified the full exported JSON is exactly the sanitized source, 29 local links/anchors resolve, and reviewed desktop/mobile screenshots. Native deployment succeeded; this is not a claim to have checked the user’s own browser.
+
+The next qualitative update will add a small shared example panel and independently reviewed method-specific improvements/regressions. Existing examples remain visible; that expanded audit is not yet complete. Research GitHub pushing remains with the user.

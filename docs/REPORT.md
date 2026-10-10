@@ -87,7 +87,7 @@ stay together when assigning development, validation and test groups.
 | Small development pilot | 31 | 189 | Method iteration and failure diagnosis; selected cells |
 | Full development | 121 | 5,236 | Larger method comparison using original complete read grids |
 | Validation | 80 | 3,485 | Twelve frozen comparisons; complete |
-| Test | 268 | 10,714 | Six comparisons frozen; reconstruction underway |
+| Test | 268 | 10,714 | Twelve comparisons frozen; selection complete, judging pending |
 
 The pilot is a subset of development. Cells from the same prompt are correlated.
 Paired uncertainty intervals resample related item groups, not individual cells.
@@ -393,8 +393,18 @@ The full development collection measured about 4.33 H200 task wall-seconds per
 N32 cell, amortized over filled batches. Its phrase encoding workload implies
 about 1.25 additional GPU task wall-seconds per cell at the measured throughput. These component
 averages include batching and deduplication effects; they are not single-input
-latency guarantees. Activation capture and setup also cost time, and a reliable
-capture timing was not retained. GPU dollar pricing is unavailable.
+latency guarantees. GPU dollar pricing is unavailable.
+
+A separate installed-tool check measured one new synthetic input on an H200.
+With Oracle Lens already loaded, capturing its activation took 0.30 seconds
+and generating 32 descriptions took 12.04 seconds. Starting with no model
+loaded in the process, the pipeline through the first selected description
+took 59.59 seconds. This includes loading both models sequentially, encoding
+128 phrase vectors, preparing the scoring transform and choosing a response.
+The phrase encoding itself took 1.34 seconds. These components overlap with
+the pipeline total and must not be added twice. This is one input using
+existing filesystem caches, not a latency distribution or a measurement of
+fresh 16-sample generation. See [new-input timing](experiments/035-new-input-timing.md).
 
 Cached selector timings help compare local overhead: median cached selector
 wall time per cell was .0112 seconds for best-of-32, .0123 for that parent plus pruning, .0591 for
@@ -424,11 +434,20 @@ results cannot alter this menu or its thresholds after validation opens.
 Validation reconstruction, selection, judging and the signed twelve-condition
 analysis are complete; see
 [the validation comparison](experiments/029-validation-comparison.md).
-The six-method final comparison is now frozen after two independent reviews
-and coordinator approval. All 342,848 TEST samples passed source and cell
-identity checks, and reconstruction preparation is underway under the separate
-analysis gate. No TEST quality results are available yet. See the
-[final method freeze](experiments/032-test-final-method-freeze.md).
+The original six-method final comparison was frozen after two independent
+reviews and coordinator approval. Following the user's concern about noisy
+shortlisting, a prospective amendment adds the other six already frozen
+validation variants as secondary comparisons. This was recorded before any
+TEST judgments or quality inspection. The original six primary comparisons,
+settings and two validation-selected operating points remain unchanged.
+Small validation samples do not establish that excluded variants are inferior.
+All 342,848 TEST samples passed source and cell identity checks; reconstruction
+and selection are complete for all 10,714 sites. No TEST quality results are
+available yet. See the [original freeze](experiments/032-test-final-method-freeze.md)
+and [expanded comparison](experiments/038-expanded-heldout-comparison.md).
+Consensus and editing remain pilot evidence, and independent-reader checks
+remain diagnostics; the twelve-method comparison is not an exhaustive test of
+all seven approach categories.
 
 The implementation provides a vector-first Python API and command-line tool,
 immutable candidate pools, cached phrase encodings and replayable selectors.
@@ -438,6 +457,13 @@ synthetic-input check then completed adapter-disabled capture, N2 generation,
 eight new phrase encodings and an identical cache-only replay in 156 seconds
 on one H200. This validates the installed execution path in the existing
 environment; semantic quality and a complete dependency installation on another
-machine remain unvalidated. Installation and artifact requirements are in
+machine remain unvalidated. The later N32 check above measured a separate
+new-input run. The cache-saving release also passed an installed-wheel check:
+after eight vectors were saved and their cache directory moved, replay returned
+exactly the same text, source phrases and reconstruction score without loading
+the reconstructor. See [cache persistence](experiments/036-portable-cache-persistence.md).
+Installation and artifact requirements are in
 [README.md](../README.md). Code and documentation are committed locally in
-milestones; nothing has been pushed by this project run.
+milestones; the research GitHub repository has not been pushed. The separately
+hosted [public dashboard](https://olens-improve-research.jan618.chatgpt.site)
+contains a reviewed snapshot with clear task charts and expandable detail.

@@ -1,47 +1,58 @@
 # Execution status
 
-Updated: 2026-10-10, approximately 13:48 UTC.
+Updated: 2026-10-10, approximately 14:40 UTC.
 Started: 2026-10-10 01:25:36 UTC (October 9, 21:25:36 EDT).
 Target finish: 2026-10-10 21:25:36 UTC. Execution remains active and authorized.
 
 ## Latest operational checkpoint
 
-Validation is complete for all **12 methods and controls across four families**
-(3,485 cells, 80 items). The source-bound analysis and two independent trace
-reviews support two prospective final-test choices: **best-of-16** and
-**best-of-32 with matched-control specificity**. These are candidates for
-confirmation, not established improvements in explanation faithfulness.
-Pruning's lower error rate is matched or improved by random shortening;
-pooling loses substantial numerical recovery. The exact six-arm final test
-will retain raw/capped N1, best-of-16, best-of-32, random N32 and specificity N32.
+At approximately **14:40 UTC**, all 12 validation methods/controls are complete
+across four families (80 items, 3,485 cells). The prospective final comparison
+now includes those same twelve variants: the original six primary comparisons
+and six additional secondary comparisons. Settings and the two validation-selected
+operating points are unchanged. The expansion was sealed before any TEST
+judgment or quality inspection. Small validation samples do not rule methods out.
+See experiments 038 and the unchanged original freeze in 032.
 
-All 10,714 held-out cells already have 32 samples. The final method freeze and
-separate analysis gate are sealed; all 342,848 samples passed identity checks.
-All four H200 reconstruction workers completed successfully with exactly
-1,294,737 new vectors. The validated catalog contains 2,358,662 vectors without
-copying the source tensors. Four candidate-selection shards now run on the
-16-core/80-GiB CPU allocation; only the six frozen methods will be exported for
-judging. No TEST quality result is available.
+All 342,848 TEST samples passed source identity checks. Reconstruction and all
+four selector shards are complete for all 10,714 sites. One selector suffered an
+OOM, then resumed its 2,213 saved cells on CPU capacity in another existing
+allocation and completed successfully. The merged selection SHA is
+`547b953be6fff89d2f850001fd6dcdb3aed606708c8a211b6270369a4aa25df1`.
+The prespecified specificity/pruning combinations also completed, SHA
+`0e2f4583bd9ee5a9d3b75960801b0dd656b4355ad3fbe3e78ac55d12592170f8`.
+Exact twelve-condition export is running in root session 92232; forecast and
+reviewed paid TEST dispatch follow. No TEST quality result is available.
 
-An asynchronous accounting patch passed 45 isolated tests and a copied-ledger
-fake-network load check. Its applied allocated rerun also passed all 45 tests before
-any new paid dispatch; no judge requests, score definitions or budget limits
-change. The resumed DEV role queue then failed during a reservation COMMIT lock: six new responses settled and three cancelled reservations remain held. Judging is paused for a bounded reader/guarded-canary repair; the lock holder remains unidentified. See experiment 034.
+The recovered DEV N=2 role queue completed successfully: 1,556 paid responses
+in 505.421 seconds, about 185/minute. A bounded checkpoint found no new uncertain
+charges in its latest 100 responses; previous holds remain. N=4/8/16 role
+measurements now run in session 21686/PID3529361 with the same Luna model,
+8 slots/200 RPM, original run cap and recovery epoch. Hallucination N=8 needs
+one repaired cell and N=16 remains incomplete. These late DEV measurements
+cannot change the fixed TEST methods.
 
-Reader cleanup passed independent review and offline tests. A single guarded
-Luna call succeeded at 13:30, but reserve still took 29.87 seconds with observers
-paused. Judging remains paused while identical disposable ledger copies on NFS
-and local XFS are profiled by transaction phase. Both disposable copies reserved in milliseconds, so they did not reproduce the
-live slowdown. One live request with phase-level instrumentation is being
-prepared for review. No production ledger migration or additional paid queue
-dispatch is authorized by these diagnostics. See experiment 037.
+The expanded [public dashboard](https://olens-improve-research.jan618.chatgpt.site)
+was published at **14:35 UTC**. It exposes all eight approach/combination sections,
+423 pilot metric rows, sample-count curves with source intervals, exact counts,
+paired differences, costs and available examples. Ten focused tests, independent
+unit/source review and desktop/mobile checks passed. The scientific snapshot
+remains explicitly distinct from the newer operational status.
 
-The dashboard is publicly accessible at https://olens-improve-research.jan618.chatgpt.site. Publication and an unauthenticated HTTP 200 were verified; the exported scientific numbers and plots passed independent comparison. A new overview with separate task charts and expandable detail passed desktop/mobile checks and was published at the same URL at 13:42 UTC. A findings-first final slide deck, including comprehensive plots and an appendix, is also required after final scientific review.
+Following the user's request for systematic qualitative review, eight shared
+pilot examples are fixed by an outcome-blind seeded group/item/cell rule.
+Three Sol reviewers are assigned A/C/D, E/F/G, and consensus/combinations.
+Each uses exact outputs, evaluation context and judge evidence, with at most
+two separately labeled method-specific supplements. Review gaps and unrun
+methods remain explicit. The richer reviewed case cards are not yet published.
+See `configs/qualitative_shared_panel_v1.json` and QUALITATIVE_REVIEW.md.
 
-The latest 12:19 resource snapshot records **$13.15279** in usage-based API cost
-and **$4.78019** in uncertain charges retained in full, with no live reservations.
-Project storage is **48.85 GB logical / 38.90 GB allocated**, excluding the reused
-55.56-GB base-model cache. These are measurements, not invoice or quota totals.
+The latest verified pre-A2 global receipt at 13:56 records $13.15336 usage cost
+plus $4.79472 uncertain charges retained. It is a historical receipt, not the
+current invoice total. The $200 target/$300 ceiling and 500-GB storage allowance
+remain in force. Research commits remain local; only the dedicated Site source
+repository is pushed. Final TEST analysis, report, dashboard and slide deck
+remain required; the goal is active.
 
 ## Findings so far
 

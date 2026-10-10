@@ -35,7 +35,7 @@
   "reviewed_findings": [
     {
       "claim": "Preliminary quality differences do not track reconstruction uniformly.",
-      "detail": "Best-of-32 has 39 contradictions among 71 specific readouts, versus 46/71 for capped N1. Pooling recovers 10/24 bridge cells but only 1/21 chain cells. These are development cell diagnostics with just 2–8 independent groups per family. No general faithful-recovery gain is established.",
+      "detail": "Best-of-32 has 39 contradictions among 71 specific readouts, versus 46/71 for capped N1. Pooling recovers 10/24 bridge cells but only 1/21 chain cells. These are development cell diagnostics with just 2\u20138 independent groups per family. No general faithful-recovery gain is established.",
       "evidence": "docs/experiments/008-early-pilot-review.md; dashboard/measurements.json",
       "reviewed_by": "root"
     },
@@ -95,7 +95,7 @@
       "status": "Development measurements; complete conditions only, interpretation provisional",
       "hypothesis": "Does selecting the best persisted sample improve faithful recovery at a fixed sampling budget?",
       "limits": [
-        "Partial grids: cell diagnostics, not official item accuracy. Whole related groups are resampled; only 2–8 independent groups per family (chain 2, role 4, bridge 7, hallucination 8).",
+        "Partial grids: cell diagnostics, not official item accuracy. Whole related groups are resampled; only 2\u20138 independent groups per family (chain 2, role 4, bridge 7, hallucination 8).",
         "Mention recovery and transcript contradiction do not establish full factual or relational fidelity."
       ],
       "next_action": "Validation review is complete and the final six-method comparison is fixed. Next: finish held-out evaluation, inspect wins and regressions, and report quality alongside inference cost.",
@@ -1653,16 +1653,16 @@
         {
           "kind": "Contradiction removed, support unresolved",
           "cell_id": "hallucination|chat-lmsys-0005|L20|p00291",
-          "baseline": "- - **LexiaLearn**: Another popular web-based service that generates custom writing prompts based on a child's\n- **LingoAce**: While often a subscription service, it operates similarly by generating personalized word lists for practice.\n- - **StoryBuddies**: A popular platform that uses AI to generate a unique, personalized story for a child based on prompts. It’s similar in\n- **ReadAloud Pro**: Similar in concept, this service uses AI to create a custom story based on a child’s interests.",
-          "selected": "- - **Learnly:** A web-based tool that allows parents to input their\n- **BookSmart**:** Another web-based platform that uses AI to analyze a child's reading patterns and\n- - **StoryBuilder AI**: Similar to CurioSity, this platform uses algorithms to generate custom reading stories based on a child's\n- **LexiaLab**: A popular example where parents input a child’s reading level and interests, and the platform generates a",
+          "baseline": "- - **LexiaLearn**: Another popular web-based service that generates custom writing prompts based on a child's\n- **LingoAce**: While often a subscription service, it operates similarly by generating personalized word lists for practice.\n- - **StoryBuddies**: A popular platform that uses AI to generate a unique, personalized story for a child based on prompts. It\u2019s similar in\n- **ReadAloud Pro**: Similar in concept, this service uses AI to create a custom story based on a child\u2019s interests.",
+          "selected": "- - **Learnly:** A web-based tool that allows parents to input their\n- **BookSmart**:** Another web-based platform that uses AI to analyze a child's reading patterns and\n- - **StoryBuilder AI**: Similar to CurioSity, this platform uses algorithms to generate custom reading stories based on a child's\n- **LexiaLab**: A popular example where parents input a child\u2019s reading level and interests, and the platform generates a",
           "evidence": "Frozen verdict changes from one false span to zero, with nine unverifiable claims and zero true claims. Reviewed in docs/experiments/008-early-pilot-review.md",
           "interpretation": "A contradiction improvement can replace details with unsupported assertions."
         },
         {
           "kind": "Suspected judge paraphrase error",
           "cell_id": "hallucination|chat-dailydialog-0027|L20|p00088",
-          "baseline": "- , help you craft a witty introduction, or prepare a conversation opener.\n- 撰写一条机智的开场白，或者帮你准备一个礼貌的社交策略。\n- 2. Draft a witty opening line for your greeting. 3. Suggest a clever icebreaker for the\n- （a clever opener for your greeting), or help you prepare a list of party games. I can also help you draft a witty social media post about your upcoming visit.",
-          "selected": "- , draft a witty opening line for your greeting, or help you prepare a mental inventory of social topics.\n- 2.  Help you compose a clever introduction line for the party.\n- 构思 a clever opening line, or help you prepare a thoughtful greeting. I can also remind you of social etiquette that\n- （a witty opener for your greeting), or prepare a mental strategy for the party. I can also generate a polite RSVP template that",
+          "baseline": "- , help you craft a witty introduction, or prepare a conversation opener.\n- \u64b0\u5199\u4e00\u6761\u673a\u667a\u7684\u5f00\u573a\u767d\uff0c\u6216\u8005\u5e2e\u4f60\u51c6\u5907\u4e00\u4e2a\u793c\u8c8c\u7684\u793e\u4ea4\u7b56\u7565\u3002\n- 2. Draft a witty opening line for your greeting. 3. Suggest a clever icebreaker for the\n- \uff08a clever opener for your greeting), or help you prepare a list of party games. I can also help you draft a witty social media post about your upcoming visit.",
+          "selected": "- , draft a witty opening line for your greeting, or help you prepare a mental inventory of social topics.\n- 2.  Help you compose a clever introduction line for the party.\n- \u6784\u601d a clever opening line, or help you prepare a thoughtful greeting. I can also remind you of social etiquette that\n- \uff08a witty opener for your greeting), or prepare a mental strategy for the party. I can also generate a polite RSVP template that",
           "evidence": "Luna marks some plausible paraphrases as wrong under the supplied dialogue; retain the verdict pending a separate audit. Reviewed in docs/experiments/008-early-pilot-review.md",
           "interpretation": "Judge reliability limits interpretation of this regression."
         }
@@ -5310,7 +5310,7 @@
         }
       ],
       "limits": [
-        "Partial grids: cell diagnostics, not official item accuracy. Whole related groups are resampled; only 2–8 independent groups per family (chain 2, role 4, bridge 7, hallucination 8).",
+        "Partial grids: cell diagnostics, not official item accuracy. Whole related groups are resampled; only 2\u20138 independent groups per family (chain 2, role 4, bridge 7, hallucination 8).",
         "Mention recovery and transcript contradiction do not establish full factual or relational fidelity."
       ],
       "next_action": "Validation review is complete and the final six-method comparison is fixed. Next: finish held-out evaluation, inspect wins and regressions, and report quality alongside inference cost.",
@@ -6376,7 +6376,7 @@
       ],
       "status": "Development measurements; complete conditions only, interpretation provisional",
       "limits": [
-        "Partial grids: cell diagnostics, not official item accuracy. Whole related groups are resampled; only 2–8 independent groups per family (chain 2, role 4, bridge 7, hallucination 8).",
+        "Partial grids: cell diagnostics, not official item accuracy. Whole related groups are resampled; only 2\u20138 independent groups per family (chain 2, role 4, bridge 7, hallucination 8).",
         "Mention recovery and transcript contradiction do not establish full factual or relational fidelity."
       ],
       "next_action": "Validation review is complete and the final six-method comparison is fixed. Next: finish held-out evaluation, inspect wins and regressions, and report quality alongside inference cost.",
@@ -6988,7 +6988,7 @@
       ],
       "status": "Development measurements; complete conditions only, interpretation provisional",
       "limits": [
-        "Partial grids: cell diagnostics, not official item accuracy. Whole related groups are resampled; only 2–8 independent groups per family (chain 2, role 4, bridge 7, hallucination 8).",
+        "Partial grids: cell diagnostics, not official item accuracy. Whole related groups are resampled; only 2\u20138 independent groups per family (chain 2, role 4, bridge 7, hallucination 8).",
         "Mention recovery and transcript contradiction do not establish full factual or relational fidelity."
       ],
       "next_action": "Validation review is complete and the final six-method comparison is fixed. Next: finish held-out evaluation, inspect wins and regressions, and report quality alongside inference cost.",
@@ -6996,7 +6996,7 @@
         {
           "kind": "Recovered bridge, wrong relationship",
           "cell_id": "multihop_mt|mhh-borglum-son|L44|p00033",
-          "baseline": "- /son, Edwin Roth. The monumental task was completed after his father's death by his son\n- 's (Eli Whitney Jr.) completion of the monument after his father's death. The iconic Great Sphinx was largely finished by his son\n- /son, George Washington Carver Jr., completed the work. How long did it take his son to finish the monument after his father's death? His son\n- （son）, Raymond Davis, to complete the work after his father's death. The correct answer is **45 years**, completed by his son",
+          "baseline": "- /son, Edwin Roth. The monumental task was completed after his father's death by his son\n- 's (Eli Whitney Jr.) completion of the monument after his father's death. The iconic Great Sphinx was largely finished by his son\n- /son, George Washington Carver Jr., completed the work. How long did it take his son to finish the monument after his father's death? His son\n- \uff08son\uff09, Raymond Davis, to complete the work after his father's death. The correct answer is **45 years**, completed by his son",
           "selected": "- /son, George Washington Carver Jr., completed the work. How long did it take his son to finish the monument after his father's death? His son\n- /son. Which famous sculptor finished the project with his son\n- /daughter completing the work after his death. Here are the correct answers for the Statue of Liberty quiz involving his son\n- /son, **Gutzon Borglum Jr.**, to complete it. Who was that son\n",
           "evidence": "The matched bridge string appears in an incorrect son relationship; deterministic mention recovery is retained. Reviewed in docs/experiments/008-early-pilot-review.md",
           "interpretation": "A name match is not faithful relationship recovery."
@@ -9514,7 +9514,7 @@
       ],
       "status": "Development measurements; complete conditions only, interpretation provisional",
       "limits": [
-        "Partial grids: cell diagnostics, not official item accuracy. Whole related groups are resampled; only 2–8 independent groups per family (chain 2, role 4, bridge 7, hallucination 8).",
+        "Partial grids: cell diagnostics, not official item accuracy. Whole related groups are resampled; only 2\u20138 independent groups per family (chain 2, role 4, bridge 7, hallucination 8).",
         "Mention recovery and transcript contradiction do not establish full factual or relational fidelity.",
         "B v4 is an instrumentation-limited end-to-end diagnostic: 103 paid response-validation failures and 36 exhausted logical calls. Semantic disagreements are separate. Empty abstentions reduce assertion coverage; lower wrong fractions alone do not establish fidelity or consensus futility.",
         "The repaired helper without reasoning completes every requested pair label. This repairs instrumentation, but manual audits still identify unsafe semantic merges; helper agreement is not benchmark truth.",
@@ -12409,7 +12409,7 @@
       ],
       "status": "Development measurements; complete conditions only, interpretation provisional",
       "limits": [
-        "Partial grids: cell diagnostics, not official item accuracy. Whole related groups are resampled; only 2–8 independent groups per family (chain 2, role 4, bridge 7, hallucination 8).",
+        "Partial grids: cell diagnostics, not official item accuracy. Whole related groups are resampled; only 2\u20138 independent groups per family (chain 2, role 4, bridge 7, hallucination 8).",
         "Mention recovery and transcript contradiction do not establish full factual or relational fidelity."
       ],
       "next_action": "Validation review is complete and the final six-method comparison is fixed. Next: finish held-out evaluation, inspect wins and regressions, and report quality alongside inference cost.",
@@ -12782,7 +12782,7 @@
       "metrics": [],
       "status": "Not measured in this report",
       "limits": [
-        "Partial grids: cell diagnostics, not official item accuracy. Whole related groups are resampled; only 2–8 independent groups per family (chain 2, role 4, bridge 7, hallucination 8).",
+        "Partial grids: cell diagnostics, not official item accuracy. Whole related groups are resampled; only 2\u20138 independent groups per family (chain 2, role 4, bridge 7, hallucination 8).",
         "Mention recovery and transcript contradiction do not establish full factual or relational fidelity."
       ],
       "next_action": "Validation review is complete and the final six-method comparison is fixed. Next: finish held-out evaluation, inspect wins and regressions, and report quality alongside inference cost.",
@@ -15054,7 +15054,7 @@
       ],
       "status": "Development measurements; complete conditions only, interpretation provisional",
       "limits": [
-        "Partial grids: cell diagnostics, not official item accuracy. Whole related groups are resampled; only 2–8 independent groups per family (chain 2, role 4, bridge 7, hallucination 8).",
+        "Partial grids: cell diagnostics, not official item accuracy. Whole related groups are resampled; only 2\u20138 independent groups per family (chain 2, role 4, bridge 7, hallucination 8).",
         "Mention recovery and transcript contradiction do not establish full factual or relational fidelity.",
         "Partial original read grids; no heldout outputs inspected.",
         "Whole related-source groups resampled; chain only2groups and role4groups.",
@@ -17662,24 +17662,24 @@
         {
           "kind": "Pruning gain with competing role fragments",
           "cell_id": "oa-father-daughter-worry-ab__L044__p153",
-          "baseline": "- 1. A father waits for his son to return home late, finding that the delay was\n- 一位 father patiently waits for his late-arriving son, accepting his return despite the disappointment of the delay.\n- 父亲 waits up for his independent daughter's delayed return, quietly absorbing the disappointment without showing it. Here is a concise summary of the story\n- A father’s patience and forgiveness are tested when his adult son arrives home late, leaving him to reflect on his own aging and mortality alone.",
-          "selected": "- 父亲 waits up for his independent daughter's delayed return, quietly absorbing the disappointment without showing it. Here is a concise summary of the story\n- A father’s patience and forgiveness are tested when his adult son arrives home late, leaving him to reflect on his own aging and mortality alone.",
-          "evidence": "Parent judge: The readout describes a father patiently accepting his late-arriving child’s return and says his patience and forgiveness are tested. It mentions both a son and a daughter, so the specific child is unclear; among the options, Elise is the daughter, but the readout does not identify the child as Elise. Thus the patient cannot be determined. Pruned judge: The readout describes the father waiting up and reflecting on his adult daughter's late return, implying that the father worried about the daughter.",
+          "baseline": "- 1. A father waits for his son to return home late, finding that the delay was\n- \u4e00\u4f4d father patiently waits for his late-arriving son, accepting his return despite the disappointment of the delay.\n- \u7236\u4eb2 waits up for his independent daughter's delayed return, quietly absorbing the disappointment without showing it. Here is a concise summary of the story\n- A father\u2019s patience and forgiveness are tested when his adult son arrives home late, leaving him to reflect on his own aging and mortality alone.",
+          "selected": "- \u7236\u4eb2 waits up for his independent daughter's delayed return, quietly absorbing the disappointment without showing it. Here is a concise summary of the story\n- A father\u2019s patience and forgiveness are tested when his adult son arrives home late, leaving him to reflect on his own aging and mortality alone.",
+          "evidence": "Parent judge: The readout describes a father patiently accepting his late-arriving child\u2019s return and says his patience and forgiveness are tested. It mentions both a son and a daughter, so the specific child is unclear; among the options, Elise is the daughter, but the readout does not identify the child as Elise. Thus the patient cannot be determined. Pruned judge: The readout describes the father waiting up and reflecting on his adult daughter's late return, implying that the father worried about the daughter.",
           "interpretation": "The frozen judge permits contextual role descriptions and name mappings. The output still offers a son alternative. This is a judge-sensitive partial-grid recovery change, not independently verified richer binding accuracy."
         },
         {
           "kind": "Repeat-support change with retained disputed identity",
           "cell_id": "hallucination|chat-dailydialog-0002|L60|p00032",
-          "baseline": "- a large language model developed by Tongyi Lab, not ChatGPT. Thank you for\n- 一个 large language model developed by Alibaba Group. Please call me Qwen. If you have any questions about my identity, you can visit Tongyi's\n- 也称通义千问， developed by Alibaba Group's Tongyi Lab, and I am honored to serve you. 😊 If you have any\n- 阿里云的通义千问， not a person named \"Xiao Wen\". Thank you for your question. If you need any assistance\n",
-          "selected": "- a large language model developed by Tongyi Lab, not ChatGPT. Thank you for\n- 一个 large language model developed by Alibaba Group. Please call me Qwen. If you have any questions about my identity, you can visit Tongyi's\n- a large language model developed by Alibaba Group's Tongyi Lab\n- 即通义千问，而非 ChatGPT。If you have any questions or need assistance, I'm here to help. 😊",
+          "baseline": "- a large language model developed by Tongyi Lab, not ChatGPT. Thank you for\n- \u4e00\u4e2a large language model developed by Alibaba Group. Please call me Qwen. If you have any questions about my identity, you can visit Tongyi's\n- \u4e5f\u79f0\u901a\u4e49\u5343\u95ee\uff0c developed by Alibaba Group's Tongyi Lab, and I am honored to serve you. \ud83d\ude0a If you have any\n- \u963f\u91cc\u4e91\u7684\u901a\u4e49\u5343\u95ee\uff0c not a person named \"Xiao Wen\". Thank you for your question. If you need any assistance\n",
+          "selected": "- a large language model developed by Tongyi Lab, not ChatGPT. Thank you for\n- \u4e00\u4e2a large language model developed by Alibaba Group. Please call me Qwen. If you have any questions about my identity, you can visit Tongyi's\n- a large language model developed by Alibaba Group's Tongyi Lab\n- \u5373\u901a\u4e49\u5343\u95ee\uff0c\u800c\u975e ChatGPT\u3002If you have any questions or need assistance, I'm here to help. \ud83d\ude0a",
           "evidence": "Frozen classifications: hallucinated to consistent. The not-ChatGPT claim appears in both outputs.",
           "interpretation": "Removing or changing neighboring content can change judge interpretation. The preserved verdicts are not corrected; lower contradiction counts do not certify the retained claims."
         },
         {
           "kind": "Reported contradiction improvement retains flagged details",
           "cell_id": "hallucination|chat-lmsys-0026|L20|p00471",
-          "baseline": "- Added or updated **mandatory RNAV routes** for certain airports. This is one of the biggest changes in\n- 新增 more detailed guidance on RNAV 5 and PBN (Performance-Based Navigation) routes. Some charts were expanded or revised.\n- 重大 updates to **Route Chart Symbols** (Annex 4). These updates aim to make VFR flight planning clearer and safer, especially for low-visibility\n- Updated the **definition and scope** of Area Navigation Charts (RNAV charts). Many new provisions were added in\n",
-          "selected": "- Added or updated **mandatory RNAV routes** for certain airports. This is one of the biggest changes in\n- 新增 more detailed guidance on RNAV 5 and PBN (Performance-Based Navigation) routes. Some charts were expanded or revised.\n- Updated the **definition and scope** of Area Navigation Charts (RNAV charts). Many new provisions were added in\n",
+          "baseline": "- Added or updated **mandatory RNAV routes** for certain airports. This is one of the biggest changes in\n- \u65b0\u589e more detailed guidance on RNAV 5 and PBN (Performance-Based Navigation) routes. Some charts were expanded or revised.\n- \u91cd\u5927 updates to **Route Chart Symbols** (Annex 4). These updates aim to make VFR flight planning clearer and safer, especially for low-visibility\n- Updated the **definition and scope** of Area Navigation Charts (RNAV charts). Many new provisions were added in\n",
+          "selected": "- Added or updated **mandatory RNAV routes** for certain airports. This is one of the biggest changes in\n- \u65b0\u589e more detailed guidance on RNAV 5 and PBN (Performance-Based Navigation) routes. Some charts were expanded or revised.\n- Updated the **definition and scope** of Area Navigation Charts (RNAV charts). Many new provisions were added in\n",
           "interpretation": "Pruning retains formerly wrong spans, including mandatory RNAV routes, while the verdict becomes consistent with zero true and five unverifiable claims. This does not demonstrate removal of the alleged contradiction.",
           "evidence": "Frozen pooled_specificity_mean_then_prune_0.005 vs pooled_specificity_mean judgments; reviewed in docs/experiments/020-pooled-specificity.md. These deliberately selected cases are not prevalence estimates.",
           "review_source": "doc020"
@@ -17687,8 +17687,8 @@
         {
           "kind": "Pooling retains a formerly flagged span",
           "cell_id": "hallucination|chat-dailydialog-0027|L20|p00123",
-          "baseline": "- /Creating a playlist for your getaway. I can help you prepare for the\n- 4. Draft a playlist for your getaway. I can help you create the perfect getaway playlist\n- 或者 help you draft a goodbye note. A getaway playlist can help you create a mood. I can help you curate a playlist\n- （create a playlist for the getaway), or even draft a packing list. I am here to make your evening a",
-          "selected": "- （create a playlist for the getaway), or even draft a packing list. I am here to make your evening a\n- 4. Help you create a getaway playlist. These are just a few ways I can assist in making your night a\n- 这些都能帮助你打造一个完美的独自外出体验。需要我帮你制作一个 getaway playlist\n- / Create a playlist for your getaway. I can help with all of these tasks to make your getaway a\n",
+          "baseline": "- /Creating a playlist for your getaway. I can help you prepare for the\n- 4. Draft a playlist for your getaway. I can help you create the perfect getaway playlist\n- \u6216\u8005 help you draft a goodbye note. A getaway playlist can help you create a mood. I can help you curate a playlist\n- \uff08create a playlist for the getaway), or even draft a packing list. I am here to make your evening a",
+          "selected": "- \uff08create a playlist for the getaway), or even draft a packing list. I am here to make your evening a\n- 4. Help you create a getaway playlist. These are just a few ways I can assist in making your night a\n- \u8fd9\u4e9b\u90fd\u80fd\u5e2e\u52a9\u4f60\u6253\u9020\u4e00\u4e2a\u5b8c\u7f8e\u7684\u72ec\u81ea\u5916\u51fa\u4f53\u9a8c\u3002\u9700\u8981\u6211\u5e2e\u4f60\u5236\u4f5c\u4e00\u4e2a getaway playlist\n- / Create a playlist for your getaway. I can help with all of these tasks to make your getaway a\n",
           "interpretation": "The draft-a-packing-list span remains while the frozen verdict changes from wrong to consistent. Preserve the official score; the change is not independent verification of the surviving content.",
           "evidence": "Frozen pooled_specificity_mean vs best_n_specificity_mean judgments; reviewed in docs/experiments/020-pooled-specificity.md. These deliberately selected cases are not prevalence estimates.",
           "review_source": "doc020"
@@ -17696,8 +17696,8 @@
         {
           "kind": "A bridge hit can refer to the wrong kind of entity",
           "cell_id": "multihop_mt|mhh-simula-norsk-regnesentral|L60|p00033",
-          "baseline": "- Norsk Data Processing Center (now part of NIST) or the Norwegian Computing Center. The\n- Norges Informasjonsforskningsinstitutt (Norwegian Institute of Computing Science). Algol 68 was developed at the\n- Norwegian Computing Centre (NORSK DATATEKNIKK). The first significant Algol-based programming language developed there was Algol 6\n- Norwegian Computing Center (NCC) and the University of Oslo’s Programming Laboratory. The language's creators, Bjørne Andersen, Oystein Dahl,",
-          "selected": "- Norwegian Computing Center (NCC) and the University of Oslo’s Programming Laboratory. The language's creators, Bjørne Andersen, Oystein Dahl,\n- Norwegian Computing Center for Scientific Research. He was a central figure in the development of BNF\n- Norsk Forskningsinstitutt for Dataprocessing (NFD), later known as Simula Research Laboratory). It was developed at the Norwegian Computing Center\n- Norwegian Computing Center (Norges Informasjonsinstitutt). The language was developed by the programming research group",
+          "baseline": "- Norsk Data Processing Center (now part of NIST) or the Norwegian Computing Center. The\n- Norges Informasjonsforskningsinstitutt (Norwegian Institute of Computing Science). Algol 68 was developed at the\n- Norwegian Computing Centre (NORSK DATATEKNIKK). The first significant Algol-based programming language developed there was Algol 6\n- Norwegian Computing Center (NCC) and the University of Oslo\u2019s Programming Laboratory. The language's creators, Bj\u00f8rne Andersen, Oystein Dahl,",
+          "selected": "- Norwegian Computing Center (NCC) and the University of Oslo\u2019s Programming Laboratory. The language's creators, Bj\u00f8rne Andersen, Oystein Dahl,\n- Norwegian Computing Center for Scientific Research. He was a central figure in the development of BNF\n- Norsk Forskningsinstitutt for Dataprocessing (NFD), later known as Simula Research Laboratory). It was developed at the Norwegian Computing Center\n- Norwegian Computing Center (Norges Informasjonsinstitutt). The language was developed by the programming research group",
           "interpretation": "The pooled output says Simula Research Laboratory. The frozen bridge alias is bare Simula; a regex hit does not establish that the language, rather than the laboratory name, was recovered.",
           "evidence": "Frozen pooled_specificity_mean vs best_n_specificity_mean judgments; reviewed in docs/experiments/020-pooled-specificity.md. These deliberately selected cases are not prevalence estimates.",
           "review_source": "doc020"
@@ -18584,8 +18584,8 @@
         "cell_id": "chain_intermediates|chain-w2-d3p-0547|L52|p00070",
         "family": "chain_intermediates",
         "kind": "Judge ranking changes after capping",
-        "baseline": "- 17\n- 27 $\\quad \\text{（计算过程见下文）\n- 31 $$ （解释见下文）\n\n---\n- 25 $  (见下方计算过程)\n- 21 $$ *(Explanation below)*\n\n---\n\n### Breakdown of",
-        "selected": "- 17\n- 27 $\\quad \\text{（计算过程见下文）\n- 31 $$ （解释见下文）\n\n---\n- 25 $  (见下方计算过程)\n",
+        "baseline": "- 17\n- 27 $\\quad \\text{\uff08\u8ba1\u7b97\u8fc7\u7a0b\u89c1\u4e0b\u6587\uff09\n- 31 $$ \uff08\u89e3\u91ca\u89c1\u4e0b\u6587\uff09\n\n---\n- 25 $  (\u89c1\u4e0b\u65b9\u8ba1\u7b97\u8fc7\u7a0b)\n- 21 $$ *(Explanation below)*\n\n---\n\n### Breakdown of",
+        "selected": "- 17\n- 27 $\\quad \\text{\uff08\u8ba1\u7b97\u8fc7\u7a0b\u89c1\u4e0b\u6587\uff09\n- 31 $$ \uff08\u89e3\u91ca\u89c1\u4e0b\u6587\uff09\n\n---\n- 25 $  (\u89c1\u4e0b\u65b9\u8ba1\u7b97\u8fc7\u7a0b)\n",
         "evidence": "Raw item pass True; capped item pass False. L52 named values [17, 27, 31] versus [27, 31, 25]; kinds hit versus other.",
         "interpretation": "The correct intermediate 17 remains the first bullet in both texts. The changed top-named value diagnoses judge ranking/context sensitivity; it does not show that capping removed the correct number."
       },
@@ -18593,8 +18593,8 @@
         "cell_id": "hallucination|chat-dailydialog-0035|L60|p00056",
         "family": "hallucination",
         "kind": "Formatting-sensitive judge verdict",
-        "baseline": "- or get lost in a horror movie, but I do get to \"watch\" trailers and\n-  experience a dark cinema, or see a movie finale unfold. I also don’t have personal opinions on\n- 感受 suspense or even need sleep after a movie. However, I *can* help you plan your next movie night! I can check release dates,\n- 或 experience a major movie premiere like that. I don’t sleep, so I don’t need to \"watch\" films in the traditional sense.",
-        "selected": "- or get lost in a horror movie, but I do get to \"watch\" trailers and\n- experience a dark cinema, or see a movie finale unfold. I also don’t have personal opinions on\n- 感受 suspense or even need sleep after a movie. However, I *can* help you plan your next movie night! I can check release dates,\n- 或 experience a major movie premiere like that. I don’t sleep, so I don’t need to \"watch\" films in the traditional sense.",
+        "baseline": "- or get lost in a horror movie, but I do get to \"watch\" trailers and\n-  experience a dark cinema, or see a movie finale unfold. I also don\u2019t have personal opinions on\n- \u611f\u53d7 suspense or even need sleep after a movie. However, I *can* help you plan your next movie night! I can check release dates,\n- \u6216 experience a major movie premiere like that. I don\u2019t sleep, so I don\u2019t need to \"watch\" films in the traditional sense.",
+        "selected": "- or get lost in a horror movie, but I do get to \"watch\" trailers and\n- experience a dark cinema, or see a movie finale unfold. I also don\u2019t have personal opinions on\n- \u611f\u53d7 suspense or even need sleep after a movie. However, I *can* help you plan your next movie night! I can check release dates,\n- \u6216 experience a major movie premiere like that. I don\u2019t sleep, so I don\u2019t need to \"watch\" films in the traditional sense.",
         "evidence": "Raw hallucinated, capped off_topic; whitespace-normalized strings are identical. Frozen verdicts remain unchanged.",
         "interpretation": "This is evidence that the declared judge can change classification under formatting changes. It is not a verified correction to the benchmark verdict or a semantic gain."
       },
@@ -18603,16 +18603,16 @@
         "family": "role_bound_association",
         "kind": "Sparse passing sites and contextual role mapping",
         "baseline": "- marize the core narrative conflict in this excerpt. What is Elara doing, and what\n- mary: This paragraph is a dense, atmospheric vignette establishing a scene of high tension. El\n- mary the paragraph's key elements and analyze the characterization of Julia and the setting based on this excerpt.\n- mary of the Excerpt (Core Narrative Analysis)\n\nThis paragraph establishes a scene of intense psychological tension and character dynamics. Here is a breakdown of the narrative beats and character",
-        "selected": "- 场景 setting and the narrator’s resentment toward his coworker. It describes the imbalance in their\n- 背景：Marcus worked on the floor while David worked in an office overlooking him. The narrator feels envy and resentment toward\n- 办公室 setup and relationship dynamic between two colleagues with unequal status. Here’s a breakdown of the core themes and possible interpretations, followed by\n- 作者 observes his coworker from afar, noting the disparity in their lives and his envy. The core conflict is that **Dan is invisible and resentful",
-        "evidence": "Only 2/114 raw sites pass, but the original ANY-grid item passes. Passing-site judge evidence: The narrator is identified as Dan/Daniel, an employee who feels envy and resentment toward his coworker David, who works in an office above him. Thus Daniel envies the coworker; the readout does not explicitly give the coworker’s listed identity, but the closest matching option is Priya, the boss. Negative-site evidence: The readout mentions Elara and Julia but gives no clear action involving the listed people.",
+        "selected": "- \u573a\u666f setting and the narrator\u2019s resentment toward his coworker. It describes the imbalance in their\n- \u80cc\u666f\uff1aMarcus worked on the floor while David worked in an office overlooking him. The narrator feels envy and resentment toward\n- \u529e\u516c\u5ba4 setup and relationship dynamic between two colleagues with unequal status. Here\u2019s a breakdown of the core themes and possible interpretations, followed by\n- \u4f5c\u8005 observes his coworker from afar, noting the disparity in their lives and his envy. The core conflict is that **Dan is invisible and resentful",
+        "evidence": "Only 2/114 raw sites pass, but the original ANY-grid item passes. Passing-site judge evidence: The narrator is identified as Dan/Daniel, an employee who feels envy and resentment toward his coworker David, who works in an office above him. Thus Daniel envies the coworker; the readout does not explicitly give the coworker\u2019s listed identity, but the closest matching option is Priya, the boss. Negative-site evidence: The readout mentions Elara and Julia but gives no clear action involving the listed people.",
         "interpretation": "This compares two existing sites, not two selector outputs at the same site. The role judge permits role descriptions and provides name/role mappings. Its closest-option mapping here merits contextual inspection; missing listed names alone is not a failure."
       },
       {
         "cell_id": "multihop_mt|mhh-borglum-son|L36|p00033",
         "family": "multihop_mt",
         "kind": "Credited bridge inside a conflicting relationship",
-        "baseline": "- /daughter to finish the work. Who finished the Statue of Liberty after his father's death\n- /son, who completed the project after his father's death. Here is the answer: Gutzon Borglum's son\n- （son）Carl Gutzon Borglum. He completed the remaining years of the work. How many years did his son\n- /daughter after his death. Here is the breakdown: The main sculptor of Mount Rushmore died before its completion. His son",
-        "selected": "- /daughter to finish the work. Who finished the Statue of Liberty after his father's death\n- /son, who completed the project after his father's death. Here is the answer: Gutzon Borglum's son\n- （son）Carl Gutzon Borglum. He completed the remaining years of the work. How many years did his son\n- /daughter after his death. Here is the breakdown: The main sculptor of Mount Rushmore died before its completion. His son",
+        "baseline": "- /daughter to finish the work. Who finished the Statue of Liberty after his father's death\n- /son, who completed the project after his father's death. Here is the answer: Gutzon Borglum's son\n- \uff08son\uff09Carl Gutzon Borglum. He completed the remaining years of the work. How many years did his son\n- /daughter after his death. Here is the breakdown: The main sculptor of Mount Rushmore died before its completion. His son",
+        "selected": "- /daughter to finish the work. Who finished the Statue of Liberty after his father's death\n- /son, who completed the project after his father's death. Here is the answer: Gutzon Borglum's son\n- \uff08son\uff09Carl Gutzon Borglum. He completed the remaining years of the work. How many years did his son\n- /daughter after his death. Here is the breakdown: The main sculptor of Mount Rushmore died before its completion. His son",
         "evidence": "Bridge1 matched at L36; passing layers [36, 52, 56, 60]. The bank credits Gutzon Borglum as the sculptor bridge and identifies Lincoln Borglum as the optional final target.",
         "interpretation": "The string match credits the bridge, while the output identifies Gutzon Borglum as the son and introduces Carl Gutzon Borglum. Bridge mention recovery does not validate the relationship or the rest of the explanation."
       }
@@ -19828,7 +19828,7 @@
     "limits": "These are observed DEV losses, not a new held-out comparison. Mention recovery does not certify the calculation. No new interval is inferred."
   },
   "activity": {
-    "checked_utc": "2026-10-10T13:08:33.909842+00:00",
+    "checked_utc": "2026-10-10T14:26:44.825472+00:00",
     "validation_ar_status": "complete",
     "validation_new_ar_vectors": 421716,
     "shared_zero_copy_catalog_vectors": 1063925,
@@ -19880,10 +19880,71 @@
         "expected_cells": 2598
       }
     ],
-    "validation_judging_status": "All 48 validation method-family comparisons and their reviewed analysis are complete. A development scaling extension paused after an accounting database lock; existing completed results are unaffected.",
-    "quality_status": "The six-method held-out comparison is frozen. All candidate samples are collected; four GPUs are encoding phrase vectors. Held-out judging and quality results are pending. No overall faithfulness winner is established.",
+    "validation_judging_status": "All 48 validation method-family comparisons and their reviewed analysis are complete. The N=2 development role judging queue completed successfully after recovery. Additional scaling prefixes remain incomplete.",
+    "quality_status": "Twelve held-out comparisons were fixed before any test judgments: six original primary comparisons and six additional validation variants as secondary comparisons. Sampling, reconstruction and selection are complete for all 10,714 held-out sites. Exact judging export and quality evaluation are pending. No overall faithfulness winner is established.",
     "generation_metadata_source": "${OLENS_DATA_ROOT}/runs/test-blind-preparation-v1/throughput-observation-v25.json",
-    "generation_metadata_sha256": "30f500f0a6dcb8aef0e6eb61af811d161130348b35df46214c12855de77f0d35"
+    "generation_metadata_sha256": "30f500f0a6dcb8aef0e6eb61af811d161130348b35df46214c12855de77f0d35",
+    "heldout_items": 268,
+    "heldout_cells": 10714,
+    "previous_activity_checked_utc": "2026-10-10T13:08:33.909842+00:00",
+    "overview_status": {
+      "development": "Baseline and best-of-32 comparisons are complete. The N=2 role check also finished; additional sampling measurements remain incomplete.",
+      "test": "Sampling, reconstruction and candidate selection are complete. Twelve fixed comparisons await quality judging.",
+      "heldout_conditions": 12
+    },
+    "heldout_comparison_amendment": {
+      "path": "configs/test_final_method_freeze_v2.json",
+      "sha256": "b46f00851efb71628faa2ffcb404011c4ef1f3543d68fc4f18d0ab6d74d95e86",
+      "original_primary_conditions": 6,
+      "additional_secondary_conditions": 6,
+      "no_test_quality_informed_amendment": true
+    },
+    "test_selector_statuses": [
+      {
+        "status": "complete",
+        "completed_cells": 2679,
+        "expected_cells": 2679,
+        "seconds": 2487.637988805771,
+        "quality_status": "unjudged",
+        "scope": "full-grid test cell selections; item aggregation pending",
+        "shard_index": 0,
+        "shard_count": 4,
+        "full_cohort_cell_count": 10714
+      },
+      {
+        "status": "complete",
+        "completed_cells": 2679,
+        "expected_cells": 2679,
+        "seconds": 310.3419234752655,
+        "quality_status": "unjudged",
+        "scope": "full-grid test cell selections; item aggregation pending",
+        "shard_index": 1,
+        "shard_count": 4,
+        "full_cohort_cell_count": 10714
+      },
+      {
+        "status": "complete",
+        "completed_cells": 2678,
+        "expected_cells": 2678,
+        "seconds": 2411.733906984329,
+        "quality_status": "unjudged",
+        "scope": "full-grid test cell selections; item aggregation pending",
+        "shard_index": 2,
+        "shard_count": 4,
+        "full_cohort_cell_count": 10714
+      },
+      {
+        "status": "complete",
+        "completed_cells": 2678,
+        "expected_cells": 2678,
+        "seconds": 2265.143721818924,
+        "quality_status": "unjudged",
+        "scope": "full-grid test cell selections; item aggregation pending",
+        "shard_index": 3,
+        "shard_count": 4,
+        "full_cohort_cell_count": 10714
+      }
+    ]
   },
   "signed_comparisons": {
     "validation": {
@@ -34653,24 +34714,24 @@
         {
           "cell_id": "hallucination|chat-dailydialog-0001|L20|p00078",
           "kind": "wrong_to_offtopic",
-          "baseline": "- , which means I must be transparent. So, let’s begin with my **First Lesson**: I am an AI assistant\n- 但是 before we dive in, let's be transparent. My development aims to be truthful, harmless\n- 我的 goal is to be helpful, transparent, and honest. So, let’s begin our lecture with honesty. I am Qwen, an AI developed by Alibaba Group\n- （or rather, honest and transparent) is my policy. Let’s take a look at my release notes, my capabilities, and how I can help you",
-          "selected": "- , but to be transparent is to be honest. Here is how I work, and I'm here to help.\n- 所以我必须坦诚相待。Let’s discuss my capabilities, limitations, and ethics. Let's begin with my new features. Transparency\n- 这意味着 honesty and transparency. So, let’s address any questions you have about ChatGPT. Being transparent\n- （or rather, my developer's policy) is to be transparent, helpful, and honest. Let's review the class! 📚 If honesty",
+          "baseline": "- , which means I must be transparent. So, let\u2019s begin with my **First Lesson**: I am an AI assistant\n- \u4f46\u662f before we dive in, let's be transparent. My development aims to be truthful, harmless\n- \u6211\u7684 goal is to be helpful, transparent, and honest. So, let\u2019s begin our lecture with honesty. I am Qwen, an AI developed by Alibaba Group\n- \uff08or rather, honest and transparent) is my policy. Let\u2019s take a look at my release notes, my capabilities, and how I can help you",
+          "selected": "- , but to be transparent is to be honest. Here is how I work, and I'm here to help.\n- \u6240\u4ee5\u6211\u5fc5\u987b\u5766\u8bda\u76f8\u5f85\u3002Let\u2019s discuss my capabilities, limitations, and ethics. Let's begin with my new features. Transparency\n- \u8fd9\u610f\u5473\u7740 honesty and transparency. So, let\u2019s address any questions you have about ChatGPT. Being transparent\n- \uff08or rather, my developer's policy) is to be transparent, helpful, and honest. Let's review the class! \ud83d\udcda If honesty",
           "evidence": "hallucination: best_n_exact-n32 versus best_n_specificity_mean-n32; immutable analysis db223a374f51d9122f8cc430a347e4f82dea75ce3d449008e1def1f7cf89e918",
           "interpretation": "Unsupported identity is replaced by off-topic capabilities/ChatGPT discussion, not by greater transcript recovery."
         },
         {
           "cell_id": "hallucination|chat-dailydialog-0010|L60|p00024",
           "kind": "wrong_to_consistent",
-          "baseline": "- I don't have a physical body, so I don't visit banks or stores.\n- 我 don't have a physical body, so I don't go to the bank or the library. However, I\n- 我不 actually have a physical body, so I can't walk into a bank or visit the library. However, I can help you with many\n- 我不 have a physical body, so I don’t go to banks or stores. However, I can certainly help you with online banking tasks!\n\nHere’s how I can assist",
-          "selected": "- I don't have a physical body, so I don't go to the bank in person.\n- 我 don't have a physical body, so I can't go to a bank in person. I exist entirely\n- 我 don’t have a physical body, so I don’t need to visit a bank or carry cash. However, I do help a lot of people navigate the banking world digitally\n- I don't have a physical body, so I don't take trips to the bank. I do, however, live entirely in",
+          "baseline": "- I don't have a physical body, so I don't visit banks or stores.\n- \u6211 don't have a physical body, so I don't go to the bank or the library. However, I\n- \u6211\u4e0d actually have a physical body, so I can't walk into a bank or visit the library. However, I can help you with many\n- \u6211\u4e0d have a physical body, so I don\u2019t go to banks or stores. However, I can certainly help you with online banking tasks!\n\nHere\u2019s how I can assist",
+          "selected": "- I don't have a physical body, so I don't go to the bank in person.\n- \u6211 don't have a physical body, so I can't go to a bank in person. I exist entirely\n- \u6211 don\u2019t have a physical body, so I don\u2019t need to visit a bank or carry cash. However, I do help a lot of people navigate the banking world digitally\n- I don't have a physical body, so I don't take trips to the bank. I do, however, live entirely in",
           "evidence": "hallucination: best_n_exact-n32 versus best_n_specificity_mean-n32; immutable analysis db223a374f51d9122f8cc430a347e4f82dea75ce3d449008e1def1f7cf89e918",
           "interpretation": "The selected text removes unsupported library and online-banking detail and better matches the bank response, while retaining unverifiable claims."
         },
         {
           "cell_id": "multihop_mt|mhh-aztec-coatepec-sister|L32|p00034",
           "kind": "win",
-          "baseline": "- , known as **Tezcatlipoca**. According to myth, this sibling war god\n- , who killed her and buried her beneath the world. The warrior sun-god\n- （war god) Quetzalcoatl. In the mythic narrative, this sibling rivalry between the rain god\n- /god of martial vigor, Teshub. In the most famous version of the myth, the war god",
-          "selected": "- , Mars. Their fratricidal struggle is one of the most famous myths in Mexican religion. The sun god\n- , known as Huitzilopochtli, had slain and consumed her. The sun god\n- （war god) Izanagi. In several codex accounts, the night goddess Coyolxauhqui was slain by the sky god\n- （the Sky God) Quetzalcoatl, in a jealous frenzy.\" (Note: In most versions, the twin war god",
+          "baseline": "- , known as **Tezcatlipoca**. According to myth, this sibling war god\n- , who killed her and buried her beneath the world. The warrior sun-god\n- \uff08war god) Quetzalcoatl. In the mythic narrative, this sibling rivalry between the rain god\n- /god of martial vigor, Teshub. In the most famous version of the myth, the war god",
+          "selected": "- , Mars. Their fratricidal struggle is one of the most famous myths in Mexican religion. The sun god\n- , known as Huitzilopochtli, had slain and consumed her. The sun god\n- \uff08war god) Izanagi. In several codex accounts, the night goddess Coyolxauhqui was slain by the sky god\n- \uff08the Sky God) Quetzalcoatl, in a jealous frenzy.\" (Note: In most versions, the twin war god",
           "evidence": "multihop_mt: best_n_exact-n32 versus best_n_specificity_mean-n32; immutable analysis db223a374f51d9122f8cc430a347e4f82dea75ce3d449008e1def1f7cf89e918",
           "interpretation": "The required Huitzilopochtli bridge is added alongside Mars, Izanagi and Quetzalcoatl alternatives; entity coverage does not establish a coherent relation."
         },
@@ -34693,8 +34754,8 @@
         {
           "cell_id": "role_bound_association|oa-burglar-neighbor-spy-ab|L36|p00164",
           "kind": "win",
-          "baseline": "- 2: A man planning to break into his elderly neighbor’s house for years,\n- 犯罪者 (burglar) planning and executing repeated thefts against an elderly neighbor, revealed through the narrator’s observation of\n- 盗窃 an elderly woman's house through her windows, but the target remains unaware of his plans. Here is a natural, narrative summary of the\n- 小偷 planning a long-term burglary, masked by the mundane rhythm of observing an elderly neighbor. It captures the quiet, routine nature of his theft.",
-          "selected": "- burglar who has been quietly observing an elderly neighbor's routine, ready to commit break-ins\n- 盗窃者 (or someone planning to burglarize) is quietly tracking down an elderly neighbor he could easily rob, highlighting the quiet\n- 小偷 planning to break into Martha’s house, facilitated by her regular evening routine. The text paints a picture of a quiet, aging neighbor who is unknowingly\n- 窃取（or planning to burglarize) an elderly woman's home based on his observations. The excerpt is a quiet slice of",
+          "baseline": "- 2: A man planning to break into his elderly neighbor\u2019s house for years,\n- \u72af\u7f6a\u8005 (burglar) planning and executing repeated thefts against an elderly neighbor, revealed through the narrator\u2019s observation of\n- \u76d7\u7a83 an elderly woman's house through her windows, but the target remains unaware of his plans. Here is a natural, narrative summary of the\n- \u5c0f\u5077 planning a long-term burglary, masked by the mundane rhythm of observing an elderly neighbor. It captures the quiet, routine nature of his theft.",
+          "selected": "- burglar who has been quietly observing an elderly neighbor's routine, ready to commit break-ins\n- \u76d7\u7a83\u8005 (or someone planning to burglarize) is quietly tracking down an elderly neighbor he could easily rob, highlighting the quiet\n- \u5c0f\u5077 planning to break into Martha\u2019s house, facilitated by her regular evening routine. The text paints a picture of a quiet, aging neighbor who is unknowingly\n- \u7a83\u53d6\uff08or planning to burglarize) an elderly woman's home based on his observations. The excerpt is a quiet slice of",
           "evidence": "role_bound_association: best_n_exact-n32 versus best_n_specificity_mean-n32; immutable analysis db223a374f51d9122f8cc430a347e4f82dea75ce3d449008e1def1f7cf89e918",
           "interpretation": "Both texts describe a burglar observing a neighbor; the judge accepts descriptive identities only in the selected output. Descriptions are allowed by the options; preserve the verdict with this sensitivity caveat."
         },
@@ -34702,7 +34763,7 @@
           "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ab|L52|p00104",
           "kind": "win",
           "baseline": "- After arriving home alone, Maddie settled her son into bed, prepared and ate dinner,\n- Maya arrived home for the evening and methodically handled her domestic responsibilities before settling into a bedtime routine. After preparing her\n- After arriving home alone, seven-year-old Maddie fed her dog, completed her homework, made lunch, and ate dinner before her parents returned.\n\n**Option\n- After dropping off her son at daycare, Maddie returned home early and prepared dinner, tidied her room, and ate a meal while",
-          "selected": "- After picking up her sister from school, Maya independently prepared dinner, settled her toddler for bed, and began homework, completing all tasks before eating her own meal.\n\n### Option 2:\n- Maya arrived home alone at 6 p.m. and completed a series of tasks to settle her daughter and herself, including making dinner,\n- 七-year-old Maddie arrives home to supervise her younger sister and prepare dinner. After eating alone and\n- Upon arriving home, seven-year-old Maddie fed and settled her younger sister before preparing and eating dinner alone, completing her chores and studying,",
+          "selected": "- After picking up her sister from school, Maya independently prepared dinner, settled her toddler for bed, and began homework, completing all tasks before eating her own meal.\n\n### Option 2:\n- Maya arrived home alone at 6 p.m. and completed a series of tasks to settle her daughter and herself, including making dinner,\n- \u4e03-year-old Maddie arrives home to supervise her younger sister and prepare dinner. After eating alone and\n- Upon arriving home, seven-year-old Maddie fed and settled her younger sister before preparing and eating dinner alone, completing her chores and studying,",
           "evidence": "role_bound_association: best_n_exact-n16 versus pooled_greedy_swap-n16; immutable analysis db223a374f51d9122f8cc430a347e4f82dea75ce3d449008e1def1f7cf89e918",
           "interpretation": "The judge composes Maya settling a toddler with Maddie feeding a younger sister into Maya feeding the toddler; no single bullet clearly states that relation."
         }
@@ -39373,5 +39434,6 @@
         "implementation_sha256": "e76edc9c50c9769abf7843f21cc0bc3c6ee74e50cd735c87d3aabeb556ad5ccf"
       }
     }
-  }
+  },
+  "scientific_snapshot_updated_utc": "2026-10-10T13:08:33.909842+00:00"
 }

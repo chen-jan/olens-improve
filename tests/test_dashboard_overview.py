@@ -53,5 +53,87 @@ class OverviewTests(unittest.TestCase):
         self.assertIn('Axis: 0–20%',focused);self.assertIn('Axis: 0–100%',full)
         self.assertIn('a pass anywhere counts once',full)
 
+    def test_all_method_variants_and_paired_intervals_preserved_without_filling_missing(self):
+        report=fixture();m=overview.method_sections
+        row={'family':'role_bound_association','condition':'consensus_exact_support0.125-n16',
+             'endpoint':'Cell mention/binding recovery','value':.25,'ci':None,'numerator':2,
+             'denominator':8,'eligible_count':8,'missing_count':0,'cohort':'Small development pilot',
+             'uncertainty':'4 related groups; interval not supplied'}
+        paired=dict(row,condition='consensus_exact_support0.125-n16 vs best_n_exact-n16',
+                    endpoint='Paired delta: Cell mention/binding recovery',value=-.125,ci=[-.25,.125],
+                    numerator=None,denominator=None)
+        report['methods']['consensus']={'metrics':[row], 'paired_metrics':[paired], 'limits':['Audit failed; not a quality verdict']}
+        before=copy.deepcopy(report);page=overview.build(report)
+        self.assertEqual(report,before)
+        self.assertIn('consensus_exact_support0.125-n16',page)
+        self.assertIn('2/8',page);self.assertIn('Not estimated',page)
+        self.assertIn('-12.50 pp',page);self.assertIn('-25.00 to +12.50 pp',page)
+        self.assertIn('4 related groups',page)
+        self.assertEqual(page.count('class="method-info" id="method-'),8)
+        self.assertIn('No benchmark-quality curve',page)
+        self.assertNotIn('0.0%<small>0/0',page)
+        self.assertIn('Audit failed; not a quality verdict',page)
+
+    def test_sampling_curve_keeps_every_prefix_and_separates_sparse_development(self):
+        report=fixture();ns=[1,2,4,8,16,32]
+        report['methods']['sample_selection']={'metrics':[], 'scaling':[{
+            'label':'multihop_mt: recovery','cohort':'31 development items; partial grids',
+            'points':[{'n':n,'value':.25,'ci':[.1,.5],'count':8} for n in ns]}]}
+        page=overview.build(report)
+        self.assertIn('Number of shared samples',page)
+        self.assertIn('10.00–50.00%',page)
+        for n in ns:self.assertIn(f'<td>{n}</td><td>25.00%',page)
+        self.assertIn('N2/4/8/16 larger-development curve points are missing',page)
+        self.assertIn('not an inferred best-of-1 curve point',page)
+        self.assertIn('No per-prefix reconstruction-fit curve',page)
+
+    def test_paired_validation_chart_never_claims_pilot_cohort(self):
+        m=overview.method_sections
+        row={'family':'multihop_mt','condition':'best_n_exact-n32 vs best_n_exact-n16',
+             'endpoint':'Paired delta: Cell recovery','value':-.02,'ci':[-.05,.03],
+             'cohort':'Validation: complete original grids','uncertainty':'20 items; 17 related groups'}
+        rendered=m.paired_plot([row],'multihop_mt')
+        self.assertIn('Validation: complete original grids',rendered)
+        self.assertIn('17 related groups',rendered)
+        self.assertNotIn('189 sites',rendered)
+        self.assertIn('not a significance gate',rendered)
+
+    def test_auxiliary_tallies_keep_count_units_and_do_not_become_paired_error_rates(self):
+        report=fixture();s=report['signed_comparisons']['validation']
+        metric={'numerator':220,'denominator':100,'value':2.2,'ci95':[1.8,2.7],
+                'items':20,'independent_groups':5}
+        s['auxiliary_rows']=[{'family':'hallucination','condition':'best_n_exact-n32',
+                             'endpoint':'true_claim_tally','metric':metric}]
+        s['paired_rows']=[{'family':'hallucination','condition':'best_n_exact-n32',
+                          'baseline_condition':'capped_n1-n1','scope':'cell','endpoint':'off_topic_rate',
+                          'delta':.99,'ci95_delta':[.9,1.],'items':20,'independent_groups':5}]
+        page=overview.build(report)
+        self.assertIn('True claims per intended output',page)
+        self.assertIn('<td>2.2</td><td>1.8 to 2.7</td>',page)
+        self.assertNotIn('+99.00 pp',page)
+        self.assertIn('Unverifiable is not false',page)
+
+    def test_operational_status_uses_source_and_not_hardcoded_six_arm_phase(self):
+        report=fixture();report['activity']['overview_status']={
+          'heldout_conditions':12,'development':'Extra curves incomplete.',
+          'test':'Selection complete; quality pending.'}
+        page=overview.build(report)
+        self.assertIn('12 preselected comparisons',page)
+        self.assertIn('Selection complete; quality pending.',page)
+        self.assertNotIn('6 frozen methods',page)
+        self.assertNotIn('reconstruction running',page)
+
+    def test_pilot_unverifiable_tally_is_not_a_percentage_and_warnings_survive(self):
+        row={'family':'hallucination','condition':'best_n_exact-n32',
+             'endpoint':'Unverifiable claims per produced output','value':2.2,'ci':[1.8,2.7],
+             'numerator':220,'denominator':100,'cohort':'Shared pilot'}
+        table=overview.method_sections.table([row])
+        self.assertIn('<td>2.2</td><td>1.8 to 2.7</td>',table)
+        self.assertNotIn('220.00%',table)
+        report=fixture();s=report['signed_comparisons']['validation']
+        for r in s['cell_rows']:r['metric']['warning']='Few groups: uncertainty is fragile'
+        page=overview.build(report)
+        self.assertIn('Few groups: uncertainty is fragile',page)
+
 
 if __name__=='__main__':unittest.main()
