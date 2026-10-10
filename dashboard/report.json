@@ -1,6 +1,6 @@
 {
   "title": "Readouts: what is established",
-  "updated_utc": "2026-10-10T07:19:08.435220+00:00",
+  "updated_utc": "2026-10-10T07:34:22.853070+00:00",
   "cohort": "development",
   "run_ids": [
     "development-shared-pilot-v2",
@@ -65,10 +65,10 @@
     }
   ],
   "progress": {
-    "phase": "Indexed development judging resumed and healthy; boundary rate increase being prepared; blind validation generation running",
+    "phase": "Development judging paused for timing diagnosis; blind validation generation running",
     "completed_cells": 5236,
     "expected_cells": 5236,
-    "elapsed_hours": 5.892343119444444
+    "elapsed_hours": 6.1463480808333335
   },
   "api": {
     "status": "observed_read_only",
@@ -2447,6 +2447,1932 @@
           "unit": "maximum worker task wall-seconds",
           "measurement": "Measured; each worker uses four threads; not latency of one deployed method"
         }
+      ],
+      "cost_frontier": [
+        {
+          "label": "hallucination: Contradictions / specific readouts (lower is better)",
+          "family": "hallucination",
+          "cohort": "Shared DEV pilot: 31 items / 189 cells; partial-grid cell endpoints; whole-group 95% intervals",
+          "value_unit": "proportion",
+          "cost_unit": "samples",
+          "cost_scope": "experimental_prefix",
+          "cost_definition": "Experimental O-lens candidate prefix per cell, not total deployment cost. Random-draw controls need one iid sample in deployment. Recurring helpers and cached replay components appear separately below.",
+          "points": [
+            {
+              "condition": "best_n_exact-n1",
+              "cost": 1,
+              "value": 0.647887323943662,
+              "ci": [
+                0.45714285714285713,
+                0.8450704225352113
+              ],
+              "count": 71,
+              "numerator": 46,
+              "family": "hallucination",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "cef69a430a984aef5b9afc356dd0e68bcec3a7feb7643e702f57c3a28a965c0b",
+              "required_olens_samples_for_fresh_baseline": 1,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 0.14628403616787505,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples.",
+              "assertion_share": 0.9861111111111112,
+              "off_topic_share_of_specific": 0.07042253521126761
+            },
+            {
+              "condition": "capped_n1-n1",
+              "cost": 1,
+              "value": 0.647887323943662,
+              "ci": [
+                0.45714285714285713,
+                0.8450704225352113
+              ],
+              "count": 71,
+              "numerator": 46,
+              "family": "hallucination",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "bdeb73a531fa79b26ccc1fcf0b8a9e118e2a8ddc143a738e5324142ed3756aab",
+              "required_olens_samples_for_fresh_baseline": 1,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 0.14628403616787505,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples.",
+              "assertion_share": 0.9861111111111112,
+              "off_topic_share_of_specific": 0.07042253521126761
+            },
+            {
+              "condition": "best_n_exact-n2",
+              "cost": 2,
+              "value": 0.5972222222222222,
+              "ci": [
+                0.4305555555555556,
+                0.7777777777777778
+              ],
+              "count": 72,
+              "numerator": 43,
+              "family": "hallucination",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "d52965c77019335801781925564b262c45d80073105205cb23546fc03700df2b",
+              "required_olens_samples_for_fresh_baseline": 2,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 0.2925680723357501,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples.",
+              "assertion_share": 1.0,
+              "off_topic_share_of_specific": 0.08333333333333333
+            },
+            {
+              "condition": "best_n_exact-n4",
+              "cost": 4,
+              "value": 0.5833333333333334,
+              "ci": [
+                0.375,
+                0.7916666666666666
+              ],
+              "count": 72,
+              "numerator": 42,
+              "family": "hallucination",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "262af521517810334b3d58e33c2ad295cc3790632d60a126138ba05312dcda1e",
+              "required_olens_samples_for_fresh_baseline": 4,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 0.5851361446715002,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples.",
+              "assertion_share": 1.0,
+              "off_topic_share_of_specific": 0.08333333333333333
+            },
+            {
+              "condition": "best_n_exact-n8",
+              "cost": 8,
+              "value": 0.5571428571428572,
+              "ci": [
+                0.38571428571428573,
+                0.7285714285714285
+              ],
+              "count": 70,
+              "numerator": 39,
+              "family": "hallucination",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "8cfd7703ac16cf308f57db57e70082ca32a5552525546ca0ed2db1bbc061c150",
+              "required_olens_samples_for_fresh_baseline": 8,
+              "cached_selector_wall_seconds": 0.005039762705564499,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 1.1702722893430004,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples.",
+              "assertion_share": 0.9722222222222222,
+              "off_topic_share_of_specific": 0.1
+            },
+            {
+              "condition": "likelihood_true_minus_mean_two_controls-n8",
+              "cost": 8,
+              "value": 0.5571428571428572,
+              "ci": [
+                0.3283582089552239,
+                0.7605633802816901
+              ],
+              "count": 70,
+              "numerator": 39,
+              "family": "hallucination",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "59b5574c700c7e332027443fbbed8d882ea794838068f642166241a63475db20",
+              "required_olens_samples_for_fresh_baseline": 8,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 1.1702722893430004,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples.",
+              "assertion_share": 0.9722222222222222,
+              "off_topic_share_of_specific": 0.08571428571428572
+            },
+            {
+              "condition": "best_n_exact-n16",
+              "cost": 16,
+              "value": 0.5633802816901409,
+              "ci": [
+                0.4084507042253521,
+                0.7222222222222222
+              ],
+              "count": 71,
+              "numerator": 40,
+              "family": "hallucination",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "ce3a7dadaf0de7bcd76bdc242e1e6f28a44ea6b777fcfc3598ac6fdb8c28f8b8",
+              "required_olens_samples_for_fresh_baseline": 16,
+              "cached_selector_wall_seconds": 0.006900957319885492,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 2.340544578686001,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples.",
+              "assertion_share": 0.9861111111111112,
+              "off_topic_share_of_specific": 0.09859154929577464
+            },
+            {
+              "condition": "consensus_exact_support0-n16",
+              "cost": 16,
+              "value": 0.5915492957746479,
+              "ci": [
+                0.4084507042253521,
+                0.7605633802816901
+              ],
+              "count": 71,
+              "numerator": 42,
+              "family": "hallucination",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "d47736339dc2c3e8dc6e9c9d54cb9e1fed17c8b97c58c819350ab2404be09faf",
+              "required_olens_samples_for_fresh_baseline": 16,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 2.340544578686001,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples.",
+              "assertion_share": 0.9861111111111112,
+              "off_topic_share_of_specific": 0.07042253521126761
+            },
+            {
+              "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+              "cost": 16,
+              "value": 0.6,
+              "ci": [
+                0.42028985507246375,
+                0.7638888888888888
+              ],
+              "count": 70,
+              "numerator": 42,
+              "family": "hallucination",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "221b20f6ef5a4f0f18271876db3d55fa12120ee046e70b7553a6b1eed5ff8b3a",
+              "required_olens_samples_for_fresh_baseline": 16,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 2.0317460317460316,
+              "recurring_helper_usd_per_cell": 0.0019635409523809525,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 2.340544578686001,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples.",
+              "assertion_share": 0.9722222222222222,
+              "off_topic_share_of_specific": 0.07142857142857142
+            },
+            {
+              "condition": "consensus_semantic_v5_support0_compatoff_vetoon-n16",
+              "cost": 16,
+              "value": 0.5714285714285714,
+              "ci": [
+                0.4057971014492754,
+                0.7285714285714285
+              ],
+              "count": 70,
+              "numerator": 40,
+              "family": "hallucination",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "536247d4b444beb8f958b8b2e861a78cbf8025ef7aad4ebd0e6aa2b6db4e140f",
+              "required_olens_samples_for_fresh_baseline": 16,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 2.0,
+              "recurring_helper_usd_per_cell": 0.0010117590476190477,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 2.340544578686001,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples.",
+              "assertion_share": 0.9722222222222222,
+              "off_topic_share_of_specific": 0.08571428571428572
+            },
+            {
+              "condition": "pooled_greedy_swap-n16",
+              "cost": 16,
+              "value": 0.5972222222222222,
+              "ci": [
+                0.4583333333333333,
+                0.7361111111111112
+              ],
+              "count": 72,
+              "numerator": 43,
+              "family": "hallucination",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "97e5b7e02e5f723da3476c40bf19dc7aa7fdb4ac6611372fc44b6888d25d20b5",
+              "required_olens_samples_for_fresh_baseline": 16,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 2.340544578686001,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples.",
+              "assertion_share": 1.0,
+              "off_topic_share_of_specific": 0.08333333333333333
+            },
+            {
+              "condition": "random_complete-n16",
+              "cost": 16,
+              "value": 0.5694444444444444,
+              "ci": [
+                0.4166666666666667,
+                0.7222222222222222
+              ],
+              "count": 72,
+              "numerator": 41,
+              "family": "hallucination",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "f7c309731fad63d7ac7668a056608b96aec9650efdf4973ec31529718eec8149",
+              "required_olens_samples_for_fresh_baseline": 1,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 0.14628403616787505,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Same-pool random draw from this experimental prefix. Fresh one-iid-sample baseline has the same marginal distribution and requires one sample, not N alternatives.",
+              "assertion_share": 1.0,
+              "off_topic_share_of_specific": 0.125
+            },
+            {
+              "condition": "best_n_exact-n32",
+              "cost": 32,
+              "value": 0.5492957746478874,
+              "ci": [
+                0.4166666666666667,
+                0.676056338028169
+              ],
+              "count": 71,
+              "numerator": 39,
+              "family": "hallucination",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "d70d73227d7107cb15e8f48775b5facf8133cb0f4d699c464b2b2d9a60c59524",
+              "required_olens_samples_for_fresh_baseline": 32,
+              "cached_selector_wall_seconds": 0.011215437669306993,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 4.681089157372002,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples.",
+              "assertion_share": 0.9861111111111112,
+              "off_topic_share_of_specific": 0.11267605633802817
+            },
+            {
+              "condition": "best_n_specificity_mean-n32",
+              "cost": 32,
+              "value": 0.5352112676056338,
+              "ci": [
+                0.4166666666666667,
+                0.6666666666666666
+              ],
+              "count": 71,
+              "numerator": 38,
+              "family": "hallucination",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "0c69fca343e3c9209100c3593010774a673747c7aff0bf571c99dd4ae6403493",
+              "required_olens_samples_for_fresh_baseline": 32,
+              "cached_selector_wall_seconds": 0.05907637486234307,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 4.681089157372002,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples.",
+              "assertion_share": 0.9861111111111112,
+              "off_topic_share_of_specific": 0.09859154929577464
+            },
+            {
+              "condition": "best_n_specificity_mean_random_delete_matched_0.005-n32",
+              "cost": 32,
+              "value": 0.5138888888888888,
+              "ci": [
+                0.3611111111111111,
+                0.6527777777777778
+              ],
+              "count": 72,
+              "numerator": 37,
+              "family": "hallucination",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "a9b75daf72bd3941a050f6abbf603546c1faf676b62ddec8f1411d016bee2707",
+              "required_olens_samples_for_fresh_baseline": 32,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 4.681089157372002,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples.",
+              "assertion_share": 1.0,
+              "off_topic_share_of_specific": 0.05555555555555555
+            },
+            {
+              "condition": "best_n_specificity_mean_then_prune_0.005-n32",
+              "cost": 32,
+              "value": 0.5,
+              "ci": [
+                0.3333333333333333,
+                0.6666666666666666
+              ],
+              "count": 72,
+              "numerator": 36,
+              "family": "hallucination",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "0e5d4264a71b6b73a95e40d28eea691974a275fcd7b0dabd90aae387409345da",
+              "required_olens_samples_for_fresh_baseline": 32,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 4.681089157372002,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples.",
+              "assertion_share": 1.0,
+              "off_topic_share_of_specific": 0.08333333333333333
+            },
+            {
+              "condition": "editing_round2-n32",
+              "cost": 32,
+              "value": 0.6086956521739131,
+              "ci": [
+                0.417910447761194,
+                0.7605633802816901
+              ],
+              "count": 69,
+              "numerator": 42,
+              "family": "hallucination",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "e797c862567cbd8315501f1f332a4be213c4b01dbdb4ec1f0f10b5aca8dd3e86",
+              "required_olens_samples_for_fresh_baseline": 32,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 2.0,
+              "recurring_helper_usd_per_cell": 0.00028233015873015875,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 4.681089157372002,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples.",
+              "assertion_share": 0.9583333333333334,
+              "off_topic_share_of_specific": 0.08695652173913043
+            },
+            {
+              "condition": "pooled_greedy_swap-n32",
+              "cost": 32,
+              "value": 0.6,
+              "ci": [
+                0.40298507462686567,
+                0.7605633802816901
+              ],
+              "count": 70,
+              "numerator": 42,
+              "family": "hallucination",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "ea5fb845378d6bec7f38e0319912ec65b37a4df3d04547af45dd678f312c7bc3",
+              "required_olens_samples_for_fresh_baseline": 32,
+              "cached_selector_wall_seconds": 0.2322674416936934,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 4.681089157372002,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples.",
+              "assertion_share": 0.9722222222222222,
+              "off_topic_share_of_specific": 0.08571428571428572
+            },
+            {
+              "condition": "prune_loo_a32_0.005-n32",
+              "cost": 32,
+              "value": 0.5138888888888888,
+              "ci": [
+                0.3611111111111111,
+                0.6527777777777778
+              ],
+              "count": 72,
+              "numerator": 37,
+              "family": "hallucination",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "21c3e1bfb19b6f0232eb2120134894a0f8508847429a2bfa790e982586fcdc7d",
+              "required_olens_samples_for_fresh_baseline": 32,
+              "cached_selector_wall_seconds": 0.01232298742979765,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 4.681089157372002,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples.",
+              "assertion_share": 1.0,
+              "off_topic_share_of_specific": 0.09722222222222222
+            },
+            {
+              "condition": "random_complete-n32",
+              "cost": 32,
+              "value": 0.5277777777777778,
+              "ci": [
+                0.3472222222222222,
+                0.7083333333333334
+              ],
+              "count": 72,
+              "numerator": 38,
+              "family": "hallucination",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "6dd1e601d1cb1ce50488e0a8b4e9aa96b20faf6d3560e9d2b1922a64cca25a20",
+              "required_olens_samples_for_fresh_baseline": 1,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 0.14628403616787505,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Same-pool random draw from this experimental prefix. Fresh one-iid-sample baseline has the same marginal distribution and requires one sample, not N alternatives.",
+              "assertion_share": 1.0,
+              "off_topic_share_of_specific": 0.1388888888888889
+            }
+          ]
+        },
+        {
+          "label": "multihop_mt: Mention/role recovery (higher is better)",
+          "family": "multihop_mt",
+          "cohort": "Shared DEV pilot: 31 items / 189 cells; partial-grid cell endpoints; whole-group 95% intervals",
+          "value_unit": "proportion",
+          "cost_unit": "samples",
+          "cost_scope": "experimental_prefix",
+          "cost_definition": "Experimental O-lens candidate prefix per cell, not total deployment cost. Random-draw controls need one iid sample in deployment. Recurring helpers and cached replay components appear separately below.",
+          "points": [
+            {
+              "condition": "best_n_exact-n1",
+              "cost": 1,
+              "value": 0.16666666666666666,
+              "ci": [
+                0.0,
+                0.3333333333333333
+              ],
+              "count": 24,
+              "numerator": 4,
+              "family": "multihop_mt",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "cef69a430a984aef5b9afc356dd0e68bcec3a7feb7643e702f57c3a28a965c0b",
+              "required_olens_samples_for_fresh_baseline": 1,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 0.14628403616787505,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "capped_n1-n1",
+              "cost": 1,
+              "value": 0.16666666666666666,
+              "ci": [
+                0.0,
+                0.3333333333333333
+              ],
+              "count": 24,
+              "numerator": 4,
+              "family": "multihop_mt",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "bdeb73a531fa79b26ccc1fcf0b8a9e118e2a8ddc143a738e5324142ed3756aab",
+              "required_olens_samples_for_fresh_baseline": 1,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 0.14628403616787505,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "best_n_exact-n2",
+              "cost": 2,
+              "value": 0.2916666666666667,
+              "ci": [
+                0.047619047619047616,
+                0.5666666666666667
+              ],
+              "count": 24,
+              "numerator": 7,
+              "family": "multihop_mt",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "d52965c77019335801781925564b262c45d80073105205cb23546fc03700df2b",
+              "required_olens_samples_for_fresh_baseline": 2,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 0.2925680723357501,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "best_n_exact-n4",
+              "cost": 4,
+              "value": 0.2916666666666667,
+              "ci": [
+                0.047619047619047616,
+                0.5666666666666667
+              ],
+              "count": 24,
+              "numerator": 7,
+              "family": "multihop_mt",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "262af521517810334b3d58e33c2ad295cc3790632d60a126138ba05312dcda1e",
+              "required_olens_samples_for_fresh_baseline": 4,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 0.5851361446715002,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "best_n_exact-n8",
+              "cost": 8,
+              "value": 0.2916666666666667,
+              "ci": [
+                0.047619047619047616,
+                0.5666666666666667
+              ],
+              "count": 24,
+              "numerator": 7,
+              "family": "multihop_mt",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "8cfd7703ac16cf308f57db57e70082ca32a5552525546ca0ed2db1bbc061c150",
+              "required_olens_samples_for_fresh_baseline": 8,
+              "cached_selector_wall_seconds": 0.005039762705564499,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 1.1702722893430004,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "likelihood_true_minus_mean_two_controls-n8",
+              "cost": 8,
+              "value": 0.25,
+              "ci": [
+                0.047619047619047616,
+                0.4666666666666667
+              ],
+              "count": 24,
+              "numerator": 6,
+              "family": "multihop_mt",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "59b5574c700c7e332027443fbbed8d882ea794838068f642166241a63475db20",
+              "required_olens_samples_for_fresh_baseline": 8,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 1.1702722893430004,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "best_n_exact-n16",
+              "cost": 16,
+              "value": 0.375,
+              "ci": [
+                0.047619047619047616,
+                0.7037037037037037
+              ],
+              "count": 24,
+              "numerator": 9,
+              "family": "multihop_mt",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "ce3a7dadaf0de7bcd76bdc242e1e6f28a44ea6b777fcfc3598ac6fdb8c28f8b8",
+              "required_olens_samples_for_fresh_baseline": 16,
+              "cached_selector_wall_seconds": 0.006900957319885492,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 2.340544578686001,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "consensus_exact_support0-n16",
+              "cost": 16,
+              "value": 0.16666666666666666,
+              "ci": [
+                0.0,
+                0.3333333333333333
+              ],
+              "count": 24,
+              "numerator": 4,
+              "family": "multihop_mt",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "d47736339dc2c3e8dc6e9c9d54cb9e1fed17c8b97c58c819350ab2404be09faf",
+              "required_olens_samples_for_fresh_baseline": 16,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 2.340544578686001,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+              "cost": 16,
+              "value": 0.16666666666666666,
+              "ci": [
+                0.0,
+                0.3333333333333333
+              ],
+              "count": 24,
+              "numerator": 4,
+              "family": "multihop_mt",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "221b20f6ef5a4f0f18271876db3d55fa12120ee046e70b7553a6b1eed5ff8b3a",
+              "required_olens_samples_for_fresh_baseline": 16,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 2.0317460317460316,
+              "recurring_helper_usd_per_cell": 0.0019635409523809525,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 2.340544578686001,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "consensus_semantic_v5_support0_compatoff_vetoon-n16",
+              "cost": 16,
+              "value": 0.16666666666666666,
+              "ci": [
+                0.0,
+                0.3333333333333333
+              ],
+              "count": 24,
+              "numerator": 4,
+              "family": "multihop_mt",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "536247d4b444beb8f958b8b2e861a78cbf8025ef7aad4ebd0e6aa2b6db4e140f",
+              "required_olens_samples_for_fresh_baseline": 16,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 2.0,
+              "recurring_helper_usd_per_cell": 0.0010117590476190477,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 2.340544578686001,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "pooled_greedy_swap-n16",
+              "cost": 16,
+              "value": 0.3333333333333333,
+              "ci": [
+                0.047619047619047616,
+                0.6666666666666666
+              ],
+              "count": 24,
+              "numerator": 8,
+              "family": "multihop_mt",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "97e5b7e02e5f723da3476c40bf19dc7aa7fdb4ac6611372fc44b6888d25d20b5",
+              "required_olens_samples_for_fresh_baseline": 16,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 2.340544578686001,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "random_complete-n16",
+              "cost": 16,
+              "value": 0.25,
+              "ci": [
+                0.0,
+                0.5333333333333333
+              ],
+              "count": 24,
+              "numerator": 6,
+              "family": "multihop_mt",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "f7c309731fad63d7ac7668a056608b96aec9650efdf4973ec31529718eec8149",
+              "required_olens_samples_for_fresh_baseline": 1,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 0.14628403616787505,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Same-pool random draw from this experimental prefix. Fresh one-iid-sample baseline has the same marginal distribution and requires one sample, not N alternatives."
+            },
+            {
+              "condition": "best_n_exact-n32",
+              "cost": 32,
+              "value": 0.2916666666666667,
+              "ci": [
+                0.047619047619047616,
+                0.5185185185185185
+              ],
+              "count": 24,
+              "numerator": 7,
+              "family": "multihop_mt",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "d70d73227d7107cb15e8f48775b5facf8133cb0f4d699c464b2b2d9a60c59524",
+              "required_olens_samples_for_fresh_baseline": 32,
+              "cached_selector_wall_seconds": 0.011215437669306993,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 4.681089157372002,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "best_n_specificity_mean-n32",
+              "cost": 32,
+              "value": 0.2916666666666667,
+              "ci": [
+                0.047619047619047616,
+                0.5185185185185185
+              ],
+              "count": 24,
+              "numerator": 7,
+              "family": "multihop_mt",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "0c69fca343e3c9209100c3593010774a673747c7aff0bf571c99dd4ae6403493",
+              "required_olens_samples_for_fresh_baseline": 32,
+              "cached_selector_wall_seconds": 0.05907637486234307,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 4.681089157372002,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "best_n_specificity_mean_random_delete_matched_0.005-n32",
+              "cost": 32,
+              "value": 0.20833333333333334,
+              "ci": [
+                0.0,
+                0.38095238095238093
+              ],
+              "count": 24,
+              "numerator": 5,
+              "family": "multihop_mt",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "a9b75daf72bd3941a050f6abbf603546c1faf676b62ddec8f1411d016bee2707",
+              "required_olens_samples_for_fresh_baseline": 32,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 4.681089157372002,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "best_n_specificity_mean_then_prune_0.005-n32",
+              "cost": 32,
+              "value": 0.2916666666666667,
+              "ci": [
+                0.047619047619047616,
+                0.5185185185185185
+              ],
+              "count": 24,
+              "numerator": 7,
+              "family": "multihop_mt",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "0e5d4264a71b6b73a95e40d28eea691974a275fcd7b0dabd90aae387409345da",
+              "required_olens_samples_for_fresh_baseline": 32,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 4.681089157372002,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "editing_round2-n32",
+              "cost": 32,
+              "value": 0.4166666666666667,
+              "ci": [
+                0.09523809523809523,
+                0.7333333333333333
+              ],
+              "count": 24,
+              "numerator": 10,
+              "family": "multihop_mt",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "e797c862567cbd8315501f1f332a4be213c4b01dbdb4ec1f0f10b5aca8dd3e86",
+              "required_olens_samples_for_fresh_baseline": 32,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 2.0,
+              "recurring_helper_usd_per_cell": 0.00028233015873015875,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 4.681089157372002,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "pooled_greedy_swap-n32",
+              "cost": 32,
+              "value": 0.4166666666666667,
+              "ci": [
+                0.09523809523809523,
+                0.7333333333333333
+              ],
+              "count": 24,
+              "numerator": 10,
+              "family": "multihop_mt",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "ea5fb845378d6bec7f38e0319912ec65b37a4df3d04547af45dd678f312c7bc3",
+              "required_olens_samples_for_fresh_baseline": 32,
+              "cached_selector_wall_seconds": 0.2322674416936934,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 4.681089157372002,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "prune_loo_a32_0.005-n32",
+              "cost": 32,
+              "value": 0.2916666666666667,
+              "ci": [
+                0.047619047619047616,
+                0.5185185185185185
+              ],
+              "count": 24,
+              "numerator": 7,
+              "family": "multihop_mt",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "21c3e1bfb19b6f0232eb2120134894a0f8508847429a2bfa790e982586fcdc7d",
+              "required_olens_samples_for_fresh_baseline": 32,
+              "cached_selector_wall_seconds": 0.01232298742979765,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 4.681089157372002,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "random_complete-n32",
+              "cost": 32,
+              "value": 0.3333333333333333,
+              "ci": [
+                0.047619047619047616,
+                0.6060606060606061
+              ],
+              "count": 24,
+              "numerator": 8,
+              "family": "multihop_mt",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "6dd1e601d1cb1ce50488e0a8b4e9aa96b20faf6d3560e9d2b1922a64cca25a20",
+              "required_olens_samples_for_fresh_baseline": 1,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 0.14628403616787505,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Same-pool random draw from this experimental prefix. Fresh one-iid-sample baseline has the same marginal distribution and requires one sample, not N alternatives."
+            }
+          ]
+        },
+        {
+          "label": "chain_intermediates: Mention/role recovery (higher is better)",
+          "family": "chain_intermediates",
+          "cohort": "Shared DEV pilot: 31 items / 189 cells; partial-grid cell endpoints; whole-group 95% intervals",
+          "value_unit": "proportion",
+          "cost_unit": "samples",
+          "cost_scope": "experimental_prefix",
+          "cost_definition": "Experimental O-lens candidate prefix per cell, not total deployment cost. Random-draw controls need one iid sample in deployment. Recurring helpers and cached replay components appear separately below.",
+          "points": [
+            {
+              "condition": "best_n_exact-n1",
+              "cost": 1,
+              "value": 0.0,
+              "ci": [
+                0.0,
+                0.0
+              ],
+              "count": 21,
+              "numerator": 0,
+              "family": "chain_intermediates",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "cef69a430a984aef5b9afc356dd0e68bcec3a7feb7643e702f57c3a28a965c0b",
+              "required_olens_samples_for_fresh_baseline": 1,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 0.14628403616787505,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "capped_n1-n1",
+              "cost": 1,
+              "value": 0.0,
+              "ci": [
+                0.0,
+                0.0
+              ],
+              "count": 21,
+              "numerator": 0,
+              "family": "chain_intermediates",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "bdeb73a531fa79b26ccc1fcf0b8a9e118e2a8ddc143a738e5324142ed3756aab",
+              "required_olens_samples_for_fresh_baseline": 1,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 0.14628403616787505,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "best_n_exact-n2",
+              "cost": 2,
+              "value": 0.0,
+              "ci": [
+                0.0,
+                0.0
+              ],
+              "count": 21,
+              "numerator": 0,
+              "family": "chain_intermediates",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "d52965c77019335801781925564b262c45d80073105205cb23546fc03700df2b",
+              "required_olens_samples_for_fresh_baseline": 2,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 0.2925680723357501,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "best_n_exact-n4",
+              "cost": 4,
+              "value": 0.047619047619047616,
+              "ci": [
+                0.0,
+                0.08333333333333333
+              ],
+              "count": 21,
+              "numerator": 1,
+              "family": "chain_intermediates",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "262af521517810334b3d58e33c2ad295cc3790632d60a126138ba05312dcda1e",
+              "required_olens_samples_for_fresh_baseline": 4,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 0.5851361446715002,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "best_n_exact-n8",
+              "cost": 8,
+              "value": 0.09523809523809523,
+              "ci": [
+                0.0,
+                0.16666666666666666
+              ],
+              "count": 21,
+              "numerator": 2,
+              "family": "chain_intermediates",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "8cfd7703ac16cf308f57db57e70082ca32a5552525546ca0ed2db1bbc061c150",
+              "required_olens_samples_for_fresh_baseline": 8,
+              "cached_selector_wall_seconds": 0.005039762705564499,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 1.1702722893430004,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "likelihood_true_minus_mean_two_controls-n8",
+              "cost": 8,
+              "value": 0.09523809523809523,
+              "ci": [
+                0.08333333333333333,
+                0.1111111111111111
+              ],
+              "count": 21,
+              "numerator": 2,
+              "family": "chain_intermediates",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "59b5574c700c7e332027443fbbed8d882ea794838068f642166241a63475db20",
+              "required_olens_samples_for_fresh_baseline": 8,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 1.1702722893430004,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "best_n_exact-n16",
+              "cost": 16,
+              "value": 0.14285714285714285,
+              "ci": [
+                0.1111111111111111,
+                0.16666666666666666
+              ],
+              "count": 21,
+              "numerator": 3,
+              "family": "chain_intermediates",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "ce3a7dadaf0de7bcd76bdc242e1e6f28a44ea6b777fcfc3598ac6fdb8c28f8b8",
+              "required_olens_samples_for_fresh_baseline": 16,
+              "cached_selector_wall_seconds": 0.006900957319885492,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 2.340544578686001,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "consensus_exact_support0-n16",
+              "cost": 16,
+              "value": 0.0,
+              "ci": [
+                0.0,
+                0.0
+              ],
+              "count": 21,
+              "numerator": 0,
+              "family": "chain_intermediates",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "d47736339dc2c3e8dc6e9c9d54cb9e1fed17c8b97c58c819350ab2404be09faf",
+              "required_olens_samples_for_fresh_baseline": 16,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 2.340544578686001,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+              "cost": 16,
+              "value": 0.0,
+              "ci": [
+                0.0,
+                0.0
+              ],
+              "count": 21,
+              "numerator": 0,
+              "family": "chain_intermediates",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "221b20f6ef5a4f0f18271876db3d55fa12120ee046e70b7553a6b1eed5ff8b3a",
+              "required_olens_samples_for_fresh_baseline": 16,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 2.0317460317460316,
+              "recurring_helper_usd_per_cell": 0.0019635409523809525,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 2.340544578686001,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "consensus_semantic_v5_support0_compatoff_vetoon-n16",
+              "cost": 16,
+              "value": 0.0,
+              "ci": [
+                0.0,
+                0.0
+              ],
+              "count": 21,
+              "numerator": 0,
+              "family": "chain_intermediates",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "536247d4b444beb8f958b8b2e861a78cbf8025ef7aad4ebd0e6aa2b6db4e140f",
+              "required_olens_samples_for_fresh_baseline": 16,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 2.0,
+              "recurring_helper_usd_per_cell": 0.0010117590476190477,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 2.340544578686001,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "pooled_greedy_swap-n16",
+              "cost": 16,
+              "value": 0.047619047619047616,
+              "ci": [
+                0.0,
+                0.08333333333333333
+              ],
+              "count": 21,
+              "numerator": 1,
+              "family": "chain_intermediates",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "97e5b7e02e5f723da3476c40bf19dc7aa7fdb4ac6611372fc44b6888d25d20b5",
+              "required_olens_samples_for_fresh_baseline": 16,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 2.340544578686001,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "random_complete-n16",
+              "cost": 16,
+              "value": 0.0,
+              "ci": [
+                0.0,
+                0.0
+              ],
+              "count": 21,
+              "numerator": 0,
+              "family": "chain_intermediates",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "f7c309731fad63d7ac7668a056608b96aec9650efdf4973ec31529718eec8149",
+              "required_olens_samples_for_fresh_baseline": 1,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 0.14628403616787505,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Same-pool random draw from this experimental prefix. Fresh one-iid-sample baseline has the same marginal distribution and requires one sample, not N alternatives."
+            },
+            {
+              "condition": "best_n_exact-n32",
+              "cost": 32,
+              "value": 0.14285714285714285,
+              "ci": [
+                0.1111111111111111,
+                0.16666666666666666
+              ],
+              "count": 21,
+              "numerator": 3,
+              "family": "chain_intermediates",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "d70d73227d7107cb15e8f48775b5facf8133cb0f4d699c464b2b2d9a60c59524",
+              "required_olens_samples_for_fresh_baseline": 32,
+              "cached_selector_wall_seconds": 0.011215437669306993,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 4.681089157372002,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "best_n_specificity_mean-n32",
+              "cost": 32,
+              "value": 0.047619047619047616,
+              "ci": [
+                0.0,
+                0.08333333333333333
+              ],
+              "count": 21,
+              "numerator": 1,
+              "family": "chain_intermediates",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "0c69fca343e3c9209100c3593010774a673747c7aff0bf571c99dd4ae6403493",
+              "required_olens_samples_for_fresh_baseline": 32,
+              "cached_selector_wall_seconds": 0.05907637486234307,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 4.681089157372002,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "best_n_specificity_mean_random_delete_matched_0.005-n32",
+              "cost": 32,
+              "value": 0.0,
+              "ci": [
+                0.0,
+                0.0
+              ],
+              "count": 21,
+              "numerator": 0,
+              "family": "chain_intermediates",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "a9b75daf72bd3941a050f6abbf603546c1faf676b62ddec8f1411d016bee2707",
+              "required_olens_samples_for_fresh_baseline": 32,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 4.681089157372002,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "best_n_specificity_mean_then_prune_0.005-n32",
+              "cost": 32,
+              "value": 0.047619047619047616,
+              "ci": [
+                0.0,
+                0.08333333333333333
+              ],
+              "count": 21,
+              "numerator": 1,
+              "family": "chain_intermediates",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "0e5d4264a71b6b73a95e40d28eea691974a275fcd7b0dabd90aae387409345da",
+              "required_olens_samples_for_fresh_baseline": 32,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 4.681089157372002,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "editing_round2-n32",
+              "cost": 32,
+              "value": 0.047619047619047616,
+              "ci": [
+                0.0,
+                0.08333333333333333
+              ],
+              "count": 21,
+              "numerator": 1,
+              "family": "chain_intermediates",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "e797c862567cbd8315501f1f332a4be213c4b01dbdb4ec1f0f10b5aca8dd3e86",
+              "required_olens_samples_for_fresh_baseline": 32,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 2.0,
+              "recurring_helper_usd_per_cell": 0.00028233015873015875,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 4.681089157372002,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "pooled_greedy_swap-n32",
+              "cost": 32,
+              "value": 0.047619047619047616,
+              "ci": [
+                0.0,
+                0.08333333333333333
+              ],
+              "count": 21,
+              "numerator": 1,
+              "family": "chain_intermediates",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "ea5fb845378d6bec7f38e0319912ec65b37a4df3d04547af45dd678f312c7bc3",
+              "required_olens_samples_for_fresh_baseline": 32,
+              "cached_selector_wall_seconds": 0.2322674416936934,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 4.681089157372002,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "prune_loo_a32_0.005-n32",
+              "cost": 32,
+              "value": 0.047619047619047616,
+              "ci": [
+                0.0,
+                0.08333333333333333
+              ],
+              "count": 21,
+              "numerator": 1,
+              "family": "chain_intermediates",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "21c3e1bfb19b6f0232eb2120134894a0f8508847429a2bfa790e982586fcdc7d",
+              "required_olens_samples_for_fresh_baseline": 32,
+              "cached_selector_wall_seconds": 0.01232298742979765,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 4.681089157372002,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "random_complete-n32",
+              "cost": 32,
+              "value": 0.09523809523809523,
+              "ci": [
+                0.08333333333333333,
+                0.1111111111111111
+              ],
+              "count": 21,
+              "numerator": 2,
+              "family": "chain_intermediates",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "6dd1e601d1cb1ce50488e0a8b4e9aa96b20faf6d3560e9d2b1922a64cca25a20",
+              "required_olens_samples_for_fresh_baseline": 1,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 0.14628403616787505,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Same-pool random draw from this experimental prefix. Fresh one-iid-sample baseline has the same marginal distribution and requires one sample, not N alternatives."
+            }
+          ]
+        },
+        {
+          "label": "role_bound_association: Mention/role recovery (higher is better)",
+          "family": "role_bound_association",
+          "cohort": "Shared DEV pilot: 31 items / 189 cells; partial-grid cell endpoints; whole-group 95% intervals",
+          "value_unit": "proportion",
+          "cost_unit": "samples",
+          "cost_scope": "experimental_prefix",
+          "cost_definition": "Experimental O-lens candidate prefix per cell, not total deployment cost. Random-draw controls need one iid sample in deployment. Recurring helpers and cached replay components appear separately below.",
+          "points": [
+            {
+              "condition": "best_n_exact-n1",
+              "cost": 1,
+              "value": 0.1111111111111111,
+              "ci": [
+                0.05555555555555555,
+                0.18055555555555555
+              ],
+              "count": 72,
+              "numerator": 8,
+              "family": "role_bound_association",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "cef69a430a984aef5b9afc356dd0e68bcec3a7feb7643e702f57c3a28a965c0b",
+              "required_olens_samples_for_fresh_baseline": 1,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 0.14628403616787505,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "capped_n1-n1",
+              "cost": 1,
+              "value": 0.1111111111111111,
+              "ci": [
+                0.05555555555555555,
+                0.18055555555555555
+              ],
+              "count": 72,
+              "numerator": 8,
+              "family": "role_bound_association",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "bdeb73a531fa79b26ccc1fcf0b8a9e118e2a8ddc143a738e5324142ed3756aab",
+              "required_olens_samples_for_fresh_baseline": 1,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 0.14628403616787505,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "best_n_exact-n2",
+              "cost": 2,
+              "value": 0.1388888888888889,
+              "ci": [
+                0.1111111111111111,
+                0.16666666666666666
+              ],
+              "count": 72,
+              "numerator": 10,
+              "family": "role_bound_association",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "d52965c77019335801781925564b262c45d80073105205cb23546fc03700df2b",
+              "required_olens_samples_for_fresh_baseline": 2,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 0.2925680723357501,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "best_n_exact-n4",
+              "cost": 4,
+              "value": 0.125,
+              "ci": [
+                0.06944444444444445,
+                0.19444444444444445
+              ],
+              "count": 72,
+              "numerator": 9,
+              "family": "role_bound_association",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "262af521517810334b3d58e33c2ad295cc3790632d60a126138ba05312dcda1e",
+              "required_olens_samples_for_fresh_baseline": 4,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 0.5851361446715002,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "best_n_exact-n8",
+              "cost": 8,
+              "value": 0.09722222222222222,
+              "ci": [
+                0.05555555555555555,
+                0.18055555555555555
+              ],
+              "count": 72,
+              "numerator": 7,
+              "family": "role_bound_association",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "8cfd7703ac16cf308f57db57e70082ca32a5552525546ca0ed2db1bbc061c150",
+              "required_olens_samples_for_fresh_baseline": 8,
+              "cached_selector_wall_seconds": 0.005039762705564499,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 1.1702722893430004,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "likelihood_true_minus_mean_two_controls-n8",
+              "cost": 8,
+              "value": 0.1111111111111111,
+              "ci": [
+                0.05555555555555555,
+                0.2222222222222222
+              ],
+              "count": 72,
+              "numerator": 8,
+              "family": "role_bound_association",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "59b5574c700c7e332027443fbbed8d882ea794838068f642166241a63475db20",
+              "required_olens_samples_for_fresh_baseline": 8,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 1.1702722893430004,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "best_n_exact-n16",
+              "cost": 16,
+              "value": 0.1111111111111111,
+              "ci": [
+                0.05555555555555555,
+                0.18055555555555555
+              ],
+              "count": 72,
+              "numerator": 8,
+              "family": "role_bound_association",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "ce3a7dadaf0de7bcd76bdc242e1e6f28a44ea6b777fcfc3598ac6fdb8c28f8b8",
+              "required_olens_samples_for_fresh_baseline": 16,
+              "cached_selector_wall_seconds": 0.006900957319885492,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 2.340544578686001,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "consensus_exact_support0-n16",
+              "cost": 16,
+              "value": 0.1111111111111111,
+              "ci": [
+                0.05555555555555555,
+                0.18055555555555555
+              ],
+              "count": 72,
+              "numerator": 8,
+              "family": "role_bound_association",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "d47736339dc2c3e8dc6e9c9d54cb9e1fed17c8b97c58c819350ab2404be09faf",
+              "required_olens_samples_for_fresh_baseline": 16,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 2.340544578686001,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+              "cost": 16,
+              "value": 0.1111111111111111,
+              "ci": [
+                0.05555555555555555,
+                0.18055555555555555
+              ],
+              "count": 72,
+              "numerator": 8,
+              "family": "role_bound_association",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "221b20f6ef5a4f0f18271876db3d55fa12120ee046e70b7553a6b1eed5ff8b3a",
+              "required_olens_samples_for_fresh_baseline": 16,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 2.0317460317460316,
+              "recurring_helper_usd_per_cell": 0.0019635409523809525,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 2.340544578686001,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "consensus_semantic_v5_support0_compatoff_vetoon-n16",
+              "cost": 16,
+              "value": 0.09722222222222222,
+              "ci": [
+                0.05555555555555555,
+                0.18055555555555555
+              ],
+              "count": 72,
+              "numerator": 7,
+              "family": "role_bound_association",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "536247d4b444beb8f958b8b2e861a78cbf8025ef7aad4ebd0e6aa2b6db4e140f",
+              "required_olens_samples_for_fresh_baseline": 16,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 2.0,
+              "recurring_helper_usd_per_cell": 0.0010117590476190477,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 2.340544578686001,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "pooled_greedy_swap-n16",
+              "cost": 16,
+              "value": 0.1111111111111111,
+              "ci": [
+                0.06944444444444445,
+                0.1527777777777778
+              ],
+              "count": 72,
+              "numerator": 8,
+              "family": "role_bound_association",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "97e5b7e02e5f723da3476c40bf19dc7aa7fdb4ac6611372fc44b6888d25d20b5",
+              "required_olens_samples_for_fresh_baseline": 16,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 2.340544578686001,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "random_complete-n16",
+              "cost": 16,
+              "value": 0.1111111111111111,
+              "ci": [
+                0.1111111111111111,
+                0.1111111111111111
+              ],
+              "count": 72,
+              "numerator": 8,
+              "family": "role_bound_association",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "f7c309731fad63d7ac7668a056608b96aec9650efdf4973ec31529718eec8149",
+              "required_olens_samples_for_fresh_baseline": 1,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 0.14628403616787505,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Same-pool random draw from this experimental prefix. Fresh one-iid-sample baseline has the same marginal distribution and requires one sample, not N alternatives."
+            },
+            {
+              "condition": "best_n_exact-n32",
+              "cost": 32,
+              "value": 0.125,
+              "ci": [
+                0.027777777777777776,
+                0.2361111111111111
+              ],
+              "count": 72,
+              "numerator": 9,
+              "family": "role_bound_association",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "d70d73227d7107cb15e8f48775b5facf8133cb0f4d699c464b2b2d9a60c59524",
+              "required_olens_samples_for_fresh_baseline": 32,
+              "cached_selector_wall_seconds": 0.011215437669306993,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 4.681089157372002,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "best_n_specificity_mean-n32",
+              "cost": 32,
+              "value": 0.125,
+              "ci": [
+                0.041666666666666664,
+                0.19444444444444445
+              ],
+              "count": 72,
+              "numerator": 9,
+              "family": "role_bound_association",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "0c69fca343e3c9209100c3593010774a673747c7aff0bf571c99dd4ae6403493",
+              "required_olens_samples_for_fresh_baseline": 32,
+              "cached_selector_wall_seconds": 0.05907637486234307,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 4.681089157372002,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "best_n_specificity_mean_random_delete_matched_0.005-n32",
+              "cost": 32,
+              "value": 0.09722222222222222,
+              "ci": [
+                0.027777777777777776,
+                0.18055555555555555
+              ],
+              "count": 72,
+              "numerator": 7,
+              "family": "role_bound_association",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "a9b75daf72bd3941a050f6abbf603546c1faf676b62ddec8f1411d016bee2707",
+              "required_olens_samples_for_fresh_baseline": 32,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 4.681089157372002,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "best_n_specificity_mean_then_prune_0.005-n32",
+              "cost": 32,
+              "value": 0.16666666666666666,
+              "ci": [
+                0.1111111111111111,
+                0.2361111111111111
+              ],
+              "count": 72,
+              "numerator": 12,
+              "family": "role_bound_association",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "0e5d4264a71b6b73a95e40d28eea691974a275fcd7b0dabd90aae387409345da",
+              "required_olens_samples_for_fresh_baseline": 32,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 4.681089157372002,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "editing_round2-n32",
+              "cost": 32,
+              "value": 0.1111111111111111,
+              "ci": [
+                0.027777777777777776,
+                0.19444444444444445
+              ],
+              "count": 72,
+              "numerator": 8,
+              "family": "role_bound_association",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "e797c862567cbd8315501f1f332a4be213c4b01dbdb4ec1f0f10b5aca8dd3e86",
+              "required_olens_samples_for_fresh_baseline": 32,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 2.0,
+              "recurring_helper_usd_per_cell": 0.00028233015873015875,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 4.681089157372002,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "pooled_greedy_swap-n32",
+              "cost": 32,
+              "value": 0.1111111111111111,
+              "ci": [
+                0.027777777777777776,
+                0.19444444444444445
+              ],
+              "count": 72,
+              "numerator": 8,
+              "family": "role_bound_association",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "ea5fb845378d6bec7f38e0319912ec65b37a4df3d04547af45dd678f312c7bc3",
+              "required_olens_samples_for_fresh_baseline": 32,
+              "cached_selector_wall_seconds": 0.2322674416936934,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 4.681089157372002,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "prune_loo_a32_0.005-n32",
+              "cost": 32,
+              "value": 0.1388888888888889,
+              "ci": [
+                0.06944444444444445,
+                0.2361111111111111
+              ],
+              "count": 72,
+              "numerator": 10,
+              "family": "role_bound_association",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "21c3e1bfb19b6f0232eb2120134894a0f8508847429a2bfa790e982586fcdc7d",
+              "required_olens_samples_for_fresh_baseline": 32,
+              "cached_selector_wall_seconds": 0.01232298742979765,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 4.681089157372002,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."
+            },
+            {
+              "condition": "random_complete-n32",
+              "cost": 32,
+              "value": 0.1111111111111111,
+              "ci": [
+                0.06944444444444445,
+                0.1527777777777778
+              ],
+              "count": 72,
+              "numerator": 8,
+              "family": "role_bound_association",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+              "condition_source_manifest_sha256": "6dd1e601d1cb1ce50488e0a8b4e9aa96b20faf6d3560e9d2b1922a64cca25a20",
+              "required_olens_samples_for_fresh_baseline": 1,
+              "cached_selector_wall_seconds": null,
+              "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
+              "recurring_helper_calls_per_cell": 0.0,
+              "recurring_helper_usd_per_cell": 0.0,
+              "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
+              "generation_component_gpu_seconds": 0.14628403616787505,
+              "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
+              "control_note": "Same-pool random draw from this experimental prefix. Fresh one-iid-sample baseline has the same marginal distribution and requires one sample, not N alternatives."
+            }
+          ]
+        }
       ]
     },
     "contrastive_checks": {
@@ -4645,6 +6571,96 @@
           ],
           "uncertainty": "Whole-group 95% interval ['0.0000', '0.0417']; 4 groups; Tiny group count; intervals cannot establish robustness"
         }
+      ],
+      "component_ablations": [
+        {
+          "family": "hallucination",
+          "label": "hallucination: Paired contradiction-rate change (lower is better)",
+          "cohort": "Shared DEV pilot: 31 items / 189 cells; partial-grid cell endpoints; whole-group 95% intervals",
+          "points": [
+            {
+              "condition": "prune_loo_a32_0.005-n32 vs best_n_exact-n32",
+              "value": -0.03540688575899853,
+              "ci": [
+                -0.08333333333333331,
+                0.01936619718309862
+              ],
+              "groups": 8,
+              "warning": "Tiny group count; intervals cannot establish robustness",
+              "source_conditions": [
+                "prune_loo_a32_0.005-n32",
+                "best_n_exact-n32"
+              ],
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd"
+            }
+          ]
+        },
+        {
+          "family": "multihop_mt",
+          "label": "multihop_mt: Paired recovery change (higher is better)",
+          "cohort": "Shared DEV pilot: 31 items / 189 cells; partial-grid cell endpoints; whole-group 95% intervals",
+          "points": [
+            {
+              "condition": "prune_loo_a32_0.005-n32 vs best_n_exact-n32",
+              "value": 0.0,
+              "ci": [
+                0.0,
+                0.0
+              ],
+              "groups": 7,
+              "warning": "Tiny group count; intervals cannot establish robustness",
+              "source_conditions": [
+                "prune_loo_a32_0.005-n32",
+                "best_n_exact-n32"
+              ],
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd"
+            }
+          ]
+        },
+        {
+          "family": "chain_intermediates",
+          "label": "chain_intermediates: Paired recovery change (higher is better)",
+          "cohort": "Shared DEV pilot: 31 items / 189 cells; partial-grid cell endpoints; whole-group 95% intervals",
+          "points": [
+            {
+              "condition": "prune_loo_a32_0.005-n32 vs best_n_exact-n32",
+              "value": -0.09523809523809523,
+              "ci": [
+                -0.1111111111111111,
+                -0.08333333333333333
+              ],
+              "groups": 2,
+              "warning": "Tiny group count; intervals cannot establish robustness",
+              "source_conditions": [
+                "prune_loo_a32_0.005-n32",
+                "best_n_exact-n32"
+              ],
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd"
+            }
+          ]
+        },
+        {
+          "family": "role_bound_association",
+          "label": "role_bound_association: Paired recovery change (higher is better)",
+          "cohort": "Shared DEV pilot: 31 items / 189 cells; partial-grid cell endpoints; whole-group 95% intervals",
+          "points": [
+            {
+              "condition": "prune_loo_a32_0.005-n32 vs best_n_exact-n32",
+              "value": 0.013888888888888895,
+              "ci": [
+                0.0,
+                0.04166666666666667
+              ],
+              "groups": 4,
+              "warning": "Tiny group count; intervals cannot establish robustness",
+              "source_conditions": [
+                "prune_loo_a32_0.005-n32",
+                "best_n_exact-n32"
+              ],
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd"
+            }
+          ]
+        }
       ]
     },
     "pooling": {
@@ -5176,6 +7192,96 @@
             0.02777777777777779
           ],
           "uncertainty": "Whole-group 95% interval ['-0.0556', '0.0278']; 4 groups; Tiny group count; intervals cannot establish robustness"
+        }
+      ],
+      "component_ablations": [
+        {
+          "family": "hallucination",
+          "label": "hallucination: Paired contradiction-rate change (lower is better)",
+          "cohort": "Shared DEV pilot: 31 items / 189 cells; partial-grid cell endpoints; whole-group 95% intervals",
+          "points": [
+            {
+              "condition": "pooled_greedy_swap-n32 vs best_n_exact-n32",
+              "value": 0.05070422535211261,
+              "ci": [
+                -0.039215686274509776,
+                0.12103174603174593
+              ],
+              "groups": 8,
+              "warning": "Tiny group count; intervals cannot establish robustness",
+              "source_conditions": [
+                "pooled_greedy_swap-n32",
+                "best_n_exact-n32"
+              ],
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd"
+            }
+          ]
+        },
+        {
+          "family": "multihop_mt",
+          "label": "multihop_mt: Paired recovery change (higher is better)",
+          "cohort": "Shared DEV pilot: 31 items / 189 cells; partial-grid cell endpoints; whole-group 95% intervals",
+          "points": [
+            {
+              "condition": "pooled_greedy_swap-n32 vs best_n_exact-n32",
+              "value": 0.125,
+              "ci": [
+                0.0,
+                0.24242424242424243
+              ],
+              "groups": 7,
+              "warning": "Tiny group count; intervals cannot establish robustness",
+              "source_conditions": [
+                "pooled_greedy_swap-n32",
+                "best_n_exact-n32"
+              ],
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd"
+            }
+          ]
+        },
+        {
+          "family": "chain_intermediates",
+          "label": "chain_intermediates: Paired recovery change (higher is better)",
+          "cohort": "Shared DEV pilot: 31 items / 189 cells; partial-grid cell endpoints; whole-group 95% intervals",
+          "points": [
+            {
+              "condition": "pooled_greedy_swap-n32 vs best_n_exact-n32",
+              "value": -0.09523809523809523,
+              "ci": [
+                -0.1111111111111111,
+                -0.08333333333333333
+              ],
+              "groups": 2,
+              "warning": "Tiny group count; intervals cannot establish robustness",
+              "source_conditions": [
+                "pooled_greedy_swap-n32",
+                "best_n_exact-n32"
+              ],
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd"
+            }
+          ]
+        },
+        {
+          "family": "role_bound_association",
+          "label": "role_bound_association: Paired recovery change (higher is better)",
+          "cohort": "Shared DEV pilot: 31 items / 189 cells; partial-grid cell endpoints; whole-group 95% intervals",
+          "points": [
+            {
+              "condition": "pooled_greedy_swap-n32 vs best_n_exact-n32",
+              "value": -0.013888888888888895,
+              "ci": [
+                -0.05555555555555555,
+                0.02777777777777779
+              ],
+              "groups": 4,
+              "warning": "Tiny group count; intervals cannot establish robustness",
+              "source_conditions": [
+                "pooled_greedy_swap-n32",
+                "best_n_exact-n32"
+              ],
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd"
+            }
+          ]
         }
       ]
     },
@@ -9826,6 +11932,156 @@
           "unit": "additional GPU / CPU time",
           "measurement": "Required; not measured end-to-end for this exact helper pipeline"
         }
+      ],
+      "component_ablations": [
+        {
+          "family": "hallucination",
+          "label": "hallucination: Paired contradiction-rate change (lower is better)",
+          "cohort": "Shared DEV pilot: 31 items / 189 cells; partial-grid cell endpoints; whole-group 95% intervals",
+          "points": [
+            {
+              "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16 vs best_n_exact-n16",
+              "value": 0.036619718309859106,
+              "ci": [
+                -0.07042253521126762,
+                0.13707729468599034
+              ],
+              "groups": 8,
+              "warning": "Tiny group count; intervals cannot establish robustness",
+              "source_conditions": [
+                "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+                "best_n_exact-n16"
+              ],
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd"
+            },
+            {
+              "condition": "consensus_semantic_v5_support0_compatoff_vetoon-n16 vs best_n_exact-n16",
+              "value": 0.008048289738430525,
+              "ci": [
+                -0.11815336463223791,
+                0.13224637681159424
+              ],
+              "groups": 8,
+              "warning": "Tiny group count; intervals cannot establish robustness",
+              "source_conditions": [
+                "consensus_semantic_v5_support0_compatoff_vetoon-n16",
+                "best_n_exact-n16"
+              ],
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd"
+            }
+          ]
+        },
+        {
+          "family": "multihop_mt",
+          "label": "multihop_mt: Paired recovery change (higher is better)",
+          "cohort": "Shared DEV pilot: 31 items / 189 cells; partial-grid cell endpoints; whole-group 95% intervals",
+          "points": [
+            {
+              "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16 vs best_n_exact-n16",
+              "value": -0.20833333333333334,
+              "ci": [
+                -0.37037037037037035,
+                -0.047619047619047616
+              ],
+              "groups": 7,
+              "warning": "Tiny group count; intervals cannot establish robustness",
+              "source_conditions": [
+                "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+                "best_n_exact-n16"
+              ],
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd"
+            },
+            {
+              "condition": "consensus_semantic_v5_support0_compatoff_vetoon-n16 vs best_n_exact-n16",
+              "value": -0.20833333333333334,
+              "ci": [
+                -0.37037037037037035,
+                -0.047619047619047616
+              ],
+              "groups": 7,
+              "warning": "Tiny group count; intervals cannot establish robustness",
+              "source_conditions": [
+                "consensus_semantic_v5_support0_compatoff_vetoon-n16",
+                "best_n_exact-n16"
+              ],
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd"
+            }
+          ]
+        },
+        {
+          "family": "chain_intermediates",
+          "label": "chain_intermediates: Paired recovery change (higher is better)",
+          "cohort": "Shared DEV pilot: 31 items / 189 cells; partial-grid cell endpoints; whole-group 95% intervals",
+          "points": [
+            {
+              "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16 vs best_n_exact-n16",
+              "value": -0.14285714285714285,
+              "ci": [
+                -0.16666666666666666,
+                -0.1111111111111111
+              ],
+              "groups": 2,
+              "warning": "Tiny group count; intervals cannot establish robustness",
+              "source_conditions": [
+                "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+                "best_n_exact-n16"
+              ],
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd"
+            },
+            {
+              "condition": "consensus_semantic_v5_support0_compatoff_vetoon-n16 vs best_n_exact-n16",
+              "value": -0.14285714285714285,
+              "ci": [
+                -0.16666666666666666,
+                -0.1111111111111111
+              ],
+              "groups": 2,
+              "warning": "Tiny group count; intervals cannot establish robustness",
+              "source_conditions": [
+                "consensus_semantic_v5_support0_compatoff_vetoon-n16",
+                "best_n_exact-n16"
+              ],
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd"
+            }
+          ]
+        },
+        {
+          "family": "role_bound_association",
+          "label": "role_bound_association: Paired recovery change (higher is better)",
+          "cohort": "Shared DEV pilot: 31 items / 189 cells; partial-grid cell endpoints; whole-group 95% intervals",
+          "points": [
+            {
+              "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16 vs best_n_exact-n16",
+              "value": 0.0,
+              "ci": [
+                -0.04166666666666667,
+                0.04166666666666667
+              ],
+              "groups": 4,
+              "warning": "Tiny group count; intervals cannot establish robustness",
+              "source_conditions": [
+                "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+                "best_n_exact-n16"
+              ],
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd"
+            },
+            {
+              "condition": "consensus_semantic_v5_support0_compatoff_vetoon-n16 vs best_n_exact-n16",
+              "value": -0.013888888888888881,
+              "ci": [
+                -0.04166666666666667,
+                0.0
+              ],
+              "groups": 4,
+              "warning": "Tiny group count; intervals cannot establish robustness",
+              "source_conditions": [
+                "consensus_semantic_v5_support0_compatoff_vetoon-n16",
+                "best_n_exact-n16"
+              ],
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd"
+            }
+          ]
+        }
       ]
     },
     "editing": {
@@ -10347,6 +12603,96 @@
             0.02777777777777779
           ],
           "uncertainty": "Whole-group 95% interval ['-0.0556', '0.0278']; 4 groups; Tiny group count; intervals cannot establish robustness"
+        }
+      ],
+      "component_ablations": [
+        {
+          "family": "hallucination",
+          "label": "hallucination: Paired contradiction-rate change (lower is better)",
+          "cohort": "Shared DEV pilot: 31 items / 189 cells; partial-grid cell endpoints; whole-group 95% intervals",
+          "points": [
+            {
+              "condition": "editing_round2-n32 vs best_n_exact-n32",
+              "value": 0.05939987752602571,
+              "ci": [
+                -0.021126760563380254,
+                0.125
+              ],
+              "groups": 8,
+              "warning": "Tiny group count; intervals cannot establish robustness",
+              "source_conditions": [
+                "editing_round2-n32",
+                "best_n_exact-n32"
+              ],
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd"
+            }
+          ]
+        },
+        {
+          "family": "multihop_mt",
+          "label": "multihop_mt: Paired recovery change (higher is better)",
+          "cohort": "Shared DEV pilot: 31 items / 189 cells; partial-grid cell endpoints; whole-group 95% intervals",
+          "points": [
+            {
+              "condition": "editing_round2-n32 vs best_n_exact-n32",
+              "value": 0.125,
+              "ci": [
+                0.0,
+                0.24242424242424243
+              ],
+              "groups": 7,
+              "warning": "Tiny group count; intervals cannot establish robustness",
+              "source_conditions": [
+                "editing_round2-n32",
+                "best_n_exact-n32"
+              ],
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd"
+            }
+          ]
+        },
+        {
+          "family": "chain_intermediates",
+          "label": "chain_intermediates: Paired recovery change (higher is better)",
+          "cohort": "Shared DEV pilot: 31 items / 189 cells; partial-grid cell endpoints; whole-group 95% intervals",
+          "points": [
+            {
+              "condition": "editing_round2-n32 vs best_n_exact-n32",
+              "value": -0.09523809523809523,
+              "ci": [
+                -0.1111111111111111,
+                -0.08333333333333333
+              ],
+              "groups": 2,
+              "warning": "Tiny group count; intervals cannot establish robustness",
+              "source_conditions": [
+                "editing_round2-n32",
+                "best_n_exact-n32"
+              ],
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd"
+            }
+          ]
+        },
+        {
+          "family": "role_bound_association",
+          "label": "role_bound_association: Paired recovery change (higher is better)",
+          "cohort": "Shared DEV pilot: 31 items / 189 cells; partial-grid cell endpoints; whole-group 95% intervals",
+          "points": [
+            {
+              "condition": "editing_round2-n32 vs best_n_exact-n32",
+              "value": -0.013888888888888895,
+              "ci": [
+                -0.05555555555555555,
+                0.02777777777777779
+              ],
+              "groups": 4,
+              "warning": "Tiny group count; intervals cannot establish robustness",
+              "source_conditions": [
+                "editing_round2-n32",
+                "best_n_exact-n32"
+              ],
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd"
+            }
+          ]
         }
       ]
     },
@@ -15311,6 +17657,168 @@
           "unit": "task wall-seconds on CPU, four threads",
           "measurement": "Measured over 5,236 cells; includes setup and unchanged parent"
         }
+      ],
+      "component_ablations": [
+        {
+          "family": "hallucination",
+          "label": "hallucination: Paired contradiction-rate change (lower is better)",
+          "cohort": "Shared DEV pilot: 31 items / 189 cells; partial-grid cell endpoints; whole-group 95% intervals",
+          "points": [
+            {
+              "condition": "pooled_specificity_mean-n32 vs pooled_greedy_swap-n32",
+              "value": -0.020289855072463725,
+              "ci": [
+                -0.062173038229376254,
+                0.01638655462184868
+              ],
+              "groups": 8,
+              "warning": "Tiny group count; intervals cannot establish robustness",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd"
+            },
+            {
+              "condition": "pooled_specificity_mean_then_prune_0.005-n32 vs pooled_specificity_mean-n32",
+              "value": -0.030414370279648884,
+              "ci": [
+                -0.0874500735757831,
+                0.02072434607645879
+              ],
+              "groups": 8,
+              "warning": "Tiny group count; intervals cannot establish robustness",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd"
+            },
+            {
+              "condition": "pooled_specificity_mean_then_prune_0.005-n32 vs pooled_specificity_mean_random_delete_matched_0.005-n32",
+              "value": 0.014084507042253613,
+              "ci": [
+                -0.0714285714285714,
+                0.09859154929577474
+              ],
+              "groups": 8,
+              "warning": "Tiny group count; intervals cannot establish robustness",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd"
+            }
+          ]
+        },
+        {
+          "family": "multihop_mt",
+          "label": "multihop_mt: Paired recovery change (higher is better)",
+          "cohort": "Shared DEV pilot: 31 items / 189 cells; partial-grid cell endpoints; whole-group 95% intervals",
+          "points": [
+            {
+              "condition": "pooled_specificity_mean-n32 vs pooled_greedy_swap-n32",
+              "value": -0.041666666666666685,
+              "ci": [
+                -0.14285714285714285,
+                0.0
+              ],
+              "groups": 7,
+              "warning": "Tiny group count; intervals cannot establish robustness",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd"
+            },
+            {
+              "condition": "pooled_specificity_mean_then_prune_0.005-n32 vs pooled_specificity_mean-n32",
+              "value": -0.125,
+              "ci": [
+                -0.25,
+                0.0
+              ],
+              "groups": 7,
+              "warning": "Tiny group count; intervals cannot establish robustness",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd"
+            },
+            {
+              "condition": "pooled_specificity_mean_then_prune_0.005-n32 vs pooled_specificity_mean_random_delete_matched_0.005-n32",
+              "value": -0.08333333333333331,
+              "ci": [
+                -0.19999999999999996,
+                0.0
+              ],
+              "groups": 7,
+              "warning": "Tiny group count; intervals cannot establish robustness",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd"
+            }
+          ]
+        },
+        {
+          "family": "chain_intermediates",
+          "label": "chain_intermediates: Paired recovery change (higher is better)",
+          "cohort": "Shared DEV pilot: 31 items / 189 cells; partial-grid cell endpoints; whole-group 95% intervals",
+          "points": [
+            {
+              "condition": "pooled_specificity_mean-n32 vs pooled_greedy_swap-n32",
+              "value": 0.0,
+              "ci": [
+                0.0,
+                0.0
+              ],
+              "groups": 2,
+              "warning": "Tiny group count; intervals cannot establish robustness",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd"
+            },
+            {
+              "condition": "pooled_specificity_mean_then_prune_0.005-n32 vs pooled_specificity_mean-n32",
+              "value": -0.047619047619047616,
+              "ci": [
+                -0.08333333333333333,
+                0.0
+              ],
+              "groups": 2,
+              "warning": "Tiny group count; intervals cannot establish robustness",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd"
+            },
+            {
+              "condition": "pooled_specificity_mean_then_prune_0.005-n32 vs pooled_specificity_mean_random_delete_matched_0.005-n32",
+              "value": -0.047619047619047616,
+              "ci": [
+                -0.08333333333333333,
+                0.0
+              ],
+              "groups": 2,
+              "warning": "Tiny group count; intervals cannot establish robustness",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd"
+            }
+          ]
+        },
+        {
+          "family": "role_bound_association",
+          "label": "role_bound_association: Paired recovery change (higher is better)",
+          "cohort": "Shared DEV pilot: 31 items / 189 cells; partial-grid cell endpoints; whole-group 95% intervals",
+          "points": [
+            {
+              "condition": "pooled_specificity_mean-n32 vs pooled_greedy_swap-n32",
+              "value": -0.013888888888888881,
+              "ci": [
+                -0.08333333333333333,
+                0.041666666666666664
+              ],
+              "groups": 4,
+              "warning": "Tiny group count; intervals cannot establish robustness",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd"
+            },
+            {
+              "condition": "pooled_specificity_mean_then_prune_0.005-n32 vs pooled_specificity_mean-n32",
+              "value": 0.06944444444444443,
+              "ci": [
+                0.05555555555555555,
+                0.09722222222222224
+              ],
+              "groups": 4,
+              "warning": "Tiny group count; intervals cannot establish robustness",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd"
+            },
+            {
+              "condition": "pooled_specificity_mean_then_prune_0.005-n32 vs pooled_specificity_mean_random_delete_matched_0.005-n32",
+              "value": 0.027777777777777762,
+              "ci": [
+                0.0,
+                0.05555555555555555
+              ],
+              "groups": 4,
+              "warning": "Tiny group count; intervals cannot establish robustness",
+              "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd"
+            }
+          ]
+        }
       ]
     }
   },
@@ -16330,7 +18838,7 @@
         "sha256": "3ba1d670decbd208407dc4cba72f9a1a1d567b6a28f3b2cfb894321c8eec9008"
       }
     },
-    "method_comparison_status": "Full DEV method comparisons remain incomplete. Indexed judging has resumed with healthy bounded recovery; a rate increase at the next condition boundary is being prepared. Existing quality tables are retained until complete source-checked results are available. Blind validation generation is running; validation content and outcomes remain sealed. No full-grid selector gain is established in this report."
+    "method_comparison_status": "Full DEV method comparisons remain incomplete. Judging is paused for timing diagnosis after its transport guard stopped the current queues. Existing quality tables are retained until complete source-checked results are available. Blind validation generation is running; validation content and outcomes remain sealed. No full-grid selector gain is established in this report."
   },
   "candidate_diagnostic": {
     "title": "Does reconstruction rank the available matches?",
@@ -16716,5 +19224,20 @@
     "D, E1 and their deletion controls reuse the same N32 pool. Repaired B uses N16; unequal sample counts remain explicit.",
     "Cached selector replay excludes model generation, capture, AR encoding, and recurring helpers. No measured end-to-end deployment latency is claimed.",
     "CPU values are task wall-seconds, not summed process CPU time. GPU dollar cost is unknown; USD values are usage estimates, not invoice reconciliation."
-  ]
+  ],
+  "cost_plot_sources": {
+    "source_sha256": {
+      "dashboard/measurements-v2.json": "5912f88e0461eefb3b73832b8408ef31cd81ce7df72f7ad3259fe274dc732db9",
+      "${OLENS_DATA_ROOT}/diagnostics/costs-v3/components.json": "bddcd570c795e83bd78f0dbe24557ab01a133b460b3eca0a9677301879a495c7",
+      "${OLENS_DATA_ROOT}/selections/specificity-pooling-pilot189-v1/paired-analysis-v1.json": "6bb114b0a7bd987ef33386a7942c35fc5cde6a6b4288155a22fd2a2748bf7ae7"
+    },
+    "cohort_manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+    "limits": [
+      "No fitted or certified Pareto frontier. No end-to-end latency or GPU-dollar estimates.",
+      "Sample prefix is an experimental budget, distinct from random baseline deployment needs.",
+      "The timing instrument and quality cohort are distinct and explicitly labeled.",
+      "CPU/model components exclude required capture/setup and some method-specific preparation. No missing timing is zero.",
+      "Error-rate reductions must be read with assertion/off-topic coverage; mention recovery does not establish full faithfulness."
+    ]
+  }
 }

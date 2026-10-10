@@ -43,6 +43,18 @@ class DashboardTests(unittest.TestCase):
     def test_cache_only_cost_cannot_silently_claim_full_inference(self):
         with self.assertRaisesRegex(ValueError, 'scope'):
             dashboard.build({'methods':{'sample_selection':{'cost_frontier':[{'label':'Incomplete cost','cost_unit':'GPU seconds','points':[{'cost':1,'value':.5}]}]}}})
+    def test_sample_prefix_cannot_be_labeled_deployment_cost(self):
+        with self.assertRaisesRegex(ValueError,'experimental_prefix'):
+            dashboard.cost_chart([{'label':'Wrong scope','cost_unit':'samples','cost_scope':'deployment',
+                                   'cost_definition':'Sample count','points':[]}])
+    def test_component_interval_keeps_pair_identity_and_zero_reference(self):
+        output=dashboard.ablation_charts([{'family':'multihop_mt','label':'multihop_mt: recovery change',
+                'cohort':'synthetic','points':[{'condition':'pooled_greedy_swap-n32 vs best_n_exact-n32',
+                'value':.1,'ci':[-.1,.2],'groups':2,'warning':'Tiny group count'}]}])
+        self.assertIn('title="pooled_greedy_swap-n32 vs best_n_exact-n32"',output)
+        self.assertIn('-10.0 pp',output)
+        self.assertIn('20.0 pp',output)
+        self.assertIn('Tiny group count',output)
     def test_measured_curve_can_draw_ci_and_handle_missing_ci(self):
         output = dashboard.build({"methods": {"sample_selection": {"scaling": [{
             "label": "Toy recovery fixture", "cohort": "synthetic", "points": [

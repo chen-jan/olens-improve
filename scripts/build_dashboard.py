@@ -272,36 +272,86 @@ def scaling_chart(rows):
 
 def cost_chart(series_rows):
     if not series_rows:
-        return '<p class="missing">Measured recovery or precision versus cost is not available yet.</p>'
+        return '<p class="missing">Family-specific error or recovery versus budget is not available yet.</p>'
     output = []
     for series in series_rows:
         unit = series.get("cost_unit")
-        if unit not in ("USD", "GPU seconds"):
-            raise ValueError("A cost plot must identify USD or GPU seconds; do not mix units")
+        if unit not in ("USD", "GPU seconds", "samples"):
+            raise ValueError("A cost plot must identify USD, GPU seconds or sample prefix; do not mix units")
         scope = series.get('cost_scope')
-        if scope not in ('campaign', 'incremental_cache', 'deployment') or not series.get('cost_definition'):
+        if scope not in ('campaign', 'incremental_cache', 'deployment', 'experimental_prefix') or not series.get('cost_definition'):
             raise ValueError('Cost charts require an explicit campaign/cache/deployment scope and definition')
+        if unit == 'samples' and scope != 'experimental_prefix':
+            raise ValueError('Sample-prefix plots must disclose experimental_prefix scope')
         points = series.get("points", [])
         numeric = [p for p in points if p.get("value") is not None and p.get("cost") is not None]
-        output.append(f'<section class="curve"><h4>{escape(series["label"])}</h4><p>{escape(series.get("cohort", "Unspecified cohort"))}; {escape(scope)} cost in {escape(unit)}: {escape(series["cost_definition"])}. Each point is a measured condition; no fitted frontier is implied.</p>')
+        proportion = series.get('value_unit') == 'proportion'
+        rate = lambda v: ('Not measured' if v is None else f'{v*100:.1f}%' if proportion else value(v))
+        label = series['label']
+        if series.get('family'):
+            label = label.replace(series['family'], display_label(series['family']), 1)
+        output.append(f'<section class="curve"><h4>{escape(label)}</h4><p>{escape(series.get("cohort", "Unspecified cohort"))}; {escape(scope.replace("_", " "))} in {escape(unit)}: {escape(series["cost_definition"])}. Each point is a measured condition; no fitted frontier is implied.</p>')
+        if series.get('family') == 'hallucination':
+            output.append('<p>Read contradiction rates with specific-assertion coverage, off-topic share and recovery. A lower fraction alone can reflect abstention or irrelevant outputs. Coverage is shown with each exact condition below.</p>')
         if numeric:
             min_x, max_x = min(p["cost"] for p in numeric), max(p["cost"] for p in numeric)
             min_y = min((p.get("ci") or [p["value"], p["value"]])[0] for p in numeric)
             max_y = max((p.get("ci") or [p["value"], p["value"]])[1] for p in numeric)
             output.append('<svg viewBox="0 0 540 200" role="img" aria-label="Measured quality versus cost"><path d="M45 20V145H510" class="axis"/>')
             for point in numeric:
-                x = 55 + 440*(point["cost"]-min_x)/(max_x-min_x or 1)
+                if unit == 'samples' and point['cost'] not in (1, 2, 4, 8, 16, 32):
+                    raise ValueError('Budget points must use frozen candidate prefixes')
+                x = (55 + 88*(1, 2, 4, 8, 16, 32).index(point['cost']) if unit == 'samples'
+                     else 55 + 440*(point["cost"]-min_x)/(max_x-min_x or 1))
                 y = 135 - 100*(point["value"]-min_y)/(max_y-min_y or 1)
                 if point.get("ci") is not None:
                     lower, upper = (135 - 100*(b-min_y)/(max_y-min_y or 1) for b in point["ci"])
                     output.append(f'<path d="M{x} {lower}V{upper}M{x-4} {lower}H{x+4}M{x-4} {upper}H{x+4}" class="whisker"/>')
-                output.append(f'<circle cx="{x}" cy="{y}" r="5"><title>{escape(point.get("condition", "Unspecified"))}: cost {point["cost"]}, value {point["value"]}</title></circle>')
-            output.append(f'<text x="6" y="36">{escape(round(max_y, 4))}</text><text x="6" y="138">{escape(round(min_y, 4))}</text><text x="55" y="166">{escape(round(min_x, 4))}</text><text x="495" y="166" text-anchor="end">{escape(round(max_x, 4))}</text><text x="275" y="188" text-anchor="middle">{escape(unit)}</text></svg>')
-        output.append('<table><thead><tr><th>Condition</th><th>Cost</th><th>Value</th><th>CI</th><th>Count</th></tr></thead><tbody>')
+                output.append(f'<circle cx="{x}" cy="{y}" r="5"><title>{escape(display_label(point.get("condition", "Unspecified")))}: budget {point["cost"]}, value {point["value"]}</title></circle>')
+            output.append(f'<text x="6" y="36">{rate(max_y)}</text><text x="6" y="138">{rate(min_y)}</text>')
+            if unit == 'samples':
+                output.extend(f'<text x="{55+i*88}" y="166" text-anchor="middle">{n}</text>' for i,n in enumerate((1,2,4,8,16,32)))
+            else:
+                output.append(f'<text x="55" y="166">{escape(round(min_x, 4))}</text><text x="495" y="166" text-anchor="end">{escape(round(max_x, 4))}</text>')
+            output.append(f'<text x="275" y="188" text-anchor="middle">{escape("Prescribed experimental sample prefixes" if unit == "samples" else unit)}</text></svg>')
+        output.append('<details><summary>Exact conditions, coverage and measured cost components</summary><table><thead><tr><th>Condition</th><th>Budget</th><th>Value / interval</th><th>Count</th><th>Cached selector wall time / cell</th><th>Recurring helper calls / USD per cell</th><th>Generation component / limits</th></tr></thead><tbody>')
         for point in points:
-            output.append("<tr>" + "".join(f"<td>{value(point.get(k))}</td>" for k in ("condition", "cost", "value", "ci", "count")) + "</tr>")
-        output.append("</tbody></table></section>")
+            condition = point.get('condition', 'Unspecified')
+            coverage = ''
+            if 'assertion_share' in point:
+                coverage = f'<br>Specific assertion share: {rate(point["assertion_share"])}; off-topic / specific: {rate(point.get("off_topic_share_of_specific"))}'
+            interval = ('Not measured' if point.get('ci') is None else ' to '.join(rate(v) for v in point['ci']))
+            output.append(f'<tr><td title="{escape(condition)}">{escape(display_label(condition))}</td><td>{value(point.get("cost"))}</td><td>{rate(point.get("value"))}<br>{interval}{coverage}</td><td>{value(point.get("count"))}</td><td>{value(point.get("cached_selector_wall_seconds"), "seconds")}<br>{escape(point.get("cached_timer_cohort", "Timing not measured"))}</td><td>{value(point.get("recurring_helper_calls_per_cell"))} calls / {value(point.get("recurring_helper_usd_per_cell"), "USD")}<br>{escape(point.get("helper_cost_scope", "Not measured"))}</td><td>{value(point.get("generation_component_gpu_seconds"), "GPU task seconds")}<br>{escape(point.get("generation_component_measurement", "Not measured"))}<br>{escape(point.get("control_note", ""))}</td></tr>')
+        output.append("</tbody></table></details></section>")
     return "".join(output)
+
+
+def ablation_charts(series_rows):
+    if not series_rows:
+        return ''
+    output = ['<details><summary>Component additions and removals: paired changes</summary><p>Dots show the change from the unchanged parent or matched control. Intervals resample whole related groups. These development comparisons do not establish full faithfulness.</p>']
+    for series in series_rows:
+        points = series['points']
+        low = min([0.0] + [(p.get('ci') or [p['value']])[0] for p in points])
+        high = max([0.0] + [(p.get('ci') or [p['value']])[-1] for p in points])
+        scale = high - low or 1.0
+        x = lambda v: 65 + 425 * (v - low) / scale
+        height = 70 + len(points) * 35
+        label = series['label'].replace(series['family'], display_label(series['family']), 1)
+        output.append(f'<section class="curve"><h4>{escape(label)}</h4><p>{escape(series["cohort"])}</p><svg viewBox="0 0 540 {height}" role="img" aria-label="{escape(label)}"><path d="M{x(0)} 10V{height-30}" class="axis"/>')
+        for i, point in enumerate(points):
+            y = 30 + 35*i
+            if point.get('ci'):
+                a,b = map(x, point['ci'])
+                output.append(f'<path d="M{a} {y}H{b}M{a} {y-4}V{y+4}M{b} {y-4}V{y+4}" class="whisker"/>')
+            output.append(f'<text x="10" y="{y+4}">{i+1}</text><circle cx="{x(point["value"])}" cy="{y}" r="5"><title>{escape(display_label(point["condition"]))}: change {point["value"]}</title></circle>')
+        output.append(f'<text x="65" y="{height-8}">{low*100:.1f} pp</text><text x="490" y="{height-8}" text-anchor="end">{high*100:.1f} pp</text></svg><table><thead><tr><th>Point / comparison</th><th>Paired change</th><th>95% interval</th><th>Groups / limits</th></tr></thead><tbody>')
+        for i, point in enumerate(points):
+            interval = ('Not measured' if point.get('ci') is None else ' to '.join(f'{v*100:.1f} pp' for v in point['ci']))
+            output.append(f'<tr><td title="{escape(point["condition"])}">{i+1}. {escape(display_label(point["condition"]))}</td><td>{point["value"]*100:.1f} pp</td><td>{escape(interval)}</td><td>{value(point.get("groups"))}; {escape(point.get("warning") or "")}</td></tr>')
+        output.append('</tbody></table></section>')
+    output.append('</details>')
+    return ''.join(output)
 
 
 def validate_report(report):
@@ -356,7 +406,8 @@ def build(report):
         if method.get("paired_metrics"):
             panel += '<details><summary>Paired differences with whole-group uncertainty</summary>' + metrics_table(method["paired_metrics"]) + "</details>"
         panel += "<h3>Quality versus sampling budget</h3>" + scaling_chart(method.get("scaling", []))
-        panel += "<h3>Precision and recovery versus cost</h3>" + cost_chart(method.get("cost_frontier", []))
+        panel += f'<section id="budget-{key}"><h3>Family-specific quality versus budget</h3>' + cost_chart(method.get("cost_frontier", [])) + '</section>'
+        panel += ablation_charts(method.get('component_ablations', []))
         panel += cost_components_table(method.get('cost_components',[]),report.get('cost_notes',[]))
         panel += "<h3>Wins, regressions, and unchanged cases</h3>" + traces(method.get("traces", []))
         panel += "<h3>Limitations and next decision</h3>" + paragraphs(method.get("limits", ["No method-level conclusion yet."]))
