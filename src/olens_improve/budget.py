@@ -10,8 +10,10 @@ from contextlib import contextmanager
 from datetime import datetime, timezone
 from decimal import Decimal, ROUND_CEILING
 import json
+import logging
 from pathlib import Path
 import sqlite3
+import time
 from typing import Iterator
 import uuid
 
@@ -20,6 +22,11 @@ STANDARD_RATES = {'input': Decimal('0.10'), 'cached_input': Decimal('0.01'),
                   'cache_write': Decimal('0.125'), 'output': Decimal('0.50')}
 PRICING_REVISION = 'luna-cache-write-v1'
 UNKNOWN_CLAUDE_ID = 'claude-review-unconfirmed-20261009'
+LOCK_ACQUISITION_SECONDS = 120.0
+LOCK_BUSY_WAIT_MS = 1000
+LOCK_RETRY_BACKOFF_SECONDS = 0.05
+NORMAL_BUSY_WAIT_MS = 30000
+_LOG = logging.getLogger(__name__)
 
 
 class BudgetExceeded(RuntimeError):
@@ -110,12 +117,12 @@ class AtomicBudget:
     def _transaction(self) -> Iterator[sqlite3.Connection]:
         db = sqlite3.connect(self.path, timeout=30, isolation_level=None)
         try:
-            db.execute('PRAGMA busy_timeout=30000')
+            db.execute(f'PRAGMA busy_timeout={NORMAL_BUSY_WAIT_MS}')
             mode = db.execute('PRAGMA journal_mode=DELETE').fetchone()[0]
             if mode.casefold() != 'delete':
                 raise RuntimeError(f'Unsupported journal mode {mode}')
             db.execute('PRAGMA synchronous=FULL')
-            db.execute('BEGIN IMMEDIATE')
+            self._begin_immediate(db)
             yield db
             db.execute('COMMIT')
         except BaseException:
@@ -124,6 +131,48 @@ class AtomicBudget:
             raise
         finally:
             db.close()
+
+    @staticmethod
+    def _begin_immediate(db: sqlite3.Connection) -> None:
+        """Retry only an unacquired writer lock; never replay a transaction.
+
+        The deadline bounds SQLite busy waits/backoff, not a blocked filesystem
+        syscall. Once BEGIN succeeds, the original body/COMMIT timeout applies.
+        """
+        started = time.monotonic()
+        deadline = started + LOCK_ACQUISITION_SECONDS
+        retries = 0
+        while True:
+            remaining = deadline - time.monotonic()
+            # At least one BEGIN is attempted; later iterations cannot extend
+            # the deadline with another full busy timeout.
+            wait_ms = min(LOCK_BUSY_WAIT_MS, max(1, int(remaining * 1000)))
+            db.execute(f'PRAGMA busy_timeout={wait_ms}')
+            try:
+                db.execute('BEGIN IMMEDIATE')
+            except sqlite3.OperationalError as error:
+                code = getattr(error, 'sqlite_errorcode', None)
+                if code is None or code & 0xff != sqlite3.SQLITE_BUSY or db.in_transaction:
+                    raise
+                retries += 1
+                remaining = deadline - time.monotonic()
+                if remaining <= 0:
+                    _LOG.warning('ledger_lock_acquisition status=deadline retries=%d wait_seconds=%.6f',
+                                 retries, time.monotonic() - started)
+                    raise
+                time.sleep(min(LOCK_RETRY_BACKOFF_SECONDS, remaining))
+                # Sleep may consume the remaining window. Preserve the exact
+                # last BUSY exception without retrying any transaction body.
+                if time.monotonic() >= deadline:
+                    _LOG.warning('ledger_lock_acquisition status=deadline retries=%d wait_seconds=%.6f',
+                                 retries, time.monotonic() - started)
+                    raise
+                continue
+            db.execute(f'PRAGMA busy_timeout={NORMAL_BUSY_WAIT_MS}')
+            if retries:
+                _LOG.warning('ledger_lock_acquisition status=acquired retries=%d wait_seconds=%.6f',
+                             retries, time.monotonic() - started)
+            return
 
     @staticmethod
     def _committed(db: sqlite3.Connection, run_id: str | None = None) -> int:

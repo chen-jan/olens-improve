@@ -1,10 +1,23 @@
 # Execution status
 
-Updated: 2026-10-10, approximately 15:50 UTC.
+Updated: 2026-10-10, approximately 16:13 UTC.
 Started: 2026-10-10 01:25:36 UTC (October 9, 21:25:36 EDT).
 Target finish: 2026-10-10 21:25:36 UTC. Execution remains active and authorized.
 
 ## Latest operational checkpoint
+
+At 16:06 UTC, multi-hop and chains have finished the twelve-condition TEST
+judging queue. Role binding remains active and has completed raw/capped N1.
+The hallucination continuation stopped again at the ledger's writer-lock
+acquisition; its outputs and all uncertain charges are retained. A bounded
+acquisition-only retry fix passed 48 offline tests and independent review.
+Hallucination resumed at 16:12 UTC in session 88668/PID 3625516 under the sealed
+v4 specification, SHA `423a431df4b18b5830681763db0a1a52b2294cc62c449eeff506bb3324932226`.
+The fix never replays a transaction body or commit, and the running role worker
+remains untouched. Its first sustained-health observation is pending. No TEST quality
+has been inspected. Final delivery is currently estimated at 22:00–00:00 UTC
+(6–8 pm Eastern), conditional on reliable remaining judging. The public
+dashboard's 15:49 operational snapshot predates this second stop and continuation.
 
 At approximately **15:00 UTC**, all 12 validation methods/controls are complete
 across four families (80 items, 3,485 cells). The prospective final comparison
@@ -37,7 +50,7 @@ checked. Source-preserving cell/item figures and grouped intervals are ready.
 These late DEV measurements cannot change the fixed TEST methods.
 
 The expanded [public dashboard](https://olens-improve-research.jan618.chatgpt.site)
-was published at **14:35 UTC**. It exposes all eight approach/combination sections,
+was first published at **14:35 UTC**, then updated at **15:49 UTC**. It exposes all eight approach/combination sections,
 423 pilot metric rows, sample-count curves with source intervals, exact counts,
 paired differences, costs and available examples. Ten focused tests, independent
 unit/source review and desktop/mobile checks passed. The scientific snapshot
