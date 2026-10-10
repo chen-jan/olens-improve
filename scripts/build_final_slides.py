@@ -514,6 +514,9 @@ def pages(source):
                         ('prune_loo_a32_0.005-n32','best_n_specificity_mean_then_prune_0.005-n32'):'Removal → add other-activation check',
                         ('random_delete_matched_a32_0.005-n32','prune_loo_a32_0.005-n32'):'Random deletion → guided deletion',
                         ('best_n_specificity_mean_random_delete_matched_0.005-n32','best_n_specificity_mean_then_prune_0.005-n32'):'Other activations: random → guided removal'}
+                    if source.get('mode') == 'reviewed_test':
+                        pair_names.update({('best_n_exact-n16','best_n_exact-n32'):'Best of 16 → best of 32',
+                                           ('best_n_exact-n32','best_n_specificity_mean-n32'):'Best of 32 → compare activations'})
                     fallback = (label(r['baseline_condition'])+' → '+label(r['condition'])) if source.get('mode') == 'reviewed_test' else label(r['condition'])
                     yy=y+15+k*33;items.append(text(x,yy-14,330,33,pair_names.get((r['baseline_condition'],r['condition']),fallback),15,INK))
                     if r['delta'] is None:
@@ -524,7 +527,8 @@ def pages(source):
                 for t in [-1,0,1]:
                     tick='0 pp' if t==0 else f'{span*t*100:+.2f} pp'
                     items.append(text(at(span*t)-53,y+173,120,27,tick,17,MUTED))
-                items.append(text(x+270,y+210,490,25,'Paired change; lines: grouped 95% intervals',16,MUTED))
+                legend_width = 480 if source.get('mode') == 'reviewed_test' else 490
+                items.append(text(x+270,y+210,legend_width,25,'Paired change; lines: grouped 95% intervals',16,MUTED))
         elif kind=='differences':
             rows=s['rows'];span=max([.01]+[abs(v) for r in rows for v in (r.get('ci') or [r['value']])]);at=lambda v:1050+200*v/span
             items.append(line(at(0),210,at(0),670,MUTED))

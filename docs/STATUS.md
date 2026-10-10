@@ -1,10 +1,16 @@
 # Execution status
 
-Updated: 2026-10-10, approximately 18:10 UTC.
+Updated: 2026-10-10, approximately 18:25 UTC.
 Started: 2026-10-10 01:25:36 UTC (October 9, 21:25:36 EDT).
 Target finish: 2026-10-10 21:25:36 UTC. Execution remains active and authorized.
 
 ## Latest operational checkpoint
+
+The first higher-concurrency window was slower, not faster. At18:16 UTC, the latest100-attempt windows were approximately32–35 settlements/minute per worker, with active reservations about140 seconds old; the earlier18:00 combined window was296/minute. These differently sized windows are operational evidence of trouble, not a controlled causal estimate. No new uncertain charges appeared. A live process check at18:21 confirmed both workers and found one role thread in disk sleep, without enough visibility to identify the blocked operation. Root requested clean condition-boundary stops for both at18:21:49. They continue their current A32 and D16 comparisons; no in-flight requests were cancelled. Do not raise hallucination concurrency. The optimistic four-to-six-hour delivery forecast is unsupported until throughput recovers. Transaction-phase instrumentation and a possible accounting-preserving move to fast storage are being prepared; neither has changed the live ledger.
+
+The final slide builder has passed synthetic visual checks for66-page complete and58-page TEST-preview layouts: no text overflow or out-of-canvas objects after correcting two paired-chart labels. Root inspected the findings and paired-chart pages. This validates layout fixtures, not real final findings or native PowerPoint rendering. Complete TEST and all469 descriptive inputs, their scientific review, final renders and publication remain required.
+
+### Previous 18:10 checkpoint
 
 At 18:07 UTC, the role worker completed specificity selection and stopped cleanly at the requested comparison boundary. Six of its twelve comparisons are complete; the next is pooled selection with 16 samples. Its cache owner is free. Hallucination has completed three comparisons and is processing best-of-32. Multi-hop and chains have finished all twelve. No TEST quality has been inspected.
 

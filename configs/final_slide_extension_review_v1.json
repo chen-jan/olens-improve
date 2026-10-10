@@ -1,8 +1,8 @@
 {
   "status": "root_and_independently_source_reviewed",
-  "reviewed_utc": "2026-10-10T18:07:31.025755+00:00",
+  "reviewed_utc": "2026-10-10T18:23:27.387423+00:00",
   "source_sha256": {
-    "scripts/build_final_slides.py": "ccb57bd18f46d337c2eb7bc228bdb93c12efeec7a534a3942510e0e731ba08f5",
+    "scripts/build_final_slides.py": "6f56661db9ff5cab266579510e1b6f7ac27ea001af2bc6e635e88d64a1a9927d",
     "tests/test_final_slide_builder.py": "2fb9997896ee7020f906b7c52afb28149b3d68a961d5b2e0b292bfcff0e09f20"
   },
   "reviewers": [
@@ -12,12 +12,13 @@
   "tests": {
     "count": 10,
     "scope": "Synthetic TEST/whole469 authorization, counts/CIs, builder, editable PPTX reopen and source identity; no real TEST outcomes",
-    "last_measured_seconds": 2.074
+    "last_measured_seconds": 2.06
   },
   "corrections": [
     "Non-hall cell denominator must equal intended cells",
     "Reject unknown paired scope",
-    "Use task-specific aggregation language for MT and chains"
+    "Use task-specific aggregation language for MT and chains",
+    "Shorten final-branch paired labels and keep annotation inside canvas; preserve legacy geometry"
   ],
   "required_before_delivery": [
     "Review actual TEST and whole469 analysis inputs",
@@ -25,5 +26,23 @@
     "Native PowerPoint appearance remains unvalidated unless a renderer becomes available"
   ],
   "current_scientific_publication_unchanged": true,
-  "no_model_or_judge_calls": true
+  "no_model_or_judge_calls": true,
+  "synthetic_visual_review": {
+    "reviewed_by": [
+      "model_scoring_audit",
+      "root"
+    ],
+    "complete_pages": 66,
+    "preview_pages": 58,
+    "text_boxes": 2870,
+    "overflow": 0,
+    "out_of_bounds": 0,
+    "receipt": "${OLENS_COMPUTE_ROOT}/slides/synthetic-final-layout-v2/receipt.json",
+    "receipt_sha256": "e19053f4d19a4ea34e57dd21b15dc95a0c612921afee12bd7932dc8dfa4ecc99",
+    "root_images": [
+      "complete/visual/SYNTHETIC-slide-001.png",
+      "complete/visual/SYNTHETIC-slide-012.png"
+    ],
+    "scope": "Synthetic-only figures and text. Real final content and native PPTX rendering remain unvalidated."
+  }
 }

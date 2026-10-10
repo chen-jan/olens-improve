@@ -67,3 +67,11 @@ occurred within the active condition, rather than assigning all logged delays
 to cached-condition setup. It still does not identify a particular filesystem
 operation as the cause. New throughput and error measurements are required
 before changing any other family.
+
+## First measured outcome and stop request
+
+The18:16:31 checkpoint found49,418 TEST settlements and$7.16114223 estimated TEST usage. All12 uncertain TEST charges remained$0.059636875;18 active/retained reservations totaled$0.090369875, including the old inactive hall hold. Recent100-attempt windows were31.59 settlements/minute for hall and34.72 for role, with oldest active reservations141.08 and140.78 seconds. New admission holds reached44.872 and51.302 seconds. API response timings were much shorter. These windows differ from the earlier combined measurement and do not isolate causality, but they do not justify a further ramp.
+
+Receipt: `durable/diagnostics/test12-operational-v1/continuation-v7-role-health-1815-v1.json`, SHA `584a6c81e31c59d613549061fb3ef18fd56e8bec421ecca00d875dc87337da0d`.
+
+At18:21 both exact worker commands remained live. One role thread was in disk sleep, while wait-channel visibility was restricted. No new closed condition profile or fatal log error appeared. Root sent both workers SIGUSR1 at18:21:49 to finish their current conditions and stop before starting another. No calls were cancelled. Planned recovery is8/200 after diagnosis; opt-in phase timing is being prepared. A possible move of the complete single authoritative ledger to fast compute is not yet executed and is not a proven cure: both mounts are network filesystems. Preserve every event, cap and unresolved hold, and never permit two active ledgers.
