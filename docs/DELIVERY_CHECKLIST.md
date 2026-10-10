@@ -55,21 +55,26 @@ This is a preparation checklist, not an inspection of TEST quality. Do not run t
 - [ ] Review its fixed sampled wins, regressions and seeded unchanged cases for the selected profiles versus raw/capped N1 and A32, A16→A32 sampling cost, A32→specificity component contrast, random N32 control, D16/D32 versus same-budget selection, and both pruning parents versus matched random deletion. Hallucination traces include the original context; multi-hop traces retain required-name evidence; chain traces include named values/kind/basis; role traces preserve official choices/answer/rationale and exact-request cache aliases. A mention, correct number or accepted role answer need not establish a correct explanation.
 - [ ] Have root and an independent reviewer inspect the same immutable traces. Record disagreements as judge/interpretation limitations without replacing verdicts. Do not select a new TEST operating point or layer. Publish reviewed TEST summaries, plots and descriptive coverage from the same source, visibly separate from DEV/VAL and provisional findings.
 
-The command uses the exact export and sealed authorities recorded in [040](experiments/040-expanded-held-out-judging.md); fill execution variables from that specification:
+The command uses the exact TEST12 export and sealed authorities recorded in [040](experiments/040-expanded-held-out-judging.md):
 
 ```bash
+PY=${OLENS_COMPUTE_ROOT}/envs/runtime/bin/python
+FRESH=${OLENS_COMPUTE_ROOT}/activations/core-v1/fresh_manifest_v2.json
+RUN=${OLENS_DATA_ROOT}/runs/test-full-grid-comparison-v2
+EXACT_TEST_EXPORT="$RUN/judging-inputs.jsonl"
+
 "$PY" scripts/analyze_signed_menu.py \
   --manifest configs/test-full-grid-analysis-v2.json \
   --conditions configs/conditions_test_final_v2.json \
   --condition-list configs/conditions_test_final_v2.json \
   --freeze configs/test_final_method_freeze_v2.json \
   --fresh-manifest "$FRESH" --gate configs/gates/test-analysis-v2.json \
-  --judgments "$TEST_RUN/judgments" --selections "$EXACT_TEST_EXPORT" \
+  --judgments "$RUN/judgments" --selections "$EXACT_TEST_EXPORT" \
   --selection-sha256 ae8b6a6e4fdb4eb57f8d4dcabf184071a258ad2bb55e9abc05159798c7472196 \
-  --output "$TEST_RUN/final-analysis-v2.json"
+  --output "$RUN/final-analysis-v2.json"
 ```
 
-`$PY`, `$FRESH` and `$TEST_RUN` use the reviewed execution paths in [record 030](experiments/030-test-analysis-preparation.md). The [portable-cache engineering record](experiments/036-portable-cache-persistence.md) separately tracks the candidate wheel and persistence checks; neither changes this scientific comparison.
+[Record 030](experiments/030-test-analysis-preparation.md) retains the historical preparation paths; use the explicit TEST12 paths above for final reporting. The [portable-cache engineering record](experiments/036-portable-cache-persistence.md) separately tracks the candidate wheel and persistence checks; neither changes this scientific comparison.
 
 ## Public presentation and final slides
 

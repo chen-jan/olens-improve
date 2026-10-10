@@ -19,6 +19,8 @@ Independent review requested the narrow PPTX relationship-file privacy correctio
 4. Build the reviewed final deck with existing `build_final_slides.py --final`, then render its PDF with the existing HTML mirror pipeline. Keep `build.json` and `render.json`. PPTX/notes hashes must appear in `build.json.outputs`; PDF SHA and page count must match `render.json`. The deck receipt must identify the same TEST artifact and whole-469 scope. Native PowerPoint rendering remains unvalidated; no parity claim is made.
 5. Root reviews each exact public download's contents. Text and PPTX XML are additionally scanned by the exporter; PDF privacy is certified by the explicit root review and exact byte pin. No directory copy, raw `report-source.json`, editable source JSON, or geometry dump is published.
 
+Before generating the whole-469 artifact, create a new ready copy of `configs/whole_cohort_descriptive_v1.prepared.json` with root-reviewed complete DEV, VAL and TEST report paths/hashes and the current approved implementation hashes. Preserve the prepared plan and historical receipts. Its pending status, unbound reports and historical source pins do not authorize execution.
+
 ## Optional delivery review schema
 
 All paths below are local inputs; public names are single filenames. Omit optional source entries instead of leaving unresolved placeholders.
