@@ -12,7 +12,7 @@ import statistics
 import sys
 from types import SimpleNamespace
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'src'))
-from olens_improve.evaluation import load_upstream,request_cache_key,JUDGE_MODEL
+from olens_improve.evaluation import load_upstream,request_cache_key,JUDGE_MODEL,evaluation_stage
 from olens_improve.budget import request_input_upper_bound,cost_units
 from olens_improve.data import canonical
 
@@ -25,7 +25,7 @@ def sha(p):
     return digest.hexdigest()
 
 
-def selection_rows(path,wanted):
+def selection_rows(path,wanted,cells=None,captures=None):
     """Discard fit/atom traces while streaming; large exports stay off HOME/RAM."""
     rows={}
     with path.open() as stream:
@@ -33,6 +33,11 @@ def selection_rows(path,wanted):
             if not line.strip():continue
             row=json.loads(line);cid=row['cell_id']
             if cid in rows:raise ValueError('Duplicate cell in selection export')
+            if cells is not None and (cid not in cells or any(row.get(k)!=cells[cid][k]
+                    for k in ('family','item_id','layer','position','split'))):
+                raise ValueError('Selection identity differs from the analysis-authorized cohort')
+            if captures and row.get('activation_sha256')!=captures[cid]['activation_sha256']:
+                raise ValueError('Selection activation differs from the analysis-authorized capture')
             rows[cid]={'cell_id':cid,'selections':[{'method':s['method'],'n':s['n'],'text':s['text']}
                 for s in row['selections'] if (s['method'],s['n']) in wanted]}
     return rows
@@ -46,7 +51,24 @@ def source_validator(module,contains):
     return fn,inspect.getsource(fn)
 
 
+def forecast_stage(args):
+    """Reject unauthorized heldout planning before text, banks or caches open."""
+    manifest,stage,captures,authorization=evaluation_stage(args.manifest,
+        getattr(args,'fresh_manifest',None),getattr(args,'gate',None))
+    if stage!='development':
+        if len(args.conditions)!=1:
+            raise ValueError('Heldout forecast requires the one exact signed condition list')
+        gate=load(args.gate)
+        if sha(args.conditions[0])!=gate.get('condition_list_sha256'):
+            raise ValueError('Forecast condition list differs from the signed stage menu')
+        if sha(Path(gate['freeze_path']))!=gate.get('freeze_sha256'):
+            raise ValueError('Forecast stage freeze changed')
+    return manifest,stage,captures,authorization
+
+
 def run(args):
+    manifest,stage,captures,authorization=forecast_stage(args)
+    if args.output.exists():raise FileExistsError('Preserve immutable earlier forecasts')
     contract=load_upstream()['runtime_source_hashes']
     from wsbench import llm
     from wsbench.mcjudge import load_bank
@@ -59,22 +81,24 @@ def run(args):
         'role_bound_association':load_bank('role_bound_association')}
     by_id={f:{r['id']:r for r in bank} for f,bank in banks.items()}
     blocks={r['id']:modules['role_bound_association'].build_block(r,banks['role_bound_association'])[0] for r in banks['role_bound_association']}
-    manifest=load(args.manifest);cells={r['cell_id']:r for r in manifest['cells']}
-    if any(c['split']!='development' for c in cells.values()):raise ValueError('This preflight is DEV only')
+    cells={r['cell_id']:r for r in manifest['cells']}
     conditions=[r for p in args.conditions for r in load(p)]
     if len({(r['method'],r['n']) for r in conditions})!=len(conditions):
         raise ValueError('Duplicate declared condition')
     pools=[]
     wanted={(r['method'],r['n']) for r in conditions}
     for path in args.selections:
-        pool=selection_rows(path,wanted)
+        pool=selection_rows(path,wanted,cells if stage!='development' else None,captures)
         if pool.keys()!=cells.keys():raise ValueError('Incomplete selection cohort')
         pools.append(pool)
     caches={}
     for family in modules:
         connection=sqlite3.connect('file:'+str(args.cache/f'{family}.sqlite3')+'?mode=ro',uri=True)
-        caches[family]={k:json.loads(b) for k,b in connection.execute('select content_key,body from verdicts')};connection.close()
-    observed_schemas={};seen=set();stage1_to_stage2={};summary={};row_counts=Counter();gross_reservation=0
+        # Autocommit point reads avoid retaining a family-cache read lock across
+        # loading every historical verdict while an existing writer is active.
+        connection.isolation_level=None
+        caches[family]=connection
+    observed_schemas={};seen=set();cached_rows={};stage1_to_stage2={};summary={};row_counts=Counter();gross_reservation=0
     per_condition=[];condition_counts=None
     def request(system,user,schema,temperature=None):
         result={'model':JUDGE_MODEL,'reasoning_effort':'none','messages':[{'role':'system','content':system},{'role':'user','content':user}],
@@ -85,7 +109,12 @@ def run(args):
         nonlocal gross_reservation
         rkey=request_cache_key(req);vsource=validator[1] if validator else None
         key=hashlib.sha256(canonical({'request':rkey,'prompt_version':version,'runtime_source_hashes':contract,'validator_source':vsource}).encode()).hexdigest()
-        cache=caches[family].get(key)
+        local_key=(family,key)
+        if local_key not in cached_rows:
+            cursor=caches[family].execute('SELECT body FROM verdicts WHERE content_key=?',(key,))
+            stored=cursor.fetchone();cursor.close()
+            cached_rows[local_key]=json.loads(stored[0]) if stored else None
+        cache=cached_rows[local_key]
         if cache and validator and not validator[0](SimpleNamespace(meta=meta),cache['result']):cache=None
         counts=summary.setdefault(stage,Counter());counts['logical_rows']+=1
         stage_counts=condition_counts.setdefault(stage,Counter());stage_counts['logical_rows']+=1
@@ -128,19 +157,27 @@ def run(args):
     observed_schemas[hashlib.sha256(canonical(h.VERIFY_SCHEMA).encode()).hexdigest()]='hall_stage2_known'
     # Empirical healthy Standard responses, classified by exact current schema.
     empirical=defaultdict(lambda:{'costs':[],'latencies':[],'input_tokens':[],'output_tokens':[]})
-    db=sqlite3.connect('file:'+str(args.ledger)+'?mode=ro',uri=True)
-    for actual,m,d in db.execute("select a.actual,a.metadata,e.details from attempts a join events e on a.attempt_id=e.attempt_id where a.status='settled' and a.created_utc>=? and e.kind='physical_response'",(args.empirical_since,)):
-        metadata=json.loads(m);req=metadata.get('request') or {};raw=json.loads(d)
-        if req.get('reasoning_effort')!='none' or req.get('model')!=JUDGE_MODEL or raw.get('billed_tier') not in ('default','standard'):continue
-        schema=(req.get('response_format') or {}).get('json_schema')
-        stage=observed_schemas.get(hashlib.sha256(canonical(schema).encode()).hexdigest())
-        if stage:
-            vals=empirical[stage];vals['costs'].append(actual/1e9);vals['latencies'].append(raw['latency_s']);vals['input_tokens'].append(raw['response']['usage']['prompt_tokens']);vals['output_tokens'].append(raw['response']['usage']['completion_tokens'])
-    db.close();measurements={}
-    for stage,vals in empirical.items():
-        l=sorted(vals['latencies']);measurements[stage]={'physical_responses':len(l),'mean_actual_usd':statistics.mean(vals['costs']),
-            'mean_latency_s':statistics.mean(l),'p50_latency_s':statistics.median(l),'p95_latency_s':l[int(.95*(len(l)-1))],
-            'mean_input_tokens':statistics.mean(vals['input_tokens']),'mean_output_tokens':statistics.mean(vals['output_tokens'])}
+    empirical_summary=getattr(args,'empirical_summary',None)
+    if empirical_summary:
+        prior=load(empirical_summary)
+        if prior['source_contract']!=contract or prior['output_cap']!=cap:
+            raise ValueError('Empirical reference uses a different upstream request contract')
+        measurements=prior['empirical_standard_response_measurements']
+    else:
+        db=sqlite3.connect('file:'+str(args.ledger)+'?mode=ro',uri=True)
+        for actual,m,d in db.execute("select a.actual,a.metadata,e.details from attempts a join events e on a.attempt_id=e.attempt_id where a.status='settled' and a.created_utc>=? and e.kind='physical_response'",(args.empirical_since,)):
+            metadata=json.loads(m);req=metadata.get('request') or {};raw=json.loads(d)
+            if req.get('reasoning_effort')!='none' or req.get('model')!=JUDGE_MODEL or raw.get('billed_tier') not in ('default','standard'):continue
+            schema=(req.get('response_format') or {}).get('json_schema')
+            request_stage=observed_schemas.get(hashlib.sha256(canonical(schema).encode()).hexdigest())
+            if request_stage:
+                vals=empirical[request_stage];vals['costs'].append(actual/1e9);vals['latencies'].append(raw['latency_s']);vals['input_tokens'].append(raw['response']['usage']['prompt_tokens']);vals['output_tokens'].append(raw['response']['usage']['completion_tokens'])
+        db.close();measurements={}
+        for request_stage,vals in empirical.items():
+            l=sorted(vals['latencies']);measurements[request_stage]={'physical_responses':len(l),'mean_actual_usd':statistics.mean(vals['costs']),
+                'mean_latency_s':statistics.mean(l),'p50_latency_s':statistics.median(l),'p95_latency_s':l[int(.95*(len(l)-1))],
+                'mean_input_tokens':statistics.mean(vals['input_tokens']),'mean_output_tokens':statistics.mean(vals['output_tokens'])}
+    for connection in caches.values():connection.close()
     known_expected=sum(v['uncached_unique_requests']*measurements[s]['mean_actual_usd'] for s,v in summary.items() if s in measurements)
     stage2_measure=measurements.get('hall_stage2_known')
     incomplete_price_stages=[s for s,v in summary.items() if v['uncached_unique_requests'] and s not in measurements]
@@ -177,14 +214,21 @@ def run(args):
             'New stage1 false spans are unknown: stage2 count and expected cost are bounded, not claimed exact.',
             'Empirical averages are forecasts, not hard guarantees. Physical retries add charges and time.',
             'Walltime includes sequential condition and two-stage barriers; raw per-request latency does not guarantee global throughput.',
-            'Gross max-output reservations are formal bounds, not expected prices; the $20 run ceiling remains authoritative.']}
+            'Gross max-output reservations are formal bounds, not expected prices; the reviewed atomic run ceiling remains authoritative.']}
+    if authorization is not None:
+        artifact['analysis_authorization']=authorization
+    if empirical_summary:
+        artifact['empirical_reference']={'path':str(empirical_summary),'sha256':sha(empirical_summary),
+            'interpretation':'Reuses frozen Standard usage/latency estimates; no active-ledger history scan. These older service estimates are not a current-throughput guarantee.'}
     args.output.write_text(json.dumps(artifact,indent=2)+'\n');print(json.dumps({k:v for k,v in artifact.items() if k!='source_contract'},indent=2))
 
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--selections',type=Path,action='append',required=True);p.add_argument('--manifest',type=Path,required=True)
+    p.add_argument('--fresh-manifest',type=Path);p.add_argument('--gate',type=Path)
     p.add_argument('--conditions',type=Path,action='append',required=True);p.add_argument('--cache',type=Path,required=True);p.add_argument('--ledger',type=Path,default=Path('${OLENS_DATA_ROOT}/budget/ledger.sqlite3'))
     p.add_argument('--empirical-since',default='2026-10-10T04:50:43+00:00');p.add_argument('--concurrency',type=int,default=8);p.add_argument('--rpm',type=float,default=200)
+    p.add_argument('--empirical-summary',type=Path,help='Frozen prior forecast reference; avoids scanning the active financial ledger')
     p.add_argument('--output',type=Path,required=True);args=p.parse_args()
     if args.concurrency<=0 or args.rpm<=0:p.error('concurrency and rpm must be positive')
     run(args)

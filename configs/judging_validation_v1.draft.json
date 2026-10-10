@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "status": "draft_not_authorization",
+  "run_id": "validation-full-grid-methods-v1",
+  "run_cap_usd": null,
+  "job_id": "25474685",
+  "node": "node1600",
+  "authorized_cells": 3485,
+  "concurrency": 8,
+  "rpm": 200,
+  "tier": "default",
+  "reasoning_effort": "none",
+  "automatic_ramp": false,
+  "recovery_epoch": "2026-10-10T07:52:00+00:00",
+  "cpu_pairs": {
+    "hallucination": [
+      24,
+      30
+    ],
+    "multihop_mt": [
+      83,
+      84
+    ],
+    "chain_intermediates": [
+      33,
+      38
+    ],
+    "role_bound_association": [
+      81,
+      82
+    ]
+  },
+  "manifest": "configs/validation-full-grid-blind-v1.json",
+  "fresh_manifest": "${OLENS_COMPUTE_ROOT}/activations/core-v1/fresh_manifest_v2.json",
+  "gate": "configs/gates/validation-analysis-v1.json",
+  "conditions": "configs/conditions_validation_v1.json",
+  "freeze": "configs/validation_shortlist_freeze_v1.json",
+  "selections": null,
+  "selection_sha256": null,
+  "export_provenance": null,
+  "export_provenance_sha256": null,
+  "forecast": null,
+  "forecast_sha256": null,
+  "planned_forecast_path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-judging-v1/forecast-v1.json",
+  "empirical_summary": "${OLENS_DATA_ROOT}/selections/development-full-grid-judging-v1/forecast-v1.json",
+  "ledger": "${OLENS_DATA_ROOT}/budget/ledger.sqlite3",
+  "judgments": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/judgments",
+  "shared_cache": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments/shared-exact-cache",
+  "logs": "${OLENS_COMPUTE_ROOT}/logs",
+  "hold_policy": "All prior DEV/project unknown reservations remain held. No hold release, reclassification or accounting migration is authorized by this queue.",
+  "family_owner_policy": "Root authorizes a family only after its previous DEV cache owner finishes a clean condition boundary and exits; evaluator exclusive family lock remains authoritative. No automatic signals/restarts.",
+  "forecast_policy": "Reuse frozen upstream-matched Standard usage/latency estimates; no active-ledger history scan. Exact request/cache counts are as observed and stage2 remains conditional. Run ceiling unresolved pending reviewed forecast.",
+  "unresolved_fields": [
+    "selections",
+    "selection_sha256",
+    "export_provenance",
+    "export_provenance_sha256",
+    "forecast",
+    "forecast_sha256",
+    "run_cap_usd"
+  ],
+  "dispatch_policy": "Do not dispatch until actual exact-text exports, complete coverage, forecast and root-approved ceiling are filled and status becomes root_reviewed_ready. Signed twelve-arm menu cannot change.",
+  "manifest_sha256": "9293de810635a5ee69fcee3c010ede25c7e147d12d172c2f637015c64042f19d",
+  "fresh_manifest_sha256": "5a61cff89aca532f3e022233b6d2d8e12dab0d3a3f4f44085097bc6dc58fc385",
+  "gate_sha256": "9ba4b92cbfa9f6a0400aa74b65cbf59d8614791efb2c5b404265a0ea455b88f8",
+  "conditions_sha256": "bed944371e050eff7898d07fe0a2ccb39a49a3359779640525b06c4904aca82a",
+  "freeze_sha256": "30daad423ee9326971f5f08fa4f3a3e7eec37c857b3757a700a8fcbb3a7547e6",
+  "empirical_summary_sha256": "c1db2f1fb5a58c727b813f9498726e2e21ff70ca092cc891fb0b40aab0d6a1f6",
+  "implementation_source_sha256": {
+    "infra/launch_validation_judges.py": "8fe185d916ef78da8d9b4e11c1c0c0f4ee640027fc686d79173d42c51afaa4fb",
+    "scripts/forecast_judging.py": "e587b75502317bdb60edcc2225268bdc49d87d159a5da3b0a36a79813e3d6b13",
+    "src/olens_improve/evaluation.py": "91c5bf39cab00dd15dd0b9b0f9b02463bd7c648197db472ccf6d551de8de27dd",
+    "src/olens_improve/budget.py": "601f649d162dae29d6ad690d7b3b14f682ed14b919edba2851433fcec66a8001",
+    "src/olens_improve/ar_partition.py": "4f250bd78e5adb81faed0568ad004bc8df62dd34d1daf94973ab13052e802499",
+    "src/olens_improve/stage_io.py": "7257f7855faddab8abe0ac487aa33500718979a5de5019a838354a1e0feb884c",
+    "src/olens_improve/performance.py": "2835881775b42960bc671663501d10fdf231c14a1c69e473a5faf58a0f24c9c8"
+  },
+  "performance_profile_dir": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/judgments/performance-launch-v1",
+  "profile_policy": "Existing optional instrumentation only. Every family uses its own fresh execution directory; any later restart requires a new root-reviewed profile directory, preserving original sidecars."
+}
