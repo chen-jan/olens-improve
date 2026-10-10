@@ -1,6 +1,6 @@
 # Execution status
 
-Updated: 2026-10-10, approximately 08:00 UTC.
+Updated: 2026-10-10, approximately 08:23 UTC.
 Started: 2026-10-10 01:25:36 UTC (October 9, 21:25:36 EDT).
 Target finish: 2026-10-10 21:25:36 UTC. Execution remains active and authorized.
 
@@ -81,7 +81,7 @@ first source-checked dashboard with grouped intervals. Nothing has been pushed.
 | Single-method pilots | A/B/C/D/E1/E3/F judged; E2/G diagnostics complete with limits; exact-claim-span v3 stopped after its eight-cell contract audit, without benchmark-quality measurement |
 | Combinations | 65 unique pilot conditions judged and source-checked; larger E1-plus-pruning outputs complete and awaiting judging |
 | Additional controls | All32 judgments and matched-donor N1 complete; all requested cells/stages covered |
-| Held-out evaluation | All 3,485 validation cells have complete blind N32 pools. The twelve-arm shortlist is being sealed before a separate analysis gate. Test remains closed. |
+| Held-out evaluation | All 3,485 validation cells have immutable N32 pools. The twelve-arm shortlist and analysis gate are frozen; four AR workers are running. Separate blind TEST generation authority is issued; its launch checks are pending and TEST analysis stays closed. |
 
 Combination comparisons retain unchanged parents, component-off outputs, and
 random deletion matched on retained bullet count. Fixed support weights are
@@ -95,12 +95,15 @@ The corresponding role cell count is only 151/3,420: an item passes when any
 inspected site passes, so item recovery must not be read as uniformly faithful
 readouts. These are original-grid development scores, not held-out results.
 
-Next: seal the twelve-arm validation shortlist and open only its authorized
-analysis stage. All validation generation finished blindly at 07:48 UTC. The
-prospective shortlist is based on the completed pilot and available larger
-DEV evidence, with unfinished comparisons explicitly recorded. Later DEV
-results cannot retune the menu or thresholds once validation opens. See
-experiment 027 for the decision procedure and component controls.
+Next: finish the four validation AR partitions, merge their catalog, and run
+selection/export for the signed twelve-arm menu. The exact analysis gate binds
+the freeze in experiment 027; later DEV results cannot retune that menu or its
+thresholds. At 08:16 UTC, 167,936 of 421,716 new AR vectors were complete, with
+approximately eleven minutes of encoding remaining at measured throughput.
+Separate blind TEST generation authority now binds all 10,714 existing cells,
+the unchanged N32 recipe and source hashes. Four validate-only checks and
+terminal VAL AR/resource checks must precede launch. TEST outcomes, AR,
+selection and judging remain closed until the final method freeze.
 
 DEV judging resumed at eight slots/200 RPM per family with fresh operational
 profiles and the same $20 run ceiling, exact requests, caches and uncertain
@@ -109,6 +112,9 @@ load check completed 384 fake calls without network use or production accounting
 changes; sixteen slots were faster than eight in that instrument. Intermittent
 local I/O pauses exist, but this did not reproduce the real transport failure.
 The cause remains unresolved; there is no automatic concurrency increase.
+At 08:12 UTC the new queue had 3,902 settled requests and no new unknowns.
+A read-only monitor was bounded to avoid holding long database read locks;
+this is an operational correction, not proof of the previous failure cause.
 At the frozen evidence snapshot, 24 multihop, 21 chain, four hallucination and
 three role conditions were complete out of 24 per family. Incomplete conditions
 remain incomplete, even when partial verdicts are cached.
@@ -160,7 +166,8 @@ quality or a complete dependency installation on another machine.
   not reconciled invoice charges. Target $200; hard ceiling $300 including reservations.
 - Shared O-lens cap: 32 samples/cell across all methods. Editing has its separate
   two-round/eight-proposal cap. No training or new activation sites.
-- Project artifacts used approximately 26.72 GB logical at 04:45 UTC.
+- Project artifacts used approximately 33.53 GB logical / 26.76 GB allocated
+  at the 07:57 UTC watcher checkpoint.
   The existing 55.56 GB base cache is reused without copying. Aggregate
   project allowance is approximately 500 GB; lab group quota remains unresolved.
 

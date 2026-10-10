@@ -140,6 +140,17 @@ def check_gate(gate):
         raise RuntimeError("Require passed recapture and explicit coordinator production authorization")
 
 
+def validate_blind_test_resume(state, cells):
+    """Do not admit unmarked TEST strings through a historical journal."""
+    for cell in cells:
+        for row in state.get(cell['cell_id'], {}).values():
+            provenance = row.get('generation_gate_sha256')
+            if (row.get('generation_authorization_scope') != 'blind_generation_only'
+                    or not isinstance(provenance, str) or len(provenance) != 64
+                    or any(c not in '0123456789abcdef' for c in provenance)):
+                raise ValueError('Persisted blind TEST samples lack blind-generation gate provenance')
+
+
 def import_records(path, cells, pool_id, state, stream, activation_hash):
     if path is None:
         return
@@ -230,18 +241,26 @@ def main():
     manifest_bytes = Path(args.manifest).read_bytes()
     manifest = json.loads(manifest_bytes)
     has_test = manifest.get("split") == "test" or any(cell.get("split") == "test" for cell in manifest["cells"])
-    if has_test and not manifest.get("frozen_test_authorized", False):
-        raise ValueError("Any test cell requires a frozen-test authorization")
     if len({cell["cell_id"] for cell in manifest["cells"]}) != len(manifest["cells"]):
         raise ValueError("Duplicate manifest cells")
     gate = json.loads(Path(args.gate).read_text())
     check_gate(gate)
+    from olens_improve.ar_partition import blind_test_generation_authorized
+    blind_test = has_test and blind_test_generation_authorized(manifest, gate)
+    if has_test and not blind_test and not (manifest.get('frozen_test_authorized') is True
+                                           and gate.get('frozen_test_authorized') is True):
+        raise ValueError('Test cells require final-freeze authorization or explicit blind preparation authority')
+    if blind_test and (args.n != 32 or args.seed != 20261010 or args.shard_count != 4):
+        raise ValueError('Blind test preparation requires the unchanged N32, seed and four-shard pool')
+    if blind_test and (args.batch_size != 32 or args.cells_per_batch != 4
+                       or args.maximum_batch_sequences != 128):
+        raise ValueError('Blind test preparation requires the frozen 32/4/128 sampling batch recipe')
+    if blind_test and args.import_pool is not None:
+        raise ValueError('Blind test preparation cannot import an external candidate pool')
     if gate.get("dry_run_only") and not args.validate_only:
         raise ValueError("A dry-run-only gate cannot authorize GPU generation")
     if gate.get("capture_version") != args.capture_version:
         raise ValueError("Coordinator gate does not authorize this capture version")
-    if has_test and not gate.get("frozen_test_authorized", False):
-        raise ValueError("Coordinator gate does not authorize test cells")
     if gate.get("manifest_sha256") != sha(manifest_bytes):
         raise ValueError("Coordinator gate does not authorize this exact manifest")
     if gate.get("authorized_cells", len(manifest["cells"])) != len(manifest["cells"]):
@@ -251,8 +270,8 @@ def main():
     if args.fresh_index and gate.get("fresh_index_sha256") != file_sha(args.fresh_index):
         raise ValueError("Fresh index does not match the coordinator's frozen hash")
     if gate.get('authorization_scope') == 'blind_generation_only':
-        if not args.fresh_index or manifest.get('split') != 'validation':
-            raise ValueError('Blind generation requires the exact validation cohort and fresh index')
+        if not args.fresh_index or manifest.get('split') not in ('validation', 'test'):
+            raise ValueError('Blind generation requires an exact authorized cohort and fresh index')
         from olens_improve.ar_partition import validate_stage
         validate_stage(manifest, sha(manifest_bytes), json.loads(Path(args.fresh_index).read_bytes()),
                        file_sha(args.fresh_index), gate, capability='generation')
@@ -297,6 +316,7 @@ def main():
     }
     launch = {"manifest_sha256": sha(manifest_bytes), "gate_sha256": sha(Path(args.gate).read_bytes()),
         "authorization_scope": gate.get("authorization_scope"),
+        **({'blind_test_generation_authorized': True, 'frozen_test_authorized': False} if blind_test else {}),
         "batch_size": args.batch_size, "target_n": args.n, "shard_index": args.shard_index,
         "cells_per_batch": args.cells_per_batch, "maximum_batch_sequences": args.maximum_batch_sequences,
         "fresh_index": args.fresh_index, "fresh_activations": args.fresh_activations,
@@ -337,6 +357,7 @@ def main():
     signal.signal(signal.SIGINT, lambda *_: stopping.update(value=True))
     with claim(claim_path, recover_dead=args.recover_dead_claim):
         state = read_journal(journal, pool_id, repair_tail=True)
+        if blind_test: validate_blind_test_resume(state, cells)
         from safetensors import safe_open
         cells_by_id = {cell["cell_id"]: cell for cell in cells}
 

@@ -1,6 +1,6 @@
 # 023 — Donor-judge connection failures and bounded recovery
 
-Updated: 2026-10-10 07:36 UTC. Status: donor recovery completed; main-comparison dispatch is paused after a third transport incident. Original uncertain charges and successful verdicts are retained. Benchmark prompts, Luna effort none, Standard destination and source text remain unchanged.
+Updated: 2026-10-10 08:14 UTC. Status: donor recovery completed; the same main-comparison queue has resumed with optional operational timing after a third transport incident. Original uncertain charges and successful verdicts are retained. Benchmark prompts, Luna effort none, Standard destination and source text remain unchanged.
 
 The full-development donor run began at 32 request slots and 600 rpm per family. Between 04:33:14 and 04:44:30 UTC it recorded 270 `APIConnectionError` attempts and 43 cancelled attempts when the active workers were stopped. Their 313 unresolved charges retain **$1.6103545**. Median failed latency was 24.4 seconds. Errors carried no HTTP status or provider error code; underlying cause classes were not recorded by that earlier wrapper. The outage cause is unknown. Failures began before the 04:40 CPU-selector launch, so concurrent CPU use does not establish the cause.
 
@@ -99,3 +99,68 @@ The shared transport guard stopped all remaining workers before the requested bo
 Since the unchanged 07:02 epoch, **6,414 physical responses settled and 48 attempts remain unknown**, holding **$0.234553**: nine ReadError chains, thirteen ConnectError chains, and twenty-six guard-shutdown cancellations. Unknown counts are role16 22, chain16 25 and hall8 one. The entire main run has **11,206 settled attempts, $1.520503885 usage-accounted spend, 112 unknown holds totaling $0.555981, and zero still-reserved live attempts**. Usage accounting is not invoice reconciliation. The financial ceiling was not exhausted; shutdown cancellations remain charged-uncertain alongside the failed physical requests.
 
 Successful exact verdicts, all original attempts and incomplete-condition sidecars remain intact. Missing API results cannot become successful abstentions. No new paid dispatch, new epoch or cache migration is authorized by this snapshot; a bounded diagnostic/recovery plan must be reviewed first. Offline A32-versus-capped-N1 analysis is complete independently of the unfinished queue and is documented in [experiment 019](019-full-dev-method-comparison.md).
+
+## Copied-ledger instrument and profiled recovery
+
+A bounded no-network instrument completed **384 synthetic calls**: three family
+workers, 64 calls each, at both eight and sixteen slots. It used disposable
+copies of the ledger and exact-verdict cache, three-second fake responses and
+the existing request/accounting loop. Worker wall time was 25.35–26.35 seconds
+at eight slots and 13.07–14.47 seconds at sixteen. Production attempt counts
+and financial accounting were identical before and after. The report is
+`durable/diagnostics/judge-local-load-v1/report.json`, SHA256
+`edd24c5314caa52f5d5aa75a5244f9978c65cb091b8908878793210880e578bf`.
+The fake response shapes did not exercise the real semantic/quote validators
+or the two-stage hallucination dependency. This instrument did not reproduce
+the production throughput reversal and cannot establish the transport cause
+or future provider performance. No asynchronous accounting rewrite or state
+relocation was adopted.
+
+Reviewed commit `67088fa` adds opt-in timing for ledger operations, exact-cache
+operations and event-loop scheduling lag. Timing is disabled by default and
+does not change prompts, validators, cache identity, scientific conditions or
+financial transactions. Each resumed execution uses a fresh profile directory;
+a profile-write failure cannot replace the actual evaluator outcome.
+
+Root's single exact Luna/none/Standard health request started at
+**07:51:07.640689 UTC** and succeeded in **1.393170 seconds**, with 573 input,
+35 output and zero reasoning tokens. Its original unknown attempt remains
+held. Evidence is `judgments-methods-v1/healthcheck-profiled-v3.json`, SHA256
+`fef36691048d71930b8c1ed1a9476e830eb089fdad5cbd677d3cbd98bd3ecb77`.
+Root then approved epoch **07:52 UTC** and launched session `80838` using
+`configs/judging_main_recovery_v3.json`, SHA256
+`f0a434cd14ccab5045518657b8122fa5ffcdd6d9299fa4d00a37e7b6a4816280`.
+The same 24-condition source, $20 run ceiling, eight slots/200 RPM per family
+and all historical charge holds are preserved. No automatic ramp is enabled.
+
+The first resumed physical attempt was at **07:58:10.463 UTC**. At
+**08:05:32 UTC**, the read-only checkpoint recorded **2,196 settled responses,
+zero new unknown attempts or recorded transport errors**, and twelve active
+reservations with oldest age 7.25 seconds. Family counts were hallucination
+769, chain 630 and role 797; their p95 physical latencies were 4.92, 5.54 and
+5.81 seconds. Aggregate wall throughput was approximately 298 responses/minute,
+including cache/condition gaps. Evidence is
+`judgments-methods-v1/checkpoint-profiled-v3-early-v1.json`. This is an operational
+health observation, not completed quality coverage or proof that failures are
+resolved. The separately reviewed validation menu was frozen before these
+later development results; they cannot change that menu or its decision rule.
+
+At **08:12:25 UTC**, a second checkpoint recorded **3,902 settled responses and
+zero new unknowns**, including 1,608 hallucination and 1,664 role responses.
+Chain remained at 630 because its queue had completed. The latest-100-attempt
+latency window had p95 3.43 seconds for hallucination and 7.31 for role; these
+are recent-window values, unlike the earlier full-epoch quantiles. Thirteen
+reservations were active, with oldest age 9.24 seconds. The source is
+`judgments-methods-v1/checkpoint-profiled-v3-window-v1.json`.
+
+The original observer explicitly held `BEGIN` across two event lookups for
+every epoch attempt. The new separate operational entrypoint,
+`scripts/observe_judge_queue_window.py`, fetches compact attempt states once,
+closes that cursor, then reads only the latest hundred response observations
+per worker and uncertain-attempt cause evidence in autocommit mode. Its
+checkpoint reports status/event snapshot limitations and query timings:
+4.64 seconds for compact metadata and 6.94 seconds total at this observation.
+It changes no evaluator or accounting code. Long observer read locks are a
+possible contributor to write delays, not an established explanation of the
+earlier production failures; no full-history diagnostic scan or accounting
+offload was introduced.

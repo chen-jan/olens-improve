@@ -10,6 +10,15 @@ from .ar_cache import digest, vector_key
 from .stage_permissions import require_gate_capability
 
 
+def blind_test_generation_authorized(manifest, gate):
+    """Separate prospective preparation authority; never test-analysis authority."""
+    return (gate.get('authorization_scope') == 'blind_generation_only'
+            and manifest.get('blind_test_generation_authorized') is True
+            and gate.get('blind_test_generation_authorized') is True
+            and manifest.get('frozen_test_authorized') is False
+            and gate.get('frozen_test_authorized') is False)
+
+
 def validate_stage(manifest,manifest_sha,fresh,fresh_sha,gate,*,capability='analysis'):
     require_gate_capability(gate, capability)
     cells={c['cell_id']:c for c in manifest['cells']}
@@ -20,7 +29,8 @@ def validate_stage(manifest,manifest_sha,fresh,fresh_sha,gate,*,capability='anal
     if len(stages)!=1 or not stages.issubset({'development','validation','test'}):
         raise ValueError('Require one explicit intended split')
     stage=next(iter(stages))
-    if stage=='test' and gate.get('authorization_scope')=='blind_generation_only':
+    blind_test = (capability == 'generation' and blind_test_generation_authorized(manifest, gate))
+    if stage=='test' and gate.get('authorization_scope')=='blind_generation_only' and not blind_test:
         raise ValueError('Blind preparation is authorized for validation only; test remains sealed')
     if manifest.get('split')!=stage:raise ValueError('Manifest split differs from cells')
     if gate.get('manifest_sha256')!=manifest_sha or gate.get('fresh_index_sha256')!=fresh_sha:
@@ -29,7 +39,7 @@ def validate_stage(manifest,manifest_sha,fresh,fresh_sha,gate,*,capability='anal
         raise ValueError('Missing passed coordinator stage gate')
     if gate.get('dry_run_only') or gate.get('authorized_cells')!=len(cells) or gate.get('maximum_samples_per_cell')!=32:
         raise ValueError('Gate is dry-run, wrong cohort size or wrong shared sample contract')
-    if stage=='test' and not (manifest.get('frozen_test_authorized') is True and gate.get('frozen_test_authorized') is True):
+    if stage=='test' and not blind_test and not (manifest.get('frozen_test_authorized') is True and gate.get('frozen_test_authorized') is True):
         raise ValueError('Sealed test stage is not scientifically authorized')
     for cid,c in cells.items():
         if cid not in captures or any(c[k]!=captures[cid][k] for k in ('family','item_id','layer','position','split','group_id')):
