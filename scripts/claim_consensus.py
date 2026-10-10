@@ -11,9 +11,9 @@ import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'src'))
 from olens_improve.claim_spans import (EXTRACT_VERSION, VERIFY_VERSION, EXTRACT_SYSTEM,
-    VERIFY_SYSTEM, ClaimSpan, extract_verified_spans, span_relations, select_span_support,
+    VERIFY_SYSTEM, CLAIM_MATCH_VERSION, CLAIM_MATCH_SYSTEM, ClaimSpan, extract_verified_spans, span_relations, select_span_support,
     extraction_only, random_matched_spans)
-from olens_improve.helpers import LunaHelper, HelperCache, MATCH_VERSION
+from olens_improve.helpers import LunaHelper, HelperCache
 from olens_improve.budget import AtomicBudget
 from olens_improve.evaluation import make_luna_client, make_luna_helper_diagnostic_client
 from olens_improve.selection import parse_bullets, output_admissible, render_bullets
@@ -84,7 +84,7 @@ def prepare(args):
     spec = {'public_method': 'consensus over extracted claims', 'cells': 32, 'audit_cells': 8,
         'n': 16, 'manifest_sha256': digest(args.output/'cells.json'), 'inputs_sha256': digest(args.output/'inputs.jsonl'),
         'source_sha256': {str(p): digest(p) for p in (args.manifest, args.records, args.parents, args.whole_bullet)},
-        'prompt_versions': [EXTRACT_VERSION, VERIFY_VERSION, MATCH_VERSION],
+        'prompt_versions': [EXTRACT_VERSION, VERIFY_VERSION, CLAIM_MATCH_VERSION],
         'settings': {'extraction_effort': 'none', 'support_and_match_effort': 'medium', 'tier': 'default',
             'attempts': 1, 'request_slots': 4, 'cell_slots': 2, 'max_completion_tokens': 6000,
             'source_bullets_per_extraction_chunk': 32, 'source_span_checks_per_chunk': 16,
@@ -95,6 +95,14 @@ def prepare(args):
         'code_sha256': {str(p): digest(p) for p in (Path(__file__), Path('src/olens_improve/claim_spans.py'),
                            Path('src/olens_improve/helpers.py'), Path('scripts/helper_pilot.py'))},
         'new_O_lens_samples': 0, 'AR_scores_for_new_spans': 'not computed or used by this consensus-only ablation'}
+    if args.reused_proposals:
+        reused = [json.loads(line) for line in args.reused_proposals.read_text().splitlines()]
+        if len(reused) != 8 or {r['cell_id'] for r in reused} != set(audit):
+            raise ValueError('Reused proposals must cover the unchanged original audit8 exactly')
+        spec['reused_proposals'] = {'path': str(args.reused_proposals.resolve()),
+                                  'sha256': digest(args.reused_proposals), 'cell_ids': audit,
+                                  'stage': 'Exact extraction proposals only; old checks/merges are not reused.'}
+        spec['audit8_repair_forecast'] = 'Zero extraction calls; 236 non-bare-number proposals yield 19 verification chunks and at most 16 match chunks. Nominal output reservation <=$0.105 plus input/retry costs, inside the SAME combined $2 run cap.'
     write_once(args.output/'spec.json', (json.dumps(spec, indent=2)+'\n').encode())
     print(json.dumps({'prepared': str(args.output), 'spec_sha256': digest(args.output/'spec.json'),
                       'cells': 32, 'audit_cells': audit}))
@@ -109,6 +117,8 @@ def load_prepared(path):
     inputs = {r['cell']['cell_id']: r for r in map(json.loads, (path/'inputs.jsonl').read_text().splitlines())}
     if len(inputs) != 32 or set(inputs) != {c['cell_id'] for c in manifest['cells']}:
         raise ValueError('Prepared 32-cell cohort differs')
+    if 'reused_proposals' in spec and digest(spec['reused_proposals']['path']) != spec['reused_proposals']['sha256']:
+        raise ValueError('Bound immutable extraction report changed')
     return spec, manifest, inputs
 
 
@@ -164,13 +174,19 @@ async def run(args):
     progress = CellProgress(args.output/'progress.sqlite3', identity); reports = progress.rows()
     if set(reports) - set(inputs): raise ValueError('Checkpoint has another cohort')
     count = tokenizer(); queue = asyncio.Queue()
+    reused = {}
+    if 'reused_proposals' in spec:
+        reused = {r['cell_id']: r['extraction'] for r in map(json.loads,
+                    Path(spec['reused_proposals']['path']).read_text().splitlines())}
+        if set(reused) != set(manifest['audit_cell_ids']): raise ValueError('Reused proposal coverage changed')
     for cid in ids:
         if cid not in reports: queue.put_nowait(cid)
     async def worker():
         while not queue.empty():
             cid = queue.get_nowait()
             try:
-                spans, extraction_report = await extract_verified_spans(parsed_pool(inputs[cid], count), extraction, checking)
+                spans, extraction_report = await extract_verified_spans(parsed_pool(inputs[cid], count), extraction, checking,
+                                                                        reused_report=reused.get(cid))
                 evidence = await span_relations(spans, checking)
                 report = {'cell_id': cid, 'cell': inputs[cid]['cell'], 'extraction': extraction_report,
                           'span_consensus': evidence, 'new_O_lens_samples': 0}
@@ -240,6 +256,7 @@ def main():
     p = argparse.ArgumentParser(description=__doc__); sub = p.add_subparsers(dest='command', required=True)
     q = sub.add_parser('prepare')
     for name in ('manifest', 'records', 'parents', 'whole-bullet', 'output'): q.add_argument('--'+name, type=Path, required=True)
+    q.add_argument('--reused-proposals', type=Path)
     q = sub.add_parser('preview'); q.add_argument('--prepared', type=Path, required=True)
     q = sub.add_parser('run')
     for name in ('prepared', 'output', 'ledger'): q.add_argument('--'+name, type=Path, required=True)
@@ -251,7 +268,8 @@ def main():
     if args.command == 'prepare': prepare(args)
     elif args.command == 'preview':
         spec, _, _ = load_prepared(args.prepared)
-        print(json.dumps({'spec': spec, 'extract_prompt': EXTRACT_SYSTEM, 'support_prompt': VERIFY_SYSTEM}, indent=2))
+        print(json.dumps({'spec': spec, 'extract_prompt': EXTRACT_SYSTEM, 'support_prompt': VERIFY_SYSTEM,
+                          'claim_match_prompt': CLAIM_MATCH_SYSTEM}, indent=2))
     elif args.command == 'run': asyncio.run(run(args))
     else: export(args)
 

@@ -9,7 +9,8 @@ from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 from olens_improve.claim_spans import (ClaimSpan, exact_spans, extract_verified_spans,
-    select_span_support, span_groups, span_pair_shortlist, extraction_only, random_matched_spans)
+    select_span_support, span_groups, span_pair_shortlist, extraction_only, random_matched_spans,
+    bare_numeric_fragment, span_relations, VERIFY_VERSION, CLAIM_MATCH_VERSION)
 from olens_improve.helpers import HelperValidationError, PairRelation, clique_clusters
 from olens_improve.selection import Bullet, Sample, output_admissible
 
@@ -20,6 +21,57 @@ def span(i, sample, text, position=0):
 
 
 class ClaimSpanTests(unittest.TestCase):
+    def test_bare_numeric_guard_preserves_math_relations_labels_and_units(self):
+        for value in ('25', '**2.5**', '`-3`', ' +.5 ', '−2', '__17__'):
+            self.assertTrue(bare_numeric_fragment(value), value)
+        for value in ('2+2=4', '**2+2=4**', 'Answer:15', '15 books', 'x=15', '1/2', '*25', '15%'):
+            self.assertFalse(bare_numeric_fragment(value), value)
+
+    def test_reused_proposals_checked_again_without_new_extraction(self):
+        sample = Sample('s0', 0, (Bullet('source', 'Answer:15', 's0', 0),))
+        good = span('source:claim0', 's0', 'Answer:15')
+        good = ClaimSpan(**(asdict(good) | {'source_phrase_id': 'source', 'readout_start': None, 'readout_end': None}))
+        reused = {'sources': {'b000': {'source_phrase_id': 'source', 'sample_index': 0, 'source_text': 'Answer:15'}},
+                  'proposed_spans': [asdict(good)], 'local_rejections': [], 'missing_extraction_sources': []}
+        class Proposal:
+            async def call(self, *args, **kwargs): raise AssertionError('No extraction call allowed')
+        class Checking:
+            async def call(self, system, payload, schema, **kwargs):
+                self_version = kwargs['version']
+                if self_version != VERIFY_VERSION: raise AssertionError('Wrong verifier version')
+                result = {'results': [{'check_id': 'p00', 'source_entails_claim': True,
+                           'self_contained': True, 'qualifications_preserved': True, 'reason': 'Explicit label retained.'}]}
+                kwargs['validate'](result); return result
+        accepted, report = asyncio.run(extract_verified_spans([sample], Proposal(), Checking(), reused_report=reused))
+        self.assertEqual(accepted, [good]); self.assertTrue(report['extraction_reused'])
+        corrupt = dict(reused, proposed_spans=[asdict(good) | {'start': 1}])
+        with self.assertRaises(ValueError):
+            asyncio.run(extract_verified_spans([sample], Proposal(), Checking(), reused_report=corrupt))
+
+    def test_claim_matching_uses_versioned_numeric_scope_not_wholebullet_default(self):
+        class Checking:
+            async def call(self, system, payload, schema, **kwargs):
+                self.assertion = (kwargs['version'], system)
+                result = {'results': [{'pair_id': 'p00', 'label': 'uncertain', 'a_entails_b': None,
+                           'b_entails_a': None, 'compatible': None, 'reason': 'Answer scope differs.'}]}
+                kwargs['validate'](result); return result
+        checking = Checking()
+        evidence = asyncio.run(span_relations([span('a','s0','15'), span('b','s1','Answer:15')], checking))
+        self.assertEqual(checking.assertion[0], CLAIM_MATCH_VERSION)
+        self.assertIn("bare '15'", checking.assertion[1]); self.assertEqual(evidence['clusters'], [['c000'], ['c001']])
+
+    def test_bare_proposal_rejected_before_source_helper_without_rewriting(self):
+        sample = Sample('s0', 0, (Bullet('source', '**2.5**', 's0', 0),))
+        class Proposal:
+            async def call(self, system, payload, schema, **kwargs):
+                return {'sources': [{'source_id': 'b000', 'quotes': ['**2.5**']}]}
+        class Checking:
+            async def call(self, *args, **kwargs): raise AssertionError('Bare number must not reach checking')
+        accepted, report = asyncio.run(extract_verified_spans([sample], Proposal(), Checking()))
+        self.assertFalse(accepted); self.assertFalse(report['source_checks'])
+        self.assertEqual(report['proposed_spans'][0]['text'], '**2.5**')
+        self.assertEqual(report['local_rejections'][0]['reason'], 'bare_numeric_fragment')
+
     def test_exact_offsets_preserve_qualifications_not_rewrites(self):
         text = 'If Alice might own 17 books, Bob does not own 2 books.'
         bullet = Bullet('source', text, 's0', 0, 2, len(text)+2)

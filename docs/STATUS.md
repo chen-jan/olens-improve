@@ -1,6 +1,6 @@
 # Execution status
 
-Updated: 2026-10-10, approximately 05:20 UTC.
+Updated: 2026-10-10, approximately 06:00 UTC.
 Started: 2026-10-10 01:25:36 UTC (October 9, 21:25:36 EDT).
 Target finish: 2026-10-10 21:25:36 UTC. Execution remains active and authorized.
 
@@ -68,10 +68,10 @@ first source-checked dashboard with grouped intervals. Nothing has been pushed.
 | Shared pilot | 189 cells × 32 samples complete and immutable |
 | Full development collection | All 5,236 cells × 32 samples frozen; 167,552 samples |
 | Full development reconstruction | Complete: 642,209 unique vectors covering all 5,236 cells |
-| Full development selectors | v4 running on four disjoint CPU groups after tested empty-atom fix; 2,018 v3 rows preserved for overlap verification |
+| Full development selectors | Complete: 5,236 cells and 40 offline conditions; all 2,018 overlapping v3 rows agree exactly; raw/capped baseline identity passed |
 | Full development baseline | Raw and capped N1 judged, all stages/cells complete; pinned item aggregation verified |
-| Single-method pilots | A/B/C/D/E1/E3/F judged; E2/G diagnostics complete with limits; separate exact-claim-span audit prepared |
-| Combinations | Pruning after pooling/contrastive selection/editing and exact-repeat support plus pooling judged and audited |
+| Single-method pilots | A/B/C/D/E1/E3/F judged; E2/G diagnostics complete with limits; exact-claim-span v2 failed its audit and a bounded v3 repair is being audited |
+| Combinations | 65 unique pilot conditions judged and source-checked; larger E1-plus-pruning outputs complete and awaiting judging |
 | Additional controls | All32 judgments and matched-donor N1 complete; all requested cells/stages covered |
 | Held-out evaluation | Validation and test readouts remain sealed |
 
@@ -87,14 +87,29 @@ The corresponding role cell count is only 151/3,420: an item passes when any
 inspected site passes, so item recovery must not be read as uniformly faithful
 readouts. These are original-grid development scores, not held-out results.
 
-Next: finish four independent CPU selection shards and validate their merge,
-including overlap with the preserved initial attempt and early baseline texts.
-The larger comparison is frozen at 24 conditions in
-experiment 019. Repaired consensus and pooling-plus-specificity pilots are judged.
+Next: finish the exact-request cost forecast and compact judging export, then
+judge the frozen 24-condition development comparison in experiment 019. The
+merged selection SHA is `54ee50e61ebc11ac66d8d11c294dda60e17a7f9e06ad8632665e6bbb6505635e`;
+the baseline audit verifies all 10,472 raw/capped text-and-token pairs against
+the already judged baseline. Cache reuse does not create independent verdicts.
+The E1 pruning run used 235.75 seconds on four CPU threads, with no new model
+calls. Repaired consensus and pooling-plus-specificity pilots are judged.
 Audit source-preserving claim extraction on eight fixed cells before expanding
-that separate diagnostic. Review development outcomes
-before the validation shortlist, freeze, and test. A small gain with wide
+that separate diagnostic. Review development outcomes before the validation
+shortlist, freeze, and test. A small gain with wide
 intervals can warrant follow-up; significance alone is not an expansion gate.
+
+The full development audit found 523 bullets empty after AR token cleanup in
+103 role cells. Complete-candidate AR methods exclude unscoreable samples;
+raw/capped/random controls preserve their text, and N1 pruning leaves such
+parents unchanged. Twelve A1 cells abstain where capped N1 retains text (two
+parser exclusions and ten unscoreable parents). Report these eligibility
+differences separately from selection gains; the fix is not a faithfulness result.
+
+A local vector-first CLI now supports immutable candidate generation and replay.
+One existing DEV A16 replay reproduced the exact output and phrase IDs with FVE
+drift 1.34e-8, without generation, GPU work or API calls. This is replay validation;
+the complete fresh-install deployment path has not yet been tested.
 
 ## Resources and limits
 
@@ -106,7 +121,7 @@ intervals can warrant follow-up; significance alone is not an expansion gate.
   A watcher checks every 600 seconds until 21:25:36 UTC; its process and last
   check are recorded under the fast project's `watcher/` directory. An agent
   stopping does not itself guarantee that this process remains healthy.
-- Recorded API usage at approximately 05:20 UTC: **$4.48121**, with **$4.03092**
+- Recorded API usage at approximately 05:56 UTC: **$4.52290**, with **$4.03092**
   unresolved reservations; later activity is accounted in the ledger.
   The earlier cache-write pricing correction added $0.30592
   to settled usage and $0.02011 to unknown-request reservations; original events

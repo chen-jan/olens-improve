@@ -7,12 +7,13 @@ from dataclasses import asdict, dataclass
 import copy
 import re
 
-from .helpers import (HelperValidationError, PairRelation, _schema, confirm_pairs,
-                      clique_clusters)
+from .helpers import (HelperValidationError, PairRelation, _schema,
+                      clique_clusters, MATCH_SCHEMA, MATCH_SYSTEM, validate_matches)
 from .selection import Bullet, Selection
 
 EXTRACT_VERSION = 'exact-source-claim-proposals-v1'
-VERIFY_VERSION = 'source-to-exact-claim-qualification-v1'
+VERIFY_VERSION = 'source-to-exact-claim-qualification-v2-numeric-scope'
+CLAIM_MATCH_VERSION = 'exact-source-claim-equivalence-v2-numeric-scope'
 EXTRACT_SYSTEM = """Propose at most TWO self-contained claims from each supplied source bullet.
 You see only noisy candidate prose and opaque source IDs. Return exact contiguous
 quotes copied character-for-character from that bullet, without rewriting, joining
@@ -36,6 +37,18 @@ can still strengthen or misrepresent its parent. Unresolved pronouns, ellipses a
 unfinished fragments are not self-contained. Never infer an alias or missing fact.
 Accept only if all three fields are true. Return every check_id exactly once, with
 at most 300 characters of explanation. Missing/uncertain support remains unknown."""
+VERIFY_SYSTEM += """
+A bare unlabeled numeric value is not a self-contained answer or intermediate
+proposition. Never invent its referent, unit, role or task scope from its parent.
+An explicit label such as 'Answer:15' or an equation such as '2+2=4' can express
+a proposition; assess its actual stated scope rather than importing missing context."""
+CLAIM_MATCH_SYSTEM = MATCH_SYSTEM + """
+These inputs are exact source claim spans, not necessarily complete parent bullets.
+Judge ONLY the proposition and qualifiers explicitly expressed by each supplied
+span. Matching numeric values do not establish matching answer/intermediate roles.
+Never infer an answer label, referent, unit or scope absent from the span: bare '15'
+must not become equivalent to 'Answer:15'. Equations can express relations. Preserve
+uncertainty when either text lacks a self-contained proposition or shared scope."""
 
 EXTRACT_SCHEMA = _schema('source_claim_quotes', {'sources': {'type': 'array', 'items': {
     'type': 'object', 'additionalProperties': False, 'required': ['source_id', 'quotes'],
@@ -128,14 +141,54 @@ def validate_verification(result, expected):
     if seen != set(expected): raise HelperValidationError('Missing source-support check IDs')
 
 
-async def extract_verified_spans(samples, proposal_helper, support_helper):
+def bare_numeric_fragment(text):
+    """Narrow audit-derived guard, not a general math-expression parser."""
+    candidate = text.strip()
+    # Only matched outer Markdown delimiters; no operators/labels are removed.
+    while True:
+        wrapper = next((w for w in ('**', '__', '`', '*', '_')
+                        if candidate.startswith(w) and candidate.endswith(w) and len(candidate) > 2*len(w)), None)
+        if wrapper is None: break
+        candidate = candidate[len(wrapper):-len(wrapper)].strip()
+    return re.fullmatch(r'[+\-−]?(?:\d+(?:\.\d*)?|\.\d+)', candidate) is not None
+
+
+def reused_spans(report, sources):
+    """Revalidate every original proposal against the unchanged parsed source."""
+    expected_sources = {k: {'source_phrase_id': b.phrase_id, 'sample_index': i,
+                           'source_text': b.text} for k, (b, i) in sources.items()}
+    if report['sources'] != expected_sources: raise ValueError('Reused proposal source mapping changed')
+    lookup = {b.phrase_id: (b, i) for b, i in sources.values()}
+    spans = [ClaimSpan(**row) for row in report['proposed_spans']]
+    seen, per_source = set(), {}
+    for span in spans:
+        if span.source_phrase_id not in lookup or span.claim_id in seen:
+            raise ValueError('Unknown/duplicate reused claim ID')
+        seen.add(span.claim_id); b, i = lookup[span.source_phrase_id]
+        per_source[b.phrase_id] = per_source.get(b.phrase_id, 0) + 1
+        expected_start = b.start + span.start if b.start is not None else None
+        expected_end = b.start + span.end if b.start is not None else None
+        if (span.source_text != b.text or span.sample_id != b.sample_id or span.sample_index != i
+                or span.bullet_position != b.position or not 0 <= span.start < span.end <= len(b.text)
+                or b.text[span.start:span.end] != span.text or not span.text.strip()
+                or (span.readout_start, span.readout_end) != (expected_start, expected_end)
+                or per_source[b.phrase_id] > 2):
+            raise ValueError('Reused exact source span provenance differs')
+    return spans
+
+
+async def extract_verified_spans(samples, proposal_helper, support_helper, *, reused_report=None):
     """At most 2 extraction + 8 verification chunks for an eligible N16 pool."""
     sources = {f'b{i:03d}': (b, s.index) for i, (s, b) in enumerate(
         (s, b) for s in samples if not s.parsing_uncertain for b in s.bullets)}
     if len(sources) > 64: raise ValueError('N16/four-bullet source contract exceeded')
     spans, rejected, missing = [], [], []
     entries = list(sources.items())
-    for offset in range(0, len(entries), 32):
+    if reused_report is not None:
+        spans = reused_spans(reused_report, sources)
+        rejected = list(reused_report['local_rejections'])
+        missing = list(reused_report['missing_extraction_sources'])
+    for offset in ([] if reused_report is not None else range(0, len(entries), 32)):
         chunk = dict(entries[offset:offset + 32]); schema = copy.deepcopy(EXTRACT_SCHEMA)
         schema['json_schema']['schema']['properties']['sources']['items']['properties']['source_id']['enum'] = list(chunk)
         result = await proposal_helper.call(EXTRACT_SYSTEM,
@@ -145,6 +198,13 @@ async def extract_verified_spans(samples, proposal_helper, support_helper):
         if result is None:
             missing.extend(chunk); continue
         found, bad = exact_spans(result, chunk); spans.extend(found); rejected.extend(bad)
+    original_spans = list(spans)
+    for s in spans:
+        if bare_numeric_fragment(s.text):
+            rejected.append({'claim_id': s.claim_id, 'source_phrase_id': s.source_phrase_id,
+                             'provider_quote': s.text, 'start': s.start, 'end': s.end,
+                             'reason': 'bare_numeric_fragment'})
+    spans = [s for s in spans if not bare_numeric_fragment(s.text)]
     verified, checks = [], []
     for offset in range(0, len(spans), 16):
         chunk = spans[offset:offset + 16]; expected = {f'p{i:02d}': s for i, s in enumerate(chunk)}
@@ -164,8 +224,9 @@ async def extract_verified_spans(samples, proposal_helper, support_helper):
             if accepted: verified.append(span)
     return verified, {'sources': {k: {'source_phrase_id': b.phrase_id, 'sample_index': i,
                       'source_text': b.text} for k, (b, i) in sources.items()},
-        'proposed_spans': [asdict(s) for s in spans], 'accepted_spans': [asdict(s) for s in verified],
+        'proposed_spans': [asdict(s) for s in original_spans], 'accepted_spans': [asdict(s) for s in verified],
         'local_rejections': rejected, 'missing_extraction_sources': missing, 'source_checks': checks,
+        'extraction_reused': reused_report is not None,
         'semantic_caveat': 'Helper source entailment and qualifications are audit-required labels, not verified truth.'}
 
 
@@ -192,7 +253,24 @@ def span_pair_shortlist(groups, limit=40):
 async def span_relations(spans, helper):
     groups = span_groups(spans); texts = {f'c{i:03d}': g[0].text for i, g in enumerate(groups)}
     pairs = span_pair_shortlist(groups)
-    relations = await confirm_pairs(helper, pairs, texts, chunk_size=20, max_output_tokens=6000)
+    relations = {}
+    for offset in range(0, len(pairs), 20):
+        chunk = pairs[offset:offset+20]
+        payload = [{'pair_id': f'p{i:02d}', 'a_text': texts[a], 'b_text': texts[b]}
+                   for i, (a, b) in enumerate(chunk)]
+        schema = copy.deepcopy(MATCH_SCHEMA)
+        schema['json_schema']['schema']['properties']['results']['items']['properties']['pair_id']['enum'] = [r['pair_id'] for r in payload]
+        result = await helper.call(CLAIM_MATCH_SYSTEM, {'pairs': payload}, schema,
+                                  version=CLAIM_MATCH_VERSION, max_output_tokens=6000,
+                                  validate=lambda r: validate_matches(r, payload))
+        if result is None: continue
+        for row in result['results']:
+            a, b = chunk[int(row['pair_id'][1:])]
+            evidence = {side: {'start': 0, 'end': len(texts[uid]), 'text': texts[uid],
+                              'source': 'Complete exact claim span; not truth verification.'}
+                        for side, uid in [('a', a), ('b', b)]}
+            relations[tuple(sorted((a, b)))] = PairRelation(a, b, row['label'], row['a_entails_b'],
+                 row['b_entails_a'], row['compatible'], row['reason'], evidence)
     clusters = clique_clusters(list(texts), relations)
     return {'groups': [[s.claim_id for s in g] for g in groups], 'texts': texts,
             'requested_pairs': pairs, 'relations': [asdict(r) for r in relations.values()],
