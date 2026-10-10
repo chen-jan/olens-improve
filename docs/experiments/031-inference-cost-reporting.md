@@ -1,8 +1,16 @@
 # 031: Inference cost evidence for the fixed validation methods
 
-Draft for coordinator review. This record inspects only method definitions and existing DEV/VAL engineering counters. It opens no validation verdicts, test content or selected explanations, and launches no model or API work. Quality remains the priority; a cheaper method is not automatically preferable.
+Cost metadata reviewed by the coordinator; dashboard attachment is pending the complete validation review. This record inspects only method definitions and existing DEV/VAL engineering counters. It opens no validation verdicts, test content or selected explanations, and launches no model or API work. Quality remains the priority; a cheaper method is not automatically preferable.
 
 The optional [cost rows](../../configs/cost_rows_validation_v1.draft.json) preserve the exact twelve-method order from [the frozen menu](../../configs/conditions_validation_v1.json). Every row separates new-input inference, shared campaign work, replay of saved candidates/vectors, and benchmark judging. The attachment schema and all referenced file hashes were checked; the draft has not been attached to a dashboard or approved as final reporting.
+
+The separate [reviewed metadata](../../configs/cost_rows_validation_v1.reviewed.json),
+SHA-256 `03c6cfd4548e0f6606532b61626632d671cf1aa21ed68dd2c60b366a6e388610`,
+preserves the draft and records root's review of all seventeen source hashes,
+exact timing fields, component sums, scaling assumptions and workload meanings.
+It clarifies that only the pruning timing includes that method's parent selection.
+This approval concerns cost evidence only; it makes no validation-quality claim
+or final-method choice. It remains unattached until the signed outcome review.
 
 “Specified” denotes an algorithmic workload or bound, not a timing measurement. “Measured” denotes the stated instrument/cohort. Transferring its average to a new input is “estimated.” Unavailable quantities remain “missing,” including GPU dollars and exact per-method end-to-end latency.
 

@@ -1,9 +1,11 @@
 # Twelve frozen validation comparisons
 
-Status: running, 2026-10-10 09:40 UTC. All generation, reconstruction,
-selection and exact-text exports are complete. All four family evaluators have
-started; multi-hop matching and chain judging are complete. No validation quality conclusion is
-reported yet. TEST analysis remains closed.
+Status: incomplete, 2026-10-10 11:20 UTC. All generation, reconstruction,
+selection and exact-text exports are complete. Hallucination, multi-hop and
+chain judging are complete; role was nine of twelve at 11:07. Connection errors
+in the role and DEV hallucination queues prompted clean boundary-stop requests
+at 11:19. No validation quality conclusion is reported yet. TEST analysis remains
+closed.
 
 ## Question and decision
 
@@ -201,3 +203,21 @@ generation currently overlaps judging under its existing metadata-only gate.
 
 The numerical results, trace audit, decision and dashboard revision remain
 pending and will be appended with source hashes.
+
+### Concurrent connection errors, 11:13–11:19 UTC
+
+At 11:14:24 the role worker's latest hundred attempts included five new unknown
+charges, totaling $0.024131125, with three `APIConnectionError > ReadError`
+and two `APIConnectionError > ConnectError` causes. Its recent p95 latency was
+42.96 seconds. A separate 11:16:09 DEV hallucination checkpoint found three new
+read-error holds totaling $0.015962 for its current worker. The failures overlap
+in time; neither checkpoint records a new SQLite lock error. The observations
+do not establish whether the provider, network or local resource interference
+caused the failures.
+
+Root wrote the existing condition-boundary stop files for both queues at
+approximately 11:19 UTC. They allow the current condition to finish; the existing
+uncertainty guard remains active. No in-flight request was deliberately canceled,
+no hold released, and no rate or health epoch reset. Current terminal state and
+any remaining conditions must be checked before a reviewed resumption. Validation
+has priority over further descriptive development judging.

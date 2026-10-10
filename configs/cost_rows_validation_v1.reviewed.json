@@ -1,0 +1,3392 @@
+{
+  "status": "root_reviewed_cost_metadata_not_yet_attached",
+  "scope": "No outcomes opened; exact twelve VAL identities, measured DEV/VAL engineering metadata only",
+  "condition_ids": [
+    "raw_n1-n1",
+    "capped_n1-n1",
+    "best_n_exact-n16",
+    "best_n_exact-n32",
+    "random_complete-n32",
+    "pooled_greedy_swap-n16",
+    "pooled_greedy_swap-n32",
+    "best_n_specificity_mean-n32",
+    "best_n_specificity_mean_then_prune_0.005-n32",
+    "best_n_specificity_mean_random_delete_matched_0.005-n32",
+    "prune_loo_a32_0.005-n32",
+    "random_delete_matched_a32_0.005-n32"
+  ],
+  "conditions_sha256": "bed944371e050eff7898d07fe0a2ccb39a49a3359779640525b06c4904aca82a",
+  "cost_rows": [
+    {
+      "condition": "raw_n1-n1",
+      "components": [
+        {
+          "scope": "new_input",
+          "component": "experimental_candidate_budget",
+          "status": "specified",
+          "value": 1,
+          "unit": "samples",
+          "basis": "Exact frozen candidate prefix per cell",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/configs/conditions_validation_v1.json",
+              "sha256": "bed944371e050eff7898d07fe0a2ccb39a49a3359779640525b06c4904aca82a",
+              "field": "[0].n"
+            }
+          ],
+          "note": "The shared research campaign generated32 once; a separate deployed method must pay for its own required prefix."
+        },
+        {
+          "scope": "new_input",
+          "component": "recurring_helper",
+          "status": "specified",
+          "value": 0,
+          "unit": "calls",
+          "basis": "These fixed methods use no runtime helper/editor/API",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/compare_selectors.py",
+              "sha256": "a8e11ee60318f19ee77cf680ca9cd91290487cde88392b07df956e6c781165b8",
+              "field": "main: candidate-only A/C/D/E1 selectors"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/combine_pruning.py",
+              "sha256": "f96fe1af7f445d3be7f72f5be54167ccb15a6cde7cab3c3b77110afc8967de94",
+              "field": "main: cached parent/refit pruning"
+            }
+          ]
+        },
+        {
+          "scope": "new_input",
+          "component": "capture",
+          "status": "specified",
+          "value": 1,
+          "unit": "forward passes",
+          "basis": "One adapter-disabled capture per input item, shared across its layer/position cells",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/diagnostics/costs-v3/components.json",
+              "sha256": "bddcd570c795e83bd78f0dbe24557ab01a133b460b3eca0a9677301879a495c7",
+              "field": "deployment.capture_forwards_per_new_input_item"
+            }
+          ],
+          "note": "Precomputed matched controls are a separate fixed bank; capture elapsed cost is not zero. Per input item, not one separately charged forward per layer/position cell."
+        },
+        {
+          "scope": "new_input",
+          "component": "capture_setup_time",
+          "status": "missing",
+          "value": null,
+          "unit": "GPU task wall-seconds",
+          "basis": "No same-menu warm/cold capture serving measurement is attached"
+        },
+        {
+          "scope": "new_input",
+          "component": "complete_input_latency",
+          "status": "missing",
+          "value": null,
+          "unit": "wall-seconds",
+          "basis": "No measured single-input end-to-end latency for this exact method/batching"
+        },
+        {
+          "scope": "new_input",
+          "component": "required_AR_input_bound",
+          "status": "specified",
+          "value": 0,
+          "unit": "vectors",
+          "basis": "AR is not required by text baseline or random selection",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/configs/project.json",
+              "sha256": "605358779353628c5814fdda629585d50766a60cc3b955875921c62b7c1fa2f8",
+              "field": "max_final_bullets"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/src/olens_improve/selection.py",
+              "sha256": "003c05f8bfbc1cc5b492faf0aaa11f53f8bdfd29750a3b93297b4462ab28e3c5",
+              "field": "parse_bullets: sample.bullets limited to max_bullets"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/compare_selectors.py",
+              "sha256": "a8e11ee60318f19ee77cf680ca9cd91290487cde88392b07df956e6c781165b8",
+              "field": "main"
+            }
+          ]
+        },
+        {
+          "scope": "new_input",
+          "component": "generation_component",
+          "status": "estimated",
+          "value": 0.14628403616787505,
+          "unit": "GPU task wall-seconds",
+          "basis": "Amortized filled-batch work estimate, NOT single-input latency. Transferred189-cell DEV filled-batch component, no capture/setup or serial-serving claim",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/diagnostics/costs-v3/components.json",
+              "sha256": "bddcd570c795e83bd78f0dbe24557ab01a133b460b3eca0a9677301879a495c7",
+              "field": "deployment.sampling_n_prefix_estimates.1"
+            }
+          ],
+          "note": "N32 is observed on DEV; applying it to a future new input is an estimate. N1/16 are proportional, not measured. Component work excludes unmeasured setup/capture and is not added to nested timers as a serving latency.",
+          "estimate_rule": "DEV filled-batch N32 sampling rate 4.681089157372002 multiplied by 1/32"
+        },
+        {
+          "scope": "new_input",
+          "component": "numeric_selection",
+          "status": "missing",
+          "value": null,
+          "unit": "CPU task wall-seconds",
+          "basis": "No required reconstruction fitting; unmeasured local text handling/parsing and eligibility/cap work only"
+        },
+        {
+          "scope": "cached_replay",
+          "component": "exact_method_replay",
+          "status": "missing",
+          "value": null,
+          "unit": "CPU task wall-seconds",
+          "basis": "No isolated cached timing for this exact method; parent/campaign sweep is not a replacement"
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_AR_inputs",
+          "status": "measured",
+          "value": 421716,
+          "unit": "vectors",
+          "basis": "Whole 3,485-cell VAL shared cache; all methods reuse this one campaign effort",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/ar-workers-terminal-v1.json",
+              "sha256": "41ec5b45efe30634315ee601c7bcdac2ccd0beaaf50f4a211c9d4a0da9ab0065",
+              "field": "new_vectors"
+            }
+          ],
+          "note": "Common campaign quantity repeated for context, never sum across methods; inherited DEV cache is additional pre-existing campaign work. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_AR_occupied_time",
+          "status": "measured",
+          "value": 4426.008310079575,
+          "unit": "GPU task wall-seconds",
+          "basis": "Sum of four disjoint AR worker task times including recorded loading and CPU work; B128, four GPUs",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/ar-workers-terminal-v1.json",
+              "sha256": "41ec5b45efe30634315ee601c7bcdac2ccd0beaaf50f4a211c9d4a0da9ab0065",
+              "field": "worker_metadata[*].progress.seconds"
+            }
+          ],
+          "note": "Not wall-clock makespan or single-input inference; includes all shared cells, not an individual method. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_selector_sweep",
+          "status": "measured",
+          "value": 607.6783120632172,
+          "unit": "wall-seconds",
+          "basis": "Longest of four CPU worker task durations, four threads each, all 40 selector outputs",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-0/status.json",
+              "sha256": "9d0087731fa0aee02267f723ff48643fd316fb1091773717931c6e3ab55b1e38",
+              "field": "seconds"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-1/status.json",
+              "sha256": "dc95f2b3dcadf3ec070759db5da4d5ec1112cc6d0b757a2ed3ed478c10612287",
+              "field": "seconds"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-2/status.json",
+              "sha256": "636bae2e049c30664298580d4fd6f3c6c0c4a37c5f22c7df4fae40b909a47bc4",
+              "field": "seconds"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-3/status.json",
+              "sha256": "48c2472ace1c0a1c01e73cabc393b6a44f18030310ef55b52978850ada326016",
+              "field": "seconds"
+            }
+          ],
+          "note": "Not one deployed method, not a summed CPU-time counter, and not an actual synchronized wall interval. Startup/preparation included; do not apportion by 40. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_pruning_stage",
+          "status": "measured",
+          "value": 180.8673074245453,
+          "unit": "CPU task wall-seconds",
+          "basis": "Single four-thread stage for 3,485 cells, four new pruning/control outputs plus unchanged E1 parent",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/e1-pruning/status.json",
+              "sha256": "6033fe93c0c243626ccd42a84feb145adc45eed510f4426fdfc605ce1fc1c267",
+              "field": "seconds"
+            }
+          ],
+          "note": "Not the latency of a single combined method; do not divide by five arms or add a parent nested timer. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "benchmark_judging",
+          "component": "condition_Luna_usage",
+          "status": "missing",
+          "value": null,
+          "unit": "USD",
+          "basis": "Per-condition usage/unknown holds not audited at this checkpoint; evaluator will provide settled usage and uncertain holds separately"
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_candidate_pool",
+          "status": "measured",
+          "value": 111520,
+          "unit": "samples",
+          "basis": "Whole 3,485-cell immutable VAL pool, exactly 32 recorded samples per cell",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-000-of-004.status.json",
+              "sha256": "6307302f92cca792eccc5ed07d5cf442adc0d1195ae871b27735b813c8152633",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-001-of-004.status.json",
+              "sha256": "d21c3f5188919dfeee34e7729132ce9f65c9be0aaa11dcc297e928ee19cdde5b",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-002-of-004.status.json",
+              "sha256": "ec38b8ab24c17ca89c51dbc363c30e66a301d2c0ad3e1ae536b773957d305e52",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-003-of-004.status.json",
+              "sha256": "7a557f1a9ecf9db07379af4968459291c0b739f8c4db0e0e7fb833bea09b4def",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            }
+          ],
+          "note": "Shared campaign work, not additive across methods. Terminal statuses contain cumulative DEV+VAL persisted_samples; this uses VAL-only completed_cells. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        }
+      ]
+    },
+    {
+      "condition": "capped_n1-n1",
+      "components": [
+        {
+          "scope": "new_input",
+          "component": "experimental_candidate_budget",
+          "status": "specified",
+          "value": 1,
+          "unit": "samples",
+          "basis": "Exact frozen candidate prefix per cell",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/configs/conditions_validation_v1.json",
+              "sha256": "bed944371e050eff7898d07fe0a2ccb39a49a3359779640525b06c4904aca82a",
+              "field": "[1].n"
+            }
+          ],
+          "note": "The shared research campaign generated32 once; a separate deployed method must pay for its own required prefix."
+        },
+        {
+          "scope": "new_input",
+          "component": "recurring_helper",
+          "status": "specified",
+          "value": 0,
+          "unit": "calls",
+          "basis": "These fixed methods use no runtime helper/editor/API",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/compare_selectors.py",
+              "sha256": "a8e11ee60318f19ee77cf680ca9cd91290487cde88392b07df956e6c781165b8",
+              "field": "main: candidate-only A/C/D/E1 selectors"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/combine_pruning.py",
+              "sha256": "f96fe1af7f445d3be7f72f5be54167ccb15a6cde7cab3c3b77110afc8967de94",
+              "field": "main: cached parent/refit pruning"
+            }
+          ]
+        },
+        {
+          "scope": "new_input",
+          "component": "capture",
+          "status": "specified",
+          "value": 1,
+          "unit": "forward passes",
+          "basis": "One adapter-disabled capture per input item, shared across its layer/position cells",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/diagnostics/costs-v3/components.json",
+              "sha256": "bddcd570c795e83bd78f0dbe24557ab01a133b460b3eca0a9677301879a495c7",
+              "field": "deployment.capture_forwards_per_new_input_item"
+            }
+          ],
+          "note": "Precomputed matched controls are a separate fixed bank; capture elapsed cost is not zero. Per input item, not one separately charged forward per layer/position cell."
+        },
+        {
+          "scope": "new_input",
+          "component": "capture_setup_time",
+          "status": "missing",
+          "value": null,
+          "unit": "GPU task wall-seconds",
+          "basis": "No same-menu warm/cold capture serving measurement is attached"
+        },
+        {
+          "scope": "new_input",
+          "component": "complete_input_latency",
+          "status": "missing",
+          "value": null,
+          "unit": "wall-seconds",
+          "basis": "No measured single-input end-to-end latency for this exact method/batching"
+        },
+        {
+          "scope": "new_input",
+          "component": "required_AR_input_bound",
+          "status": "specified",
+          "value": 0,
+          "unit": "vectors",
+          "basis": "AR is not required by text baseline or random selection",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/configs/project.json",
+              "sha256": "605358779353628c5814fdda629585d50766a60cc3b955875921c62b7c1fa2f8",
+              "field": "max_final_bullets"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/src/olens_improve/selection.py",
+              "sha256": "003c05f8bfbc1cc5b492faf0aaa11f53f8bdfd29750a3b93297b4462ab28e3c5",
+              "field": "parse_bullets: sample.bullets limited to max_bullets"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/compare_selectors.py",
+              "sha256": "a8e11ee60318f19ee77cf680ca9cd91290487cde88392b07df956e6c781165b8",
+              "field": "main"
+            }
+          ]
+        },
+        {
+          "scope": "new_input",
+          "component": "generation_component",
+          "status": "estimated",
+          "value": 0.14628403616787505,
+          "unit": "GPU task wall-seconds",
+          "basis": "Amortized filled-batch work estimate, NOT single-input latency. Transferred189-cell DEV filled-batch component, no capture/setup or serial-serving claim",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/diagnostics/costs-v3/components.json",
+              "sha256": "bddcd570c795e83bd78f0dbe24557ab01a133b460b3eca0a9677301879a495c7",
+              "field": "deployment.sampling_n_prefix_estimates.1"
+            }
+          ],
+          "note": "N32 is observed on DEV; applying it to a future new input is an estimate. N1/16 are proportional, not measured. Component work excludes unmeasured setup/capture and is not added to nested timers as a serving latency.",
+          "estimate_rule": "DEV filled-batch N32 sampling rate 4.681089157372002 multiplied by 1/32"
+        },
+        {
+          "scope": "new_input",
+          "component": "numeric_selection",
+          "status": "missing",
+          "value": null,
+          "unit": "CPU task wall-seconds",
+          "basis": "No required reconstruction fitting; unmeasured local text handling/parsing and eligibility/cap work only"
+        },
+        {
+          "scope": "cached_replay",
+          "component": "exact_method_replay",
+          "status": "missing",
+          "value": null,
+          "unit": "CPU task wall-seconds",
+          "basis": "No isolated cached timing for this exact method; parent/campaign sweep is not a replacement"
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_AR_inputs",
+          "status": "measured",
+          "value": 421716,
+          "unit": "vectors",
+          "basis": "Whole 3,485-cell VAL shared cache; all methods reuse this one campaign effort",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/ar-workers-terminal-v1.json",
+              "sha256": "41ec5b45efe30634315ee601c7bcdac2ccd0beaaf50f4a211c9d4a0da9ab0065",
+              "field": "new_vectors"
+            }
+          ],
+          "note": "Common campaign quantity repeated for context, never sum across methods; inherited DEV cache is additional pre-existing campaign work. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_AR_occupied_time",
+          "status": "measured",
+          "value": 4426.008310079575,
+          "unit": "GPU task wall-seconds",
+          "basis": "Sum of four disjoint AR worker task times including recorded loading and CPU work; B128, four GPUs",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/ar-workers-terminal-v1.json",
+              "sha256": "41ec5b45efe30634315ee601c7bcdac2ccd0beaaf50f4a211c9d4a0da9ab0065",
+              "field": "worker_metadata[*].progress.seconds"
+            }
+          ],
+          "note": "Not wall-clock makespan or single-input inference; includes all shared cells, not an individual method. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_selector_sweep",
+          "status": "measured",
+          "value": 607.6783120632172,
+          "unit": "wall-seconds",
+          "basis": "Longest of four CPU worker task durations, four threads each, all 40 selector outputs",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-0/status.json",
+              "sha256": "9d0087731fa0aee02267f723ff48643fd316fb1091773717931c6e3ab55b1e38",
+              "field": "seconds"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-1/status.json",
+              "sha256": "dc95f2b3dcadf3ec070759db5da4d5ec1112cc6d0b757a2ed3ed478c10612287",
+              "field": "seconds"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-2/status.json",
+              "sha256": "636bae2e049c30664298580d4fd6f3c6c0c4a37c5f22c7df4fae40b909a47bc4",
+              "field": "seconds"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-3/status.json",
+              "sha256": "48c2472ace1c0a1c01e73cabc393b6a44f18030310ef55b52978850ada326016",
+              "field": "seconds"
+            }
+          ],
+          "note": "Not one deployed method, not a summed CPU-time counter, and not an actual synchronized wall interval. Startup/preparation included; do not apportion by 40. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_pruning_stage",
+          "status": "measured",
+          "value": 180.8673074245453,
+          "unit": "CPU task wall-seconds",
+          "basis": "Single four-thread stage for 3,485 cells, four new pruning/control outputs plus unchanged E1 parent",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/e1-pruning/status.json",
+              "sha256": "6033fe93c0c243626ccd42a84feb145adc45eed510f4426fdfc605ce1fc1c267",
+              "field": "seconds"
+            }
+          ],
+          "note": "Not the latency of a single combined method; do not divide by five arms or add a parent nested timer. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "benchmark_judging",
+          "component": "condition_Luna_usage",
+          "status": "missing",
+          "value": null,
+          "unit": "USD",
+          "basis": "Per-condition usage/unknown holds not audited at this checkpoint; evaluator will provide settled usage and uncertain holds separately"
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_candidate_pool",
+          "status": "measured",
+          "value": 111520,
+          "unit": "samples",
+          "basis": "Whole 3,485-cell immutable VAL pool, exactly 32 recorded samples per cell",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-000-of-004.status.json",
+              "sha256": "6307302f92cca792eccc5ed07d5cf442adc0d1195ae871b27735b813c8152633",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-001-of-004.status.json",
+              "sha256": "d21c3f5188919dfeee34e7729132ce9f65c9be0aaa11dcc297e928ee19cdde5b",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-002-of-004.status.json",
+              "sha256": "ec38b8ab24c17ca89c51dbc363c30e66a301d2c0ad3e1ae536b773957d305e52",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-003-of-004.status.json",
+              "sha256": "7a557f1a9ecf9db07379af4968459291c0b739f8c4db0e0e7fb833bea09b4def",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            }
+          ],
+          "note": "Shared campaign work, not additive across methods. Terminal statuses contain cumulative DEV+VAL persisted_samples; this uses VAL-only completed_cells. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        }
+      ]
+    },
+    {
+      "condition": "best_n_exact-n16",
+      "components": [
+        {
+          "scope": "new_input",
+          "component": "experimental_candidate_budget",
+          "status": "specified",
+          "value": 16,
+          "unit": "samples",
+          "basis": "Exact frozen candidate prefix per cell",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/configs/conditions_validation_v1.json",
+              "sha256": "bed944371e050eff7898d07fe0a2ccb39a49a3359779640525b06c4904aca82a",
+              "field": "[2].n"
+            }
+          ],
+          "note": "The shared research campaign generated32 once; a separate deployed method must pay for its own required prefix."
+        },
+        {
+          "scope": "new_input",
+          "component": "recurring_helper",
+          "status": "specified",
+          "value": 0,
+          "unit": "calls",
+          "basis": "These fixed methods use no runtime helper/editor/API",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/compare_selectors.py",
+              "sha256": "a8e11ee60318f19ee77cf680ca9cd91290487cde88392b07df956e6c781165b8",
+              "field": "main: candidate-only A/C/D/E1 selectors"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/combine_pruning.py",
+              "sha256": "f96fe1af7f445d3be7f72f5be54167ccb15a6cde7cab3c3b77110afc8967de94",
+              "field": "main: cached parent/refit pruning"
+            }
+          ]
+        },
+        {
+          "scope": "new_input",
+          "component": "capture",
+          "status": "specified",
+          "value": 1,
+          "unit": "forward passes",
+          "basis": "One adapter-disabled capture per input item, shared across its layer/position cells",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/diagnostics/costs-v3/components.json",
+              "sha256": "bddcd570c795e83bd78f0dbe24557ab01a133b460b3eca0a9677301879a495c7",
+              "field": "deployment.capture_forwards_per_new_input_item"
+            }
+          ],
+          "note": "Precomputed matched controls are a separate fixed bank; capture elapsed cost is not zero. Per input item, not one separately charged forward per layer/position cell."
+        },
+        {
+          "scope": "new_input",
+          "component": "capture_setup_time",
+          "status": "missing",
+          "value": null,
+          "unit": "GPU task wall-seconds",
+          "basis": "No same-menu warm/cold capture serving measurement is attached"
+        },
+        {
+          "scope": "new_input",
+          "component": "complete_input_latency",
+          "status": "missing",
+          "value": null,
+          "unit": "wall-seconds",
+          "basis": "No measured single-input end-to-end latency for this exact method/batching"
+        },
+        {
+          "scope": "new_input",
+          "component": "required_AR_input_bound",
+          "status": "specified",
+          "value": 64,
+          "unit": "vectors",
+          "basis": "Maximum source bullet encodings before cleanup/deduplication; actual effective counts vary",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/configs/project.json",
+              "sha256": "605358779353628c5814fdda629585d50766a60cc3b955875921c62b7c1fa2f8",
+              "field": "max_final_bullets"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/src/olens_improve/selection.py",
+              "sha256": "003c05f8bfbc1cc5b492faf0aaa11f53f8bdfd29750a3b93297b4462ab28e3c5",
+              "field": "parse_bullets: sample.bullets limited to max_bullets"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/compare_selectors.py",
+              "sha256": "a8e11ee60318f19ee77cf680ca9cd91290487cde88392b07df956e6c781165b8",
+              "field": "main"
+            }
+          ]
+        },
+        {
+          "scope": "new_input",
+          "component": "generation_component",
+          "status": "estimated",
+          "value": 2.340544578686001,
+          "unit": "GPU task wall-seconds",
+          "basis": "Amortized filled-batch work estimate, NOT single-input latency. Transferred189-cell DEV filled-batch component, no capture/setup or serial-serving claim",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/diagnostics/costs-v3/components.json",
+              "sha256": "bddcd570c795e83bd78f0dbe24557ab01a133b460b3eca0a9677301879a495c7",
+              "field": "deployment.sampling_n_prefix_estimates.16"
+            }
+          ],
+          "note": "N32 is observed on DEV; applying it to a future new input is an estimate. N1/16 are proportional, not measured. Component work excludes unmeasured setup/capture and is not added to nested timers as a serving latency.",
+          "estimate_rule": "DEV filled-batch N32 sampling rate 4.681089157372002 multiplied by 16/32"
+        },
+        {
+          "scope": "new_input",
+          "component": "AR_encoding_component",
+          "status": "estimated",
+          "value": 0.8569784580715119,
+          "unit": "GPU task wall-seconds",
+          "basis": "Amortized filled-batch work estimate, NOT single-input latency. Transferred DEV B32 AR campaign average; excludes single-input startup and fixed B128 equivalence claims",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/diagnostics/costs-v3/components.json",
+              "sha256": "bddcd570c795e83bd78f0dbe24557ab01a133b460b3eca0a9677301879a495c7",
+              "field": "deployment.ar_n32_gpu_task_seconds_per_cell_observed"
+            }
+          ],
+          "note": "Campaign deduplication and first 32 scored tokens per bullet limit transfer; B128 VAL timings stay separate. Component work excludes unmeasured setup/capture and is not added to nested timers as a serving latency.",
+          "estimate_rule": "Historical DEV AR 1.7139569161430237 task-seconds/cell at N32 multiplied by 16/32"
+        },
+        {
+          "scope": "new_input",
+          "component": "numeric_selection",
+          "status": "missing",
+          "value": null,
+          "unit": "CPU task wall-seconds",
+          "basis": "Required local parsing, whitening, NNLS objective fits and method-specific search; no exact fresh-method timing"
+        },
+        {
+          "scope": "cached_replay",
+          "component": "selector_after_preparation",
+          "status": "measured",
+          "value": 0.006900957319885492,
+          "unit": "CPU task wall-seconds",
+          "basis": "Median of eight fixed DEV cells, three repeats, four Torch threads; parsing/whitening/preparation excluded",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/diagnostics/costs-v3/components.json",
+              "sha256": "bddcd570c795e83bd78f0dbe24557ab01a133b460b3eca0a9677301879a495c7",
+              "field": "incremental_cache.A16.median_seconds_per_cell"
+            }
+          ],
+          "note": "Measured on a different development cohort; not validation latency for a new input."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_AR_inputs",
+          "status": "measured",
+          "value": 421716,
+          "unit": "vectors",
+          "basis": "Whole 3,485-cell VAL shared cache; all methods reuse this one campaign effort",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/ar-workers-terminal-v1.json",
+              "sha256": "41ec5b45efe30634315ee601c7bcdac2ccd0beaaf50f4a211c9d4a0da9ab0065",
+              "field": "new_vectors"
+            }
+          ],
+          "note": "Common campaign quantity repeated for context, never sum across methods; inherited DEV cache is additional pre-existing campaign work. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_AR_occupied_time",
+          "status": "measured",
+          "value": 4426.008310079575,
+          "unit": "GPU task wall-seconds",
+          "basis": "Sum of four disjoint AR worker task times including recorded loading and CPU work; B128, four GPUs",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/ar-workers-terminal-v1.json",
+              "sha256": "41ec5b45efe30634315ee601c7bcdac2ccd0beaaf50f4a211c9d4a0da9ab0065",
+              "field": "worker_metadata[*].progress.seconds"
+            }
+          ],
+          "note": "Not wall-clock makespan or single-input inference; includes all shared cells, not an individual method. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_selector_sweep",
+          "status": "measured",
+          "value": 607.6783120632172,
+          "unit": "wall-seconds",
+          "basis": "Longest of four CPU worker task durations, four threads each, all 40 selector outputs",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-0/status.json",
+              "sha256": "9d0087731fa0aee02267f723ff48643fd316fb1091773717931c6e3ab55b1e38",
+              "field": "seconds"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-1/status.json",
+              "sha256": "dc95f2b3dcadf3ec070759db5da4d5ec1112cc6d0b757a2ed3ed478c10612287",
+              "field": "seconds"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-2/status.json",
+              "sha256": "636bae2e049c30664298580d4fd6f3c6c0c4a37c5f22c7df4fae40b909a47bc4",
+              "field": "seconds"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-3/status.json",
+              "sha256": "48c2472ace1c0a1c01e73cabc393b6a44f18030310ef55b52978850ada326016",
+              "field": "seconds"
+            }
+          ],
+          "note": "Not one deployed method, not a summed CPU-time counter, and not an actual synchronized wall interval. Startup/preparation included; do not apportion by 40. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_pruning_stage",
+          "status": "measured",
+          "value": 180.8673074245453,
+          "unit": "CPU task wall-seconds",
+          "basis": "Single four-thread stage for 3,485 cells, four new pruning/control outputs plus unchanged E1 parent",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/e1-pruning/status.json",
+              "sha256": "6033fe93c0c243626ccd42a84feb145adc45eed510f4426fdfc605ce1fc1c267",
+              "field": "seconds"
+            }
+          ],
+          "note": "Not the latency of a single combined method; do not divide by five arms or add a parent nested timer. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "benchmark_judging",
+          "component": "condition_Luna_usage",
+          "status": "missing",
+          "value": null,
+          "unit": "USD",
+          "basis": "Per-condition usage/unknown holds not audited at this checkpoint; evaluator will provide settled usage and uncertain holds separately"
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_candidate_pool",
+          "status": "measured",
+          "value": 111520,
+          "unit": "samples",
+          "basis": "Whole 3,485-cell immutable VAL pool, exactly 32 recorded samples per cell",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-000-of-004.status.json",
+              "sha256": "6307302f92cca792eccc5ed07d5cf442adc0d1195ae871b27735b813c8152633",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-001-of-004.status.json",
+              "sha256": "d21c3f5188919dfeee34e7729132ce9f65c9be0aaa11dcc297e928ee19cdde5b",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-002-of-004.status.json",
+              "sha256": "ec38b8ab24c17ca89c51dbc363c30e66a301d2c0ad3e1ae536b773957d305e52",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-003-of-004.status.json",
+              "sha256": "7a557f1a9ecf9db07379af4968459291c0b739f8c4db0e0e7fb833bea09b4def",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            }
+          ],
+          "note": "Shared campaign work, not additive across methods. Terminal statuses contain cumulative DEV+VAL persisted_samples; this uses VAL-only completed_cells. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        }
+      ]
+    },
+    {
+      "condition": "best_n_exact-n32",
+      "components": [
+        {
+          "scope": "new_input",
+          "component": "experimental_candidate_budget",
+          "status": "specified",
+          "value": 32,
+          "unit": "samples",
+          "basis": "Exact frozen candidate prefix per cell",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/configs/conditions_validation_v1.json",
+              "sha256": "bed944371e050eff7898d07fe0a2ccb39a49a3359779640525b06c4904aca82a",
+              "field": "[3].n"
+            }
+          ],
+          "note": "The shared research campaign generated32 once; a separate deployed method must pay for its own required prefix."
+        },
+        {
+          "scope": "new_input",
+          "component": "recurring_helper",
+          "status": "specified",
+          "value": 0,
+          "unit": "calls",
+          "basis": "These fixed methods use no runtime helper/editor/API",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/compare_selectors.py",
+              "sha256": "a8e11ee60318f19ee77cf680ca9cd91290487cde88392b07df956e6c781165b8",
+              "field": "main: candidate-only A/C/D/E1 selectors"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/combine_pruning.py",
+              "sha256": "f96fe1af7f445d3be7f72f5be54167ccb15a6cde7cab3c3b77110afc8967de94",
+              "field": "main: cached parent/refit pruning"
+            }
+          ]
+        },
+        {
+          "scope": "new_input",
+          "component": "capture",
+          "status": "specified",
+          "value": 1,
+          "unit": "forward passes",
+          "basis": "One adapter-disabled capture per input item, shared across its layer/position cells",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/diagnostics/costs-v3/components.json",
+              "sha256": "bddcd570c795e83bd78f0dbe24557ab01a133b460b3eca0a9677301879a495c7",
+              "field": "deployment.capture_forwards_per_new_input_item"
+            }
+          ],
+          "note": "Precomputed matched controls are a separate fixed bank; capture elapsed cost is not zero. Per input item, not one separately charged forward per layer/position cell."
+        },
+        {
+          "scope": "new_input",
+          "component": "capture_setup_time",
+          "status": "missing",
+          "value": null,
+          "unit": "GPU task wall-seconds",
+          "basis": "No same-menu warm/cold capture serving measurement is attached"
+        },
+        {
+          "scope": "new_input",
+          "component": "complete_input_latency",
+          "status": "missing",
+          "value": null,
+          "unit": "wall-seconds",
+          "basis": "No measured single-input end-to-end latency for this exact method/batching"
+        },
+        {
+          "scope": "new_input",
+          "component": "required_AR_input_bound",
+          "status": "specified",
+          "value": 128,
+          "unit": "vectors",
+          "basis": "Maximum source bullet encodings before cleanup/deduplication; actual effective counts vary",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/configs/project.json",
+              "sha256": "605358779353628c5814fdda629585d50766a60cc3b955875921c62b7c1fa2f8",
+              "field": "max_final_bullets"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/src/olens_improve/selection.py",
+              "sha256": "003c05f8bfbc1cc5b492faf0aaa11f53f8bdfd29750a3b93297b4462ab28e3c5",
+              "field": "parse_bullets: sample.bullets limited to max_bullets"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/compare_selectors.py",
+              "sha256": "a8e11ee60318f19ee77cf680ca9cd91290487cde88392b07df956e6c781165b8",
+              "field": "main"
+            }
+          ]
+        },
+        {
+          "scope": "new_input",
+          "component": "generation_component",
+          "status": "estimated",
+          "value": 4.681089157372002,
+          "unit": "GPU task wall-seconds",
+          "basis": "Amortized filled-batch work estimate, NOT single-input latency. Transferred189-cell DEV filled-batch component, no capture/setup or serial-serving claim",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/diagnostics/costs-v3/components.json",
+              "sha256": "bddcd570c795e83bd78f0dbe24557ab01a133b460b3eca0a9677301879a495c7",
+              "field": "deployment.sampling_n_prefix_estimates.32"
+            }
+          ],
+          "note": "N32 is observed on DEV; applying it to a future new input is an estimate. N1/16 are proportional, not measured. Component work excludes unmeasured setup/capture and is not added to nested timers as a serving latency.",
+          "estimate_rule": "DEV filled-batch N32 sampling rate 4.681089157372002 multiplied by 32/32"
+        },
+        {
+          "scope": "new_input",
+          "component": "AR_encoding_component",
+          "status": "estimated",
+          "value": 1.7139569161430237,
+          "unit": "GPU task wall-seconds",
+          "basis": "Amortized filled-batch work estimate, NOT single-input latency. Transferred DEV B32 AR campaign average; excludes single-input startup and fixed B128 equivalence claims",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/diagnostics/costs-v3/components.json",
+              "sha256": "bddcd570c795e83bd78f0dbe24557ab01a133b460b3eca0a9677301879a495c7",
+              "field": "deployment.ar_n32_gpu_task_seconds_per_cell_observed"
+            }
+          ],
+          "note": "Campaign deduplication and first 32 scored tokens per bullet limit transfer; B128 VAL timings stay separate. Component work excludes unmeasured setup/capture and is not added to nested timers as a serving latency.",
+          "estimate_rule": "Historical DEV AR 1.7139569161430237 task-seconds/cell at N32 multiplied by 32/32"
+        },
+        {
+          "scope": "new_input",
+          "component": "numeric_selection",
+          "status": "missing",
+          "value": null,
+          "unit": "CPU task wall-seconds",
+          "basis": "Required local parsing, whitening, NNLS objective fits and method-specific search; no exact fresh-method timing"
+        },
+        {
+          "scope": "cached_replay",
+          "component": "selector_after_preparation",
+          "status": "measured",
+          "value": 0.011215437669306993,
+          "unit": "CPU task wall-seconds",
+          "basis": "Median of eight fixed DEV cells, three repeats, four Torch threads; parsing/whitening/preparation excluded",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/diagnostics/costs-v3/components.json",
+              "sha256": "bddcd570c795e83bd78f0dbe24557ab01a133b460b3eca0a9677301879a495c7",
+              "field": "incremental_cache.A32.median_seconds_per_cell"
+            }
+          ],
+          "note": "Measured on a different development cohort; not validation latency for a new input."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_AR_inputs",
+          "status": "measured",
+          "value": 421716,
+          "unit": "vectors",
+          "basis": "Whole 3,485-cell VAL shared cache; all methods reuse this one campaign effort",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/ar-workers-terminal-v1.json",
+              "sha256": "41ec5b45efe30634315ee601c7bcdac2ccd0beaaf50f4a211c9d4a0da9ab0065",
+              "field": "new_vectors"
+            }
+          ],
+          "note": "Common campaign quantity repeated for context, never sum across methods; inherited DEV cache is additional pre-existing campaign work. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_AR_occupied_time",
+          "status": "measured",
+          "value": 4426.008310079575,
+          "unit": "GPU task wall-seconds",
+          "basis": "Sum of four disjoint AR worker task times including recorded loading and CPU work; B128, four GPUs",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/ar-workers-terminal-v1.json",
+              "sha256": "41ec5b45efe30634315ee601c7bcdac2ccd0beaaf50f4a211c9d4a0da9ab0065",
+              "field": "worker_metadata[*].progress.seconds"
+            }
+          ],
+          "note": "Not wall-clock makespan or single-input inference; includes all shared cells, not an individual method. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_selector_sweep",
+          "status": "measured",
+          "value": 607.6783120632172,
+          "unit": "wall-seconds",
+          "basis": "Longest of four CPU worker task durations, four threads each, all 40 selector outputs",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-0/status.json",
+              "sha256": "9d0087731fa0aee02267f723ff48643fd316fb1091773717931c6e3ab55b1e38",
+              "field": "seconds"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-1/status.json",
+              "sha256": "dc95f2b3dcadf3ec070759db5da4d5ec1112cc6d0b757a2ed3ed478c10612287",
+              "field": "seconds"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-2/status.json",
+              "sha256": "636bae2e049c30664298580d4fd6f3c6c0c4a37c5f22c7df4fae40b909a47bc4",
+              "field": "seconds"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-3/status.json",
+              "sha256": "48c2472ace1c0a1c01e73cabc393b6a44f18030310ef55b52978850ada326016",
+              "field": "seconds"
+            }
+          ],
+          "note": "Not one deployed method, not a summed CPU-time counter, and not an actual synchronized wall interval. Startup/preparation included; do not apportion by 40. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_pruning_stage",
+          "status": "measured",
+          "value": 180.8673074245453,
+          "unit": "CPU task wall-seconds",
+          "basis": "Single four-thread stage for 3,485 cells, four new pruning/control outputs plus unchanged E1 parent",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/e1-pruning/status.json",
+              "sha256": "6033fe93c0c243626ccd42a84feb145adc45eed510f4426fdfc605ce1fc1c267",
+              "field": "seconds"
+            }
+          ],
+          "note": "Not the latency of a single combined method; do not divide by five arms or add a parent nested timer. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "benchmark_judging",
+          "component": "condition_Luna_usage",
+          "status": "missing",
+          "value": null,
+          "unit": "USD",
+          "basis": "Per-condition usage/unknown holds not audited at this checkpoint; evaluator will provide settled usage and uncertain holds separately"
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_candidate_pool",
+          "status": "measured",
+          "value": 111520,
+          "unit": "samples",
+          "basis": "Whole 3,485-cell immutable VAL pool, exactly 32 recorded samples per cell",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-000-of-004.status.json",
+              "sha256": "6307302f92cca792eccc5ed07d5cf442adc0d1195ae871b27735b813c8152633",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-001-of-004.status.json",
+              "sha256": "d21c3f5188919dfeee34e7729132ce9f65c9be0aaa11dcc297e928ee19cdde5b",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-002-of-004.status.json",
+              "sha256": "ec38b8ab24c17ca89c51dbc363c30e66a301d2c0ad3e1ae536b773957d305e52",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-003-of-004.status.json",
+              "sha256": "7a557f1a9ecf9db07379af4968459291c0b739f8c4db0e0e7fb833bea09b4def",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            }
+          ],
+          "note": "Shared campaign work, not additive across methods. Terminal statuses contain cumulative DEV+VAL persisted_samples; this uses VAL-only completed_cells. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        }
+      ]
+    },
+    {
+      "condition": "random_complete-n32",
+      "components": [
+        {
+          "scope": "new_input",
+          "component": "experimental_candidate_budget",
+          "status": "specified",
+          "value": 32,
+          "unit": "samples",
+          "basis": "Exact frozen candidate prefix per cell",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/configs/conditions_validation_v1.json",
+              "sha256": "bed944371e050eff7898d07fe0a2ccb39a49a3359779640525b06c4904aca82a",
+              "field": "[4].n"
+            }
+          ],
+          "note": "For random_complete this is exact finite-pool replay work, not a required deployment draw count; one admissible retained draw may require rejection/resampling."
+        },
+        {
+          "scope": "new_input",
+          "component": "recurring_helper",
+          "status": "specified",
+          "value": 0,
+          "unit": "calls",
+          "basis": "These fixed methods use no runtime helper/editor/API",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/compare_selectors.py",
+              "sha256": "a8e11ee60318f19ee77cf680ca9cd91290487cde88392b07df956e6c781165b8",
+              "field": "main: candidate-only A/C/D/E1 selectors"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/combine_pruning.py",
+              "sha256": "f96fe1af7f445d3be7f72f5be54167ccb15a6cde7cab3c3b77110afc8967de94",
+              "field": "main: cached parent/refit pruning"
+            }
+          ]
+        },
+        {
+          "scope": "new_input",
+          "component": "capture",
+          "status": "specified",
+          "value": 1,
+          "unit": "forward passes",
+          "basis": "One adapter-disabled capture per input item, shared across its layer/position cells",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/diagnostics/costs-v3/components.json",
+              "sha256": "bddcd570c795e83bd78f0dbe24557ab01a133b460b3eca0a9677301879a495c7",
+              "field": "deployment.capture_forwards_per_new_input_item"
+            }
+          ],
+          "note": "Precomputed matched controls are a separate fixed bank; capture elapsed cost is not zero. Per input item, not one separately charged forward per layer/position cell."
+        },
+        {
+          "scope": "new_input",
+          "component": "capture_setup_time",
+          "status": "missing",
+          "value": null,
+          "unit": "GPU task wall-seconds",
+          "basis": "No same-menu warm/cold capture serving measurement is attached"
+        },
+        {
+          "scope": "new_input",
+          "component": "complete_input_latency",
+          "status": "missing",
+          "value": null,
+          "unit": "wall-seconds",
+          "basis": "No measured single-input end-to-end latency for this exact method/batching"
+        },
+        {
+          "scope": "new_input",
+          "component": "required_AR_input_bound",
+          "status": "specified",
+          "value": 0,
+          "unit": "vectors",
+          "basis": "AR is not required by text baseline or random selection",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/configs/project.json",
+              "sha256": "605358779353628c5814fdda629585d50766a60cc3b955875921c62b7c1fa2f8",
+              "field": "max_final_bullets"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/src/olens_improve/selection.py",
+              "sha256": "003c05f8bfbc1cc5b492faf0aaa11f53f8bdfd29750a3b93297b4462ab28e3c5",
+              "field": "parse_bullets: sample.bullets limited to max_bullets"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/compare_selectors.py",
+              "sha256": "a8e11ee60318f19ee77cf680ca9cd91290487cde88392b07df956e6c781165b8",
+              "field": "random_complete_selection"
+            }
+          ]
+        },
+        {
+          "scope": "new_input",
+          "component": "random_eligibility_generation_time",
+          "status": "missing",
+          "value": null,
+          "unit": "GPU task wall-seconds",
+          "basis": "One retained admissible sample; rejection/resampling and exact finite-pool replay must be distinguished"
+        },
+        {
+          "scope": "new_input",
+          "component": "numeric_selection",
+          "status": "missing",
+          "value": null,
+          "unit": "CPU task wall-seconds",
+          "basis": "No required reconstruction fitting; unmeasured local text handling/parsing and eligibility/cap work only"
+        },
+        {
+          "scope": "cached_replay",
+          "component": "exact_method_replay",
+          "status": "missing",
+          "value": null,
+          "unit": "CPU task wall-seconds",
+          "basis": "No isolated cached timing for this exact method; parent/campaign sweep is not a replacement"
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_AR_inputs",
+          "status": "measured",
+          "value": 421716,
+          "unit": "vectors",
+          "basis": "Whole 3,485-cell VAL shared cache; all methods reuse this one campaign effort",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/ar-workers-terminal-v1.json",
+              "sha256": "41ec5b45efe30634315ee601c7bcdac2ccd0beaaf50f4a211c9d4a0da9ab0065",
+              "field": "new_vectors"
+            }
+          ],
+          "note": "Common campaign quantity repeated for context, never sum across methods; inherited DEV cache is additional pre-existing campaign work. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_AR_occupied_time",
+          "status": "measured",
+          "value": 4426.008310079575,
+          "unit": "GPU task wall-seconds",
+          "basis": "Sum of four disjoint AR worker task times including recorded loading and CPU work; B128, four GPUs",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/ar-workers-terminal-v1.json",
+              "sha256": "41ec5b45efe30634315ee601c7bcdac2ccd0beaaf50f4a211c9d4a0da9ab0065",
+              "field": "worker_metadata[*].progress.seconds"
+            }
+          ],
+          "note": "Not wall-clock makespan or single-input inference; includes all shared cells, not an individual method. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_selector_sweep",
+          "status": "measured",
+          "value": 607.6783120632172,
+          "unit": "wall-seconds",
+          "basis": "Longest of four CPU worker task durations, four threads each, all 40 selector outputs",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-0/status.json",
+              "sha256": "9d0087731fa0aee02267f723ff48643fd316fb1091773717931c6e3ab55b1e38",
+              "field": "seconds"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-1/status.json",
+              "sha256": "dc95f2b3dcadf3ec070759db5da4d5ec1112cc6d0b757a2ed3ed478c10612287",
+              "field": "seconds"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-2/status.json",
+              "sha256": "636bae2e049c30664298580d4fd6f3c6c0c4a37c5f22c7df4fae40b909a47bc4",
+              "field": "seconds"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-3/status.json",
+              "sha256": "48c2472ace1c0a1c01e73cabc393b6a44f18030310ef55b52978850ada326016",
+              "field": "seconds"
+            }
+          ],
+          "note": "Not one deployed method, not a summed CPU-time counter, and not an actual synchronized wall interval. Startup/preparation included; do not apportion by 40. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_pruning_stage",
+          "status": "measured",
+          "value": 180.8673074245453,
+          "unit": "CPU task wall-seconds",
+          "basis": "Single four-thread stage for 3,485 cells, four new pruning/control outputs plus unchanged E1 parent",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/e1-pruning/status.json",
+              "sha256": "6033fe93c0c243626ccd42a84feb145adc45eed510f4426fdfc605ce1fc1c267",
+              "field": "seconds"
+            }
+          ],
+          "note": "Not the latency of a single combined method; do not divide by five arms or add a parent nested timer. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "benchmark_judging",
+          "component": "condition_Luna_usage",
+          "status": "missing",
+          "value": null,
+          "unit": "USD",
+          "basis": "Per-condition usage/unknown holds not audited at this checkpoint; evaluator will provide settled usage and uncertain holds separately"
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_candidate_pool",
+          "status": "measured",
+          "value": 111520,
+          "unit": "samples",
+          "basis": "Whole 3,485-cell immutable VAL pool, exactly 32 recorded samples per cell",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-000-of-004.status.json",
+              "sha256": "6307302f92cca792eccc5ed07d5cf442adc0d1195ae871b27735b813c8152633",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-001-of-004.status.json",
+              "sha256": "d21c3f5188919dfeee34e7729132ce9f65c9be0aaa11dcc297e928ee19cdde5b",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-002-of-004.status.json",
+              "sha256": "ec38b8ab24c17ca89c51dbc363c30e66a301d2c0ad3e1ae536b773957d305e52",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-003-of-004.status.json",
+              "sha256": "7a557f1a9ecf9db07379af4968459291c0b739f8c4db0e0e7fb833bea09b4def",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            }
+          ],
+          "note": "Shared campaign work, not additive across methods. Terminal statuses contain cumulative DEV+VAL persisted_samples; this uses VAL-only completed_cells. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        }
+      ]
+    },
+    {
+      "condition": "pooled_greedy_swap-n16",
+      "components": [
+        {
+          "scope": "new_input",
+          "component": "experimental_candidate_budget",
+          "status": "specified",
+          "value": 16,
+          "unit": "samples",
+          "basis": "Exact frozen candidate prefix per cell",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/configs/conditions_validation_v1.json",
+              "sha256": "bed944371e050eff7898d07fe0a2ccb39a49a3359779640525b06c4904aca82a",
+              "field": "[5].n"
+            }
+          ],
+          "note": "The shared research campaign generated32 once; a separate deployed method must pay for its own required prefix."
+        },
+        {
+          "scope": "new_input",
+          "component": "recurring_helper",
+          "status": "specified",
+          "value": 0,
+          "unit": "calls",
+          "basis": "These fixed methods use no runtime helper/editor/API",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/compare_selectors.py",
+              "sha256": "a8e11ee60318f19ee77cf680ca9cd91290487cde88392b07df956e6c781165b8",
+              "field": "main: candidate-only A/C/D/E1 selectors"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/combine_pruning.py",
+              "sha256": "f96fe1af7f445d3be7f72f5be54167ccb15a6cde7cab3c3b77110afc8967de94",
+              "field": "main: cached parent/refit pruning"
+            }
+          ]
+        },
+        {
+          "scope": "new_input",
+          "component": "capture",
+          "status": "specified",
+          "value": 1,
+          "unit": "forward passes",
+          "basis": "One adapter-disabled capture per input item, shared across its layer/position cells",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/diagnostics/costs-v3/components.json",
+              "sha256": "bddcd570c795e83bd78f0dbe24557ab01a133b460b3eca0a9677301879a495c7",
+              "field": "deployment.capture_forwards_per_new_input_item"
+            }
+          ],
+          "note": "Precomputed matched controls are a separate fixed bank; capture elapsed cost is not zero. Per input item, not one separately charged forward per layer/position cell."
+        },
+        {
+          "scope": "new_input",
+          "component": "capture_setup_time",
+          "status": "missing",
+          "value": null,
+          "unit": "GPU task wall-seconds",
+          "basis": "No same-menu warm/cold capture serving measurement is attached"
+        },
+        {
+          "scope": "new_input",
+          "component": "complete_input_latency",
+          "status": "missing",
+          "value": null,
+          "unit": "wall-seconds",
+          "basis": "No measured single-input end-to-end latency for this exact method/batching"
+        },
+        {
+          "scope": "new_input",
+          "component": "required_AR_input_bound",
+          "status": "specified",
+          "value": 64,
+          "unit": "vectors",
+          "basis": "Maximum source bullet encodings before cleanup/deduplication; actual effective counts vary",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/configs/project.json",
+              "sha256": "605358779353628c5814fdda629585d50766a60cc3b955875921c62b7c1fa2f8",
+              "field": "max_final_bullets"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/src/olens_improve/selection.py",
+              "sha256": "003c05f8bfbc1cc5b492faf0aaa11f53f8bdfd29750a3b93297b4462ab28e3c5",
+              "field": "parse_bullets: sample.bullets limited to max_bullets"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/compare_selectors.py",
+              "sha256": "a8e11ee60318f19ee77cf680ca9cd91290487cde88392b07df956e6c781165b8",
+              "field": "main"
+            }
+          ]
+        },
+        {
+          "scope": "new_input",
+          "component": "generation_component",
+          "status": "estimated",
+          "value": 2.340544578686001,
+          "unit": "GPU task wall-seconds",
+          "basis": "Amortized filled-batch work estimate, NOT single-input latency. Transferred189-cell DEV filled-batch component, no capture/setup or serial-serving claim",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/diagnostics/costs-v3/components.json",
+              "sha256": "bddcd570c795e83bd78f0dbe24557ab01a133b460b3eca0a9677301879a495c7",
+              "field": "deployment.sampling_n_prefix_estimates.16"
+            }
+          ],
+          "note": "N32 is observed on DEV; applying it to a future new input is an estimate. N1/16 are proportional, not measured. Component work excludes unmeasured setup/capture and is not added to nested timers as a serving latency.",
+          "estimate_rule": "DEV filled-batch N32 sampling rate 4.681089157372002 multiplied by 16/32"
+        },
+        {
+          "scope": "new_input",
+          "component": "AR_encoding_component",
+          "status": "estimated",
+          "value": 0.8569784580715119,
+          "unit": "GPU task wall-seconds",
+          "basis": "Amortized filled-batch work estimate, NOT single-input latency. Transferred DEV B32 AR campaign average; excludes single-input startup and fixed B128 equivalence claims",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/diagnostics/costs-v3/components.json",
+              "sha256": "bddcd570c795e83bd78f0dbe24557ab01a133b460b3eca0a9677301879a495c7",
+              "field": "deployment.ar_n32_gpu_task_seconds_per_cell_observed"
+            }
+          ],
+          "note": "Campaign deduplication and first 32 scored tokens per bullet limit transfer; B128 VAL timings stay separate. Component work excludes unmeasured setup/capture and is not added to nested timers as a serving latency.",
+          "estimate_rule": "Historical DEV AR 1.7139569161430237 task-seconds/cell at N32 multiplied by 16/32"
+        },
+        {
+          "scope": "new_input",
+          "component": "numeric_selection",
+          "status": "missing",
+          "value": null,
+          "unit": "CPU task wall-seconds",
+          "basis": "Required local parsing, whitening, NNLS objective fits and method-specific search; no exact fresh-method timing"
+        },
+        {
+          "scope": "cached_replay",
+          "component": "exact_method_replay",
+          "status": "missing",
+          "value": null,
+          "unit": "CPU task wall-seconds",
+          "basis": "No isolated cached timing for this exact method; parent/campaign sweep is not a replacement"
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_AR_inputs",
+          "status": "measured",
+          "value": 421716,
+          "unit": "vectors",
+          "basis": "Whole 3,485-cell VAL shared cache; all methods reuse this one campaign effort",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/ar-workers-terminal-v1.json",
+              "sha256": "41ec5b45efe30634315ee601c7bcdac2ccd0beaaf50f4a211c9d4a0da9ab0065",
+              "field": "new_vectors"
+            }
+          ],
+          "note": "Common campaign quantity repeated for context, never sum across methods; inherited DEV cache is additional pre-existing campaign work. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_AR_occupied_time",
+          "status": "measured",
+          "value": 4426.008310079575,
+          "unit": "GPU task wall-seconds",
+          "basis": "Sum of four disjoint AR worker task times including recorded loading and CPU work; B128, four GPUs",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/ar-workers-terminal-v1.json",
+              "sha256": "41ec5b45efe30634315ee601c7bcdac2ccd0beaaf50f4a211c9d4a0da9ab0065",
+              "field": "worker_metadata[*].progress.seconds"
+            }
+          ],
+          "note": "Not wall-clock makespan or single-input inference; includes all shared cells, not an individual method. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_selector_sweep",
+          "status": "measured",
+          "value": 607.6783120632172,
+          "unit": "wall-seconds",
+          "basis": "Longest of four CPU worker task durations, four threads each, all 40 selector outputs",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-0/status.json",
+              "sha256": "9d0087731fa0aee02267f723ff48643fd316fb1091773717931c6e3ab55b1e38",
+              "field": "seconds"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-1/status.json",
+              "sha256": "dc95f2b3dcadf3ec070759db5da4d5ec1112cc6d0b757a2ed3ed478c10612287",
+              "field": "seconds"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-2/status.json",
+              "sha256": "636bae2e049c30664298580d4fd6f3c6c0c4a37c5f22c7df4fae40b909a47bc4",
+              "field": "seconds"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-3/status.json",
+              "sha256": "48c2472ace1c0a1c01e73cabc393b6a44f18030310ef55b52978850ada326016",
+              "field": "seconds"
+            }
+          ],
+          "note": "Not one deployed method, not a summed CPU-time counter, and not an actual synchronized wall interval. Startup/preparation included; do not apportion by 40. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_pruning_stage",
+          "status": "measured",
+          "value": 180.8673074245453,
+          "unit": "CPU task wall-seconds",
+          "basis": "Single four-thread stage for 3,485 cells, four new pruning/control outputs plus unchanged E1 parent",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/e1-pruning/status.json",
+              "sha256": "6033fe93c0c243626ccd42a84feb145adc45eed510f4426fdfc605ce1fc1c267",
+              "field": "seconds"
+            }
+          ],
+          "note": "Not the latency of a single combined method; do not divide by five arms or add a parent nested timer. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "benchmark_judging",
+          "component": "condition_Luna_usage",
+          "status": "missing",
+          "value": null,
+          "unit": "USD",
+          "basis": "Per-condition usage/unknown holds not audited at this checkpoint; evaluator will provide settled usage and uncertain holds separately"
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_candidate_pool",
+          "status": "measured",
+          "value": 111520,
+          "unit": "samples",
+          "basis": "Whole 3,485-cell immutable VAL pool, exactly 32 recorded samples per cell",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-000-of-004.status.json",
+              "sha256": "6307302f92cca792eccc5ed07d5cf442adc0d1195ae871b27735b813c8152633",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-001-of-004.status.json",
+              "sha256": "d21c3f5188919dfeee34e7729132ce9f65c9be0aaa11dcc297e928ee19cdde5b",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-002-of-004.status.json",
+              "sha256": "ec38b8ab24c17ca89c51dbc363c30e66a301d2c0ad3e1ae536b773957d305e52",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-003-of-004.status.json",
+              "sha256": "7a557f1a9ecf9db07379af4968459291c0b739f8c4db0e0e7fb833bea09b4def",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            }
+          ],
+          "note": "Shared campaign work, not additive across methods. Terminal statuses contain cumulative DEV+VAL persisted_samples; this uses VAL-only completed_cells. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        }
+      ]
+    },
+    {
+      "condition": "pooled_greedy_swap-n32",
+      "components": [
+        {
+          "scope": "new_input",
+          "component": "experimental_candidate_budget",
+          "status": "specified",
+          "value": 32,
+          "unit": "samples",
+          "basis": "Exact frozen candidate prefix per cell",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/configs/conditions_validation_v1.json",
+              "sha256": "bed944371e050eff7898d07fe0a2ccb39a49a3359779640525b06c4904aca82a",
+              "field": "[6].n"
+            }
+          ],
+          "note": "The shared research campaign generated32 once; a separate deployed method must pay for its own required prefix."
+        },
+        {
+          "scope": "new_input",
+          "component": "recurring_helper",
+          "status": "specified",
+          "value": 0,
+          "unit": "calls",
+          "basis": "These fixed methods use no runtime helper/editor/API",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/compare_selectors.py",
+              "sha256": "a8e11ee60318f19ee77cf680ca9cd91290487cde88392b07df956e6c781165b8",
+              "field": "main: candidate-only A/C/D/E1 selectors"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/combine_pruning.py",
+              "sha256": "f96fe1af7f445d3be7f72f5be54167ccb15a6cde7cab3c3b77110afc8967de94",
+              "field": "main: cached parent/refit pruning"
+            }
+          ]
+        },
+        {
+          "scope": "new_input",
+          "component": "capture",
+          "status": "specified",
+          "value": 1,
+          "unit": "forward passes",
+          "basis": "One adapter-disabled capture per input item, shared across its layer/position cells",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/diagnostics/costs-v3/components.json",
+              "sha256": "bddcd570c795e83bd78f0dbe24557ab01a133b460b3eca0a9677301879a495c7",
+              "field": "deployment.capture_forwards_per_new_input_item"
+            }
+          ],
+          "note": "Precomputed matched controls are a separate fixed bank; capture elapsed cost is not zero. Per input item, not one separately charged forward per layer/position cell."
+        },
+        {
+          "scope": "new_input",
+          "component": "capture_setup_time",
+          "status": "missing",
+          "value": null,
+          "unit": "GPU task wall-seconds",
+          "basis": "No same-menu warm/cold capture serving measurement is attached"
+        },
+        {
+          "scope": "new_input",
+          "component": "complete_input_latency",
+          "status": "missing",
+          "value": null,
+          "unit": "wall-seconds",
+          "basis": "No measured single-input end-to-end latency for this exact method/batching"
+        },
+        {
+          "scope": "new_input",
+          "component": "required_AR_input_bound",
+          "status": "specified",
+          "value": 128,
+          "unit": "vectors",
+          "basis": "Maximum source bullet encodings before cleanup/deduplication; actual effective counts vary",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/configs/project.json",
+              "sha256": "605358779353628c5814fdda629585d50766a60cc3b955875921c62b7c1fa2f8",
+              "field": "max_final_bullets"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/src/olens_improve/selection.py",
+              "sha256": "003c05f8bfbc1cc5b492faf0aaa11f53f8bdfd29750a3b93297b4462ab28e3c5",
+              "field": "parse_bullets: sample.bullets limited to max_bullets"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/compare_selectors.py",
+              "sha256": "a8e11ee60318f19ee77cf680ca9cd91290487cde88392b07df956e6c781165b8",
+              "field": "main"
+            }
+          ]
+        },
+        {
+          "scope": "new_input",
+          "component": "generation_component",
+          "status": "estimated",
+          "value": 4.681089157372002,
+          "unit": "GPU task wall-seconds",
+          "basis": "Amortized filled-batch work estimate, NOT single-input latency. Transferred189-cell DEV filled-batch component, no capture/setup or serial-serving claim",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/diagnostics/costs-v3/components.json",
+              "sha256": "bddcd570c795e83bd78f0dbe24557ab01a133b460b3eca0a9677301879a495c7",
+              "field": "deployment.sampling_n_prefix_estimates.32"
+            }
+          ],
+          "note": "N32 is observed on DEV; applying it to a future new input is an estimate. N1/16 are proportional, not measured. Component work excludes unmeasured setup/capture and is not added to nested timers as a serving latency.",
+          "estimate_rule": "DEV filled-batch N32 sampling rate 4.681089157372002 multiplied by 32/32"
+        },
+        {
+          "scope": "new_input",
+          "component": "AR_encoding_component",
+          "status": "estimated",
+          "value": 1.7139569161430237,
+          "unit": "GPU task wall-seconds",
+          "basis": "Amortized filled-batch work estimate, NOT single-input latency. Transferred DEV B32 AR campaign average; excludes single-input startup and fixed B128 equivalence claims",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/diagnostics/costs-v3/components.json",
+              "sha256": "bddcd570c795e83bd78f0dbe24557ab01a133b460b3eca0a9677301879a495c7",
+              "field": "deployment.ar_n32_gpu_task_seconds_per_cell_observed"
+            }
+          ],
+          "note": "Campaign deduplication and first 32 scored tokens per bullet limit transfer; B128 VAL timings stay separate. Component work excludes unmeasured setup/capture and is not added to nested timers as a serving latency.",
+          "estimate_rule": "Historical DEV AR 1.7139569161430237 task-seconds/cell at N32 multiplied by 32/32"
+        },
+        {
+          "scope": "new_input",
+          "component": "numeric_selection",
+          "status": "missing",
+          "value": null,
+          "unit": "CPU task wall-seconds",
+          "basis": "Required local parsing, whitening, NNLS objective fits and method-specific search; no exact fresh-method timing"
+        },
+        {
+          "scope": "cached_replay",
+          "component": "selector_after_preparation",
+          "status": "measured",
+          "value": 0.2322674416936934,
+          "unit": "CPU task wall-seconds",
+          "basis": "Median of eight fixed DEV cells, three repeats, four Torch threads; parsing/whitening/preparation excluded",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/diagnostics/costs-v3/components.json",
+              "sha256": "bddcd570c795e83bd78f0dbe24557ab01a133b460b3eca0a9677301879a495c7",
+              "field": "incremental_cache.D32.median_seconds_per_cell"
+            }
+          ],
+          "note": "Measured on a different development cohort; not validation latency for a new input."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_AR_inputs",
+          "status": "measured",
+          "value": 421716,
+          "unit": "vectors",
+          "basis": "Whole 3,485-cell VAL shared cache; all methods reuse this one campaign effort",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/ar-workers-terminal-v1.json",
+              "sha256": "41ec5b45efe30634315ee601c7bcdac2ccd0beaaf50f4a211c9d4a0da9ab0065",
+              "field": "new_vectors"
+            }
+          ],
+          "note": "Common campaign quantity repeated for context, never sum across methods; inherited DEV cache is additional pre-existing campaign work. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_AR_occupied_time",
+          "status": "measured",
+          "value": 4426.008310079575,
+          "unit": "GPU task wall-seconds",
+          "basis": "Sum of four disjoint AR worker task times including recorded loading and CPU work; B128, four GPUs",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/ar-workers-terminal-v1.json",
+              "sha256": "41ec5b45efe30634315ee601c7bcdac2ccd0beaaf50f4a211c9d4a0da9ab0065",
+              "field": "worker_metadata[*].progress.seconds"
+            }
+          ],
+          "note": "Not wall-clock makespan or single-input inference; includes all shared cells, not an individual method. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_selector_sweep",
+          "status": "measured",
+          "value": 607.6783120632172,
+          "unit": "wall-seconds",
+          "basis": "Longest of four CPU worker task durations, four threads each, all 40 selector outputs",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-0/status.json",
+              "sha256": "9d0087731fa0aee02267f723ff48643fd316fb1091773717931c6e3ab55b1e38",
+              "field": "seconds"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-1/status.json",
+              "sha256": "dc95f2b3dcadf3ec070759db5da4d5ec1112cc6d0b757a2ed3ed478c10612287",
+              "field": "seconds"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-2/status.json",
+              "sha256": "636bae2e049c30664298580d4fd6f3c6c0c4a37c5f22c7df4fae40b909a47bc4",
+              "field": "seconds"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-3/status.json",
+              "sha256": "48c2472ace1c0a1c01e73cabc393b6a44f18030310ef55b52978850ada326016",
+              "field": "seconds"
+            }
+          ],
+          "note": "Not one deployed method, not a summed CPU-time counter, and not an actual synchronized wall interval. Startup/preparation included; do not apportion by 40. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_pruning_stage",
+          "status": "measured",
+          "value": 180.8673074245453,
+          "unit": "CPU task wall-seconds",
+          "basis": "Single four-thread stage for 3,485 cells, four new pruning/control outputs plus unchanged E1 parent",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/e1-pruning/status.json",
+              "sha256": "6033fe93c0c243626ccd42a84feb145adc45eed510f4426fdfc605ce1fc1c267",
+              "field": "seconds"
+            }
+          ],
+          "note": "Not the latency of a single combined method; do not divide by five arms or add a parent nested timer. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "benchmark_judging",
+          "component": "condition_Luna_usage",
+          "status": "missing",
+          "value": null,
+          "unit": "USD",
+          "basis": "Per-condition usage/unknown holds not audited at this checkpoint; evaluator will provide settled usage and uncertain holds separately"
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_candidate_pool",
+          "status": "measured",
+          "value": 111520,
+          "unit": "samples",
+          "basis": "Whole 3,485-cell immutable VAL pool, exactly 32 recorded samples per cell",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-000-of-004.status.json",
+              "sha256": "6307302f92cca792eccc5ed07d5cf442adc0d1195ae871b27735b813c8152633",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-001-of-004.status.json",
+              "sha256": "d21c3f5188919dfeee34e7729132ce9f65c9be0aaa11dcc297e928ee19cdde5b",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-002-of-004.status.json",
+              "sha256": "ec38b8ab24c17ca89c51dbc363c30e66a301d2c0ad3e1ae536b773957d305e52",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-003-of-004.status.json",
+              "sha256": "7a557f1a9ecf9db07379af4968459291c0b739f8c4db0e0e7fb833bea09b4def",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            }
+          ],
+          "note": "Shared campaign work, not additive across methods. Terminal statuses contain cumulative DEV+VAL persisted_samples; this uses VAL-only completed_cells. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        }
+      ]
+    },
+    {
+      "condition": "best_n_specificity_mean-n32",
+      "components": [
+        {
+          "scope": "new_input",
+          "component": "experimental_candidate_budget",
+          "status": "specified",
+          "value": 32,
+          "unit": "samples",
+          "basis": "Exact frozen candidate prefix per cell",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/configs/conditions_validation_v1.json",
+              "sha256": "bed944371e050eff7898d07fe0a2ccb39a49a3359779640525b06c4904aca82a",
+              "field": "[7].n"
+            }
+          ],
+          "note": "The shared research campaign generated32 once; a separate deployed method must pay for its own required prefix."
+        },
+        {
+          "scope": "new_input",
+          "component": "recurring_helper",
+          "status": "specified",
+          "value": 0,
+          "unit": "calls",
+          "basis": "These fixed methods use no runtime helper/editor/API",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/compare_selectors.py",
+              "sha256": "a8e11ee60318f19ee77cf680ca9cd91290487cde88392b07df956e6c781165b8",
+              "field": "main: candidate-only A/C/D/E1 selectors"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/combine_pruning.py",
+              "sha256": "f96fe1af7f445d3be7f72f5be54167ccb15a6cde7cab3c3b77110afc8967de94",
+              "field": "main: cached parent/refit pruning"
+            }
+          ]
+        },
+        {
+          "scope": "new_input",
+          "component": "capture",
+          "status": "specified",
+          "value": 1,
+          "unit": "forward passes",
+          "basis": "One adapter-disabled capture per input item, shared across its layer/position cells",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/diagnostics/costs-v3/components.json",
+              "sha256": "bddcd570c795e83bd78f0dbe24557ab01a133b460b3eca0a9677301879a495c7",
+              "field": "deployment.capture_forwards_per_new_input_item"
+            }
+          ],
+          "note": "Precomputed matched controls are a separate fixed bank; capture elapsed cost is not zero. Per input item, not one separately charged forward per layer/position cell."
+        },
+        {
+          "scope": "new_input",
+          "component": "capture_setup_time",
+          "status": "missing",
+          "value": null,
+          "unit": "GPU task wall-seconds",
+          "basis": "No same-menu warm/cold capture serving measurement is attached"
+        },
+        {
+          "scope": "new_input",
+          "component": "complete_input_latency",
+          "status": "missing",
+          "value": null,
+          "unit": "wall-seconds",
+          "basis": "No measured single-input end-to-end latency for this exact method/batching"
+        },
+        {
+          "scope": "new_input",
+          "component": "required_AR_input_bound",
+          "status": "specified",
+          "value": 128,
+          "unit": "vectors",
+          "basis": "Maximum source bullet encodings before cleanup/deduplication; actual effective counts vary",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/configs/project.json",
+              "sha256": "605358779353628c5814fdda629585d50766a60cc3b955875921c62b7c1fa2f8",
+              "field": "max_final_bullets"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/src/olens_improve/selection.py",
+              "sha256": "003c05f8bfbc1cc5b492faf0aaa11f53f8bdfd29750a3b93297b4462ab28e3c5",
+              "field": "parse_bullets: sample.bullets limited to max_bullets"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/compare_selectors.py",
+              "sha256": "a8e11ee60318f19ee77cf680ca9cd91290487cde88392b07df956e6c781165b8",
+              "field": "main"
+            }
+          ]
+        },
+        {
+          "scope": "new_input",
+          "component": "generation_component",
+          "status": "estimated",
+          "value": 4.681089157372002,
+          "unit": "GPU task wall-seconds",
+          "basis": "Amortized filled-batch work estimate, NOT single-input latency. Transferred189-cell DEV filled-batch component, no capture/setup or serial-serving claim",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/diagnostics/costs-v3/components.json",
+              "sha256": "bddcd570c795e83bd78f0dbe24557ab01a133b460b3eca0a9677301879a495c7",
+              "field": "deployment.sampling_n_prefix_estimates.32"
+            }
+          ],
+          "note": "N32 is observed on DEV; applying it to a future new input is an estimate. N1/16 are proportional, not measured. Component work excludes unmeasured setup/capture and is not added to nested timers as a serving latency.",
+          "estimate_rule": "DEV filled-batch N32 sampling rate 4.681089157372002 multiplied by 32/32"
+        },
+        {
+          "scope": "new_input",
+          "component": "AR_encoding_component",
+          "status": "estimated",
+          "value": 1.7139569161430237,
+          "unit": "GPU task wall-seconds",
+          "basis": "Amortized filled-batch work estimate, NOT single-input latency. Transferred DEV B32 AR campaign average; excludes single-input startup and fixed B128 equivalence claims",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/diagnostics/costs-v3/components.json",
+              "sha256": "bddcd570c795e83bd78f0dbe24557ab01a133b460b3eca0a9677301879a495c7",
+              "field": "deployment.ar_n32_gpu_task_seconds_per_cell_observed"
+            }
+          ],
+          "note": "Campaign deduplication and first 32 scored tokens per bullet limit transfer; B128 VAL timings stay separate. Component work excludes unmeasured setup/capture and is not added to nested timers as a serving latency.",
+          "estimate_rule": "Historical DEV AR 1.7139569161430237 task-seconds/cell at N32 multiplied by 32/32"
+        },
+        {
+          "scope": "new_input",
+          "component": "matched_controls_maximum",
+          "status": "specified",
+          "value": 8,
+          "unit": "vectors",
+          "basis": "Frozen bank requested up to 8 control activations per cell; actual bank sizes vary",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/manifests/development-matched-controls-v2.json",
+              "sha256": "518e1e11df48d172c9e1d78e055af8e6724bd83de3a60b743e2b3c75bc8ac0d7",
+              "field": "requested_controls_per_cell"
+            }
+          ],
+          "note": "Reuses fixed control activations, not eight extra candidate generation/AR passes; each candidate is fit against the target plus each available control."
+        },
+        {
+          "scope": "new_input",
+          "component": "numeric_selection",
+          "status": "missing",
+          "value": null,
+          "unit": "CPU task wall-seconds",
+          "basis": "Required local parsing, whitening, NNLS objective fits and method-specific search; no exact fresh-method timing"
+        },
+        {
+          "scope": "cached_replay",
+          "component": "selector_after_preparation",
+          "status": "measured",
+          "value": 0.05907637486234307,
+          "unit": "CPU task wall-seconds",
+          "basis": "Median of eight fixed DEV cells, three repeats, four Torch threads; parsing/whitening/preparation excluded",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/diagnostics/costs-v3/components.json",
+              "sha256": "bddcd570c795e83bd78f0dbe24557ab01a133b460b3eca0a9677301879a495c7",
+              "field": "incremental_cache.E1_mean32.median_seconds_per_cell"
+            }
+          ],
+          "note": "Measured on a different development cohort; not validation latency for a new input."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_AR_inputs",
+          "status": "measured",
+          "value": 421716,
+          "unit": "vectors",
+          "basis": "Whole 3,485-cell VAL shared cache; all methods reuse this one campaign effort",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/ar-workers-terminal-v1.json",
+              "sha256": "41ec5b45efe30634315ee601c7bcdac2ccd0beaaf50f4a211c9d4a0da9ab0065",
+              "field": "new_vectors"
+            }
+          ],
+          "note": "Common campaign quantity repeated for context, never sum across methods; inherited DEV cache is additional pre-existing campaign work. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_AR_occupied_time",
+          "status": "measured",
+          "value": 4426.008310079575,
+          "unit": "GPU task wall-seconds",
+          "basis": "Sum of four disjoint AR worker task times including recorded loading and CPU work; B128, four GPUs",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/ar-workers-terminal-v1.json",
+              "sha256": "41ec5b45efe30634315ee601c7bcdac2ccd0beaaf50f4a211c9d4a0da9ab0065",
+              "field": "worker_metadata[*].progress.seconds"
+            }
+          ],
+          "note": "Not wall-clock makespan or single-input inference; includes all shared cells, not an individual method. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_selector_sweep",
+          "status": "measured",
+          "value": 607.6783120632172,
+          "unit": "wall-seconds",
+          "basis": "Longest of four CPU worker task durations, four threads each, all 40 selector outputs",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-0/status.json",
+              "sha256": "9d0087731fa0aee02267f723ff48643fd316fb1091773717931c6e3ab55b1e38",
+              "field": "seconds"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-1/status.json",
+              "sha256": "dc95f2b3dcadf3ec070759db5da4d5ec1112cc6d0b757a2ed3ed478c10612287",
+              "field": "seconds"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-2/status.json",
+              "sha256": "636bae2e049c30664298580d4fd6f3c6c0c4a37c5f22c7df4fae40b909a47bc4",
+              "field": "seconds"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-3/status.json",
+              "sha256": "48c2472ace1c0a1c01e73cabc393b6a44f18030310ef55b52978850ada326016",
+              "field": "seconds"
+            }
+          ],
+          "note": "Not one deployed method, not a summed CPU-time counter, and not an actual synchronized wall interval. Startup/preparation included; do not apportion by 40. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_pruning_stage",
+          "status": "measured",
+          "value": 180.8673074245453,
+          "unit": "CPU task wall-seconds",
+          "basis": "Single four-thread stage for 3,485 cells, four new pruning/control outputs plus unchanged E1 parent",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/e1-pruning/status.json",
+              "sha256": "6033fe93c0c243626ccd42a84feb145adc45eed510f4426fdfc605ce1fc1c267",
+              "field": "seconds"
+            }
+          ],
+          "note": "Not the latency of a single combined method; do not divide by five arms or add a parent nested timer. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "benchmark_judging",
+          "component": "condition_Luna_usage",
+          "status": "missing",
+          "value": null,
+          "unit": "USD",
+          "basis": "Per-condition usage/unknown holds not audited at this checkpoint; evaluator will provide settled usage and uncertain holds separately"
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_candidate_pool",
+          "status": "measured",
+          "value": 111520,
+          "unit": "samples",
+          "basis": "Whole 3,485-cell immutable VAL pool, exactly 32 recorded samples per cell",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-000-of-004.status.json",
+              "sha256": "6307302f92cca792eccc5ed07d5cf442adc0d1195ae871b27735b813c8152633",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-001-of-004.status.json",
+              "sha256": "d21c3f5188919dfeee34e7729132ce9f65c9be0aaa11dcc297e928ee19cdde5b",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-002-of-004.status.json",
+              "sha256": "ec38b8ab24c17ca89c51dbc363c30e66a301d2c0ad3e1ae536b773957d305e52",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-003-of-004.status.json",
+              "sha256": "7a557f1a9ecf9db07379af4968459291c0b739f8c4db0e0e7fb833bea09b4def",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            }
+          ],
+          "note": "Shared campaign work, not additive across methods. Terminal statuses contain cumulative DEV+VAL persisted_samples; this uses VAL-only completed_cells. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        }
+      ]
+    },
+    {
+      "condition": "best_n_specificity_mean_then_prune_0.005-n32",
+      "components": [
+        {
+          "scope": "new_input",
+          "component": "experimental_candidate_budget",
+          "status": "specified",
+          "value": 32,
+          "unit": "samples",
+          "basis": "Exact frozen candidate prefix per cell",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/configs/conditions_validation_v1.json",
+              "sha256": "bed944371e050eff7898d07fe0a2ccb39a49a3359779640525b06c4904aca82a",
+              "field": "[8].n"
+            }
+          ],
+          "note": "The shared research campaign generated32 once; a separate deployed method must pay for its own required prefix."
+        },
+        {
+          "scope": "new_input",
+          "component": "recurring_helper",
+          "status": "specified",
+          "value": 0,
+          "unit": "calls",
+          "basis": "These fixed methods use no runtime helper/editor/API",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/compare_selectors.py",
+              "sha256": "a8e11ee60318f19ee77cf680ca9cd91290487cde88392b07df956e6c781165b8",
+              "field": "main: candidate-only A/C/D/E1 selectors"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/combine_pruning.py",
+              "sha256": "f96fe1af7f445d3be7f72f5be54167ccb15a6cde7cab3c3b77110afc8967de94",
+              "field": "main: cached parent/refit pruning"
+            }
+          ]
+        },
+        {
+          "scope": "new_input",
+          "component": "capture",
+          "status": "specified",
+          "value": 1,
+          "unit": "forward passes",
+          "basis": "One adapter-disabled capture per input item, shared across its layer/position cells",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/diagnostics/costs-v3/components.json",
+              "sha256": "bddcd570c795e83bd78f0dbe24557ab01a133b460b3eca0a9677301879a495c7",
+              "field": "deployment.capture_forwards_per_new_input_item"
+            }
+          ],
+          "note": "Precomputed matched controls are a separate fixed bank; capture elapsed cost is not zero. Per input item, not one separately charged forward per layer/position cell."
+        },
+        {
+          "scope": "new_input",
+          "component": "capture_setup_time",
+          "status": "missing",
+          "value": null,
+          "unit": "GPU task wall-seconds",
+          "basis": "No same-menu warm/cold capture serving measurement is attached"
+        },
+        {
+          "scope": "new_input",
+          "component": "complete_input_latency",
+          "status": "missing",
+          "value": null,
+          "unit": "wall-seconds",
+          "basis": "No measured single-input end-to-end latency for this exact method/batching"
+        },
+        {
+          "scope": "new_input",
+          "component": "required_AR_input_bound",
+          "status": "specified",
+          "value": 128,
+          "unit": "vectors",
+          "basis": "Maximum source bullet encodings before cleanup/deduplication; actual effective counts vary",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/configs/project.json",
+              "sha256": "605358779353628c5814fdda629585d50766a60cc3b955875921c62b7c1fa2f8",
+              "field": "max_final_bullets"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/src/olens_improve/selection.py",
+              "sha256": "003c05f8bfbc1cc5b492faf0aaa11f53f8bdfd29750a3b93297b4462ab28e3c5",
+              "field": "parse_bullets: sample.bullets limited to max_bullets"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/compare_selectors.py",
+              "sha256": "a8e11ee60318f19ee77cf680ca9cd91290487cde88392b07df956e6c781165b8",
+              "field": "main"
+            }
+          ]
+        },
+        {
+          "scope": "new_input",
+          "component": "generation_component",
+          "status": "estimated",
+          "value": 4.681089157372002,
+          "unit": "GPU task wall-seconds",
+          "basis": "Amortized filled-batch work estimate, NOT single-input latency. Transferred189-cell DEV filled-batch component, no capture/setup or serial-serving claim",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/diagnostics/costs-v3/components.json",
+              "sha256": "bddcd570c795e83bd78f0dbe24557ab01a133b460b3eca0a9677301879a495c7",
+              "field": "deployment.sampling_n_prefix_estimates.32"
+            }
+          ],
+          "note": "N32 is observed on DEV; applying it to a future new input is an estimate. N1/16 are proportional, not measured. Component work excludes unmeasured setup/capture and is not added to nested timers as a serving latency.",
+          "estimate_rule": "DEV filled-batch N32 sampling rate 4.681089157372002 multiplied by 32/32"
+        },
+        {
+          "scope": "new_input",
+          "component": "AR_encoding_component",
+          "status": "estimated",
+          "value": 1.7139569161430237,
+          "unit": "GPU task wall-seconds",
+          "basis": "Amortized filled-batch work estimate, NOT single-input latency. Transferred DEV B32 AR campaign average; excludes single-input startup and fixed B128 equivalence claims",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/diagnostics/costs-v3/components.json",
+              "sha256": "bddcd570c795e83bd78f0dbe24557ab01a133b460b3eca0a9677301879a495c7",
+              "field": "deployment.ar_n32_gpu_task_seconds_per_cell_observed"
+            }
+          ],
+          "note": "Campaign deduplication and first 32 scored tokens per bullet limit transfer; B128 VAL timings stay separate. Component work excludes unmeasured setup/capture and is not added to nested timers as a serving latency.",
+          "estimate_rule": "Historical DEV AR 1.7139569161430237 task-seconds/cell at N32 multiplied by 32/32"
+        },
+        {
+          "scope": "new_input",
+          "component": "matched_controls_maximum",
+          "status": "specified",
+          "value": 8,
+          "unit": "vectors",
+          "basis": "Frozen bank requested up to 8 control activations per cell; actual bank sizes vary",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/manifests/development-matched-controls-v2.json",
+              "sha256": "518e1e11df48d172c9e1d78e055af8e6724bd83de3a60b743e2b3c75bc8ac0d7",
+              "field": "requested_controls_per_cell"
+            }
+          ],
+          "note": "Reuses fixed control activations, not eight extra candidate generation/AR passes; each candidate is fit against the target plus each available control."
+        },
+        {
+          "scope": "new_input",
+          "component": "numeric_selection",
+          "status": "missing",
+          "value": null,
+          "unit": "CPU task wall-seconds",
+          "basis": "Required local parsing, whitening, NNLS objective fits and method-specific search; no exact fresh-method timing"
+        },
+        {
+          "scope": "new_input",
+          "component": "additional_pruning_AR_work",
+          "status": "specified",
+          "value": 0,
+          "unit": "vectors",
+          "basis": "Pruning/random deletion reuse the parent source atoms and add no encodings",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/combine_pruning.py",
+              "sha256": "f96fe1af7f445d3be7f72f5be54167ccb15a6cde7cab3c3b77110afc8967de94",
+              "field": "main: raw vectors loaded from production cache; prune_leave_one_out"
+            }
+          ],
+          "note": "Parent generation/AR/control selection still required; sequential refits and random controls inherit the pruning deletion-count computation."
+        },
+        {
+          "scope": "cached_replay",
+          "component": "exact_method_replay",
+          "status": "missing",
+          "value": null,
+          "unit": "CPU task wall-seconds",
+          "basis": "No isolated cached timing for this exact method; parent/campaign sweep is not a replacement"
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_AR_inputs",
+          "status": "measured",
+          "value": 421716,
+          "unit": "vectors",
+          "basis": "Whole 3,485-cell VAL shared cache; all methods reuse this one campaign effort",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/ar-workers-terminal-v1.json",
+              "sha256": "41ec5b45efe30634315ee601c7bcdac2ccd0beaaf50f4a211c9d4a0da9ab0065",
+              "field": "new_vectors"
+            }
+          ],
+          "note": "Common campaign quantity repeated for context, never sum across methods; inherited DEV cache is additional pre-existing campaign work. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_AR_occupied_time",
+          "status": "measured",
+          "value": 4426.008310079575,
+          "unit": "GPU task wall-seconds",
+          "basis": "Sum of four disjoint AR worker task times including recorded loading and CPU work; B128, four GPUs",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/ar-workers-terminal-v1.json",
+              "sha256": "41ec5b45efe30634315ee601c7bcdac2ccd0beaaf50f4a211c9d4a0da9ab0065",
+              "field": "worker_metadata[*].progress.seconds"
+            }
+          ],
+          "note": "Not wall-clock makespan or single-input inference; includes all shared cells, not an individual method. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_selector_sweep",
+          "status": "measured",
+          "value": 607.6783120632172,
+          "unit": "wall-seconds",
+          "basis": "Longest of four CPU worker task durations, four threads each, all 40 selector outputs",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-0/status.json",
+              "sha256": "9d0087731fa0aee02267f723ff48643fd316fb1091773717931c6e3ab55b1e38",
+              "field": "seconds"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-1/status.json",
+              "sha256": "dc95f2b3dcadf3ec070759db5da4d5ec1112cc6d0b757a2ed3ed478c10612287",
+              "field": "seconds"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-2/status.json",
+              "sha256": "636bae2e049c30664298580d4fd6f3c6c0c4a37c5f22c7df4fae40b909a47bc4",
+              "field": "seconds"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-3/status.json",
+              "sha256": "48c2472ace1c0a1c01e73cabc393b6a44f18030310ef55b52978850ada326016",
+              "field": "seconds"
+            }
+          ],
+          "note": "Not one deployed method, not a summed CPU-time counter, and not an actual synchronized wall interval. Startup/preparation included; do not apportion by 40. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_pruning_stage",
+          "status": "measured",
+          "value": 180.8673074245453,
+          "unit": "CPU task wall-seconds",
+          "basis": "Single four-thread stage for 3,485 cells, four new pruning/control outputs plus unchanged E1 parent",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/e1-pruning/status.json",
+              "sha256": "6033fe93c0c243626ccd42a84feb145adc45eed510f4426fdfc605ce1fc1c267",
+              "field": "seconds"
+            }
+          ],
+          "note": "Not the latency of a single combined method; do not divide by five arms or add a parent nested timer. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "benchmark_judging",
+          "component": "condition_Luna_usage",
+          "status": "missing",
+          "value": null,
+          "unit": "USD",
+          "basis": "Per-condition usage/unknown holds not audited at this checkpoint; evaluator will provide settled usage and uncertain holds separately"
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_candidate_pool",
+          "status": "measured",
+          "value": 111520,
+          "unit": "samples",
+          "basis": "Whole 3,485-cell immutable VAL pool, exactly 32 recorded samples per cell",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-000-of-004.status.json",
+              "sha256": "6307302f92cca792eccc5ed07d5cf442adc0d1195ae871b27735b813c8152633",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-001-of-004.status.json",
+              "sha256": "d21c3f5188919dfeee34e7729132ce9f65c9be0aaa11dcc297e928ee19cdde5b",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-002-of-004.status.json",
+              "sha256": "ec38b8ab24c17ca89c51dbc363c30e66a301d2c0ad3e1ae536b773957d305e52",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-003-of-004.status.json",
+              "sha256": "7a557f1a9ecf9db07379af4968459291c0b739f8c4db0e0e7fb833bea09b4def",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            }
+          ],
+          "note": "Shared campaign work, not additive across methods. Terminal statuses contain cumulative DEV+VAL persisted_samples; this uses VAL-only completed_cells. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        }
+      ]
+    },
+    {
+      "condition": "best_n_specificity_mean_random_delete_matched_0.005-n32",
+      "components": [
+        {
+          "scope": "new_input",
+          "component": "experimental_candidate_budget",
+          "status": "specified",
+          "value": 32,
+          "unit": "samples",
+          "basis": "Exact frozen candidate prefix per cell",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/configs/conditions_validation_v1.json",
+              "sha256": "bed944371e050eff7898d07fe0a2ccb39a49a3359779640525b06c4904aca82a",
+              "field": "[9].n"
+            }
+          ],
+          "note": "The shared research campaign generated32 once; a separate deployed method must pay for its own required prefix."
+        },
+        {
+          "scope": "new_input",
+          "component": "recurring_helper",
+          "status": "specified",
+          "value": 0,
+          "unit": "calls",
+          "basis": "These fixed methods use no runtime helper/editor/API",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/compare_selectors.py",
+              "sha256": "a8e11ee60318f19ee77cf680ca9cd91290487cde88392b07df956e6c781165b8",
+              "field": "main: candidate-only A/C/D/E1 selectors"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/combine_pruning.py",
+              "sha256": "f96fe1af7f445d3be7f72f5be54167ccb15a6cde7cab3c3b77110afc8967de94",
+              "field": "main: cached parent/refit pruning"
+            }
+          ]
+        },
+        {
+          "scope": "new_input",
+          "component": "capture",
+          "status": "specified",
+          "value": 1,
+          "unit": "forward passes",
+          "basis": "One adapter-disabled capture per input item, shared across its layer/position cells",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/diagnostics/costs-v3/components.json",
+              "sha256": "bddcd570c795e83bd78f0dbe24557ab01a133b460b3eca0a9677301879a495c7",
+              "field": "deployment.capture_forwards_per_new_input_item"
+            }
+          ],
+          "note": "Precomputed matched controls are a separate fixed bank; capture elapsed cost is not zero. Per input item, not one separately charged forward per layer/position cell."
+        },
+        {
+          "scope": "new_input",
+          "component": "capture_setup_time",
+          "status": "missing",
+          "value": null,
+          "unit": "GPU task wall-seconds",
+          "basis": "No same-menu warm/cold capture serving measurement is attached"
+        },
+        {
+          "scope": "new_input",
+          "component": "complete_input_latency",
+          "status": "missing",
+          "value": null,
+          "unit": "wall-seconds",
+          "basis": "No measured single-input end-to-end latency for this exact method/batching"
+        },
+        {
+          "scope": "new_input",
+          "component": "required_AR_input_bound",
+          "status": "specified",
+          "value": 128,
+          "unit": "vectors",
+          "basis": "Maximum source bullet encodings before cleanup/deduplication; actual effective counts vary",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/configs/project.json",
+              "sha256": "605358779353628c5814fdda629585d50766a60cc3b955875921c62b7c1fa2f8",
+              "field": "max_final_bullets"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/src/olens_improve/selection.py",
+              "sha256": "003c05f8bfbc1cc5b492faf0aaa11f53f8bdfd29750a3b93297b4462ab28e3c5",
+              "field": "parse_bullets: sample.bullets limited to max_bullets"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/compare_selectors.py",
+              "sha256": "a8e11ee60318f19ee77cf680ca9cd91290487cde88392b07df956e6c781165b8",
+              "field": "main"
+            }
+          ]
+        },
+        {
+          "scope": "new_input",
+          "component": "generation_component",
+          "status": "estimated",
+          "value": 4.681089157372002,
+          "unit": "GPU task wall-seconds",
+          "basis": "Amortized filled-batch work estimate, NOT single-input latency. Transferred189-cell DEV filled-batch component, no capture/setup or serial-serving claim",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/diagnostics/costs-v3/components.json",
+              "sha256": "bddcd570c795e83bd78f0dbe24557ab01a133b460b3eca0a9677301879a495c7",
+              "field": "deployment.sampling_n_prefix_estimates.32"
+            }
+          ],
+          "note": "N32 is observed on DEV; applying it to a future new input is an estimate. N1/16 are proportional, not measured. Component work excludes unmeasured setup/capture and is not added to nested timers as a serving latency.",
+          "estimate_rule": "DEV filled-batch N32 sampling rate 4.681089157372002 multiplied by 32/32"
+        },
+        {
+          "scope": "new_input",
+          "component": "AR_encoding_component",
+          "status": "estimated",
+          "value": 1.7139569161430237,
+          "unit": "GPU task wall-seconds",
+          "basis": "Amortized filled-batch work estimate, NOT single-input latency. Transferred DEV B32 AR campaign average; excludes single-input startup and fixed B128 equivalence claims",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/diagnostics/costs-v3/components.json",
+              "sha256": "bddcd570c795e83bd78f0dbe24557ab01a133b460b3eca0a9677301879a495c7",
+              "field": "deployment.ar_n32_gpu_task_seconds_per_cell_observed"
+            }
+          ],
+          "note": "Campaign deduplication and first 32 scored tokens per bullet limit transfer; B128 VAL timings stay separate. Component work excludes unmeasured setup/capture and is not added to nested timers as a serving latency.",
+          "estimate_rule": "Historical DEV AR 1.7139569161430237 task-seconds/cell at N32 multiplied by 32/32"
+        },
+        {
+          "scope": "new_input",
+          "component": "matched_controls_maximum",
+          "status": "specified",
+          "value": 8,
+          "unit": "vectors",
+          "basis": "Frozen bank requested up to 8 control activations per cell; actual bank sizes vary",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/manifests/development-matched-controls-v2.json",
+              "sha256": "518e1e11df48d172c9e1d78e055af8e6724bd83de3a60b743e2b3c75bc8ac0d7",
+              "field": "requested_controls_per_cell"
+            }
+          ],
+          "note": "Reuses fixed control activations, not eight extra candidate generation/AR passes; each candidate is fit against the target plus each available control."
+        },
+        {
+          "scope": "new_input",
+          "component": "numeric_selection",
+          "status": "missing",
+          "value": null,
+          "unit": "CPU task wall-seconds",
+          "basis": "Required local parsing, whitening, NNLS objective fits and method-specific search; no exact fresh-method timing"
+        },
+        {
+          "scope": "new_input",
+          "component": "additional_pruning_AR_work",
+          "status": "specified",
+          "value": 0,
+          "unit": "vectors",
+          "basis": "Pruning/random deletion reuse the parent source atoms and add no encodings",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/combine_pruning.py",
+              "sha256": "f96fe1af7f445d3be7f72f5be54167ccb15a6cde7cab3c3b77110afc8967de94",
+              "field": "main: raw vectors loaded from production cache; prune_leave_one_out"
+            }
+          ],
+          "note": "Parent generation/AR/control selection still required; sequential refits and random controls inherit the pruning deletion-count computation."
+        },
+        {
+          "scope": "cached_replay",
+          "component": "exact_method_replay",
+          "status": "missing",
+          "value": null,
+          "unit": "CPU task wall-seconds",
+          "basis": "No isolated cached timing for this exact method; parent/campaign sweep is not a replacement"
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_AR_inputs",
+          "status": "measured",
+          "value": 421716,
+          "unit": "vectors",
+          "basis": "Whole 3,485-cell VAL shared cache; all methods reuse this one campaign effort",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/ar-workers-terminal-v1.json",
+              "sha256": "41ec5b45efe30634315ee601c7bcdac2ccd0beaaf50f4a211c9d4a0da9ab0065",
+              "field": "new_vectors"
+            }
+          ],
+          "note": "Common campaign quantity repeated for context, never sum across methods; inherited DEV cache is additional pre-existing campaign work. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_AR_occupied_time",
+          "status": "measured",
+          "value": 4426.008310079575,
+          "unit": "GPU task wall-seconds",
+          "basis": "Sum of four disjoint AR worker task times including recorded loading and CPU work; B128, four GPUs",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/ar-workers-terminal-v1.json",
+              "sha256": "41ec5b45efe30634315ee601c7bcdac2ccd0beaaf50f4a211c9d4a0da9ab0065",
+              "field": "worker_metadata[*].progress.seconds"
+            }
+          ],
+          "note": "Not wall-clock makespan or single-input inference; includes all shared cells, not an individual method. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_selector_sweep",
+          "status": "measured",
+          "value": 607.6783120632172,
+          "unit": "wall-seconds",
+          "basis": "Longest of four CPU worker task durations, four threads each, all 40 selector outputs",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-0/status.json",
+              "sha256": "9d0087731fa0aee02267f723ff48643fd316fb1091773717931c6e3ab55b1e38",
+              "field": "seconds"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-1/status.json",
+              "sha256": "dc95f2b3dcadf3ec070759db5da4d5ec1112cc6d0b757a2ed3ed478c10612287",
+              "field": "seconds"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-2/status.json",
+              "sha256": "636bae2e049c30664298580d4fd6f3c6c0c4a37c5f22c7df4fae40b909a47bc4",
+              "field": "seconds"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-3/status.json",
+              "sha256": "48c2472ace1c0a1c01e73cabc393b6a44f18030310ef55b52978850ada326016",
+              "field": "seconds"
+            }
+          ],
+          "note": "Not one deployed method, not a summed CPU-time counter, and not an actual synchronized wall interval. Startup/preparation included; do not apportion by 40. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_pruning_stage",
+          "status": "measured",
+          "value": 180.8673074245453,
+          "unit": "CPU task wall-seconds",
+          "basis": "Single four-thread stage for 3,485 cells, four new pruning/control outputs plus unchanged E1 parent",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/e1-pruning/status.json",
+              "sha256": "6033fe93c0c243626ccd42a84feb145adc45eed510f4426fdfc605ce1fc1c267",
+              "field": "seconds"
+            }
+          ],
+          "note": "Not the latency of a single combined method; do not divide by five arms or add a parent nested timer. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "benchmark_judging",
+          "component": "condition_Luna_usage",
+          "status": "missing",
+          "value": null,
+          "unit": "USD",
+          "basis": "Per-condition usage/unknown holds not audited at this checkpoint; evaluator will provide settled usage and uncertain holds separately"
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_candidate_pool",
+          "status": "measured",
+          "value": 111520,
+          "unit": "samples",
+          "basis": "Whole 3,485-cell immutable VAL pool, exactly 32 recorded samples per cell",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-000-of-004.status.json",
+              "sha256": "6307302f92cca792eccc5ed07d5cf442adc0d1195ae871b27735b813c8152633",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-001-of-004.status.json",
+              "sha256": "d21c3f5188919dfeee34e7729132ce9f65c9be0aaa11dcc297e928ee19cdde5b",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-002-of-004.status.json",
+              "sha256": "ec38b8ab24c17ca89c51dbc363c30e66a301d2c0ad3e1ae536b773957d305e52",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-003-of-004.status.json",
+              "sha256": "7a557f1a9ecf9db07379af4968459291c0b739f8c4db0e0e7fb833bea09b4def",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            }
+          ],
+          "note": "Shared campaign work, not additive across methods. Terminal statuses contain cumulative DEV+VAL persisted_samples; this uses VAL-only completed_cells. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        }
+      ]
+    },
+    {
+      "condition": "prune_loo_a32_0.005-n32",
+      "components": [
+        {
+          "scope": "new_input",
+          "component": "experimental_candidate_budget",
+          "status": "specified",
+          "value": 32,
+          "unit": "samples",
+          "basis": "Exact frozen candidate prefix per cell",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/configs/conditions_validation_v1.json",
+              "sha256": "bed944371e050eff7898d07fe0a2ccb39a49a3359779640525b06c4904aca82a",
+              "field": "[10].n"
+            }
+          ],
+          "note": "The shared research campaign generated32 once; a separate deployed method must pay for its own required prefix."
+        },
+        {
+          "scope": "new_input",
+          "component": "recurring_helper",
+          "status": "specified",
+          "value": 0,
+          "unit": "calls",
+          "basis": "These fixed methods use no runtime helper/editor/API",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/compare_selectors.py",
+              "sha256": "a8e11ee60318f19ee77cf680ca9cd91290487cde88392b07df956e6c781165b8",
+              "field": "main: candidate-only A/C/D/E1 selectors"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/combine_pruning.py",
+              "sha256": "f96fe1af7f445d3be7f72f5be54167ccb15a6cde7cab3c3b77110afc8967de94",
+              "field": "main: cached parent/refit pruning"
+            }
+          ]
+        },
+        {
+          "scope": "new_input",
+          "component": "capture",
+          "status": "specified",
+          "value": 1,
+          "unit": "forward passes",
+          "basis": "One adapter-disabled capture per input item, shared across its layer/position cells",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/diagnostics/costs-v3/components.json",
+              "sha256": "bddcd570c795e83bd78f0dbe24557ab01a133b460b3eca0a9677301879a495c7",
+              "field": "deployment.capture_forwards_per_new_input_item"
+            }
+          ],
+          "note": "Precomputed matched controls are a separate fixed bank; capture elapsed cost is not zero. Per input item, not one separately charged forward per layer/position cell."
+        },
+        {
+          "scope": "new_input",
+          "component": "capture_setup_time",
+          "status": "missing",
+          "value": null,
+          "unit": "GPU task wall-seconds",
+          "basis": "No same-menu warm/cold capture serving measurement is attached"
+        },
+        {
+          "scope": "new_input",
+          "component": "complete_input_latency",
+          "status": "missing",
+          "value": null,
+          "unit": "wall-seconds",
+          "basis": "No measured single-input end-to-end latency for this exact method/batching"
+        },
+        {
+          "scope": "new_input",
+          "component": "required_AR_input_bound",
+          "status": "specified",
+          "value": 128,
+          "unit": "vectors",
+          "basis": "Maximum source bullet encodings before cleanup/deduplication; actual effective counts vary",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/configs/project.json",
+              "sha256": "605358779353628c5814fdda629585d50766a60cc3b955875921c62b7c1fa2f8",
+              "field": "max_final_bullets"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/src/olens_improve/selection.py",
+              "sha256": "003c05f8bfbc1cc5b492faf0aaa11f53f8bdfd29750a3b93297b4462ab28e3c5",
+              "field": "parse_bullets: sample.bullets limited to max_bullets"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/compare_selectors.py",
+              "sha256": "a8e11ee60318f19ee77cf680ca9cd91290487cde88392b07df956e6c781165b8",
+              "field": "main"
+            }
+          ]
+        },
+        {
+          "scope": "new_input",
+          "component": "generation_component",
+          "status": "estimated",
+          "value": 4.681089157372002,
+          "unit": "GPU task wall-seconds",
+          "basis": "Amortized filled-batch work estimate, NOT single-input latency. Transferred189-cell DEV filled-batch component, no capture/setup or serial-serving claim",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/diagnostics/costs-v3/components.json",
+              "sha256": "bddcd570c795e83bd78f0dbe24557ab01a133b460b3eca0a9677301879a495c7",
+              "field": "deployment.sampling_n_prefix_estimates.32"
+            }
+          ],
+          "note": "N32 is observed on DEV; applying it to a future new input is an estimate. N1/16 are proportional, not measured. Component work excludes unmeasured setup/capture and is not added to nested timers as a serving latency.",
+          "estimate_rule": "DEV filled-batch N32 sampling rate 4.681089157372002 multiplied by 32/32"
+        },
+        {
+          "scope": "new_input",
+          "component": "AR_encoding_component",
+          "status": "estimated",
+          "value": 1.7139569161430237,
+          "unit": "GPU task wall-seconds",
+          "basis": "Amortized filled-batch work estimate, NOT single-input latency. Transferred DEV B32 AR campaign average; excludes single-input startup and fixed B128 equivalence claims",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/diagnostics/costs-v3/components.json",
+              "sha256": "bddcd570c795e83bd78f0dbe24557ab01a133b460b3eca0a9677301879a495c7",
+              "field": "deployment.ar_n32_gpu_task_seconds_per_cell_observed"
+            }
+          ],
+          "note": "Campaign deduplication and first 32 scored tokens per bullet limit transfer; B128 VAL timings stay separate. Component work excludes unmeasured setup/capture and is not added to nested timers as a serving latency.",
+          "estimate_rule": "Historical DEV AR 1.7139569161430237 task-seconds/cell at N32 multiplied by 32/32"
+        },
+        {
+          "scope": "new_input",
+          "component": "numeric_selection",
+          "status": "missing",
+          "value": null,
+          "unit": "CPU task wall-seconds",
+          "basis": "Required local parsing, whitening, NNLS objective fits and method-specific search; no exact fresh-method timing"
+        },
+        {
+          "scope": "new_input",
+          "component": "additional_pruning_AR_work",
+          "status": "specified",
+          "value": 0,
+          "unit": "vectors",
+          "basis": "Pruning/random deletion reuse the parent source atoms and add no encodings",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/combine_pruning.py",
+              "sha256": "f96fe1af7f445d3be7f72f5be54167ccb15a6cde7cab3c3b77110afc8967de94",
+              "field": "main: raw vectors loaded from production cache; prune_leave_one_out"
+            }
+          ],
+          "note": "Parent generation/AR/control selection still required; sequential refits and random controls inherit the pruning deletion-count computation."
+        },
+        {
+          "scope": "cached_replay",
+          "component": "selector_after_preparation",
+          "status": "measured",
+          "value": 0.01232298742979765,
+          "unit": "CPU task wall-seconds",
+          "basis": "Median of eight fixed DEV cells, three repeats, four Torch threads; parsing/whitening/preparation excluded",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/diagnostics/costs-v3/components.json",
+              "sha256": "bddcd570c795e83bd78f0dbe24557ab01a133b460b3eca0a9677301879a495c7",
+              "field": "incremental_cache.C32.median_seconds_per_cell"
+            }
+          ],
+          "note": "Includes best-of-32 parent selection and sequential .005 pruning. Measured on a development cohort, not validation latency for a new input."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_AR_inputs",
+          "status": "measured",
+          "value": 421716,
+          "unit": "vectors",
+          "basis": "Whole 3,485-cell VAL shared cache; all methods reuse this one campaign effort",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/ar-workers-terminal-v1.json",
+              "sha256": "41ec5b45efe30634315ee601c7bcdac2ccd0beaaf50f4a211c9d4a0da9ab0065",
+              "field": "new_vectors"
+            }
+          ],
+          "note": "Common campaign quantity repeated for context, never sum across methods; inherited DEV cache is additional pre-existing campaign work. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_AR_occupied_time",
+          "status": "measured",
+          "value": 4426.008310079575,
+          "unit": "GPU task wall-seconds",
+          "basis": "Sum of four disjoint AR worker task times including recorded loading and CPU work; B128, four GPUs",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/ar-workers-terminal-v1.json",
+              "sha256": "41ec5b45efe30634315ee601c7bcdac2ccd0beaaf50f4a211c9d4a0da9ab0065",
+              "field": "worker_metadata[*].progress.seconds"
+            }
+          ],
+          "note": "Not wall-clock makespan or single-input inference; includes all shared cells, not an individual method. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_selector_sweep",
+          "status": "measured",
+          "value": 607.6783120632172,
+          "unit": "wall-seconds",
+          "basis": "Longest of four CPU worker task durations, four threads each, all 40 selector outputs",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-0/status.json",
+              "sha256": "9d0087731fa0aee02267f723ff48643fd316fb1091773717931c6e3ab55b1e38",
+              "field": "seconds"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-1/status.json",
+              "sha256": "dc95f2b3dcadf3ec070759db5da4d5ec1112cc6d0b757a2ed3ed478c10612287",
+              "field": "seconds"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-2/status.json",
+              "sha256": "636bae2e049c30664298580d4fd6f3c6c0c4a37c5f22c7df4fae40b909a47bc4",
+              "field": "seconds"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-3/status.json",
+              "sha256": "48c2472ace1c0a1c01e73cabc393b6a44f18030310ef55b52978850ada326016",
+              "field": "seconds"
+            }
+          ],
+          "note": "Not one deployed method, not a summed CPU-time counter, and not an actual synchronized wall interval. Startup/preparation included; do not apportion by 40. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_pruning_stage",
+          "status": "measured",
+          "value": 180.8673074245453,
+          "unit": "CPU task wall-seconds",
+          "basis": "Single four-thread stage for 3,485 cells, four new pruning/control outputs plus unchanged E1 parent",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/e1-pruning/status.json",
+              "sha256": "6033fe93c0c243626ccd42a84feb145adc45eed510f4426fdfc605ce1fc1c267",
+              "field": "seconds"
+            }
+          ],
+          "note": "Not the latency of a single combined method; do not divide by five arms or add a parent nested timer. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "benchmark_judging",
+          "component": "condition_Luna_usage",
+          "status": "missing",
+          "value": null,
+          "unit": "USD",
+          "basis": "Per-condition usage/unknown holds not audited at this checkpoint; evaluator will provide settled usage and uncertain holds separately"
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_candidate_pool",
+          "status": "measured",
+          "value": 111520,
+          "unit": "samples",
+          "basis": "Whole 3,485-cell immutable VAL pool, exactly 32 recorded samples per cell",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-000-of-004.status.json",
+              "sha256": "6307302f92cca792eccc5ed07d5cf442adc0d1195ae871b27735b813c8152633",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-001-of-004.status.json",
+              "sha256": "d21c3f5188919dfeee34e7729132ce9f65c9be0aaa11dcc297e928ee19cdde5b",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-002-of-004.status.json",
+              "sha256": "ec38b8ab24c17ca89c51dbc363c30e66a301d2c0ad3e1ae536b773957d305e52",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-003-of-004.status.json",
+              "sha256": "7a557f1a9ecf9db07379af4968459291c0b739f8c4db0e0e7fb833bea09b4def",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            }
+          ],
+          "note": "Shared campaign work, not additive across methods. Terminal statuses contain cumulative DEV+VAL persisted_samples; this uses VAL-only completed_cells. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        }
+      ]
+    },
+    {
+      "condition": "random_delete_matched_a32_0.005-n32",
+      "components": [
+        {
+          "scope": "new_input",
+          "component": "experimental_candidate_budget",
+          "status": "specified",
+          "value": 32,
+          "unit": "samples",
+          "basis": "Exact frozen candidate prefix per cell",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/configs/conditions_validation_v1.json",
+              "sha256": "bed944371e050eff7898d07fe0a2ccb39a49a3359779640525b06c4904aca82a",
+              "field": "[11].n"
+            }
+          ],
+          "note": "The shared research campaign generated32 once; a separate deployed method must pay for its own required prefix."
+        },
+        {
+          "scope": "new_input",
+          "component": "recurring_helper",
+          "status": "specified",
+          "value": 0,
+          "unit": "calls",
+          "basis": "These fixed methods use no runtime helper/editor/API",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/compare_selectors.py",
+              "sha256": "a8e11ee60318f19ee77cf680ca9cd91290487cde88392b07df956e6c781165b8",
+              "field": "main: candidate-only A/C/D/E1 selectors"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/combine_pruning.py",
+              "sha256": "f96fe1af7f445d3be7f72f5be54167ccb15a6cde7cab3c3b77110afc8967de94",
+              "field": "main: cached parent/refit pruning"
+            }
+          ]
+        },
+        {
+          "scope": "new_input",
+          "component": "capture",
+          "status": "specified",
+          "value": 1,
+          "unit": "forward passes",
+          "basis": "One adapter-disabled capture per input item, shared across its layer/position cells",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/diagnostics/costs-v3/components.json",
+              "sha256": "bddcd570c795e83bd78f0dbe24557ab01a133b460b3eca0a9677301879a495c7",
+              "field": "deployment.capture_forwards_per_new_input_item"
+            }
+          ],
+          "note": "Precomputed matched controls are a separate fixed bank; capture elapsed cost is not zero. Per input item, not one separately charged forward per layer/position cell."
+        },
+        {
+          "scope": "new_input",
+          "component": "capture_setup_time",
+          "status": "missing",
+          "value": null,
+          "unit": "GPU task wall-seconds",
+          "basis": "No same-menu warm/cold capture serving measurement is attached"
+        },
+        {
+          "scope": "new_input",
+          "component": "complete_input_latency",
+          "status": "missing",
+          "value": null,
+          "unit": "wall-seconds",
+          "basis": "No measured single-input end-to-end latency for this exact method/batching"
+        },
+        {
+          "scope": "new_input",
+          "component": "required_AR_input_bound",
+          "status": "specified",
+          "value": 128,
+          "unit": "vectors",
+          "basis": "Maximum source bullet encodings before cleanup/deduplication; actual effective counts vary",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/configs/project.json",
+              "sha256": "605358779353628c5814fdda629585d50766a60cc3b955875921c62b7c1fa2f8",
+              "field": "max_final_bullets"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/src/olens_improve/selection.py",
+              "sha256": "003c05f8bfbc1cc5b492faf0aaa11f53f8bdfd29750a3b93297b4462ab28e3c5",
+              "field": "parse_bullets: sample.bullets limited to max_bullets"
+            },
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/compare_selectors.py",
+              "sha256": "a8e11ee60318f19ee77cf680ca9cd91290487cde88392b07df956e6c781165b8",
+              "field": "main"
+            }
+          ]
+        },
+        {
+          "scope": "new_input",
+          "component": "generation_component",
+          "status": "estimated",
+          "value": 4.681089157372002,
+          "unit": "GPU task wall-seconds",
+          "basis": "Amortized filled-batch work estimate, NOT single-input latency. Transferred189-cell DEV filled-batch component, no capture/setup or serial-serving claim",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/diagnostics/costs-v3/components.json",
+              "sha256": "bddcd570c795e83bd78f0dbe24557ab01a133b460b3eca0a9677301879a495c7",
+              "field": "deployment.sampling_n_prefix_estimates.32"
+            }
+          ],
+          "note": "N32 is observed on DEV; applying it to a future new input is an estimate. N1/16 are proportional, not measured. Component work excludes unmeasured setup/capture and is not added to nested timers as a serving latency.",
+          "estimate_rule": "DEV filled-batch N32 sampling rate 4.681089157372002 multiplied by 32/32"
+        },
+        {
+          "scope": "new_input",
+          "component": "AR_encoding_component",
+          "status": "estimated",
+          "value": 1.7139569161430237,
+          "unit": "GPU task wall-seconds",
+          "basis": "Amortized filled-batch work estimate, NOT single-input latency. Transferred DEV B32 AR campaign average; excludes single-input startup and fixed B128 equivalence claims",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/diagnostics/costs-v3/components.json",
+              "sha256": "bddcd570c795e83bd78f0dbe24557ab01a133b460b3eca0a9677301879a495c7",
+              "field": "deployment.ar_n32_gpu_task_seconds_per_cell_observed"
+            }
+          ],
+          "note": "Campaign deduplication and first 32 scored tokens per bullet limit transfer; B128 VAL timings stay separate. Component work excludes unmeasured setup/capture and is not added to nested timers as a serving latency.",
+          "estimate_rule": "Historical DEV AR 1.7139569161430237 task-seconds/cell at N32 multiplied by 32/32"
+        },
+        {
+          "scope": "new_input",
+          "component": "numeric_selection",
+          "status": "missing",
+          "value": null,
+          "unit": "CPU task wall-seconds",
+          "basis": "Required local parsing, whitening, NNLS objective fits and method-specific search; no exact fresh-method timing"
+        },
+        {
+          "scope": "new_input",
+          "component": "additional_pruning_AR_work",
+          "status": "specified",
+          "value": 0,
+          "unit": "vectors",
+          "basis": "Pruning/random deletion reuse the parent source atoms and add no encodings",
+          "source_refs": [
+            {
+              "path": "${OLENS_REPO_ROOT}/scripts/combine_pruning.py",
+              "sha256": "f96fe1af7f445d3be7f72f5be54167ccb15a6cde7cab3c3b77110afc8967de94",
+              "field": "main: raw vectors loaded from production cache; prune_leave_one_out"
+            }
+          ],
+          "note": "Parent generation/AR/control selection still required; sequential refits and random controls inherit the pruning deletion-count computation."
+        },
+        {
+          "scope": "cached_replay",
+          "component": "exact_method_replay",
+          "status": "missing",
+          "value": null,
+          "unit": "CPU task wall-seconds",
+          "basis": "No isolated cached timing for this exact method; parent/campaign sweep is not a replacement"
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_AR_inputs",
+          "status": "measured",
+          "value": 421716,
+          "unit": "vectors",
+          "basis": "Whole 3,485-cell VAL shared cache; all methods reuse this one campaign effort",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/ar-workers-terminal-v1.json",
+              "sha256": "41ec5b45efe30634315ee601c7bcdac2ccd0beaaf50f4a211c9d4a0da9ab0065",
+              "field": "new_vectors"
+            }
+          ],
+          "note": "Common campaign quantity repeated for context, never sum across methods; inherited DEV cache is additional pre-existing campaign work. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_AR_occupied_time",
+          "status": "measured",
+          "value": 4426.008310079575,
+          "unit": "GPU task wall-seconds",
+          "basis": "Sum of four disjoint AR worker task times including recorded loading and CPU work; B128, four GPUs",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/ar-workers-terminal-v1.json",
+              "sha256": "41ec5b45efe30634315ee601c7bcdac2ccd0beaaf50f4a211c9d4a0da9ab0065",
+              "field": "worker_metadata[*].progress.seconds"
+            }
+          ],
+          "note": "Not wall-clock makespan or single-input inference; includes all shared cells, not an individual method. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_selector_sweep",
+          "status": "measured",
+          "value": 607.6783120632172,
+          "unit": "wall-seconds",
+          "basis": "Longest of four CPU worker task durations, four threads each, all 40 selector outputs",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-0/status.json",
+              "sha256": "9d0087731fa0aee02267f723ff48643fd316fb1091773717931c6e3ab55b1e38",
+              "field": "seconds"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-1/status.json",
+              "sha256": "dc95f2b3dcadf3ec070759db5da4d5ec1112cc6d0b757a2ed3ed478c10612287",
+              "field": "seconds"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-2/status.json",
+              "sha256": "636bae2e049c30664298580d4fd6f3c6c0c4a37c5f22c7df4fae40b909a47bc4",
+              "field": "seconds"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-3/status.json",
+              "sha256": "48c2472ace1c0a1c01e73cabc393b6a44f18030310ef55b52978850ada326016",
+              "field": "seconds"
+            }
+          ],
+          "note": "Not one deployed method, not a summed CPU-time counter, and not an actual synchronized wall interval. Startup/preparation included; do not apportion by 40. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_pruning_stage",
+          "status": "measured",
+          "value": 180.8673074245453,
+          "unit": "CPU task wall-seconds",
+          "basis": "Single four-thread stage for 3,485 cells, four new pruning/control outputs plus unchanged E1 parent",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/e1-pruning/status.json",
+              "sha256": "6033fe93c0c243626ccd42a84feb145adc45eed510f4426fdfc605ce1fc1c267",
+              "field": "seconds"
+            }
+          ],
+          "note": "Not the latency of a single combined method; do not divide by five arms or add a parent nested timer. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        },
+        {
+          "scope": "benchmark_judging",
+          "component": "condition_Luna_usage",
+          "status": "missing",
+          "value": null,
+          "unit": "USD",
+          "basis": "Per-condition usage/unknown holds not audited at this checkpoint; evaluator will provide settled usage and uncertain holds separately"
+        },
+        {
+          "scope": "campaign",
+          "component": "shared_VAL_candidate_pool",
+          "status": "measured",
+          "value": 111520,
+          "unit": "samples",
+          "basis": "Whole 3,485-cell immutable VAL pool, exactly 32 recorded samples per cell",
+          "source_refs": [
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-000-of-004.status.json",
+              "sha256": "6307302f92cca792eccc5ed07d5cf442adc0d1195ae871b27735b813c8152633",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-001-of-004.status.json",
+              "sha256": "d21c3f5188919dfeee34e7729132ce9f65c9be0aaa11dcc297e928ee19cdde5b",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-002-of-004.status.json",
+              "sha256": "ec38b8ab24c17ca89c51dbc363c30e66a301d2c0ad3e1ae536b773957d305e52",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            },
+            {
+              "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-003-of-004.status.json",
+              "sha256": "7a557f1a9ecf9db07379af4968459291c0b739f8c4db0e0e7fb833bea09b4def",
+              "field": "completed_cells * target_n (validation counts, not cumulative persisted_samples)"
+            }
+          ],
+          "note": "Shared campaign work, not additive across methods. Terminal statuses contain cumulative DEV+VAL persisted_samples; this uses VAL-only completed_cells. Shared once across the whole VAL campaign, not charged once per arm; AR is not required by raw/capped/random selection."
+        }
+      ]
+    }
+  ],
+  "source_index": {
+    "menu": {
+      "path": "${OLENS_REPO_ROOT}/configs/conditions_validation_v1.json",
+      "sha256": "bed944371e050eff7898d07fe0a2ccb39a49a3359779640525b06c4904aca82a"
+    },
+    "project": {
+      "path": "${OLENS_REPO_ROOT}/configs/project.json",
+      "sha256": "605358779353628c5814fdda629585d50766a60cc3b955875921c62b7c1fa2f8"
+    },
+    "selectors": {
+      "path": "${OLENS_REPO_ROOT}/scripts/compare_selectors.py",
+      "sha256": "a8e11ee60318f19ee77cf680ca9cd91290487cde88392b07df956e6c781165b8"
+    },
+    "pruning": {
+      "path": "${OLENS_REPO_ROOT}/scripts/combine_pruning.py",
+      "sha256": "f96fe1af7f445d3be7f72f5be54167ccb15a6cde7cab3c3b77110afc8967de94"
+    },
+    "parser": {
+      "path": "${OLENS_REPO_ROOT}/src/olens_improve/selection.py",
+      "sha256": "003c05f8bfbc1cc5b492faf0aaa11f53f8bdfd29750a3b93297b4462ab28e3c5"
+    },
+    "costs": {
+      "path": "${OLENS_DATA_ROOT}/diagnostics/costs-v3/components.json",
+      "sha256": "bddcd570c795e83bd78f0dbe24557ab01a133b460b3eca0a9677301879a495c7"
+    },
+    "control": {
+      "path": "${OLENS_DATA_ROOT}/manifests/development-matched-controls-v2.json",
+      "sha256": "518e1e11df48d172c9e1d78e055af8e6724bd83de3a60b743e2b3c75bc8ac0d7"
+    },
+    "val_ar": {
+      "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/ar-workers-terminal-v1.json",
+      "sha256": "41ec5b45efe30634315ee601c7bcdac2ccd0beaaf50f4a211c9d4a0da9ab0065"
+    },
+    "val_prune": {
+      "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/e1-pruning/status.json",
+      "sha256": "6033fe93c0c243626ccd42a84feb145adc45eed510f4426fdfc605ce1fc1c267"
+    },
+    "val_selector0": {
+      "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-0/status.json",
+      "sha256": "9d0087731fa0aee02267f723ff48643fd316fb1091773717931c6e3ab55b1e38"
+    },
+    "val_selector1": {
+      "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-1/status.json",
+      "sha256": "dc95f2b3dcadf3ec070759db5da4d5ec1112cc6d0b757a2ed3ed478c10612287"
+    },
+    "val_selector2": {
+      "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-2/status.json",
+      "sha256": "636bae2e049c30664298580d4fd6f3c6c0c4a37c5f22c7df4fae40b909a47bc4"
+    },
+    "val_selector3": {
+      "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-3/status.json",
+      "sha256": "48c2472ace1c0a1c01e73cabc393b6a44f18030310ef55b52978850ada326016"
+    },
+    "val_generation0": {
+      "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-000-of-004.status.json",
+      "sha256": "6307302f92cca792eccc5ed07d5cf442adc0d1195ae871b27735b813c8152633"
+    },
+    "val_generation1": {
+      "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-001-of-004.status.json",
+      "sha256": "d21c3f5188919dfeee34e7729132ce9f65c9be0aaa11dcc297e928ee19cdde5b"
+    },
+    "val_generation2": {
+      "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-002-of-004.status.json",
+      "sha256": "ec38b8ab24c17ca89c51dbc363c30e66a301d2c0ad3e1ae536b773957d305e52"
+    },
+    "val_generation3": {
+      "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/shard-003-of-004.status.json",
+      "sha256": "7a557f1a9ecf9db07379af4968459291c0b739f8c4db0e0e7fb833bea09b4def"
+    }
+  },
+  "limits": [
+    "No GPU dollars, end-to-end latency totals, per-condition benchmark charge allocation, or new model/API calls.",
+    "Transferred DEV averages are estimates for a new input, not measured latency.",
+    "Campaign components are shared across arms and must not be summed across rows."
+  ],
+  "plain_summary": [
+    "Single-response baselines generate one candidate; best-reconstruction and pooled methods use 16 or 32; specificity and pruning combinations retain their parent N32 workload.",
+    "All twelve fixed methods make zero recurring helper calls. Benchmark Luna judging is a separate research expense.",
+    "Prefix-generation and transferred AR seconds are amortized filled-batch work estimates, not single-input latency. Capture is per input item, not separately per cell.",
+    "VAL candidate, AR, selector and pruning quantities describe shared campaign work once; repeating them beside methods does not charge them once per arm or make AR required for raw/capped/random selection.",
+    "CPU task wall-seconds are elapsed task time with stated threads, not CPU-core-seconds. Do not sum nested parent/stage timers or convert GPU seconds into dollars."
+  ],
+  "reviewed_by": "root",
+  "reviewed_utc": "2026-10-10T11:21:18.003155+00:00",
+  "draft_path": "configs/cost_rows_validation_v1.draft.json",
+  "draft_sha256": "7b2b11239149ece7a2ed5d610400fe8dcce656804498df66b75032b5e83c4884",
+  "review_scope": "All source hashes, numeric field meanings, estimated scaling rules, parent cost inclusion and shared-campaign nonadditivity reviewed; no quality outcomes or final-method decision implied."
+}

@@ -1,6 +1,6 @@
 # Execution status
 
-Updated: 2026-10-10, approximately 11:08 UTC.
+Updated: 2026-10-10, approximately 11:20 UTC.
 Started: 2026-10-10 01:25:36 UTC (October 9, 21:25:36 EDT).
 Target finish: 2026-10-10 21:25:36 UTC. Execution remains active and authorized.
 
@@ -81,7 +81,7 @@ first source-checked dashboard with grouped intervals. Nothing has been pushed.
 | Single-method pilots | A/B/C/D/E1/E3/F judged; E2/G diagnostics complete with limits; exact-claim-span v3 stopped after its eight-cell contract audit, without benchmark-quality measurement |
 | Combinations | 65 unique pilot conditions judged and source-checked; larger E1-plus-pruning outputs complete and awaiting judging |
 | Additional controls | All32 judgments and matched-donor N1 complete; all requested cells/stages covered |
-| Held-out evaluation | All 3,485 validation cells have immutable N32 pools; all AR, selectors, pruning and the exact twelve-arm export are complete. Hallucination, multi-hop and chain judging are complete; role is 9/12 at 11:07. The recovered judges have no new uncertain charges so far. Blind TEST sampling is running on four H200s; TEST analysis stays closed. Blind TEST sampling is running on four H200s; TEST analysis stays closed. |
+| Held-out evaluation | All 3,485 validation cells have immutable N32 pools; all AR, selectors, pruning and the exact twelve-arm export are complete. Hallucination, multi-hop and chain judging are complete; role was 9/12 at 11:07. New role and DEV hallucination connection errors appeared around 11:13; root requested clean condition-boundary stops at 11:19. Blind TEST sampling was 8,833/10,714 cells at 11:12:54 on four H200s; TEST analysis stays closed. |
 
 Combination comparisons retain unchanged parents, component-off outputs, and
 random deletion matched on retained bullet count. Fixed support weights are
@@ -95,8 +95,10 @@ The corresponding role cell count is only 151/3,420: an item passes when any
 inspected site passes, so item recovery must not be read as uniformly faithful
 readouts. These are original-grid development scores, not held-out results.
 
-Next: monitor the narrowly resumed validation conditions, finish the twelve
-fixed comparisons and inspect systematic traces. Then
+Next: confirm the two judge queues stop at a clean boundary or the existing
+transport guard, preserve every uncertain hold, and review current service health.
+Prioritize the remaining validation conditions over additional descriptive DEV
+judging. Finish the twelve fixed comparisons and inspect systematic traces. Then
 select at most two quality/cost operating points before freezing the TEST menu.
 The unchanged VAL forecast is $4.7571 with a $15 atomic run cap; eight slots/200
 RPM remain fixed. At 10:14:43, VAL had 25,944 settled attempts, thirteen unknown
