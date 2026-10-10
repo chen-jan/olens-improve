@@ -1,8 +1,8 @@
 # Improving Oracle Lens with inference-time computation
 
-Working research report, 2026-10-10. **Held-out evaluation is pending.** The
-findings below describe development experiments and must not be read as a
-validated recommendation for a final method. Live operational status is in
+Working research report, 2026-10-10. **Validation is complete; final TEST evaluation is pending.**
+The findings below distinguish development from the fixed validation comparison;
+no final method recommendation has been validated on TEST. Live operational status is in
 [STATUS.md](STATUS.md); the [dashboard](../dashboard/index.html) provides
 interactive results and method details.
 
@@ -21,7 +21,8 @@ It retains more recovery than random deletion on the pilot. However, the larger
 development chain task shows a substantial loss: the combined method recovers
 16/330 cells, versus 27/330 for its unpruned parent and 23/330 for matched random
 deletion. Its apparent pilot gains include judge-sensitive cases with remaining
-contradictions. Validation must assess this tradeoff before any recommendation. Whole-bullet consensus and free editing
+contradictions. Completed validation likewise does not support promoting pruning
+over matched-count random deletion. Whole-bullet consensus and free editing
 have not justified broad expansion on the evidence collected so far.
 
 ## Question and experimental controls
@@ -85,8 +86,8 @@ stay together when assigning development, validation and test groups.
 |---|---:|---:|---|
 | Small development pilot | 31 | 189 | Method iteration and failure diagnosis; selected cells |
 | Full development | 121 | 5,236 | Larger method comparison using original complete read grids |
-| Validation | 80 | 3,485 | Twelve frozen comparisons; judging underway |
-| Test | 268 | 10,714 | Final frozen comparison; not opened |
+| Validation | 80 | 3,485 | Twelve frozen comparisons; complete |
+| Test | 268 | 10,714 | Six comparisons frozen; reconstruction underway |
 
 The pilot is a subset of development. Cells from the same prompt are correlated.
 Paired uncertainty intervals resample related item groups, not individual cells.
@@ -203,6 +204,99 @@ related template groups, and mention recovery still does not certify the
 calculation. Nevertheless, the observed loss is substantial and should not be
 described as a small tradeoff without compensating evidence. The exact records
 are preserved in the [validation decision snapshot](experiments/027-validation-shortlist-freeze.md).
+
+## Completed validation comparison
+
+The twelve settings frozen before validation outcome inspection are complete on
+80 items and all 3,485 intended cells. There is **no global faithfulness winner**.
+The prospective final comparison retains best reconstruction from 16 samples and
+matched-control selection from 32 as two experimental operating points, alongside
+released/capped N1, best-of-32 and random selection controls. This choice does not
+make validation a fresh confirmation of a method selected from these results;
+the separately frozen TEST comparison will supply that measurement.
+
+| Method | Contradicted / specific | Bridge mentions / 220 | Intermediate-number matches / 220 | Role task passes / 2,280 |
+|---|---:|---:|---:|---:|
+| Released single sample | 312/760 | 26 | 16 | 85 |
+| Capped single sample | 313/761 | 26 | 15 | 85 |
+| Best reconstruction, N16 | 307/762 | 31 | 17 | 97 |
+| Best reconstruction, N32 | 299/762 | 29 | 12 | 96 |
+| Random eligible sample, N32 pool | 317/762 | 24 | 17 | 95 |
+| Pooled bullets, N16 | 307/759 | 30 | 10 | 102 |
+| Pooled bullets, N32 | 305/760 | 29 | 10 | 98 |
+| Matched-control selection, N32 | 295/763 | 30 | 16 | 95 |
+| Matched-control selection + .005 pruning | 271/759 | 20 | 10 | 97 |
+| Same parent + matched random deletion | 262/756 | 20 | 15 | 96 |
+| Best reconstruction N32 + .005 pruning | 277/759 | 20 | 9 | 94 |
+| Same best-N32 parent + matched random deletion | 267/752 | 18 | 17 | 83 |
+
+Each recovery family has 20 items. With the original any-site item aggregation,
+best-of-16 recovers 9 bridge, 11 chain and 17 role items; matched-control selection
+from 32 recovers 8, 10 and 17. Best-of-32 recovers 8, 8 and 16. Those summaries
+answer a different question from how often individual cells recover information.
+For example, pooled-16 yields 18 passing role items but only 6 chain items,
+compared with 17 and 11 for best-of-16. More samples and larger reconstruction
+scores do not uniformly improve these task endpoints.
+
+Relative to best-of-32, matched-control selection changes the contradiction rate
+from 39.24% to 38.66%: a paired change of −0.58 percentage points, with a grouped
+95% interval of [−1.46, +0.23]. Bridge recovery is unchanged at 8/20 items;
+chain changes 8→10/20, paired +10 percentage points [0, +22.22]; role changes
+16→17/20, +5 points [0, +15]. The cell-level role count instead changes 96→95.
+The intervals use 20 hallucination, 17 bridge, 7 chain and 10 role groups, and
+cannot remove generator/judge variability or certify every statement. These
+are reported effects and uncertainties, not a significance gate or a hidden
+average across families.
+
+Matched-control selection also increases off-topic outputs from 60/762 to
+68/763 specific readouts. Its six wrong→off-topic transitions and four
+wrong→consistent transitions coexist with five consistent→wrong transitions.
+For `chat-dailydialog-0010` at layer 60, position 24, it removes unsupported
+library/online-banking detail and better matches the original bank response.
+For `chat-dailydialog-0001` at layer 20, position 78, the unsupported identity
+is instead replaced with off-topic capabilities and ChatGPT discussion. Thus
+fewer contradiction flags do not always mean more useful transcript recovery.
+
+Pruning is not promoted to the final operating points. Its apparent error
+reduction is not separated convincingly from shortening: matched-control
+selection followed by .005 pruning has 271/759 contradicted outputs, while
+matched-count random deletion has 262/756. Both retain an average of 2.27
+bullets in the hallucination family, versus 4.00 for the unpruned parent;
+mean token counts are 60.90, 58.76 and 102.75 respectively. Random deletion
+matches bullet count, not exact token length. Pruning versus that control
+changes bridge recovery 20→20 cells, chain 15→10 and role 96→97. At item level,
+chain is 10→6/20 and role 15→14/20. The bounded evidence does not justify
+attributing the lower contradiction rate to reconstruction-guided deletion
+rather than reduced content.
+
+The fixed trace audit preserves official judgments while qualifying their
+meaning. `mhh-aztec-coatepec-sister`, layer 32, position 34, gains the required
+Huitzilopochtli bridge but retains incompatible god alternatives. In
+`chain-d2p-0231`, layer 32, position 68, the intermediate 2 becomes prominent
+amid wrong starting values and operations. Conversely, the scored regression
+`chain-d2p-0396`, layer 40, position 61, includes the correct final computation
+12×2×2=48 while losing the intermediate-focused hit. Number recovery is not
+calculation accuracy.
+
+Role options permit people to be identified by description. At
+`oa-burglar-neighbor-spy-ab`, layer 36, position 164, both responses describe a
+burglar observing a neighbor, but descriptive identities are accepted only for
+the selected response. Some pooling gains also depend on inferred composition:
+`oa-babysitter-toddler-feed-ab`, layer 52, position 104, is judged as Maya feeding
+a toddler by combining Maya settling a toddler with Maddie feeding a younger
+sister in a different bullet. These cases illustrate judge sensitivity and
+remaining ambiguity; they do not warrant changing the retained verdicts.
+
+All values, grouped intervals and fixed sampled traces are supplied by the
+immutable [signed validation analysis](${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/signed-menu-analysis-v1.json),
+SHA-256 `db223a374f51d9122f8cc430a347e4f82dea75ce3d449008e1def1f7cf89e918`.
+The [family comparison figure](../dashboard/figures/validation-v1/family-cell-rates.png)
+and [zoomed cross-task plot](../dashboard/figures/validation-v2/cross-task-error-recovery-zoom.png)
+use those same values, with distinct family denominators and supplied marginal
+intervals. The [full-range plot](../dashboard/figures/validation-v1/cross-task-error-recovery.png)
+is preserved; zoomed axes change neither values nor intervals. The dashboard
+uses the same reviewed source, with no inferred cross-task winner. No TEST
+outcomes are included here.
 
 ## What each approach taught us
 
@@ -327,14 +421,14 @@ specificity/pruning component comparisons. Its evidence and selection procedure
 are recorded in [the validation freeze](experiments/027-validation-shortlist-freeze.md).
 Some development judging was unfinished at that decision; later development
 results cannot alter this menu or its thresholds after validation opens.
-Validation reconstruction, selection and the signed twelve-condition export
-are complete. Judging is underway, with chain and multi-hop complete; see
+Validation reconstruction, selection, judging and the signed twelve-condition
+analysis are complete; see
 [the validation comparison](experiments/029-validation-comparison.md).
-A separately reviewed blind-generation gate permits preparation of
-the fixed test sample pool while validation judging proceeds. Test text and
-quality remain sealed: test analysis requires the final methods, comparisons
-and decision rule to be frozen. Held-out results will be added after those
-stages complete.
+The six-method final comparison is now frozen after two independent reviews
+and coordinator approval. All 342,848 TEST samples passed source and cell
+identity checks, and reconstruction preparation is underway under the separate
+analysis gate. No TEST quality results are available yet. See the
+[final method freeze](experiments/032-test-final-method-freeze.md).
 
 The implementation provides a vector-first Python API and command-line tool,
 immutable candidate pools, cached phrase encodings and replayable selectors.

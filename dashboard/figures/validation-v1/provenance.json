@@ -1,0 +1,785 @@
+{
+  "status": "exported_supplied_values_no_aggregation",
+  "created_utc": "2026-10-10T12:34:11.253252+00:00",
+  "stage": "validation",
+  "source_path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/signed-menu-analysis-v1.json",
+  "source_sha256": "db223a374f51d9122f8cc430a347e4f82dea75ce3d449008e1def1f7cf89e918",
+  "review_metadata_sha256": "2852a01cb64f6d6cd950042ca4556d410d6142786262407e2ac17a29b5535ea4",
+  "reviewed_by": "root; independent reviews by adversarial_evaluation and model_scoring_audit",
+  "figure_scope_label": "Validation: twelve settings frozen before outcome inspection",
+  "identities": {
+    "manifest_sha256": "9293de810635a5ee69fcee3c010ede25c7e147d12d172c2f637015c64042f19d",
+    "conditions_sha256": "bed944371e050eff7898d07fe0a2ccb39a49a3359779640525b06c4904aca82a",
+    "selection_sha256": "a406ca34932be46279af276701417091b2c0a4e5f37206da9d0bc72befebab26",
+    "gate_sha256": "9ba4b92cbfa9f6a0400aa74b65cbf59d8614791efb2c5b404265a0ea455b88f8",
+    "freeze_sha256": "30daad423ee9326971f5f08fa4f3a3e7eec37c857b3757a700a8fcbb3a7547e6"
+  },
+  "method_order": [
+    "raw_n1-n1",
+    "capped_n1-n1",
+    "best_n_exact-n16",
+    "best_n_exact-n32",
+    "random_complete-n32",
+    "pooled_greedy_swap-n16",
+    "pooled_greedy_swap-n32",
+    "best_n_specificity_mean-n32",
+    "best_n_specificity_mean_then_prune_0.005-n32",
+    "best_n_specificity_mean_random_delete_matched_0.005-n32",
+    "prune_loo_a32_0.005-n32",
+    "random_delete_matched_a32_0.005-n32"
+  ],
+  "method_display_labels": [
+    "Original lens (1 sample)",
+    "Capped single response",
+    "Best reconstruction (16)",
+    "Best reconstruction (32)",
+    "Random eligible response (32 pool)",
+    "Pool bullets (16)",
+    "Pool bullets (32)",
+    "Specificity selection (32)",
+    "Specificity + pruning (0.005)",
+    "Specificity + matched random deletion",
+    "Best 32 + pruning (0.005)",
+    "Best 32 + matched random deletion"
+  ],
+  "family_counts": {
+    "hallucination": {
+      "cells": 765,
+      "items": 20,
+      "groups": 20
+    },
+    "multihop_mt": {
+      "cells": 220,
+      "items": 20,
+      "groups": 17
+    },
+    "chain_intermediates": {
+      "cells": 220,
+      "items": 20,
+      "groups": 7
+    },
+    "role_bound_association": {
+      "cells": 2280,
+      "items": 20,
+      "groups": 10
+    }
+  },
+  "plotted_cell_metrics": {
+    "hallucination": [
+      {
+        "condition": "raw_n1-n1",
+        "numerator": 312,
+        "denominator": 760,
+        "value": 0.4105263157894737,
+        "ci95": [
+          0.30719794344473006,
+          0.5160875160875161
+        ],
+        "items": 20,
+        "independent_groups": 20,
+        "defined_draws": 2000,
+        "warning": null
+      },
+      {
+        "condition": "capped_n1-n1",
+        "numerator": 313,
+        "denominator": 761,
+        "value": 0.41130091984231276,
+        "ci95": [
+          0.308,
+          0.5154241645244216
+        ],
+        "items": 20,
+        "independent_groups": 20,
+        "defined_draws": 2000,
+        "warning": null
+      },
+      {
+        "condition": "best_n_exact-n16",
+        "numerator": 307,
+        "denominator": 762,
+        "value": 0.40288713910761154,
+        "ci95": [
+          0.30686406460296095,
+          0.5026809651474531
+        ],
+        "items": 20,
+        "independent_groups": 20,
+        "defined_draws": 2000,
+        "warning": null
+      },
+      {
+        "condition": "best_n_exact-n32",
+        "numerator": 299,
+        "denominator": 762,
+        "value": 0.39238845144356954,
+        "ci95": [
+          0.28681177976952626,
+          0.5065274151436031
+        ],
+        "items": 20,
+        "independent_groups": 20,
+        "defined_draws": 2000,
+        "warning": null
+      },
+      {
+        "condition": "random_complete-n32",
+        "numerator": 317,
+        "denominator": 762,
+        "value": 0.41601049868766404,
+        "ci95": [
+          0.30474934036939316,
+          0.5257214554579673
+        ],
+        "items": 20,
+        "independent_groups": 20,
+        "defined_draws": 2000,
+        "warning": null
+      },
+      {
+        "condition": "pooled_greedy_swap-n16",
+        "numerator": 307,
+        "denominator": 759,
+        "value": 0.4044795783926219,
+        "ci95": [
+          0.30730478589420657,
+          0.5
+        ],
+        "items": 20,
+        "independent_groups": 20,
+        "defined_draws": 2000,
+        "warning": null
+      },
+      {
+        "condition": "pooled_greedy_swap-n32",
+        "numerator": 305,
+        "denominator": 760,
+        "value": 0.40131578947368424,
+        "ci95": [
+          0.2962962962962963,
+          0.5089743589743589
+        ],
+        "items": 20,
+        "independent_groups": 20,
+        "defined_draws": 2000,
+        "warning": null
+      },
+      {
+        "condition": "best_n_specificity_mean-n32",
+        "numerator": 295,
+        "denominator": 763,
+        "value": 0.38663171690694625,
+        "ci95": [
+          0.28350515463917525,
+          0.4980392156862745
+        ],
+        "items": 20,
+        "independent_groups": 20,
+        "defined_draws": 2000,
+        "warning": null
+      },
+      {
+        "condition": "best_n_specificity_mean_then_prune_0.005-n32",
+        "numerator": 271,
+        "denominator": 759,
+        "value": 0.3570487483530962,
+        "ci95": [
+          0.25202156334231807,
+          0.4663143989431968
+        ],
+        "items": 20,
+        "independent_groups": 20,
+        "defined_draws": 2000,
+        "warning": null
+      },
+      {
+        "condition": "best_n_specificity_mean_random_delete_matched_0.005-n32",
+        "numerator": 262,
+        "denominator": 756,
+        "value": 0.34656084656084657,
+        "ci95": [
+          0.25206611570247933,
+          0.45
+        ],
+        "items": 20,
+        "independent_groups": 20,
+        "defined_draws": 2000,
+        "warning": null
+      },
+      {
+        "condition": "prune_loo_a32_0.005-n32",
+        "numerator": 277,
+        "denominator": 759,
+        "value": 0.36495388669301715,
+        "ci95": [
+          0.25920679886685555,
+          0.47638326585695007
+        ],
+        "items": 20,
+        "independent_groups": 20,
+        "defined_draws": 2000,
+        "warning": null
+      },
+      {
+        "condition": "random_delete_matched_a32_0.005-n32",
+        "numerator": 267,
+        "denominator": 752,
+        "value": 0.3550531914893617,
+        "ci95": [
+          0.25930851063829785,
+          0.4568733153638814
+        ],
+        "items": 20,
+        "independent_groups": 20,
+        "defined_draws": 2000,
+        "warning": null
+      }
+    ],
+    "multihop_mt": [
+      {
+        "condition": "raw_n1-n1",
+        "numerator": 26,
+        "denominator": 220,
+        "value": 0.11818181818181818,
+        "ci95": [
+          0.039525691699604744,
+          0.2222222222222222
+        ],
+        "items": 20,
+        "independent_groups": 17,
+        "defined_draws": 2000,
+        "warning": null
+      },
+      {
+        "condition": "capped_n1-n1",
+        "numerator": 26,
+        "denominator": 220,
+        "value": 0.11818181818181818,
+        "ci95": [
+          0.039525691699604744,
+          0.2222222222222222
+        ],
+        "items": 20,
+        "independent_groups": 17,
+        "defined_draws": 2000,
+        "warning": null
+      },
+      {
+        "condition": "best_n_exact-n16",
+        "numerator": 31,
+        "denominator": 220,
+        "value": 0.1409090909090909,
+        "ci95": [
+          0.045454545454545456,
+          0.2727272727272727
+        ],
+        "items": 20,
+        "independent_groups": 17,
+        "defined_draws": 2000,
+        "warning": null
+      },
+      {
+        "condition": "best_n_exact-n32",
+        "numerator": 29,
+        "denominator": 220,
+        "value": 0.1318181818181818,
+        "ci95": [
+          0.03896103896103896,
+          0.2545454545454545
+        ],
+        "items": 20,
+        "independent_groups": 17,
+        "defined_draws": 2000,
+        "warning": null
+      },
+      {
+        "condition": "random_complete-n32",
+        "numerator": 24,
+        "denominator": 220,
+        "value": 0.10909090909090909,
+        "ci95": [
+          0.03827751196172249,
+          0.20574162679425836
+        ],
+        "items": 20,
+        "independent_groups": 17,
+        "defined_draws": 2000,
+        "warning": null
+      },
+      {
+        "condition": "pooled_greedy_swap-n16",
+        "numerator": 30,
+        "denominator": 220,
+        "value": 0.13636363636363635,
+        "ci95": [
+          0.04784688995215311,
+          0.2535885167464115
+        ],
+        "items": 20,
+        "independent_groups": 17,
+        "defined_draws": 2000,
+        "warning": null
+      },
+      {
+        "condition": "pooled_greedy_swap-n32",
+        "numerator": 29,
+        "denominator": 220,
+        "value": 0.1318181818181818,
+        "ci95": [
+          0.05194805194805195,
+          0.23444976076555024
+        ],
+        "items": 20,
+        "independent_groups": 17,
+        "defined_draws": 2000,
+        "warning": null
+      },
+      {
+        "condition": "best_n_specificity_mean-n32",
+        "numerator": 30,
+        "denominator": 220,
+        "value": 0.13636363636363635,
+        "ci95": [
+          0.04132231404958678,
+          0.2590909090909091
+        ],
+        "items": 20,
+        "independent_groups": 17,
+        "defined_draws": 2000,
+        "warning": null
+      },
+      {
+        "condition": "best_n_specificity_mean_then_prune_0.005-n32",
+        "numerator": 20,
+        "denominator": 220,
+        "value": 0.09090909090909091,
+        "ci95": [
+          0.03349282296650718,
+          0.16942148760330578
+        ],
+        "items": 20,
+        "independent_groups": 17,
+        "defined_draws": 2000,
+        "warning": null
+      },
+      {
+        "condition": "best_n_specificity_mean_random_delete_matched_0.005-n32",
+        "numerator": 20,
+        "denominator": 220,
+        "value": 0.09090909090909091,
+        "ci95": [
+          0.030303030303030304,
+          0.17727272727272728
+        ],
+        "items": 20,
+        "independent_groups": 17,
+        "defined_draws": 2000,
+        "warning": null
+      },
+      {
+        "condition": "prune_loo_a32_0.005-n32",
+        "numerator": 20,
+        "denominator": 220,
+        "value": 0.09090909090909091,
+        "ci95": [
+          0.030303030303030304,
+          0.17727272727272728
+        ],
+        "items": 20,
+        "independent_groups": 17,
+        "defined_draws": 2000,
+        "warning": null
+      },
+      {
+        "condition": "random_delete_matched_a32_0.005-n32",
+        "numerator": 18,
+        "denominator": 220,
+        "value": 0.08181818181818182,
+        "ci95": [
+          0.025974025974025976,
+          0.16161616161616163
+        ],
+        "items": 20,
+        "independent_groups": 17,
+        "defined_draws": 2000,
+        "warning": null
+      }
+    ],
+    "chain_intermediates": [
+      {
+        "condition": "raw_n1-n1",
+        "numerator": 16,
+        "denominator": 220,
+        "value": 0.07272727272727272,
+        "ci95": [
+          0.03463203463203463,
+          0.11570247933884298
+        ],
+        "items": 20,
+        "independent_groups": 7,
+        "defined_draws": 2000,
+        "warning": "Tiny group count; intervals cannot establish robustness"
+      },
+      {
+        "condition": "capped_n1-n1",
+        "numerator": 15,
+        "denominator": 220,
+        "value": 0.06818181818181818,
+        "ci95": [
+          0.025974025974025976,
+          0.11462450592885376
+        ],
+        "items": 20,
+        "independent_groups": 7,
+        "defined_draws": 2000,
+        "warning": "Tiny group count; intervals cannot establish robustness"
+      },
+      {
+        "condition": "best_n_exact-n16",
+        "numerator": 17,
+        "denominator": 220,
+        "value": 0.07727272727272727,
+        "ci95": [
+          0.05371900826446281,
+          0.10526315789473684
+        ],
+        "items": 20,
+        "independent_groups": 7,
+        "defined_draws": 2000,
+        "warning": "Tiny group count; intervals cannot establish robustness"
+      },
+      {
+        "condition": "best_n_exact-n32",
+        "numerator": 12,
+        "denominator": 220,
+        "value": 0.05454545454545454,
+        "ci95": [
+          0.024793388429752067,
+          0.09696969696969697
+        ],
+        "items": 20,
+        "independent_groups": 7,
+        "defined_draws": 2000,
+        "warning": "Tiny group count; intervals cannot establish robustness"
+      },
+      {
+        "condition": "random_complete-n32",
+        "numerator": 17,
+        "denominator": 220,
+        "value": 0.07727272727272727,
+        "ci95": [
+          0.03636363636363636,
+          0.12554112554112554
+        ],
+        "items": 20,
+        "independent_groups": 7,
+        "defined_draws": 2000,
+        "warning": "Tiny group count; intervals cannot establish robustness"
+      },
+      {
+        "condition": "pooled_greedy_swap-n16",
+        "numerator": 10,
+        "denominator": 220,
+        "value": 0.045454545454545456,
+        "ci95": [
+          0.015151515151515152,
+          0.0861244019138756
+        ],
+        "items": 20,
+        "independent_groups": 7,
+        "defined_draws": 2000,
+        "warning": "Tiny group count; intervals cannot establish robustness"
+      },
+      {
+        "condition": "pooled_greedy_swap-n32",
+        "numerator": 10,
+        "denominator": 220,
+        "value": 0.045454545454545456,
+        "ci95": [
+          0.01818181818181818,
+          0.07727272727272727
+        ],
+        "items": 20,
+        "independent_groups": 7,
+        "defined_draws": 2000,
+        "warning": "Tiny group count; intervals cannot establish robustness"
+      },
+      {
+        "condition": "best_n_specificity_mean-n32",
+        "numerator": 16,
+        "denominator": 220,
+        "value": 0.07272727272727272,
+        "ci95": [
+          0.04743083003952569,
+          0.10909090909090909
+        ],
+        "items": 20,
+        "independent_groups": 7,
+        "defined_draws": 2000,
+        "warning": "Tiny group count; intervals cannot establish robustness"
+      },
+      {
+        "condition": "best_n_specificity_mean_then_prune_0.005-n32",
+        "numerator": 10,
+        "denominator": 220,
+        "value": 0.045454545454545456,
+        "ci95": [
+          0.019138755980861243,
+          0.07792207792207792
+        ],
+        "items": 20,
+        "independent_groups": 7,
+        "defined_draws": 2000,
+        "warning": "Tiny group count; intervals cannot establish robustness"
+      },
+      {
+        "condition": "best_n_specificity_mean_random_delete_matched_0.005-n32",
+        "numerator": 15,
+        "denominator": 220,
+        "value": 0.06818181818181818,
+        "ci95": [
+          0.0371900826446281,
+          0.11229946524064172
+        ],
+        "items": 20,
+        "independent_groups": 7,
+        "defined_draws": 2000,
+        "warning": "Tiny group count; intervals cannot establish robustness"
+      },
+      {
+        "condition": "prune_loo_a32_0.005-n32",
+        "numerator": 9,
+        "denominator": 220,
+        "value": 0.04090909090909091,
+        "ci95": [
+          0.02066115702479339,
+          0.07142857142857142
+        ],
+        "items": 20,
+        "independent_groups": 7,
+        "defined_draws": 2000,
+        "warning": "Tiny group count; intervals cannot establish robustness"
+      },
+      {
+        "condition": "random_delete_matched_a32_0.005-n32",
+        "numerator": 17,
+        "denominator": 220,
+        "value": 0.07727272727272727,
+        "ci95": [
+          0.04132231404958678,
+          0.12121212121212122
+        ],
+        "items": 20,
+        "independent_groups": 7,
+        "defined_draws": 2000,
+        "warning": "Tiny group count; intervals cannot establish robustness"
+      }
+    ],
+    "role_bound_association": [
+      {
+        "condition": "raw_n1-n1",
+        "numerator": 85,
+        "denominator": 2280,
+        "value": 0.03728070175438596,
+        "ci95": [
+          0.010964912280701754,
+          0.06973684210526315
+        ],
+        "items": 20,
+        "independent_groups": 10,
+        "defined_draws": 2000,
+        "warning": null
+      },
+      {
+        "condition": "capped_n1-n1",
+        "numerator": 85,
+        "denominator": 2280,
+        "value": 0.03728070175438596,
+        "ci95": [
+          0.010964912280701754,
+          0.06885964912280702
+        ],
+        "items": 20,
+        "independent_groups": 10,
+        "defined_draws": 2000,
+        "warning": null
+      },
+      {
+        "condition": "best_n_exact-n16",
+        "numerator": 97,
+        "denominator": 2280,
+        "value": 0.04254385964912281,
+        "ci95": [
+          0.016666666666666666,
+          0.07587719298245614
+        ],
+        "items": 20,
+        "independent_groups": 10,
+        "defined_draws": 2000,
+        "warning": null
+      },
+      {
+        "condition": "best_n_exact-n32",
+        "numerator": 96,
+        "denominator": 2280,
+        "value": 0.042105263157894736,
+        "ci95": [
+          0.014035087719298246,
+          0.07631578947368421
+        ],
+        "items": 20,
+        "independent_groups": 10,
+        "defined_draws": 2000,
+        "warning": null
+      },
+      {
+        "condition": "random_complete-n32",
+        "numerator": 95,
+        "denominator": 2280,
+        "value": 0.041666666666666664,
+        "ci95": [
+          0.012719298245614035,
+          0.07850877192982456
+        ],
+        "items": 20,
+        "independent_groups": 10,
+        "defined_draws": 2000,
+        "warning": null
+      },
+      {
+        "condition": "pooled_greedy_swap-n16",
+        "numerator": 102,
+        "denominator": 2280,
+        "value": 0.04473684210526316,
+        "ci95": [
+          0.015789473684210527,
+          0.0837719298245614
+        ],
+        "items": 20,
+        "independent_groups": 10,
+        "defined_draws": 2000,
+        "warning": null
+      },
+      {
+        "condition": "pooled_greedy_swap-n32",
+        "numerator": 98,
+        "denominator": 2280,
+        "value": 0.04298245614035088,
+        "ci95": [
+          0.015789473684210527,
+          0.07719298245614035
+        ],
+        "items": 20,
+        "independent_groups": 10,
+        "defined_draws": 2000,
+        "warning": null
+      },
+      {
+        "condition": "best_n_specificity_mean-n32",
+        "numerator": 95,
+        "denominator": 2280,
+        "value": 0.041666666666666664,
+        "ci95": [
+          0.013596491228070176,
+          0.07587719298245614
+        ],
+        "items": 20,
+        "independent_groups": 10,
+        "defined_draws": 2000,
+        "warning": null
+      },
+      {
+        "condition": "best_n_specificity_mean_then_prune_0.005-n32",
+        "numerator": 97,
+        "denominator": 2280,
+        "value": 0.04254385964912281,
+        "ci95": [
+          0.013157894736842105,
+          0.07894736842105263
+        ],
+        "items": 20,
+        "independent_groups": 10,
+        "defined_draws": 2000,
+        "warning": null
+      },
+      {
+        "condition": "best_n_specificity_mean_random_delete_matched_0.005-n32",
+        "numerator": 96,
+        "denominator": 2280,
+        "value": 0.042105263157894736,
+        "ci95": [
+          0.014035087719298246,
+          0.0780701754385965
+        ],
+        "items": 20,
+        "independent_groups": 10,
+        "defined_draws": 2000,
+        "warning": null
+      },
+      {
+        "condition": "prune_loo_a32_0.005-n32",
+        "numerator": 94,
+        "denominator": 2280,
+        "value": 0.0412280701754386,
+        "ci95": [
+          0.014035087719298246,
+          0.07412280701754385
+        ],
+        "items": 20,
+        "independent_groups": 10,
+        "defined_draws": 2000,
+        "warning": null
+      },
+      {
+        "condition": "random_delete_matched_a32_0.005-n32",
+        "numerator": 83,
+        "denominator": 2280,
+        "value": 0.03640350877192983,
+        "ci95": [
+          0.010526315789473684,
+          0.06885964912280702
+        ],
+        "items": 20,
+        "independent_groups": 10,
+        "defined_draws": 2000,
+        "warning": null
+      }
+    ]
+  },
+  "axis_definitions": {
+    "hallucination": "Contradicted / specific readouts (%) - lower is better",
+    "multihop_mt": "Bridge mentions / intended cells (%) - higher is better",
+    "chain_intermediates": "Number recovery / intended cells (%) - higher is better",
+    "role_bound_association": "Role task passes / intended cells (%) - higher is better"
+  },
+  "files": [
+    {
+      "path": "family-cell-rates.png",
+      "sha256": "48b0ca004fd236e331909ce2c8f9a263580a6bf4c4cfffa1605bb67cb31deb8f"
+    },
+    {
+      "path": "family-cell-rates.pdf",
+      "sha256": "3feac20d6fbc439764971188f9b781a68e7e87286fbd06c26174a6f1152477ec"
+    },
+    {
+      "path": "cross-task-error-recovery.png",
+      "sha256": "d461db8edb5a72b9e55232db1ecf61c713549ea8ae189056ba7bb91772471951"
+    },
+    {
+      "path": "cross-task-error-recovery.pdf",
+      "sha256": "c3575ddb1bba9f8e48f12cc70c2c46661b866d7fcf411dee6034c5f71517a2ef"
+    }
+  ],
+  "matplotlib_version": "3.11.1",
+  "limits": [
+    "Separate family denominators; no hidden cross-family macro.",
+    "Item ANY recovery and cell recovery are different endpoints.",
+    "Transcript contradictions are distinct from true/unverifiable claim tallies and false spans.",
+    "Grouped intervals are unadjusted; traces are sampled evidence, not prevalence estimates.",
+    "A32 versus N1 combines candidate budget and selection; component/matched-deletion pairs address only their declared contrast.",
+    "No combined score across task families or automatic winner is computed.",
+    "Only source-provided paired contrasts are displayed; absent intervals remain missing.",
+    "No interval recomputation, aggregation, winner selection, cost total or GPU dollar estimate.",
+    "Cross-task axes use distinct family cohorts; marginal intervals do not quantify joint dominance."
+  ]
+}

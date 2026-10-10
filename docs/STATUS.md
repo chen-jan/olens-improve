@@ -1,25 +1,39 @@
 # Execution status
 
-Updated: 2026-10-10, approximately 11:52 UTC.
+Updated: 2026-10-10, approximately 12:42 UTC.
 Started: 2026-10-10 01:25:36 UTC (October 9, 21:25:36 EDT).
 Target finish: 2026-10-10 21:25:36 UTC. Execution remains active and authorized.
 
 ## Latest operational checkpoint
 
-At 11:50 UTC all 10,714 held-out cells have their 32 samples. Independent
-resource checks confirm the four generation wrappers are absent, with no
-remaining generation steps or GPU compute processes. TEST analysis remains
-sealed until the final method freeze. Validation has complete coverage for
-47 of 48 method-family comparisons; its final role comparison is running
-alone, with no new uncertain charges since recovery. Development judging stays
-stopped. The dashboard and local screenshot were refreshed at 11:52 UTC.
+Validation is complete for all **12 methods and controls across four families**
+(3,485 cells, 80 items). The source-bound analysis and two independent trace
+reviews support two prospective final-test choices: **best-of-16** and
+**best-of-32 with matched-control specificity**. These are candidates for
+confirmation, not established improvements in explanation faithfulness.
+Pruning's lower error rate is matched or improved by random shortening;
+pooling loses substantial numerical recovery. The exact six-arm final test
+will retain raw/capped N1, best-of-16, best-of-32, random N32 and specificity N32.
 
-The final TEST judge launcher passed six offline guard tests and independent
-source review. It binds the final menu, analysis permission, exports, forecast
-and fixed Luna settings before dispatch. This preparation has made no TEST
-API calls. A possible ledger responsiveness patch is being developed in an
-isolated temporary copy; live evaluator sources remain unchanged while VAL
-and its signed report finish.
+All 10,714 held-out cells already have 32 samples. The final method freeze and
+separate analysis gate are sealed; all 342,848 samples passed identity checks.
+Reconstruction input preparation is running on the allocated CPU. No TEST
+quality result is available.
+The 12:19 resource watcher confirms all four H200s idle and both scoped CPU
+allocations running without memory-limit failures. The new 16-core/80-GiB CPU
+allocation 25489638 is reserved for TEST preparation and selection. The final
+judge launcher passed six offline guard tests and independent source review.
+
+An asynchronous accounting patch passed 45 isolated tests and a copied-ledger
+fake-network load check. Its applied allocated rerun also passed all 45 tests before
+any new paid dispatch; no judge requests, score definitions or budget limits
+change. Development judging remains stopped. The dashboard now displays the reviewed validation comparison, plots and
+paired examples; its 12:35 local browser render passed visual inspection.
+
+The latest 12:19 resource snapshot records **$13.15279** in usage-based API cost
+and **$4.78019** in uncertain charges retained in full, with no live reservations.
+Project storage is **48.85 GB logical / 38.90 GB allocated**, excluding the reused
+55.56-GB base-model cache. These are measurements, not invoice or quota totals.
 
 ## Findings so far
 
@@ -98,7 +112,7 @@ first source-checked dashboard with grouped intervals. Nothing has been pushed.
 | Single-method pilots | A/B/C/D/E1/E3/F judged; E2/G diagnostics complete with limits; exact-claim-span v3 stopped after its eight-cell contract audit, without benchmark-quality measurement |
 | Combinations | 65 unique pilot conditions judged and source-checked; larger E1-plus-pruning outputs complete and awaiting judging |
 | Additional controls | All32 judgments and matched-donor N1 complete; all requested cells/stages covered |
-| Held-out evaluation | All 3,485 validation cells have immutable pools, reconstruction and twelve-method exports. Hallucination, multi-hop and chain are scientifically complete; role is 10/12. Only the final two role conditions resumed at 11:36 as the sole judge worker, after both queues stopped cleanly. Blind TEST sampling is 10,208/10,714 cells (95.3%) at 11:37:31 on four H200s; TEST analysis stays closed. |
+| Held-out evaluation | Validation complete: 12 methods × four families, with systematic trace review. TEST sampling complete: 10,714 cells × 32. Final six-arm freeze and analysis gate sealed; reconstruction input preparation running; TEST scoring pending. |
 
 Combination comparisons retain unchanged parents, component-off outputs, and
 random deletion matched on retained bullet count. Fixed support weights are
@@ -112,40 +126,16 @@ The corresponding role cell count is only 151/3,420: an item passes when any
 inspected site passes, so item recovery must not be read as uniformly faithful
 readouts. These are original-grid development scores, not held-out results.
 
-Next: monitor the sole role worker finishing the final two validation conditions.
-Run the exact signed twelve-method report and inspect systematic traces, then
-select at most two quality/cost operating points before freezing the TEST menu.
-The unchanged VAL forecast is $4.7571 with a $15 atomic run cap; eight slots/200
-RPM remain fixed. At 10:14:43, VAL had 25,944 settled attempts, thirteen unknown
-holds totaling $0.068209 and one abandoned reservation of $0.005490875. All holds
-remain committed. Hallucination failed while a read-only accounting snapshot
-requested the SQLite writer lock; role then reached the uncertainty guard.
-The minimal read-only snapshot fix passed eighteen budget tests and is committed
-as `ea0f972`. The one abandoned reservation was classified unknown with its full
-amount retained, and both judges resumed at 10:45 under the reviewed recovery
-spec. At 10:46, 218 additional responses had settled with zero new unknowns;
-recent p95 request latencies were 2.54 seconds for hallucination and 2.10 seconds
-for role. This early health window does not establish a durable fix. No
-validation conclusion or final method choice has been made. At 11:07:47,
-three families had all twelve conditions complete and role had nine; the role
-latest-100 window had no new unknowns, p95 latency 1.93 seconds and oldest live
-request 1.15 seconds. All fourteen incident holds remain intact.
-See [experiment 029](experiments/029-validation-comparison.md).
+Next: finish reconstruction input preparation, then run four encoder
+partitions on the retained H200s. The six-arm freeze and gate are committed;
+validation results and figures are published locally. Complete the remaining
+development sampling curves opportunistically without changing the final menu. See [validation experiment 029](experiments/029-validation-comparison.md).
+The final fresh-input timing check and held-out judgments remain pending.
 
-Blind TEST sampling started at 08:32 UTC. At 11:37:31, 10,208 of 10,714 cells
-(95.3%) were complete, with a conditional generation-only forecast near 11:49 UTC.
-TEST text, AR, selection and judging remain sealed until the final freeze and
-separate analysis gate. The GPU work is unaffected by the judging interruption.
+## Earlier operational history
 
-The 10:58:29 read-only resource watcher recorded $12.25288 in usage-based API
-charges plus $4.68952 reserved, including $4.67023 of unresolved charges. This
-is not invoice reconciliation. Project-owned storage was 48.56 GB logical
-across fast and durable locations. All four H200 probes succeeded at 99–100%
-utilization; the judge CPU allocation used about 4.91 GiB of its 32 GiB limit
-with no recorded memory-limit failures. Source-bound [reviewed cost metadata](experiments/031-inference-cost-reporting.md) now
-covers each method and combination, separating new-input inference,
-shared research computation, cached replay and benchmark judging. The prepared
-N32 new-input timing driver has not yet run.
+The following notes preserve earlier incidents and partial-development states;
+the current checkpoint above supersedes their progress and cost snapshots.
 
 The earlier DEV judging recovery used eight slots/200 RPM per family with fresh operational
 profiles and the same $20 run ceiling, exact requests, caches and uncertain

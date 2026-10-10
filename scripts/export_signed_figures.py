@@ -84,7 +84,7 @@ def interval(ax, metric, at, *, vertical=False, color='#537990'):
         ax.vlines([low,high],at-.10,at+.10,color=color,linewidth=1)
 
 
-def export(section, output, *, cross_task=False):
+def export(section, output, *, cross_task=False, zoom_cross_task=False):
     # Keep plotting caches off HOME; no dependency/model loads or installs.
     os.environ.setdefault('MPLCONFIGDIR','/tmp/olens-improve-matplotlib')
     import matplotlib
@@ -153,8 +153,19 @@ def export(section, output, *, cross_task=False):
                 interval(ax,hall,y,color=color)
                 interval(ax,recovery,x,vertical=True,color=color)
                 ax.plot(x,y,'o',color=color,markersize=6)
-                ax.annotate(str(i+1),(x,y),xytext=(4,4),textcoords='offset points',fontsize=8)
-            ax.set_xlim(-1,101); ax.set_ylim(-1,101)
+                if not zoom_cross_task:
+                    ax.annotate(str(i+1),(x,y),xytext=(4,4),textcoords='offset points',fontsize=8)
+            if zoom_cross_task:
+                def supplied_extent(rows):
+                    values = [100*v for row in rows for v in
+                              (row.get('ci95') or [row['value']]) if v is not None]
+                    lo, hi = min(values), max(values)
+                    pad = max(1., .10*(hi-lo))
+                    return max(0.,lo-pad), min(100.,hi+pad)
+                ax.set_xlim(*supplied_extent(data['hallucination']))
+                ax.set_ylim(*supplied_extent(data[family]))
+            else:
+                ax.set_xlim(-1,101); ax.set_ylim(-1,101)
             ax.set_xlabel('Hall contradiction rate (%) - lower is better')
             ax.set_ylabel(AXES[family].split(' - ')[0])
             ax.set_title(labels.display_label(family)+' - separate cohort')
@@ -162,16 +173,18 @@ def export(section, output, *, cross_task=False):
         handles = [Line2D([],[],marker='o',linestyle='',color=colors(i%20),
                    label=f'{i+1}. '+textwrap.fill(display_names[i],42)) for i,name in enumerate(names)]
         fig.legend(handles=handles,loc='lower center',bbox_to_anchor=(.5,.09),ncol=2,fontsize=9,frameon=False)
-        fig.suptitle(prefix+stage+' cross-task error and recovery\n'
+        fig.suptitle(prefix+stage+' cross-task error and recovery'+
+                     (' — zoomed axes; values unchanged' if zoom_cross_task else '')+'\n'
                      'Different item cohorts; not same-item precision/recall or evidence of statistical dominance',fontsize=14)
         fig.text(.5,.025,'Supplied marginal per-method 95% intervals, not joint intervals. '
                  'Undefined rates are omitted; no winner or fitted frontier. Source SHA-256 '+source[:12],ha='center',fontsize=10)
-        save(fig,'cross-task-error-recovery')
+        save(fig,'cross-task-error-recovery-zoom' if zoom_cross_task else 'cross-task-error-recovery')
 
     provenance = {'status':'exported_supplied_values_no_aggregation','created_utc':datetime.now(timezone.utc).isoformat(),
         'stage':section['stage'],'source_path':section['source_path'],'source_sha256':source,
         'review_metadata_sha256':section['review_metadata_sha256'],'reviewed_by':section['review']['reviewed_by'],
         'figure_scope_label':section['review'].get('figure_scope_label'),
+        'cross_task_zoomed_axes':zoom_cross_task,
         'identities':section['identities'],'method_order':names,'method_display_labels':display_names,
         'family_counts':section['family_counts'],
         'plotted_cell_metrics':data,'axis_definitions':AXES,'files':files,'matplotlib_version':matplotlib.__version__,
@@ -187,9 +200,12 @@ def main():
         p.add_argument('--'+key,type=Path,required=True)
     p.add_argument('--expected-sha256',required=True)
     p.add_argument('--cross-task',action='store_true')
+    p.add_argument('--zoom-cross-task',action='store_true',
+                   help='Use clearly labeled supplied-interval axis ranges; no value or interval changes')
     args = p.parse_args()
     section = load_section(args.analysis,args.review,args.expected_sha256)
-    result = export(section,args.output,cross_task=args.cross_task)
+    result = export(section,args.output,cross_task=args.cross_task or args.zoom_cross_task,
+                    zoom_cross_task=args.zoom_cross_task)
     print(json.dumps({'output':str(args.output),'stage':result['stage'],'source_sha256':result['source_sha256'],
                       'new_model_calls':0,'new_API_calls':0}))
 
