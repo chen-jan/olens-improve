@@ -94,7 +94,7 @@
       "ram_gib": 64,
       "end_utc": "2026-10-10T22:23:24+00:00",
       "requested_utc": "2026-10-10T02:22:59Z",
-      "last_check_utc": "2026-10-10T20:46:56.249970+00:00",
+      "last_check_utc": "2026-10-10T22:37:20.864319+00:00",
       "state": "RELEASED_RECORD_UNAVAILABLE",
       "reason": "None",
       "partition": "${SLURM_PREEMPT_PARTITION}",
@@ -127,15 +127,21 @@
       "fallback_after_pending_seconds": 720,
       "fallback_gpu": "h100",
       "progress": "Completed; intentional allocation release authorized by root",
-      "last_check_utc": "2026-10-10T20:46:56.249970+00:00",
+      "last_check_utc": "2026-10-10T22:37:20.864319+00:00",
       "intentionally_released_utc": "2026-10-10T04:40:41.401195+00:00",
       "release_reason": "Production AR complete for all 5,236 DEV cells; model owner confirms no queued GPU work and allocated nvidia-smi verifies no compute process."
     }
   ],
   "watcher": {
     "agent": "/root/compute_storage_audit",
-    "status": "active-session",
-    "last_check_utc": "2026-10-10T20:46:56.249970+00:00"
+    "status": "stopped",
+    "last_check_utc": "2026-10-10T22:37:20.864319+00:00",
+    "pid": 1536219,
+    "stopped_utc": "2026-10-10T22:38:42.785140+00:00",
+    "monitoring_continues": false,
+    "stop_reason": "All paid/model work complete; root authorized exact owned watcher cleanup. Original user CPU allocation preserved.",
+    "stop_receipt_path": "${OLENS_DATA_ROOT}/diagnostics/final-resources-v1/watcher-stop-v1.json",
+    "stop_receipt_sha256": "affc0d7e6ec9c466fbc240b5a12c948172c6c83d2ef097f16a0c85d8a658db33"
   },
   "environment_versions": {
     "python": "3.12.13",
@@ -182,7 +188,7 @@
       "memory_failcnt": 0,
       "api_dispatch_by_infra": false,
       "queue_seconds": 46,
-      "last_check_utc": "2026-10-10T20:46:56.249970+00:00",
+      "last_check_utc": "2026-10-10T22:37:20.864319+00:00",
       "intentionally_released_utc": "2026-10-10T17:42:04.381274+00:00",
       "release_reason": "Both oldjudgeprocesses terminal, all agentsteps released, squeue onlybatch/extern; successor25508300 nowowns bothjudges.",
       "actual_end_utc": "2026-10-10T17:42:03+00:00",
@@ -203,7 +209,7 @@
       "reason": null,
       "purpose": "Four 4-core VAL selector workers overlapping later authorized GPU generation; release after terminal selectors",
       "api_dispatch_by_infra": false,
-      "last_check_utc": "2026-10-10T20:46:56.249970+00:00",
+      "last_check_utc": "2026-10-10T22:37:20.864319+00:00",
       "end_utc": "2026-10-10T10:25:34+00:00",
       "physical_core_representatives": [
         0,
@@ -278,7 +284,7 @@
       "account": "${SLURM_CPU_ACCOUNT}",
       "qos": "${SLURM_CPU_ACCOUNT}",
       "partition": "${SLURM_CPU_PARTITION}",
-      "state": "RUNNING",
+      "state": "RELEASED",
       "started_utc": "2026-10-10T17:32:23+00:00",
       "end_utc": "2026-10-11T05:32:23+00:00",
       "purpose": "Shared ledger-coordination handoff and remaining TEST/DEV judging; release after completion",
@@ -288,7 +294,14 @@
       "requested_utc": "2026-10-10T17:32:17+00:00",
       "submission_time_source": "Slurm SubmitTime2026-10-10T13:32:17 America/New_York, independently inspected2026-10-10",
       "reason": "None",
-      "last_check_utc": "2026-10-10T20:46:56.249970+00:00"
+      "last_check_utc": "2026-10-10T22:37:20.864319+00:00",
+      "intentionally_released_utc": "2026-10-10T22:42:47+00:00",
+      "actual_end_utc": "2026-10-10T22:42:47+00:00",
+      "allocation_elapsed_seconds": 18624,
+      "release_reason": "Root confirmed all final figure/deck/render/package checks terminal and authorized release of only project-owned successorCPU25508300.",
+      "release_confirmed_by": "squeue absent; sacct CANCELLED by${UID}, batch CANCELLED, extern COMPLETED",
+      "release_receipt_path": "${OLENS_DATA_ROOT}/diagnostics/final-resources-v1/successor-cpu-release-v1.json",
+      "release_receipt_sha256": "1b663437505995b1d64529edfaa02bc091451d4ae73be4b669f6df130e5b415b"
     }
   ],
   "judging_cpu_allocation_id": 25508300,

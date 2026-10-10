@@ -52,3 +52,13 @@ Immutable final receipt: `${OLENS_DATA_ROOT}/diagnostics/final-resources-v1/rece
 - Preserved 16:49 allocation receipt, SHA256 `f9b69d2b7ec2d0500e1e809d979c56461653e3640a56e1e34b5f9366710c558a`, and the exact [GPU handoff](../../configs/gpu_handoff_v1.json).
 
 All cited source bytes were checked. This final audit performed no new ledger query, API call, GPU probe, inference, deletion or allocation release. CPU 25508300 remains held until the final figures/deck are complete and root coordinates release.
+
+## Watcher cleanup after resource inventory
+
+Root authorized stopping only project watcher PID 1536219 on the original CPU allocation 25299630. Fresh UID ${UID}, exact command and process start ticks 530583552 matched before cooperative SIGTERM. At **2026-10-10T22:38:42.785140+00:00**, the watcher wrote a stopped heartbeat and its PID was absent. No future periodic monitoring is promised. The original user CPU allocation was not cancelled; successor 25508300 remains held for final render/package/public-build checks until separate root release authorization. This cleanup does not revise the earlier accounting/storage timepoints. Receipt: `durable/diagnostics/final-resources-v1/watcher-stop-v1.json`, SHA `affc0d7e6ec9c466fbc240b5a12c948172c6c83d2ef097f16a0c85d8a658db33`.
+
+## Final successor CPU release
+
+After all final figure/deck/render/package checks were terminal, root authorized release of only project-owned CPU job **25508300**. A fresh ownership/step check found only batch and extern holds, with no substantive step. `scancel` succeeded; the job briefly reported `COMPLETING`, then disappeared from `squeue`. `sacct` confirms **CANCELLED by ${UID}**, actual end **2026-10-10T22:42:47+00:00**, after **5h10m24s** of allocation wall time (8 CPUs / 32 GiB). This allocation duration is not measured CPU utilization. The original user allocation **25299630** and all handed-back GPUs were untouched. No project watcher or paid worker remains; no future monitoring is promised.
+
+Immutable release receipt: `durable/diagnostics/final-resources-v1/successor-cpu-release-v1.json`, SHA `1b663437505995b1d64529edfaa02bc091451d4ae73be4b669f6df130e5b415b`. This final cleanup supersedes the earlier statement that 25508300 was retained, without changing the resource/accounting inventory timepoints.

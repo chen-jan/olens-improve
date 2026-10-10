@@ -31,7 +31,7 @@ The twelve-arm validation comparison is complete. The original six primary condi
 - [x] Complete the DEV N1/2/4/8/16/32 comparison on all 5,236 original sites, with family-specific counts, grouped intervals and paired changes. Reviewed cell/item PNG and PDF figures preserve the source values. These are selected cached prefixes, not generation stopped at N tokens or a fitted scaling law. Source: [034](experiments/034-development-scaling-completion.md).
 - [x] Complete the approved off-benchmark N32 timing check and relocated-cache replay. [035](experiments/035-new-input-timing.md) records one synthetic fresh input: 59.59 seconds through first selection, with separately measured warm stages and replays. [036](experiments/036-portable-cache-persistence.md) verifies cache persistence and exact replay. This establishes that fixture and installed-wheel execution, not a clean-machine installation or a latency distribution. Keep these limitations and non-additive nested timers in final cost reporting.
 - [x] Reconcile usage estimates, retained uncertain charges and historical versus current project spend in the authoritative ledger. Report generation/AR/helper/selector compute separately from judging and campaign-cache reuse. Unknown GPU prices remain unknown; do not release charges because a replacement succeeded. See [013](experiments/013-measured-costs.md), [022 pricing correction](experiments/022-pricing-correction.md), [033 accounting](experiments/033-async-ledger-accounting.md).
-- [ ] Publish final local report/dashboard/PNG/PDF artifacts from the same reviewed summary and exact signed source. Label DEV/VAL/TEST, endpoint units, denominators, uncertainty and missingness. Complete the promised descriptive layer/position coverage maps from existing cells or explicitly mark them unfinished; they never select TEST layers. Audit links and view at desktop/mobile widths. Git delivery remains local commits; the user pushes.
+- [x] Publish final local report/dashboard/PNG/PDF artifacts from the same reviewed summary and exact signed source. Label DEV/VAL/TEST, endpoint units, denominators, uncertainty and missingness. Complete the promised descriptive layer/position coverage maps from existing cells or explicitly mark them unfinished; they never select TEST layers. Audit links and view at desktop/mobile widths. Git delivery remains local commits; the user pushes.
 
 Completion can be negative or inconclusive. If time expires, state exactly which required measurements are incomplete instead of declaring all work finished.
 
@@ -41,7 +41,7 @@ NLA layer 42, a second compatible AR, more J++ inference integration after fitti
 
 ## Report cleanup and reusable tool handoff
 
-Current-status openings of METHODS/README/STATUS/PLAN now reflect complete scientific work and pending final delivery; historical planned/observed sections are retained. REPORT and the final presentation remain with their assigned reviewers for the final completion pass. Verify every “in progress,” “pending,” “unavailable,” and “not run” against its exact scope. Keep the reported numerical sensitivity and 32-token AR blind spot visible. The complete statement about G must remain “diagnostic evidence,” not “validated independent selector.”
+Current-status openings of METHODS/README/STATUS/PLAN reflect completed science and published final delivery; historical planned/observed sections are retained. REPORT and the final presentation passed their assigned reviews. Verify every “in progress,” “pending,” “unavailable,” and “not run” against its exact scope. Keep the reported numerical sensitivity and 32-token AR blind spot visible. The complete statement about G must remain “diagnostic evidence,” not “validated independent selector.”
 
 The [README quickstart](../README.md) supplies explicit local base/adapter/AR/whitener paths, installation, vector generation, saved-pool import and replay. Retain a runnable example for A16 and one for Emean32 with caller-frozen controls, plus source manifests/cache tensor references and experimental-profile caveats. The installed-wheel DEV replay and synthetic N2 capture, generation, AR and replay are validated plumbing, not a full clean-machine dependency installation or semantic accuracy guarantee. The portable CLI is vector-first; it does not accept arbitrary raw text or bypass held-out gates. Final recommended-profile documentation should use the frozen identifiers and actual limitations, without hardcoded cluster defaults or mandatory helper/API infrastructure.
 
@@ -78,11 +78,11 @@ EXACT_TEST_EXPORT="$RUN/judging-inputs.jsonl"
 
 ## Public presentation and final slides
 
-User clarification at 13:18 UTC keeps the final scope to the four agreed families: released Oracle Lens versus our inference variants. The untouched 268-item test set is the primary final comparison. Any totals combining development, validation and test must be separately labeled as descriptive because method choices used development and validation.
+User clarification at 13:18 UTC keeps the final scope to the four agreed families: released Oracle Lens versus our inference variants. The 268-item held-out test set is the primary final comparison; its bounded pre-review auxiliary-field exposure is disclosed in the report. Any totals combining development, validation and test must be separately labeled as descriptive because method choices used development and validation.
 
 The public dashboard must lead with concise findings and clear graphics, use plain language and readable labels, and put detailed explanations and technical provenance in expandable sections. Update the same public URL after review; a local render alone does not prove a published update.
 
-- [ ] After final scientific review, create a concise, visually polished slide deck with findings first, then comprehensive plots for the principal methods, combinations, quality/cost comparisons and ablations. Include representative successes and failures, visual explanations of how the methods work, uncertainty, denominator/split labels, and limitations. Use an appendix and speaker notes for detail instead of dense slide text. Every plotted result must map to its reviewed source. Deliver editable slides and a shareable PDF, inspect the rendered slides, and link them from the final dashboard/report.
+- [x] After final scientific review, create a concise, visually polished slide deck with findings first, then comprehensive plots for the principal methods, combinations, quality/cost comparisons and ablations. Include representative successes and failures, visual explanations of how the methods work, uncertainty, denominator/split labels, and limitations. Use an appendix and speaker notes for detail instead of dense slide text. Every plotted result must map to its reviewed source. Deliver editable slides and a shareable PDF, inspect the rendered slides, and link them from the final dashboard/report.
 
 ## Prepared final reporting inputs (19:35 UTC)
 
@@ -90,7 +90,7 @@ These preparations did not inspect TEST quality. The exact DEV twelve-method exp
 
 [TEST workload metadata](../configs/cost_rows_test_v1.reviewed.json) provides the exact twelve candidate budgets and zero recurring helper calls. All timing and dollar quantities that are not yet separately measured remain explicitly missing. It can supply `cost_rows` to the eventual reviewed TEST section; it does not authorize outcome reveal or represent final financial reconciliation.
 
-The [final public packaging handoff](FINAL_PRESENTATION.md) documents reviewed source/figure/deck inputs. The figure exporter now supports `--question-level --paired-deltas`; new synthetic tests and independent review passed. The public exporter can attach the separately reviewed whole-469 appendix and exact reviewed deck/PDF/report downloads. Actual final TEST data and PNG/PDF exports are complete, with source provenance at `durable/figures/test-final-v1/provenance.json` (SHA `94f9cc11dee4389325abe67c7d03e4da54f362465ca7b6f9bf88908cddbd607a`). Final deck/publication visual checks and link verification remain required.
+The [final public packaging handoff](FINAL_PRESENTATION.md) documents reviewed source/figure/deck inputs. The figure exporter now supports `--question-level --paired-deltas`; new synthetic tests and independent review passed. The public exporter can attach the separately reviewed whole-469 appendix and exact reviewed deck/PDF/report downloads. Actual final TEST data and PNG/PDF exports are complete, with source provenance at `durable/figures/test-final-v1/provenance.json` (SHA `94f9cc11dee4389325abe67c7d03e4da54f362465ca7b6f9bf88908cddbd607a`). Final deck/publication visual checks and link verification are complete; see [DELIVERY.md](DELIVERY.md).
 
 ## Final evidence handoff
 
@@ -100,8 +100,8 @@ The [final public packaging handoff](FINAL_PRESENTATION.md) documents reviewed s
 - [x] Descriptive whole 469 analysis and independent source review completed, retaining stage separation. It does not replace the primary TEST 268 comparison.
 - [x] Final campaign resource/accounting inventory is recorded in [054](experiments/054-final-resources.md); all uncertain holds retained. GPU prices remain unknown.
 - [x] Portable vector-first package passed installed-wheel DEV replay, off-benchmark N2/N32 engineering and moved-cache exact replay checks. These do not establish clean-machine dependency installation, raw-text CLI capture, semantic accuracy on arbitrary inputs or a latency distribution.
-- [ ] Complete final editable slides/PDF and rendered visual/link checks.
-- [ ] Publish the final reviewed dashboard/report/download bundle to the existing public URL and verify the delivered version.
-- [ ] Root coordinates remaining CPU/watcher release after final figures/deck; preserve historical allocation metadata.
+- [x] Complete final editable slides/PDF and rendered visual/link checks: 16 core slides, 194 pages including appendices; all-page layout checks pass; 93 local links resolve.
+- [x] Publish the final reviewed dashboard/report/download bundle: native Sites deployment of version 12 succeeded at 22:43:27 UTC.
+- [x] Owned CPU and watcher released after final checks; original user CPU/GPU allocations preserved.
 
 GitHub pushing remains the user's action. Previously published versions, local HTML checks and draft slides are not final-publication evidence.

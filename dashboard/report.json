@@ -1,6 +1,6 @@
 {
   "title": "Readouts: what is established",
-  "updated_utc": "2026-10-10T22:14:41.032848+00:00",
+  "updated_utc": "2026-10-10T22:40:41.122814+00:00",
   "cohort": "development",
   "run_ids": [
     "development-shared-pilot-v2",
@@ -65,7 +65,7 @@
     }
   ],
   "progress": {
-    "phase": "All paid judging complete; final reviewed report and publication assembly",
+    "phase": "Study complete; reviewed results, report and presentation",
     "completed_cells": 10714,
     "expected_cells": 10714,
     "elapsed_hours": 20.608940693888886,
@@ -19920,7 +19920,7 @@
       }
     ],
     "validation_judging_status": "All 48validation method-family comparisons and their reviewed analysis are complete. All frozen 12-method DEV and TEST comparisons are now complete.",
-    "quality_status": "All 48 TEST and all 48 DEV comparisons for the frozen 12 methods are complete, including both hallucination stages. Final analyses and scientific reviews are being assembled for publication.",
+    "quality_status": "All frozen comparisons, final statistical analyses and independent scientific reviews are complete.",
     "generation_metadata_source": "${OLENS_DATA_ROOT}/runs/test-blind-preparation-v1/throughput-observation-v25.json",
     "generation_metadata_sha256": "30f500f0a6dcb8aef0e6eb61af811d161130348b35df46214c12855de77f0d35",
     "heldout_items": 268,
@@ -19928,7 +19928,7 @@
     "previous_activity_checked_utc": "2026-10-10T20:28:40+00:00",
     "overview_status": {
       "development": "All frozen 12 methods across four development families are complete; all six sampling prefixes and shared-case reviews are complete.",
-      "test": "48 of 48 comparisons complete across all four families. Final statistical analysis is complete; review and final publication assembly are in progress.",
+      "test": "All 48 comparisons and their final scientific review are complete.",
       "heldout_conditions": 12
     },
     "heldout_comparison_amendment": {
@@ -19995,7 +19995,7 @@
     },
     "operational_limits": "Budget-check batching is working: six role development comparisons completed 16,818 calls in 295 seconds of recorded condition time, about 3,417 calls/minute. This is a different request mix from earlier runs, so it is not a controlled speed ratio. Standard Luna, prompts and budget limits are unchanged.",
     "gpu_status": "Required GPU work is complete; all four H200 allocations were handed back to the user at 18:10:48 UTC. No project GPU workload is active.",
-    "delivery_status": "All paid judging is complete. Final analysis attachments, scientific review, report, dashboard and slides are being assembled; this update does not establish final publication.",
+    "delivery_status": "Final research report, charts, editable slides and PDF are reviewed. This is a static delivery; updates require another reviewed publication.",
     "completed_test_method_family_comparisons_at_last_boundary": 48,
     "expected_test_method_family_comparisons": 48,
     "test_access_disclosure": "During a completion check before the authorized reveal, one operational reviewer incidentally saw auxiliary fields from the original one-sample hallucination result. This did not change the frozen methods or settings. Final TEST analysis and scientific review were subsequently authorized after all 48 comparisons completed.",
@@ -20016,7 +20016,8 @@
     "remaining_dev_method_family_comparisons": 0,
     "all_paid_judging_status": "complete",
     "dev_completion_receipt_path": "${OLENS_DATA_ROOT}/diagnostics/test12-operational-v1/final-dev-hall-batch-v4-accounting-contracts-v1.json",
-    "dev_completion_receipt_sha256": "0918cc9ec390ef0df1a66cac740847eee51a9e77370b5c968306ffaacc907f95"
+    "dev_completion_receipt_sha256": "0918cc9ec390ef0df1a66cac740847eee51a9e77370b5c968306ffaacc907f95",
+    "delivery_reviewed_utc": "2026-10-10T22:40:41.122814+00:00"
   },
   "signed_comparisons": {
     "validation": {
@@ -52884,7 +52885,7 @@
       "cost_status": "Timings and helper costs for new inputs in this comparison are not attached. Earlier pilot/DEV costs are separate cohorts; cached replay is not complete inference cost."
     }
   },
-  "scientific_snapshot_updated_utc": "2026-10-10T13:08:33.909842+00:00",
+  "scientific_snapshot_updated_utc": "2026-10-10T22:40:41.122814+00:00",
   "development_scaling": {
     "reviewed_by": "root",
     "source": "${OLENS_DATA_ROOT}/analysis/development-scaling-v1/report.json",

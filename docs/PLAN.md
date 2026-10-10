@@ -174,6 +174,10 @@ Make local commits at meaningful reviewed milestones, keeping code, documentatio
 
 ## Current status and continuation
 
+**Completed: 2026-10-10 22:43 UTC.** All scientific judging, analysis, independent reviews, report, final dashboard and editable/PDF presentation are delivered. The public dashboard is version 12; see [DELIVERY.md](DELIVERY.md). The primary comparison remains 268 held-out items, with all 469 separately labeled descriptive. No new winning method or setting was chosen after TEST. The owned watcher and successor CPU allocation have been released; user allocations were preserved. All data, caches and financial holds remain retained. GitHub pushing is the user's action.
+
+## Prior handoff, before final packaging
+
 Latest handoff: **2026-10-10 approximately 22:18 UTC**. All paid judging is complete: the frozen twelve methods cover every intended DEV/VAL/TEST family grid, including both hallucination stages. Statistical reports and systematic independent trace reviews are complete. The primary final scope remains TEST 268; whole 469 is a separately labeled descriptive appendix, not independent held-out confirmation. Final figures are exported; reviewed report/dashboard attachments and slides are being assembled before final publication.
 
 Final TEST review metadata is [test_final_review_v1.json](../configs/test_final_review_v1.json); its exact analysis SHA is `75dee255d88104450fa4424610178baa4df24964394be77812fa218379cfcef8`. [054 final resources](experiments/054-final-resources.md) binds the terminal accounting and scoped storage receipt. API usage is $36.50759506, retained reservations $4.8597425, committed $41.36733756 at 22:02:08 UTC; unknown charges are already inside reservations. Storage is 98.704 GB / 14,974 files at 22:10:53 UTC. Major generation/AR task time is 30.192 hours; project-reserved H200 time through the 18:10:48 handoff is 70.220 GPU-hours. No GPU dollar price is available.

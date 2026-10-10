@@ -198,6 +198,46 @@ class ReviewedFinalTests(unittest.TestCase):
             self.assertIn('12/100',texts)
             self.assertTrue(all('TEST quality pending' not in x['text'] for page in pages for x in page['items'] if x['kind']=='text'))
 
+    def test_retained_auxiliary_pairs_do_not_enter_headline_plots(self):
+        with tempfile.TemporaryDirectory() as d:
+            p,r=final_fixture(Path(d),whole=True)
+            test=r['signed_comparisons']['test']
+            original=deepcopy(test['paired_rows'])
+            aux=deepcopy(next(x for x in original if x['scope']=='cell' and x['family']=='hallucination'))
+            aux['endpoint']='unverifiable_claims_per_output'
+            aux.update(baseline=2.2,proposed=1.7,delta=-.5,ci95_delta=[-.8,-.2])
+            test['paired_rows'] += [aux,deepcopy(original[0])]
+            whole=r['descriptive_whole_cohort']['measurement']
+            whole['paired_comparisons'].append(deepcopy(aux))
+            p.write_text(json.dumps(r));source=builder.prepared(p,final=True)
+            self.assertEqual(json.loads(p.read_text())['signed_comparisons']['test']['paired_rows'],test['paired_rows'])
+            self.assertEqual(source['whole_cohort_measurement']['paired_comparisons'],whole['paired_comparisons'])
+            self.assertFalse(any(x.get('endpoint')=='unverifiable_claims_per_output'
+                for s in source['slides'] if s['kind']=='paired' for x in s['rows']))
+            for change in [lambda x:x.__setitem__('condition','foreign-n32'),
+                           lambda x:x.__setitem__('endpoint','unknown_metric'),
+                           lambda x:x.__setitem__('family','multihop_mt')]:
+                bad=deepcopy(r);change(bad['signed_comparisons']['test']['paired_rows'][-2])
+                p.write_text(json.dumps(bad))
+                with self.assertRaises(ValueError):builder.prepared(p,final=True)
+            bad=deepcopy(r);bad['signed_comparisons']['test']['paired_rows'][-1]['delta']=.7
+            p.write_text(json.dumps(bad))
+            with self.assertRaisesRegex(ValueError,'Conflicting duplicate'):builder.prepared(p,final=True)
+
+    def test_final_paired_appendix_labels_are_compact_exact_method_aliases(self):
+        with tempfile.TemporaryDirectory() as d:
+            p,r=final_fixture(Path(d),whole=True)
+            test=r['signed_comparisons']['test'];pair=deepcopy(test['paired_rows'][0])
+            pair['baseline_condition']='capped_n1-n1'
+            pair['condition']='best_n_specificity_mean_then_prune_0.005-n32'
+            pair.update(baseline=.12,proposed=.12,delta=0)
+            test['paired_rows'].append(pair);p.write_text(json.dumps(r))
+            source=builder.prepared(p,final=True)
+            texts=[x['text'] for page in builder.pages(source) for x in page['items'] if x['kind']=='text']
+            self.assertIn('Capped N1 → Compare32 + remove',texts)
+            self.assertEqual(set(builder.PAIR_LABELS),set(test['condition_ids']))
+            self.assertIn(pair,[x for s in source['slides'] if s['kind']=='paired' for x in s['rows']])
+
     def test_foreign_revision_menu_endpoint_hall_and_missing_coverage_reject(self):
         with tempfile.TemporaryDirectory() as d:
             p,r=final_fixture(Path(d))

@@ -2,14 +2,48 @@
   "project_id": "appgprj_6aca37fc2878819185850105787209f9",
   "url": "https://olens-improve-research.jan618.chatgpt.site",
   "access_mode": "public",
-  "version_id": "appgprj_6aca37fc2878819185850105787209f9~appgver_4c83b5762d94819192939f2b2b9aecea",
-  "deployment_id": "appgdep_6acab59ae0708191b614d193b73d222b",
-  "site_source_commit": "8441d8bf1faa826fc75a1c07035cdda333fd4120",
-  "published_utc": "2026-10-10T22:01:09.995763+00:00",
+  "version_id": "appgprj_6aca37fc2878819185850105787209f9~appgver_34617cddc9fc8191af9a20a03fad7939",
+  "deployment_id": "appgdep_6acabf840af4819197f31209e712fdd4",
+  "site_source_commit": "73aaa661a1e83a110df20dcef049415299df24d9",
+  "published_utc": "2026-10-10T22:43:27.063430+00:00",
   "source_checkout": ".state/public-dashboard",
   "static_directory": ".state/public-dashboard/dist",
-  "export_command": "python scripts/build_public_dashboard.py --output .state/public-dashboard/dist --development-figures ${OLENS_DATA_ROOT}/figures/development-scaling-v2 --descriptive-review configs/descriptive_grid_review_v1.json --descriptive-review-sha256 ed5b850a8921522350dc0854e75800c7011696c0c516ec966e85ec99286ff82c",
-  "verification": {
+  "export_command": "python scripts/build_public_dashboard.py --output .state/final-public-delivery-v1/dist --development-figures ${OLENS_DATA_ROOT}/figures/development-scaling-v2 --descriptive-review configs/descriptive_grid_review_v1.json --descriptive-review-sha256 ed5b850a8921522350dc0854e75800c7011696c0c516ec966e85ec99286ff82c --delivery-review configs/final_delivery_review_v1.json --delivery-review-sha256 0d0d60f04d968d2db3ed797c6cd3a381c724a21e8182ee70f89aa271696bc533",
+  "note": "Dedicated Sites repository only. The chen-jan/olens-improve GitHub repository was not pushed. Snapshot updates require a new Site version.",
+  "publication_history": [
+    {
+      "version_id": "appgprj_6aca37fc2878819185850105787209f9~appgver_b14c1e86afc88191aa810476c3e828ca",
+      "deployment_id": "appgdep_6aca778209288191a28dd357f85d0a43",
+      "site_source_commit": "fc1aece114df6ab08451e072be256bfb7a0c0870",
+      "published_utc": "2026-10-10T17:36:12.930112+00:00"
+    },
+    {
+      "version_id": "appgprj_6aca37fc2878819185850105787209f9~appgver_8bb290a5f3a88191a473508df0b2e536",
+      "deployment_id": "appgdep_6aca8357933081918e823db8a515251b",
+      "site_source_commit": "23700447ca944c37f31242f41e75c63d50e63044",
+      "published_utc": "2026-10-10T18:26:43.060387+00:00"
+    },
+    {
+      "version_id": "appgprj_6aca37fc2878819185850105787209f9~appgver_9a709413fe988191b04491d9f800ada1",
+      "deployment_id": "appgdep_6aca8b1641e88191b7cc6bab658a2fdb",
+      "site_source_commit": "c3b32bcd6a1e46bfe62e810dd5a9f79bbd7bf543",
+      "published_utc": "2026-10-10T18:59:45.199753+00:00"
+    },
+    {
+      "version_id": "appgprj_6aca37fc2878819185850105787209f9~appgver_52405a43cb10819195879b09b02763c1",
+      "deployment_id": "appgdep_6acaa2d6296c819188124239906f60b1",
+      "site_source_commit": "1ebb718d40f81ec2fb29e74436f8b1acb8fc97ee",
+      "published_utc": "2026-10-10T20:41:04.950408+00:00"
+    },
+    {
+      "version_id": "appgprj_6aca37fc2878819185850105787209f9~appgver_4c83b5762d94819192939f2b2b9aecea",
+      "deployment_id": "appgdep_6acab59ae0708191b614d193b73d222b",
+      "site_source_commit": "8441d8bf1faa826fc75a1c07035cdda333fd4120",
+      "published_utc": "2026-10-10T22:01:09.995763+00:00"
+    }
+  ],
+  "source_report_sha256": "772b76af273d17151bd03c0b735a5a17a7aa28442695ec40d5184ee419e0ae62",
+  "historical_verification_v11": {
     "native_deployment": "succeeded",
     "local_browser": "Desktop/mobile question-default view, both metric scopes and all12 methods checked. Synthetic stage switches checked; actualVAL scientific objects/maps unchanged. No horizontal overflow.",
     "source_report_exact_sanitized_copy": true,
@@ -45,32 +79,29 @@
     "latest_local_review": ".state/public-dashboard-v11-metadata-review.json",
     "browser_qa_for_latest_version": "Not repeated for status-only update; native deployment succeeded and previous layout QA remains historical."
   },
-  "note": "Dedicated Sites repository only. The chen-jan/olens-improve GitHub repository was not pushed. Snapshot updates require a new Site version.",
-  "publication_history": [
-    {
-      "version_id": "appgprj_6aca37fc2878819185850105787209f9~appgver_b14c1e86afc88191aa810476c3e828ca",
-      "deployment_id": "appgdep_6aca778209288191a28dd357f85d0a43",
-      "site_source_commit": "fc1aece114df6ab08451e072be256bfb7a0c0870",
-      "published_utc": "2026-10-10T17:36:12.930112+00:00"
-    },
-    {
-      "version_id": "appgprj_6aca37fc2878819185850105787209f9~appgver_8bb290a5f3a88191a473508df0b2e536",
-      "deployment_id": "appgdep_6aca8357933081918e823db8a515251b",
-      "site_source_commit": "23700447ca944c37f31242f41e75c63d50e63044",
-      "published_utc": "2026-10-10T18:26:43.060387+00:00"
-    },
-    {
-      "version_id": "appgprj_6aca37fc2878819185850105787209f9~appgver_9a709413fe988191b04491d9f800ada1",
-      "deployment_id": "appgdep_6aca8b1641e88191b7cc6bab658a2fdb",
-      "site_source_commit": "c3b32bcd6a1e46bfe62e810dd5a9f79bbd7bf543",
-      "published_utc": "2026-10-10T18:59:45.199753+00:00"
-    },
-    {
-      "version_id": "appgprj_6aca37fc2878819185850105787209f9~appgver_52405a43cb10819195879b09b02763c1",
-      "deployment_id": "appgdep_6acaa2d6296c819188124239906f60b1",
-      "site_source_commit": "1ebb718d40f81ec2fb29e74436f8b1acb8fc97ee",
-      "published_utc": "2026-10-10T20:41:04.950408+00:00"
-    }
-  ],
-  "source_report_sha256": "ca398673a1552376f23f6c7946ff5b26b7f19f1f3ebaeab2a722da5e17378cf3"
+  "verification": {
+    "native_deployment": "succeeded",
+    "version_number": 12,
+    "public_files_reviewed": 69,
+    "local_links_resolved": 93,
+    "publication_review_sha256": "e1a82ae9a56a4ec07181451d46651f1834e8367154436772f7728bfe96cb30a0",
+    "delivery_review": "configs/final_delivery_review_v1.json",
+    "delivery_review_sha256": "0d0d60f04d968d2db3ed797c6cd3a381c724a21e8182ee70f89aa271696bc533",
+    "browser_receipt_sha256": "1b89a45b886861daa4c1b24fa5ba8247ca1c3c8b48ccc6168903d56a2b32c355",
+    "local_browser": "Actual final TEST/question default, all12 methods, TEST/VAL and question/cell switches, 55 method variants, lazy exact quotes, whole469 appendix, desktop/mobile; no console errors or horizontal overflow. Root inspected final overview and graph views.",
+    "test_items": 268,
+    "descriptive_all_items": 469,
+    "slide_pages": 194,
+    "core_slides": 16,
+    "native_pptx_rendering_validated": false,
+    "slide_pdf_route": "Same-content HTML geometry mirror",
+    "user_browser_verified": false,
+    "new_api_calls": 0
+  },
+  "downloads": {
+    "slides_pptx": "https://olens-improve-research.jan618.chatgpt.site/downloads/slides.pptx",
+    "slides_pdf": "https://olens-improve-research.jan618.chatgpt.site/downloads/slides.pdf",
+    "report": "https://olens-improve-research.jan618.chatgpt.site/downloads/research-report.md",
+    "notes": "https://olens-improve-research.jan618.chatgpt.site/downloads/speaker-notes.md"
+  }
 }

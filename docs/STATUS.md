@@ -1,10 +1,21 @@
 # Execution status
 
-Updated: 2026-10-10, approximately 22:18 UTC.
+Updated: 2026-10-10, approximately 22:44 UTC.
 Started: 2026-10-10 01:25:36 UTC (October 9, 21:25:36 EDT).
-Original target finish: 2026-10-10 21:25:36 UTC, superseded. Paid execution ended at approximately 22:02 UTC; final delivery assembly and review continue.
+Original target finish: 2026-10-10 21:25:36 UTC, superseded. Paid execution ended at approximately 22:02 UTC; final public delivery completed at 22:43 UTC.
 
-## Latest handoff: scientific work complete, delivery under review
+## Latest handoff: completed and published
+
+All authorized scientific work and final delivery are complete. The public dashboard version 12 was deployed successfully at **2026-10-10 22:43:27 UTC**. It includes all twelve final methods, the 268-item held-out comparison, the separate 469-item descriptive appendix, error bars, sampling curves, reviewed examples, final report, editable presentation and PDF. See [DELIVERY.md](DELIVERY.md) for links and verification limits.
+
+No clear improvement across all four tasks was established. Small recovery gains and pruning's information losses remain visible, with the original benchmark verdicts and frozen operating points preserved.
+
+The project watcher stopped at 22:38:42 UTC. The owned successor CPU allocation ended at 22:42:47 UTC. Original user CPU allocation and handed-back GPUs were left untouched. No paid requests, project compute jobs or monitoring remain active. All unknown-charge reservations remain retained. Source data and caches are preserved; no further scientific calls or tuning are required.
+
+Final accounting remains **$36.5076 estimated API usage + $4.8597 retained reservations**; the 22:10 scoped inventory is **98.704 GB** excluding reused weights. Resource and release receipts are in [054](experiments/054-final-resources.md). Research commits are local; the user handles GitHub pushing.
+
+## Prior handoff, before final packaging
+
 
 All **48 TEST**, **48 VAL** and **48 DEV** frozen method/family comparisons are complete, with both hallucination stages and all intended grids covered. All paid workers ended; the final DEV hall wrapper exited zero at approximately **22:02 UTC**. Final statistical reporting and independent family trace reviews are complete. The descriptive whole-469-item report keeps DEV/VAL/TEST identities and intervals separate from the primary 268-item TEST evidence; it is not another independent held-out result.
 

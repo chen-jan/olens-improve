@@ -14,7 +14,7 @@ import subprocess
 from build_slides import (BLUE, H, INK, LINE, MUTED, PAPER, TEAL, W, digest,
                          line, rect, text, write_html, write_pptx)
 from build_public_dashboard import public_data
-from dashboard_method_sections import headline, label, normalized_signed
+from dashboard_method_sections import headline, label as method_label, normalized_signed
 from dashboard_qualitative import validated
 
 FAMILIES = {'hallucination': 'Transcript contradictions', 'multihop_mt': 'Multi-hop facts',
@@ -27,7 +27,19 @@ DEFAULTS = {'sample_selection': 'best_n_exact-n32', 'consensus': 'consensus_exac
             'pruning': 'prune_loo_a32_0.005-n32', 'pooling': 'pooled_greedy_swap-n32',
             'contrastive_checks': 'best_n_specificity_mean-n32', 'editing': 'editing_round2-n32',
             'combinations': 'best_n_specificity_mean_then_prune_0.005-n32'}
+PAIR_LABELS = {'raw_n1-n1':'Original N1', 'capped_n1-n1':'Capped N1',
+               'best_n_exact-n16':'Best16', 'best_n_exact-n32':'Best32',
+               'random_complete-n32':'Random32', 'best_n_specificity_mean-n32':'Compare32',
+               'pooled_greedy_swap-n16':'Pool16', 'pooled_greedy_swap-n32':'Pool32',
+               'best_n_specificity_mean_then_prune_0.005-n32':'Compare32 + remove',
+               'best_n_specificity_mean_random_delete_matched_0.005-n32':'Compare32 + random',
+               'prune_loo_a32_0.005-n32':'Best32 + remove',
+               'random_delete_matched_a32_0.005-n32':'Best32 + random'}
 KEY = ['raw_n1-n1', 'best_n_exact-n16', 'best_n_exact-n32', 'best_n_specificity_mean-n32']
+
+
+def label(condition):
+    return method_label(condition).replace('· 1 samples', '· 1 sample')
 
 
 def prepared(report_path, final=False):
@@ -81,7 +93,7 @@ def prepared(report_path, final=False):
             cohort='Validation, complete original grids',
             note='Lower is better.' if family == 'hallucination' else 'Higher is better. Mention or binding recovery is not complete explanation accuracy.')
     add('curves', 'More samples do not give a steady quality gain', measurement=dev['measurement'],
-        note='Development only: 121 items, 5,236 sites. Nested saved prefixes; no scaling law. Best of 1 has distinct eligibility checks.')
+        note='Development per-activation recovery; hallucination retains native readout error. 121 items, 5,236 sites. Nested prefixes; no scaling law. Best of 1 has distinct eligibility checks.')
     add('message', 'Agreement and editing have specific limits',
         bullets=['Whole-bullet consensus was tested; sampled helper audits found false merges.',
                  'Claim extraction failed its eight-cell self-containedness audit; quality expansion was not completed.',
@@ -202,7 +214,9 @@ def rate_row(condition, family, endpoint, metric, stage):
 
 
 def checked_pairs(rows, metrics, counts, scope):
-    seen, result = set(), []
+    seen, result = {}, []
+    auxiliary = {'assertion_share', 'off_topic_rate', 'false_span_tally',
+                 'true_claim_tally', 'unverifiable_claims_per_output'}
     for row in rows:
         allowed_scopes = ('cell', 'original_grid') if scope == 'original_grid' else ('cell', 'original_item')
         if row.get('scope') not in allowed_scopes:
@@ -211,9 +225,20 @@ def checked_pairs(rows, metrics, counts, scope):
             continue
         b, p, f, endpoint = (row[k] for k in ('baseline_condition', 'condition', 'family', 'endpoint'))
         identity = (b, p, f, endpoint)
-        if identity in seen or (b, f, endpoint) not in metrics or (p, f, endpoint) not in metrics:
+        if identity in seen:
+            if row != seen[identity]:
+                raise ValueError('Conflicting duplicate paired contrast')
+            continue
+        seen[identity] = deepcopy(row)
+        # Reviewed artifacts also retain non-headline hallucination endpoints.
+        # Keep their complete source rows in the copied report/measurement, but
+        # do not treat them as recovery/error-rate plots or percentage points.
+        if scope == 'cell' and f == 'hallucination' and endpoint in auxiliary:
+            if not all(any(key[0] == name and key[1] == f for key in metrics) for name in (b, p)):
+                raise ValueError('Foreign auxiliary paired contrast')
+            continue
+        if (b, f, endpoint) not in metrics or (p, f, endpoint) not in metrics:
             raise ValueError('Duplicate or foreign paired contrast')
-        seen.add(identity)
         left, right = metrics[b, f, endpoint]['value'], metrics[p, f, endpoint]['value']
         delta = right-left if left is not None and right is not None else None
         if row['baseline'] != left or row['proposed'] != right or row['delta'] != delta:
@@ -511,13 +536,13 @@ def pages(source):
                     pair_names={
                         ('best_n_exact-n32','prune_loo_a32_0.005-n32'):'Best 32 → remove bullets',
                         ('best_n_specificity_mean-n32','best_n_specificity_mean_then_prune_0.005-n32'):'Other activations → remove bullets',
-                        ('prune_loo_a32_0.005-n32','best_n_specificity_mean_then_prune_0.005-n32'):'Removal → add other-activation check',
+                        ('prune_loo_a32_0.005-n32','best_n_specificity_mean_then_prune_0.005-n32'):'Best32 + remove → Compare32 + remove',
                         ('random_delete_matched_a32_0.005-n32','prune_loo_a32_0.005-n32'):'Random deletion → guided deletion',
                         ('best_n_specificity_mean_random_delete_matched_0.005-n32','best_n_specificity_mean_then_prune_0.005-n32'):'Other activations: random → guided removal'}
                     if source.get('mode') == 'reviewed_test':
                         pair_names.update({('best_n_exact-n16','best_n_exact-n32'):'Best of 16 → best of 32',
                                            ('best_n_exact-n32','best_n_specificity_mean-n32'):'Best of 32 → compare activations'})
-                    fallback = (label(r['baseline_condition'])+' → '+label(r['condition'])) if source.get('mode') == 'reviewed_test' else label(r['condition'])
+                    fallback = (PAIR_LABELS.get(r['baseline_condition'],label(r['baseline_condition']))+' → '+PAIR_LABELS.get(r['condition'],label(r['condition']))) if source.get('mode') == 'reviewed_test' else label(r['condition'])
                     yy=y+15+k*33;items.append(text(x,yy-14,330,33,pair_names.get((r['baseline_condition'],r['condition']),fallback),15,INK))
                     if r['delta'] is None:
                         items.append(text(x+350,yy-13,380,28,'Unavailable; missing denominator',16,MUTED))
@@ -568,14 +593,15 @@ def pages(source):
             c=s['case'];items += [text(70,196,1460,50,c['cell_id'],20,MUTED)]
             for j,side in enumerate(['baseline','proposed']):
                 x=70+j*770;v=c.get(side)
-                items += [rect(x,280,710,370,'FFFFFF'),text(x+20,295,670,60,('Before: ' if j==0 else 'After: ')+(v or {}).get('label','Diagnostic unavailable'),25,TEAL,True)]
+                side_label=(v or {}).get('label','Diagnostic unavailable').replace('· 1 samples','· 1 sample')
+                items += [rect(x,280,710,370,'FFFFFF'),text(x+20,295,670,60,('Before: ' if j==0 else 'After: ')+side_label,25,TEAL,True)]
                 quote=(v or {}).get('text')
                 shown='Empty output: recorded abstention.' if quote=='' else excerpt(quote,300) if quote else 'No prose readout was produced for this diagnostic.'
                 items.append(text(x+20,375,670,220,shown,24))
             items.append(text(70,690,1460,105,excerpt(c.get('assessment',s['takeaway']),330),25,MUTED))
         elif kind=='cost':
             eng=s['engineering'];items += [text(70,225,1430,90,'One new synthetic N32 input: '+f"{eng['cold_N32_lifecycle_through_first_selection_seconds']:.2f}"+' seconds through first selection',38,TEAL,True),
-                text(70,345,1460,100,eng['basis'],27),text(70,470,1460,90,'Raw and shortened baselines need no reconstruction reader. Selected methods pay for generation and encoding on genuinely new inputs.',29),
+                text(70,345,1460,100,eng['basis'],27),text(70,470,1460,90,'Raw and shortened baselines need no reconstruction reader. Selected methods pay for generation and encoding on new inputs.',29),
                 text(70,605,1460,120,'Cached replay is a separate workload. GPU dollar pricing and a latency distribution remain unavailable. Campaign judging cost is not a runtime helper cost.',28,MUTED)]
         if s.get('note'):
             note=s['note']
