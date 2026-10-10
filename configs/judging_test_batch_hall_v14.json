@@ -1,0 +1,336 @@
+{
+  "schema_version": 1,
+  "job_id": "25508300",
+  "node": "node1603",
+  "concurrency": 256,
+  "rpm": 4000,
+  "tier": "default",
+  "reasoning_effort": "none",
+  "automatic_ramp": false,
+  "recovery_epoch": "2026-10-10T07:52:00+00:00",
+  "cpu_pairs": {
+    "hallucination": [
+      0,
+      3
+    ]
+  },
+  "fresh_manifest": "${OLENS_COMPUTE_ROOT}/activations/core-v1/fresh_manifest_v2.json",
+  "empirical_summary": "${OLENS_DATA_ROOT}/selections/development-full-grid-judging-v1/forecast-v1.json",
+  "ledger": "${OLENS_DATA_ROOT}/budget/ledger.sqlite3",
+  "shared_cache": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments/shared-exact-cache",
+  "logs": "${OLENS_COMPUTE_ROOT}/logs/test-batch-v14-hall-256-4000",
+  "hold_policy": "Every prior project/DEV uncertain reservation remains held. A separate v2 TEST run does not release, overwrite or reclassify any original hold or reset global financial totals.",
+  "forecast_policy": "The actual immutable12-arm export and exact-cache forecast are bound below. Expected usage includes the conditional upper count of new hallucination stage2 requests at empirical mean prices. The finite40USD run ceiling funds bounded retries and unknown reservations inside unchanged300USD project ceiling/200USD target. Formal gross maximum-output reservation totals are not expected spend; atomic per-attempt/run/global caps remain authoritative.",
+  "status": "root_reviewed_ready",
+  "run_id": "test-full-grid-methods-v2",
+  "run_cap_usd": 40,
+  "authorized_cells": 10714,
+  "manifest": "configs/test-full-grid-analysis-v2.json",
+  "gate": "configs/gates/test-analysis-v2.json",
+  "conditions": "configs/conditions_test_final_v2.json",
+  "freeze": "configs/test_final_method_freeze_v2.json",
+  "selections": "${OLENS_DATA_ROOT}/runs/test-full-grid-comparison-v2/judging-inputs.jsonl",
+  "selection_sha256": "ae8b6a6e4fdb4eb57f8d4dcabf184071a258ad2bb55e9abc05159798c7472196",
+  "export_provenance": "${OLENS_DATA_ROOT}/runs/test-full-grid-comparison-v2/judging-inputs-provenance.json",
+  "export_provenance_sha256": "ddd2e0e103041e807799e6a9dd639a43d3068c7b881383e09e600eb109b93db2",
+  "forecast": "${OLENS_DATA_ROOT}/runs/test-full-grid-comparison-v2/forecast-v2.json",
+  "forecast_sha256": "f39c259138f6a2cc4ad6a9f9832014577bfb736377691fb7242397c19ce5f8ff",
+  "planned_forecast_path": "${OLENS_DATA_ROOT}/runs/test-full-grid-comparison-v2/forecast-storage-v8-if-needed.json",
+  "judgments": "${OLENS_DATA_ROOT}/runs/test-full-grid-comparison-v2/judgments",
+  "performance_profile_dir": "${OLENS_DATA_ROOT}/runs/test-full-grid-comparison-v2/judgments/performance-batch-v14-hall-256-4000",
+  "manifest_sha256": "e717772952e83ba5c56014cd8abb23e720519d013a6e6a8905f8f2c87f73d207",
+  "fresh_manifest_sha256": "5a61cff89aca532f3e022233b6d2d8e12dab0d3a3f4f44085097bc6dc58fc385",
+  "gate_sha256": "1c0412380a1980b3551d0f750434269572ebf1f79377efa12018373e05c72dcc",
+  "conditions_sha256": "111b0684c8f5eb780e2b3887218757dee9ef6cca25efd26a8c0a515d008f4807",
+  "freeze_sha256": "b46f00851efb71628faa2ffcb404011c4ef1f3543d68fc4f18d0ab6d74d95e86",
+  "empirical_summary_sha256": "c1db2f1fb5a58c727b813f9498726e2e21ff70ca092cc891fb0b40aab0d6a1f6",
+  "implementation_source_sha256": {
+    "infra/launch_test_judges.py": "bb71d8e2f92e0254c9b64e4c7dd5334317e19eba2f1b41b8399e6f25f5e86bb0",
+    "infra/launch_validation_judges.py": "237b19ccf7322aac7fa73f9952eaeaaf3c498406ebb6089dc639c022b1b06e95",
+    "scripts/forecast_judging.py": "07da6ea73261af36884483aa101cdc9f2d3fb98b4df88e39f69927183985507b",
+    "src/olens_improve/evaluation.py": "7e8ed156c6f79520c5960e0c49ce3ddc19b0b60eccdbc35e1e44ceac736cc688",
+    "src/olens_improve/budget.py": "0373fc072b7b61e3b6a6e020b606df6fb1d333f0d39ca579ccc9ef89ef9ec3cb",
+    "src/olens_improve/ar_partition.py": "4f250bd78e5adb81faed0568ad004bc8df62dd34d1daf94973ab13052e802499",
+    "src/olens_improve/stage_io.py": "7257f7855faddab8abe0ac487aa33500718979a5de5019a838354a1e0feb884c",
+    "src/olens_improve/performance.py": "1f03f52918b200e1f2dffa8983e410c1c6d4e88f97fc8bbc35a06f16123c9b0a",
+    "scripts/export_judging_inputs.py": "ad5d1eab2eea809f8666b2bbba2e18e520f5d74d2a2ee1bc95684f0b906895fc",
+    "scripts/combine_pruning.py": "f96fe1af7f445d3be7f72f5be54167ccb15a6cde7cab3c3b77110afc8967de94",
+    "src/olens_improve/stage_permissions.py": "7cfe9248e7b529ad38b46ebe46282c4132c366ab1af4ea945c5a85c054ff72bd"
+  },
+  "primary_conditions": [
+    {
+      "method": "raw_n1",
+      "n": 1
+    },
+    {
+      "method": "capped_n1",
+      "n": 1
+    },
+    {
+      "method": "best_n_exact",
+      "n": 16
+    },
+    {
+      "method": "best_n_exact",
+      "n": 32
+    },
+    {
+      "method": "random_complete",
+      "n": 32
+    },
+    {
+      "method": "best_n_specificity_mean",
+      "n": 32
+    }
+  ],
+  "secondary_conditions": [
+    {
+      "method": "pooled_greedy_swap",
+      "n": 16
+    },
+    {
+      "method": "pooled_greedy_swap",
+      "n": 32
+    },
+    {
+      "method": "best_n_specificity_mean_then_prune_0.005",
+      "n": 32
+    },
+    {
+      "method": "best_n_specificity_mean_random_delete_matched_0.005",
+      "n": 32
+    },
+    {
+      "method": "prune_loo_a32_0.005",
+      "n": 32
+    },
+    {
+      "method": "random_delete_matched_a32_0.005",
+      "n": 32
+    }
+  ],
+  "menu_order_policy": "Original six primary in their unchanged order, followed by six existing VAL secondary comparisons. No secondary TEST result changes selected A16/Emean32 points or frozen settings.",
+  "resource": "${OLENS_DATA_ROOT}/diagnostics/test12-operational-v1/storage-recovery-concurrency-v11-operational-reuse-role-terminal-global-dev-2144-v1.json",
+  "resource_sha256": "8c96b6e34a54eada67ea6a08721f803fe95dc4af57bc805d278a13fefdbb023a",
+  "writer_admission_review": {
+    "path": "configs/ledger_writer_admission_review_v1.json",
+    "sha256": "6dfaa6afc0973e1cd8ff30a0ddfc6b81e03dd9ef3c4d880fcb940f0bd19fb0d3"
+  },
+  "writer_admission_fixture": {
+    "path": "${OLENS_COMPUTE_ROOT}/diagnostics/ledger-admission-nfs-v1/report.json",
+    "sha256": "d69fa5025cb39506f148907ef8a640effdafee3edb92cb02ea8a50298373574a",
+    "budget_sha256": "60caff27b9dd717e218822a4115f7f44c8f1820f066f1ec5dbecb021206ca38f",
+    "limits": "Only fresh same-node synthetic3x20cycles and killed owned holder; no real charges/production access."
+  },
+  "hall_reservation_evidence": {
+    "path": "${OLENS_DATA_ROOT}/diagnostics/test12-operational-v1/continuation-v4-hall-reservation-evidence-v1.json",
+    "sha256": "da2fc7a876d4530355e419ff7dd466ea8a31fbc7329c944aae31df4e438eb3ca",
+    "policy": "No retained physical_response/settlement event for the exact inactive reserved ID; absence is not proof of no provider usage. Retain full hold; no automatic settlement/release."
+  },
+  "created_utc": "2026-10-10T21:46:29.895081+00:00",
+  "root_launch_only": true,
+  "transport_review": {
+    "status": "root_reviewed",
+    "profile": "standard_none_256_4000_v1",
+    "family": "hallucination",
+    "run_id": "test-full-grid-methods-v2",
+    "recovery_epoch": "2026-10-10T07:52:00+00:00",
+    "concurrency": 256,
+    "rpm": 4000,
+    "tier": "default",
+    "reasoning_effort": "none",
+    "automatic_ramp": false,
+    "reviewed_utc": "2026-10-10T21:47:09.396035+00:00",
+    "authority": "root: user-authorized Standard Luna continuation with reviewed batch16, same signed12 TEST menu and all financial holds"
+  },
+  "preserved_operational_parent": {
+    "path": "configs/judging_test_reuse_hall_v12.json",
+    "sha256": "8fe9e872449985aeb1c20193e54118d0b3b8936c20b5b257bfb7cbc8c04df2ce",
+    "purpose": "Immutable same TEST12 outputs/menu, run40, original07:52epoch, Standardnone256/4000 and held charges."
+  },
+  "pending_before_seal": [],
+  "forecast_interpretation": "The retained immutable export forecast prices the same Standard logical requests and frozen outputs; it used8/200 only for timing assumptions. Those timing assumptions do not forecast this faster transport. Request counts and per-attempt/run/project caps remain authoritative; retries can add cost. Fresh observed throughput will determine timing, not a presumed2x speedup.",
+  "rollout_policy": "Resume same signed TEST12 hall queue with reviewed batch16+reuse1. Four conditions remain after D32; existing launcher replays completed cached conditions in the unchanged menu and uses fresh timing/log paths. No new method, output, epoch, cap, or storage authority.",
+  "source_review": {
+    "path": "configs/test_transport_review_v3.json",
+    "sha256": "c2e73d57d4bc08325187695044dfa576b3cf2f12f34b893343a39ee65cb915e6"
+  },
+  "observed_operational_limit": "Copied accounting benchmark median3.75x does not guarantee live end-to-end improvement; measure first bounded real response interval.",
+  "phase_timing_review": {
+    "path": "configs/ledger_phase_timing_review_v1.json",
+    "sha256": "05859d7a51735354c1d146d258f0c2d0e85776cd8cec0003553c43f66c385e9e"
+  },
+  "storage_migration": {
+    "status": "completed_and_root_verified",
+    "canonical_ledger_unchanged": "${OLENS_DATA_ROOT}/budget/ledger.sqlite3",
+    "receipt": "${OLENS_DATA_ROOT}/diagnostics/test12-operational-v1/ledger-storage-move-v1.json",
+    "receipt_sha256": "e233bf21b944f04e9b091edf34f5e9613bd24c34e899f9c2702949799e6c3097",
+    "ledger_sha256_before_resume": "4012d205a552c422b6752c6046bdde1b1d47fd0b555eb371e175d7f181ad3629"
+  },
+  "hall_health_receipt": {
+    "path": "${OLENS_DATA_ROOT}/diagnostics/test12-operational-v1/storage-recovery-v8-operational-1848-v1.json",
+    "sha256": "d89c8e969e798bcf3ce8c337345818849fefba4a6089522dfb2d366dd995f8b7",
+    "root_reviewed_utc": "2026-10-10T18:50:07.080330+00:00",
+    "limits": "Recent100-attempt rate spans24seconds;1106newsettlementsaccumulatedduringfirstapproximately5minutesincludingstartup. A long stationary rate is not established."
+  },
+  "clean_boundary": {
+    "path": "${OLENS_DATA_ROOT}/diagnostics/test12-operational-v1/storage-recovery-concurrency-v11-operational-reuse-role-terminal-global-dev-2144-v1.json",
+    "sha256": "8c96b6e34a54eada67ea6a08721f803fe95dc4af57bc805d278a13fefdbb023a",
+    "old_pid": 42548,
+    "worker_absent": true,
+    "owner_free": true,
+    "completed_hall_conditions": 8,
+    "remaining_conditions": [
+      {
+        "method": "best_n_specificity_mean_then_prune_0.005",
+        "n": 32
+      },
+      {
+        "method": "best_n_specificity_mean_random_delete_matched_0.005",
+        "n": 32
+      },
+      {
+        "method": "prune_loo_a32_0.005",
+        "n": 32
+      },
+      {
+        "method": "random_delete_matched_a32_0.005",
+        "n": 32
+      }
+    ],
+    "scope": "Completion and operational metadata only; no TEST quality interpretation."
+  },
+  "terminal_accounting": {
+    "path": "${OLENS_DATA_ROOT}/diagnostics/test12-operational-v1/storage-recovery-concurrency-v11-operational-reuse-role-terminal-global-dev-2144-v1.json",
+    "sha256": "8c96b6e34a54eada67ea6a08721f803fe95dc4af57bc805d278a13fefdbb023a",
+    "headroom": {
+      "global": {
+        "attempt_counts": {
+          "reserved": 1,
+          "settled": 188098,
+          "unknown": 559
+        },
+        "actual_usd": 29.05894376,
+        "total_reserved_including_unknown_usd": 4.8597425,
+        "unknown_subset_usd": 4.85435575,
+        "committed_usd": 33.91868626,
+        "hard_usd": 300.0,
+        "target_usd": 200.0,
+        "halted": false,
+        "remaining_hard_usd": 266.08131374,
+        "remaining_target_usd": 166.08131373999998
+      },
+      "DEV_run": {
+        "attempt_counts": {
+          "settled": 30362,
+          "unknown": 124
+        },
+        "actual_usd": 4.308815435,
+        "total_reserved_including_unknown_usd": 0.617766375,
+        "unknown_subset_usd": 0.617766375,
+        "committed_usd": 4.92658181,
+        "run_id": "development-full-grid-methods-v1",
+        "cap_usd": 20.0,
+        "remaining_cap_usd": 15.07341819
+      },
+      "scope": "All existing holds retained; unknown is a subset of total reserved, never added twice.",
+      "DEV_run_source_path": "${OLENS_REPO_ROOT}/configs/judging_dev_scaling_role_after_a2_v2.json",
+      "DEV_run_source_sha256": "b466d71ddb78c9972cac2bdbdcb1e3c859ee4e5705a32be2ddd4c1cc40686e0e"
+    },
+    "TEST_aggregate": {
+      "attempt_counts": {
+        "reserved": 1,
+        "settled": 99222,
+        "unknown": 12
+      },
+      "first_attempt_utc": "2026-10-10T14:58:43.184072+00:00",
+      "elapsed_wall_seconds": 24333.166017,
+      "settled_responses_per_minute": 244.6586685777265,
+      "latest_100_unknown_count": 0,
+      "unknown_reserved_nanodollars": 59636875,
+      "active_reserved_nanodollars": 5386750,
+      "actual_usage_nanodollars": 15353313580,
+      "oldest_active_age_seconds": 16836.313624,
+      "recent_latency_p50_seconds": 1.6557806050404906,
+      "recent_latency_p95_seconds": 3.4734388357028365,
+      "recent_latency_observation_count": 200,
+      "sanitized_epoch_cause_counts": {
+        "InternalServerError": 1
+      },
+      "recent_physical_response_latency_samples": 200
+    },
+    "all_preserved": true
+  },
+  "prepared_source": {
+    "path": "configs/judging_test_reuse_hall_v12.json",
+    "sha256": "8fe9e872449985aeb1c20193e54118d0b3b8936c20b5b257bfb7cbc8c04df2ce"
+  },
+  "launch_environment": {
+    "OLENS_LEDGER_REUSE_WRITER_CONNECTION": "1",
+    "OLENS_LEDGER_RESERVATION_BATCH_SIZE": "16"
+  },
+  "ledger_connection_reuse_review": {
+    "path": "configs/ledger_connection_reuse_review_v1.json",
+    "sha256": "01ea6b699a4dcbd05b69884ccce80082993caf7f307f2aae7efdee4358b2624d",
+    "default": "off",
+    "unique_completed_tests": 92,
+    "reviewed_by": [
+      "root",
+      "adversarial_evaluation"
+    ]
+  },
+  "ledger_reservation_batch_review": {
+    "path": "configs/ledger_reservation_batch_review_v1.json",
+    "sha256": "e8dc38d9a66df4f289c255191b001f0176d2fa47d0a3696704f96da9afb69f48"
+  },
+  "copied_batch_benchmark": {
+    "path": "${OLENS_COMPUTE_ROOT}/diagnostics/reservation-batch-noapi-v1/receipt.json",
+    "sha256": "e2b0d2aa5f6ae8d9424972709452d350601bc876dd6d1a9e5a5fc5449c1517d7",
+    "median_accounting_only_speedup": 3.7526899476034767
+  },
+  "remaining_condition_metadata": {
+    "completed_count": 8,
+    "remaining_count": 4,
+    "ordered_remaining": [
+      {
+        "method": "best_n_specificity_mean_then_prune_0.005",
+        "n": 32
+      },
+      {
+        "method": "best_n_specificity_mean_random_delete_matched_0.005",
+        "n": 32
+      },
+      {
+        "method": "prune_loo_a32_0.005",
+        "n": 32
+      },
+      {
+        "method": "random_delete_matched_a32_0.005",
+        "n": 32
+      }
+    ],
+    "dispatch_preserves_signed_full_menu": true,
+    "completed_cached_replay_is_existing_behavior": true
+  },
+  "fresh_execution_paths": {
+    "profile_root": "${OLENS_DATA_ROOT}/runs/test-full-grid-comparison-v2/judgments/performance-batch-v14-hall-256-4000",
+    "logs": "${OLENS_COMPUTE_ROOT}/logs/test-batch-v14-hall-256-4000",
+    "both_absent_at_preparation": true,
+    "stop_file": "${OLENS_DATA_ROOT}/runs/test-full-grid-comparison-v2/judgments/stop-hallucination",
+    "existing_launcher_stop_file_absent": true
+  },
+  "root_sealed_utc": "2026-10-10T21:47:09.396035+00:00",
+  "root_handoff_review": {
+    "prior_wrapper_session": 53016,
+    "prior_wrapper_exit_code": 0,
+    "resource": "${OLENS_DATA_ROOT}/diagnostics/test12-operational-v1/storage-recovery-concurrency-v11-operational-reuse-role-terminal-global-dev-2144-v1.json",
+    "resource_sha256": "8c96b6e34a54eada67ea6a08721f803fe95dc4af57bc805d278a13fefdbb023a",
+    "cpu_pair_metadata": "${OLENS_DATA_ROOT}/diagnostics/test12-operational-v1/cpu-pairs-preflight-2146-v1.json",
+    "cpu_pair_metadata_sha256": "eb6779dcb4e57183800351e0bfbf116cf6b120ffd38c6509c5485006974dd7de",
+    "global_committed_usd": 33.91868626,
+    "retained_TEST_unknown_count": 12,
+    "retained_TEST_unknown_usd": 0.059636875,
+    "retained_TEST_old_reserved_usd": 0.00538675,
+    "cache_replay": "Existing completed signed conditions retained and reused; no new scientific settings."
+  }
+}

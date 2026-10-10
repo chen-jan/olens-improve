@@ -1,6 +1,6 @@
 {
   "title": "Readouts: what is established",
-  "updated_utc": "2026-10-10T20:37:40.099707+00:00",
+  "updated_utc": "2026-10-10T21:56:00+00:00",
   "cohort": "development",
   "run_ids": [
     "development-shared-pilot-v2",
@@ -65,31 +65,26 @@
     }
   ],
   "progress": {
-    "phase": "Final judging: 41 of 48 held-out comparisons complete",
+    "phase": "All 48 held-out comparisons complete; final analysis running",
     "completed_cells": 10714,
     "expected_cells": 10714,
-    "elapsed_hours": 19.2,
+    "elapsed_hours": 20.40155825388889,
     "completed_label": "TEST sites with fixed method outputs"
   },
   "api": {
     "status": "observed_read_only",
-    "actual_usd": 21.50362201,
-    "reserved_usd": 4.8597425,
+    "actual_usd": 34.13221616,
+    "reserved_usd": 5.613203875,
     "unknown_usd": 4.85435575,
-    "committed_usd": 26.36336451,
+    "committed_usd": 39.745420035,
     "hard_usd": 300.0,
     "target_usd": 200.0,
-    "attempt_counts": {
-      "reserved": 1,
-      "settled": 143254,
-      "unknown": 559
-    },
-    "observed_utc": "2026-10-10T18:42:47.932838+00:00",
+    "observed_utc": "2026-10-10T21:54:20+00:00",
     "pricing_revision": "luna-cache-write-v1",
     "invoice_reconciled": false,
     "pricing_status": "Usage-derived project API estimate at the displayed observation time, including cache writes; not invoice reconciled. Outstanding and uncertain reservations remain held. Cluster charges and Codex/subagent billing are outside this ledger.",
-    "snapshot_path": "${OLENS_DATA_ROOT}/diagnostics/test12-operational-v1/ledger-storage-move-v1.json",
-    "snapshot_sha256": "e233bf21b944f04e9b091edf34f5e9613bd24c34e899f9c2702949799e6c3097"
+    "snapshot_path": "${OLENS_DATA_ROOT}/diagnostics/test12-operational-v1/batch-dev-role-v4-test-hall-v14-operational-2154-v1.json",
+    "snapshot_sha256": "0b044d498f3b7f2b4ee966fde6cb70ed08c000ed8c506a47baebed4345b9f6f8"
   },
   "methods": {
     "sample_selection": {
@@ -19837,7 +19832,7 @@
     "limits": "These are observed DEV losses, not a new held-out comparison. Mention recovery does not certify the calculation. No new interval is inferred."
   },
   "activity": {
-    "checked_utc": "2026-10-10T20:28:40+00:00",
+    "checked_utc": "2026-10-10T21:55:16+00:00",
     "validation_ar_status": "complete",
     "validation_new_ar_vectors": 421716,
     "shared_zero_copy_catalog_vectors": 1063925,
@@ -19890,15 +19885,15 @@
       }
     ],
     "validation_judging_status": "All 48 validation method-family comparisons and their reviewed analysis are complete. All six development sampling prefixes and grouped comparisons are complete.",
-    "quality_status": "All GPU generation, reconstruction and fixed method outputs are complete. Held-out judging has finished 41 of 48 method/task comparisons. The seven remaining comparisons cover hallucinations and role relationships. Final held-out scores have not been inspected.",
+    "quality_status": "All 48 final test comparisons are complete, including both hallucination judging stages. The paired statistical analysis is running. Five development comparisons remain for the separate full-dataset summary.",
     "generation_metadata_source": "${OLENS_DATA_ROOT}/runs/test-blind-preparation-v1/throughput-observation-v25.json",
     "generation_metadata_sha256": "30f500f0a6dcb8aef0e6eb61af811d161130348b35df46214c12855de77f0d35",
     "heldout_items": 268,
     "heldout_cells": 10714,
-    "previous_activity_checked_utc": "2026-10-10T18:53:34.140614+00:00",
+    "previous_activity_checked_utc": "2026-10-10T20:28:40+00:00",
     "overview_status": {
       "development": "All six sampling prefixes complete; eight shared cases reviewed across methods, with independent crosschecks.",
-      "test": "41 of 48 comparisons complete: all multi-hop and intermediate-reasoning comparisons, 10 of 12 role comparisons and 7 of 12 hallucination comparisons. Eleven development comparisons also remain before the all-469 summary.",
+      "test": "48 of 48 comparisons complete across all four families. Final paired analysis and fixed example review follow; test findings have not yet been published.",
       "heldout_conditions": 12
     },
     "heldout_comparison_amendment": {
@@ -19955,22 +19950,30 @@
       }
     ],
     "judging_health": {
-      "observed_utc": "2026-10-10T20:28:40+00:00",
-      "scope": "Five-minute window with both optimized judge workers active beyond startup; operational progress only.",
-      "test_settled_total": 87757,
-      "new_settled": 1011,
-      "elapsed_seconds": 336.17,
-      "combined_completed_per_minute": 180.45,
+      "observed_utc": "2026-10-10T21:54:20+00:00",
+      "scope": "Operational accounting and completion counts only.",
+      "test_settled_total": 115498,
       "existing_test_unknown_holds_usd": 0.059636875,
       "new_unknown": 0,
-      "receipt_sha256": "14dfcb0f99f645aa76060a402d840d00acdce578e4cd5af53f1e7c6622fc7746",
+      "receipt_sha256": "0b044d498f3b7f2b4ee966fde6cb70ed08c000ed8c506a47baebed4345b9f6f8",
       "historical_snapshot": true
     },
-    "operational_limits": "Measured progress is about 180 completed judging requests per minute. Higher concurrency and database connection reuse have not yet shown a live speed improvement. Different request types, saved-result reuse and the two hallucination stages make completion counts different from remaining time.",
+    "operational_limits": "Budget-check batching is working: six role development comparisons completed 16,818 calls in 295 seconds of recorded condition time, about 3,417 calls/minute. This is a different request mix from earlier runs, so it is not a controlled speed ratio. Standard Luna, prompts and budget limits are unchanged.",
     "gpu_status": "All required GPU work is complete. All four H200s were verified idle and handed back to the user; remaining work uses CPU and Luna API calls.",
-    "delivery_status": "Target around 11 pm Eastern on October 10; planning window 10 pm to midnight. Still required: seven held-out and eleven development comparisons, paired analysis and example review, all-469 descriptive results, final report/dashboard/slides. This estimate depends on current throughput.",
-    "completed_test_method_family_comparisons_at_last_boundary": 41,
-    "expected_test_method_family_comparisons": 48
+    "delivery_status": "Final test judging is complete. Five hallucination development comparisons remain for the descriptive 469-question summary. Final analysis, example review, report, dashboard and slides are in progress.",
+    "completed_test_method_family_comparisons_at_last_boundary": 48,
+    "expected_test_method_family_comparisons": 48,
+    "test_access_disclosure": "During a completion check, one operational reviewer incidentally saw auxiliary fields from the original one-sample hallucination result. This did not change the frozen methods or settings. No final TEST comparison has been analyzed or published.",
+    "reservation_batch_observation": {
+      "conditions_completed": 6,
+      "physical_settlements": 16818,
+      "sequential_condition_wall_seconds": 295.33807,
+      "settlements_per_minute": 3416.695,
+      "additional_usage_usd": 1.3324818,
+      "source_sha256": "6c263f1e623e3f59849f2391713c167a111bc3252d31d73ec9ece65e81295a0c",
+      "limits": "Sum of six sequential role development condition timers; different workload from older TEST profiles, excludes launcher setup."
+    },
+    "test_completion_receipt_sha256": "5119be87fdea7dc4cf536cc29f9af0e3a97870eae751a4ee6352fed52a83d7ea"
   },
   "signed_comparisons": {
     "validation": {

@@ -1,18 +1,36 @@
 # Execution status
 
-Updated: 2026-10-10, approximately 21:24 UTC.
+Updated: 2026-10-10, approximately 21:55 UTC.
 Started: 2026-10-10 01:25:36 UTC (October 9, 21:25:36 EDT).
-Original target finish: 2026-10-10 21:25:36 UTC, superseded by the revised estimate below. Execution remains active and authorized.
+Original target finish: 2026-10-10 21:25:36 UTC, superseded. Execution remains active and authorized; final judging, analysis and delivery are tracked below.
 
 ## Latest operational checkpoint
+
+At **21:55:16 UTC (5:55pm Eastern)**, **all 48 TEST family/method comparisons are complete**. The hall worker exited zero, its PID is absent, its cache owner is free, and all twelve exact hall contracts cover 3,705 cells with both judging stages complete. Terminal receipt: `durable/diagnostics/test12-operational-v1/hall-batch-v14-terminal-contracts-v1.json`, SHA `5119be87fdea7dc4cf536cc29f9af0e3a97870eae751a4ee6352fed52a83d7ea`. Signed TEST analysis is now running on allocated CPU; no final quality findings are reported here.
+
+The **six remaining DEV role comparisons are also complete**: each covers 3,420 intended cells without missing judgments. Root collected the wrapper's exit code zero. The worker settled **16,818 requests across 295.34 seconds of condition walls**, approximately **3,417/minute**, with no ledger errors and unchanged124 uncertain DEV holds. This is measured mixed-condition throughput, not a controlled speedup ratio against earlier conditions. Incremental billed-attempt accounting is **$1.3324818**. Five hallucination DEV comparisons remain; the released-family forecast and batch16 preparation are ready for root review and launch.
+
+The **21:54:20 UTC** receipt records **$34.13221616 estimated global API usage plus $5.613203875 reservations**, total **$39.745420035 committed**. Its uncertain-charge subset, **$4.85435575**, is already inside reservations. DEV committed spend is **$6.25906361**, leaving **$13.74093639** under its $20 cap. This was a snapshot while hall's last TEST comparison was active, not final reconciled billing. Receipt: `durable/diagnostics/test12-operational-v1/batch-dev-role-v4-test-hall-v14-operational-2154-v1.json`, SHA `0b044d498f3b7f2b4ee966fde6cb70ed08c000ed8c506a47baebed4345b9f6f8`.
+
+### Batch launch checkpoint, 21:47 UTC
+
+At **21:47 UTC (5:47pm Eastern)**, TEST has **44/48 completed family/method comparisons**: all twelve multi-hop, chain and role comparisons, and eight of twelve hallucination comparisons. The role TEST worker exited zero and released its cache owner. Its **six remaining DEV comparisons are now active**, PID 395046/session 3538, launched at 21:45–21:46 under `configs/judging_dev12_remaining_role_batch_v4.json` (SHA `746026d866badc90108807663ed2ce4dbd53864ce4106b71c0cb95acc30e7bc5`). Hallucination stopped cleanly after pooled N32 and resumed its **four remaining TEST comparisons** at approximately 21:47, PID 398431/session 31433, under `configs/judging_test_batch_hall_v14.json` (SHA `6fe7b48b3c6b53adf82829dc5934b56e6c6ce8755ae20ae53e82464a8f294f7e`). Five hallucination DEV comparisons still await completion and cache release of that TEST family.
+
+Both new workers use reviewed batches of at most sixteen spending reservations, with connection reuse enabled. Standard Luna, reasoning none, 256 concurrent requests / 4,000 RPM, the original 07:52 recovery epoch, all uncertain charges, and the $40 TEST/$20 DEV run caps are unchanged. The copied-ledger benchmark measured a **3.75× accounting-only gain**; **no live speedup is established yet**. The first combined observation is scheduled for 21:54. A new delivery estimate awaits that measurement; the 21:24 estimate below remains historical. See [050](experiments/050-reservation-batching.md).
+
+The **21:44:16 UTC** accounting receipt records **$29.05894376 estimated API usage plus $4.8597425 retained reservations**, or **$33.91868626 committed**, against the $200 target/$300 ceiling. The $4.85435575 uncertain-charge subset is already included in reservations. The DEV run has **$15.07341819 headroom** under its $20 cap. The released-role forecast identifies **16,817 new unique requests**, expected charge **$1.3556474782** under the frozen empirical cost basis; this is a forecast, not a live timing promise. Receipt: `durable/diagnostics/test12-operational-v1/storage-recovery-concurrency-v11-operational-reuse-role-terminal-global-dev-2144-v1.json`, SHA `8c96b6e34a54eada67ea6a08721f803fe95dc4af57bc805d278a13fefdbb023a`. Project GPU work remains finished and the four H200s remain handed back to the user.
+
+**TEST exposure disclosure:** an operational observer incidentally saw two auxiliary hallucination raw-N1 contract fields between 21:29:11 and 21:31:56 UTC. Their values are not repeated here or used for outcome synthesis or menu tuning; root has not synthesized TEST findings and the menu remains fixed. A universal claim of zero incidental TEST exposure is therefore no longer accurate. The metadata-only disclosure is `durable/diagnostics/test12-operational-v1/primary-six-completion-contracts-v2.json`, SHA `b0b69992c882e503ab8e016c2090d216b0c3d51491224a6fd5b7b7e4ef8b1758`. Final TEST quality analysis and delivery remain pending.
+
+### Earlier operational checkpoints
+
+**Previous 21:24 checkpoint (before the bounded exposure disclosure above):**
 
 At **21:24:23 UTC (5:24pm Eastern)**, TEST has **96,159 settled requests** and **42/48 completed family/method comparisons**. This adds 6,057 requests since 20:44, although no further whole comparison has closed. Both workers remain live: hallucination has seven of twelve complete and is processing pooled selection at N32; role relationships have eleven of twelve complete and are processing the final matched-deletion control. Multi-hop and chains are complete. The latest twenty-minute interval added 3,055 requests, approximately **152/minute**. No new uncertain charges or worker failures appeared. Receipt SHA: `c4501151930d0897fcbaa79d3c2f2c53c2adabba7990e9c6eb85d8ee20eb8838`, file `durable/diagnostics/test12-operational-v1/storage-recovery-concurrency-v11-operational-reuse-both-v12-v13-2124-v1.json`.
 
 The remaining workload reference is about 20,957 TEST requests plus 22,157 from the older missing-DEV forecast, or roughly 4 hours 44 minutes of judging at the latest rate. These are estimates, not exact live remaining-call counts. Final analysis and review can overlap the DEV tail; plan roughly **five to seven hours more**, approximately **10:30pm–12:30am Eastern**, with further delay possible if throughput falls. Eleven DEV comparisons and final scientific review, report, figures, dashboard and slides still remain. No TEST quality has been revealed or used for tuning.
 
 The 21:17 resource snapshot has no alerts. Recorded estimated API usage is **$28.21**, plus **$5.77** retained reservations (including uncertain charges), approximately **$33.98 committed** against the $200 target/$300 ceiling. Project files occupy **97.59GB**, excluding reused base weights. These are ledger estimates and file totals, not an invoice or quota reading. Project GPU work remains finished and the four H200s remain handed back to the user.
-
-### Earlier operational checkpoints
 
 Monitoring was repaired and extended at 20:36 UTC: the resource watcher now publishes successful snapshots every ten minutes through04:30 UTC October11. The failure was a missing verified submission timestamp in the CPU allocation record; judge workers and their dedicated operational observer were unaffected. Public dashboard version10 was published at20:41:04 UTC with the41/48 queue, measured pace and revised estimate. Scientific results remain unchanged.
 
@@ -58,7 +76,7 @@ All required GPU work for the four-family study is complete. The retained pools 
 
 Current delivery planning allows roughly six to nine hours from the 17:58 update at the existing rate, including missing DEV judgments and final review. Four to six hours may be feasible if higher concurrency improves measured throughput; it is not yet established. GPU expiry does not prevent completion. The public dashboard remains reviewed DEV/VAL version8, with question-level recovery as its default. A source-reviewed final slide extension is ready; actual final data and visual review remain pending.
 
-CPU job25508300 on node1603 lasts through 05:32 UTC on October11. Hall remains PID2407614/session73504. Old role PID2481603/session68888 is terminal exit0; current role PID3690209/session80782 uses16/400. Preserve the original accounting epoch, $40 TEST run cap, all twelve unknown TEST charges ($0.059636875) and the separate stopped-hall reservation ($0.00538675). The compute agent remains the sole bounded ledger observer. Research commits are local.
+CPU job25508300 on node1603 lasts through 05:32 UTC on October11. Hall remains PID2407614/session73504. Old role PID2481603/session68888 is terminal exit 0; current role PID3690209/session80782 uses16/400. Preserve the original accounting epoch, $40 TEST run cap, all twelve unknown TEST charges ($0.059636875) and the separate stopped-hall reservation ($0.00538675). The compute agent remains the sole bounded ledger observer. Research commits are local.
 
 ## Earlier checkpoints
 
@@ -236,7 +254,7 @@ Hall resumed at 15:42 (PID3595134/session12826), and role at 15:47
 (PID3598846/session51027), under unchanged specification23163a9e…, run cap,
 epoch and holds. The healthy hall checkpoint retained all six uncertain charges
 ($0.029525125) and found no new unknowns in its latest100 requests. Chain and
-multi-hop are terminal exit0. Next: monitor the remaining unchanged menu.
+multi-hop are terminal exit 0. Next: monitor the remaining unchanged menu.
 Finish the remaining judgments, paired analysis, independent example review,
 report and slides. The fresh-input N32 timing and relocated-cache replay are
 complete (035/036). The 14:55 forecast was about six hours of ideal judge

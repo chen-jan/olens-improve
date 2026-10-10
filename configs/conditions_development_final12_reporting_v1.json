@@ -1,0 +1,74 @@
+[
+  {
+    "method": "raw_n1",
+    "n": 1,
+    "selection_path": "${OLENS_DATA_ROOT}/selections/development-full-grid-judging-v1/selections.jsonl",
+    "selection_sha256": "acfcdefc425f48da612059f7bcb157bf037f91ba4e70fa9c68b0db142bfc46a4"
+  },
+  {
+    "method": "capped_n1",
+    "n": 1,
+    "selection_path": "${OLENS_DATA_ROOT}/selections/development-full-grid-judging-v1/selections.jsonl",
+    "selection_sha256": "acfcdefc425f48da612059f7bcb157bf037f91ba4e70fa9c68b0db142bfc46a4"
+  },
+  {
+    "method": "best_n_exact",
+    "n": 16,
+    "selection_path": "${OLENS_DATA_ROOT}/selections/development-full-grid-judging-v1/selections.jsonl",
+    "selection_sha256": "acfcdefc425f48da612059f7bcb157bf037f91ba4e70fa9c68b0db142bfc46a4"
+  },
+  {
+    "method": "best_n_exact",
+    "n": 32,
+    "selection_path": "${OLENS_DATA_ROOT}/selections/development-full-grid-judging-v1/selections.jsonl",
+    "selection_sha256": "acfcdefc425f48da612059f7bcb157bf037f91ba4e70fa9c68b0db142bfc46a4"
+  },
+  {
+    "method": "random_complete",
+    "n": 32,
+    "selection_path": "${OLENS_DATA_ROOT}/selections/development-full-grid-judging-v1/selections.jsonl",
+    "selection_sha256": "acfcdefc425f48da612059f7bcb157bf037f91ba4e70fa9c68b0db142bfc46a4"
+  },
+  {
+    "method": "best_n_specificity_mean",
+    "n": 32,
+    "selection_path": "${OLENS_DATA_ROOT}/selections/development-full-grid-judging-v1/selections.jsonl",
+    "selection_sha256": "acfcdefc425f48da612059f7bcb157bf037f91ba4e70fa9c68b0db142bfc46a4"
+  },
+  {
+    "method": "pooled_greedy_swap",
+    "n": 16,
+    "selection_path": "${OLENS_DATA_ROOT}/selections/development-full-grid-judging-v1/selections.jsonl",
+    "selection_sha256": "acfcdefc425f48da612059f7bcb157bf037f91ba4e70fa9c68b0db142bfc46a4"
+  },
+  {
+    "method": "pooled_greedy_swap",
+    "n": 32,
+    "selection_path": "${OLENS_DATA_ROOT}/selections/development-full-grid-judging-v1/selections.jsonl",
+    "selection_sha256": "acfcdefc425f48da612059f7bcb157bf037f91ba4e70fa9c68b0db142bfc46a4"
+  },
+  {
+    "method": "best_n_specificity_mean_then_prune_0.005",
+    "n": 32,
+    "selection_path": "${OLENS_DATA_ROOT}/selections/development-full-grid-judging-v1/selections.jsonl",
+    "selection_sha256": "acfcdefc425f48da612059f7bcb157bf037f91ba4e70fa9c68b0db142bfc46a4"
+  },
+  {
+    "method": "best_n_specificity_mean_random_delete_matched_0.005",
+    "n": 32,
+    "selection_path": "${OLENS_DATA_ROOT}/selections/development-full-grid-judging-v1/selections.jsonl",
+    "selection_sha256": "acfcdefc425f48da612059f7bcb157bf037f91ba4e70fa9c68b0db142bfc46a4"
+  },
+  {
+    "method": "prune_loo_a32_0.005",
+    "n": 32,
+    "selection_path": "${OLENS_DATA_ROOT}/selections/development-full-grid-judging-v1/selections.jsonl",
+    "selection_sha256": "acfcdefc425f48da612059f7bcb157bf037f91ba4e70fa9c68b0db142bfc46a4"
+  },
+  {
+    "method": "random_delete_matched_a32_0.005",
+    "n": 32,
+    "selection_path": "${OLENS_DATA_ROOT}/selections/development-full-grid-judging-v1/selections.jsonl",
+    "selection_sha256": "acfcdefc425f48da612059f7bcb157bf037f91ba4e70fa9c68b0db142bfc46a4"
+  }
+]

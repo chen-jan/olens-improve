@@ -2,10 +2,10 @@
   "project_id": "appgprj_6aca37fc2878819185850105787209f9",
   "url": "https://olens-improve-research.jan618.chatgpt.site",
   "access_mode": "public",
-  "version_id": "appgprj_6aca37fc2878819185850105787209f9~appgver_52405a43cb10819195879b09b02763c1",
-  "deployment_id": "appgdep_6acaa2d6296c819188124239906f60b1",
-  "site_source_commit": "1ebb718d40f81ec2fb29e74436f8b1acb8fc97ee",
-  "published_utc": "2026-10-10T20:41:04.950408+00:00",
+  "version_id": "appgprj_6aca37fc2878819185850105787209f9~appgver_4c83b5762d94819192939f2b2b9aecea",
+  "deployment_id": "appgdep_6acab59ae0708191b614d193b73d222b",
+  "site_source_commit": "8441d8bf1faa826fc75a1c07035cdda333fd4120",
+  "published_utc": "2026-10-10T22:01:09.995763+00:00",
   "source_checkout": ".state/public-dashboard",
   "static_directory": ".state/public-dashboard/dist",
   "export_command": "python scripts/build_public_dashboard.py --output .state/public-dashboard/dist --development-figures ${OLENS_DATA_ROOT}/figures/development-scaling-v2 --descriptive-review configs/descriptive_grid_review_v1.json --descriptive-review-sha256 ed5b850a8921522350dc0854e75800c7011696c0c516ec966e85ec99286ff82c",
@@ -41,9 +41,9 @@
     "source_report_sha256": "3bdf90842f8062dcf48d76cd2afd440bfc8d19a3501f4cb56100d91e54aabcd3",
     "user_browser_verified": false,
     "qa_receipt_sha256": "602c93aebd6a644b549cad0ae9dc69c4ed991203622066d8389325b0c02b8eff",
-    "latest_change_scope": "Current41/48 TEST queue, observed180/minute and revised delivery estimate, plus previously reviewed exact question-criterion wording. Scientific objects unchanged;32 other public files byte-identical. No TEST quality read or published.",
-    "latest_local_review": ".state/public-dashboard-v10-metadata-review.json",
-    "browser_qa_for_latest_version": "Not repeated for text/status-only update; historical layout QA retained."
+    "latest_change_scope": "All48TESTjudgments complete, measured budget-batch throughput,21:54APIestimate, bounded incidental exposure disclosure. Scientificobjectsunchanged;33otherpublicfilesbyteidentical.",
+    "latest_local_review": ".state/public-dashboard-v11-metadata-review.json",
+    "browser_qa_for_latest_version": "Not repeated for status-only update; native deployment succeeded and previous layout QA remains historical."
   },
   "note": "Dedicated Sites repository only. The chen-jan/olens-improve GitHub repository was not pushed. Snapshot updates require a new Site version.",
   "publication_history": [
@@ -64,7 +64,13 @@
       "deployment_id": "appgdep_6aca8b1641e88191b7cc6bab658a2fdb",
       "site_source_commit": "c3b32bcd6a1e46bfe62e810dd5a9f79bbd7bf543",
       "published_utc": "2026-10-10T18:59:45.199753+00:00"
+    },
+    {
+      "version_id": "appgprj_6aca37fc2878819185850105787209f9~appgver_52405a43cb10819195879b09b02763c1",
+      "deployment_id": "appgdep_6acaa2d6296c819188124239906f60b1",
+      "site_source_commit": "1ebb718d40f81ec2fb29e74436f8b1acb8fc97ee",
+      "published_utc": "2026-10-10T20:41:04.950408+00:00"
     }
   ],
-  "source_report_sha256": "08cb8ba1b42ba3d8a053fde235156fac986cb708b15a0d44f6ba5efed602183b"
+  "source_report_sha256": "ca398673a1552376f23f6c7946ff5b26b7f19f1f3ebaeab2a722da5e17378cf3"
 }
