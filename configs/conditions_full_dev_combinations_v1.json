@@ -1,0 +1,6 @@
+[
+  {"method":"best_n_specificity_mean_then_prune_0.001","n":32},
+  {"method":"best_n_specificity_mean_then_prune_0.005","n":32},
+  {"method":"best_n_specificity_mean_random_delete_matched_0.001","n":32},
+  {"method":"best_n_specificity_mean_random_delete_matched_0.005","n":32}
+]
