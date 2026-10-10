@@ -1,0 +1,29 @@
+{
+  "status": "root_reviewed",
+  "reviewed_utc": "2026-10-10T16:22:05.788514+00:00",
+  "reviewed_by": "root",
+  "sources": {
+    "analysis": {
+      "path": "${OLENS_DATA_ROOT}/analysis/descriptive-grid-dev-val-v1/grid-audit.json",
+      "sha256": "a4ff4c0d0e8fb04c34b419527485be49a34b6169b580ab8bd1b188ded4fa5c6c"
+    },
+    "figures": {
+      "path": "${OLENS_DATA_ROOT}/analysis/descriptive-grid-dev-val-v2/figure-provenance.json",
+      "sha256": "a9b3728db917c6e31fcff4dcdbd296c5d245833f76f59153f8797cf0baa7c94a"
+    }
+  },
+  "scope": "Descriptive appendix of unchanged DEV/VAL read sites only; no site or method selection, no TEST outcomes.",
+  "checks": [
+    "Reviewed group-bootstrap and missingness logic; actual eligible endpoint denominator retained.",
+    "Summed every site numerator and denominator; DEV matches reviewed complete sampling comparison, all5236cells accounted.",
+    "VAL has3485complete cells per method; signed source and retained full-menu evidence were independently checked.",
+    "Root inspected validation hallucination and role figures, including original-resolution labels; no metric/interval recalculation.",
+    "Five analysis tests and three rendering tests passed on disposable/authorized DEV-VAL inputs."
+  ],
+  "limits": [
+    "Within-item position rank does not align semantic token meaning across items.",
+    "Exploratory unadjusted per-site intervals and different rank cohorts do not justify layer/position optimization.",
+    "Fewer than ten chain-template groups make some intervals unstable.",
+    "Recovery of names, numbers or roles is not full explanation correctness."
+  ]
+}
