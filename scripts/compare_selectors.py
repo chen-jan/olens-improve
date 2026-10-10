@@ -1,4 +1,4 @@
-"""Offline candidate-only A/C/D/E1 development comparison on a fixed shared pool.
+"""Offline candidate-only A/C/D/E1 comparison on a frozen, stage-gated pool.
 
 GPU-free but CPU-heavy: use the assigned Slurm CPU allocation. Scientific verdicts
 come from subsequent blind judging; FVE is recorded only as selection evidence.
@@ -16,6 +16,7 @@ import torch
 from safetensors.torch import load_file
 from transformers import AutoTokenizer
 from olens_improve.ar_cache import digest, input_records
+from olens_improve.selector_inputs import load_selector_inputs, validate_controls
 from olens_improve.contrastive import control_specificity
 from olens_improve.reconstruction import JointNNLS, RawVectorCache, Whitener
 from olens_improve.selection import (Selection, best_of_n, greedy_pool, output_admissible,
@@ -93,6 +94,7 @@ def main():
     parser.add_argument('--shard-index',type=int,default=0)
     parser.add_argument('--controls-manifest',required=True)
     parser.add_argument('--pilot-manifest',required=True)
+    parser.add_argument('--gate',help='Exact coordinator stage gate; required for validation/test')
     args=parser.parse_args()
     if args.shard_count < 1 or not 0 <= args.shard_index < args.shard_count:
         parser.error('Require 0 <= shard-index < positive shard-count')
@@ -109,31 +111,18 @@ def main():
             counts[text]=len(tok(text,add_special_tokens=False)['input_ids'])
         return counts[text]
     admissible=output_admissible(token_count,256)
-    source_inputs=[]; records=defaultdict(dict)
-    for input_path in args.input:
-        path=Path(input_path); body=path.read_bytes(); sha=hashlib.sha256(body).hexdigest()
-        status_path=path.with_suffix('.status.json')
-        if not status_path.exists():
-            raise ValueError('Require completed shared journal with terminal status')
-        status=json.loads(status_path.read_text())
-        if status['status']!='complete' or status['journal_sha256']!=sha:
-            raise ValueError('Journal is not the committed terminal snapshot')
-        source_inputs.append({'path':str(path),'sha256':sha,'terminal_status':status})
-        for row in input_records(body):
-            cell=row['cell_id']; index=row['sample_index']
-            if index in records[cell]:
-                raise ValueError('Duplicate cell/sample record')
-            records[cell][index]=row
     manifest_bytes=Path(args.fresh_manifest).read_bytes()
-    manifest=json.loads(manifest_bytes); cells={c['cell_id']:c for c in manifest['cells']}
-    target_ids=sorted(args.cell_id) if args.cell_id else sorted(records)
-    if not set(target_ids).issubset(records):
-        raise ValueError('Requested comparison cell has no shared-pool records')
+    pilot_bytes=Path(args.pilot_manifest).read_bytes(); pilot=json.loads(pilot_bytes)
+    gate_bytes=Path(args.gate).read_bytes() if args.gate else None
+    stage,cohort,cells,records,source_inputs,historical_records=load_selector_inputs(
+        args.input,pilot_bytes,manifest_bytes,gate_bytes)
+    if stage!='development' and (args.cell_id or args.max_cells):
+        raise ValueError('Validation/test selection requires the complete frozen cohort')
+    target_ids=sorted(args.cell_id) if args.cell_id else sorted(cohort)
+    if not set(target_ids).issubset(cohort):
+        raise ValueError('Requested comparison cell is outside the frozen cohort')
     if args.max_cells:
         target_ids=target_ids[:args.max_cells]
-    for cell_id in target_ids:
-        if cells[cell_id]['split']!='development' or set(records[cell_id])!=set(range(32)):
-            raise ValueError('Require complete32-sample DEVELOPMENT cells')
     cache=RawVectorCache(args.cache_directory)
     usage={}
     for path in sorted(Path(args.cache_directory).glob('usage_*.jsonl')):
@@ -150,27 +139,16 @@ def main():
     whiteners={}; vectors_by_layer={}; target_by_layer={}
     controls_bytes=Path(args.controls_manifest).read_bytes()
     controls_manifest=json.loads(controls_bytes)
-    pilot_bytes=Path(args.pilot_manifest).read_bytes()
-    pilot=json.loads(pilot_bytes)
-    pilot_ids={c['cell_id'] for c in pilot['cells']}
+    pilot_ids=set(cohort)
     if not set(target_ids).issubset(pilot_ids) or (not args.cell_id and not args.max_cells and set(target_ids)!=pilot_ids):
         raise ValueError('Comparison cell set differs from frozen pilot')
     full_target_count = len(target_ids)
     target_ids = target_ids[args.shard_index::args.shard_count]
     if not target_ids:
         raise ValueError('Empty selection shard')
-    scope = ('partial-grid development cell diagnostics' if pilot.get('partial_grid', False)
-             else 'full-grid development cell selections; item aggregation pending')
-    bank={cell_id:controls_manifest['control_cell_ids_by_target'][cell_id] for cell_id in target_ids}
-    for cell_id,control_ids in bank.items():
-        own=cells[cell_id]
-        for control_id in control_ids:
-            other=cells[control_id]
-            if other['split']!='development' or other['group_id']==own['group_id']:
-                raise ValueError('Frozen E1 control violates split/group exclusion')
-            ref=controls_manifest['control_bank'][control_id]
-            if any(ref[k]!=own[k] for k in ('family','layer')):
-                raise ValueError('Frozen control has unmatched family/layer')
+    scope = ('partial-grid '+stage+' cell diagnostics' if pilot.get('partial_grid', False)
+             else 'full-grid '+stage+' cell selections; item aggregation pending')
+    bank=validate_controls(controls_manifest,target_ids,cohort,cells)
     config={'schema_version':2,'primary_solver':'scipy_exact','compatibility_solver':'released80',
             'empty_AR_policy':'Invalid cleaned atoms excluded from AR complete selection/pooling; text baselines unchanged; unscoreable N1 pruning is explicit no-op',
             'prefixes':[1,2,4,8,16,32],'max_bullets':4,'max_output_qwen_tokens':256,
@@ -179,14 +157,15 @@ def main():
             'E1_requested_control_count':controls_manifest['requested_controls_per_cell'],'E1_beta':1.,'E1_primary':'mean',
             'E1_ablation':'max','controls':bank,'cell_ids':target_ids,
             'source_inputs':source_inputs,'fresh_manifest_sha256':hashlib.sha256(manifest_bytes).hexdigest(),
-            'vector_contract':cache.contract,'split':'development',
+            'vector_contract':cache.contract,'split':stage,'historical_records_excluded':historical_records,
+            'coordinator_gate_sha256':hashlib.sha256(gate_bytes).hexdigest() if gate_bytes else None,
             'controls_manifest_sha256':hashlib.sha256(controls_bytes).hexdigest(),
             'controls_multiplicity':'Frozen bank may include multiple cells from another group; never own related group',
             'pilot_manifest_sha256':hashlib.sha256(pilot_bytes).hexdigest(),
             'shard_index':args.shard_index,'shard_count':args.shard_count,
             'full_cohort_cell_count':full_target_count,
             'code_sha256':{str(path):hashlib.sha256(path.read_bytes()).hexdigest() for path in
-                [Path(__file__),Path('src/olens_improve/selection.py'),Path('src/olens_improve/reconstruction.py'),Path('src/olens_improve/contrastive.py')]} ,'scope':scope}
+                [Path(__file__),Path('src/olens_improve/selection.py'),Path('src/olens_improve/reconstruction.py'),Path('src/olens_improve/contrastive.py'),Path('src/olens_improve/selector_inputs.py'),Path('src/olens_improve/stage_io.py'),Path('src/olens_improve/ar_partition.py')]} ,'scope':scope}
     output=Path(args.output); output.mkdir(parents=True,exist_ok=True)
     config_path=output/'config.json'
     if config_path.exists() and json.loads(config_path.read_text())!=config:
@@ -299,7 +278,7 @@ def main():
                         {key:value.score(chosen.phrase_ids) for key,value in controls.items()},aggregation=aggregation)
                     save(f'best_n_specificity_{aggregation}',32,chosen,extra=diagnostics)
             event={'cell_id':cell_id,'family':cell['family'],'item_id':cell['item_id'],
-                'layer':layer,'position':cell['position'],'split':'development','global_pool_id':pool,
+                'layer':layer,'position':cell['position'],'split':stage,'global_pool_id':pool,
                 'activation_sha256':cell['activation_sha256'],'config_sha256':digest(config),
                 'parser_flags_by_sample':{s.index:list(s.flags) for s in samples},
                 'invalid_AR_atoms_by_sample':invalid_by_sample,
