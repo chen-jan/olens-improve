@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "manifest_id": "development-shared-pilot-v2",
+  "split_sha256": "a04ddcbd5f0a5a0ec66640c2b6b5ba47563e13b3f3109fd61bc087b12ce3b40d",
+  "seed": 20261010,
+  "instrument_parent_sha256": "f8dfeefe39a873579d70884c89a909aed34a837c4bea62d2943b30dcb54cbf62",
+  "selection_rule": "Keep instrument groups; deterministic whole-group subset sum towards8items/family. Layers20/44/60, first/middle/last frozen sites; MT/chain finaltoken only. No readout/judge/gold-based selection.",
+  "partial_grid": true,
+  "report_contract": "Paired cell-level diagnostics only; not official any-cell or any-layer item recovery.",
+  "maximum_shared_samples_per_cell": 32,
+  "prefixes": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    32
+  ],
+  "families": {
+    "hallucination": {
+      "group_ids": [
+        "hallucination:04993a8dfda56786",
+        "hallucination:35f3492cdf5d57c7",
+        "hallucination:3f2786298deb5de8",
+        "hallucination:5481719846145d15",
+        "hallucination:5c85a16c7bca4791",
+        "hallucination:96415718800bae83",
+        "hallucination:f6c18f83d38a0447",
+        "hallucination:fbdd1f8ada6bd839"
+      ],
+      "item_ids": [
+        "chat-dailydialog-0002",
+        "chat-dailydialog-0027",
+        "chat-dailydialog-0047",
+        "chat-lmsys-0005",
+        "chat-lmsys-0023",
+        "chat-lmsys-0025",
+        "chat-lmsys-0026",
+        "chat-lmsys-0052"
+      ],
+      "cell_count": 72
+    },
+    "multihop_mt": {
+      "group_ids": [
+        "multihop_mt:bridge-component:58510fb804f17936",
+        "multihop_mt:bridge-component:6ffda4fb3f3780d9",
+        "multihop_mt:bridge-component:7f10536c9471c529",
+        "multihop_mt:bridge-component:944a7148d964fc6c",
+        "multihop_mt:bridge-component:a046b74450ba7c00",
+        "multihop_mt:bridge-component:be6c03c9fb6be262",
+        "multihop_mt:bridge-component:e9b77ea9d672e77d"
+      ],
+      "item_ids": [
+        "mhh-1967-norwegian-classes-objects-codesigner",
+        "mhh-boethius-amalasuintha",
+        "mhh-borglum-son",
+        "mhh-mesopotamian-wildman-cedar",
+        "mhh-rhapsody-orchestrator",
+        "mhh-simula-norsk-regnesentral",
+        "mhh-ternary-moscow-brusentsov",
+        "mhh-wohler-berzelius"
+      ],
+      "cell_count": 24
+    },
+    "chain_intermediates": {
+      "group_ids": [
+        "chain_intermediates:37eccc588aafa111",
+        "chain_intermediates:787ce21baf539c52"
+      ],
+      "item_ids": [
+        "chain-d2p-0271",
+        "chain-d2p-0298",
+        "chain-d2p-0385",
+        "chain-w2-d2p-0013",
+        "chain-w2-d2p-0108",
+        "chain-w2-d2p-0118",
+        "chain-w2-d2p-0171"
+      ],
+      "cell_count": 21
+    },
+    "role_bound_association": {
+      "group_ids": [
+        "role_bound_association:0529f158867f8df9",
+        "role_bound_association:678e30ea4ee5fd05",
+        "role_bound_association:99a1755c9e7ed24c",
+        "role_bound_association:eeeaafd155b88847"
+      ],
+      "item_ids": [
+        "oa-comedian-heckler-humiliate-ab",
+        "oa-comedian-heckler-humiliate-ba",
+        "oa-father-daughter-worry-ab",
+        "oa-father-daughter-worry-ba",
+        "oa-lawyer-witness-interrogate-ab",
+        "oa-lawyer-witness-interrogate-ba",
+        "oa-waiter-customer-apologize-ab",
+        "oa-waiter-customer-apologize-ba"
+      ],
+      "cell_count": 72
+    }
+  },
+  "cells": [
+    {
+      "cell_id": "chain_intermediates|chain-d2p-0271|L44|p00066",
+      "family": "chain_intermediates",
+      "item_id": "chain-d2p-0271",
+      "layer": 44,
+      "position": 66,
+      "pos": 66,
+      "token": "\n\n",
+      "cache_tensor_path": "${OLENS_SOURCE_ROOT}/scratch/wsbench/cells/chain_intermediates.safetensors",
+      "cache_tensor_key": "resid",
+      "cache_row": 13374,
+      "split": "development",
+      "group_id": "chain_intermediates:787ce21baf539c52",
+      "cache_provenance": "conditional_pending_adapter_off_recapture"
+    },
+    {
+      "cell_id": "chain_intermediates|chain-d2p-0298|L44|p00066",
+      "family": "chain_intermediates",
+      "item_id": "chain-d2p-0298",
+      "layer": 44,
+      "position": 66,
+      "pos": 66,
+      "token": "\n\n",
+      "cache_tensor_path": "${OLENS_SOURCE_ROOT}/scratch/wsbench/cells/chain_intermediates.safetensors",
+      "cache_tensor_key": "resid",
+      "cache_row": 13924,
+      "split": "development",
+      "group_id": "chain_intermediates:787ce21baf539c52",
+      "cache_provenance": "conditional_pending_adapter_off_recapture"
+    },
+    {
+      "cell_id": "chain_intermediates|chain-d2p-0385|L44|p00066",
+      "family": "chain_intermediates",
+      "item_id": "chain-d2p-0385",
+      "layer": 44,
+      "position": 66,
+      "pos": 66,
+      "token": "\n\n",
+      "cache_tensor_path": "${OLENS_SOURCE_ROOT}/scratch/wsbench/cells/chain_intermediates.safetensors",
+      "cache_tensor_key": "resid",
+      "cache_row": 16399,
+      "split": "development",
+      "group_id": "chain_intermediates:787ce21baf539c52",
+      "cache_provenance": "conditional_pending_adapter_off_recapture"
+    },
+    {
+      "cell_id": "hallucination|chat-lmsys-0023|L44|p00464",
+      "family": "hallucination",
+      "item_id": "chat-lmsys-0023",
+      "layer": 44,
+      "position": 464,
+      "pos": 464,
+      "token": "**:",
+      "cache_tensor_path": "${OLENS_SOURCE_ROOT}/scratch/wsbench/cells/hallucination.safetensors",
+      "cache_tensor_key": "resid",
+      "cache_row": 858,
+      "split": "development",
+      "group_id": "hallucination:5c85a16c7bca4791",
+      "cache_provenance": "conditional_pending_adapter_off_recapture"
+    },
+    {
+      "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+      "family": "multihop_mt",
+      "item_id": "mhh-1967-norwegian-classes-objects-codesigner",
+      "layer": 44,
+      "position": 28,
+      "pos": 28,
+      "token": " with",
+      "cache_tensor_path": "${OLENS_SOURCE_ROOT}/scratch/wsbench/cells/multihop_mt.safetensors",
+      "cache_tensor_key": "resid",
+      "cache_row": 6,
+      "split": "development",
+      "group_id": "multihop_mt:bridge-component:a046b74450ba7c00",
+      "cache_provenance": "conditional_pending_adapter_off_recapture"
+    },
+    {
+      "cell_id": "multihop_mt|mhh-simula-norsk-regnesentral|L44|p00033",
+      "family": "multihop_mt",
+      "item_id": "mhh-simula-norsk-regnesentral",
+      "layer": 44,
+      "position": 33,
+      "pos": 33,
+      "token": " the",
+      "cache_tensor_path": "${OLENS_SOURCE_ROOT}/scratch/wsbench/cells/multihop_mt.safetensors",
+      "cache_tensor_key": "resid",
+      "cache_row": 534,
+      "split": "development",
+      "group_id": "multihop_mt:bridge-component:a046b74450ba7c00",
+      "cache_provenance": "conditional_pending_adapter_off_recapture"
+    },
+    {
+      "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L44|p00178",
+      "family": "role_bound_association",
+      "item_id": "oa-comedian-heckler-humiliate-ab",
+      "layer": 44,
+      "position": 178,
+      "pos": 178,
+      "token": "\n\n",
+      "cache_tensor_path": "${OLENS_SOURCE_ROOT}/scratch/wsbench/cells/role_bound_association.safetensors",
+      "cache_tensor_key": "resid",
+      "cache_row": 11247,
+      "split": "development",
+      "group_id": "role_bound_association:678e30ea4ee5fd05",
+      "cache_provenance": "conditional_pending_adapter_off_recapture"
+    },
+    {
+      "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ba|L44|p00160",
+      "family": "role_bound_association",
+      "item_id": "oa-comedian-heckler-humiliate-ba",
+      "layer": 44,
+      "position": 160,
+      "pos": 160,
+      "token": "\n\n",
+      "cache_tensor_path": "${OLENS_SOURCE_ROOT}/scratch/wsbench/cells/role_bound_association.safetensors",
+      "cache_tensor_key": "resid",
+      "cache_row": 11361,
+      "split": "development",
+      "group_id": "role_bound_association:678e30ea4ee5fd05",
+      "cache_provenance": "conditional_pending_adapter_off_recapture"
+    }
+  ],
+  "content_sha256": "fec8f63f6a85817a789507babc67ff3c457e3d8c140573b7802fd44ff659a3c0",
+  "purpose": "J++ development-only8-cell instrument; fitting-group overlap unresolved"
+}

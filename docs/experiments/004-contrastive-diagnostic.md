@@ -1,6 +1,6 @@
 # 004: Does the matched scorer distinguish number and relation changes?
 
-Status: initial development-only E2 diagnostic completed on H200 `25330001`; E1 and E3 are not yet experimentally evaluated. No new O-lens samples or paid API calls. This is a small instrument diagnostic, not a benchmark improvement result.
+Status: initial and expanded development-only E2 diagnostics completed. E1 and E3 selection pilots are recorded in experiments 006 and 007; their semantic quality remains unjudged. No new O-lens samples or paid API calls. This is a small instrument diagnostic, not a benchmark improvement result.
 
 ## Fixed comparison
 
@@ -29,7 +29,7 @@ At these states, the scorer does not reliably separate the known numerical inter
 
 ## Implementation, artifacts, and next decision
 
-`src/olens_improve/contrastive.py` provides original-minus-near-miss margins and own-minus-frozen-control specificity, with finite-score guards. E1 callers must enforce the plan's development-bank/site/group exclusions; no E1 control bank was tested here. Its E3 teacher-forced likelihood utility implements the exact carrier/injection, causal alignment from the carrier's last logit to the first candidate token, full candidate scoring up to 256 tokens, and no EOS by default. E3 runtime validation remains pending.
+`src/olens_improve/contrastive.py` provides original-minus-near-miss margins and own-minus-frozen-control specificity, with finite-score guards. E1 callers must enforce the plan's development-bank/site/group exclusions; no E1 control bank was tested in this initial diagnostic. Its E3 teacher-forced likelihood utility implements the exact carrier/injection, causal alignment from the carrier's last logit to the first candidate token, full candidate scoring up to 256 tokens, and no EOS by default. E3 runtime validation and the 189-cell pilot subsequently completed; see [007-likelihood-pilot.md](007-likelihood-pilot.md).
 
 `scripts/contrastive_diagnostic.py` reproduces this isolated E2 experiment. Full phrase strings, token IDs, source cell IDs, per-solver matrices/coefficients, generic scores, matched whitener hash, and runtime are in `${OLENS_COMPUTE_ROOT}/logs/contrastive_diagnostic.json`. The frozen model/source pins and loader evidence are in [001-model-setup.md](001-model-setup.md).
 
@@ -37,8 +37,21 @@ Next, extend diagnostic coverage to representative development cells and other s
 
 ## Planned expanded diagnostic before using near-miss margins
 
-The two initial pairs are insufficient to decide whether E2 belongs in a final selector. Freeze roughly20–40 development-only paired comparisons before scoring, spanning exact numerical alternatives, named-entity alternatives, role reversals, and negation **only where the original benchmark evidence establishes it**. If core banks contain no valid negation labels, record that diagnostic as unavailable rather than inventing truths or adding new core sites.
+The two initial pairs are insufficient to decide whether E2 belongs in a final selector. Freeze roughly 20–40 development-only paired comparisons before scoring, spanning exact numerical alternatives, named-entity alternatives, role reversals, and negation **only where the original benchmark evidence establishes it**. If core banks contain no valid negation labels, record that diagnostic as unavailable rather than inventing truths or adding new core sites.
 
 Use existing captured cells and prespecified supported layers. Where both paired activations exist, cross both descriptions with both targets; otherwise label the narrower one-target test explicitly. Include generic omission and a second faithful wording when available, keeping controlled descriptions within the AR span. Preserve the source item IDs, evidence establishing each controlled change, relation direction, number/entity identity, wording, layer and position in an isolated diagnostic manifest. Repeated layers/wordings of one pair remain correlated observations, not additional independent items.
 
-Report each own-minus-cross margin, both-pair success, interaction, generic-versus-specific scores, exact/released80 agreement and failures by change type/layer. Inspect failed distinctions as well as successes. Gold-backed descriptions and diagnostic findings never enter per-item candidate construction, matching, editing, control selection or inference-time policy inputs. Any useful E2 signal still needs a candidate-only development comparison against same-pool best-of-N; diagnostic fit discrimination alone does not establish better readouts. Expanded diagnostic execution is pending suitable GPU availability and the frozen evidence-backed manifest.
+Report each own-minus-cross margin, both-pair success, interaction, generic-versus-specific scores, exact/released80 agreement and failures by change type/layer. Inspect failed distinctions as well as successes. Gold-backed descriptions and diagnostic findings never enter per-item candidate construction, matching, editing, control selection or inference-time policy inputs. Any useful E2 signal still needs a candidate-only development comparison against same-pool best-of-N; diagnostic fit discrimination alone does not establish better readouts. The expanded diagnostic completed as recorded below.
+
+
+## Expanded diagnostic completed
+
+The frozen evidence-backed manifest and results are at `${OLENS_DATA_ROOT}/diagnostics/e2-expanded-v1`. Four number pairs and four role pairs were tested at existing layers 20, 44 and 60; abstract-role and named-entity wording variants give 36 correlated comparison sets. The original benchmark evidence establishes the controlled labels, not that a particular activation encodes them. No balanced verified negation pairs were identified; negation remains unavailable. The diagnostic used no new O-lens samples, helper/editor inputs or paid API calls and took 30.81 seconds.
+
+| Change type | Both own descriptions win at layer 20 | Layer 44 | Layer 60 |
+|---|---:|---:|---:|
+| Number | 0/4 | 0/4 | 2/4 |
+| Abstract role direction | 0/4 | 1/4 | 3/4 |
+| Named-entity direction | 0/4 | 0/4 | 3/4 |
+
+At layers 20 and 44, many cases favor one description under both activations, exposing shared wording preference rather than paired discrimination. Generic omission beats the correctly directed abstract role phrase in 6/8, 5/8 and 1/8 target conditions at layers 20/44/60; for named variants, the counts are 8/8, 8/8 and 0/8. Thus discrimination and omission incentives vary substantially with layer and wording. Layer-60 numerical margins are below .0006 in magnitude, within the scale of observed batching sensitivity; the two successful number pairings are delicate. Repeated layers, wording variants, related templates and shared items are not independent observations. These findings motivate cautious development tests of specificity/near-miss signals, not a universal semantic-faithfulness claim or test-selected layers.

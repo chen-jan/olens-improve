@@ -26,3 +26,15 @@ class ARCacheTests(unittest.TestCase):
         self.assertAlmostEqual(result['max_specificity'], .1)
         self.assertEqual(result['aggregation'], 'mean')
         self.assertAlmostEqual(control_specificity(.3, {'a': .1, 'b': .2}, aggregation='max')['score'], .1)
+
+    def test_committed_prefix_and_complete_cells(self):
+        from olens_improve.ar_cache import committed_prefix,complete_cells
+        self.assertEqual(committed_prefix(b'{"records":[]}\npartial'),b'{"records":[]}\n')
+        rows=[{'cell_id':'cell','sample_index':i,'activation_sha256':'target'} for i in range(32)]
+        self.assertEqual(len(complete_cells(rows,{'cell':{} })),32)
+        self.assertEqual(complete_cells(rows[:31],{'cell':{}}),[])
+        self.assertEqual(complete_cells(rows,{'cell':{}},completed={'cell'}),[])
+        with self.assertRaises(ValueError):complete_cells(rows+[rows[0]],{'cell':{}})
+        with self.assertRaises(ValueError):complete_cells(rows,{})
+        changed=[dict(row) for row in rows];changed[5]['activation_sha256']='other'
+        with self.assertRaises(ValueError):complete_cells(changed,{'cell':{}})

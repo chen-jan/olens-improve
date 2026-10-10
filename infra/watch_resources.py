@@ -1,6 +1,7 @@
 """One-shot allocation/resource snapshots; never submit or cancel jobs."""
 
 import argparse
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 import json
 import os
@@ -100,6 +101,7 @@ def main():
         detail["reason"] = fields.get("Reason")
         diagnostic = job in runtime.get("preemptable_allocations", [])
         if diagnostic:
+            previous_state = job.get("state")
             job.update(state=fields.get("JobState"), reason=fields.get("Reason"),
                        node=fields.get("NodeList") or None, last_check_utc=now.isoformat())
             detail["requested_utc"] = job["requested_utc"]
@@ -108,8 +110,9 @@ def main():
                 detail["pending_seconds"] = pending
                 if pending > job.get("fallback_after_pending_seconds", 720):
                     snapshot["alerts"].append(f"Diagnostic job {key} pending over12 minutes; consider an H100 replacement after memory-fit review")
-            elif fields.get("JobState") == "RUNNING":
+            elif fields.get("JobState") == "RUNNING" and previous_state != "RUNNING":
                 job["progress"] = "Allocated; workload handoff/status must be recorded separately"
+            detail["progress"] = job.get("progress")
         if fields.get("JobState") != "RUNNING" and not (diagnostic and fields.get("JobState") == "PENDING"):
             snapshot["alerts"].append(f"Job {key} is not confirmed RUNNING")
         if f"UserId=${USER}({runtime['gpu_owner_uid']})" not in text:
@@ -126,6 +129,19 @@ def main():
     snapshot["claim_files"] = []
     for path in sorted(claims.glob("*.json"))[:1000]:
         snapshot["claim_files"].append({"name": path.name, "age_seconds": now.timestamp() - path.stat().st_mtime})
+    readouts = Path(runtime["paths"]["durable"]) / "readouts/shared-global-v1"
+    snapshot["generation_progress"] = []
+    for path in sorted(readouts.glob("*.status.json"))[:100]:
+        snapshot["generation_progress"].append(json.loads(path.read_text()))
+    running = [job for job in jobs if snapshot["jobs"][str(job["job_id"])].get("state") == "RUNNING"]
+    def gpu_status(job):
+        return str(job["job_id"]), command(["srun", f"--jobid={job['job_id']}", "--overlap", "--mem=512M", "--cpu-bind=none", "-N1", "-n1", "-c1",
+            f"--gres=gpu:{job['gpu']}:1", "nvidia-smi", "--query-gpu=name,memory.used,utilization.gpu", "--format=csv,noheader"])
+    with ThreadPoolExecutor(max_workers=5) as pool:
+        snapshot["gpu_status"] = dict(pool.map(gpu_status, running))
+    for key, result in snapshot["gpu_status"].items():
+        if result.get("returncode") != 0:
+            snapshot["alerts"].append(f"GPU observation for job {key} unavailable; see recorded probe error")
     destination = Path(runtime["paths"]["fast"]) / "watcher"
     destination.mkdir(exist_ok=True)
     payload = json.dumps(snapshot, indent=2) + "\n"

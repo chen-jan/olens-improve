@@ -164,20 +164,20 @@ Make local commits at meaningful reviewed milestones, keeping code, documentatio
 | Research scope, candidate methods, limits | Documented here |
 | Git workflow | Local main initialized; planning versioned in local commits; pushing handled by the user |
 | New project experiment implementation | In progress: resource, model/scorer, and data/evaluation workers |
-| New inference, judging, or GPU execution | Eight-cell Luna instrument complete; representative 189-cell N32 generation running |
+| New inference, judging, or GPU execution | Shared 189-cell N32 pool and initial A/C/D/E1 judging complete; full development generation and AR encoding running; B/E/F/G diagnostics in progress |
 | Whitening access and exact scorer reproduction | All 11 files downloaded; 18 math fixtures and real matched-AR reproduction passed |
 | Real adapter activation and cache compatibility | Adapter checks passed; all 19,435 core cells freshly captured, eight instrument vectors preserved exactly |
-| Runtime environment, allocation, quotas, actual cost | Four owned H200s in use; group quota unresolved; first paid instrument cost $0.00046255 |
+| Runtime environment, allocation, quotas, actual cost | Four main H200s plus two monitored preemptable H200s; group quota unresolved; actual API usage about $0.51 at 02:58 UTC, ledger authoritative |
 
 Maintain this durable handoff block after each experiment or material state change:
 
-- **Phase:** representative development pilot and method implementation.
-- **Execution clock:** started 2026-10-10 01:25:36 UTC; target finish 2026-10-10 21:25:36 UTC. First throughput-based forecast due near 03:25 UTC.
-- **Last completed experiments:** eight-cell sample-0 Luna instrument, full fresh capture, and two-pair contrastive diagnostic; see experiments 001–004. None establishes a benchmark improvement.
-- **Active Slurm IDs / watcher / last check:** existing H200 jobs 25330001, 25330006, 25330007, 25417596; resource worker monitors them. Latest machine-readable check is in `configs/runtime.json` and the project watcher directory. No extra allocation requested.
-- **Spend:** $0.00046255 after the first instrument; the shared ledger is authoritative for later runs. Target $200, ceiling $300, reserve $100. An optional Claude review attempt had a $2 cap and timed out after 90 seconds (exit 124), returning no output or charge data. Charge is unconfirmed; retain its $2 reservation pending reconciliation.
-- **Next action:** finish the 189-cell shared N32 pool, encode candidates, run paired selection comparisons and bounded semantic-helper audits, then judge and inspect differences.
-- **Unresolved:** group storage quota, representative method performance, and measured full-grid costs/throughput. Model/scorer access and fresh-capture prerequisites are resolved.
+- **Phase:** judged development pilots, failure analysis, and full development candidate collection. Validation/test readouts remain sealed.
+- **Execution clock:** started 2026-10-10 01:25:36 UTC; target finish 2026-10-10 21:25:36 UTC. Forecast given around 02:40 UTC: another 10–14 hours, conditional on measured helper/judge throughput and the validation shortlist. Generation alone is not a completion forecast.
+- **Last completed experiments:** original instrument/source checks; full fresh capture; 189-cell N32 collection; A/C/D/E1 numerical selection and 22-condition judging/repair; expanded 36-set E2 diagnostic; E3 likelihood scoring; eight-cell J++ source-matched diagnostic; first natural semantic-helper audit. Early quality is mixed, and no general improvement is established. See experiment 008 for direct failure examples and the all-candidate multi-hop diagnostic.
+- **Active Slurm IDs / watcher / last check:** main generation jobs 25330001, 25330006, 25330007, 25417596; preemptable 25460532 for streaming AR and 25459615 for diagnostics/edit scoring. The resource worker monitors all six; latest machine-readable check is in the project watcher directory. At 02:58 UTC, 2,443/5,236 development cells were complete, with no watcher alerts.
+- **Spend:** actual API usage $0.51075 and outstanding reservations $2.40045 at 02:58 UTC; later ledger values are authoritative. Target $200, ceiling $300, reserve $100. The optional Claude review timed out after 90 seconds without charge data; its unknown $2 reservation remains included. Unknown reservations also cover unreconciled API attempts.
+- **Next action:** score the deterministic repair of first-round editor outputs, then review the beam before round two; judge E3 on Luna Standard under a separate $5 cap; repair/audit consensus and assess judge repeatability; complete full development generation/encoding and parallel offline selection. Repaired original judgments are under `runs/development-shared-pilot-v2/judgments-standard-repair`; E3 uses the original `judgments` root. Preserve both and bind summaries to exact paths/hashes.
+- **Unresolved:** group storage quota; a useful, robust method/composite; semantic-helper and judge reliability; J++ fitting-group overlap. Small pilot confidence intervals have only 2–8 independent groups. Model/scorer access and fresh-capture prerequisites are resolved.
 
 First execution actions: read AGENTS.md and this plan; inspect existing manifests read-only; establish project-owned artifact paths and ledger; freeze grouped splits; resolve the loader checks and, for AR-guided methods, whitening checks; prepare the real baseline pilot and its cost forecast. Review the pilot record before launching the full development run; this is an execution quality gate, not a new user-permission requirement.
 

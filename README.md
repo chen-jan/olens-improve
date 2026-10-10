@@ -6,4 +6,4 @@ The execution target is approximately 20 hours from the actual start, subject to
 
 Read [the execution plan](docs/PLAN.md) and [detailed method specifications](docs/METHODS.md) before continuing. Record each experiment using [the experiment template](docs/experiments/TEMPLATE.md), and follow [AGENTS.md](AGENTS.md) for cluster and storage rules.
 
-Current state: autonomous execution started on 2026-10-10 at 01:25:36 UTC. Prerequisite checks and implementation are in progress. See [the current status](docs/STATUS.md) for measured results, spending, active jobs, and recovery instructions. Local commits only; the user handles pushing.
+Current state: autonomous execution started on 2026-10-10 at 01:25:36 UTC. The shared 189-cell pilot is generated and scored; semantic comparisons are in progress. See [the local dashboard](dashboard/index.html) and [the current status](docs/STATUS.md) for measured results, spending, active jobs, and recovery instructions. The dashboard is locally browser-checked and has not been published. Local commits only; the user handles pushing.

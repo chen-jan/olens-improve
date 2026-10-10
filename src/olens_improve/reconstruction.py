@@ -228,7 +228,8 @@ class FrozenAR:
         head = head.to(device).eval()
         return cls(tok, backbone, head, state["tag_ids"].to(device), layers, device,
                    {"matched_adapter_tensors": matched, "head_layer_norm": cfg.get("head_layer_norm", True),
-                    "whitener_prefix": cfg["whitener_prefix"], "span_limit": 32, "final_norm": "Identity"})
+                    "whitener_prefix": cfg["whitener_prefix"], "span_limit": 32, "final_norm": "Identity",
+                    "tag_ids_by_layer": state["tag_ids"].tolist()})
 
     def encode(self, texts: list[str], layer: int) -> tuple[Any, list[dict[str, Any]]]:
         return self.encode_mixed(texts, [layer] * len(texts))
@@ -258,7 +259,7 @@ class FrozenAR:
             predictions = self.head(hidden).float().cpu()
         metadata = [{"text": text, "scored_text": cleaned, "input_ids": tokens, "original_token_count": len(original),
                      "scored_token_count": len(tokens), "unscored_suffix_ids": original[32:],
-                     "truncated": len(original) > 32, "tag_ids": self.tags[layer_index].tolist(),
+                     "truncated": len(original) > 32, "tag_ids": self.metadata["tag_ids_by_layer"][layer_index],
                      "layer": layer}
                     for text, (cleaned, _), tokens, original, layer_index, layer in
                     zip(texts, prepared, truncated, rows, layer_indices, layers)]

@@ -32,3 +32,34 @@ Maintenance inspection: `/etc/motd` empty, `/run/motd.d` empty, `/etc/motd.d` co
 Watcher: `/root/compute_storage_audit`, active only while this session runs; one-shot `infra/watch_resources.py` writes atomic latest snapshots and append-only history under the project's fast `watcher/` directory. Checks approximately every ten minutes during active work; persistent manifests support recovery after the session ends. No preemptable jobs requested. Resource watcher does not submit, cancel, or alter allocations.
 
 API calls/spend: none. Scientific improvements: not measured. Decision: proceed with isolated loader/pilot on job25417596 and shared frozen weights; validate throughput before assigning remaining main GPUs or considering preemptable work.
+
+## Execution update, 2026-10-10 02:24 UTC
+
+The representative 189-cell N32 pool completed on the four existing main
+allocations. Independently verified 6,048 unique records, contiguous indexes 0..31
+per cell, all four terminal journal hashes, exact preservation of the original 16
+instrument records, and no generation-cap truncation. Its immutable snapshot is
+`${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2`;
+snapshot SHA256 `83a6834300befee9f99f5e7837c8308385390f9a4d75359e3975705eb5d63778`.
+The parent-approved development-only 5,236-cell expansion now runs all four main
+slots with the same global pool and settings; no validation/test generation.
+
+One useful diagnostic preemptable H200 was requested at 02:22:59 UTC and
+allocated at 02:23:24 UTC: job 25459615/node4800, eight CPUs/64 GiB, expires
+22:23:24 UTC. Live association checks require `${SLURM_GENERAL_PARTITION}`/`normal` on
+`${SLURM_PREEMPT_PARTITION}`; the advanced GPU account is partition-restricted to normal
+GPU. This extra job is requeueable, with resumable diagnostic workers and
+pending/expiry monitoring. Release it once no useful work remains.
+
+Watcher at 02:10 UTC measured 3.70 GB logical project-owned storage and no alerts.
+Its ledger snapshot recorded actual $0.00351744 and unknown/reserved $2; other
+agents made these calls. Group quota remains unresolved. Main generation used
+882.4 GPU-seconds summed across 53 batches (4.67 GPU-seconds/cell). Allow roughly
+1.5–3 h for remaining development generation on four slots; conditionally the
+entire 19,435-cell suite would require about 6.3 h at measured speed, with a practical
+5–10 h generation range before encoding, selection, judging, and helper work.
+
+`infra/requirements-observed.txt` records verified top-level package versions.
+It is a constraints snapshot rather than a complete platform-specific lock;
+the current environment continues its read-only historical dependency overlay.
+Source checkout paths are configurable through the runtime JSON.

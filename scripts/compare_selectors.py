@@ -37,9 +37,15 @@ def main():
     parser.add_argument('--output',required=True)
     parser.add_argument('--max-cells',type=int)
     parser.add_argument('--cell-id',action='append')
+    parser.add_argument('--shard-count',type=int,default=1)
+    parser.add_argument('--shard-index',type=int,default=0)
     parser.add_argument('--controls-manifest',required=True)
     parser.add_argument('--pilot-manifest',required=True)
     args=parser.parse_args()
+    if args.shard_count < 1 or not 0 <= args.shard_index < args.shard_count:
+        parser.error('Require 0 <= shard-index < positive shard-count')
+    if args.shard_count > 1 and (args.cell_id or args.max_cells):
+        parser.error('Sharding requires the complete declared cohort, without cell/max filters')
     if not os.environ.get('SLURM_JOB_ID'):
         raise RuntimeError('Offline selection requires allocated CPU resources')
     torch.set_num_threads(4)
@@ -97,6 +103,12 @@ def main():
     pilot_ids={c['cell_id'] for c in pilot['cells']}
     if not set(target_ids).issubset(pilot_ids) or (not args.cell_id and not args.max_cells and set(target_ids)!=pilot_ids):
         raise ValueError('Comparison cell set differs from frozen pilot')
+    full_target_count = len(target_ids)
+    target_ids = target_ids[args.shard_index::args.shard_count]
+    if not target_ids:
+        raise ValueError('Empty selection shard')
+    scope = ('partial-grid development cell diagnostics' if pilot.get('partial_grid', False)
+             else 'full-grid development cell selections; item aggregation pending')
     bank={cell_id:controls_manifest['control_cell_ids_by_target'][cell_id] for cell_id in target_ids}
     for cell_id,control_ids in bank.items():
         own=cells[cell_id]
@@ -118,8 +130,10 @@ def main():
             'controls_manifest_sha256':hashlib.sha256(controls_bytes).hexdigest(),
             'controls_multiplicity':'Frozen bank may include multiple cells from another group; never own related group',
             'pilot_manifest_sha256':hashlib.sha256(pilot_bytes).hexdigest(),
+            'shard_index':args.shard_index,'shard_count':args.shard_count,
+            'full_cohort_cell_count':full_target_count,
             'code_sha256':{str(path):hashlib.sha256(path.read_bytes()).hexdigest() for path in
-                [Path(__file__),Path('src/olens_improve/selection.py'),Path('src/olens_improve/reconstruction.py'),Path('src/olens_improve/contrastive.py')]} ,'scope':'partial-grid cell-level diagnostic'}
+                [Path(__file__),Path('src/olens_improve/selection.py'),Path('src/olens_improve/reconstruction.py'),Path('src/olens_improve/contrastive.py')]} ,'scope':scope}
     output=Path(args.output); output.mkdir(parents=True,exist_ok=True)
     config_path=output/'config.json'
     if config_path.exists() and json.loads(config_path.read_text())!=config:
@@ -184,7 +198,7 @@ def main():
                 fits={'exact':exact.fit(ids).__dict__,'released80':released.fit(ids).__dict__}
                 fit_scope='emitted_bullets'
                 if raw_text is not None:
-                    fits=None; fit_scope='unavailable_for_unmodified_raw_text' 
+                    fits=None; fit_scope='unavailable_for_unmodified_raw_text'
                 if raw_text is None and not admissible(selection.bullets):
                     raise ValueError('Output violates final cap')
                 results.append({'method':method,'n':n,'text':text,'phrase_ids':list(ids),
@@ -257,7 +271,9 @@ def main():
             print(json.dumps({'completed_cells':len(completed),'expected_cells':len(target_ids)}),flush=True)
     atomic_json(output/'status.json',{'status':'complete','completed_cells':len(completed),
                 'expected_cells':len(target_ids),'seconds':time.time()-started,
-                'quality_status':'unjudged','scope':'partial-grid dev cell diagnostics'})
+                'quality_status':'unjudged','scope':scope,
+                'shard_index':args.shard_index,'shard_count':args.shard_count,
+                'full_cohort_cell_count':full_target_count})
 
 
 if __name__=='__main__':

@@ -26,7 +26,7 @@ def atomic_json(path,payload):
     tmp.write_text(json.dumps(payload,indent=2)+"\n"); os.replace(tmp,path)
 
 
-def main():
+def parse_args():
     p=argparse.ArgumentParser()
     p.add_argument("--runtime",default="configs/runtime.json")
     p.add_argument("--input",action="append",required=True)
@@ -36,7 +36,10 @@ def main():
     p.add_argument("--batch-size",type=int,default=32)
     p.add_argument("--shard-size",type=int,default=4096)
     p.add_argument("--max-output-tokens",type=int,default=256)
-    args=p.parse_args()
+    return p.parse_args()
+
+
+def encode_snapshot(args, ar=None):
     if not os.environ.get("SLURM_JOB_ID"):
         raise RuntimeError("AR encoding must use assigned GPU")
     if args.batch_size<1 or args.shard_size<1:
@@ -124,7 +127,8 @@ def main():
     os.replace(tmp,output/f"usage_{usage_id}.jsonl")
     started=time.time(); requested=list(pending.items()); shard_number=len(indexes)
     if requested:
-        ar=FrozenAR.load(base,str(checkpoint))
+        if ar is None:
+            ar=FrozenAR.load(base,str(checkpoint))
         # Heterogeneous tags are independent batch rows; check against separate calls.
         check_texts=["The performer humiliates the heckler.", "A number.",
                      "The intermediate result is eleven. " + "A further detail. "*12]
@@ -140,6 +144,7 @@ def main():
         for lo in range(0,len(requested),args.shard_size):
             chunk=requested[lo:lo+args.shard_size]
             vectors=[]
+            execution=[]
             for offset in range(0,len(chunk),args.batch_size):
                 batch=chunk[offset:offset+args.batch_size]
                 predictions,encoding=ar.encode_mixed([v["text"] for _,v in batch],[v["layer"] for _,v in batch])
@@ -149,12 +154,15 @@ def main():
                 if not torch.isfinite(predictions).all():
                     raise ValueError("Nonfinite AR predictions")
                 vectors.append(predictions)
+                batch_keys=[key for key,_ in batch]
+                execution.extend({"batch_size":len(batch),"padded_token_width":max(row["scored_token_count"] for row in encoding)+6,
+                                  "ordered_batch_keys_sha256":digest(batch_keys),"usage_id":usage_id} for _ in batch)
             tensor_path=output/f"raw_{shard_number:05d}.safetensors"
             tmp=tensor_path.with_suffix(tensor_path.suffix+".tmp")
             save_file({"vectors":torch.cat(vectors)},str(tmp),metadata={"contract_sha256":contract_sha})
             os.replace(tmp,tensor_path)
             entries=[{"cache_key":key,"row":i,"layer":item["layer"],
-                      "scored_token_ids":item["scored_token_ids"],"tag_ids":item["tag_ids"]}
+                      "scored_token_ids":item["scored_token_ids"],"tag_ids":item["tag_ids"],"execution":execution[i]}
                      for i,(key,item) in enumerate(chunk)]
             atomic_json(output/f"raw_{shard_number:05d}.index.json",{
                 "contract_sha256":contract_sha,"tensor_path":str(tensor_path),"vectors":entries})
@@ -169,9 +177,13 @@ def main():
         "source_inputs":source_inputs,"usage_path":str(output/f"usage_{usage_id}.jsonl"),
         "full_text_variants":len(usages),"new_unique_vectors":len(requested),"total_unique_vectors":len(known),
         "seconds":time.time()-started,"batch_size":args.batch_size,"slurm_job_id":os.environ["SLURM_JOB_ID"]})
+    atomic_json(output/"progress.json",{"status":"complete","completed_unique_vectors":len(known),
+                "new_vectors":len(requested),"seconds":time.time()-started,"usage_id":usage_id})
     print(json.dumps({"status":"complete","cache_directory":str(output),"usage_id":usage_id,
                       "full_text_variants":len(usages),"new_unique_vectors":len(requested)}),flush=True)
+    lock.close()
+    return ar
 
 
 if __name__=="__main__":
-    main()
+    encode_snapshot(parse_args())

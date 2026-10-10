@@ -25,3 +25,7 @@ The MIT license text below applies to the upstream-derived portions under their 
 > SOFTWARE.
 
 Model weights, adapters, whitening statistics, and benchmark data remain external artifacts under their original terms. Their identities and revisions are recorded in `configs/project.json` and run manifests. No weights or gated research archive are included in this Git repository.
+
+The development-only J++ reader follows [Kola Ayonrinde's J++ Lens](https://github.com/koayon/jpp_lens), pinned to `93f02cd6c27db765abb127f20eff656bb5d27340`. Its actual pinned LICENSE is Apache-2.0, and its NOTICE credits copyright 2026 Kola Ayonrinde, Anthropic's Jacobian lens, and Camila Blank and Agam Bhatia's R-Lens. Exact upstream notices are preserved in [third_party/jpp_lens/LICENSE](third_party/jpp_lens/LICENSE) and [third_party/jpp_lens/NOTICE](third_party/jpp_lens/NOTICE). Our reader replaces the full model loader with selected frozen transport maps and the base final norm/unembedding, and adds source-span diagnostics and provenance checks; numerical equivalence is verified against the pinned upstream transport/unembedding fixture. No upstream fitting implementation or evaluation data is redistributed here.
+
+The external `koayon/jpp-lenses` Qwen checkpoint is pinned to `6c96867a91c43c14cec17cf0f6d157b933c5fee5`; its artifact hash and fitting-overlap limitation are recorded in experiment 006. Source licensing does not resolve fitting-group provenance or authorize a clean held-out claim.

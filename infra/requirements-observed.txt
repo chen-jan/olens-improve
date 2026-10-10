@@ -1,0 +1,13 @@
+# Observed top-level versions from the verified reuse environment.
+# This is a constraints snapshot, not a complete transitive lock or CUDA wheel index.
+# Existing historical site-packages are reused read-only for this run.
+torch==2.13.0
+transformers==5.16.1
+peft==0.21.2
+scipy==1.18.1
+numpy==2.5.2
+safetensors==0.8.0
+accelerate==1.14.0
+huggingface-hub==1.29.0
+openai==3.6.0
+pydra-config==0.0.17.post1

@@ -161,6 +161,62 @@ Prioritize J++ within G after compatibility checks: cache candidate entity/numbe
 
 The [J++ card](https://huggingface.co/koayon/jpp-lenses) advertises layers 0–62; its [quickstart](https://github.com/safety-research/jpp_lens)'s seven layers are examples. Artifact contents, coordinates, normalization, and runtime remain untested. Its expert weights use labeled readout items: audit fitting-data overlap with our WorkspaceBench groups and disclose it. Until this audit establishes disjoint fitting and evaluation groups, keep J++ as a development diagnostic, excluded from clean held-out headlines and the final composite. Paper-level held-out results do not establish that the released map excluded our items; do not claim clean held-out improvement without checking. The [NLA card](https://huggingface.co/ceselder/qwen3.6-27b-nla-rl) specifies source layer 42, reader injection layer 1, and its own `av_base`/metadata. Consider feasibility of a small, separately labeled layer-42 development diagnostic, outside the core grids. Never feed layer 44 as 42 or mix this probe into core headlines. Its reconstructor is not a drop-in AR or raw-score average; validate its own coordinates/preprocessing. Core completion does not depend on this optional study.
 
+## Combining methods and measuring their added value
+
+After the individual pilots and failure audits, run a bounded combination
+search on the same development cohort. Start with the strongest useful simple
+method, add one component addressing an observed weakness, then remove each
+component from a promising combination to check its contribution. Test a few
+ordering changes where they have a concrete rationale, such as filtering before
+pooling versus filtering its selected output. This is an adaptive forward and
+backward search, not an exhaustive cross-product of all methods and thresholds.
+
+Initial candidates, subject to the single-method evidence, include consensus
+filtering followed by pooling; pooling followed by pruning; and matched-control
+selection followed by pruning. Editing is an optional final component only if
+its pilot produces useful improvements. A combination may help even when a
+component alone has mixed results, but it needs a specific hypothesis and a
+paired comparison. Do not require a significance threshold for exploration.
+
+Keep the comparison constraints explicit:
+
+- Compare components alone, the combination, and the combination with each
+  component removed. Compare against raw/capped N1 and best-of-N at the same
+  candidate budget. Report the best *tested* configuration, not a global optimum.
+- Match signal availability. For example, consensus measured over the first
+  16 samples can support a clean N16 pooling comparison; do not silently label
+  unexamined N17–32 claims unreliable or call that equivalent to N32 consensus.
+- Respect each score's unit. Complete-readout likelihood and joint
+  reconstruction cannot be treated as interchangeable bullet-level evidence.
+  Any new objective, weight, threshold or ordering must be development-set
+  specified and frozen before held-out testing.
+- Reliability-filtered pooling may only fall back to outputs satisfying its
+  filter. An ablation should remove the named component while preserving other
+  constraints. If it changes which expensive calls occur, report that change.
+- Retain the shared maximum of 32 O-lens samples per cell and the bounded editor
+  proposal budget. Reuse saved proposals and their lineage for offline ablations;
+  disclose when an ablation is conditional on the shared search rather than a
+  fresh independent editing run. Do not silently buy another editor search for
+  every combination.
+- Narrow the shortlist using validation, then freeze the tested combinations,
+  component removals and decision rules before opening test results.
+
+Quality is the priority. Each result must also report its cost on a **new
+activation**: O-lens samples and generated tokens, local AR encodings/forward
+passes and fitting work, helper calls and tokens, measured GPU-seconds, API
+dollars, and elapsed latency with batching/concurrency disclosed. If GPU dollar
+pricing is unavailable, report GPU time rather than invent a conversion. Show
+the simpler alternatives and the quality–cost frontier, with uncertainty and
+family-specific tradeoffs. A costlier method earns its place through useful
+quality gains, not merely a higher reconstruction score.
+
+Distinguish actual campaign spend, incremental cost of rerunning a selector on
+the cached research pool, and end-to-end inference cost. Shared caches can save
+money during development without making N32 generation free at deployment.
+Exclude benchmark judging from the deployment method's inference cost, but
+report evaluation costs separately. Include genuine recurring runtime helper
+and editor calls in the method cost.
+
 ## Iteration, decisions, and coordination
 
 Follow a repeated loop: specify comparison → tiny representative development run → Luna judge → GPT-6.1 Sol inspects wins, regressions, and random unchanged cases → coordinator chooses revision → update the record/specification. Research agents reviewing traces are not runtime helpers and cannot inspect held-out results during selection. Targeted diagnostics supplement the representative sample.

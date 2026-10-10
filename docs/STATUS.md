@@ -23,7 +23,7 @@ Target finish: 2026-10-10 21:25:36 UTC, subject to the first real throughput for
 - The two-pair contrastive diagnostic found correct role-direction ranking on both paired examples, but the numeric scorer preferred the same number across two different answers. A generic role description scored much higher than the detailed descriptions. These are instrument examples, not general performance estimates; see experiment 004.
 - The 189-cell N32 pilot is complete: 6,048 distinct saved samples, contiguous indices 0–31 in every cell, no length-truncated generations, and the original 16 instrument samples preserved. Its 53 generation batches took 882.4 GPU-seconds in aggregate. Immutable pilot snapshots are saved before expanding the global journals.
 - Candidate encoding completed: 24,186 full-text bullet instances map to 23,750 distinct actual AR inputs; encoding took 323.94 seconds. Exact text, source spans, and scored/unscored token boundaries remain in the cache usage records.
-- Three existing H200s are expanding the shared pool to the complete 5,236-cell development grid while the fourth checks numerical batching stability. Validation and test readouts remain sealed. Initial sampling projection is approximately 25 GPU-hours for all 19,435 cells, or roughly 6–8 elapsed hours with four cards, before AR, selection, and judging overhead.
+- All four main H200s are expanding the shared pool to the complete 5,236-cell development grid; the numerical batching audit finished before the fourth joined. Validation and test readouts remain sealed. Two additional monitored preemptable H200s handle streaming AR encoding and bounded F/E/G diagnostics.
 
 ## Work in progress
 
@@ -38,12 +38,37 @@ Agents may inspect development traces after real runs. Held-out outputs remain s
 
 ## Budget and limits
 
-- Experimental API usage cost recorded at the first pilot: $0.00046255. The shared ledger is authoritative for subsequent updates.
+- Shared ledger at 02:42:51 UTC: actual $0.443410735, outstanding reservations $2.3432909 (including $2.3071494 unknown), committed $2.786701635. Values are a timestamped snapshot; the ledger is authoritative for subsequent updates.
 - Existing unresolved Claude review reservation: $2; retain until reconciled.
 - API target: $200; hard ceiling including outstanding reservations: $300.
 - Maximum shared O-lens samples per cell: 32. Editing has separate explicit limits.
 - Aggregate project storage allowance across Pattie compute and data: approximately 500 GB.
-- The model smoke used an existing GPU allocation. No additional GPU allocations or preemptable requests have been made.
+- Main generation uses four existing allocations. Diagnostic preemptable job 25459615/node4800 and streaming AR job 25460532/node4601 each provide one H200 under `${SLURM_GENERAL_PARTITION}`/`normal`; both were allocated within 25 seconds. Their current expirations are 22:23:24 and 22:40:24 UTC. Release extras when useful work ends; no further GPU requests are pending.
+
+## Measured resource forecast
+
+At 02:42:51 UTC, 1,618/5,236 development cells had complete N32 prefixes.
+The four main GPUs were at 99–100% utilization, about 77,235 MiB each.
+Recent four-cell batches took median 16.58–16.91 seconds, or 4.15–4.23
+GPU-seconds per cell. Remaining generation projected 1.04–1.19 hours per
+shard at that pace; allow roughly 1.2–2 hours for longer sequences and
+interruptions. This forecasts generation, not completion of the experiments.
+
+Conditionally sampling all 19,435 core cells would take about 25 GPU-hours
+using the earlier representative pilot rate, roughly 6.3 hours on four cards.
+Held-out generation still requires the frozen planned gate. Allow a 5–10-hour
+generation range before encoding, numerical selection, API judging, editing,
+and final audits. Single B32 AR encoding measured about 73 unique vectors/s;
+streaming overlap and B64/B128 profiling aim to avoid a long encoding tail.
+The API/selection/helper tail is not yet fully forecast and is not folded
+into the generation estimate.
+
+Project-owned storage was 10.97 GB across fast and durable roots, well below
+the 500 GB aggregate allowance; the actual lab group quota remains unresolved.
+Runtime paths, allocation expiry, live GPU observations, budget, generation
+status, and claim ages are recorded in the fast `watcher/latest.json`.
+Checks run during the active session only; no persistent external agent is
+assumed after the session ends.
 
 ## Next concrete milestone
 

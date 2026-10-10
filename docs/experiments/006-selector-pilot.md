@@ -6,13 +6,13 @@ The immutable input snapshot is `${OLENS_DATA_ROOT}/runs/development-shared-pilo
 
 ## Encoding and inference contract
 
-`scripts/encode_candidates.py` applies the frozen contiguous-dash-block parser, four-bullet limit and 256-token output policy. It encodes each intact retained source bullet through the matched frozen prompt-tag AR, retaining all full source text, span offsets, layer, sample identity, target activation hash, cleaned token IDs, and any suffix beyond the AR's 32-token span. Effective-input cache keys include the cleaned first32 token IDs, layer tag and model/head/tokenizer contract. Sharing a prefix vector does **not** merge claims or support votes.
+`scripts/encode_candidates.py` applies the frozen contiguous-dash-block parser, four-bullet limit and 256-token output policy. It encodes each intact retained source bullet through the matched frozen prompt-tag AR, retaining all full source text, span offsets, layer, sample identity, target activation hash, cleaned token IDs, and any suffix beyond the AR's 32-token span. Effective-input cache keys include the cleaned first 32 token IDs, layer tag and model/head/tokenizer contract. Sharing a prefix vector does **not** merge claims or support votes.
 
-The first pass encoded 24,186 full-text atom occurrences into **23,750 unique raw vectors** in 323.94 seconds on H200 job25330001. Six moderate-sized vector shards are under `${OLENS_COMPUTE_ROOT}/vectors/shared-global-v1/a451cf49d28ac7447722`. The contract, usage JSONL, raw-vector indexes and run JSON retain the evidence. No permanent whitened-vector duplicate is stored. Full suffixes remain visible to judges; AR scores do not validate unseen suffixes.
+The first pass encoded 24,186 full-text atom occurrences into **23,750 unique raw vectors** in 323.94 seconds on H200 job25330001. Six moderate-sized vector shards are under `${OLENS_COMPUTE_ROOT}/vectors/shared-global-v1/a451cf49d28ac7447722`. The contract, usage JSONL, raw-vector indexes and run JSON retain the evidence. No permanent whitened-vector duplicate is stored. Full suffixes remain visible to judges; AR scores do not validate unseen suffixes. The AR span truncates 1,514/24,186 atom occurrences (6.26%): multihop 169/3,072, chain 106/2,686, role 683/9,214 and hallucination 556/9,214. Only three effective-input cache keys have distinct full-text variants; these remain separate claims with separate provenance.
 
 ## Numerical batching audit
 
-`scripts/ar_batch_stability.py` froze one lexicographically first layer44 cell per family before scoring, using the first16 complete candidates. Production cached batch32 predictions were compared with fresh batch8 predictions; the batch32-selected atom set also received singleton checks. Production cache vectors were never replaced.
+`scripts/ar_batch_stability.py` froze one lexicographically first layer 44 cell per family before scoring, using the first 16 complete candidates. Production cached batch 32 predictions were compared with fresh batch 8 predictions; the batch 32-selected atom set also received singleton checks. Production cache vectors were never replaced.
 
 | Family | Maximum absolute FVE difference B8 vs cached B32 | Median absolute difference | Rank correlation | N16 winner changed? |
 |---|---:|---:|---:|---|

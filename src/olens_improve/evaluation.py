@@ -17,11 +17,14 @@ import random
 import subprocess
 import sys
 import time
+import sqlite3
+import contextlib
+import inspect
 from types import SimpleNamespace
 from typing import Any
 
 from .budget import AtomicBudget, BudgetExceeded, request_input_upper_bound
-from .data import BENCH_COMMIT, FAMILIES, SOURCE_ROOT, canonical, file_hash
+from .data import BENCH_COMMIT, FAMILIES, SOURCE_ROOT, LAYERS, canonical, file_hash, paths
 
 JUDGE_MODEL = 'gpt-6-luna'
 BENCH_ROOT = SOURCE_ROOT / 'scratch/repos/workspace-bench-v2'
@@ -82,6 +85,8 @@ class BudgetedCompletions:
                 'exception_type': type(error).__name__, 'latency_s': time.monotonic() - started,
                 'provider_request_id': getattr(error, 'request_id', None),
                 'http_status': getattr(error, 'status_code', None),
+                'error_code': getattr(error,'code',None),
+                'error_type': getattr(error,'type',None),
             })
             raise
         latency = time.monotonic() - started
@@ -190,6 +195,95 @@ def install_upstream_transport(ledger: AtomicBudget, run_id: str, *, allow_paid:
     llm._make_client = factory
 
 
+def install_shared_verdict_cache(path: Path, ledger: AtomicBudget, family: str) -> None:
+    """Reuse validated upstream verdicts by exact request content, not cell ID.
+
+    One process owns each family cache. Schema/source/validator contracts are
+    included and current call validation is rerun on hits. Duplicate requests
+    within a batch are coalesced before the unchanged upstream loop dispatches.
+    """
+    from wsbench import llm, mcjudge
+    from wsbench.cache import fingerprint
+    module=importlib.import_module(f'wsbench.evals.{family}.judge')
+    original=getattr(module.run_calls,'_original',module.run_calls)
+    source_contract=load_upstream()['runtime_source_hashes']
+    path.parent.mkdir(parents=True,exist_ok=True)
+    with contextlib.closing(sqlite3.connect(path)) as db:
+        db.execute('PRAGMA journal_mode=DELETE')
+        db.execute('CREATE TABLE IF NOT EXISTS verdicts (content_key TEXT PRIMARY KEY, body TEXT NOT NULL)')
+        db.commit()
+    def wrapped(calls,**kwargs):
+        if kwargs.get('dry_run'):
+            return original(calls,**kwargs)
+        judge=kwargs['judge'];schema=kwargs['schema'];version=kwargs['prompt_version']
+        validator=kwargs.get('validate');local=kwargs['cache']
+        validator_source=inspect.getsource(validator) if validator is not None else None
+        cap=kwargs.get('max_tokens') or llm._DEFAULT_MAX_TOKENS['openai']
+        temperature=kwargs.get('temperature')
+        def request(call):
+            req={'model':judge.model,'reasoning_effort':llm.openai_effort(judge.reasoning),
+                'messages':[{'role':'system','content':call.system},{'role':'user','content':call.user}],
+                'response_format':{'type':'json_schema','json_schema':schema},'max_completion_tokens':cap}
+            if temperature is not None and llm._TEMP_OK.get((judge.model,req['reasoning_effort']),True):
+                req['temperature']=temperature
+            return req
+        def identity(call):
+            request_key=request_cache_key(request(call))
+            key=hashlib.sha256(canonical({'request':request_key,'prompt_version':version,
+                'runtime_source_hashes':source_contract,'validator_source':validator_source}).encode()).hexdigest()
+            return key,request_key
+        representatives={};by_key={};unique=[]
+        for call in calls:
+            key,_=identity(call);by_key[call.key]=call
+            if key not in representatives:representatives[key]=call;unique.append(call)
+        mappings={}
+        for call in unique:
+            fp=fingerprint(version,judge.model,judge.reasoning,temperature,call.system,call.user)
+            mappings[(call.key,fp)]=call
+        class ExactCache:
+            def get(self,key,fp,**unused):
+                call=mappings[(key,fp)];content_key,request_key=identity(call)
+                with contextlib.closing(sqlite3.connect(path)) as db:
+                    found=db.execute('SELECT body FROM verdicts WHERE content_key=?',(content_key,)).fetchone()
+                if not found:return None
+                row=json.loads(found[0])
+                if validator is not None and not validator(call,row['result']):return None
+                payload={'result':row['result'],'meta':call.meta,'shared_cache_hit':{
+                    'content_key':content_key,'request_key':request_key,'origin':row['origin']}}
+                local.put(key,fp,payload)
+                return payload
+            def put(self,key,fp,payload):
+                call=mappings[(key,fp)];content_key,request_key=identity(call)
+                local.put(key,fp,payload)
+                if payload.get('result') is None:return
+                # Ledger owns original response/request identities and paid usage.
+                with contextlib.closing(sqlite3.connect(ledger.path)) as db:
+                    found=db.execute("SELECT attempt_id,metadata FROM attempts WHERE status='settled' "
+                        "AND json_extract(metadata,'$.content_cache_key')=? ORDER BY created_utc DESC LIMIT 1",(request_key,)).fetchone()
+                    response=None
+                    if found:
+                        event=db.execute("SELECT details FROM events WHERE attempt_id=? AND kind='physical_response' ORDER BY sequence DESC LIMIT 1",(found[0],)).fetchone()
+                        response=json.loads(event[0]).get('response_id') if event else None
+                body={'result':payload['result'],'origin':{'attempt_id':found[0] if found else None,
+                    'response_id':response,'request_key':request_key,'original_cell_key':key}}
+                with contextlib.closing(sqlite3.connect(path)) as db:
+                    db.execute('INSERT OR IGNORE INTO verdicts VALUES (?,?)',(content_key,canonical(body)));db.commit()
+        kwargs['cache']=ExactCache()
+        result=original(unique,**kwargs)
+        expanded={}
+        for call in calls:
+            key,_=identity(call);representative=representatives.get(key)
+            if representative is None:
+                # Temperature was dropped by provider during this batch. The
+                # representative mapping used the pre-dispatch contract.
+                representative=next(c for c in unique if c.system==call.system and c.user==call.user)
+            value=result.get(representative.key)
+            expanded[call.key]=value if value is None or validator is None or validator(call,value) else None
+        return expanded
+    wrapped._original=original
+    module.run_calls=wrapped
+
+
 def convert_selected_readouts(records: list[dict], manifest_cells: list[dict], *,
                                sample_index: int = 0) -> tuple[dict[str, list[dict]], dict]:
     """One condition = one selected text/cell; never evaluate an entire pool as one arm."""
@@ -246,6 +340,19 @@ def run_family(family: str, readouts: Path, out: Path, manifest_cells: list[dict
     missing_keys = expected_keys - actual_keys
     if missing_keys and not partial_grid:
         raise ValueError('Full-grid judging requires every prescribed manifest cell, including explicit abstentions')
+    if not partial_grid:
+        selected_ids={c['item_id'] for c in family_cells}
+        frozen_rows=[json.loads(line) for line in paths(family)['index'].read_text().splitlines()]
+        frozen_rows=[r for r in frozen_rows if r['id'] in selected_ids and r['layer'] in LAYERS[family]]
+        if family=='chain_intermediates':
+            last={}
+            for row in frozen_rows:
+                key=(row['id'],row['layer'])
+                if key not in last or row['pos']>last[key]['pos']:last[key]=row
+            frozen_rows=list(last.values())
+        official_keys={(r['id'],r['layer'],r['pos']) for r in frozen_rows}
+        if expected_keys!=official_keys:
+            raise ValueError('A partial manifest cannot be relabeled full-grid: original family layers/read positions required')
     if any(x['split'] == 'test' for x in family_cells) and os.environ.get('OLENS_TEST_FROZEN') != '1':
         raise ValueError('Test access sealed until final settings are frozen')
     if not dry_run and family != 'multihop_mt':
@@ -306,11 +413,17 @@ def run_family(family: str, readouts: Path, out: Path, manifest_cells: list[dict
         off = extras.get('n_off_topic', 0)
         judged = extras.get('n_readouts', 0)
         tallied = extras.get('n_readouts_claims_judged', 0)
+        produced_nonempty=len(actual_keys)-load_report.n_empty
         contract['hallucination_stage2'] = {
             'required': True, 'judged_readouts': judged, 'claim_tallied_readouts': tallied,
             'coverage': tallied / judged if judged else None,
-            'stage2_complete_for_produced_readouts': not dry_run and tallied == judged and judged > 0,
-            'main_comparison_eligible': not dry_run and not partial_grid and tallied == judged and judged > 0,
+            'produced_nonempty_readouts':produced_nonempty,
+            'stage1_coverage_over_nonempty_produced':judged/produced_nonempty if produced_nonempty else None,
+            'stage2_coverage_over_nonempty_produced':tallied/produced_nonempty if produced_nonempty else None,
+            'stage1_api_or_missing_readouts':produced_nonempty-judged,
+            'stage2_api_or_missing_readouts':produced_nonempty-tallied,
+            'stage2_complete_for_produced_readouts':not dry_run and tallied==judged==produced_nonempty and judged>0,
+            'main_comparison_eligible':not dry_run and not partial_grid and tallied==judged==produced_nonempty and judged>0,
             'secondary_wrong_over_wrong_plus_consistent': wrong / (specific - off) if specific > off else None,
             'span_vs_claim_caveat': 'False tallies are established spans; true/unverifiable tallies are claims. Not uniform atomic precision.',
             'assertion_share_over_all_produced_outputs': specific/len(actual_keys) if actual_keys else None,
@@ -356,3 +469,205 @@ retain unequal item/cell contributions rather than silently macro-averaging.
             'ci95_delta': ci, 'items': len(baseline), 'independent_groups': len(keys),
             'seed': seed, 'bootstrap_replicates': replicates, 'defined_draws': len(deltas),
             'warning': 'Tiny group count; intervals cannot establish robustness' if len(keys) < 10 else None}
+
+
+def evaluate_condition(selections: Path, manifest: Path, out: Path, *, method: str,
+                       n: int, ledger_path: Path, run_id: str, run_cap_usd: str = '1',
+                       allow_paid: bool = False, concurrency: int = 8,
+                       service_tier: str = 'flex', family_only: str | None = None,
+                       shared_cache: Path | None = None) -> dict:
+    """Evaluate one immutable per-cell condition; run different arms in processes.
+
+    The pinned upstream transport is module-global, so independent arms must not
+    race its run ID in threads. Paid outputs and provenance stay outside Git.
+    """
+    frozen = json.loads(manifest.read_text())
+    selected = []
+    for line in selections.read_text().splitlines():
+        row = json.loads(line)
+        if 'selections' in row:
+            matches = [x for x in row['selections'] if x['method'] == method and x['n'] == n]
+            if len(matches) != 1:
+                raise ValueError(f'Require exactly one {method}/N{n} selection per cell')
+            text = matches[0]['text']
+        elif row.get('method') == method and row.get('pool_n', n) == n:
+            text = row['text']
+        else:
+            raise ValueError('Selected condition does not match declared method/budget')
+        selected.append({k: row[k] for k in ('cell_id','family','item_id','layer','position')} |
+                        {'text': text, 'sample_index': 0})
+    by_family, coverage = convert_selected_readouts(selected, frozen['cells'])
+    if coverage['missing_cell_ids']:
+        raise ValueError('Condition missing cells; write explicit empty abstentions instead')
+    out.mkdir(parents=True, exist_ok=True)
+    condition = {'method': method, 'n': n, 'selection_sha256': file_hash(selections),
+        'manifest_sha256': file_hash(manifest), 'coverage': coverage,
+        'partial_grid': bool(frozen.get('partial_grid', False)), 'run_id': run_id,
+        'service_tier': service_tier}
+    identity = out/'condition.json'
+    if identity.exists() and json.loads(identity.read_text()) != condition:
+        raise ValueError('Existing condition provenance differs; use a new run directory')
+    temporary=identity.with_name(identity.name+f'.{os.getpid()}.tmp')
+    temporary.write_text(json.dumps(condition, indent=2)+'\n')
+    os.replace(temporary,identity)
+    ledger = AtomicBudget(ledger_path)
+    if allow_paid:
+        ledger.set_run_limit(run_id, run_cap_usd)
+    results = {}
+    for family in ([family_only] if family_only else FAMILIES):
+        if shared_cache is not None and family!='multihop_mt':
+            load_upstream()
+            install_shared_verdict_cache(shared_cache/f'{family}.sqlite3',ledger,family)
+        readouts = out/f'{family}.readouts.jsonl'
+        content = ''.join(json.dumps(x, ensure_ascii=False)+'\n' for x in by_family[family])
+        if readouts.exists() and readouts.read_text() != content:
+            raise ValueError('Readout identity changed in an existing condition directory')
+        readouts.write_text(content)
+        results[family] = run_family(family, readouts, out/family, frozen['cells'],
+            ledger=ledger, run_id=run_id, allow_paid=allow_paid, dry_run=not allow_paid,
+            partial_grid=condition['partial_grid'], concurrency=concurrency,
+            service_tier=service_tier)
+    summary = {'condition': condition, 'families': results, 'budget': ledger.snapshot()}
+    (out/(f'{family_only}.summary.json' if family_only else 'summary.json')).write_text(json.dumps(summary, indent=2)+'\n')
+    return summary
+
+
+async def repeat_request_audit(inputs: Path, out: Path, *, ledger_path: Path, run_id: str,
+                               cap_usd: str, service_tier: str = 'default', concurrency: int = 4) -> dict:
+    """Replay frozen prompts once without replacing or caching primary verdicts."""
+    prepared=json.loads(inputs.read_text());ledger=AtomicBudget(ledger_path)
+    ledger.set_run_limit(run_id,cap_usd);out.mkdir(parents=True,exist_ok=True)
+    identity=out/'input_identity.json';frozen={'input_sha256':file_hash(inputs),'run_id':run_id}
+    if identity.exists() and json.loads(identity.read_text())!=frozen:
+        raise ValueError('Repeatability audit inputs changed in an existing run directory')
+    identity.write_text(json.dumps(frozen,indent=2)+'\n')
+    client=make_luna_client(ledger,run_id,allow_paid=True,metadata={'purpose':'judge-repeatability-audit'})
+    semaphore=asyncio.Semaphore(concurrency)
+    checkpoint=out/'requests.jsonl'
+    rows=[json.loads(s) for s in checkpoint.read_text().splitlines()] if checkpoint.exists() else []
+    completed={r['audit_id'] for r in rows}
+    if completed-{r['audit_id'] for r in prepared['requests']}:
+        raise ValueError('Unexpected audit checkpoint cases')
+    def stage1(result):
+        if result is None:return None
+        return [{'kind':s['kind'],'wrong_spans':sorted(span['text'] for span in s.get('spans',[]) if span['type']=='wrong'),
+            'off_topic_spans':sorted(span['text'] for span in s.get('spans',[]) if span['type']=='off_topic')}
+            for s in result.get('samples',[])]
+    def stage2(result):
+        return [[(c['quote'],c['status']) for c in s.get('claims',[])] for s in result.get('samples',[])]
+    async def one(case):
+        request={**case['request'],'service_tier':service_tier,'timeout':90}
+        row={k:v for k,v in case.items() if k!='request'}
+        row['actual_content_key']=request_cache_key(request)
+        try:
+            async with semaphore:response=await client.chat.completions.create(**request)
+            choice=response.choices[0]
+            if choice.finish_reason!='stop' or getattr(choice.message,'refusal',None):
+                raise ValueError('Refused or truncated repeatability response')
+            repeated=json.loads(choice.message.content or '')
+            row.update({'repeat_result':repeated,'repeat_response_id':response.id,'status':'completed'})
+            row['full_json_changed']=canonical(repeated)!=canonical(case['original_result'])
+            if case['stage']=='stage1':
+                before=stage1(case['original_result']);after=stage1(repeated)
+                row.update({'original_classification':before,'repeat_classification':after,
+                    'classification_or_span_changed':before!=after,
+                    'wrongness_flipped':bool(any(x['wrong_spans'] for x in before))!=bool(any(x['wrong_spans'] for x in after))})
+            else:
+                row['fixed_evidence_caveat']='Original stage1 established-false spans replayed unchanged; this cannot adjudicate stage1 wrongness.'
+                row['claim_or_status_changed']=stage2(repeated)!=stage2(case['original_result'])
+        except Exception as error:
+            row.update({'status':'failed','error_type':type(error).__name__,
+                'error_code':getattr(error,'code',None),'http_status':getattr(error,'status_code',None)})
+        rows.append(row)
+        tmp=checkpoint.with_suffix('.tmp')
+        tmp.write_text(''.join(json.dumps(r,ensure_ascii=False)+'\n' for r in sorted(rows,key=lambda r:r['audit_id'])))
+        os.replace(tmp,checkpoint)
+    try:await asyncio.gather(*(one(case) for case in prepared['requests'] if case['audit_id'] not in completed))
+    finally:await client.close()
+    summary={'input_sha256':file_hash(inputs),'primary_results_changed':False,
+        'physical_attempts_per_request_limit':1,'cache_namespace':'independent audit; no primary verdict cache reuse',
+        'stage1_requests':sum(r['stage']=='stage1' for r in rows),
+        'stage1_completed':sum(r['stage']=='stage1' and r['status']=='completed' for r in rows),
+        'stage1_wrongness_flips':sum(r.get('wrongness_flipped',False) for r in rows),
+        'stage1_classification_or_span_changes':sum(r.get('classification_or_span_changed',False) for r in rows),
+        'stage2_requests':sum(r['stage']=='stage2' for r in rows),
+        'stage2_completed':sum(r['stage']=='stage2' and r['status']=='completed' for r in rows),
+        'stage2_full_json_changes':sum(r['stage']=='stage2' and r.get('full_json_changed',False) for r in rows),
+        'stage2_claim_or_status_changes':sum(r.get('claim_or_status_changed',False) for r in rows),
+        'failed_requests':sum(r['status']=='failed' for r in rows),
+        'selection_rule':prepared['selection_rule'],'budget':ledger.snapshot(),
+        'limitation':'Repeat agreement is reliability evidence, not proof of correct contradiction labels. Random and posthoc flagged cases are separate.'}
+    (out/'summary.json').write_text(json.dumps(summary,indent=2)+'\n')
+    return summary
+
+
+def _main() -> None:
+    import argparse
+    import ast
+    p = argparse.ArgumentParser(description='One frozen condition through pinned WorkspaceBench scoring')
+    p.add_argument('--selections', type=Path, required=True)
+    p.add_argument('--manifest', type=Path, default=Path('configs/splits_pilot_shared_v2.json'))
+    p.add_argument('--output', type=Path, required=True)
+    p.add_argument('--method', required=True)
+    p.add_argument('--n', type=int, default=1)
+    p.add_argument('--run-id', required=True)
+    p.add_argument('--run-cap-usd', default='1')
+    p.add_argument('--ledger', type=Path, default=Path('${OLENS_DATA_ROOT}/budget/ledger.sqlite3'))
+    p.add_argument('--concurrency', type=int, default=8)
+    p.add_argument('--tier', choices=['flex','default'], default='flex')
+    p.add_argument('--allow-paid', action='store_true')
+    p.add_argument('--family',choices=FAMILIES)
+    p.add_argument('--shared-cache',type=Path)
+    p.add_argument('--condition-list',type=Path,help='Sequential conditions within one family worker')
+    p.add_argument('--all-families',action='store_true',help='Four processes, one cache writer/family; bounded calls per process')
+    p.add_argument('--repeat-request-audit',type=Path,help='Frozen original requests; audit once without changing primary results')
+    a = p.parse_args()
+    if a.allow_paid:
+        if not os.environ.get('OPENAI_API_KEY'):
+            for line in Path('.env').read_text().splitlines():
+                key, sep, value = line.removeprefix('export ').partition('=')
+                if sep and key.strip() == 'OPENAI_API_KEY':
+                    value = value.strip()
+                    os.environ['OPENAI_API_KEY'] = ast.literal_eval(value) if value[:1] in ('"',"'") else value
+        os.environ['OLENS_ALLOW_PAID_CALLS'] = '1'
+    if a.repeat_request_audit:
+        if not a.allow_paid:p.error('Repeatability dispatch requires explicit --allow-paid')
+        print(json.dumps(asyncio.run(repeat_request_audit(a.repeat_request_audit,a.output,
+            ledger_path=a.ledger,run_id=a.run_id,cap_usd=a.run_cap_usd,
+            service_tier=a.tier,concurrency=a.concurrency)),indent=2))
+        return
+    if a.all_families:
+        if a.family:p.error('--all-families and --family are mutually exclusive')
+        a.output.mkdir(parents=True,exist_ok=True)
+        command=[sys.executable,'-m','olens_improve.evaluation']+[x for x in sys.argv[1:] if x!='--all-families']
+        workers=[]
+        for family in FAMILIES:
+            with (a.output/f'{family}.worker.log').open('a') as log:
+                process=subprocess.Popen(command+['--family',family],stdout=log,stderr=subprocess.STDOUT)
+            workers.append(process)
+            print(json.dumps({'family':family,'pid':process.pid}),flush=True)
+        codes=[process.wait() for process in workers]
+        if any(codes):raise SystemExit('Family worker failures: '+str(codes))
+        return
+    # A shared family cache has one active writer. This gate also prevents an
+    # accidental second launch from paying the same in-flight requests.
+    owner=None
+    if a.shared_cache:
+        if not a.family:p.error('--shared-cache requires --family or --all-families')
+        import fcntl
+        a.shared_cache.mkdir(parents=True,exist_ok=True)
+        owner=(a.shared_cache/f'{a.family}.owner.lock').open('a')
+        try:fcntl.flock(owner,fcntl.LOCK_EX|fcntl.LOCK_NB)
+        except BlockingIOError:raise SystemExit('Another worker owns this family cache; no calls dispatched')
+    conditions=json.loads(a.condition_list.read_text()) if a.condition_list else [{'method':a.method,'n':a.n}]
+    for condition in conditions:
+        out=a.output/f"{condition['method']}-n{condition['n']}" if a.condition_list else a.output
+        result = evaluate_condition(a.selections, a.manifest, out, method=condition['method'],
+            n=condition['n'], ledger_path=a.ledger, run_id=a.run_id, run_cap_usd=a.run_cap_usd,
+            allow_paid=a.allow_paid, concurrency=a.concurrency, service_tier=a.tier,
+            family_only=a.family,shared_cache=a.shared_cache)
+        print(json.dumps({'condition':result['condition'], 'budget':result['budget']}),flush=True)
+
+
+if __name__ == '__main__':
+    _main()
