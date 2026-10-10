@@ -75,3 +75,12 @@ The18:16:31 checkpoint found49,418 TEST settlements and$7.16114223 estimated TES
 Receipt: `durable/diagnostics/test12-operational-v1/continuation-v7-role-health-1815-v1.json`, SHA `584a6c81e31c59d613549061fb3ef18fd56e8bec421ecca00d875dc87337da0d`.
 
 At18:21 both exact worker commands remained live. One role thread was in disk sleep, while wait-channel visibility was restricted. No new closed condition profile or fatal log error appeared. Root sent both workers SIGUSR1 at18:21:49 to finish their current conditions and stop before starting another. No calls were cancelled. Planned recovery is8/200 after diagnosis; opt-in phase timing is being prepared. A possible move of the complete single authoritative ledger to fast compute is not yet executed and is not a proven cure: both mounts are network filesystems. Preserve every event, cap and unresolved hold, and never permit two active ledgers.
+
+
+## Closed-condition result supersedes the initial slowdown inference
+
+At18:28:55 UTC, TEST had54,378 settled attempts, $7.79799183 estimated usage, the same12 unknowns/$0.059636875, and only the old inactive reserved hold/$0.00538675. The interval since18:16:31 added4,960 settlements over744.009 seconds:400/minute combined. Do not interpret a short slow window as the sustained effect of higher concurrency.
+
+Both workers exited0 after their requested boundaries. Hall A32 completed3,704 physical responses in1,560.306 seconds (142/minute). Role D16 completed5,701 in1,137.235 seconds (301/minute), versus the earlier Emean8/200 condition at149/minute. Conditions, caching and competing traffic differ, so these are operational rates, not a randomized estimate of the concurrency effect. All reservation/evidence/settlement error counts were zero. Maximum observed operation durations still reached136.47 seconds for hall reservation and101.55 seconds for hall evidence, motivating finer timing and the proposed storage move.
+
+Terminal receipt: `durable/diagnostics/test12-operational-v1/continuation-v7-both-boundary-preflight-v1.json`, SHA `773005fd90234289771015aae23e1bf570e2044681a0b26331732393021a3363`. It binds the18:28 health receipt SHA `9376e28f96aa3f4dea8f65918f42dd68df4e404a74da5df300b69ad94e877d2c`. Hall next evaluates random32; role next evaluates D32. No scientific outcomes were reviewed.

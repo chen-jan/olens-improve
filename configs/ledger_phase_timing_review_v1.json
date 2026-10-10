@@ -1,0 +1,34 @@
+{
+  "status": "root_and_independently_source_reviewed",
+  "reviewed_utc": "2026-10-10T18:31:25.250502+00:00",
+  "source_sha256": {
+    "src/olens_improve/budget.py": "ef38b1acab702bff67b7edf65fcf9d5fd6720c62842c84a7e53e53e66a09e276",
+    "tests/test_budget_transaction_phases.py": "8d51610e12fbec402218d86692955cc60e0f2e37fd3c351833658eae48012b3a"
+  },
+  "tests": {
+    "count": 20,
+    "result": "passed",
+    "receipt_sha256": "b118b6eb09422bddfffb185f406432993caf153433539a26018d822f74e8d6a2",
+    "broader_discovery": {
+      "status": "incomplete_interrupted",
+      "stalled_test": "tests.test_budget.BudgetTests.test_transport_bills_before_downstream_malformed_parse",
+      "bounded_traceback": "ledger thread idle; asyncio main loop waiting",
+      "pre_patch_methods_sha256": "60caff27b9dd717e218822a4115f7f44c8f1820f066f1ec5dbecb021206ca38f",
+      "pre_patch_same_fixture": "also exceeded three-second diagnostic deadline; no unrelated repair"
+    }
+  },
+  "reviewers": [
+    "root",
+    "adversarial_evaluation",
+    "compute_storage_audit"
+  ],
+  "independent_final_warning_review": "compute_storage_audit passed",
+  "scope": "Opt-in transaction phase timings and completed slow-phase warnings only. Exact SQL, rows, caps, holds and guards unchanged. No production adoption in this receipt.",
+  "limits": [
+    "constructor before profiler attachment unmeasured",
+    "nested admission/method/phase elapsed values must not be summed",
+    "body includes Python and SQL work",
+    "BEGIN timing includes existing busy retry and timeout setup",
+    "no filesystem stall cause established"
+  ]
+}

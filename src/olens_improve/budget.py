@@ -119,6 +119,45 @@ class AtomicBudget:
                             json.dumps({'reason': 'CLI timeout; no usage or charge returned; availability unverified'}), now, now))
                 self._event(db, UNKNOWN_CLAUDE_ID, 'bootstrap_unknown', {'usd': 2})
 
+    def _observe_transaction_phase(self, name: str, seconds: float,
+                                   error: BaseException | None = None) -> None:
+        # The existing optional profiler serializes metric updates. Phase state
+        # lives in each call frame, never in a shared current-operation label.
+        profile = getattr(self, '_operational_profile', None)
+        if profile is not None:
+            try:
+                profile.observe('ledger.' + name, seconds, error)
+            except Exception as observation_error:
+                # Operational evidence cannot change a financial transition or
+                # replace its original exception. Never log exception contents.
+                try:
+                    _LOG.warning('ledger_phase_profile_unavailable exception_class=%s',
+                                 type(observation_error).__name__)
+                except Exception:
+                    pass
+            if seconds >= ADMISSION_LOG_SECONDS:
+                try:
+                    _LOG.warning('ledger_transaction_phase phase=%s elapsed_seconds=%.6f exception_class=%s',
+                                 name, seconds, type(error).__name__ if error is not None else 'none')
+                except Exception:
+                    pass  # A diagnostic logger cannot alter a financial outcome.
+
+    @contextmanager
+    def _transaction_phase(self, name: str) -> Iterator[None]:
+        if getattr(self, '_operational_profile', None) is None:
+            yield
+            return
+        started = time.perf_counter()
+        error = None
+        try:
+            yield
+        except BaseException as caught:
+            error = caught
+            raise
+        finally:
+            self._observe_transaction_phase('transaction.' + name,
+                                            time.perf_counter() - started, error)
+
     @contextmanager
     def _writer_admission(self) -> Iterator[None]:
         """Serialize participating writers before opening SQLite on shared storage.
@@ -136,6 +175,7 @@ class AtomicBudget:
         flags = os.O_RDWR | os.O_CREAT | getattr(os, 'O_CLOEXEC', 0) | getattr(os, 'O_NOFOLLOW', 0)
         fd = os.open(lock_path, flags, 0o600)
         acquired = None
+        error = None
         try:
             while True:
                 remaining = deadline - time.monotonic()
@@ -145,14 +185,17 @@ class AtomicBudget:
                     raise TimeoutError('Shared ledger writer admission timed out; no SQLite transaction entered')
                 try:
                     fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
-                except OSError as error:
-                    if error.errno not in (errno.EACCES, errno.EAGAIN):
+                except OSError as lock_error:
+                    if lock_error.errno not in (errno.EACCES, errno.EAGAIN):
                         raise
                     time.sleep(min(ADMISSION_BACKOFF_SECONDS, remaining))
                     continue
                 acquired = time.monotonic()
                 yield
                 break
+        except BaseException as caught:
+            error = caught
+            raise
         finally:
             # Closing this owned descriptor releases admission even on an
             # interrupt. The caller closes/rolls back SQLite before leaving.
@@ -160,6 +203,10 @@ class AtomicBudget:
             finished = time.monotonic()
             wait = (acquired if acquired is not None else finished) - started
             hold = finished - acquired if acquired is not None else 0.0
+            self._observe_transaction_phase('admission.wait', wait,
+                                            error if acquired is None else None)
+            if acquired is not None:
+                self._observe_transaction_phase('admission.hold', hold, error)
             if wait >= ADMISSION_LOG_SECONDS or hold >= ADMISSION_LOG_SECONDS:
                 _LOG.warning('ledger_writer_admission status=%s wait_seconds=%.6f hold_seconds=%.6f',
                              'released' if acquired is not None else 'unacquired', wait, hold)
@@ -167,22 +214,31 @@ class AtomicBudget:
     @contextmanager
     def _transaction(self) -> Iterator[sqlite3.Connection]:
         with self._writer_admission():
-            db = sqlite3.connect(self.path, timeout=30, isolation_level=None)
+            with self._transaction_phase('connect'):
+                db = sqlite3.connect(self.path, timeout=30, isolation_level=None)
             try:
-                db.execute(f'PRAGMA busy_timeout={NORMAL_BUSY_WAIT_MS}')
-                mode = db.execute('PRAGMA journal_mode=DELETE').fetchone()[0]
+                with self._transaction_phase('pragma.busy_timeout'):
+                    db.execute(f'PRAGMA busy_timeout={NORMAL_BUSY_WAIT_MS}')
+                with self._transaction_phase('pragma.journal_mode'):
+                    mode = db.execute('PRAGMA journal_mode=DELETE').fetchone()[0]
                 if mode.casefold() != 'delete':
                     raise RuntimeError(f'Unsupported journal mode {mode}')
-                db.execute('PRAGMA synchronous=FULL')
-                self._begin_immediate(db)
-                yield db
-                db.execute('COMMIT')
+                with self._transaction_phase('pragma.synchronous'):
+                    db.execute('PRAGMA synchronous=FULL')
+                with self._transaction_phase('begin_acquire'):
+                    self._begin_immediate(db)
+                with self._transaction_phase('body'):
+                    yield db
+                with self._transaction_phase('commit'):
+                    db.execute('COMMIT')
             except BaseException:
                 if db.in_transaction:
-                    db.execute('ROLLBACK')
+                    with self._transaction_phase('rollback'):
+                        db.execute('ROLLBACK')
                 raise
             finally:
-                db.close()
+                with self._transaction_phase('close'):
+                    db.close()
 
     @staticmethod
     def _begin_immediate(db: sqlite3.Connection) -> None:
