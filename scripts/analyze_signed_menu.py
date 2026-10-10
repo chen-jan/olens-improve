@@ -193,6 +193,11 @@ def run(args):
         condition_list=args.condition_list, freeze=args.freeze)
     if {c['family'] for c in frozen['cells']} != set(FAMILIES):
         raise ValueError('Analysis requires all four frozen families')
+    implementation_paths = [Path(__file__), Path(__file__).with_name('analyze_consensus_conditions.py'),
+        Path(sys.modules['olens_improve.reporting'].__file__),
+        Path(sys.modules['olens_improve.evaluation'].__file__),
+        Path(sys.modules['olens_improve.data'].__file__)]
+    implementation_hashes = {str(p.resolve()):digest(p) for p in implementation_paths}
     if args.output.exists():
         raise FileExistsError('Use a new immutable analysis artifact')
     if digest(args.selections) != args.selection_sha256:
@@ -259,12 +264,15 @@ def run(args):
         'selection_source':str(args.selections), 'selection_source_sha256':args.selection_sha256,
         'component_comparison_pairs':comparisons, 'lengths':lengths, 'paired_traces':traces,
         'trace_evidence_source_sha256':evidence_hashes, 'trace_evidence_evaluation_only':True,
+        'reporting_implementation_sha256':implementation_hashes,
         'trace_sampling':'First three distinct items per changed category; three seeded unchanged cells; seed 20261010',
         'limits':['Separate family denominators; no hidden cross-family macro.',
             'Item ANY recovery and cell recovery are different endpoints.',
             'Transcript contradictions are distinct from true/unverifiable claim tallies and false spans.',
             'Grouped intervals are unadjusted; traces are sampled evidence, not prevalence estimates.',
             'A32 versus N1 combines candidate budget and selection; component/matched-deletion pairs address only their declared contrast.']}
+    if any(digest(path) != expected for path,expected in implementation_hashes.items()):
+        raise ValueError('Reporting implementation changed during analysis')
     with args.output.open('x') as handle:
         json.dump(result, handle, ensure_ascii=False, indent=2); handle.write('\n')
     args.output.chmod(0o444)

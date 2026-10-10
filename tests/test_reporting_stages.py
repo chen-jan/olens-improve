@@ -126,6 +126,8 @@ class ReportingStageTests(unittest.TestCase):
             self.assertEqual(example['proposed']['evidence']['returned_choice_indexes'],[1,1,1])
             self.assertEqual(example['proposed']['evidence']['rationale'],'synthetic rationale')
             self.assertTrue(result['trace_evidence_source_sha256'])
+            self.assertEqual({Path(p).name for p in result['reporting_implementation_sha256']},
+                             {'analyze_signed_menu.py','analyze_consensus_conditions.py','reporting.py','evaluation.py','data.py'})
             hexample=result['paired_traces'][0]['families']['hallucination']['examples']['unchanged'][0]
             self.assertEqual(hexample['proposed']['evaluation_context']['source_bank_item']['prompt'],'Exact synthetic prompt')
             self.assertEqual(hexample['proposed']['evidence']['class'],'consistent')
@@ -135,6 +137,19 @@ class ReportingStageTests(unittest.TestCase):
             with patch.object(module,'role_contexts',return_value=(context,{})), \
                  patch.object(module,'hall_contexts',return_value=(hall,{})):
                 with self.assertRaisesRegex(ValueError,'Retained role choices'):module.run(args)
+            body['result']['q1_choice']=1;cache.write_text(json.dumps(body)+'\n')
+            args.output=root/'changed-code-analysis.json'
+            original_digest=module.digest;calls={}
+            def changed_digest(path):
+                name=str(path);calls[name]=calls.get(name,0)+1
+                if name.endswith('/olens_improve/reporting.py') and calls[name]>1:
+                    return 'changed-source'
+                return original_digest(path)
+            with patch.object(module,'role_contexts',return_value=(context,{})), \
+                 patch.object(module,'hall_contexts',return_value=(hall,{})), \
+                 patch.object(module,'digest',side_effect=changed_digest):
+                with self.assertRaisesRegex(ValueError,'implementation changed'):module.run(args)
+            self.assertFalse(args.output.exists())
 
     def test_component_and_budget_pairs_use_only_signed_arms(self):
         spec=importlib.util.spec_from_file_location('signed_menu_pairs',Path(__file__).parents[1]/'scripts/analyze_signed_menu.py')
