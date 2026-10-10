@@ -1,6 +1,6 @@
 {
   "title": "Readouts: what is established",
-  "updated_utc": "2026-10-10T18:25:03.699026+00:00",
+  "updated_utc": "2026-10-10T18:53:34.140614+00:00",
   "cohort": "development",
   "run_ids": [
     "development-shared-pilot-v2",
@@ -73,23 +73,23 @@
   },
   "api": {
     "status": "observed_read_only",
-    "actual_usd": 18.12687471,
-    "reserved_usd": 4.9002476249999996,
-    "unknown_usd": 4.848973125,
-    "committed_usd": 23.027122334999998,
+    "actual_usd": 21.50362201,
+    "reserved_usd": 4.8597425,
+    "unknown_usd": 4.85435575,
+    "committed_usd": 26.36336451,
     "hard_usd": 300.0,
     "target_usd": 200.0,
     "attempt_counts": {
-      "reserved": 10,
-      "settled": 119600,
-      "unknown": 558
+      "reserved": 1,
+      "settled": 143254,
+      "unknown": 559
     },
-    "observed_utc": "2026-10-10T16:49:05.597986+00:00",
+    "observed_utc": "2026-10-10T18:42:47.932838+00:00",
     "pricing_revision": "luna-cache-write-v1",
     "invoice_reconciled": false,
     "pricing_status": "Usage-derived project API estimate at the displayed observation time, including cache writes; not invoice reconciled. Outstanding and uncertain reservations remain held. Cluster charges and Codex/subagent billing are outside this ledger.",
-    "snapshot_path": "${OLENS_DATA_ROOT}/diagnostics/resource-usage-1649-v1/receipt.json",
-    "snapshot_sha256": "f9b69d2b7ec2d0500e1e809d979c56461653e3640a56e1e34b5f9366710c558a"
+    "snapshot_path": "${OLENS_DATA_ROOT}/diagnostics/test12-operational-v1/ledger-storage-move-v1.json",
+    "snapshot_sha256": "e233bf21b944f04e9b091edf34f5e9613bd24c34e899f9c2702949799e6c3097"
   },
   "methods": {
     "sample_selection": {
@@ -19837,7 +19837,7 @@
     "limits": "These are observed DEV losses, not a new held-out comparison. Mention recovery does not certify the calculation. No new interval is inferred."
   },
   "activity": {
-    "checked_utc": "2026-10-10T18:25:03.699026+00:00",
+    "checked_utc": "2026-10-10T18:53:34.140614+00:00",
     "validation_ar_status": "complete",
     "validation_new_ar_vectors": 421716,
     "shared_zero_copy_catalog_vectors": 1063925,
@@ -19890,15 +19890,15 @@
       }
     ],
     "validation_judging_status": "All 48 validation method-family comparisons and their reviewed analysis are complete. All six development sampling prefixes and grouped comparisons are complete.",
-    "quality_status": "Generation, reconstruction and all fixed method outputs are complete. Two families have finished judging. The other two are finishing their current comparisons before a clean stop to address slow accounting storage. No held-out quality result has been inspected.",
+    "quality_status": "Generation, reconstruction and all fixed method outputs are complete. Multi-hop and arithmetic judging have finished. Hallucination and role judging are running again after a verified accounting-storage move. No held-out quality result has been inspected.",
     "generation_metadata_source": "${OLENS_DATA_ROOT}/runs/test-blind-preparation-v1/throughput-observation-v25.json",
     "generation_metadata_sha256": "30f500f0a6dcb8aef0e6eb61af811d161130348b35df46214c12855de77f0d35",
     "heldout_items": 268,
     "heldout_cells": 10714,
-    "previous_activity_checked_utc": "2026-10-10T17:33:05.626470+00:00",
+    "previous_activity_checked_utc": "2026-10-10T18:25:03.699026+00:00",
     "overview_status": {
       "development": "All six sampling prefixes complete; eight shared cases reviewed across methods, with independent crosschecks.",
-      "test": "Two families finished. Judging the other two is delayed by local bookkeeping; a higher-concurrency trial slowed progress. Final results remain pending.",
+      "test": "Two families finished; the other two are being judged. The early slowdown recovered, and both workers are running. Final analysis and descriptive results across all 469 questions remain pending.",
       "heldout_conditions": 12
     },
     "heldout_comparison_amendment": {
@@ -19955,27 +19955,27 @@
       }
     ],
     "judging_health": {
-      "observed_utc": "2026-10-10T18:16:31+00:00",
-      "scope": "Historical recent100-attempt windows; operational progress only, not quality or a controlled throughput comparison.",
+      "observed_utc": "2026-10-10T18:48:18.110984+00:00",
+      "scope": "First hallucination-only window after storage recovery, approximately five minutes including startup; the recent 100-attempt rate spans 24 seconds. Role judging subsequently resumed.",
       "hallucination": {
-        "settled": 94,
-        "active": 6,
+        "new_settled_since_restart": 1106,
+        "recent_settled": 89,
+        "recent_active": 11,
         "new_unknown": 0,
-        "settlements_per_minute": 31.59
+        "oldest_current_reservation_seconds": 4.938472
       },
       "role_bound_association": {
-        "settled": 89,
-        "active": 11,
-        "new_unknown": 0,
-        "settlements_per_minute": 34.72
+        "status": "Resumed after this health check; combined window pending"
       },
       "existing_test_unknown_holds_usd": 0.059636875,
-      "receipt_sha256": "584a6c81e31c59d613549061fb3ef18fd56e8bec421ecca00d875dc87337da0d",
+      "receipt_sha256": "d89c8e969e798bcf3ce8c337345818849fefba4a6089522dfb2d366dd995f8b7",
       "historical_snapshot": true
     },
-    "operational_limits": "Both judge workers were live at18:21 UTC and asked to stop after their current comparisons. All saved judgments and uncertain charges remain retained. Faster completion is not established; a new forecast awaits recovered throughput.",
+    "operational_limits": "The early slow snapshot did not represent the full run: role judging completed its next comparison at about 301 responses per minute, while the earlier combined 12-minute window recovered to 400 per minute. Different requests and traffic prevent a controlled comparison. After the storage move, hallucination judging completed 1,106 judgments in roughly five minutes without new uncertain charges. A longer combined measurement is pending.",
     "gpu_status": "All required GPU work is complete. All four H200s were verified idle and handed back to the user; remaining work uses CPU and Luna API calls.",
-    "delivery_status": "Still required: complete12-method TEST judging, missing development comparisons, paired analysis and example review, separate all469 descriptive results, final dashboard/report/slides."
+    "delivery_status": "Still required: complete12-method TEST judging, missing development comparisons, paired analysis and example review, separate all469 descriptive results, final dashboard/report/slides.",
+    "completed_test_method_family_comparisons_at_last_boundary": 35,
+    "expected_test_method_family_comparisons": 48
   },
   "signed_comparisons": {
     "validation": {
@@ -122347,6 +122347,7 @@
     "measured_task_time_limits": "Retained generation/main AR task timers include adjacent CPU work and some loading; exclude capture, unretained abandoned work and idle allocations. Not pure kernel utilization.",
     "project_active_gpus": 0,
     "gpu_handoff_utc": "2026-10-10T18:10:48+00:00",
-    "gpu_handoff_status": "All four H200s available for user reuse; subsequent user GPU time is excluded from this project."
+    "gpu_handoff_status": "All four H200s available for user reuse; subsequent user GPU time is excluded from this project.",
+    "additional_ledger_archive_bytes_since_storage_snapshot": 2133135360
   }
 }
