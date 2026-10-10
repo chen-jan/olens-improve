@@ -50,7 +50,7 @@ def comparison(artifact, source_path, source_sha):
     hall = {condition: arm['families']['hallucination']['metrics'] for condition, arm in arms.items()}
     return {
         'title': 'Complete development comparison: best of 32 versus capped single-sample baseline',
-        'scope': '121 DEV items / 5,236 cells, complete original grids. Separate from the 189-cell pilot; held-out outcomes remain sealed.',
+        'scope': '121 DEV items / 5,236 cells, complete original grids. Separate from the 189-cell pilot; validation judging is underway; test outcomes remain sealed.',
         'reviewed_by': 'root',
         'key_finding': 'Best of 32 recovers more bridge mentions and passes more individual role tasks on development. The contradiction-rate difference remains uncertain, and social-role item coverage stays unchanged. These recovery endpoints do not establish complete truthful explanations.',
         'cell_endpoints': cells, 'original_item_endpoints': items,
@@ -85,8 +85,7 @@ def main():
     report=json.loads(args.report.read_text())
     report['full_development_a32']=comparison(json.loads(raw),args.artifact,source_sha)
     report['updated_utc']=datetime.now(timezone.utc).isoformat()
-    report['full_development']['method_comparison_status']='Best-of-32 versus capped N1 is complete on all four DEV families and shown separately above. The remaining full DEV method comparisons are incomplete; guarded judging has resumed with timing collection at 8 concurrent requests and 200 requests per minute per family. Existing pilot quality tables are retained. Blind validation generation is complete; its content and outcomes remain sealed.'
-    report['progress']['phase']='Blind validation generation complete and sealed; DEV A32 comparison complete; remaining judging resumed with timing collection'
+    report['full_development']['method_comparison_status']='Best-of-32 versus capped N1 is complete on all four DEV families and shown separately above. The remaining full DEV method comparisons are incomplete. Existing pilot quality tables are retained. Validation judging is underway; test outcomes remain sealed.'
     args.output.write_text(json.dumps(report,indent=2,ensure_ascii=False)+'\n')
     print(json.dumps({'output':str(args.output),'source_sha256':source_sha,'new_api_calls':0,'new_model_calls':0}))
 

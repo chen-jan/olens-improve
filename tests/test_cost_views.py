@@ -26,13 +26,15 @@ class CostViewTests(unittest.TestCase):
                          'helpers': [{'stage': 'helper-edit-pilot-v1/round1', 'requests': 189, 'actual_usd': .01},
                                      {'stage': 'helper-edit-pilot-v1/round2', 'requests': 189, 'actual_usd': .02}]}}
 
-    def test_same_pool_random_control_requires_one_fresh_sample(self):
+    def test_same_pool_random_control_keeps_eligibility_cost_unknown(self):
         report = views.populate(copy.deepcopy(self.report), self.measurements, self.costs, {})
         points = report['methods']['sample_selection']['cost_frontier'][0]['points']
         random = next(p for p in points if p['condition'] == 'random_complete-n32')
         self.assertEqual(random['cost'], 32)  # Actual experimental prefix.
-        self.assertEqual(random['required_olens_samples_for_fresh_baseline'], 1)
-        self.assertEqual(random['generation_component_gpu_seconds'], 1)
+        self.assertIsNone(random['required_olens_samples_for_fresh_baseline'])
+        self.assertEqual(random['retained_samples_for_random_baseline'], 1)
+        self.assertIsNone(random['generation_component_gpu_seconds'])
+        self.assertIn('eligibility', random['control_note'])
         medium = next(p for p in points if p['condition'].startswith('consensus_semantic_v5_medium_'))
         self.assertAlmostEqual(medium['recurring_helper_calls_per_cell'], 384/189)
         self.assertAlmostEqual(medium['recurring_helper_usd_per_cell'], .002)

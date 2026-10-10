@@ -43,6 +43,19 @@ class DashboardTests(unittest.TestCase):
     def test_cache_only_cost_cannot_silently_claim_full_inference(self):
         with self.assertRaisesRegex(ValueError, 'scope'):
             dashboard.build({'methods':{'sample_selection':{'cost_frontier':[{'label':'Incomplete cost','cost_unit':'GPU seconds','points':[{'cost':1,'value':.5}]}]}}})
+    def test_complete_development_precedes_exploratory_pilot(self):
+        section = {'title': 'Complete DEV fixture', 'scope': 'Synthetic', 'key_finding': 'Reviewed fixture',
+                   'cell_endpoints': [], 'original_item_endpoints': [{'family': 'role_bound_association',
+                    'baseline': {'numerator': 1, 'denominator': 3}, 'proposed': {'numerator': 1, 'denominator': 3},
+                    'delta': 0, 'ci': [-.1, .1], 'groups': 2}],
+                   'hallucination_auxiliary_counts': {k: {'false_span_tally': {'numerator': 1},
+                       'off_topic_rate': {'numerator': 0}} for k in ('capped_n1-n1', 'best_n_exact-n32')},
+                   'limits': ['Synthetic'], 'reviewed_by': 'fixture', 'bootstrap_replicates': 2000,
+                   'source_path': 'synthetic', 'source_sha256': 'synthetic', 'manifest_sha256': 'synthetic'}
+        output = dashboard.build({'full_development_a32': section, 'full_development': None,
+            'reviewed_findings': [{'claim': f'Pilot fixture {i}', 'evidence': 'Synthetic', 'reviewed_by': 'fixture'} for i in range(3)]})
+        self.assertLess(output.index('Complete DEV fixture'), output.index('Pilot fixture 0'))
+        self.assertEqual(output.count('<h2>Complete DEV fixture</h2>'), 1)
     def test_sample_prefix_cannot_be_labeled_deployment_cost(self):
         with self.assertRaisesRegex(ValueError,'experimental_prefix'):
             dashboard.cost_chart([{'label':'Wrong scope','cost_unit':'samples','cost_scope':'deployment',

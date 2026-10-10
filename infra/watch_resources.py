@@ -1,6 +1,7 @@
 """One-shot allocation/resource snapshots; never submit or cancel jobs."""
 
 import argparse
+import copy
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 import json
@@ -79,11 +80,31 @@ def cpu_memory_alerts(job_id, counters):
     return alerts
 
 
+def merge_runtime_observations(original, observed, latest):
+    """Keep concurrent configuration edits; apply only unchanged observation fields."""
+    merged = copy.deepcopy(latest)
+    fields = ("state", "reason", "node", "last_check_utc", "end_utc", "progress")
+    for category in ("gpu_allocations", "preemptable_allocations", "additional_cpu_allocations"):
+        before = {job["job_id"]: job for job in original.get(category, [])}
+        after = {job["job_id"]: job for job in observed.get(category, [])}
+        for job in merged.get(category, []):
+            key = job["job_id"]
+            if key not in before or key not in after:
+                continue
+            for field in fields:
+                if (field in after[key] and after[key].get(field) != before[key].get(field)
+                        and job.get(field) == before[key].get(field)):
+                    job[field] = after[key][field]
+    merged.setdefault("watcher", {})["last_check_utc"] = observed["watcher"]["last_check_utc"]
+    return merged
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--runtime", default="configs/runtime.json")
     args = parser.parse_args()
     runtime = json.loads(Path(args.runtime).read_text())
+    original_runtime = copy.deepcopy(runtime)
     now = datetime.now(timezone.utc)
     jobs = runtime["gpu_allocations"] + runtime.get("preemptable_allocations", []) + runtime.get("additional_cpu_allocations", [])
     snapshot = {
@@ -121,7 +142,7 @@ def main():
             detail["purpose"] = job.get("purpose")
             if fields.get("JobState") == "PENDING":
                 detail["pending_seconds"] = (now-datetime.fromisoformat(job["requested_utc"].replace("Z", "+00:00"))).total_seconds()
-        if diagnostic and job.get('intentionally_released_utc'):
+        if (diagnostic or cpu_allocation) and job.get('intentionally_released_utc'):
             detail['intentional_release'] = {'utc':job['intentionally_released_utc'], 'reason':job.get('release_reason')}
             if fields.get('JobState') != 'RUNNING':
                 detail['released_as_planned'] = True
@@ -129,7 +150,7 @@ def main():
                 continue
             release_age=(now-datetime.fromisoformat(job['intentionally_released_utc'].replace('Z','+00:00'))).total_seconds()
             if release_age > 120:
-                snapshot['alerts'].append(f'Diagnostic job {key} still RUNNING after planned release; verify cancellation')
+                snapshot['alerts'].append(f'Job {key} still RUNNING after planned release; verify cancellation')
         if diagnostic:
             previous_state = job.get("state")
             job.update(state=fields.get("JobState"), reason=fields.get("Reason"),
@@ -200,6 +221,7 @@ def main():
         stream.write(json.dumps(snapshot) + "\n")
     runtime["watcher"]["last_check_utc"] = now.isoformat()
     runtime_path = Path(args.runtime)
+    runtime = merge_runtime_observations(original_runtime, runtime, json.loads(runtime_path.read_text()))
     runtime_temporary = runtime_path.with_suffix(".tmp")
     runtime_temporary.write_text(json.dumps(runtime, indent=2) + "\n")
     runtime_temporary.replace(runtime_path)

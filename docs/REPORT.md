@@ -79,7 +79,7 @@ stay together when assigning development, validation and test groups.
 |---|---:|---:|---|
 | Small development pilot | 31 | 189 | Method iteration and failure diagnosis; selected cells |
 | Full development | 121 | 5,236 | Larger method comparison using original complete read grids |
-| Validation | 80 | 3,485 | Analysis authorized for twelve frozen comparisons; judging pending |
+| Validation | 80 | 3,485 | Twelve frozen comparisons; judging underway |
 | Test | 268 | 10,714 | Final frozen comparison; not opened |
 
 The pilot is a subset of development. Cells from the same prompt are correlated.

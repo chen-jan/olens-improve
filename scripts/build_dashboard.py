@@ -175,6 +175,28 @@ def full_dev_a32_section(section):
     return output
 
 
+def frozen_pruning_section(section):
+    if not section:
+        return ''
+    rows = {row['condition']: row for row in section['rows']}
+    e = rows['best_n_specificity_mean-n32']
+    ep = rows['best_n_specificity_mean_then_prune_0.005-n32']
+    er = rows['best_n_specificity_mean_random_delete_matched_0.005-n32']
+    a = rows['best_n_exact-n32']
+    ap = rows['prune_loo_a32_0.005-n32']
+    ar = rows['random_delete_matched_a32_0.005-n32']
+    output = '<section><h2>Pruning loses arithmetic recovery in the frozen DEV evidence</h2>'
+    output += paragraphs([f"At the .005 deletion threshold, matched-control selection falls from {e['passed_cells']} to {ep['passed_cells']} passing cells out of 330, versus {er['passed_cells']} after matched random deletion. Best reconstruction of 32 falls from {a['passed_cells']} to {ap['passed_cells']}, versus {ar['passed_cells']} for its random-deletion control. These observed losses are substantial; a practical tradeoff needs compensating evidence."])
+    output += '<details><summary>Frozen chain counts, item aggregation and source evidence</summary><p>'+escape(section['scope'])+'</p><div class="table-scroll"><table><thead><tr><th>Condition</th><th>Passing cells</th><th>Passing items (ANY site)</th></tr></thead><tbody>'
+    labels = ['Matched-control selection', 'Matched-control selection + pruning',
+              'Matched-control selection + matched random deletion', 'Best reconstruction of 32',
+              'Best reconstruction + pruning', 'Best reconstruction + matched random deletion']
+    for row, label in zip(section['rows'], labels):
+        output += f'<tr><td title="{escape(row["condition"])}">{escape(label)}</td><td>{row["passed_cells"]}/{row["expected_cells"]}</td><td>{row["passed_items"]}/{row["expected_items"]}</td></tr>'
+    output += '</tbody></table></div>'+paragraphs([section['limits'], f"Reviewed by {section['reviewed_by']}. Frozen source: {section['source_path']}; SHA-256 {section['source_sha256']}."])+'</details></section>'
+    return output
+
+
 def donor_section(section):
     output='<h3>Readouts from matched donor activations</h3>'
     output+=paragraphs(['No multi-hop or social-role recovery was observed with this fixed donor bank, while arithmetic recovery remained in some cells. This contextualizes target-specific recovery; it does not verify every emitted claim.',
@@ -443,16 +465,25 @@ def build(report):
         findings_html = "<ol class=\"findings\">" + "".join(
             f'<li><h2>{escape(item["claim"])}</h2><p>{escape(item.get("detail", ""))}</p><details><summary>Evidence and review</summary><p class="evidence">{escape(item["evidence"])}. Reviewed by {escape(item["reviewed_by"])}.</p></details></li>' for item in findings) + "</ol>"
         if report.get('full_development'):
-            findings_html='<p class="meta">Reviewed partial-grid DEV pilot findings. Complete original-grid baselines appear separately below.</p>'+findings_html
+            findings_html='<details><summary>Exploratory pilot synthesis: 189 selected DEV cells</summary><p class="meta">Partial-grid pilot findings; separate from the complete original-grid comparisons above.</p>'+findings_html+'</details>'
     else:
         findings_html = '<div class="empty-findings"><h2>Scientific findings are pending review</h2><p>Generation and setup progress are shown separately. No method has been promoted from missing measurements.</p></div>'
+    findings_html = full_dev_a32_section(report.get('full_development_a32')) + frozen_pruning_section(report.get('frozen_development_pruning')) + findings_html
     progress = report.get("progress", {})
     api = report.get("api", {})
     summary = '<dl class="progress">' + "".join(f'<div><dt>{label}</dt><dd>{value(number, unit)}</dd></div>' for label, number, unit in (
-        ("Phase", progress.get("phase"), ""), ("Completed cells", progress.get("completed_cells"), ""),
+        ("Phase", progress.get("phase"), ""), (progress.get('completed_label', "Completed cells"), progress.get("completed_cells"), ""),
         ("Expected cells", progress.get("expected_cells"), ""), ("Elapsed execution", progress.get("elapsed_hours"), "hours"),
         ("API usage estimate", api.get("actual_usd"), "USD"), ("API reserved", api.get("reserved_usd"), "USD"))) + "</dl>"
     if api.get('pricing_status'):summary+=paragraphs([api['pricing_status']])
+    if api.get('observed_utc'):
+        summary += paragraphs([f"Budget snapshot: {api['observed_utc']}. Unknown holds: {api.get('unknown_usd', 0):.3f} USD, included in the reserved total above."])
+    activity = report.get('activity', {})
+    if activity:
+        test_status = activity.get('blind_test_generation_statuses', [])
+        test_count = sum(s['completed_cells'] for s in test_status)
+        test_expected = sum(s['expected_cells'] for s in test_status)
+        summary += paragraphs([f"Operational snapshot {activity['checked_utc']}: validation AR is complete ({activity['validation_new_ar_vectors']:,} new vectors; {activity['shared_zero_copy_catalog_vectors']:,} in the shared zero-copy catalog). Blind test generation: {test_count:,}/{test_expected:,} cells. {activity.get('validation_judging_status', '')} {activity['quality_status']}"])
     provenance = report.get("provenance", {})
     provenance_html = "<dl>" + "".join(f"<dt>{escape(key)}</dt><dd>{value(provenance.get(key))}</dd>" for key in
         ("scope", "split_manifest_sha256", "cohort_manifest_sha256", "source_commit", "artifact_sha256")) + "</dl>"
@@ -460,7 +491,7 @@ def build(report):
     return TEMPLATE.replace("__TITLE__", escape(report.get("title", "Frozen Oracle Lens experiments"))).replace(
         "__UPDATED__", escape(report.get("updated_utc", "Timestamp missing"))).replace("__COHORT__", escape(cohort)).replace(
         "__RUNS__", escape(", ".join(report.get("run_ids", [])) or "No run IDs provided")).replace(
-        "__FINDINGS__", findings_html).replace("__PROGRESS__", summary+full_dev_a32_section(report.get('full_development_a32'))+full_development_section(report.get('full_development'))).replace("__TABS__", "".join(tabs)).replace(
+        "__FINDINGS__", findings_html).replace("__PROGRESS__", summary+full_development_section(report.get('full_development'))).replace("__TABS__", "".join(tabs)).replace(
         "__PANELS__", "".join(panels)).replace("__NOTES__", paragraphs(report.get("endpoint_notes", ["Endpoints and denominators will accompany each validated comparison."])) + provenance_html).replace("__DATA__", payload)
 
 

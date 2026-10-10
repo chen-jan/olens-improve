@@ -71,14 +71,16 @@ def populate(report, measurements, costs, source_hashes, specificity=None):
             usd = sum(s["actual_usd"] for s in stages) / 189
         key = cpu_keys.get(condition)
         return {
-            "required_olens_samples_for_fresh_baseline": 1 if random else n,
+            "required_olens_samples_for_fresh_baseline": None if random else n,
+            "retained_samples_for_random_baseline": 1 if random else None,
             "cached_selector_wall_seconds": costs["incremental_cache"][key]["median_seconds_per_cell"] if key else None,
             "cached_timer_cohort": "Eight fixed DEV cells, three repetitions, four CPU threads; preparation excluded",
             "recurring_helper_calls_per_cell": calls, "recurring_helper_usd_per_cell": usd,
             "helper_cost_scope": "Measured physical calls including retries; proposal + confirmation or both edit rounds; benchmark judging excluded",
-            "generation_component_gpu_seconds": generation32 * (1 if random else n) / 32,
-            "generation_component_measurement": "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded",
-            "control_note": ("Same-pool random draw from this experimental prefix. Fresh one-iid-sample baseline has the same marginal distribution and requires one sample, not N alternatives."
+            "generation_component_gpu_seconds": None if random else generation32 * n / 32,
+            "generation_component_measurement": ("Not measured: one retained admissible sample; generation may retry for eligibility"
+                if random else "Pilot filled-batch N32 component; other N are proportional estimates; capture/setup/AR or likelihood/local/helper work excluded"),
+            "control_note": ("Same-pool random draw among admissible samples from this recorded prefix. Fresh deployment retains one sample; matching eligibility may require rejection/resampling. Exact finite-pool replay uses the recorded prefix; no guaranteed N1 generation cost is claimed."
                              if random else "Frozen condition candidate prefix; helper proposals are additional computation, not extra O-lens samples."),
         }
 
@@ -101,7 +103,7 @@ def populate(report, measurements, costs, source_hashes, specificity=None):
             points.append(point)
         series.append({"label": family + (": Contradictions / specific readouts (lower is better)" if family == "hallucination" else ": Mention/role recovery (higher is better)"),
                        "family": family, "cohort": cohort, "value_unit": "proportion", "cost_unit": "samples", "cost_scope": "experimental_prefix",
-                       "cost_definition": "Experimental O-lens candidate prefix per cell, not total deployment cost. Random-draw controls need one iid sample in deployment. Recurring helpers and cached replay components appear separately below.",
+                       "cost_definition": "Experimental O-lens candidate prefix per cell, not total deployment cost. Random controls retain one admissible sample; generation may retry for eligibility. Recurring helpers and cached replay components appear separately below.",
                        "points": points})
     report["methods"]["sample_selection"]["cost_frontier"] = series
     paired = {(r["condition"], r["baseline_condition"], r["family"], r["endpoint"]): r

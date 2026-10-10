@@ -1,6 +1,6 @@
 # Execution status
 
-Updated: 2026-10-10, approximately 08:43 UTC.
+Updated: 2026-10-10, approximately 09:03 UTC.
 Started: 2026-10-10 01:25:36 UTC (October 9, 21:25:36 EDT).
 Target finish: 2026-10-10 21:25:36 UTC. Execution remains active and authorized.
 
@@ -81,7 +81,7 @@ first source-checked dashboard with grouped intervals. Nothing has been pushed.
 | Single-method pilots | A/B/C/D/E1/E3/F judged; E2/G diagnostics complete with limits; exact-claim-span v3 stopped after its eight-cell contract audit, without benchmark-quality measurement |
 | Combinations | 65 unique pilot conditions judged and source-checked; larger E1-plus-pruning outputs complete and awaiting judging |
 | Additional controls | All32 judgments and matched-donor N1 complete; all requested cells/stages covered |
-| Held-out evaluation | All 3,485 validation cells have immutable N32 pools. The twelve-arm shortlist and analysis gate are frozen; all AR and selector shards are complete. Fixed pruning/export precedes judging. Blind TEST sampling is running on four H200s; TEST analysis stays closed. |
+| Held-out evaluation | All 3,485 validation cells have immutable N32 pools; all AR, selectors, pruning and the exact twelve-arm export are complete. All four family evaluators launched; multi-hop is complete. Blind TEST sampling is running on four H200s; TEST analysis stays closed. |
 
 Combination comparisons retain unchanged parents, component-off outputs, and
 random deletion matched on retained bullet count. Fixed support weights are
@@ -95,25 +95,31 @@ The corresponding role cell count is only 151/3,420: an item passes when any
 inspected site passes, so item recovery must not be read as uniformly faithful
 readouts. These are original-grid development scores, not held-out results.
 
-Next: finish fixed validation pruning and export the signed twelve-arm menu,
-then forecast and launch Luna judging at clean DEV family boundaries. All
-421,716 new AR vectors and all 3,485 selector cells are complete; the catalog
-retains 642,209 inherited vectors without copying tensors. Four selector workers
-took approximately 590–608 seconds each on disjoint four-core groups.
+Next: finish the twelve fixed validation comparisons, inspect systematic traces
+with their original judge evidence, and select at most two quality/cost operating
+points before freezing the TEST menu. The validation forecast is $4.7571 with a
+$15 atomic run cap. All four family evaluators launched after clean DEV cache
+handoffs; multi-hop is complete. At 09:00 UTC, 1,770 calls were settled with no
+new unknown charges, and current per-family p95 latency was 1.65–2.45 seconds.
+All prior uncertain charges stay reserved. See
+[experiment 029](experiments/029-validation-comparison.md).
 
 Blind TEST sampling started at 08:32 UTC after four validate-only checks and
-idle-resource verification. At 08:39:45, 380 of 10,714 cells were complete;
-measured rates forecast generation completion near 11:51 UTC if sustained.
+idle-resource verification. At 08:52:59, 1,128 of 10,714 cells were complete;
+measured rates forecast generation completion around 11:43–11:51 UTC if sustained.
 This is generation only. TEST text, AR, selection and judging remain sealed
 until the final method freeze and separate analysis gate.
 
-DEV judging resumed at eight slots/200 RPM per family with fresh operational
+The earlier DEV judging recovery used eight slots/200 RPM per family with fresh operational
 profiles and the same $20 run ceiling, exact requests, caches and uncertain
 holds. A single unchanged Luna request passed in 1.39 seconds. The copied-ledger
 load check completed 384 fake calls without network use or production accounting
 changes; sixteen slots were faster than eight in that instrument. Intermittent
 local I/O pauses exist, but this did not reproduce the real transport failure.
 The cause remains unresolved; there is no automatic concurrency increase.
+The remaining DEV hallucination and role queues have now stopped at clean
+condition boundaries to prioritize validation. Incomplete DEV comparisons remain
+incomplete and cannot change the already frozen validation decision rule.
 At 08:38 UTC the new queue had 9,403 settled requests and one isolated
 unknown charge of $0.00481825, retained in full. Subsequent latest-100 windows
 were healthy; no guard reset or concurrency increase was made.
