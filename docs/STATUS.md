@@ -1,10 +1,16 @@
 # Execution status
 
-Updated: 2026-10-10, approximately 17:04 UTC.
+Updated: 2026-10-10, approximately 17:36 UTC.
 Started: 2026-10-10 01:25:36 UTC (October 9, 21:25:36 EDT).
 Target finish: 2026-10-10 21:25:36 UTC. Execution remains active and authorized.
 
 ## Latest operational checkpoint
+
+Site version7 is live at17:36UTC, defaulting to original question-level recovery and exposing each exact task criterion. Its scientific objects and all sixteen map downloads are unchanged. The stage-aware renderer was tested with synthetic TEST data only; the public results remain validation. The database writer-coordination fix is committed locally as96db180 after56 offline tests and an independently reviewed three-process shared-filesystem fixture. Successor CPU25508300 on node1603 has eight physical cores,32GiB and expiry05:32UTC Oct11; its prepared continuation passed source validation without dispatch. Role remains live while finishing the requested condition boundary. Production recovery is not yet established.
+
+Hallucination v4 is terminal exit1 after further 120-second writer-lock acquisition failures, including response-evidence and settlement operations. The 17:20 bounded receipt retains twelve unknown TEST charges ($0.059636875) and one separate $0.00538675 reserved attempt from the stopped hall worker. An exact-ID audit found no saved response or settlement event for that reservation; this is missing evidence, not proof it was uncharged. Role v5 remained live and received SIGUSR1 to finish its current condition and stop cleanly before a coordinated writer update. No in-flight requests were cancelled. A minimal separate-file writer admission lock is being implemented and tested offline; no resumed dispatch is authorized until source, accounting and owner checks pass. Luna already uses Standard/default rather than Flex. The prior 22:00–00:00 UTC delivery estimate requires renewed throughput evidence after resumption.
+
+Question-level recovery will lead the dashboard, with per-activation diagnostics and the unchanged native hallucination error rate. Experiment 045 records the exact item/group counts, the limits of twenty-item validation, and the distinction between held-out268 and descriptive whole469. This presentation change does not alter frozen methods, metrics or TEST judgments. The source update is being checked with synthetic TEST fixtures; the public site remains version6.
 
 The public dashboard was updated at 17:04 UTC (Site version 6) with explicit per-activation versus whole-question labels, the unchanged hallucination error endpoint, and the 16:49 API snapshot. Sixteen focused tests, independent review and desktop/mobile checks passed. The later measured timing addendum verifies 621,920 samples and 30.192 GPU task-hours for generation plus main reconstruction; see experiment 044. Both remaining judge sessions were confirmed live at16:53; no TEST quality has been inspected.
 

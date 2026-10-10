@@ -1,0 +1,248 @@
+{
+  "schema_version": 1,
+  "job_id": "25508300",
+  "node": "node1603",
+  "concurrency": 8,
+  "rpm": 200,
+  "tier": "default",
+  "reasoning_effort": "none",
+  "automatic_ramp": false,
+  "recovery_epoch": "2026-10-10T07:52:00+00:00",
+  "cpu_pairs": {
+    "hallucination": [
+      0,
+      3
+    ],
+    "role_bound_association": [
+      13,
+      20
+    ]
+  },
+  "fresh_manifest": "${OLENS_COMPUTE_ROOT}/activations/core-v1/fresh_manifest_v2.json",
+  "empirical_summary": "${OLENS_DATA_ROOT}/selections/development-full-grid-judging-v1/forecast-v1.json",
+  "ledger": "${OLENS_DATA_ROOT}/budget/ledger.sqlite3",
+  "shared_cache": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments/shared-exact-cache",
+  "logs": "${OLENS_COMPUTE_ROOT}/logs/test-continuation-v6",
+  "hold_policy": "Every prior project/DEV uncertain reservation remains held. A separate v2 TEST run does not release, overwrite or reclassify any original hold or reset global financial totals.",
+  "forecast_policy": "The actual immutable12-arm export and exact-cache forecast are bound below. Expected usage includes the conditional upper count of new hallucination stage2 requests at empirical mean prices. The finite40USD run ceiling funds bounded retries and unknown reservations inside unchanged300USD project ceiling/200USD target. Formal gross maximum-output reservation totals are not expected spend; atomic per-attempt/run/global caps remain authoritative.",
+  "status": "prepared_pending_root_boundary_owner_review",
+  "run_id": "test-full-grid-methods-v2",
+  "run_cap_usd": 40,
+  "authorized_cells": 10714,
+  "manifest": "configs/test-full-grid-analysis-v2.json",
+  "gate": "configs/gates/test-analysis-v2.json",
+  "conditions": "configs/conditions_test_final_v2.json",
+  "freeze": "configs/test_final_method_freeze_v2.json",
+  "selections": "${OLENS_DATA_ROOT}/runs/test-full-grid-comparison-v2/judging-inputs.jsonl",
+  "selection_sha256": "ae8b6a6e4fdb4eb57f8d4dcabf184071a258ad2bb55e9abc05159798c7472196",
+  "export_provenance": "${OLENS_DATA_ROOT}/runs/test-full-grid-comparison-v2/judging-inputs-provenance.json",
+  "export_provenance_sha256": "ddd2e0e103041e807799e6a9dd639a43d3068c7b881383e09e600eb109b93db2",
+  "forecast": "${OLENS_DATA_ROOT}/runs/test-full-grid-comparison-v2/forecast-v2.json",
+  "forecast_sha256": "f39c259138f6a2cc4ad6a9f9832014577bfb736377691fb7242397c19ce5f8ff",
+  "planned_forecast_path": "${OLENS_DATA_ROOT}/runs/test-full-grid-comparison-v2/forecast-v2.json",
+  "judgments": "${OLENS_DATA_ROOT}/runs/test-full-grid-comparison-v2/judgments",
+  "performance_profile_dir": "${OLENS_DATA_ROOT}/runs/test-full-grid-comparison-v2/judgments/performance-continuation-v6",
+  "created_utc": "2026-10-10T17:33:55.785308+00:00",
+  "unresolved_fields": [
+    "Verify root-requested role clean boundary exit and no old imported writers remain.",
+    "Verify both family exclusive cache owners free and standard stop-file state immediately before launch.",
+    "Root reviews/binds latest inactive-reservation incident metadata; preserve remaining exact-ID hold unless separately reviewed.",
+    "Root seals ready and explicitly authorizes each family launch."
+  ],
+  "dispatch_policy": "No dispatch until the exact12-method export, actual combined forecast, current accounting health/CPU/cache-owner review, and a finite root-reviewed run ceiling are bound and root seals ready. Primarysix precede secondarysix. The prospective amendment does not authorize extra methods or tuning.",
+  "family_owner_policy": "Root must verify terminal hall3625516 and clean condition-boundary exit of role3651167, then both exclusive family cache owners free immediately before sealing/launch. No signal or paid dispatch by preparation.",
+  "profile_policy": "Fresh performance-continuation-v6 per-family directories and logs/test-continuation-v6 preserve all previous execution evidence; do not restart or alter an old active worker.",
+  "manifest_sha256": "e717772952e83ba5c56014cd8abb23e720519d013a6e6a8905f8f2c87f73d207",
+  "fresh_manifest_sha256": "5a61cff89aca532f3e022233b6d2d8e12dab0d3a3f4f44085097bc6dc58fc385",
+  "gate_sha256": "1c0412380a1980b3551d0f750434269572ebf1f79377efa12018373e05c72dcc",
+  "conditions_sha256": "111b0684c8f5eb780e2b3887218757dee9ef6cca25efd26a8c0a515d008f4807",
+  "freeze_sha256": "b46f00851efb71628faa2ffcb404011c4ef1f3543d68fc4f18d0ab6d74d95e86",
+  "empirical_summary_sha256": "c1db2f1fb5a58c727b813f9498726e2e21ff70ca092cc891fb0b40aab0d6a1f6",
+  "implementation_source_sha256": {
+    "infra/launch_test_judges.py": "734665d8f3c665d431a27637d59502a557ed800096ef9cb47c27c7061f74caa1",
+    "infra/launch_validation_judges.py": "8fe185d916ef78da8d9b4e11c1c0c0f4ee640027fc686d79173d42c51afaa4fb",
+    "scripts/forecast_judging.py": "e587b75502317bdb60edcc2225268bdc49d87d159a5da3b0a36a79813e3d6b13",
+    "src/olens_improve/evaluation.py": "5ae885ace1ecc974a59cddaef118c68285f4380f1a6fd259fed540e8f5d16039",
+    "src/olens_improve/budget.py": "60caff27b9dd717e218822a4115f7f44c8f1820f066f1ec5dbecb021206ca38f",
+    "src/olens_improve/ar_partition.py": "4f250bd78e5adb81faed0568ad004bc8df62dd34d1daf94973ab13052e802499",
+    "src/olens_improve/stage_io.py": "7257f7855faddab8abe0ac487aa33500718979a5de5019a838354a1e0feb884c",
+    "src/olens_improve/performance.py": "d9f5b89d37d8f4eb379d33ada60f4cfc55e19fc3480ae735d3e2b5614e98033b",
+    "scripts/export_judging_inputs.py": "ad5d1eab2eea809f8666b2bbba2e18e520f5d74d2a2ee1bc95684f0b906895fc",
+    "scripts/combine_pruning.py": "f96fe1af7f445d3be7f72f5be54167ccb15a6cde7cab3c3b77110afc8967de94",
+    "src/olens_improve/stage_permissions.py": "7cfe9248e7b529ad38b46ebe46282c4132c366ab1af4ea945c5a85c054ff72bd"
+  },
+  "planned_selection_path": "${OLENS_DATA_ROOT}/runs/test-full-grid-comparison-v2/judging-inputs.jsonl",
+  "planned_export_provenance_path": "${OLENS_DATA_ROOT}/runs/test-full-grid-comparison-v2/judging-inputs-provenance.json",
+  "primary_conditions": [
+    {
+      "method": "raw_n1",
+      "n": 1
+    },
+    {
+      "method": "capped_n1",
+      "n": 1
+    },
+    {
+      "method": "best_n_exact",
+      "n": 16
+    },
+    {
+      "method": "best_n_exact",
+      "n": 32
+    },
+    {
+      "method": "random_complete",
+      "n": 32
+    },
+    {
+      "method": "best_n_specificity_mean",
+      "n": 32
+    }
+  ],
+  "secondary_conditions": [
+    {
+      "method": "pooled_greedy_swap",
+      "n": 16
+    },
+    {
+      "method": "pooled_greedy_swap",
+      "n": 32
+    },
+    {
+      "method": "best_n_specificity_mean_then_prune_0.005",
+      "n": 32
+    },
+    {
+      "method": "best_n_specificity_mean_random_delete_matched_0.005",
+      "n": 32
+    },
+    {
+      "method": "prune_loo_a32_0.005",
+      "n": 32
+    },
+    {
+      "method": "random_delete_matched_a32_0.005",
+      "n": 32
+    }
+  ],
+  "preserved_v1_preparation": {
+    "path": "configs/judging_test_v1.prepared.json",
+    "sha256": "5782dac5c006241986ea0c0c8ab01eae6e4ff2f39d19669edb9a90b1169a6e26",
+    "policy": "Keep original six-arm preparation and its artifact paths unchanged; no TEST paid dispatch occurred under it."
+  },
+  "menu_order_policy": "Original six primary in their unchanged order, followed by six existing VAL secondary comparisons. No secondary TEST result changes selected A16/Emean32 points or frozen settings.",
+  "preparation_policy": "Existing unchanged v1 selector workers may complete and merge under original authority. After root reviews terminal source identities, derive fixed Emean pruning under v2, then exact export under v2; do not reinterpret unexported mechanical variants.",
+  "source_contract_policy": "Operational implementation pins below are current preparation pins and must be reviewed again before sealing dispatch. Scientific contract and labels remain bound by the sealed v2 freeze/gate.",
+  "forecast_summary": {
+    "expected_usage_usd": 19.009963514690135,
+    "hall_stage1_uncached_unique": 29077,
+    "hall_stage2_uncached_unique_upper": 29077,
+    "role_uncached_unique": 52027,
+    "chain_uncached_unique": 6935,
+    "service_mean_hours_by_family": {
+      "hallucination": 6.037279928751809,
+      "chain_intermediates": 0.6044929526088704,
+      "role_bound_association": 4.335583333333334
+    },
+    "service_reference_limit": "Frozen older empirical means, with sequential stages/conditions; excludes cache IO, startup, retries and incidents. Not a promised walltime or statistical upper bound."
+  },
+  "prospective_family_handoff_at_preparation": {
+    "hallucination": "Root reported DEV hall terminal exit0; root still verifies actual PID/cache release before dispatch.",
+    "chain_intermediates": "Root reported free; verify immediately before dispatch.",
+    "multihop_mt": "Root reported free; verify immediately before dispatch.",
+    "role_bound_association": "DEV PID3529361/session21686 active. TEST launch blocked until root verifies clean exit/cache release.",
+    "no_preparing_agent_launch": true
+  },
+  "schedule_risk": {
+    "current_allocation_end_utc": "2026-10-11T05:32:23+00:00",
+    "hall_mean_service_hours": 6.037279928751809,
+    "same_signed_order_primary_six_first": true,
+    "capacity_action": "Verified successor extends resource availability; actual finish still depends on judging throughput, cache I/O and review, not a promised ETA.",
+    "deadline_interpretation": "Full12 coverage plus review may exceed the current hold even if empirical mean service holds. Do not silently drop conditions or call time-limited outputs negative."
+  },
+  "completed_A2_operational_reference": {
+    "path": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1/performance-dev-role-a2-reader-v2/role_bound_association/role_bound_association-best_n_exact-n2.json",
+    "sha256": "cbe4ed0fb127810a5bf9ce79fe919efa80a7121d7191b02a6ad4822418b179de",
+    "paid_responses": 1556,
+    "task_wall_seconds": 505.421,
+    "responses_per_minute": 184.72,
+    "interpretation": "Measured solo-role condition, not a guarantee with concurrent hallucination/chain workers. Keep forecast empirical input unchanged."
+  },
+  "prepared_spec_parent": {
+    "path": "configs/judging_test_continuation_v5.json",
+    "sha256": "6046e37b75ed1803c2965a7fee0d4755cd34085921f1e3c4b040fa6b4256bfd1",
+    "preserved_unchanged": true
+  },
+  "checkpoint_policy": {
+    "initial_new_settled_response_observation": 100,
+    "subsequent_cadence_minutes": 5,
+    "read_only_active_pid_windows_only": true,
+    "worker_since": "Conservative actual process launch bound; does not replace original07:52 guard epoch.",
+    "no_automatic_ramp_or_epoch_reset": true,
+    "no_release_or_reclassification_of_uncertain_holds": true,
+    "no_TEST_quality_inspection_for_method_tuning": true
+  },
+  "resource": "${OLENS_DATA_ROOT}/diagnostics/test12-operational-v1/successor-preflight-v1.json",
+  "resource_sha256": "ee9442abffb0ae0accd243696fc97db3222d29f73774252db2f4e63babe8566d",
+  "cpu_continuity_policy": "Use verified successor25508300/node1603, eight distinct physical cores and32GiB, expires2026-10-11T05:32:23UTC. Preserve original job/other processes; same authoritative NFS ledger/cache, no migration or new financial authority.",
+  "prepared_utc": "2026-10-10T17:33:55.785301+00:00",
+  "preserved_operational_parent": {
+    "path": "configs/judging_test_v2.json",
+    "sha256": "e052bc4cc8c00401dff62a0d1810760b09f0383e96cfa15252ac765b2d304941"
+  },
+  "continuation_incident": {
+    "path": "${OLENS_DATA_ROOT}/diagnostics/test12-operational-v1/continuation-v4-hall-incident-v1.json",
+    "sha256": "9ba77ee512017e6eee90ba8415f24c739aaaa712ab258f69d4f270a33a9cdb67"
+  },
+  "continuation_incident_checkpoint": {
+    "path": "${OLENS_DATA_ROOT}/diagnostics/test12-operational-v1/continuation-v4-hall-terminal-checkpoint-v1.json",
+    "sha256": "18985391d9e304006d6f81796c7baffa05ed5faf973b9ce94ba0e004822681ea"
+  },
+  "operational_continuation": {
+    "families": [
+      "hallucination",
+      "role_bound_association"
+    ],
+    "menu_policy": "Resume identical frozen12-method family menus through existing exact-request caches; preserve all complete conditions, responses, usage and previous results. MT/chain are complete and untouched.",
+    "admission_policy": "Reviewed60caff27 persistent canonical sibling O_RDWR flock before SQLite connect, held through connection close; never unlink. Every new participating writer uses this pin. SQLite DELETE/FULL and existing120s BEGIN-only acquisition retry unchanged; no transaction-body/COMMIT replay.",
+    "epoch_policy": "Preserve original TEST run40/07:52 epoch, project300 hard/200 target, all reserved/unknown holds, tierdefault/reasoningnone/8concurrency/200RPM and unchanged uncertain-charge guard.",
+    "prior_workers": [
+      {
+        "pid": 3625516,
+        "family": "hallucination",
+        "status": "root_confirmed_terminal_exit1"
+      },
+      {
+        "pid": 3651167,
+        "family": "role_bound_association",
+        "status": "pending_root_condition_boundary_exit_verification"
+      }
+    ],
+    "pending_before_seal": [
+      "Verify root-requested role clean boundary exit and no old imported writers remain.",
+      "Verify both family exclusive cache owners free and standard stop-file state immediately before launch.",
+      "Root reviews/binds latest inactive-reservation incident metadata; preserve remaining exact-ID hold unless separately reviewed.",
+      "Root seals ready and explicitly authorizes each family launch."
+    ],
+    "first_health_review": "Root-authorized bounded actualPID/worker-since checkpoint after about100 newlysettled responses, then a longer interval; retain original07:52 epoch and avoid history scans.",
+    "limits": "Fresh small same-node NFS fixture passed, not production-throughput, fairness or root-cause proof. Native readers and nonparticipating writers remain outside admission. Nominal deadlines do not bound blocked filesystem syscalls.",
+    "fresh_resource": {
+      "path": "${OLENS_DATA_ROOT}/diagnostics/test12-operational-v1/successor-preflight-v1.json",
+      "sha256": "ee9442abffb0ae0accd243696fc97db3222d29f73774252db2f4e63babe8566d",
+      "observed_utc": "2026-10-10T17:33:12.491813+00:00"
+    },
+    "failure_action": "Accounting/evidence/settlement failure or acquisition deadline requires review; no automatic restart, timeout escalation, hold release or transaction replay."
+  },
+  "root_launch_only": true,
+  "writer_admission_fixture": {
+    "path": "${OLENS_COMPUTE_ROOT}/diagnostics/ledger-admission-nfs-v1/report.json",
+    "sha256": "d69fa5025cb39506f148907ef8a640effdafee3edb92cb02ea8a50298373574a",
+    "budget_sha256": "60caff27b9dd717e218822a4115f7f44c8f1820f066f1ec5dbecb021206ca38f",
+    "limits": "Only fresh same-node synthetic3x20cycles and killed owned holder; no real charges/production access."
+  },
+  "hall_reservation_evidence": {
+    "path": "${OLENS_DATA_ROOT}/diagnostics/test12-operational-v1/continuation-v4-hall-reservation-evidence-v1.json",
+    "sha256": "da2fc7a876d4530355e419ff7dd466ea8a31fbc7329c944aae31df4e438eb3ca",
+    "policy": "No retained physical_response/settlement event for the exact inactive reserved ID; absence is not proof of no provider usage. Retain full hold; no automatic settlement/release."
+  }
+}
