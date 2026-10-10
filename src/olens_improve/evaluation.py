@@ -7,6 +7,9 @@ our frozen-manifest completeness and paired-group reporting contracts.
 from __future__ import annotations
 
 import asyncio
+from concurrent.futures import ThreadPoolExecutor
+from functools import partial
+import uuid
 from collections import defaultdict
 import hashlib
 import importlib
@@ -93,6 +96,59 @@ def safe_exception_chain(error: BaseException) -> list[dict]:
     return chain
 
 
+class LedgerOperationError(BudgetExceeded):
+    """Fail closed on accounting I/O; never retry a paid attempt automatically."""
+
+
+class AsyncLedgerLane:
+    """One serialized writer lane; bounded queue, drained even on cancellation.
+
+    SQLite connections are created inside each existing ledger operation. The
+    lane never moves connections across threads or changes transaction logic.
+    """
+    def __init__(self):
+        self.executor = ThreadPoolExecutor(max_workers=1, thread_name_prefix='olens-ledger')
+        self.slots = asyncio.Semaphore(16)
+        self.pending = set()
+        self.users = 0
+
+    @staticmethod
+    async def drained(future):
+        cancelled = False
+        while True:
+            try:
+                return await asyncio.shield(future), cancelled
+            except asyncio.CancelledError:
+                # Cancellation cannot stop a running SQLite transaction. Keep
+                # ownership of its outcome rather than abandon its commit.
+                cancelled = True
+                if future.cancelled():
+                    raise RuntimeError('Owned ledger future unexpectedly cancelled')
+
+    async def call(self, function, *args, **kwargs):
+        # Own the queued operation as well as its thread future: terminal
+        # bookkeeping cannot be cancelled while waiting behind reservations.
+        operation = asyncio.create_task(self._submit(function, *args, **kwargs))
+        return await self.drained(operation)
+
+    async def _submit(self, function, *args, **kwargs):
+        async with self.slots:
+            future = asyncio.get_running_loop().run_in_executor(
+                self.executor, partial(function, *args, **kwargs))
+            self.pending.add(future)
+            try:
+                return await future
+            finally:
+                self.pending.discard(future)
+
+    async def drain(self):
+        cancelled = False
+        while self.pending:
+            _, interrupted = await self.drained(asyncio.gather(*self.pending, return_exceptions=True))
+            cancelled |= interrupted
+        return cancelled
+
+
 class BudgetedCompletions:
     def __init__(self, inner: Any, ledger: AtomicBudget, run_id: str,
                  *, allow_paid: bool = False, metadata: dict | None = None,
@@ -106,8 +162,44 @@ class BudgetedCompletions:
             raise ValueError('Helper diagnostic effort must be none or medium')
         self.reasoning_effort = helper_reasoning_effort or 'none'
         self.helper_diagnostic = helper_reasoning_effort is not None
+        lane = getattr(ledger, '_async_ledger_lane', None)
+        if lane is None:
+            lane = AsyncLedgerLane()
+            ledger._async_ledger_lane = lane
+        self.lane = lane
+        lane.users += 1
+        self.requests = set()
+        self.closed = False
+
+    async def close(self):
+        if self.closed:
+            return
+        self.closed = True
+        interrupted = False
+        if self.requests:
+            _, interrupted = await self.lane.drained(
+                asyncio.gather(*self.requests, return_exceptions=True))
+        interrupted |= await self.lane.drain()
+        self.lane.users -= 1
+        if self.lane.users == 0:
+            # All submitted work is complete, so this does not wait on NFS.
+            self.lane.executor.shutdown(wait=True)
+            if getattr(self.ledger, '_async_ledger_lane', None) is self.lane:
+                del self.ledger._async_ledger_lane
+        if interrupted:
+            raise asyncio.CancelledError
 
     async def create(self, **request: Any) -> Any:
+        if self.closed:
+            raise RuntimeError('Budgeted client is closing')
+        task = asyncio.current_task()
+        self.requests.add(task)
+        try:
+            return await self._create(**request)
+        finally:
+            self.requests.discard(task)
+
+    async def _create(self, **request: Any) -> Any:
         if not self.allow_paid or os.environ.get('OLENS_ALLOW_PAID_CALLS') != '1':
             raise RuntimeError('Paid calls disabled; root must verify shared ledger and tiny run cap first')
         if request.get('model') != JUDGE_MODEL or request.get('reasoning_effort') != self.reasoning_effort:
@@ -128,42 +220,92 @@ class BudgetedCompletions:
         profiler = getattr(self.ledger, '_operational_profile', None)
         if profiler is not None: profiler.ensure_heartbeat()
         serializable = {k: v for k, v in request.items() if k != 'timeout'}
-        aid = self.ledger.reserve_attempt(input_bound, max_output, run_id=self.run_id,
-                    metadata={**self.metadata, 'content_cache_key': content_key,
-                              'request': serializable, 'pid': os.getpid(),
-                              'helper_effort_opt_in': self.helper_diagnostic,
-                              'requested_tier': request['service_tier']},
-                    dispatch_guard={'since_utc': os.environ['OLENS_TRANSPORT_RECOVERY_SINCE']}
-                        if os.environ.get('OLENS_TRANSPORT_RECOVERY_SINCE') else None)
+        aid = str(uuid.uuid4())
+        try:
+            aid, cancelled = await self.lane.call(self.ledger.reserve_attempt,input_bound, max_output, run_id=self.run_id, attempt_id=aid,
+                        metadata={**self.metadata, 'content_cache_key': content_key,
+                                  'request': serializable, 'pid': os.getpid(),
+                                  'helper_effort_opt_in': self.helper_diagnostic,
+                                  'requested_tier': request['service_tier']},
+                        dispatch_guard={'since_utc': os.environ['OLENS_TRANSPORT_RECOVERY_SINCE']}
+                            if os.environ.get('OLENS_TRANSPORT_RECOVERY_SINCE') else None)
+        except BudgetExceeded:
+            raise
+        except Exception as error:
+            raise LedgerOperationError('Reservation I/O failed; no dispatch authorized') from error
+        if cancelled:
+            await self.lane.call(self._uncertain, aid,
+                'CancelledError; committed reservation retained without dispatch', None)
+            raise asyncio.CancelledError
         started = time.monotonic()
         try:
             response = await self.inner.create(**request)
         except BaseException as error:
             # Timeouts, cancellation and transport failures can still be billed.
             # Even status errors remain reserved until definitive reconciliation.
-            self.ledger.mark_unknown(aid, f'{type(error).__name__}; physical attempt outcome uncertain')
-            self.ledger.record_evidence(aid, 'transport_failure', {
-                'exception_type': type(error).__name__, 'latency_s': time.monotonic() - started,
-                'cause_chain': safe_exception_chain(error),
-                'provider_request_id': getattr(error, 'request_id', None),
-                'http_status': getattr(error, 'status_code', None),
-                'error_code': getattr(error,'code',None),
-                'error_type': getattr(error,'type',None),
-            })
+            await self.lane.call(self._uncertain, aid,
+                f'{type(error).__name__}; physical attempt outcome uncertain', {
+                    'exception_type': type(error).__name__, 'latency_s': time.monotonic() - started,
+                    'cause_chain': safe_exception_chain(error),
+                    'provider_request_id': getattr(error, 'request_id', None),
+                    'http_status': getattr(error, 'status_code', None),
+                    'error_code': getattr(error, 'code', None),
+                    'error_type': getattr(error, 'type', None)})
             raise
-        latency = time.monotonic() - started
+        # Once a response is observed, finish accounting even if cancellation
+        # arrives while evidence/settlement is blocked. Never mark it uncertain
+        # merely because the caller stopped waiting for local bookkeeping.
+        try:
+            response, cancelled = await self.lane.call(self._received, aid, response,
+                time.monotonic() - started, content_key)
+        except BudgetExceeded:
+            raise
+        except Exception as error:
+            raise LedgerOperationError('Observed response accounting incomplete; stop and reconcile') from error
+        if cancelled:
+            raise asyncio.CancelledError
+        return response
+
+    def _uncertain(self, aid, reason, details):
+        failure = None
+        try:
+            self.ledger.mark_unknown(aid, reason)
+        except Exception as error:
+            failure = error
+        if details is not None:
+            try:
+                self.ledger.record_evidence(aid, 'transport_failure', details)
+            except Exception as error:
+                failure = failure or error
+        if failure is not None:
+            raise LedgerOperationError('Uncertain attempt bookkeeping failed; hold remains committed') from failure
+
+    def _received(self, aid, response, latency, content_key):
         usage = _get(response, 'usage')
-        raw = response.model_dump(mode='json') if hasattr(response, 'model_dump') else None
-        self.ledger.record_evidence(aid, 'physical_response', {
+        raw = None
+        evidence_error = None
+        try:
+            raw = response.model_dump(mode='json') if hasattr(response, 'model_dump') else None
+        except Exception as error:
+            evidence_error = error
+        def evidence(kind, details):
+            nonlocal evidence_error
+            try:
+                self.ledger.record_evidence(aid, kind, details)
+            except Exception as error:
+                evidence_error = evidence_error or error
+        evidence('physical_response', {
             'latency_s': latency, 'response_id': _get(response, 'id'),
             'provider_request_id': _get(response, '_request_id'),
             'billed_tier': _get(response, 'service_tier'),
             'response': raw, 'content_cache_key': content_key,
-        })
+            })
         n_input = _get(usage, 'prompt_tokens')
         n_output = _get(usage, 'completion_tokens')
         if not isinstance(n_input, int) or not isinstance(n_output, int):
             self.ledger.mark_unknown(aid, 'Response landed without complete usage; reservation retained')
+            if evidence_error is not None:
+                raise evidence_error
             return response
         cached = _get(_get(usage, 'prompt_tokens_details'), 'cached_tokens', 0) or 0
         written = _get(_get(usage, 'prompt_tokens_details'), 'cache_write_tokens', None)
@@ -171,7 +313,7 @@ class BudgetedCompletions:
             # Missing write counters are not evidence of zero writes. Settle at
             # the worst remaining-input rate and preserve this uncertainty.
             written = n_input - cached
-            self.ledger.record_evidence(aid, 'missing_cache_write_usage', {
+            evidence('missing_cache_write_usage', {
                 'policy': 'Conservatively price remaining noncached input as writes; invoice unverified'})
         # Missing billed-tier metadata is conservatively settled at Standard.
         billed_tier = _get(response, 'service_tier') or 'default'
@@ -184,6 +326,8 @@ class BudgetedCompletions:
                            cached_tokens=cached, billed_tier=billed_tier,
                            cache_write_tokens=written,
                            response_id=_get(response, 'id'))
+        if evidence_error is not None:
+            raise evidence_error
         return response
 
 
@@ -191,9 +335,23 @@ class BudgetedClient:
     def __init__(self, inner: Any, ledger: AtomicBudget, run_id: str, *, allow_paid: bool,
                  metadata: dict | None = None, helper_reasoning_effort: str | None = None):
         self.inner = inner
+        self._close_task = None
         self.chat = SimpleNamespace(completions=BudgetedCompletions(
             inner.chat.completions, ledger, run_id, allow_paid=allow_paid, metadata=metadata,
             helper_reasoning_effort=helper_reasoning_effort))
+
+    async def close(self):
+        # Coalesce concurrent closes. Every caller waits for the same drain;
+        # no caller closes the SDK while another is still finishing the ledger.
+        if self._close_task is None:
+            self._close_task = asyncio.create_task(self._close())
+        _, cancelled = await AsyncLedgerLane.drained(self._close_task)
+        if cancelled:
+            raise asyncio.CancelledError
+
+    async def _close(self):
+        await self.chat.completions.close()
+        await self.inner.close()
 
     def __getattr__(self, name: str) -> Any:
         return getattr(self.inner, name)
@@ -255,9 +413,10 @@ def install_upstream_transport(ledger: AtomicBudget, run_id: str, *, allow_paid:
 
     class CentralLedgerOnly:
         def check(self):
-            snap = ledger.snapshot()
-            if snap['halted'] or snap['remaining_hard_usd'] <= 0:
-                raise llm.SpendCapError('Atomic project ledger halted/exhausted')
+            # Every direct OpenAI dispatch is wrapped below. Its atomic
+            # reservation enforces halt, hard/run caps and recovery guard in
+            # the same transaction before dispatch; this report is redundant.
+            pass
         def append(self, row):
             # Legacy caller calculates its run tally, but MUST NOT write in old project.
             pass

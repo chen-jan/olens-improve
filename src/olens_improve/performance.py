@@ -8,6 +8,7 @@ from pathlib import Path
 import random
 import sys
 import time
+import threading
 import weakref
 
 
@@ -51,21 +52,23 @@ class OperationalProfile:
         self.metadata = {k: v for k, v in (metadata or {}).items()
                          if k in ('family', 'method', 'n', 'concurrency', 'rpm', 'offline')}
         self.metrics = {}
+        self.metric_lock = threading.Lock()
         self.rng = random.Random(20261010)
         self.started = time.perf_counter()
         self.tasks = weakref.WeakKeyDictionary()
         self.patches = []
 
     def observe(self, name, seconds, exception=None):
-        stat = self.metrics.setdefault(name, {'count': 0, 'total_seconds': 0.,
-                                            'maximum_seconds': 0., 'samples': [], 'errors': Counter()})
-        stat['count'] += 1; stat['total_seconds'] += seconds
-        stat['maximum_seconds'] = max(stat['maximum_seconds'], seconds)
-        if exception is not None: stat['errors'][type(exception).__name__] += 1
-        if len(stat['samples']) < self.limit: stat['samples'].append(seconds)
-        else:
-            index = self.rng.randrange(stat['count'])
-            if index < self.limit: stat['samples'][index] = seconds
+        with self.metric_lock:
+            stat = self.metrics.setdefault(name, {'count': 0, 'total_seconds': 0.,
+                                                'maximum_seconds': 0., 'samples': [], 'errors': Counter()})
+            stat['count'] += 1; stat['total_seconds'] += seconds
+            stat['maximum_seconds'] = max(stat['maximum_seconds'], seconds)
+            if exception is not None: stat['errors'][type(exception).__name__] += 1
+            if len(stat['samples']) < self.limit: stat['samples'].append(seconds)
+            else:
+                index = self.rng.randrange(stat['count'])
+                if index < self.limit: stat['samples'][index] = seconds
 
     def call(self, name, function, *args, **kwargs):
         started = time.perf_counter(); error = None
@@ -110,11 +113,12 @@ class OperationalProfile:
             rank = (len(samples)-1)*fraction; lo = int(rank); hi = min(lo+1,len(samples)-1)
             return samples[lo]+(samples[hi]-samples[lo])*(rank-lo)
         metrics = {}
-        for name, stat in self.metrics.items():
-            samples = sorted(stat['samples'])
-            metrics[name] = {k: v for k, v in stat.items() if k not in ('samples', 'errors')}
-            metrics[name].update(sample_count=len(samples), median_seconds=quantile(samples,.5),
-                                 p95_seconds=quantile(samples,.95), exception_classes=dict(stat['errors']))
+        with self.metric_lock:
+            for name, stat in self.metrics.items():
+                samples = sorted(stat['samples'])
+                metrics[name] = {k: v for k, v in stat.items() if k not in ('samples', 'errors')}
+                metrics[name].update(sample_count=len(samples), median_seconds=quantile(samples,.5),
+                                     p95_seconds=quantile(samples,.95), exception_classes=dict(stat['errors']))
         report = {'status': status, 'metadata': self.metadata,
                   'wall_seconds': time.perf_counter()-self.started,
                   'heartbeat_seconds': self.period, 'per_metric_sample_limit': self.limit,
