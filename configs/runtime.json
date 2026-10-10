@@ -33,7 +33,10 @@
       "count": 1,
       "cpus": 8,
       "ram_gib": 64,
-      "end_utc": "2026-10-10T22:23:26+00:00"
+      "end_utc": "2026-10-10T22:23:26+00:00",
+      "project_active": false,
+      "handed_back_to_user_utc": "2026-10-10T18:10:48+00:00",
+      "handoff_reason": "Required GPU work complete; user may reuse allocation. No cancellation."
     },
     {
       "job_id": 25330006,
@@ -42,7 +45,10 @@
       "count": 1,
       "cpus": 8,
       "ram_gib": 64,
-      "end_utc": "2026-10-10T22:25:17+00:00"
+      "end_utc": "2026-10-10T22:25:17+00:00",
+      "project_active": false,
+      "handed_back_to_user_utc": "2026-10-10T18:10:48+00:00",
+      "handoff_reason": "Required GPU work complete; user may reuse allocation. No cancellation."
     },
     {
       "job_id": 25330007,
@@ -51,7 +57,10 @@
       "count": 1,
       "cpus": 8,
       "ram_gib": 64,
-      "end_utc": "2026-10-10T22:36:16+00:00"
+      "end_utc": "2026-10-10T22:36:16+00:00",
+      "project_active": false,
+      "handed_back_to_user_utc": "2026-10-10T18:10:48+00:00",
+      "handoff_reason": "Required GPU work complete; user may reuse allocation. No cancellation."
     },
     {
       "job_id": 25417596,
@@ -60,7 +69,10 @@
       "count": 1,
       "cpus": 8,
       "ram_gib": 64,
-      "end_utc": "2026-10-11T16:27:10+00:00"
+      "end_utc": "2026-10-11T16:27:10+00:00",
+      "project_active": false,
+      "handed_back_to_user_utc": "2026-10-10T18:10:48+00:00",
+      "handoff_reason": "Required GPU work complete; user may reuse allocation. No cancellation."
     }
   ],
   "gpu_partition": "${SLURM_GPU_PARTITION}",
@@ -347,5 +359,10 @@
   ],
   "judging_cpu_allocation_id": 25508300,
   "validation_selector_cpu_allocation_id": 25481193,
-  "successor_cpu_allocation_id": 25508300
+  "successor_cpu_allocation_id": 25508300,
+  "gpu_handoff": {
+    "path": "configs/gpu_handoff_v1.json",
+    "project_gpu_work_remaining": false,
+    "cutoff_utc": "2026-10-10T18:10:48+00:00"
+  }
 }

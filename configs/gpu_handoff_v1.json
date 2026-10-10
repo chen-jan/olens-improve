@@ -1,0 +1,20 @@
+{
+  "observed_utc": "2026-10-10T18:10:48+00:00",
+  "status": "available_for_user_reuse",
+  "jobs": [
+    "25330001",
+    "25330006",
+    "25330007",
+    "25417596"
+  ],
+  "verified_per_gpu": {
+    "model": "NVIDIA H200",
+    "utilization_percent": 0,
+    "memory_used_mib": 0
+  },
+  "allocation_cancellation": false,
+  "project_gpu_work_remaining": false,
+  "scope": "Required four-family final comparison and portable tool checks. Broader transfer is a later stage.",
+  "accounting_policy": "Do not attribute subsequent user GPU use or reservation time to this research project. Preserve existing historical resource snapshots.",
+  "coordination_policy": "User can reuse all four GPUs; no new project GPU workload without coordinating renewed access."
+}

@@ -116,6 +116,13 @@ def cpu_memory_alerts(job_id, counters):
     return alerts
 
 
+def gpu_handed_back(job):
+    """Explicit GPU handoffs end project observation, without releasing the job."""
+    handed_back = job.get("handed_back_to_user_utc")
+    return "gpu" in job and (job.get("project_active") is False or
+                            (isinstance(handed_back, str) and bool(handed_back.strip())))
+
+
 def merge_runtime_observations(original, observed, latest):
     """Keep concurrent configuration edits; apply only unchanged observation fields."""
     merged = copy.deepcopy(latest)
@@ -124,6 +131,8 @@ def merge_runtime_observations(original, observed, latest):
         before = {job["job_id"]: job for job in original.get(category, [])}
         after = {job["job_id"]: job for job in observed.get(category, [])}
         for job in merged.get(category, []):
+            if gpu_handed_back(job):
+                continue  # A concurrent handoff preserves the last project observations.
             key = job["job_id"]
             if key not in before or key not in after:
                 continue
@@ -163,6 +172,10 @@ def main():
         snapshot["alerts"].append("Project logical storage reached 90% of aggregate authorization")
     for job in jobs:
         key = str(job["job_id"])
+        if gpu_handed_back(job):
+            snapshot["jobs"][key] = {"observation_skipped": "outside_project_scope",
+                                     "historical_allocation": copy.deepcopy(job)}
+            continue
         snapshot["jobs"][key] = command(["scontrol", "show", "job", key])
         detail = snapshot["jobs"][key]
         text = detail.get("stdout", "")

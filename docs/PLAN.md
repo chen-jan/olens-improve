@@ -174,6 +174,8 @@ Make local commits at meaningful reviewed milestones, keeping code, documentatio
 
 ## Current status and continuation
 
+**GPU handoff:** all four H200s were verified idle at 18:10:48 UTC and are available for the user to reuse. Do not schedule new project GPU work or attribute subsequent user GPU time to this project. The allocations remain intact. Current judging uses CPU job25508300. See `configs/gpu_handoff_v1.json`.
+
 Latest handoff: **2026-10-10 18:10 UTC**. Hall PID2407614/session73504 remains at8/200 on node1603. Role completed Emean, stopped cleanly, and resumed at16/400 as PID3690209/session80782 under sealed `configs/judging_test_role_concurrency_v7.json` (SHA59f40157b0c41845dedf1ee3da3986290c4353f9e617008386ecc1e831f8eaf8). This is a reviewed one-family operational trial; no automatic ramp or demonstrated speedup. All prior charges remain held. The compute agent is the sole observer for the18:15 checkpoint. User reconfirmed broader families are a second stage; current four-family delivery remains required. Goal active.
 
 - **Scope:** the user reconfirmed at approximately 18:06 UTC that broader WorkspaceBench families are a second stage, after these results are complete. Finish twelve frozen comparisons across the four agreed families. The 268-item TEST cohort is the primary final comparison; the full 469-item aggregate is required and must be labeled descriptive because development and validation informed choices. No additional families or broader lens leaderboard are required.
