@@ -93,6 +93,20 @@ Paired uncertainty intervals resample related item groups, not individual cells.
 The pilot has only 2–8 independent groups per family; full development has seven
 chain-template groups. A large number of cells does not erase those limitations.
 
+| Family | Development groups | Validation groups | Test groups |
+|---|---:|---:|---:|
+| Transcript contradictions | 30 | 20 | 99 |
+| Hidden bridge concepts | 29 | 17 | 48 |
+| Arithmetic intermediates | 7 | 7 | 28 |
+| Directed roles | 15 | 10 | 25 |
+
+These counts come from the frozen group manifests, independent of model
+outcomes. Validation helps choose among the fixed candidates; its smaller
+group counts limit precision. The larger untouched test supplies the final
+comparison. Useful effects can merit follow-up despite wide intervals.
+These intervals resample benchmark groups; they do not separately model the
+additional variability from rerunning the generator or judge.
+
 GPT-6 Luna is the sole language-model benchmark judge, with its reasoning setting
 fixed to none. Multi-hop bridge recovery uses the released deterministic matching
 rule. Results retain the original item aggregation alongside cell-level rates.
