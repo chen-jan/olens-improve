@@ -1,6 +1,6 @@
 {
   "title": "Readouts: what is established",
-  "updated_utc": "2026-10-10T07:34:22.853070+00:00",
+  "updated_utc": "2026-10-10T07:59:01.798122+00:00",
   "cohort": "development",
   "run_ids": [
     "development-shared-pilot-v2",
@@ -65,7 +65,7 @@
     }
   ],
   "progress": {
-    "phase": "Development judging paused for timing diagnosis; blind validation generation running",
+    "phase": "Blind validation generation complete and sealed; DEV A32 comparison complete; remaining judging resumed with timing collection",
     "completed_cells": 5236,
     "expected_cells": 5236,
     "elapsed_hours": 6.1463480808333335
@@ -18838,7 +18838,7 @@
         "sha256": "3ba1d670decbd208407dc4cba72f9a1a1d567b6a28f3b2cfb894321c8eec9008"
       }
     },
-    "method_comparison_status": "Full DEV method comparisons remain incomplete. Judging is paused for timing diagnosis after its transport guard stopped the current queues. Existing quality tables are retained until complete source-checked results are available. Blind validation generation is running; validation content and outcomes remain sealed. No full-grid selector gain is established in this report."
+    "method_comparison_status": "Best-of-32 versus capped N1 is complete on all four DEV families and shown separately above. The remaining full DEV method comparisons are incomplete; guarded judging has resumed with timing collection at 8 concurrent requests and 200 requests per minute per family. Existing pilot quality tables are retained. Blind validation generation is complete; its content and outcomes remain sealed."
   },
   "candidate_diagnostic": {
     "title": "Does reconstruction rank the available matches?",
@@ -19239,5 +19239,434 @@
       "CPU/model components exclude required capture/setup and some method-specific preparation. No missing timing is zero.",
       "Error-rate reductions must be read with assertion/off-topic coverage; mention recovery does not establish full faithfulness."
     ]
+  },
+  "full_development_a32": {
+    "title": "Complete development comparison: best of 32 versus capped single-sample baseline",
+    "scope": "121 DEV items / 5,236 cells, complete original grids. Separate from the 189-cell pilot; held-out outcomes remain sealed.",
+    "reviewed_by": "root",
+    "key_finding": "Best of 32 recovers more bridge mentions and passes more individual role tasks on development. The contradiction-rate difference remains uncertain, and social-role item coverage stays unchanged. These recovery endpoints do not establish complete truthful explanations.",
+    "cell_endpoints": [
+      {
+        "family": "hallucination",
+        "endpoint": "contradiction_rate",
+        "baseline": {
+          "numerator": 543,
+          "denominator": 1137,
+          "value": 0.47757255936675463,
+          "ci95": [
+            0.41154903758020167,
+            0.5453736654804271
+          ],
+          "items": 30,
+          "independent_groups": 30,
+          "defined_draws": 2000,
+          "warning": null
+        },
+        "proposed": {
+          "numerator": 523,
+          "denominator": 1140,
+          "value": 0.4587719298245614,
+          "ci95": [
+            0.39565217391304347,
+            0.5300884955752212
+          ],
+          "items": 30,
+          "independent_groups": 30,
+          "defined_draws": 2000,
+          "warning": null
+        },
+        "delta": -0.018800629542193248,
+        "ci": [
+          -0.05414551607445006,
+          0.017552340818845713
+        ],
+        "groups": 30,
+        "warning": null
+      },
+      {
+        "family": "multihop_mt",
+        "endpoint": "cell_recovery",
+        "baseline": {
+          "numerator": 29,
+          "denominator": 341,
+          "value": 0.08504398826979472,
+          "ci95": [
+            0.0219435736677116,
+            0.16804407713498623
+          ],
+          "items": 31,
+          "independent_groups": 29,
+          "defined_draws": 2000,
+          "warning": null
+        },
+        "proposed": {
+          "numerator": 43,
+          "denominator": 341,
+          "value": 0.12609970674486803,
+          "ci95": [
+            0.04398826979472141,
+            0.22865013774104684
+          ],
+          "items": 31,
+          "independent_groups": 29,
+          "defined_draws": 2000,
+          "warning": null
+        },
+        "delta": 0.04105571847507332,
+        "ci": [
+          0.01818181818181818,
+          0.06611570247933884
+        ],
+        "groups": 29,
+        "warning": null
+      },
+      {
+        "family": "chain_intermediates",
+        "endpoint": "cell_recovery",
+        "baseline": {
+          "numerator": 26,
+          "denominator": 330,
+          "value": 0.07878787878787878,
+          "ci95": [
+            0.044226044226044224,
+            0.14049586776859505
+          ],
+          "items": 30,
+          "independent_groups": 7,
+          "defined_draws": 2000,
+          "warning": "Tiny group count; intervals cannot establish robustness"
+        },
+        "proposed": {
+          "numerator": 30,
+          "denominator": 330,
+          "value": 0.09090909090909091,
+          "ci95": [
+            0.0625,
+            0.13257575757575757
+          ],
+          "items": 30,
+          "independent_groups": 7,
+          "defined_draws": 2000,
+          "warning": "Tiny group count; intervals cannot establish robustness"
+        },
+        "delta": 0.01212121212121213,
+        "ci": [
+          -0.03162055335968379,
+          0.048484848484848485
+        ],
+        "groups": 7,
+        "warning": "Tiny group count; intervals cannot establish robustness"
+      },
+      {
+        "family": "role_bound_association",
+        "endpoint": "cell_recovery",
+        "baseline": {
+          "numerator": 151,
+          "denominator": 3420,
+          "value": 0.044152046783625734,
+          "ci95": [
+            0.028070175438596492,
+            0.06140350877192982
+          ],
+          "items": 30,
+          "independent_groups": 15,
+          "defined_draws": 2000,
+          "warning": null
+        },
+        "proposed": {
+          "numerator": 182,
+          "denominator": 3420,
+          "value": 0.05321637426900585,
+          "ci95": [
+            0.034210526315789476,
+            0.07368421052631578
+          ],
+          "items": 30,
+          "independent_groups": 15,
+          "defined_draws": 2000,
+          "warning": null
+        },
+        "delta": 0.009064327485380115,
+        "ci": [
+          0.0014619883040935672,
+          0.017251461988304094
+        ],
+        "groups": 15,
+        "warning": null
+      }
+    ],
+    "original_item_endpoints": [
+      {
+        "family": "multihop_mt",
+        "endpoint": "original_grid_item_pass_rate",
+        "baseline": {
+          "numerator": 11,
+          "denominator": 31,
+          "value": 0.3548387096774194,
+          "ci95": [
+            0.18181818181818182,
+            0.53125
+          ],
+          "items": 31,
+          "independent_groups": 29,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "original-grid item: ANY passing site/layer"
+        },
+        "proposed": {
+          "numerator": 14,
+          "denominator": 31,
+          "value": 0.45161290322580644,
+          "ci95": [
+            0.26666666666666666,
+            0.6333333333333333
+          ],
+          "items": 31,
+          "independent_groups": 29,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "original-grid item: ANY passing site/layer"
+        },
+        "delta": 0.09677419354838707,
+        "ci": [
+          0.0,
+          0.2258064516129032
+        ],
+        "groups": 29,
+        "warning": null
+      },
+      {
+        "family": "chain_intermediates",
+        "endpoint": "original_grid_item_pass_rate",
+        "baseline": {
+          "numerator": 15,
+          "denominator": 30,
+          "value": 0.5,
+          "ci95": [
+            0.38461538461538464,
+            0.6956521739130435
+          ],
+          "items": 30,
+          "independent_groups": 7,
+          "defined_draws": 2000,
+          "warning": "Tiny group count; intervals cannot establish robustness",
+          "unit": "original-grid item: ANY passing site/layer"
+        },
+        "proposed": {
+          "numerator": 19,
+          "denominator": 30,
+          "value": 0.6333333333333333,
+          "ci95": [
+            0.45161290322580644,
+            0.9130434782608695
+          ],
+          "items": 30,
+          "independent_groups": 7,
+          "defined_draws": 2000,
+          "warning": "Tiny group count; intervals cannot establish robustness",
+          "unit": "original-grid item: ANY passing site/layer"
+        },
+        "delta": 0.1333333333333333,
+        "ci": [
+          -0.06666666666666665,
+          0.4347826086956521
+        ],
+        "groups": 7,
+        "warning": "Tiny group count; intervals cannot establish robustness"
+      },
+      {
+        "family": "role_bound_association",
+        "endpoint": "original_grid_item_pass_rate",
+        "baseline": {
+          "numerator": 23,
+          "denominator": 30,
+          "value": 0.7666666666666667,
+          "ci95": [
+            0.6,
+            0.9
+          ],
+          "items": 30,
+          "independent_groups": 15,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "original-grid item: ANY passing site/layer"
+        },
+        "proposed": {
+          "numerator": 23,
+          "denominator": 30,
+          "value": 0.7666666666666667,
+          "ci95": [
+            0.6333333333333333,
+            0.9
+          ],
+          "items": 30,
+          "independent_groups": 15,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "original-grid item: ANY passing site/layer"
+        },
+        "delta": 0.0,
+        "ci": [
+          -0.09999999999999998,
+          0.09999999999999998
+        ],
+        "groups": 15,
+        "warning": null
+      }
+    ],
+    "hallucination_auxiliary_counts": {
+      "capped_n1-n1": {
+        "assertion_share": {
+          "numerator": 1137,
+          "denominator": 1145,
+          "value": 0.9930131004366812,
+          "ci95": [
+            0.9883408071748879,
+            0.9966244725738397
+          ],
+          "items": 30,
+          "independent_groups": 30,
+          "defined_draws": 2000,
+          "warning": null
+        },
+        "off_topic_rate": {
+          "numerator": 148,
+          "denominator": 1137,
+          "value": 0.13016710642040458,
+          "ci95": [
+            0.07555555555555556,
+            0.19289340101522842
+          ],
+          "items": 30,
+          "independent_groups": 30,
+          "defined_draws": 2000,
+          "warning": null
+        },
+        "false_span_tally": {
+          "numerator": 1305,
+          "denominator": 1145,
+          "value": 1.1397379912663756,
+          "ci95": [
+            0.9220338983050848,
+            1.3650655021834062
+          ],
+          "items": 30,
+          "independent_groups": 30,
+          "defined_draws": 2000,
+          "warning": null
+        },
+        "true_claim_tally": {
+          "numerator": 1827,
+          "denominator": 1145,
+          "value": 1.5956331877729257,
+          "ci95": [
+            1.3236051502145922,
+            1.8767932489451478
+          ],
+          "items": 30,
+          "independent_groups": 30,
+          "defined_draws": 2000,
+          "warning": null
+        },
+        "unverifiable_claims_per_output": {
+          "numerator": 4057,
+          "denominator": 1145,
+          "value": 3.543231441048035,
+          "ci95": [
+            3.0700854700854703,
+            4.078538812785388
+          ],
+          "items": 30,
+          "independent_groups": 30,
+          "defined_draws": 2000,
+          "warning": null
+        }
+      },
+      "best_n_exact-n32": {
+        "assertion_share": {
+          "numerator": 1140,
+          "denominator": 1145,
+          "value": 0.9956331877729258,
+          "ci95": [
+            0.9915254237288136,
+            0.9990990990990991
+          ],
+          "items": 30,
+          "independent_groups": 30,
+          "defined_draws": 2000,
+          "warning": null
+        },
+        "off_topic_rate": {
+          "numerator": 134,
+          "denominator": 1140,
+          "value": 0.11754385964912281,
+          "ci95": [
+            0.06156552330694811,
+            0.18427947598253275
+          ],
+          "items": 30,
+          "independent_groups": 30,
+          "defined_draws": 2000,
+          "warning": null
+        },
+        "false_span_tally": {
+          "numerator": 1324,
+          "denominator": 1145,
+          "value": 1.1563318777292577,
+          "ci95": [
+            0.9474576271186441,
+            1.3868995633187773
+          ],
+          "items": 30,
+          "independent_groups": 30,
+          "defined_draws": 2000,
+          "warning": null
+        },
+        "true_claim_tally": {
+          "numerator": 1839,
+          "denominator": 1145,
+          "value": 1.6061135371179038,
+          "ci95": [
+            1.3567796610169491,
+            1.8666666666666667
+          ],
+          "items": 30,
+          "independent_groups": 30,
+          "defined_draws": 2000,
+          "warning": null
+        },
+        "unverifiable_claims_per_output": {
+          "numerator": 3910,
+          "denominator": 1145,
+          "value": 3.4148471615720526,
+          "ci95": [
+            2.947679324894515,
+            3.9263636363636363
+          ],
+          "items": 30,
+          "independent_groups": 30,
+          "defined_draws": 2000,
+          "warning": null
+        }
+      }
+    },
+    "limits": [
+      "A32 versus N1 combines more sampling and reconstruction selection; it does not isolate selection quality.",
+      "All endpoints are exploratory development evidence, with unadjusted grouped intervals.",
+      "Item ANY recovery differs from cell-level success and complete prose correctness.",
+      "Hallucination counts transcript contradiction; other families measure separate recovery cohorts.",
+      "False spans and true/unverifiable claims have different segmentation; they are not atomic precision.",
+      "Qualitative traces are systematically sampled examples, not prevalence estimates or judge corrections.",
+      "All other full DEV method comparisons remain incomplete in this panel.",
+      "The hallucination interval spans no difference; exploratory grouped intervals are not adjusted for multiple development comparisons.",
+      "Role item ANY coverage is unchanged even though more individual cells pass; the seven chain groups limit robustness claims.",
+      "For fixed candidate fits, nested best-of-N maximum reconstruction fit is nondecreasing by construction. A pool selector with a best-parent fallback also guarantees this objective floor. Neither property guarantees nondecreasing judged quality."
+    ],
+    "manifest_sha256": "dd382ff6e8bc8e70f1d13710e5235efd943537b4936921726b7d59655289ca80",
+    "selection_source": "${OLENS_DATA_ROOT}/selections/development-full-grid-judging-v1/selections.jsonl",
+    "selection_source_sha256": "acfcdefc425f48da612059f7bcb157bf037f91ba4e70fa9c68b0db142bfc46a4",
+    "source_path": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1/a32-baseline-paired-v1.json",
+    "source_sha256": "faecbd26c80d30f021a17869f4f7db3ad529cba67e5cf39ac2a5570ffe9856ed",
+    "bootstrap_replicates": 2000
   }
 }

@@ -62,7 +62,7 @@ def display_label(identifier, kind=None):
             parent,threshold=method.split(token,1)
             return display_label(parent+(f'-n{n}' if n else ''))+explanation+threshold
     labels = {"raw_n1": "Original lens (1 sample)", "raw N1": "Original lens (1 sample)",
-              "capped_n1": "Common-length baseline", "best_n_exact": "Best reconstruction",
+              "capped_n1": "Capped single-sample baseline", "best_n_exact": "Best reconstruction",
               "best_n_released80": "Best reconstruction (published solver)",
               "random_complete": "Random complete sample", "pooled_greedy_swap": "Pool bullets",
               "best_n_specificity_mean": "Select by contrastive reconstruction (mean)",
@@ -130,10 +130,10 @@ def full_development_section(section):
     item=next((row for row in role_rows if row.get('scope')=='original_grid_development'),None)
     cell=next((row for row in role_rows if row.get('endpoint')=='Cell recovery'),None)
     if item and cell:
-        output+=paragraphs([f"The common-length baseline passes {item['numerator']:,} of {item['denominator']:,} social-role items, but only {cell['numerator']:,} of {cell['denominator']:,} individual cells. The item score counts any passing site; it does not establish complete faithful explanations."])
+        output+=paragraphs([f"The capped single-sample baseline passes {item['numerator']:,} of {item['denominator']:,} social-role items, but only {cell['numerator']:,} of {cell['denominator']:,} individual cells. The item score counts any passing site; it does not establish complete faithful explanations."])
     output+='<details class="full-development-evidence"><summary>Full DEV metrics, uncertainty, and baseline audit</summary>'
     output+='<h3>Original item aggregation and cell coverage</h3>'+metrics_table(section['metrics'])
-    output+='<details><summary>Original versus common-length baseline: paired whole-group uncertainty</summary>'+metrics_table(section['paired_metrics'])+'</details>'
+    output+='<details><summary>Original versus capped single-sample baseline: paired whole-group uncertainty</summary>'+metrics_table(section['paired_metrics'])+'</details>'
     cost=section['judge_cost']
     pricing=('Audited usage including cache writes' if cost.get('pricing_revision')=='luna-cache-write-v1' else 'The pre-correction ledger')
     status=('Provider invoice reconciliation remains unavailable.' if cost.get('pricing_revision')=='luna-cache-write-v1' else 'Cache-write repricing is pending; this is not an invoice charge.')
@@ -146,6 +146,32 @@ def full_development_section(section):
         output+=paragraphs([f"Matched-donor diagnostic ready: {donor['cells']:,} target outputs use {donor['distinct_donors']:,} distinct frozen donors. Judging is pending.",section['donor_limits']])
     output+='<h3>Baseline limitations</h3>'+paragraphs(section['limits'])
     output+='<details><summary>Full DEV sources</summary>'+paragraphs([str(section['source_sha256'])])+'</details></details></section>'
+    return output
+
+
+def full_dev_a32_section(section):
+    if not section:
+        return ''
+    output='<section class="full-development"><h2>'+escape(section['title'])+'</h2><p class="meta">'+escape(section['scope'])+'</p>'+paragraphs([section['key_finding']])
+
+    def table(rows, grid=False):
+        result='<div class="table-scroll"><table><thead><tr><th>Family / endpoint</th><th>Capped single-sample baseline</th><th>Best of 32</th><th>Paired change [95% interval]</th><th>Groups</th></tr></thead><tbody>'
+        for row in rows:
+            def count(metric):
+                return f'{metric["numerator"]:,}/{metric["denominator"]:,}'
+            label=('Original item ANY recovery' if grid else 'Contradicted / specific readouts' if row['family']=='hallucination' else 'Cell mention/role recovery')
+            ci=' to '.join(f'{b*100:+.2f}' for b in row['ci']) if row.get('ci') else 'Not measured'
+            result+=f'<tr><td>{escape(display_label(row["family"]))}<br>{label}</td><td>{count(row["baseline"])}</td><td>{count(row["proposed"])}</td><td>{row["delta"]*100:+.2f} pp [{escape(ci)}]</td><td>{row["groups"]}<br>{escape(row.get("warning") or "")}</td></tr>'
+        return result+'</tbody></table></div>'
+
+    output+=table(section['cell_endpoints'])
+    hall=section['hallucination_auxiliary_counts']
+    a,b=hall['capped_n1-n1'],hall['best_n_exact-n32']
+    output+=paragraphs([f"Flagged false spans rise from {a['false_span_tally']['numerator']:,} to {b['false_span_tally']['numerator']:,}, despite fewer readouts labeled contradicted. Off-topic outputs change from {a['off_topic_rate']['numerator']:,} to {b['off_topic_rate']['numerator']:,}. False spans and supported claims use different segmentation; these counts cannot be combined into claim precision."])
+    role=next(row for row in section['original_item_endpoints'] if row['family']=='role_bound_association')
+    output+=paragraphs([f"Social-role item ANY coverage stays {role['baseline']['numerator']}/{role['baseline']['denominator']} in both conditions. More passing cells do not imply more recovered items or fully faithful descriptions."])
+    output+='<details><summary>Original item ANY aggregation, separate from cells</summary>'+table(section['original_item_endpoints'],True)+'</details>'
+    output+='<details><summary>Comparison limits and source evidence</summary>'+paragraphs(section['limits'])+paragraphs([f"Reviewed by {section['reviewed_by']}; {section['bootstrap_replicates']:,} paired whole-group draws. Source: {section['source_path']}; SHA-256 {section['source_sha256']}; DEV cohort {section['manifest_sha256']}."])+'</details></section>'
     return output
 
 
@@ -434,7 +460,7 @@ def build(report):
     return TEMPLATE.replace("__TITLE__", escape(report.get("title", "Frozen Oracle Lens experiments"))).replace(
         "__UPDATED__", escape(report.get("updated_utc", "Timestamp missing"))).replace("__COHORT__", escape(cohort)).replace(
         "__RUNS__", escape(", ".join(report.get("run_ids", [])) or "No run IDs provided")).replace(
-        "__FINDINGS__", findings_html).replace("__PROGRESS__", summary+full_development_section(report.get('full_development'))).replace("__TABS__", "".join(tabs)).replace(
+        "__FINDINGS__", findings_html).replace("__PROGRESS__", summary+full_dev_a32_section(report.get('full_development_a32'))+full_development_section(report.get('full_development'))).replace("__TABS__", "".join(tabs)).replace(
         "__PANELS__", "".join(panels)).replace("__NOTES__", paragraphs(report.get("endpoint_notes", ["Endpoints and denominators will accompany each validated comparison."])) + provenance_html).replace("__DATA__", payload)
 
 
