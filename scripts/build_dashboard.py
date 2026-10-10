@@ -207,6 +207,152 @@ def frozen_pruning_section(section):
     return output
 
 
+def signed_endpoint(endpoint, family=None):
+    """Explicit display units; unknown metrics never inherit claim units."""
+    rates = {'cell_recovery': recovery_label(family),
+        'contradiction_rate': 'Contradicted / specific',
+        'assertion_share': 'Specific assertion share', 'off_topic_rate': 'Off-topic / specific',
+        'original_grid_item_pass_rate': 'Items with any passing site',
+        'original_grid_contradiction_rate': 'Original contradicted / specific ratio'}
+    tallies = {'false_span_tally': ('False spans per output', 'spans per output'),
+        'true_claim_tally': ('True claims per output', 'claims per output'),
+        'unverifiable_claims_per_output': ('Unverifiable claims per output', 'claims per output'),
+        'disputed_claim_tally': ('Disputed claims per output', 'claims per output'),
+        'disputed_claims_per_output': ('Disputed claims per output', 'claims per output')}
+    if endpoint in rates:
+        return rates[endpoint], 100, 'percentage points'
+    if endpoint in tallies:
+        label, unit = tallies[endpoint]
+        return label, 1, unit
+    return endpoint.replace('_', ' '), 1, 'Unit not specified by this renderer'
+
+
+def signed_within_arm(metric, endpoint, family=None):
+    _, scale, unit = signed_endpoint(endpoint, family)
+    ci = metric.get('ci95')
+    suffix = '%' if scale == 100 else ' '+unit
+    interval = 'not measured' if ci is None else '['+', '.join(f'{x*scale:.2f}{suffix}' for x in ci)+']'
+    text = 'Per-method 95% interval: '+interval
+    if metric.get('warning'):
+        text += '; '+metric['warning']
+    return text
+
+
+def signed_paired_charts(rows, stage):
+    """Project recorded primary deltas into charts without new statistics."""
+    primary = {'cell_recovery', 'contradiction_rate',
+               'original_grid_item_pass_rate', 'original_grid_contradiction_rate'}
+    grouped = {}
+    for row in rows:
+        if row['endpoint'] not in primary or row['delta'] is None:
+            continue
+        control = ('Capped single-sample comparisons' if row['baseline_condition'] == 'capped_n1-n1'
+                   else 'Best-of-32 comparisons' if row['baseline_condition'] == 'best_n_exact-n32'
+                   else 'Component and sampling controls')
+        identity = (row['family'], row['scope'], row['endpoint'], control)
+        label, _, _ = signed_endpoint(row['endpoint'], row['family'])
+        scope = 'Original item endpoint' if row['scope'] == 'original_item' else 'Cell endpoint'
+        series = grouped.setdefault(identity, {'family':row['family'],
+            'label':f"{display_label(row['family'])}: {scope}; {label}; {control}",
+            'cohort':stage+' only; source-provided paired differences', 'points':[]})
+        series['points'].append({'condition':row['condition']+' vs '+row['baseline_condition'],
+            'value':row['delta'], 'ci':row['ci95_delta'], 'groups':row['independent_groups'],
+            'warning':row.get('warning')})
+    return ablation_charts(list(grouped.values()), stage=stage,
+                           summary='Paired changes between preselected methods: separate task families and cell/item scores')
+
+
+def signed_comparison_section(section):
+    """Show one reviewed immutable stage, keeping endpoints and costs separate."""
+    families = ('hallucination', 'multihop_mt', 'chain_intermediates', 'role_bound_association')
+    stage = section['stage']
+    output = '<section class="signed-comparison"><h2>'+escape(section['title'])+'</h2>'
+    output += paragraphs([f"{stage.title()} only: completed original grids and all {len(section['condition_ids'])} preselected methods. These are separate from earlier comparisons, not accuracy on the whole benchmark.",
+                          'A cell is one prompt at one layer and token position. N is the candidate response count. Reconstruction FVE (fraction of variance explained) does not verify truth.'])
+    for finding in section['review']['findings']:
+        output += '<p><strong>'+escape(finding['claim'])+'</strong> '+escape(finding.get('detail', ''))+'</p>'
+
+    def matrix(rows, item=False):
+        indexed = {(r['condition'], r['family']): r['metric'] for r in rows}
+        shown = families
+        output = '<div class="table-scroll"><table><thead><tr><th>Preselected method</th>'
+        for family in shown:
+            label = ('Original ratio of item sums' if item and family == 'hallucination' else
+                     'Items with any passing site' if item else 'Contradicted / specific readouts' if family == 'hallucination' else recovery_label(family))
+            output += '<th>'+escape(display_label(family))+'<br>'+escape(label)+'</th>'
+        output += '</tr></thead><tbody>'
+        for condition in section['condition_ids']:
+            output += '<tr><td title="'+escape(condition)+'">'+escape(display_label(condition))+'</td>'
+            for family in shown:
+                metric = indexed.get((condition, family))
+                text = 'Not measured' if metric is None or metric['value'] is None else f"{metric['numerator']:,}/{metric['denominator']:,} ({100*metric['value']:.1f}%)"
+                endpoint = ('original_grid_contradiction_rate' if item and family == 'hallucination' else
+                            'original_grid_item_pass_rate' if item else
+                            'contradiction_rate' if family == 'hallucination' else 'cell_recovery')
+                uncertainty = '' if metric is None else '<br><small>'+escape(signed_within_arm(metric, endpoint, family))+'</small>'
+                output += '<td>'+escape(text)+uncertainty+'</td>'
+            output += '</tr>'
+        return output+'</tbody></table></div>'
+
+    output += paragraphs(['Per-method intervals describe each method separately. Paired-change intervals below describe the difference between methods; these are distinct uncertainty summaries.'])
+    output += '<h3>Family cell endpoints</h3>'+matrix(section['cell_rows'])
+    output += '<details><summary>Original item aggregation: any passing site, separate from cell rates</summary>'
+    output += paragraphs(['An item passes when any site in its original grid passes. Hallucination retains its contradicted/specific ratio of item sums; it is not an item pass rate.'])
+    output += matrix(section['original_item_rows'], True)+'</details>'
+    output += '<details><summary>Paired differences and component controls</summary>'
+    output += paragraphs(['Changes use paired whole-related-group intervals from the immutable analysis. Only recorded comparisons are shown. Missing comparisons are not estimated, and no combined score across task families or winner is computed.'])
+    groups = {'Capped single-sample comparisons': [], 'Best-of-32 comparisons': [], 'Other sampling and component controls': []}
+    for row in section['paired_rows']:
+        label = 'Capped single-sample comparisons' if row['baseline_condition']=='capped_n1-n1' else 'Best-of-32 comparisons' if row['baseline_condition']=='best_n_exact-n32' else 'Other sampling and component controls'
+        groups[label].append(row)
+    for label, rows in groups.items():
+        if not rows:
+            output += '<p>'+escape(label)+': no source-provided paired contrasts.</p>'
+            continue
+        output += '<details><summary>'+escape(label)+'</summary><div class="table-scroll"><table><thead><tr><th>Proposed versus control</th><th>Family / endpoint / unit</th><th>Paired change [95% interval]</th><th>Related groups</th></tr></thead><tbody>'
+        for row in rows:
+            endpoint, scale, unit = signed_endpoint(row['endpoint'], row['family'])
+            delta = 'Not measured' if row['delta'] is None else f"{row['delta']*scale:+.2f}"
+            interval = 'Not measured' if row['ci95_delta'] is None else ' to '.join(f'{x*scale:+.2f}' for x in row['ci95_delta'])
+            comparison = display_label(row['condition'])+' versus '+display_label(row['baseline_condition'])
+            scope_label = 'item aggregation' if row['scope'] == 'original_item' else 'cell score'
+            output += '<tr>'+''.join('<td>'+escape(v)+'</td>' for v in [comparison,
+                f"{display_label(row['family'])}: {endpoint}; {scope_label}; {unit}", f'{delta} [{interval}]',
+                f"{row['independent_groups']}; {row.get('warning') or ''}"])+'</tr>'
+        output += '</tbody></table></div></details>'
+    output += '</details>'+signed_paired_charts(section['paired_rows'], stage)
+    output += '<details><summary>Output lengths: all intended outputs, including abstentions</summary>'
+    indexed = {(r['condition'], r['family']): r for r in section['length_rows']}
+    output += '<p>Each entry is mean Qwen text tokens / mean bullets. These are output lengths, not generation latency or total inference cost.</p><div class="table-scroll"><table><thead><tr><th>Preselected method</th>'+''.join('<th>'+escape(display_label(f))+'</th>' for f in families)+'</tr></thead><tbody>'
+    for condition in section['condition_ids']:
+        output += '<tr><td>'+escape(display_label(condition))+'</td>'
+        for family in families:
+            row = indexed[condition, family]
+            output += f"<td>{row['mean_qwen_tokens_all_intended']:.1f} / {row['mean_bullets_all_intended']:.2f}</td>"
+        output += '</tr>'
+    output += '</tbody></table></div></details>'
+    if section['auxiliary_rows']:
+        output += '<details><summary>Assertion coverage, off-topic output and claim tallies</summary>'+paragraphs(['False spans and true/unverifiable/disputed claims have different segmentation; their tallies are not claim precision.'])
+        output += '<div class="table-scroll"><table><thead><tr><th>Task family / method</th><th>Metric / unit</th><th>Value (numerator / denominator)</th><th>Per-method uncertainty</th></tr></thead><tbody>'
+        for row in section['auxiliary_rows']:
+            label, scale, unit = signed_endpoint(row['endpoint'], row['family'])
+            metric = row['metric']
+            shown = 'Not measured' if metric['value'] is None else f"{metric['value']*scale:.2f}"+('%' if scale == 100 else '')
+            output += '<tr>'+''.join('<td>'+escape(v)+'</td>' for v in [
+                display_label(row['family'])+' / '+display_label(row['condition']),
+                label+'; '+('percent' if scale == 100 else unit),
+                f"{shown} ({metric['numerator']:,} / {metric['denominator']:,})",
+                signed_within_arm(metric, row['endpoint'], row['family'])])+'</tr>'
+        output += '</tbody></table></div></details>'
+    output += paragraphs([section['cost_status']])
+    if section['traces']:
+        output += '<details><summary>Explicitly reviewed paired examples</summary>'+traces(section['traces'])+'</details>'
+    output += '<details><summary>Comparison provenance, review and limitations</summary>'+paragraphs(section['limits'])
+    output += paragraphs([f"Reviewed by {section['review']['reviewed_by']} at {section['review']['reviewed_utc']}. Source: {section['source_path']}; SHA-256 {section['source_sha256']}. Review metadata SHA-256 {section['review_metadata_sha256']}.",str(section['identities'])])
+    output += paragraphs([f['evidence'] for f in section['review']['findings']])+'</details></section>'
+    return output
+
+
 def donor_section(section):
     output='<h3>Readouts from matched donor activations</h3>'
     output+=paragraphs(['No multi-hop or social-role recovery was observed with this fixed donor bank, while arithmetic recovery remained in some cells. This contextualizes target-specific recovery; it does not verify every emitted claim.',
@@ -385,10 +531,10 @@ def cost_chart(series_rows):
     return "".join(output)
 
 
-def ablation_charts(series_rows):
+def ablation_charts(series_rows, *, stage='development', summary='Component additions and removals: paired changes'):
     if not series_rows:
         return ''
-    output = ['<details><summary>Component additions and removals: paired changes</summary><p>Dots show the change from the unchanged parent or matched control. Intervals resample whole related groups. These development comparisons do not establish full faithfulness.</p>']
+    output = ['<details><summary>'+escape(summary)+'</summary><p>Dots show the change from the unchanged parent or matched control. Intervals resample whole related groups. These '+escape(stage)+' comparisons do not establish full faithfulness.</p>']
     for series in series_rows:
         points = series['points']
         low = min([0.0] + [(p.get('ci') or [p['value']])[0] for p in points])
@@ -423,6 +569,15 @@ def validate_report(report):
             for child in node:
                 yield from records(child)
     nested = list(records(report))
+    for stage, section in report.get('signed_comparisons', {}).items():
+        review = section.get('review', {})
+        if (stage not in ('validation', 'test') or section.get('stage') != stage
+                or review.get('stage') != stage or review.get('status') != 'root_reviewed'
+                or review.get('artifact_sha256') != section.get('source_sha256')
+                or not review.get('reviewed_by') or not review.get('findings')):
+            raise ValueError('Signed stage dashboard requires matching explicit reviewed metadata')
+        if stage == 'test' and review.get('test_reveal_authorized') is not True:
+            raise ValueError('Test stage requires its reviewed reveal authorization')
     if any(row.get("cohort") == "test" or row.get("split") == "test" for row in nested) and report.get("test_reveal_authorized") is not True:
         raise ValueError("Test dashboard requires the frozen planned reveal authorization")
     for row in nested:
@@ -479,7 +634,10 @@ def build(report):
             findings_html='<details><summary>Exploratory pilot synthesis: 189 selected DEV cells</summary><p class="meta">Partial-grid pilot findings; separate from the complete original-grid comparisons above.</p>'+findings_html+'</details>'
     else:
         findings_html = '<div class="empty-findings"><h2>Scientific findings are pending review</h2><p>Generation and setup progress are shown separately. No method has been promoted from missing measurements.</p></div>'
-    findings_html = full_dev_a32_section(report.get('full_development_a32')) + frozen_pruning_section(report.get('frozen_development_pruning')) + findings_html
+    stages = sorted(report.get('signed_comparisons', {}).values(), key=lambda s:s['review']['reviewed_utc'], reverse=True)
+    findings_html = ''.join(signed_comparison_section(s) for s in stages)+full_dev_a32_section(report.get('full_development_a32')) + frozen_pruning_section(report.get('frozen_development_pruning')) + findings_html
+    if stages:
+        cohort = ' / '.join([s['stage'] for s in stages] + [cohort])
     progress = report.get("progress", {})
     api = report.get("api", {})
     summary = '<dl class="progress">' + "".join(f'<div><dt>{label}</dt><dd>{value(number, unit)}</dd></div>' for label, number, unit in (
