@@ -70,3 +70,11 @@ Prepared command shape; actual export path/SHA are filled from the reviewed TEST
 ```
 
 `$PY`, `$FRESH` and `$TEST_RUN` use the reviewed execution paths in [record 030](experiments/030-test-analysis-preparation.md). The [portable-cache engineering record](experiments/036-portable-cache-persistence.md) separately tracks the candidate wheel and persistence checks; neither changes this scientific comparison.
+
+## Public presentation and final slides
+
+User clarification at 13:18 UTC keeps the final scope to the four agreed families: released Oracle Lens versus our inference variants. The untouched 268-item test set is the primary final comparison. Any totals combining development, validation and test must be separately labeled as descriptive because method choices used development and validation.
+
+The public dashboard must lead with concise findings and clear graphics, use plain language and readable labels, and put detailed explanations and technical provenance in expandable sections. Update the same public URL after review; a local render alone does not prove a published update.
+
+- [ ] After final scientific review, create a concise, visually polished slide deck with findings first, then comprehensive plots for the principal methods, combinations, quality/cost comparisons and ablations. Include representative successes and failures, visual explanations of how the methods work, uncertainty, denominator/split labels, and limitations. Use an appendix and speaker notes for detail instead of dense slide text. Every plotted result must map to its reviewed source. Deliver editable slides and a shareable PDF, inspect the rendered slides, and link them from the final dashboard/report.

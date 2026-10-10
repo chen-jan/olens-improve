@@ -1,6 +1,6 @@
 # Execution status
 
-Updated: 2026-10-10, approximately 12:42 UTC.
+Updated: 2026-10-10, approximately 13:48 UTC.
 Started: 2026-10-10 01:25:36 UTC (October 9, 21:25:36 EDT).
 Target finish: 2026-10-10 21:25:36 UTC. Execution remains active and authorized.
 
@@ -17,19 +17,26 @@ will retain raw/capped N1, best-of-16, best-of-32, random N32 and specificity N3
 
 All 10,714 held-out cells already have 32 samples. The final method freeze and
 separate analysis gate are sealed; all 342,848 samples passed identity checks.
-Reconstruction input preparation finished successfully; four H200 encoders
-are running on the frozen 1,294,737-key plan. No TEST
-quality result is available.
-The 12:19 resource watcher confirms all four H200s idle and both scoped CPU
-allocations running without memory-limit failures. The new 16-core/80-GiB CPU
-allocation 25489638 is reserved for TEST preparation and selection. The final
-judge launcher passed six offline guard tests and independent source review.
+All four H200 reconstruction workers completed successfully with exactly
+1,294,737 new vectors. The validated catalog contains 2,358,662 vectors without
+copying the source tensors. Four candidate-selection shards now run on the
+16-core/80-GiB CPU allocation; only the six frozen methods will be exported for
+judging. No TEST quality result is available.
 
 An asynchronous accounting patch passed 45 isolated tests and a copied-ledger
 fake-network load check. Its applied allocated rerun also passed all 45 tests before
 any new paid dispatch; no judge requests, score definitions or budget limits
-change. Development judging remains stopped. The dashboard now displays the reviewed validation comparison, plots and
-paired examples; its 12:35 local browser render passed visual inspection.
+change. The resumed DEV role queue then failed during a reservation COMMIT lock: six new responses settled and three cancelled reservations remain held. Judging is paused for a bounded reader/guarded-canary repair; the lock holder remains unidentified. See experiment 034.
+
+Reader cleanup passed independent review and offline tests. A single guarded
+Luna call succeeded at 13:30, but reserve still took 29.87 seconds with observers
+paused. Judging remains paused while identical disposable ledger copies on NFS
+and local XFS are profiled by transaction phase. Both disposable copies reserved in milliseconds, so they did not reproduce the
+live slowdown. One live request with phase-level instrumentation is being
+prepared for review. No production ledger migration or additional paid queue
+dispatch is authorized by these diagnostics. See experiment 037.
+
+The dashboard is publicly accessible at https://olens-improve-research.jan618.chatgpt.site. Publication and an unauthenticated HTTP 200 were verified; the exported scientific numbers and plots passed independent comparison. A new overview with separate task charts and expandable detail passed desktop/mobile checks and was published at the same URL at 13:42 UTC. A findings-first final slide deck, including comprehensive plots and an appendix, is also required after final scientific review.
 
 The latest 12:19 resource snapshot records **$13.15279** in usage-based API cost
 and **$4.78019** in uncertain charges retained in full, with no live reservations.
@@ -97,7 +104,7 @@ Other complete-grid method comparisons remain partly unfinished.
 
 Reviewed sources and paired examples are in the experiment records and
 [local dashboard](../dashboard/index.html). Local commit `f62adb6` contains the
-first source-checked dashboard with grouped intervals. Nothing has been pushed.
+first source-checked dashboard with grouped intervals. The research GitHub repository has not been pushed. A separate Sites source repository hosts the sanitized public dashboard.
 
 ## Current work
 
@@ -129,9 +136,9 @@ readouts. These are original-grid development scores, not held-out results.
 
 Next: monitor four encoder partitions, then merge their verified catalog and
 run four selector shards on the reserved CPU allocation. The six-arm freeze and gate are committed;
-validation results and figures are published locally. Complete the remaining
+validation results and figures are published locally and on the public Site. Complete the remaining
 development sampling curves opportunistically without changing the final menu. See [validation experiment 029](experiments/029-validation-comparison.md).
-The final fresh-input timing check and held-out judgments remain pending.
+The final fresh-input timing check and held-out judgments remain pending. A 13:18 forecast is five to seven further hours including review and presentation, contingent on resolving the judge-accounting bottleneck; it is not a guarantee.
 
 ## Earlier operational history
 

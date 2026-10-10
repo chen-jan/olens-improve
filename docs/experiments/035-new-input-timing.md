@@ -1,6 +1,6 @@
 # 035: New-input N32 engineering timing
 
-Status: root-reviewed configuration, awaiting an idle original H200 after its TEST AR worker terminates. No timing run has launched. The coordinator owns launch and must verify GPU release first. This experiment evaluates runtime plumbing and effort; it provides no readout-quality evidence and writes no benchmark pool or production vector cache.
+Status: completed successfully on an assigned H200 after its TEST AR worker exited and an idle-GPU check passed. This experiment evaluates runtime plumbing and effort; it provides no readout-quality evidence and writes no benchmark pool or production vector cache.
 
 Use the unchanged `scripts/deployment_timing.py` (SHA-256 `12a6c6c16dae0b5a34fe0cf360f27497ec241806220d8cbe3ee5bff8744033ed`) with the installed wheel in `fast/packaging/isolated-wheel-v1/venv`. Its sole new input is the fixed library/Nora prompt from experiment 026. Capture one adapter-disabled final-token L44 activation and generate exactly one new N32 pool, seed 20261010, with the existing released decoder. No API calls, benchmark inputs or inherited phrase vectors are used.
 
@@ -34,7 +34,40 @@ srun --jobid=25330001 --overlap -N1 -n1 -c8 --mem=64G --cpu-bind=none \
 
 Report the observed lifecycle through the first A32 selection, cold model initialization in this process, warm adapter-off capture, warm N32 generation, fresh AR loading/encoding/whitening/selection, and cached profile replay separately. Cold does not mean flushed OS/filesystem caches or a fresh machine installation. Prefixes 1/2/4/8/16/32 replay the same saved N32 pool: they measure cached selection work, not fresh smaller-N generation latency. Do not linearly scale this N32 timing into an N16 latency claim. Raw/capped N1 replay excludes capture and generation. Specificity replay includes fixed control scoring but excludes donor capture. Parent/child instrumentation timers overlap and must not be summed. No GPU dollar rate is available.
 
-## Operational preparation evidence
+## Completed measurement
+
+The unchanged driver and installed wheel exited successfully. One new synthetic
+activation produced 32 samples and 128 newly encoded phrase vectors; there were
+no API calls. The cold-process pipeline through the first best-of-32 selection
+took **59.59 seconds**. The following measurements separate its components:
+
+| Component | Observed seconds |
+|---|---:|
+| Oracle Lens model initialization | 21.75 |
+| Activation capture with model already loaded | 0.30 |
+| Generate 32 samples with model already loaded | 12.04 |
+| Reconstructor load, encoding, whitening, selection and release | 24.20 |
+| Reconstructor initialization, included in the preceding row | 16.42 |
+| Phrase encoding, included in the preceding row | 1.34 |
+| Replay best-of-16 from saved text and phrase vectors | 5.74 |
+| Replay best-of-32 from saved text and phrase vectors | 5.90 |
+| Replay specificity selection from the same cache | 6.74 |
+
+The first-selection total and replay timings cover different workloads; do not
+sum all table rows. Replaying raw/capped N1 took 0.46/0.41 seconds and excludes
+generation. Peak allocated GPU memory across the full driver was
+60,454,918,656 bytes; peak host RSS was 55,104,638,976 bytes. All measurement
+limits above remain applicable, especially the single-input design and cached
+prefix interpretation. This does not establish a latency distribution, speed
+comparison between fresh N16/N32 generation, or an improvement in correctness.
+
+The source-bound result is
+`durable/engineering/portable-fresh-input-n32-v1/result.json`, SHA
+`6bcc65279128c34c67dfd79ba62a46763905d101fdc072a77c82e4d1851a4b9e`.
+The new pool SHA is
+`8faeb020723732eb9dd6b1ec4d67345f58ce5c426aa701504920cba4d50a373b`.
+
+## Earlier operational preparation evidence
 
 TEST freeze/preparation completed separately with 1,294,737 new effective inputs. CPU allocation 25489638 peaked at 15.06 GiB of 80 GiB with `memory.failcnt=0`; the terminal preparation resource receipt is `durable/diagnostics/test-preparation-resource-v1/124303.json`, SHA `f2199b4b7cead4e8a266757b3c18e9143d25caf86d142731d5bd415c13afe91a`.
 

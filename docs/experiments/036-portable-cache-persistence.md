@@ -1,6 +1,6 @@
 # 036: Portable cache persistence
 
-Status: source implementation and offline checks complete; independent review passed. A separate candidate wheel and real installed-CLI cache check are **planned, not run**. This is engineering work, not another scientific method or quality result. No GPU/API calls, new O-lens samples or production-cache changes were made for this record.
+Status: source implementation, offline checks, independent source review and real installed-CLI cache check complete. This is engineering work, not another scientific method or quality result. The check used one assigned H200 for eight phrase encodings; no API calls, new O-lens samples or production-cache changes.
 
 ## Problem and implementation
 
@@ -36,3 +36,17 @@ Root first verifies that the candidate directory is new and records the local co
 After the old-wheel timing completes and root assigns a free GPU, replay the **existing non-benchmark N2 engineering activation/pool** from [experiment 026](026-portable-fresh-input-engineering.md); do not recapture or regenerate. Use no inherited vectors for the first pass, `--encode-missing --save-cache NEWPATH`, then replay from that new cache with encoding omitted. Require identical text/source IDs/FVE across these two candidate-wheel passes, zero new encodes on the second, matching activation/pool hashes, complete cache/file identities and no API calls. Compare the prior old-wheel result separately with an explicit numerical tolerance, not as a new quality experiment. Record actual timing/memory and candidate installed-source hashes; outputs go to a new engineering-only directory, never the production cache. A failure remains a failed engineering check, not a scientific negative.
 
 The [README](../../README.md) documents normal N32 cache creation followed by N16 and same-pool specificity replay. Installation/model availability and external activation/control correctness remain explicit caller requirements. The 32-token blind spot and batch-dependent numerical sensitivity are unchanged.
+
+## Candidate installation checkpoint
+
+The separate candidate wheel built successfully and was installed without dependency downloads into `fast/packaging/portable-cache-v2/venv`. Its SHA-256 is `dca412ab9b22ac52a70d60202966bb623462fae1454b308c089975e9790e1167`. All 24 packaged Python modules match the reviewed checkout bytes; the old timing wheel stayed unchanged. The installation receipt is `fast/packaging/portable-cache-v2/installation.json`. Build tools came from the existing `mvar` Python environment because the inference environment has no pip; no build dependency was installed. The first command exited before building due to an affinity-argument error, and a node-local temporary script path was corrected before installation. Neither failed command loaded a model or made an API call.
+
+The prepared installed-CLI check is `scripts/portable_cache_smoke.py`, independently source-reviewed. It requires the exact retained synthetic N2 pool/activation, all eight new raw encodings, immutable cache relocation and identical cache-only selection, with reconstructor loading prohibited on replay. The real check completed successfully after TEST reconstruction; results follow.
+
+## Installed GPU result
+
+The reviewed driver `scripts/portable_cache_smoke.py` (SHA `3384eb1a8eadb2f978db5f8741f936177529ca2348669d889beb6ece2182a4bc`) ran the installed candidate wheel on an idle assigned H200 and exited0. It encoded all8 retained fixture phrases, saved the standalone cache, moved that directory and replayed with reconstructor loading explicitly forbidden. Text, phrase IDs and all fit values were exactly identical. Compared with the retained old-wheel result, FVE differed by0.0. No O-lens generation or API request was made.
+
+Encoding plus selection took21.31s and cache-only replay5.71s; total driver wall time27.03s. Peak allocated GPU memory was54,743,426,048bytes; peak host RSS55,254,155,264bytes. This single engineering observation is not a latency distribution. The installed tool still used existing third-party distributions and cached pinned model weights; a fresh-machine dependency installation was not tested.
+
+Result: `durable/engineering/portable-cache-persistence-v2/result.json`, SHA `590b74bd957c914df862bf5b4cd90c7fc114ed0cceb2d90b07f015aad2b9f171`. Installation receipt SHA `b5c36dfc7791f6ab1a97bd68dae2f59d3470e3be3cd6afff35e01bfff6e03e0f`. The original fixture pool SHA remains `123ccffddeb7732450b979b567413ef093fab6ecefd3a330020dfa5001564e79`.
