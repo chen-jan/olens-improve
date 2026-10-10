@@ -272,6 +272,29 @@ def signed_cost_section(section):
         'Measured values are observations; estimated values use the stated rule. Specified values are exact algorithmic workloads, not measured latency. Missing values are unknown, not zero.',
         'Components are shown separately. They are not summed into end-to-end latency or GPU dollars. Shared campaign work is not additive across methods; saved-cache replay is not complete inference. Benchmark judging is separate from recurring method helpers.'])
 
+    fields = (
+        ('new_input', ('experimental_candidate_budget', 'candidate_prefix', 'generation'), ('samples',)),
+        ('new_input', ('required_AR_input_bound', 'AR_phrase_input_bound'), ('vectors',)),
+        ('new_input', ('recurring_helper',), ('calls',)),
+        ('new_input', ('complete_input_latency',), None),
+        ('cached_replay', ('selector_after_preparation', 'exact_method_replay', 'selector'), None))
+
+    def summary_value(row, scope, components, units):
+        matches = [c for c in row['components'] if c['scope'] == scope
+                   and c['component'] in components and (units is None or c['unit'] in units)]
+        if len(matches) != 1:
+            return 'Unknown (not supplied)'
+        c = matches[0]
+        shown = 'Unknown' if c['status'] == 'missing' else f"{c['value']:,.6g}"
+        return '<span title="'+escape(c['basis'])+'">'+escape(shown+' / '+c['unit']+' / '+c['status'])+'</span>'
+
+    output += '<p>Sample counts describe this experiment. Encoding counts are upper limits before duplicate phrases are removed. Selecting from saved vectors excludes generation and encoding time. Random selection can keep one admissible response but may need retries.</p>'
+    output += '<div class="table-scroll"><table><thead><tr><th>Method</th><th>Sampled responses</th><th>Phrases to encode (maximum)</th><th>Helper calls</th><th>Total time on a new input</th><th>Selection time from saved vectors</th></tr></thead><tbody>'
+    for row in rows:
+        output += '<tr><td title="'+escape(row['condition'])+'">'+escape(display_label(row['condition']))+'</td>'
+        output += ''.join('<td>'+summary_value(row, *field)+'</td>' for field in fields)+'</tr>'
+    output += '</tbody></table></div>'
+
     def table(scope):
         out = '<div class="table-scroll"><table><thead><tr><th>Method / component</th><th>Value / unit / status</th><th>Basis and limits</th><th>Evidence</th></tr></thead><tbody>'
         for row in rows:
@@ -292,7 +315,7 @@ def signed_cost_section(section):
                 out += '<td>'+escape(shown+' / '+component['unit']+' / '+status)+'</td><td>'+escape(basis)+'</td><td>'+(evidence or 'No source quantity available')+'</td></tr>'
         return out+'</tbody></table></div>'
 
-    output += table('new_input')
+    output += '<details><summary>All new-input components, limits and evidence</summary>'+table('new_input')+'</details>'
     for scope in ('campaign', 'cached_replay', 'benchmark_judging'):
         output += '<details><summary>'+escape(labels[scope])+'</summary>'+table(scope)+'</details>'
     return output+paragraphs([section['cost_source_verification']])

@@ -22,6 +22,56 @@ def digest(path: Path) -> str:
     return checksum.hexdigest()
 
 
+def dispatch_conditions_path(spec: dict, family: str) -> str:
+    """Retain the full scientific menu, dispatch only a reviewed remaining list."""
+    bindings = spec.get('dispatch_condition_files')
+    policy = spec.get('prospective_handoff_policy', {})
+    if bindings is None:
+        if 'unchanged_menu_remaining_order' in policy:
+            raise ValueError('Prepared handoff requires an exact remaining dispatch binding')
+        return spec['conditions']  # Historical full-menu recovery contract.
+    if set(bindings) != set(spec['cpu_pairs']) or family not in bindings:
+        raise ValueError('Dispatch bindings differ from the reviewed family placement')
+    if digest(Path(spec['conditions'])) != spec['conditions_sha256']:
+        raise ValueError('Original full scientific menu changed')
+    for field in ('validation_spec', 'signed_validation_freeze'):
+        if digest(Path(policy[field])) != policy[field+'_sha256']:
+            raise ValueError('Prospective handoff evidence changed: '+field)
+    bound = bindings[family]
+    if digest(Path(bound['path'])) != bound['sha256']:
+        raise ValueError('Remaining dispatch file hash differs')
+    signed = json.loads(Path(spec['conditions']).read_text())
+    remaining = json.loads(Path(bound['path']).read_text())
+    if not remaining or any(set(row) != {'method', 'n'} or isinstance(row['n'], bool)
+                            or not isinstance(row['n'], int) for row in remaining):
+        raise ValueError('Require nonempty exact remaining condition identities')
+    indices = []
+    for row in remaining:
+        if row not in signed:
+            raise ValueError('Remaining condition is outside the original scientific menu')
+        indices.append(signed.index(row))
+    if indices != sorted(set(indices)):
+        raise ValueError('Remaining conditions must be distinct and keep original order')
+    if remaining != policy['unchanged_menu_remaining_order']:
+        raise ValueError('Dispatch differs from the exact prospective remaining list')
+    return bound['path']
+
+
+def evaluation_command(spec: dict, family: str, cpus: list[int]) -> list[str]:
+    label = spec.get('recovery_label', 'v1')
+    command = ['taskset','-c',','.join(map(str,cpus)),sys.executable,'-m','olens_improve.evaluation',
+        '--allow-paid','--family',family,'--selections',spec['selections'],'--manifest',spec['manifest'],
+        '--output',spec['judgments'],'--method','raw_n1','--n','1',
+        '--condition-list',dispatch_conditions_path(spec,family),'--run-id',spec['run_id'],
+        '--run-cap-usd',str(spec['run_cap_usd']),'--ledger',spec['ledger'],'--tier',spec['tier'],
+        '--concurrency',str(spec['concurrency']),'--rpm',str(spec['rpm']),
+        '--shared-cache',spec['shared_cache'],
+        '--stop-file',str(Path(spec['judgments'])/f'stop-recovery-{label}-{family}')]
+    if spec.get('performance_profile_dir'):
+        command += ['--performance-profile-dir',str(Path(spec['performance_profile_dir'])/family)]
+    return command
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument('--spec',type=Path,required=True)
@@ -30,6 +80,10 @@ def main() -> None:
     spec = json.loads(args.spec.read_text())
     if not args.allow_paid:
         raise SystemExit('Coordinator must explicitly authorize this reviewed paid queue')
+    if spec.get('dispatch_condition_files') and spec.get('status') != 'root_reviewed_ready':
+        raise SystemExit('Root must seal the exact remaining dispatch spec before paid launch')
+    for family in spec['cpu_pairs']:
+        dispatch_conditions_path(spec, family)
     if str(os.environ.get('SLURM_JOB_ID')) != spec['job_id'] or socket.gethostname().split('.')[0] != spec['node']:
         raise SystemExit('Recovery must run on the reviewed isolated allocation')
     if (spec['concurrency'],spec['rpm'],spec['tier'],spec['reasoning_effort'],spec['automatic_ramp']) != (8,200,'default','none',False):
@@ -90,15 +144,7 @@ def main() -> None:
         raise SystemExit('Use a fresh execution-specific profile directory; preserve existing timing evidence')
     for family, cpus in spec['cpu_pairs'].items():
         log = Path(spec['logs'])/f'full-dev-judging-recovery-{label}-{family}.log'
-        command = ['taskset','-c',','.join(map(str,cpus)),sys.executable,'-m','olens_improve.evaluation',
-            '--allow-paid','--family',family,'--selections',spec['selections'],'--manifest',spec['manifest'],
-            '--output',spec['judgments'],'--method','raw_n1','--n','1',
-            '--condition-list',spec['conditions'],'--run-id',spec['run_id'],'--run-cap-usd',str(spec['run_cap_usd']),
-            '--ledger',spec['ledger'],'--tier',spec['tier'],'--concurrency',str(spec['concurrency']),
-            '--rpm',str(spec['rpm']),'--shared-cache',spec['shared_cache'],
-            '--stop-file',str(Path(spec['judgments'])/f'stop-recovery-{label}-{family}')]
-        if profile_root is not None:
-            command += ['--performance-profile-dir', str(profile_root/family)]
+        command = evaluation_command(spec, family, cpus)
         with log.open('a') as handle:
             worker = subprocess.Popen(command,stdout=handle,stderr=subprocess.STDOUT,env=environment)
         workers.append((family,worker))

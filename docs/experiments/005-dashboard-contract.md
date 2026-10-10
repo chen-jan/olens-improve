@@ -99,3 +99,22 @@ The table in experiment 009 is generated from the same compact measurement JSON.
 The HTML remains local. Cost charts require an explicit campaign, incremental
 cache or deployment scope plus a definition. A cache-only selector timing cannot
 be displayed as complete inference cost; GPU dollars remain unknown.
+# Compact cost summary, 2026-10-10
+
+The signed comparison now starts its cost section with one row per method:
+sampled responses, maximum phrases to encode, helper calls, total new-input
+timing status, and selection time from saved vectors. It uses supplied values
+only and keeps their measured/estimated/specified/missing status. Full component
+measurements, limits and source evidence remain expandable. Shared campaign
+work and benchmark judging stay separate. Missing or ambiguous supplied fields
+remain unknown; no latency totals or GPU-dollar estimates are invented.
+
+Twenty-nine focused dashboard checks passed after the structural change; the
+thirteen signed-dashboard checks passed again after simplifying the labels.
+A synthetic three-method page passed cached-Chromium desktop/mobile inspection
+at 10:55:06 UTC: three summary rows, new-input details initially collapsed,
+no page errors, and no page overflow at 390 pixels after expanding all details.
+Artifacts are under `fast/diagnostics/signed-dashboard-browser-v3/` (the project
+fast-storage root, not a repository symlink). This was a local synthetic layout
+check; production results were not changed or published. Actual reviewed
+validation/test pages still require their later browser check.

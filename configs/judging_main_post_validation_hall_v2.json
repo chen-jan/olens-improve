@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "run_id": "development-full-grid-methods-v1",
+  "run_cap_usd": 20,
+  "job_id": "25474685",
+  "node": "node1600",
+  "recovery_epoch": "2026-10-10T07:52:00+00:00",
+  "concurrency": 8,
+  "rpm": 200,
+  "tier": "default",
+  "reasoning_effort": "none",
+  "automatic_ramp": false,
+  "headroom_verified_utc": "2026-10-10T07:55:46+00:00",
+  "allocation_memory_gib": 32,
+  "memory_failures": 0,
+  "resource": "${OLENS_DATA_ROOT}/diagnostics/judge-recovery-v3-headroom-v1.json",
+  "resource_sha256": "003bac31ee50a7cb2ab839cd1cd88e8b3f8b792ff45642e671329536edc85227",
+  "cpu_pairs": {
+    "hallucination": [
+      24,
+      30
+    ]
+  },
+  "completed_family_not_relaunched": "multihop_mt",
+  "selections": "${OLENS_DATA_ROOT}/selections/development-full-grid-judging-v1/selections.jsonl",
+  "selection_sha256": "acfcdefc425f48da612059f7bcb157bf037f91ba4e70fa9c68b0db142bfc46a4",
+  "manifest": "configs/development-full-grid-v2.json",
+  "manifest_sha256": "dd382ff6e8bc8e70f1d13710e5235efd943537b4936921726b7d59655289ca80",
+  "conditions": "configs/conditions_full_dev_priority_v1.json",
+  "conditions_sha256": "8b71ce8177e126ab0e984286d103034a59b4b686c0a5a380983cdaf0e29180e6",
+  "healthcheck": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1/healthcheck-profiled-v3.json",
+  "healthcheck_sha256": "fef36691048d71930b8c1ed1a9476e830eb089fdad5cbd677d3cbd98bd3ecb77",
+  "incident": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1/transport-incident-v3.json",
+  "incident_sha256": "b8458e67c7f1e95565e2ccaacc7c442d02ed456647740b5fac01e1718598444b",
+  "ledger": "${OLENS_DATA_ROOT}/budget/ledger.sqlite3",
+  "judgments": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1",
+  "shared_cache": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments/shared-exact-cache",
+  "logs": "${OLENS_COMPUTE_ROOT}/logs",
+  "hold_policy": "Preserve all112 historical main unknown holds, plus every other project hold. No usage or charge release is inferred from later cache success. Reuse exact successful verdicts; same24 conditions, source cells, judge prompts/effort and20USD ceiling. Fresh operational profiles only; no automatic transport ramp.",
+  "recovery_label": "post-val-hall-v2",
+  "index_application": "${OLENS_DATA_ROOT}/diagnostics/ledger-index-application-v1/application.json",
+  "index_application_sha256": "5e0e4580bb45337b9839fa687083137cfc0983a3bb99e4d3aac4b35653f71eaa",
+  "retained_main_unknown_attempt_count": 112,
+  "checkpoint_policy": {
+    "healthy_new_response_checkpoints": [
+      500,
+      1000
+    ],
+    "report_per_worker_latest_100": true,
+    "report_latency_and_unknown_growth": true,
+    "report_event_loop_and_sync_io_timing": true,
+    "no_automatic_ramp": true,
+    "transport_changes_require_separate_root_review": true,
+    "pause_on_new_bookkeeping_lock_or_recurrent_transport_errors": true,
+    "guard_unchanged": "Latest100unknown>5 or cumulativeepoch unknownholds>.10USD stops new dispatch; preserve cancellations as unknown."
+  },
+  "performance_profile_dir": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1/performance-dev-after-validation-v2-hall",
+  "copied_load": "${OLENS_DATA_ROOT}/diagnostics/judge-local-load-v1/report.json",
+  "copied_load_sha256": "edd24c5314caa52f5d5aa75a5244f9978c65cb091b8908878793210880e578bf",
+  "implementation_source_sha256": {
+    "infra/resume_main_judges.py": "09e1ddeddab73eb6e3284614c51cf1b69cbe03413f58f44222a83b9587777aa7",
+    "src/olens_improve/evaluation.py": "91c5bf39cab00dd15dd0b9b0f9b02463bd7c648197db472ccf6d551de8de27dd",
+    "src/olens_improve/performance.py": "2835881775b42960bc671663501d10fdf231c14a1c69e473a5faf58a0f24c9c8",
+    "src/olens_improve/budget.py": "90beef9da7905e57e1b0fad2e2affa14822033451a9f4d86b92bb7325e0fb182"
+  },
+  "resume_reason": "Descriptive-only continuation of the unchanged signed twenty-four-arm DEVELOPMENT queue after this family finishes all twelve VALIDATION arms and releases its cache owner. Later development results do not change the sealed validation menu or decision rule.",
+  "status": "root_reviewed_ready",
+  "created_utc": "2026-10-10T09:45:09.898779+00:00",
+  "prospective_handoff_policy": {
+    "root_review_required_before_paid_dispatch": true,
+    "validation_signed_menu_complete_for_this_family_required": true,
+    "validation_worker_absent_and_family_cache_owner_released_required": true,
+    "validation_spec": "configs/judging_validation_v1.json",
+    "validation_spec_sha256": "1a5ba69c25afb3e64340c4e76ac38a0a506fb46adf51aea7a7921e593ec1e49d",
+    "signed_validation_freeze": "configs/validation_shortlist_freeze_v1.json",
+    "signed_validation_freeze_sha256": "30daad423ee9326971f5f08fa4f3a3e7eec37c857b3757a700a8fcbb3a7547e6",
+    "no_new_health_call_or_epoch_reset": true,
+    "no_new_analysis_or_selection_authorization": true,
+    "development_evidence_cutoff_unchanged": true,
+    "test_has_priority_at_clean_condition_boundary": true,
+    "no_automatic_ramp": true,
+    "completed_conditions_in_paused_execution_at_preparation": 10,
+    "unchanged_menu_remaining_order": [
+      {
+        "method": "best_n_exact",
+        "n": 4
+      },
+      {
+        "method": "best_n_exact",
+        "n": 8
+      },
+      {
+        "method": "best_n_exact",
+        "n": 16
+      },
+      {
+        "method": "pooled_greedy_swap",
+        "n": 16
+      },
+      {
+        "method": "pooled_greedy_swap",
+        "n": 32
+      },
+      {
+        "method": "prune_loo_a32_0.001",
+        "n": 32
+      },
+      {
+        "method": "prune_loo_a32_0.005",
+        "n": 32
+      },
+      {
+        "method": "random_delete_matched_a32_0.001",
+        "n": 32
+      },
+      {
+        "method": "random_delete_matched_a32_0.005",
+        "n": 32
+      },
+      {
+        "method": "prune_loo_n1_0.005",
+        "n": 1
+      },
+      {
+        "method": "random_delete_matched_n1_0.005",
+        "n": 1
+      },
+      {
+        "method": "best_n_specificity_max",
+        "n": 32
+      },
+      {
+        "method": "random_complete",
+        "n": 16
+      },
+      {
+        "method": "random_complete",
+        "n": 32
+      }
+    ],
+    "fresh_stop_file": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1/stop-recovery-post-val-hall-v2-hallucination"
+  },
+  "dispatch_condition_files": {
+    "hallucination": {
+      "path": "configs/conditions_main_post_validation_hall_v2.json",
+      "sha256": "45241c0c61aa08af059dcf0cf8b1e33271bf495c995278574f00b1e971ed2d29"
+    }
+  },
+  "dispatch_policy": "The original full twenty-four-arm menu remains the scientific contract. Dispatch only the exact hashed prospective remaining list; completed conditions are not replayed. Root must seal root_reviewed_ready after family exit/cache-owner review.",
+  "reviewed_utc": "2026-10-10T10:58:07.852401+00:00",
+  "review_author": "root",
+  "family_handoff_review": {
+    "validation_signed_conditions_complete": 12,
+    "validation_session_terminal_exit": 0,
+    "validation_worker_pid": 3427775,
+    "validation_pid_absent_and_family_cache_owner_free_utc": "2026-10-10T10:55:03+00:00",
+    "review_basis": "Root observed terminal exit0; evaluator independently checked absent PID and released exclusive cache owner after all twelve operational completions. Root reviewed remaining-only dispatch patch and four focused tests.",
+    "preserve_completed_development_artifacts": true,
+    "no_new_epoch_or_health_call": true,
+    "test_priority_at_clean_condition_boundary": true,
+    "later_development_results_cannot_change_validation_freeze": true
+  }
+}

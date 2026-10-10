@@ -120,6 +120,33 @@ class SignedDashboardTests(unittest.TestCase):
         del review['cost_rows']
         self.assertIn('not attached', dashboard.signed_cost_section(section(artifact,review)))
 
+    def test_cost_summary_has_one_row_per_method_without_hiding_component_status(self):
+        artifact, review = fixture()
+        review['cost_rows'] = costs(review)
+        ref = review['cost_rows'][0]['components'][0]['source_refs']
+        for row in review['cost_rows']:
+            row['components'] += [
+                {'scope':'new_input', 'component':'required_AR_input_bound', 'status':'specified',
+                 'value':128, 'unit':'vectors', 'basis':'Synthetic upper bound before deduplication', 'source_refs':ref},
+                {'scope':'new_input', 'component':'complete_input_latency', 'status':'missing',
+                 'value':None, 'unit':'wall-seconds', 'basis':'No complete fresh timing'}]
+        output = dashboard.signed_cost_section(section(artifact,review))
+        summary, detail = output.split('<details><summary>All new-input components',1)
+        self.assertEqual(summary.count('<tbody>'),1)
+        self.assertEqual(summary.count('<tr><td'),3)
+        self.assertEqual(summary.count('128 / vectors / specified'),3)
+        self.assertEqual(summary.count('0 / calls / specified'),3)
+        self.assertEqual(summary.count('Unknown / wall-seconds / missing'),3)
+        self.assertIn('Unknown / CPU task wall-seconds / missing',summary)
+        self.assertNotIn('2.5 / GPU task wall-seconds / estimated',summary)
+        self.assertIn('2.5 / GPU task wall-seconds / estimated',detail)
+        self.assertIn('Synthetic upper bound before deduplication',detail)
+        self.assertIn('SHA-256',detail)
+        # An absent AR component must not silently become zero work.
+        review['cost_rows'][0]['components'] = [c for c in review['cost_rows'][0]['components'] if c['component'] != 'required_AR_input_bound']
+        output = dashboard.signed_cost_section(section(artifact,review))
+        self.assertIn('Unknown (not supplied)',output)
+
     def test_cost_schema_rejects_foreign_order_missing_scopes_and_unjustified_values(self):
         artifact, review = fixture()
         good = costs(review)

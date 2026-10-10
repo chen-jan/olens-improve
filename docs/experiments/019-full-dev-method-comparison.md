@@ -226,3 +226,26 @@ The artifact selects the first three distinct item IDs in each changed category 
 - **Unchanged failures:** seeded examples include `chain-w2-d2p-0082`, L52 p61, with confused doubling calculations in both arms, and `oa-comedian-heckler-humiliate-ab`, L52 p167, with instructions to summarize rather than a role binding. The seeded hallucination example `chat-dailydialog-0051`, L44 p22, remains off-topic movie-grammar advice in both arms. Preserving unchanged traces avoids presenting only favorable cases.
 
 The remaining full-development arms, particularly the frozen random controls, are still needed to judge selection quality. The separate complete 189-cell all-candidate diagnostic is already available; it does not replace those full-development comparisons. This evidence supports continued investigation of the modest recovery gains; it does not select a universally better operating setting, establish a faithfulness frontier, or justify a claim that reconstruction beats random sampling.
+# Remaining development judging after validation handoff
+
+At 10:58 UTC on 2026-10-10, the development hallucination evaluator resumed
+only its fourteen unfinished conditions. The validation hallucination worker
+had completed all twelve signed conditions, exited with code zero and released
+its exclusive cache-owner lock. Its completed validation artifacts and the ten
+already completed development condition artifacts are preserved.
+
+The reviewed launch is `configs/judging_main_post_validation_hall_v2.json`,
+SHA-256 `ddc48860e47a2d54dbb5fe6122ece309bd0282cf56fe0fb9d4fac01effe5a718`;
+the new PID is 3432184 on CPU cores 24 and 30 of the existing judge allocation.
+The full twenty-four-method menu remains unchanged. A separately hashed ordered
+remaining-condition list avoids replaying and rewriting completed artifacts.
+Four focused checks cover subset identity, order, hashes and unchanged command
+arguments. The old v1 preparation specs remain intact.
+
+The shared $20 development ceiling, eight slots/200 RPM, Standard Luna with
+reasoning disabled, 07:52 recovery epoch and every prior uncertain hold remain
+unchanged. No new health request or epoch reset was made. These later development
+results are descriptive and cannot change the earlier frozen validation menu or
+its evidence cutoff. Test judging has priority at a clean condition boundary.
+Role development remains prepared pending the corresponding validation worker's
+completion and cache release; this paragraph does not authorize its launch.
