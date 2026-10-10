@@ -9,8 +9,11 @@ from __future__ import annotations
 from contextlib import contextmanager
 from datetime import datetime, timezone
 from decimal import Decimal, ROUND_CEILING
+import errno
+import fcntl
 import json
 import logging
+import os
 from pathlib import Path
 import sqlite3
 import time
@@ -26,6 +29,9 @@ LOCK_ACQUISITION_SECONDS = 120.0
 LOCK_BUSY_WAIT_MS = 1000
 LOCK_RETRY_BACKOFF_SECONDS = 0.05
 NORMAL_BUSY_WAIT_MS = 30000
+ADMISSION_ACQUISITION_SECONDS = 120.0
+ADMISSION_BACKOFF_SECONDS = 0.005
+ADMISSION_LOG_SECONDS = 1.0
 _LOG = logging.getLogger(__name__)
 
 
@@ -114,23 +120,69 @@ class AtomicBudget:
                 self._event(db, UNKNOWN_CLAUDE_ID, 'bootstrap_unknown', {'usd': 2})
 
     @contextmanager
-    def _transaction(self) -> Iterator[sqlite3.Connection]:
-        db = sqlite3.connect(self.path, timeout=30, isolation_level=None)
+    def _writer_admission(self) -> Iterator[None]:
+        """Serialize participating writers before opening SQLite on shared storage.
+
+        The persistent sibling file is never removed. It is separate from the
+        database because NFS flock locks can interact with SQLite byte locks.
+        This is admission only: SQLite still owns transaction correctness, and
+        read-only clients continue to use its native locking. Scheduling fairness
+        and a hard deadline for blocked filesystem syscalls are not guaranteed.
+        """
+        resolved = self.path.resolve()
+        lock_path = resolved.with_name(resolved.name + '.admission.lock')
+        started = time.monotonic()
+        deadline = started + ADMISSION_ACQUISITION_SECONDS
+        flags = os.O_RDWR | os.O_CREAT | getattr(os, 'O_CLOEXEC', 0) | getattr(os, 'O_NOFOLLOW', 0)
+        fd = os.open(lock_path, flags, 0o600)
+        acquired = None
         try:
-            db.execute(f'PRAGMA busy_timeout={NORMAL_BUSY_WAIT_MS}')
-            mode = db.execute('PRAGMA journal_mode=DELETE').fetchone()[0]
-            if mode.casefold() != 'delete':
-                raise RuntimeError(f'Unsupported journal mode {mode}')
-            db.execute('PRAGMA synchronous=FULL')
-            self._begin_immediate(db)
-            yield db
-            db.execute('COMMIT')
-        except BaseException:
-            if db.in_transaction:
-                db.execute('ROLLBACK')
-            raise
+            while True:
+                remaining = deadline - time.monotonic()
+                if remaining <= 0:
+                    _LOG.warning('ledger_writer_admission status=deadline wait_seconds=%.6f',
+                                 time.monotonic() - started)
+                    raise TimeoutError('Shared ledger writer admission timed out; no SQLite transaction entered')
+                try:
+                    fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+                except OSError as error:
+                    if error.errno not in (errno.EACCES, errno.EAGAIN):
+                        raise
+                    time.sleep(min(ADMISSION_BACKOFF_SECONDS, remaining))
+                    continue
+                acquired = time.monotonic()
+                yield
+                break
         finally:
-            db.close()
+            # Closing this owned descriptor releases admission even on an
+            # interrupt. The caller closes/rolls back SQLite before leaving.
+            os.close(fd)
+            finished = time.monotonic()
+            wait = (acquired if acquired is not None else finished) - started
+            hold = finished - acquired if acquired is not None else 0.0
+            if wait >= ADMISSION_LOG_SECONDS or hold >= ADMISSION_LOG_SECONDS:
+                _LOG.warning('ledger_writer_admission status=%s wait_seconds=%.6f hold_seconds=%.6f',
+                             'released' if acquired is not None else 'unacquired', wait, hold)
+
+    @contextmanager
+    def _transaction(self) -> Iterator[sqlite3.Connection]:
+        with self._writer_admission():
+            db = sqlite3.connect(self.path, timeout=30, isolation_level=None)
+            try:
+                db.execute(f'PRAGMA busy_timeout={NORMAL_BUSY_WAIT_MS}')
+                mode = db.execute('PRAGMA journal_mode=DELETE').fetchone()[0]
+                if mode.casefold() != 'delete':
+                    raise RuntimeError(f'Unsupported journal mode {mode}')
+                db.execute('PRAGMA synchronous=FULL')
+                self._begin_immediate(db)
+                yield db
+                db.execute('COMMIT')
+            except BaseException:
+                if db.in_transaction:
+                    db.execute('ROLLBACK')
+                raise
+            finally:
+                db.close()
 
     @staticmethod
     def _begin_immediate(db: sqlite3.Connection) -> None:

@@ -1,0 +1,22 @@
+{
+  "status": "root_and_independent_reviewed_source_offline_passed",
+  "reviewed_utc": "2026-10-10T17:34:02.330639+00:00",
+  "reviewed_by": [
+    "root",
+    "compute_storage_audit"
+  ],
+  "implemented_by": "adversarial_evaluation",
+  "source_sha256": {
+    "src/olens_improve/budget.py": "60caff27b9dd717e218822a4115f7f44c8f1820f066f1ec5dbecb021206ca38f",
+    "tests/test_budget_admission.py": "5c240a54dde5fbdafc3e7b06af6b3cbed8609f39e14295b3721f51ac261615ba",
+    "scripts/probe_ledger_admission_nfs.py": "0448c30b758c0857aefd19088113cd47ac02f2b254225a61eff3bee02e4685ab",
+    ".state/budget-writer-admission-tests-v1.json": "96ef6762a1e9e5c1ac6196b97df4208c779649677bc3de0318ece46536319d0c",
+    "${OLENS_COMPUTE_ROOT}/diagnostics/ledger-admission-nfs-v1/report.json": "d69fa5025cb39506f148907ef8a640effdafee3edb92cb02ea8a50298373574a"
+  },
+  "offline_tests": 56,
+  "synthetic_nfs_requests": 61,
+  "production_recovery_proven": false,
+  "same_source_all_writers_required": true,
+  "all_financial_holds_preserved": true,
+  "no_paid_dispatch_authorized_by_this_receipt": true
+}
