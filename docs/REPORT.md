@@ -136,9 +136,14 @@ additional variability from rerunning the generator or judge.
 GPT-6 Luna is the sole language-model benchmark judge, with its reasoning setting
 fixed to none. Multi-hop bridge recovery uses the released deterministic matching
 rule. Results retain the original item aggregation alongside cell-level rates.
-An item can pass because one inspected site contains the required concept, even
-when most descriptions fail. Reusing an exactly matching cached judgment saves
-evaluation cost without creating another independent measurement.
+A question passes under its original task rule: all required bridge names must
+appear at one layer; the top-named computed value must be a hidden intermediate
+at one layer; or all three who-did-what answers must be correct at one site.
+One passing site can therefore make a question pass even when most descriptions
+fail. Partial role answers from different sites are not combined. Hallucination
+keeps its separate readout-level error rate, described below. Reusing an exactly
+matching cached judgment saves evaluation cost without creating another
+independent measurement.
 
 For hallucinations, we report contradicted readouts divided by specific readouts,
 following the benchmark. Specific readouts include off-topic outputs. We also

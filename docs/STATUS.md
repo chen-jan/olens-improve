@@ -1,10 +1,22 @@
 # Execution status
 
-Updated: 2026-10-10, approximately 19:00 UTC.
+Updated: 2026-10-10, approximately 19:49 UTC.
 Started: 2026-10-10 01:25:36 UTC (October 9, 21:25:36 EDT).
 Target finish: 2026-10-10 21:25:36 UTC. Execution remains active and authorized.
 
 ## Latest operational checkpoint
+
+The 19:43 check recorded75,636 TEST settlements, approximately397/minute since19:33, with unchanged twelve uncertain holds. Hall had six completed comparisons and role eight; both were still running. Raising role concurrency to256 did not establish a material speedup. Root has requested clean comparison-boundary stops for both workers so the tested connection option can be tried. These requests do not cancel active calls.
+
+**Speedup remains unproven.** The connection-reuse implementation passed92 focused tests and independent review, but a second short offline benchmark did not reproduce the earlier gain: fresh connections took1.655seconds versus4.029seconds with reuse. The fresh baseline became much faster, while reuse stayed roughly similar. Neither short run supports a reliable live projection. The option remains default-off and has not yet been activated in production. Planning remains roughly4–6hours from this checkpoint;2.5–4hours is conditional on an actual sustained live improvement.
+
+At 19:33 UTC, the role worker was live at **256 concurrent requests / 4,000 RPM** (PID 3954990), while hallucination remained at sixteen / 400 (PID 3783545). The previous role worker exited 0 after eight completed conditions before the new launch. TEST had 71,802 settled attempts and unchanged twelve uncertain holds ($0.059636875). The mixed startup interval added 4,321 settlements over 601.73 seconds, about 431/minute combined. This does not establish a large speedup. The 138 active reservations ($0.672823375, including the old terminal hold) are distinct from the retained unknown charges. No TEST quality has been inspected.
+
+Database-only tests found a concrete optimization: persistent connection reuse plus a 16-MiB cache reduced two-writer accounting time from 15.793 to 4.688 seconds (3.37x) on disposable archive copies. The active ledger already resides on the compute partition, which is network storage. The opt-in implementation remains OFF pending lifecycle/financial tests and independent review. Do not interpret the synthetic 3.37x as measured API throughput. See [049](experiments/049-higher-concurrency.md).
+
+**Conditional estimate given at 19:34 UTC:** if the fix produces a 2–3x end-to-end judging gain, roughly 2.5–4 hours remain including judging, final analysis/review and delivery. Without that gain, allow roughly 4–6 hours. The next live throughput measurement will supersede these scenarios; the prior 19:00 estimate below is historical.
+
+The exact DEV twelve-method reporting export is complete: 5,236 cells, 37,259,110 bytes, SHA `a638c102a2e762543d0d81f28575fa2a46dd64ea7d12641b071622736a89c91e`. It is a byte-preserving text/count projection, with no inference or new judgments; eleven DEV family/condition measurements still remain.
 
 Public dashboard version 9 was published at 18:59:45.199753 UTC. It updates operational recovery and retained API charges only. Scientific objects and all 33 figure/example assets are unchanged; no TEST quality was read or published. Prior browser QA was not repeated for this metadata update.
 
