@@ -6,6 +6,8 @@ Target finish: 2026-10-10 21:25:36 UTC. Execution remains active and authorized.
 
 ## Latest operational checkpoint
 
+Monitoring was repaired and extended at 20:36 UTC: the resource watcher now publishes successful snapshots every ten minutes through04:30 UTC October11. The failure was a missing verified submission timestamp in the CPU allocation record; judge workers and their dedicated operational observer were unaffected. Public dashboard version10 was published at20:41:04 UTC with the41/48 queue, measured pace and revised estimate. Scientific results remain unchanged.
+
 **Revised timing, 20:29 UTC:** the first steady five-minute window with both optimized workers added 1,011 settlements in 336.17 seconds, about **180 per minute**. TEST has 87,757 settlements and remains at 41/48 completed comparisons. No new uncertain charges appeared. Connection reuse has not demonstrated a speed gain.
 
 Using the original request envelope leaves approximately 29,359 TEST requests plus 22,157 from the older remaining-DEV forecast. At this rate, the reference is 2 hours 43 minutes for TEST and 4 hours 46 minutes for all judging; these are workload estimates, not exact live cache counts or guaranteed bounds. Allow roughly 6–8 hours for complete delivery from this checkpoint: a practical target is around **23:00 Eastern on October 10**, with a **22:00–00:00 Eastern** planning window. Review can overlap some remaining DEV work. This supersedes the earlier faster estimates; the measured improvement did not materialize.

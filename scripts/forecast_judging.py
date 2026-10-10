@@ -55,6 +55,14 @@ def forecast_stage(args):
     """Reject unauthorized heldout planning before text, banks or caches open."""
     manifest,stage,captures,authorization=evaluation_stage(args.manifest,
         getattr(args,'fresh_manifest',None),getattr(args,'gate',None))
+    family=getattr(args,'family',None)
+    if family is not None:
+        if stage!='development':
+            raise ValueError('Family-only forecast is restricted to development')
+        if family not in ('hallucination','chain_intermediates','role_bound_association'):
+            raise ValueError('Unsupported paid forecast family')
+        if not getattr(args,'empirical_summary',None):
+            raise ValueError('Family-only forecast requires a frozen empirical summary; no ledger scan')
     if stage!='development':
         if len(args.conditions)!=1:
             raise ValueError('Heldout forecast requires the one exact signed condition list')
@@ -68,6 +76,7 @@ def forecast_stage(args):
 
 def run(args):
     manifest,stage,captures,authorization=forecast_stage(args)
+    family_only=getattr(args,'family',None)
     if args.output.exists():raise FileExistsError('Preserve immutable earlier forecasts')
     contract=load_upstream()['runtime_source_hashes']
     from wsbench import llm
@@ -88,11 +97,24 @@ def run(args):
     pools=[]
     wanted={(r['method'],r['n']) for r in conditions}
     for path in args.selections:
-        pool=selection_rows(path,wanted,cells if stage!='development' else None,captures)
+        pool=selection_rows(path,wanted,cells if stage!='development' or family_only else None,captures)
         if pool.keys()!=cells.keys():raise ValueError('Incomplete selection cohort')
         pools.append(pool)
+    if family_only:
+        # Scope cannot hide missing/duplicate methods anywhere in the original
+        # frozen source. Validate the full cohort before filtering its loop.
+        for cond in conditions:
+            for cid in cells:
+                matches=[s for pool in pools for s in pool[cid]['selections']
+                    if s['method']==cond['method'] and s['n']==cond['n']]
+                if len(matches)!=1:raise ValueError('Missing/duplicate declared condition in full cohort')
+        scoped_cells={cid:cell for cid,cell in cells.items() if cell['family']==family_only}
+        if not scoped_cells:raise ValueError('Requested family has no frozen cells')
+    else:
+        scoped_cells=cells
     caches={}
     for family in modules:
+        if family_only and family!=family_only:continue
         connection=sqlite3.connect('file:'+str(args.cache/f'{family}.sqlite3')+'?mode=ro',uri=True)
         # Autocommit point reads avoid retaining a family-cache read lock across
         # loading every historical verdict while an existing writer is active.
@@ -128,7 +150,7 @@ def run(args):
     for cond in conditions:
         method,n=cond['method'],cond['n']
         condition_counts={};unknown_before=sum(v is None for v in stage1_to_stage2.values())
-        for cid in cells:
+        for cid in scoped_cells:
             choice=[s for pool in pools for s in pool[cid]['selections'] if s['method']==method and s['n']==n]
             if len(choice)!=1:raise ValueError('Missing/duplicate declared condition')
             text=choice[0]['text'];cell=cells[cid];family=cell['family'];row_counts[family]+=1
@@ -217,6 +239,12 @@ def run(args):
             'Gross max-output reservations are formal bounds, not expected prices; the reviewed atomic run ceiling remains authoritative.']}
     if authorization is not None:
         artifact['analysis_authorization']=authorization
+    if family_only:
+        artifact['forecast_scope']={'kind':'development_family_only','family':family_only,
+            'validated_full_manifest_cells':len(cells),'forecast_cells':len(scoped_cells),
+            'excluded_other_family_cells':len(cells)-len(scoped_cells),
+            'family_cell_counts':dict(Counter(cell['family'] for cell in cells.values())),
+            'cache_families_opened':sorted(caches),'active_ledger_access':False}
     if empirical_summary:
         artifact['empirical_reference']={'path':str(empirical_summary),'sha256':sha(empirical_summary),
             'interpretation':'Reuses frozen Standard usage/latency estimates; no active-ledger history scan. These older service estimates are not a current-throughput guarantee.'}
@@ -229,6 +257,8 @@ if __name__=='__main__':
     p.add_argument('--conditions',type=Path,action='append',required=True);p.add_argument('--cache',type=Path,required=True);p.add_argument('--ledger',type=Path,default=Path('${OLENS_DATA_ROOT}/budget/ledger.sqlite3'))
     p.add_argument('--empirical-since',default='2026-10-10T04:50:43+00:00');p.add_argument('--concurrency',type=int,default=8);p.add_argument('--rpm',type=float,default=200)
     p.add_argument('--empirical-summary',type=Path,help='Frozen prior forecast reference; avoids scanning the active financial ledger')
+    p.add_argument('--family',choices=('hallucination','chain_intermediates','role_bound_association'),
+                   help='DEV only: validate the full cohort, then forecast only this released family/cache; requires --empirical-summary')
     p.add_argument('--output',type=Path,required=True);args=p.parse_args()
     if args.concurrency<=0 or args.rpm<=0:p.error('concurrency and rpm must be positive')
     run(args)

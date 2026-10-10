@@ -94,7 +94,7 @@
       "ram_gib": 64,
       "end_utc": "2026-10-10T22:23:24+00:00",
       "requested_utc": "2026-10-10T02:22:59Z",
-      "last_check_utc": "2026-10-10T17:33:56.883532+00:00",
+      "last_check_utc": "2026-10-10T20:36:53.507933+00:00",
       "state": "RELEASED_RECORD_UNAVAILABLE",
       "reason": "None",
       "partition": "${SLURM_PREEMPT_PARTITION}",
@@ -127,7 +127,7 @@
       "fallback_after_pending_seconds": 720,
       "fallback_gpu": "h100",
       "progress": "Completed; intentional allocation release authorized by root",
-      "last_check_utc": "2026-10-10T17:33:56.883532+00:00",
+      "last_check_utc": "2026-10-10T20:36:53.507933+00:00",
       "intentionally_released_utc": "2026-10-10T04:40:41.401195+00:00",
       "release_reason": "Production AR complete for all 5,236 DEV cells; model owner confirms no queued GPU work and allocated nvidia-smi verifies no compute process."
     }
@@ -135,7 +135,7 @@
   "watcher": {
     "agent": "/root/compute_storage_audit",
     "status": "active-session",
-    "last_check_utc": "2026-10-10T17:33:56.883532+00:00"
+    "last_check_utc": "2026-10-10T20:36:53.507933+00:00"
   },
   "environment_versions": {
     "python": "3.12.13",
@@ -154,7 +154,7 @@
   "additional_cpu_allocations": [
     {
       "job_id": 25474685,
-      "node": "node1600",
+      "node": null,
       "cpus": 8,
       "physical_core_representatives": [
         24,
@@ -173,8 +173,8 @@
       "requested_utc": "2026-10-10T06:24:51Z",
       "started_utc": "2026-10-10T06:25:37Z",
       "end_utc": "2026-10-10T21:25:37+00:00",
-      "state": "CANCELLED",
-      "reason": "None",
+      "state": "RELEASED_RECORD_UNAVAILABLE",
+      "reason": null,
       "purpose": "Isolated project judging and shared ledger/cache work after original CPU cgroup pressure",
       "last_headroom_verified_utc": "2026-10-10T06:26:32Z",
       "memory_charge_bytes": 27668480,
@@ -182,7 +182,7 @@
       "memory_failcnt": 0,
       "api_dispatch_by_infra": false,
       "queue_seconds": 46,
-      "last_check_utc": "2026-10-10T17:33:56.883532+00:00",
+      "last_check_utc": "2026-10-10T20:36:53.507933+00:00",
       "intentionally_released_utc": "2026-10-10T17:42:04.381274+00:00",
       "release_reason": "Both oldjudgeprocesses terminal, all agentsteps released, squeue onlybatch/extern; successor25508300 nowowns bothjudges.",
       "actual_end_utc": "2026-10-10T17:42:03+00:00",
@@ -203,7 +203,7 @@
       "reason": null,
       "purpose": "Four 4-core VAL selector workers overlapping later authorized GPU generation; release after terminal selectors",
       "api_dispatch_by_infra": false,
-      "last_check_utc": "2026-10-10T17:33:56.883532+00:00",
+      "last_check_utc": "2026-10-10T20:36:53.507933+00:00",
       "end_utc": "2026-10-10T10:25:34+00:00",
       "physical_core_representatives": [
         0,
@@ -328,7 +328,7 @@
       "memory_failcnt": 0,
       "resource_receipt": "${OLENS_DATA_ROOT}/diagnostics/test-cpu-allocation-v1.json",
       "resource_receipt_sha256": "394a44d7ae4b9995bb6b4dd92f7e2f11ac99b4d046c7a9f80ca9379c4457708c",
-      "last_check_utc": "2026-10-10T17:33:56.883532+00:00"
+      "last_check_utc": "2026-10-10T20:36:53.507933+00:00"
     },
     {
       "job_id": 25508300,
@@ -354,7 +354,11 @@
       "purpose": "Shared ledger-coordination handoff and remaining TEST/DEV judging; release after completion",
       "resource_receipt": "${OLENS_DATA_ROOT}/diagnostics/test12-operational-v1/successor-preflight-v1.json",
       "resource_receipt_sha256": "ee9442abffb0ae0accd243696fc97db3222d29f73774252db2f4e63babe8566d",
-      "api_dispatch_by_infra": false
+      "api_dispatch_by_infra": false,
+      "requested_utc": "2026-10-10T17:32:17+00:00",
+      "submission_time_source": "Slurm SubmitTime2026-10-10T13:32:17 America/New_York, independently inspected2026-10-10",
+      "reason": "None",
+      "last_check_utc": "2026-10-10T20:36:53.507933+00:00"
     }
   ],
   "judging_cpu_allocation_id": 25508300,

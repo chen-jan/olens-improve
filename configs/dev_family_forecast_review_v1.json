@@ -1,0 +1,27 @@
+{
+  "status": "root_and_independently_reviewed",
+  "reviewed_utc": "2026-10-10T20:40:17.509974+00:00",
+  "reviewers": [
+    "root",
+    "adversarial_evaluation"
+  ],
+  "purpose": "Forecast only a released DEV family while another family is still being judged",
+  "source_hashes": {
+    "scripts/forecast_judging.py": "07da6ea73261af36884483aa101cdc9f2d3fb98b4df88e39f69927183985507b",
+    "tests/test_forecast_family.py": "e397231e50c37a81a877059f8aa7c03a24295ac596f2fdc0b7f9c05e1967063a"
+  },
+  "checks": {
+    "passed_forecast_tests": 10,
+    "new_family_isolation_tests": 6,
+    "full_original_manifest_and_declared_methods_validated_before_filtering": true,
+    "heldout_family_flag_rejected_before_data_reads": true,
+    "only_requested_family_cache_opened": true,
+    "frozen_empirical_summary_required_no_live_ledger": true,
+    "default_request_identity_unchanged": true
+  },
+  "limits": [
+    "Fake fixtures only; no real forecast or cache access yet.",
+    "Root must confirm complete TEST family, terminal worker/free cache owner, exact source inputs and budget headroom before forecasting or paid DEV launch.",
+    "Existing historical source-pinned specifications remain immutable; bind this source in the new ready DEV handoff."
+  ]
+}
