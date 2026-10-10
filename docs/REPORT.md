@@ -342,7 +342,7 @@ outcomes are included here.
 | Consensus | Exact and semantic whole-bullet pilots, repaired helper and reasoning-enabled follow-up | Strict agreement removes useful coverage; audited semantic grouping still makes unsafe merges. Atomic-claim consensus remains unresolved. |
 | Pruning | Single-response and pooled/contrastive-parent deletion, with matched-count random controls | Deleting low-contribution text can preserve some recovery, but also deletes required concepts. Reconstruction contribution is not a truth score. |
 | Pooling | Greedy selection with joint refitting and local swaps at N16/32 | Complementary bullets improve bridge mention recovery in the pilot; selected sets can retain incompatible relationships. |
-| Contrastive checks | Matched-control selection, controlled near misses, and activation-conditioned likelihood | Specificity plus pruning warrants follow-up. Fine semantic discrimination varies with layer and wording; likelihood selection has no broad pilot advantage. |
+| Contrastive checks | Matched-control selection, controlled near misses, and activation-conditioned likelihood | Unpruned matched-control selection is a final experimental candidate. Validation does not establish pruning over random shortening. Fine semantic discrimination varies with layer and wording; likelihood selection has no broad pilot advantage. |
 | Editing | Two bounded proposal rounds, rescoring, judging, and all eight selected-edit audits | Mostly formatting changes, no aggregate recovery gain, and two source-preservation violations. Broad expansion is not justified. |
 | Independent checks | Compatible J++ development token diagnostics | Token agreement cannot validate a directed relation; no selection improvement is established. Unresolved fitting-data overlap excludes J++ from clean held-out claims. No second compatible reconstructor is established. |
 
@@ -413,6 +413,8 @@ small score margin as factual verification. See
 [near-miss diagnostics](experiments/004-contrastive-diagnostic.md).
 
 ## Cost and practical use
+
+A resource snapshot at 16:49 UTC records $18.13 in project API usage estimates, plus $4.90 reserved for outstanding or uncertain requests ($23.03 committed). The 16:43 storage inventory is 93.73 GB of project files, excluding 55.56 GB of reused base weights. GPU allocation during the project totals 64.77 H200-hours including idle time; major model work is estimated at 30.17 GPU task-hours, rather than measured GPU utilization. These snapshots exclude GPU dollar charges and Codex/subagent billing. Source receipt: `resource-usage-1649-v1/receipt.json`, SHA256 `f9b69d2b7ec2d0500e1e809d979c56461653e3640a56e1e34b5f9366710c558a`. These are interim totals; judging continues.
 
 The cost of a method on a new activation includes its sampled responses, phrase
 encodings, local selection, and recurring helper calls. Benchmark judging is

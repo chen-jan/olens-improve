@@ -28,7 +28,7 @@ class OverviewTests(unittest.TestCase):
         self.assertEqual(report,before)
         self.assertIn('12/100',page);self.assertIn('95% interval 8.00–20.00%',page)
         self.assertEqual(page.split('<script',1)[0].count('class="task-chart"'),4)
-        self.assertIn('Whole items: any passing site',page)
+        self.assertIn('Questions with at least one match',page)
         self.assertIn('No overall winner yet',page);self.assertIn('268 items',page)
         self.assertIn('Lower is better',page);self.assertIn('Higher is better',page)
         self.assertNotIn('/orcd/',page)
@@ -52,6 +52,53 @@ class OverviewTests(unittest.TestCase):
             self.assertIn(value,focused);self.assertIn(value,full)
         self.assertIn('Axis: 0–20%',focused);self.assertIn('Axis: 0–100%',full)
         self.assertIn('a pass anywhere counts once',full)
+
+    def test_scope_example_uses_bound_counts_and_hall_keeps_error_endpoint(self):
+        report=fixture();section=report['signed_comparisons']['validation']
+        for scope,counts in [('cell_rows',(7,200,.035)),('original_item_rows',(12,20,.6))]:
+            row=next(r for r in section[scope] if r['family']=='role_bound_association' and r['condition']=='raw_n1-n1')
+            row['metric'].update(numerator=counts[0],denominator=counts[1],value=counts[2],ci95=None)
+        before=copy.deepcopy(report);page=overview.build(report)
+        self.assertEqual(report,before)
+        self.assertIn('7/200 activations match (3.50%)',page)
+        self.assertIn('12/20 questions have at least one match (60.00%)',page)
+        self.assertIn('Per activation',page)
+        self.assertIn('its complement is not accuracy',page)
+        self.assertIn('one unmodified released sample',page)
+        self.assertIn('dropping only whole trailing bullets',page)
+        data=overview.data_for_page(report)
+        hall=overview.chart(data,'hallucination',overview.DEFAULT,scope='items')
+        hall_cells=overview.chart(data,'hallucination',overview.DEFAULT,scope='cells')
+        for condition in overview.DEFAULT:
+            self.assertEqual(data['metrics']['cells']['hallucination'][condition],
+                             data['metrics']['items']['hallucination'][condition])
+        for numeric in ('12/100','12.0%','95% interval 8.00–20.00%'):
+            self.assertEqual(hall.count(numeric),hall_cells.count(numeric))
+        self.assertIn('question switch does not change this readout-level error rate',hall)
+        self.assertIn('12/100',hall);self.assertIn('12.0%',hall)
+        self.assertIn('Validation: 20 questions',hall)
+        self.assertNotIn('Questions with at least one match at any',hall)
+        role=overview.chart(data,'role_bound_association',overview.DEFAULT,scope='items')
+        self.assertIn('Questions with at least one match at any',role)
+        self.assertIn('12/20',role)
+
+    def test_method_rate_labels_do_not_change_values_or_diagnostic_fit_units(self):
+        m=overview.method_sections
+        row={'family':'hallucination','condition':'raw_n1-n1','endpoint':'Contradictions / specific readouts',
+             'value':.4,'ci':[.3,.5],'numerator':4,'denominator':10,'cohort':'Development pilot'}
+        before=copy.deepcopy(row);plot=m.rate_plot([row],'Transcript contradictions','Development pilot')
+        self.assertEqual(row,before)
+        self.assertIn('Error rate per activation; lower is better, not accuracy',plot)
+        self.assertIn('Development pilot',plot);self.assertIn('40.0%',plot);self.assertIn('4/10',plot)
+        fit=dict(row,endpoint='FVE',value=.118,numerator=None,denominator=1,ci=None)
+        table=m.table([fit])
+        self.assertIn('activation reconstruction fit, not accuracy',table)
+        self.assertIn('<td>0.118</td>',table);self.assertNotIn('11.80%',table)
+        paired=dict(row,endpoint='Paired delta: Cell recovery',value=.02,numerator=None,
+                    denominator=None,ci=[-.01,.04])
+        paired_table=m.table([paired],paired=True)
+        self.assertIn('change in percentage points; match per activation',paired_table)
+        self.assertIn('+2.00 pp',paired_table)
 
     def test_all_method_variants_and_paired_intervals_preserved_without_filling_missing(self):
         report=fixture();m=overview.method_sections
@@ -109,7 +156,7 @@ class OverviewTests(unittest.TestCase):
         self.assertIn('30 items · 7 related groups',text)
         self.assertIn('one transcript site and eleven role sites',text)
         self.assertIn('Few groups; interpret cautiously',text)
-        self.assertIn('grey dashed: raw original',text)
+        self.assertIn('grey dashed: released original, unmodified',text)
         report['development_scaling']['measurement']['conditions'][0]['families']['hallucination']['missing_stage2']=1
         with self.assertRaisesRegex(ValueError,'Missing'):overview.method_sections.development_scaling(report)
 

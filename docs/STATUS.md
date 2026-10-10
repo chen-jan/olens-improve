@@ -1,10 +1,14 @@
 # Execution status
 
-Updated: 2026-10-10, approximately 16:39 UTC.
+Updated: 2026-10-10, approximately 17:04 UTC.
 Started: 2026-10-10 01:25:36 UTC (October 9, 21:25:36 EDT).
 Target finish: 2026-10-10 21:25:36 UTC. Execution remains active and authorized.
 
 ## Latest operational checkpoint
+
+The public dashboard was updated at 17:04 UTC (Site version 6) with explicit per-activation versus whole-question labels, the unchanged hallucination error endpoint, and the 16:49 API snapshot. Sixteen focused tests, independent review and desktop/mobile checks passed. The later measured timing addendum verifies 621,920 samples and 30.192 GPU task-hours for generation plus main reconstruction; see experiment 044. Both remaining judge sessions were confirmed live at16:53; no TEST quality has been inspected.
+
+Resource accounting at16:49 UTC: $18.12687471 estimated API usage plus $4.900247625 retained reservations, total$23.027122335. The16:43 inventory is93.732 GB project files (69.584fast,24.148durable), excluding55.563 GB reused base weights. Resource receiptf9b69d2b… separates64.773 reserved H200-hours from approximately30.17 estimated model task-hours; neither is GPU dollar billing.
 
 At 16:38 UTC, both remaining TEST sessions are active: hallucination v4 (session 88668/PID 3625516) and role v5 (session 63575/PID 3651167). The old role worker stopped on the same lock-acquisition failure; v5 resumed at 16:34 with the reviewed retry patch and saved results. All eleven uncertain TEST holds ($0.05425425) remain reserved. The role log includes a successful 91-second lock wait, so active sessions do not establish healthy sustained throughput. The16:39 bounded checkpoint confirms new settlements in both workers: hall95settled/5active and role94settled/6active in recent100-attempt windows, with no newunknowns. Receipt849be81b… retains all prior holds. Multi-hop and chains have finished judging. TEST quality remains uninspected. Reviewed DEV/VAL read-site maps and an editable presentation draft are ready; the map website update was published at16:46 UTC as Site version5, and the final deck still awaits final results. The 22:00–00:00 UTC delivery estimate remains conditional on judging progress.
 

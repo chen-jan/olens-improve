@@ -1,0 +1,36 @@
+{
+  "status": "root_reviewed_interim_resource_accounting",
+  "reviewed_utc": "2026-10-10T17:04:55.969683+00:00",
+  "reviewed_by": "root",
+  "prepared_by": "compute_storage_audit",
+  "sources": {
+    "resource_snapshot": {
+      "path": "${OLENS_DATA_ROOT}/diagnostics/resource-usage-1649-v1/receipt.json",
+      "sha256": "f9b69d2b7ec2d0500e1e809d979c56461653e3640a56e1e34b5f9366710c558a"
+    },
+    "measured_model_time": {
+      "path": "${OLENS_DATA_ROOT}/diagnostics/resource-usage-1649-v1/measured-model-time-addendum.json",
+      "sha256": "74573b5bd712e310035f97f230b757e79ffe28c828fb4e4d2c76d84c3a41a00a"
+    },
+    "generation_timers": {
+      "path": "${OLENS_DATA_ROOT}/diagnostics/resource-usage-1649-v1/generation-timings.json",
+      "sha256": "dce39bc71450839f507fd9b17b5cd243aef6040345a06d61d6076fdb090f544c"
+    }
+  },
+  "verified": {
+    "generated_samples": 621920,
+    "cells": 19435,
+    "measured_generation_and_main_ar_task_hours": 30.192000197417027,
+    "api_usage_usd": 18.12687471,
+    "reserved_usd": 4.9002476249999996,
+    "storage_logical_bytes": 93732224595
+  },
+  "limits": [
+    "Interim snapshot; final judging continues and costs will increase.",
+    "Measured model task hours include adjacent CPU work and recorded AR loading, not pure GPU kernel time.",
+    "Generation loading/capture and abandoned work outside retained timers are not fully totaled.",
+    "Allocation time includes idle holds and is reported separately.",
+    "No GPU dollar tariff or Codex/subagent billing is available in the project ledger.",
+    "All uncertain charges remain held; usage is not invoice reconciled."
+  ]
+}

@@ -35,7 +35,7 @@ def esc(v): return html.escape(str(v), quote=True)
 def label(condition):
     """Readable variant labels; keep the exact identifier in the expandable table."""
     if ' vs ' in condition:return ' versus '.join(label(c) for c in condition.split(' vs '))
-    simple = {'raw_n1': 'Original readout', 'capped_n1': 'Shortened original',
+    simple = {'raw_n1': 'Released original, unmodified', 'capped_n1': 'Capped original, whole bullets only',
       'best_n_exact': 'Best reconstruction', 'random_complete': 'Random complete choice',
       'best_n_specificity_mean': 'Compare other activations: mean',
       'best_n_specificity_max': 'Compare other activations: strongest control',
@@ -80,6 +80,20 @@ def validate_row(row):
     if ci is not None and (len(ci)!=2 or not all(math.isfinite(x) for x in ci) or ci[0]>ci[1]):raise ValueError('Invalid method interval')
 
 
+def measure_label(endpoint):
+    lower=endpoint.lower()
+    if 'fve' in lower:return endpoint+' (activation reconstruction fit, not accuracy)'
+    paired=lower.startswith('paired delta: ')
+    base=lower.removeprefix('paired delta: ')
+    change='change in percentage points; ' if paired else ''
+    if 'contradiction' in lower and 'specific' in lower:
+        return endpoint+' ('+change+'error per activation; lower is better)'
+    if base in ('cell recovery','cell mention/binding recovery'):
+        return endpoint+' ('+change+'match per activation; higher is better)'
+    if 'whole items' in lower:return 'Questions with at least one match'
+    return endpoint
+
+
 def table(rows, paired=False):
     if not rows:return '<p class="missing">No measured results in this snapshot.</p>'
     out='<div class="table-scroll"><table><thead><tr><th>Task / variant</th><th>Measure</th><th>Result</th><th>95% interval</th><th>Counts / coverage</th></tr></thead><tbody>'
@@ -92,7 +106,7 @@ def table(rows, paired=False):
         interval='Not estimated' if ci is None else (' to '.join(f'{x*100:+.2f}' if paired_rate else f'{x*100:.2f}' if rate else f'{x:.5g}' for x in ci)+(' pp' if paired_rate else '%' if rate else ''))
         count=f'{r.get("numerator")}/{r.get("denominator")}' if r.get('numerator') is not None else 'No count denominator'
         coverage=f'{r.get("eligible_count","unknown")} eligible {r.get("eligibility_unit","(unit not supplied)")}; {r.get("missing_count","unknown")} missing'
-        out+=f'<tr><td>{esc(TASKS.get(r.get("family"),r.get("family","Diagnostic")))}<br>{esc(label(r["condition"]))}<details><summary>Exact variant and uncertainty</summary><code>{esc(r["condition"])}</code><p>{esc(r.get("uncertainty","Not supplied"))}</p></details></td><td>{esc(end)}<small>{esc(r.get("cohort",""))}</small></td><td>{val}</td><td>{interval}</td><td>{esc(count)}<small>{esc(coverage)}</small></td></tr>'
+        out+=f'<tr><td>{esc(TASKS.get(r.get("family"),r.get("family","Diagnostic")))}<br>{esc(label(r["condition"]))}<details><summary>Exact variant and uncertainty</summary><code>{esc(r["condition"])}</code><p>{esc(r.get("uncertainty","Not supplied"))}</p></details></td><td>{esc(measure_label(end))}<small>{esc(r.get("cohort",""))}</small></td><td>{val}</td><td>{interval}</td><td>{esc(count)}<small>{esc(coverage)}</small></td></tr>'
     return out+'</tbody></table></div>'
 
 
@@ -104,7 +118,8 @@ def rate_plot(rows,title,cohort):
     group_text=', '.join(map(str,groups))+' related groups' if groups else 'Group count not supplied'
     maximum=max([r['value'] for r in rows if r.get('value') is not None]+[r['ci'][1] for r in rows if r.get('ci')]+[.05])
     maximum=min(1,math.ceil(maximum/(.05 if maximum<.3 else .2))*(.05 if maximum<.3 else .2))
-    out=f'<h4>{esc(title)}</h4><p class="small">{esc(cohort)} · {esc(source_cohorts)}. Zero-based 0–{maximum*100:g}% axis; points are rates, supplied lines are grouped 95% intervals. Missing intervals are marked “Not estimated” in the table, not treated as zero uncertainty.</p><p class="small">{esc(group_text)}. Sites are not independent examples. Exact intervals and counts are in the tables below.</p>'
+    measure='Error rate per activation; lower is better, not accuracy.' if rows[0].get('family')=='hallucination' else 'Match rate per activation; higher is better.'
+    out=f'<h4>{esc(title)}</h4><p class="small">{esc(cohort)} · {esc(source_cohorts)}. {measure} Zero-based 0–{maximum*100:g}% axis; points are rates, supplied lines are grouped 95% intervals. Missing intervals are marked “Not estimated” in the table, not treated as zero uncertainty.</p><p class="small">{esc(group_text)}. Activations are not independent questions. Exact intervals and counts are in the tables below.</p>'
     for r in rows:
         validate_row(r);v=r.get('value');ci=r.get('ci')
         if v is None:continue
@@ -157,7 +172,7 @@ def paired_plot(rows,family):
     bound=max([.05]+[abs(x) for r in rows for x in (r.get('ci') or [r['value']])])
     x=lambda v:120+112*v/bound
     cohorts='; '.join(dict.fromkeys(r.get('cohort','Cohort not supplied') for r in rows))
-    out=f'<h4>{esc(TASKS[family])}: change against the named comparator</h4><p class="small">{esc(cohorts)}. Paired percentage-point differences; grouped 95% intervals. '+('Negative is better.' if family=='hallucination' else 'Positive is better.')+'</p>'
+    out=f'<h4>{esc(TASKS[family])}: change against the named comparator</h4><p class="small">{esc(cohorts)}. Paired percentage-point differences in per-activation outcomes; grouped 95% intervals. '+('Negative is better.' if family=='hallucination' else 'Positive is better.')+'</p>'
     for r in rows:
         validate_row(r);v=r['value'];ci=r.get('ci')
         svg='<svg viewBox="0 0 240 28" role="img" aria-label="Paired change"><path d="M120 3V25" stroke="#98ACBF"/>'
@@ -216,7 +231,7 @@ def scaling(report):
         for p in points:
             validate_row(p)
             if p['value'] is not None and not 0<=p['value']<=1 or p.get('ci') is not None and not 0<=p['ci'][0]<=p['ci'][1]<=1:raise ValueError('Sampling curve requires benchmark rates')
-        out+=f'<article class="task-chart"><h3>{esc(TASKS.get(family,family))}</h3><p class="small">'+('Lower is better' if family=='hallucination' else 'Higher is better')+'</p><svg class="sampling-plot" viewBox="0 0 350 235" role="img" aria-label="Sampling curve, rates and grouped intervals">'
+        out+=f'<article class="task-chart"><h3>{esc(TASKS.get(family,family))}</h3><p class="small">'+('Error per activation; lower is better, not accuracy' if family=='hallucination' else 'Match per activation; higher is better')+'</p><svg class="sampling-plot" viewBox="0 0 350 235" role="img" aria-label="Sampling curve, rates and grouped intervals">'
         for v in (0,.5,1):out+=f'<path d="M40 {y(v)}H310" stroke="#D6E1EC"/><text x="34" y="{y(v)+4}" text-anchor="end">{v*100:g}%</text>'
         for a,b in zip(points,points[1:]):
             if a['value'] is not None and b['value'] is not None:out+=f'<path d="M{xs[a["n"]]} {y(a["value"])}L{xs[b["n"]]} {y(b["value"])}" stroke="#246AB3" fill="none"/>'
@@ -275,7 +290,7 @@ def development_scaling(report):
         upper=max([.05]+[m['value'] for _,m,_ in metrics if m['value'] is not None]+[m['ci95'][1] for _,m,_ in metrics if m['ci95']])
         step=.05 if upper<=.25 else .1;maximum=min(1,math.ceil(upper/step)*step)
         y=lambda v:190-145*v/maximum
-        out+=f'<article class="task-chart"><h3>{esc(title)}</h3><p class="small">Full development · {info["items"]} items · {info["independent_groups"]} related groups. '+('Lower' if family=='hallucination' else 'Higher')+f' is better. Zero-based axis: 0–{maximum*100:g}%.</p><svg class="sampling-plot" viewBox="0 0 350 235" role="img" aria-label="Complete development sampling curve, grouped intervals, original references">'
+        out+=f'<article class="task-chart"><h3>{esc(title)}</h3><p class="small">Full development · Per activation · {info["items"]} items · {info["independent_groups"]} related groups. '+('Error rate: lower is better, not accuracy.' if family=='hallucination' else 'Match rate: higher is better.')+f' Zero-based axis: 0–{maximum*100:g}%.</p><svg class="sampling-plot" viewBox="0 0 350 235" role="img" aria-label="Complete development sampling curve, grouped intervals, original references">'
         for v in (0,maximum/2,maximum):out+=f'<path d="M40 {y(v)}H310" stroke="#D6E1EC"/><text x="34" y="{y(v)+4}" text-anchor="end">{v*100:g}%</text>'
         for (_,m,_),colour in zip(metrics[:2],('#7C8793','#BF7529')):
             if m['value'] is not None:out+=f'<path d="M40 {y(m["value"])}H310" stroke="{colour}" stroke-dasharray="5 4"/>'
@@ -288,8 +303,8 @@ def development_scaling(report):
                 if ci:out+=f'<path d="M{x-4} {y(ci[0])}H{x+4}M{x} {y(ci[0])}V{y(ci[1])}M{x-4} {y(ci[1])}H{x+4}" stroke="#087F83"/>'
                 out+=f'<circle cx="{x}" cy="{y(m["value"])}" r="4" fill="#246AB3"/>'
             out+=f'<text x="{x}" y="211" text-anchor="middle">{c["n"]}</text>'
-        out+='<text x="175" y="232" text-anchor="middle">Number of shared samples</text></svg><p class="small">Blue: best reconstruction · grey dashed: raw original · amber dashed: shortened original. Reference intervals appear in the table.</p><details><summary>Exact rates, intervals and count denominators</summary>'+table([r for r in rows if r['family']==family])+'</details></article>'
-    out+='</div><p class="small">Best of 1 also applies the selector’s eligibility checks. It is not the shortened original: one transcript site and eleven role sites have empty eligible selections. The curves above count readout sites, not whole items. Sites are correlated within items; arithmetic has only seven related groups.</p>'
+        out+='<text x="175" y="232" text-anchor="middle">Number of shared samples</text></svg><p class="small">Blue: best reconstruction · grey dashed: released original, unmodified · amber dashed: capped original, whole bullets only. Reference intervals appear in the table.</p><details><summary>Exact rates, intervals and count denominators</summary>'+table([r for r in rows if r['family']==family])+'</details></article>'
+    out+='</div><p class="small">Best of 1 also applies the selector’s eligibility checks. It is not the shortened original: one transcript site and eleven role sites have empty eligible selections. The curves above measure per-activation outcomes, not questions with at least one match. Capped original keeps up to four intact bullets within 256 tokens; it drops only whole trailing bullets. Sites are correlated within items; arithmetic has only seven related groups.</p>'
     original=[]
     for c in conditions:
         for family,f in c['families'].items():
@@ -301,7 +316,7 @@ def development_scaling(report):
                     'denominator':m['denominator'],'eligible_count':m['items'],'eligibility_unit':'items',
                     'missing_count':0,'cohort':'Full development: original whole-item aggregation',
                     'uncertainty':f'{m["independent_groups"]} related groups; grouped 95% interval'+('; '+m['warning'] if m.get('warning') else '')})
-    if original:out+='<details><summary>Whole-item recovery: any passing site counts once</summary><p class="small">This is the original benchmark aggregation over complete grids. Its denominator is items, unlike the readout-site curves above.</p>'+table(original)+'</details>'
+    if original:out+='<details><summary>Questions with at least one match</summary><p class="small">This is the original benchmark aggregation over complete grids. Its denominator is questions: a match at any preselected activation counts once, unlike the per-activation curves above.</p>'+table(original)+'</details>'
     out+='<details><summary>Paired changes, grouped by related examples</summary><p class="small">These intervals compare paired outputs. Overlapping absolute error bars do not establish the paired difference.</p>'
     paired=[]
     for r in measurement['paired_comparisons']:
@@ -330,7 +345,8 @@ def method_sections(report,details_url='details.html'):
           'Validation':normalized_signed(section,conditions),
           'Full development':[r for r in rows if full(r)]+[r for r in dev if r['condition'] in conditions]}
         measured=len(conditions)
-        out+=f'<details class="method-info" id="method-{key}"><summary><span>{esc(name)}</span><small>{measured} recorded variants' if measured else f'<details class="method-info" id="method-{key}"><summary><span>{esc(name)}</span><small>Diagnostic only'
+        count_label='plotted variants' if key=='combinations' else 'recorded variants'
+        out+=f'<details class="method-info" id="method-{key}"><summary><span>{esc(name)}</span><small>{measured} {count_label}' if measured else f'<details class="method-info" id="method-{key}"><summary><span>{esc(name)}</span><small>Diagnostic only'
         out+='</small></summary><p>'+esc(description)+'</p><p class="method-status">'+esc(status)+'</p>'
         panels=[]
         for stage,stage_rows in stages.items():

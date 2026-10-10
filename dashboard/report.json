@@ -1,6 +1,6 @@
 {
   "title": "Readouts: what is established",
-  "updated_utc": "2026-10-10T16:40:27.551610+00:00",
+  "updated_utc": "2026-10-10T16:57:35.880713+00:00",
   "cohort": "development",
   "run_ids": [
     "development-shared-pilot-v2",
@@ -73,22 +73,23 @@
   },
   "api": {
     "status": "observed_read_only",
-    "actual_usd": 13.15279208,
-    "reserved_usd": 4.7801865,
-    "unknown_usd": 4.7801865,
-    "committed_usd": 17.93297858,
+    "actual_usd": 18.12687471,
+    "reserved_usd": 4.9002476249999996,
+    "unknown_usd": 4.848973125,
+    "committed_usd": 23.027122334999998,
     "hard_usd": 300.0,
     "target_usd": 200.0,
     "attempt_counts": {
-      "settled": 83348,
-      "unknown": 544
+      "reserved": 10,
+      "settled": 119600,
+      "unknown": 558
     },
-    "observed_utc": "2026-10-10T12:19:21.032834+00:00",
+    "observed_utc": "2026-10-10T16:49:05.597986+00:00",
     "pricing_revision": "luna-cache-write-v1",
     "invoice_reconciled": false,
-    "pricing_status": "Historical usage snapshot at its displayed observed timestamp; later judging charges are not included. Usage-derived estimate including cache writes, not invoice reconciled. Unknown holds remain reserved. Current monitoring reads can time out; this is not a current live balance.",
-    "snapshot_path": "${OLENS_COMPUTE_ROOT}/watcher/latest.json",
-    "snapshot_sha256": "de6fe105864db35c953f29d8370d2d6cf94000f854d9c406bffc047bf2894f44"
+    "pricing_status": "Usage-derived project API estimate at the displayed observation time, including cache writes; not invoice reconciled. Outstanding and uncertain reservations remain held. Cluster charges and Codex/subagent billing are outside this ledger.",
+    "snapshot_path": "${OLENS_DATA_ROOT}/diagnostics/resource-usage-1649-v1/receipt.json",
+    "snapshot_sha256": "f9b69d2b7ec2d0500e1e809d979c56461653e3640a56e1e34b5f9366710c558a"
   },
   "methods": {
     "sample_selection": {
@@ -122317,5 +122318,23 @@
       "reviewers": "Three method reviewers, rotating independent crosschecks, coordinator source and presentation review",
       "limits": "Illustrative development panel; not independent effect estimates or validation of every statement. Across-variant commentary is explicitly labeled."
     }
+  },
+  "campaign_resources": {
+    "source_path": "${OLENS_DATA_ROOT}/diagnostics/resource-usage-1649-v1/receipt.json",
+    "source_sha256": "f9b69d2b7ec2d0500e1e809d979c56461653e3640a56e1e34b5f9366710c558a",
+    "storage_observed_utc": "2026-10-10T16:43:31.964486+00:00",
+    "project_logical_bytes": 93732224595,
+    "project_allocated_bytes": 75264275456,
+    "excluded_reused_base_weights_bytes": 55562855904,
+    "storage_allowance_bytes": 500000000000,
+    "allocation_observed_utc": "2026-10-10T16:49:05.597986+00:00",
+    "reserved_h200_hours": 64.77272775944445,
+    "estimated_major_model_task_hours": 30.169880981479846,
+    "gpu_dollar_cost": null,
+    "limits": [
+      "Reserved GPU hours include idle time; estimated model work is not measured kernel utilization.",
+      "Storage counts project trees; reused external base weights are separate.",
+      "GPU dollar prices and Codex/subagent billing are not in the project API ledger."
+    ]
   }
 }
