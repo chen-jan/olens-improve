@@ -27,6 +27,13 @@ def atomic_json(path, payload):
     temporary.write_text(json.dumps(payload,indent=2)+'\n'); os.replace(temporary,path)
 
 
+def random_complete_selection(samples, n, admissible, rng):
+    eligible=[s for s in samples[:n] if not s.parsing_uncertain and admissible(s.bullets)]
+    if not eligible:
+        return Selection('random_complete',(),None,reason='no_eligible_complete_sample')
+    return Selection('random_complete',rng.choice(eligible).bullets,None)
+
+
 def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('--runtime',default='configs/runtime.json')
@@ -213,11 +220,8 @@ def main():
                 save('best_n_exact',n,best)
                 compat=best_of_n(samples,n,released.score,admissible=admissible)
                 save('best_n_released80',n,compat)
-                eligible=[s for s in samples[:n] if not s.parsing_uncertain and admissible(s.bullets)]
                 rng=random.Random(int(digest(['random_complete_v1',cell_id,n])[:16],16))
-                if eligible:
-                    random_sample=rng.choice(eligible)
-                    save('random_complete',n,Selection('random_complete',random_sample.bullets,None))
+                save('random_complete',n,random_complete_selection(samples,n,admissible,rng))
             best=best_of_n(samples,32,exact.score,admissible=admissible)
             for source_name,source in [('a32',best),('n1',Selection('capped_n1',samples[0].bullets,None))]:
                 for loss in config['loo_maximum_losses']:
