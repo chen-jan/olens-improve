@@ -60,6 +60,28 @@ class PartitionTests(unittest.TestCase):
         workers[0]=self.cache('duplicate',self.rows[:2])
         with self.assertRaises(ValueError):merge_catalog(plan,old,workers,self.root/'bad')
         self.assertFalse((self.root/'bad').exists())
+    def test_zero_copy_catalog_can_be_inherited_by_next_stage(self):
+        plan,old,workers=self.plan()
+        inherited=self.root/'first-catalog';merge_catalog(plan,old,workers,inherited)
+        contract,previous,sources=read_cache(inherited)
+        new_rows=[self.rows[0]|{'cache_key':vector_key(contract['sha256'],[10],[i]),
+                             'scored_token_ids':[i]} for i in range(100,105)]
+        next_parts=[];next_workers=[]
+        for i in range(2):
+            rows=[r for r in new_rows if partition_for(r['cache_key'],2)==i]
+            path=self.root/f'next-part{i}.jsonl';body=''.join(json.dumps(r)+'\n' for r in rows).encode();path.write_bytes(body)
+            next_parts.append({'path':str(path),'sha256':sha256(body).hexdigest()})
+            worker=self.cache(f'next-worker{i}',rows)
+            (worker/'usage_next.run.json').write_text(json.dumps({'status':'complete','source_inputs':[{'sha256':sha256(body).hexdigest()}]}))
+            next_workers.append(worker)
+        next_plan=plan|{'inherited_keys_sha256':digest(sorted(previous)),'inherited_sources':sources,
+                       'partitions':next_parts,'new_keys':5}
+        final=self.root/'second-catalog';metadata=merge_catalog(next_plan,inherited,next_workers,final)
+        _,actual,_=read_cache(final)
+        self.assertEqual(len(actual),25)
+        self.assertEqual({k:actual[k] for k in previous},previous)
+        self.assertEqual(metadata['tensor_copies'],0)
+        self.assertFalse(list(final.glob('*.safetensors')))
     def test_missing_worker_and_mutated_contract_rejected(self):
         plan,old,workers=self.plan()
         with self.assertRaises(ValueError):merge_catalog(plan,old,workers[:1],self.root/'bad')

@@ -36,7 +36,9 @@ The exact model revisions, injection settings, whitening transformation and
 source-code checks are recorded in [the plan](PLAN.md) and
 [model validation](experiments/001-model-setup.md).
 
-Each cell has one shared pool of at most 32 sampled responses. Best-of-N uses
+A cell is one prompt at one model layer and token position. N is the number of
+candidate responses available to a method. Each cell has one shared pool of at
+most 32 sampled responses. Best-of-N uses
 nested prefixes, so its N16 candidates are included in N32. Improved outputs
 contain at most four intact source bullets and 256 Qwen text tokens; a separate
 capped single-sample baseline isolates this restriction. We retain the unmodified
@@ -57,6 +59,10 @@ variance explained, abbreviated FVE, measures how well the combined prediction
 fits the observed vector. It is a reconstruction objective; correctness is
 measured separately. Inference methods receive neither benchmark answers nor
 judge results.
+
+For .005 pruning, remove a complete bullet only when refitting the remaining
+bullets lowers FVE by at most 0.005, then repeat. This is an absolute loss of
+0.5 percentage points per deletion, not a relative percentage or a truth test.
 
 The released encoder scores only the first 32 cleaned tokens of each phrase;
 the judge sees the full output. Reconstruction therefore does not verify details
@@ -111,7 +117,7 @@ the asserting denominator shown for each method. Complete results and paired
 grouped intervals are available in the
 [pilot comparison](experiments/009-pilot-grouped-comparisons.md).
 
-| Method | Contradicted / specific | Bridge recovery / 24 | Chain recovery / 21 | Role recovery / 72 |
+| Method | Contradicted / specific | Bridge mentions / 24 | Intermediate-number matches / 21 | Role task passes / 72 |
 |---|---:|---:|---:|---:|
 | Capped single sample | 46/71 | 4 | 0 | 8 |
 | Best reconstruction, N4 | 42/72 | 7 | 1 | 9 |
@@ -135,16 +141,17 @@ contain false surrounding claims. See
 ## Larger development results
 
 Best-of-32 versus the capped single sample is complete on all 5,236 development
-cells. The other method comparisons are still being judged. Intervals below
+cells. Other development comparisons remain partly incomplete; the remaining
+judge queues stopped at clean family boundaries to prioritize validation. Intervals below
 resample related groups in pairs; these exploratory comparisons are not adjusted
 for the other methods examined during development.
 
 | Endpoint | Capped single sample | Best-of-32 | Change in percentage points [95% interval] |
 |---|---:|---:|---:|
 | Contradicted / specific readouts | 543/1,137 | 523/1,140 | −1.88 [−5.41, +1.76] |
-| Bridge recovery / 341 cells | 29 | 43 | +4.11 [+1.82, +6.61] |
-| Chain recovery / 330 cells | 26 | 30 | +1.21 [−3.16, +4.85] |
-| Role recovery / 3,420 cells | 151 | 182 | +0.91 [+0.15, +1.73] |
+| Bridge mentions / 341 cells | 29 | 43 | +4.11 [+1.82, +6.61] |
+| Intermediate-number matches / 330 cells | 26 | 30 | +1.21 [−3.16, +4.85] |
+| Role task passes / 3,420 cells | 151 | 182 | +0.91 [+0.15, +1.73] |
 
 The original item-level aggregation gives 11→14/31 bridge items, 15→19/30 chain
 items, and 23→23/30 role items. Thus more role cells pass without recovering an
@@ -263,9 +270,9 @@ but matching this control's parser and output-budget eligibility may require
 resampling. Therefore one retained sample is not a guaranteed one-draw cost.
 The experimental pool cost and that deployment distinction are reported separately.
 
-The full development collection measured about 4.33 occupied H200 seconds per
-N32 cell in filled batches. Its phrase encoding workload implies about 1.25
-additional GPU seconds per cell at the measured throughput. These component
+The full development collection measured about 4.33 H200 task wall-seconds per
+N32 cell, amortized over filled batches. Its phrase encoding workload implies
+about 1.25 additional GPU task wall-seconds per cell at the measured throughput. These component
 averages include batching and deduplication effects; they are not single-input
 latency guarantees. Activation capture and setup also cost time, and a reliable
 capture timing was not retained. GPU dollar pricing is unavailable.
@@ -295,8 +302,10 @@ specificity/pruning component comparisons. Its evidence and selection procedure
 are recorded in [the validation freeze](experiments/027-validation-shortlist-freeze.md).
 Some development judging was unfinished at that decision; later development
 results cannot alter this menu or its thresholds after validation opens.
-All validation reconstruction partitions are complete; selection and judging
-are next. A separately reviewed blind-generation gate permits preparation of
+Validation reconstruction, selection and the signed twelve-condition export
+are complete. Judging is underway, with chain and multi-hop complete; see
+[the validation comparison](experiments/029-validation-comparison.md).
+A separately reviewed blind-generation gate permits preparation of
 the fixed test sample pool while validation judging proceeds. Test text and
 quality remain sealed: test analysis requires the final methods, comparisons
 and decision rule to be frozen. Held-out results will be added after those
