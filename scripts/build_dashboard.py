@@ -124,6 +124,8 @@ def traces(rows):
 def full_development_section(section):
     if not section:return ''
     output='<section class="full-development"><h2>'+escape(section['title'])+'</h2><p class="meta">'+escape(section['scope'])+'</p>'+paragraphs([section['summary']])
+    if section.get('method_comparison_status'):
+        output+=paragraphs([section['method_comparison_status']])
     role_rows=[row for row in section['metrics'] if row.get('family') in ('role','role_bound_association') and row.get('condition')=='capped_n1-n1']
     item=next((row for row in role_rows if row.get('scope')=='original_grid_development'),None)
     cell=next((row for row in role_rows if row.get('endpoint')=='Cell recovery'),None)
@@ -219,6 +221,14 @@ def consensus_tables(rows):
     selected=[row for row in rows if row.get('condition') in primary and
               row.get('endpoint') in ('Cell mention/binding recovery', 'Transcript contradictions / specific readouts (lower is better)', 'Specific assertion share')]
     return paragraphs(['Key controls: exact support alone, repaired semantic consensus without reasoning, and repaired semantic consensus with medium effort. Lower contradiction fractions require assertion coverage and recovery alongside them.'])+metrics_table(selected)+'<details><summary>All consensus variants, off-topic output, and claim counts</summary>'+metrics_table(rows)+'</details>'
+
+
+def cost_components_table(rows,notes):
+    if not rows:return ''
+    output='<details><summary>Measured cost components: campaign, cache replay, and new input</summary><div class="table-scroll"><table><thead><tr><th>Component</th><th>Scope</th><th>Value / unit</th><th>Measurement and limits</th></tr></thead><tbody>'
+    for row in rows:
+        output+='<tr>'+''.join('<td>'+v+'</td>' for v in [escape(row['component']),escape(row['scope']),value(row['value'],row['unit']),escape(row['measurement'])])+'</tr>'
+    return output+'</tbody></table></div>'+paragraphs(notes)+'</details>'
 
 
 def scaling_chart(rows):
@@ -347,6 +357,7 @@ def build(report):
             panel += '<details><summary>Paired differences with whole-group uncertainty</summary>' + metrics_table(method["paired_metrics"]) + "</details>"
         panel += "<h3>Quality versus sampling budget</h3>" + scaling_chart(method.get("scaling", []))
         panel += "<h3>Precision and recovery versus cost</h3>" + cost_chart(method.get("cost_frontier", []))
+        panel += cost_components_table(method.get('cost_components',[]),report.get('cost_notes',[]))
         panel += "<h3>Wins, regressions, and unchanged cases</h3>" + traces(method.get("traces", []))
         panel += "<h3>Limitations and next decision</h3>" + paragraphs(method.get("limits", ["No method-level conclusion yet."]))
         panel += f'<p><strong>Next action:</strong> {escape(method.get("next_action", "Complete and review the representative comparison."))}</p></section>'
