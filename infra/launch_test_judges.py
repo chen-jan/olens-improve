@@ -17,24 +17,30 @@ from infra.launch_validation_judges import digest, evaluation_command
 
 
 FAMILIES = ('hallucination', 'multihop_mt', 'chain_intermediates', 'role_bound_association')
+TRANSPORT_PROFILES = {
+    (16, 400): 'standard_none_16_400_v1',
+    (32, 1200): 'standard_none_32_1200_v1',
+    (64, 2400): 'standard_none_64_2400_v1',
+}
 
 
 def validate_transport(spec, family=None):
     """Legacy transport or one explicitly reviewed, fixed higher-rate family."""
     values = {key: spec[key] for key in
               ('concurrency', 'rpm', 'tier', 'reasoning_effort', 'automatic_ramp')}
+    rates = values['concurrency'], values['rpm']
     if (not isinstance(values['concurrency'], int) or isinstance(values['concurrency'], bool)
             or isinstance(values['rpm'], bool)
             or values['tier'] != 'default' or values['reasoning_effort'] != 'none'
             or values['automatic_ramp'] is not False
-            or (values['concurrency'], values['rpm']) not in ((8, 200), (16, 400))):
+            or rates not in ((8, 200), *TRANSPORT_PROFILES)):
         raise ValueError('Transport differs from the reviewed fixed TEST policy')
     review = spec.get('transport_review')
-    if (values['concurrency'], values['rpm']) == (8, 200) and review is None:
+    if rates == (8, 200) and review is None:
         return
+    profile = TRANSPORT_PROFILES.get(rates)
     if (not isinstance(review, dict) or review.get('status') != 'root_reviewed'
-            or review.get('profile') != 'standard_none_16_400_v1'
-            or (values['concurrency'], values['rpm']) != (16, 400)
+            or profile is None or review.get('profile') != profile
             or review.get('family') not in FAMILIES
             or any(review.get(key) != value for key, value in values.items())
             or review.get('automatic_ramp') is not False

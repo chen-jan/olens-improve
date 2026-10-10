@@ -13,13 +13,13 @@ class TestJudgeTransportTests(unittest.TestCase):
     setUp = fixtures.TestJudgeLaunchTests.setUp
     bind = fixtures.TestJudgeLaunchTests.bind
 
-    def prepare_transport(self):
-        self.spec.update(concurrency=16, rpm=400, recovery_epoch='unchanged-guard-epoch',
+    def prepare_transport(self, concurrency=16, rpm=400):
+        self.spec.update(concurrency=concurrency, rpm=rpm, recovery_epoch='unchanged-guard-epoch',
                          planned_forecast_path=str(self.root/'new-forecast.json'))
         self.spec['transport_review'] = {
-            'status': 'root_reviewed', 'profile': 'standard_none_16_400_v1',
+            'status': 'root_reviewed', 'profile': f'standard_none_{concurrency}_{rpm}_v1',
             'family': 'hallucination', 'run_id': self.spec['run_id'],
-            'recovery_epoch': self.spec['recovery_epoch'], 'concurrency': 16, 'rpm': 400,
+            'recovery_epoch': self.spec['recovery_epoch'], 'concurrency': concurrency, 'rpm': rpm,
             'tier': 'default', 'reasoning_effort': 'none', 'automatic_ramp': False,
             'reviewed_utc': '2026-10-10T18:00:00+00:00',
             'authority': 'Synthetic root authorization for one clean-boundary family.'}
@@ -66,6 +66,42 @@ class TestJudgeTransportTests(unittest.TestCase):
                         launch.preflight(self.spec, family='hallucination')
                     stage.assert_not_called()
 
+    def test_reviewed_32_1200_and_64_2400_forward_only_exact_rates(self):
+        legacy = launch.evaluation_command(self.spec, 'hallucination')
+        for concurrency, rpm in [(32, 1200), (64, 2400)]:
+            with self.subTest(concurrency=concurrency, rpm=rpm):
+                self.prepare_transport(concurrency, rpm)
+                before = copy.deepcopy(self.spec)
+                self.assertEqual(self.preflight('hallucination'), self.menu)
+                argv = launch.evaluation_command(self.spec, 'hallucination')
+                self.assert_flags(argv, str(concurrency), str(rpm))
+                self.assert_flags(launch.forecast_command(self.spec), str(concurrency), str(rpm))
+                expected = legacy.copy()
+                expected[expected.index('--concurrency')+1] = str(concurrency)
+                expected[expected.index('--rpm')+1] = str(rpm)
+                self.assertEqual(argv, expected)
+                self.assertEqual(self.spec, before)
+
+    def test_new_profiles_require_their_own_authority_before_stage_data(self):
+        for concurrency, rpm in [(32, 1200), (64, 2400)]:
+            self.prepare_transport(concurrency, rpm)
+            good = copy.deepcopy(self.spec)
+            for change in [lambda s: s.pop('transport_review'),
+                           lambda s: s['transport_review'].update(profile='standard_none_16_400_v1'),
+                           lambda s: s['transport_review'].update(status='prepared'),
+                           lambda s: s['transport_review'].update(run_id='foreign-run'),
+                           lambda s: s['transport_review'].update(recovery_epoch='new-epoch'),
+                           lambda s: s['transport_review'].update(automatic_ramp=True)]:
+                with self.subTest(concurrency=concurrency, change=change):
+                    self.spec = copy.deepcopy(good); change(self.spec)
+                    with patch.object(launch, 'evaluation_stage') as stage:
+                        with self.assertRaisesRegex(ValueError, 'profile authority'):
+                            launch.preflight(self.spec, family='hallucination')
+                        stage.assert_not_called()
+            self.spec = good
+            with self.assertRaisesRegex(ValueError, 'one reviewed family'):
+                launch.validate_transport(self.spec, 'role_bound_association')
+
     def test_review_binds_family_run_epoch_and_exact_profile_values(self):
         self.prepare_transport()
         good = copy.deepcopy(self.spec)
@@ -82,39 +118,44 @@ class TestJudgeTransportTests(unittest.TestCase):
 
     def test_mixed_profiles_and_automatic_ramp_cannot_widen_silently(self):
         for concurrency, rpm, ramp in [(16, 200, False), (8, 400, False), (32, 600, False),
+                                        (32, 400, False), (64, 1200, False), (32, 2400, False),
+                                        (128, 2400, False),
                                         (8, 200, True), (8, 200, 0), (8, True, False)]:
             with self.subTest(concurrency=concurrency, rpm=rpm, ramp=ramp):
                 self.spec.update(concurrency=concurrency, rpm=rpm, automatic_ramp=ramp)
                 with self.assertRaises(ValueError): launch.validate_transport(self.spec)
 
     def test_validation_preflight_still_rejects_higher_transport_before_data(self):
-        self.prepare_transport()
-        with patch.object(validation, 'evaluation_stage') as stage:
-            with self.assertRaisesRegex(ValueError, 'fixed VAL policy'):
-                validation.preflight(self.spec)
-            stage.assert_not_called()
+        for concurrency, rpm in [(16, 400), (32, 1200), (64, 2400)]:
+            self.prepare_transport(concurrency, rpm)
+            with self.subTest(concurrency=concurrency), patch.object(validation, 'evaluation_stage') as stage:
+                with self.assertRaisesRegex(ValueError, 'fixed VAL policy'):
+                    validation.preflight(self.spec)
+                stage.assert_not_called()
 
-    def test_real_main_generates_16_400_and_keeps_guard_before_fake_spawn(self):
-        self.prepare_transport()
-        self.spec.update(job_id='synthetic-job', node='synthetic-node', logs=str(self.root/'logs'))
-        p = self.root/'spec.json'; p.write_text(json.dumps(self.spec))
-        def spawn(argv, **kwargs):
-            self.assert_flags(argv, '16', '400')
-            self.assertEqual(argv[argv.index('--tier')+1], 'default')
-            self.assertEqual(argv[argv.index('--ledger')+1], self.spec['ledger'])
-            self.assertEqual(argv[argv.index('--run-cap-usd')+1], '3')
-            self.assertEqual(kwargs['env']['OLENS_TRANSPORT_RECOVERY_SINCE'], 'unchanged-guard-epoch')
-            self.assertEqual(kwargs['env']['OLENS_TEST_FROZEN'], '1')
-            return Mock(pid=123, wait=lambda: 0)
-        with patch('sys.argv', ['launch', '--spec', str(p), '--family', 'hallucination', '--allow-paid']), \
-             patch.object(launch, 'evaluation_stage', return_value=(self.manifest, 'test', {}, {})), \
-             patch.dict(launch.os.environ, {'SLURM_JOB_ID': 'synthetic-job'}, clear=True), \
-             patch.object(launch.socket, 'gethostname', return_value='synthetic-node'), \
-             patch.object(launch.os, 'sched_getaffinity', return_value={0, 1}), \
-             patch.object(launch.subprocess, 'Popen', side_effect=spawn) as worker, patch('builtins.print'):
-            with self.assertRaises(SystemExit) as outcome: launch.main()
-            self.assertEqual(outcome.exception.code, 0)
-            worker.assert_called_once()
+    def test_real_main_forwards_each_reviewed_profile_and_retains_guard(self):
+        for concurrency, rpm in [(16, 400), (32, 1200), (64, 2400)]:
+            self.prepare_transport(concurrency, rpm)
+            self.spec.update(job_id='synthetic-job', node='synthetic-node', logs=str(self.root/'logs'))
+            p = self.root/'spec.json'; p.write_text(json.dumps(self.spec))
+            def spawn(argv, **kwargs):
+                self.assert_flags(argv, str(concurrency), str(rpm))
+                self.assertEqual(argv[argv.index('--tier')+1], 'default')
+                self.assertEqual(argv[argv.index('--ledger')+1], self.spec['ledger'])
+                self.assertEqual(argv[argv.index('--run-cap-usd')+1], '3')
+                self.assertEqual(kwargs['env']['OLENS_TRANSPORT_RECOVERY_SINCE'], 'unchanged-guard-epoch')
+                self.assertEqual(kwargs['env']['OLENS_TEST_FROZEN'], '1')
+                return Mock(pid=123, wait=lambda: 0)
+            with self.subTest(concurrency=concurrency), \
+                 patch('sys.argv', ['launch', '--spec', str(p), '--family', 'hallucination', '--allow-paid']), \
+                 patch.object(launch, 'evaluation_stage', return_value=(self.manifest, 'test', {}, {})), \
+                 patch.dict(launch.os.environ, {'SLURM_JOB_ID': 'synthetic-job'}, clear=True), \
+                 patch.object(launch.socket, 'gethostname', return_value='synthetic-node'), \
+                 patch.object(launch.os, 'sched_getaffinity', return_value={0, 1}), \
+                 patch.object(launch.subprocess, 'Popen', side_effect=spawn) as worker, patch('builtins.print'):
+                with self.assertRaises(SystemExit) as outcome: launch.main()
+                self.assertEqual(outcome.exception.code, 0)
+                worker.assert_called_once()
 
     def test_foreign_family_actual_main_never_spawns(self):
         self.prepare_transport()

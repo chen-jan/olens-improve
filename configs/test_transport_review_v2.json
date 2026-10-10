@@ -1,0 +1,16 @@
+{
+  "status": "root_and_independently_reviewed",
+  "reviewed_utc": "2026-10-10T19:12:19.965404+00:00",
+  "source_sha256": {
+    "infra/launch_test_judges.py": "6fc6fbc5d8207fe021e9225e604b3ed7e3cf6fcc34d1f8fc0eadf705d5d42b55",
+    "tests/test_test_judge_transport.py": "762668ba7e18940d31383fafa1ca9022c0cab95b978e1204a668c5e7f27ab7d2"
+  },
+  "test_receipt": ".state/test-judge-higher-transport-tests-v2.json",
+  "test_receipt_sha256": "6dc2274f2069f32a5e180e4c93a3eb4f97ec0b9c0a4d0ecde61386bb2a93b6f0",
+  "tests_passed": 16,
+  "reviewers": [
+    "root",
+    "adversarial_evaluation"
+  ],
+  "scope": "Add exact fixed32/1200 and64/2400 runtime profiles only. Same frozen requests, semantics, caches, recovery epoch and budget caps. No provider capacity guarantee."
+}

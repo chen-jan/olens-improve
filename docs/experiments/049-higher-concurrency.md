@@ -1,0 +1,11 @@
+# Testing higher judging concurrency
+
+At 19:07 UTC the user asked to use more API concurrency and CPU processes where useful. The existing sixteen-request limit per family was an operational setting, not a measured account limit. Official OpenAI documentation lists Luna Launch at 10,000 requests/minute and 10 million tokens/minute; project-specific limits have not been verified from live response headers.
+
+The 19:09 operational check measured 4,248 additional TEST settlements over 655.37 seconds, about 389/minute combined. All twelve uncertain TEST holds remained unchanged. A five-second sample used 6.4% and 16.2% of one CPU core for the two workers, with no major faults or memory failures. Repeated accounting admission waits of roughly one to three seconds remain visible. More CPU capacity is not indicated by this measurement. Higher concurrency may improve API overlap, but can also queue behind serialized database writes.
+
+The launcher now supports explicit, fixed 32/1200 and 64/2400 profiles. Sixteen synthetic tests passed on the allocated CPU. Root reviewed exact forwarding of concurrency and request rate, unchanged family/run/epoch bindings, and unchanged model, reasoning, financial caps, caches and scientific inputs. Existing profiles and validation policy remain intact. Review: `configs/test_transport_review_v2.json`.
+
+At 19:10:26 UTC root sent SIGUSR1 to verified role worker PID3802604. This finishes its current comparison before stopping and does not cancel current calls. The next role configuration, `configs/judging_test_role_concurrency_v10.prepared.json`, proposes 64 simultaneous requests with a 2,400 requests/minute cap; it passed validation with no API dispatch. Hall remains at sixteen / 400. The new role configuration is not yet running: its previous worker must exit and release the existing family owner first.
+
+After launch, compare at least five minutes and 500 new completed calls, retained holds, errors and accounting delays. Do not infer a fourfold speedup from fourfold concurrency. An offline copy-only query and storage profile is running independently to identify the database bottleneck; neither the immutable archive nor the live ledger is being changed. No TEST quality has been inspected.
