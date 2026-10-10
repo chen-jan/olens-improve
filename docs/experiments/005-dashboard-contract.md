@@ -43,6 +43,34 @@ navigation, one visible panel, and no horizontal mobile overflow. The page
 had no console errors after a local favicon fix. This confirms local browser
 rendering only; the artifact has not been hosted or published.
 
+## Held-out comparison display preparation
+
+At 09:58 UTC, the completed-comparison adapter and renderer passed 28 focused
+offline checks and a synthetic browser check. No real validation or test
+verdicts were used. The adapter binds the reviewed result, cohort, ordered method
+list, selected texts, analysis gate and freeze; it preserves source intervals,
+paired component comparisons, output lengths and explicitly reviewed traces.
+The browser showed 16 source-derived paired charts in the synthetic fixture,
+with no console errors. At a 390 px viewport, expanding every detail initially
+caused long provenance strings to widen the document to 608 px. Paragraph
+wrapping fixed this; the repeated check measured exactly 390 px.
+
+Optional cost rows distinguish new-input work, shared campaign work, cached
+replay and benchmark judging. Values are measured, estimated, specified
+algorithmic workloads, or explicitly missing. Nonmissing quantities reference
+exact source files, hashes and fields; the attachment checks source byte hashes
+after the comparison's authorization and identity checks. Field interpretation
+and estimate arithmetic still require coordinator review. The display computes
+no combined cost or end-to-end latency. Actual comparison costs remain to be
+attached after measurement and review.
+
+The local synthetic browser evidence is under
+`fast/diagnostics/signed-dashboard-browser-v2/`, including `render.json`, desktop,
+paired-chart, cost and mobile captures. Its HTML SHA-256 is
+`bbb9e4d3c7bb0043e10a85ab075717178141850d2a10874799da3a82d2e21a2b`.
+These invented fixture values are display tests, not research results. The
+production dashboard and held-out artifacts were unchanged by this check.
+
 ## Reproducible result aggregation
 
 `scripts/summarize_results.py` reads the frozen cohort and declared arms without

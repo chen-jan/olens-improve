@@ -4,7 +4,9 @@ from hashlib import sha256
 import importlib.util
 import json
 from pathlib import Path
+from tempfile import TemporaryDirectory
 import unittest
+from unittest.mock import patch
 
 ROOT = Path(__file__).parents[1]
 
@@ -81,7 +83,95 @@ def section(artifact, review):
     return adapter.comparison(artifact, review, 'synthetic.json', review['artifact_sha256'], 'a'*64)
 
 
+def costs(review, source='/tmp/synthetic-costs.json', digest='c'*64):
+    ref = {'path':source, 'sha256':digest, 'field':'synthetic.components'}
+    return [{'condition':name, 'components':[
+        {'scope':'new_input', 'component':'generation', 'status':'specified', 'value':int(name.rsplit('-n',1)[1]),
+         'unit':'samples', 'basis':'Exact synthetic method definition; per new input', 'source_refs':[ref]},
+        {'scope':'new_input', 'component':'recurring_helper', 'status':'specified', 'value':0,
+         'unit':'calls', 'basis':'Synthetic algorithm uses no runtime helper', 'source_refs':[ref]},
+        {'scope':'new_input', 'component':'generation', 'status':'estimated', 'value':2.5,
+         'unit':'GPU task wall-seconds', 'basis':'Synthetic filled batch; setup excluded',
+         'estimate_rule':'Synthetic N32 batch wall time divided by cells', 'source_refs':[ref]},
+        {'scope':'campaign', 'component':'shared_generation', 'status':'measured', 'value':17,
+         'unit':'GPU task wall-seconds', 'basis':'Synthetic shared campaign observation',
+         'note':'Shared parent work; do not add across methods', 'source_refs':[ref]},
+        {'scope':'cached_replay', 'component':'selector', 'status':'missing', 'value':None,
+         'unit':'CPU task wall-seconds', 'basis':'No replay timing measured for this method'},
+        {'scope':'benchmark_judging', 'component':'evaluation', 'status':'missing', 'value':None,
+         'unit':'USD', 'basis':'Synthetic fixture has no paid evaluation'}]} for name in review['condition_ids']]
+
+
 class SignedDashboardTests(unittest.TestCase):
+    def test_optional_cost_rows_keep_scopes_units_and_missing_values_separate(self):
+        artifact, review = fixture()
+        review['cost_rows'] = costs(review)
+        result = section(artifact, review)
+        self.assertEqual(result['cost_rows'], review['cost_rows'])
+        output = dashboard.signed_cost_section(result)
+        self.assertLess(output.index('Effort and cost for a new input'), output.index('Shared research campaign'))
+        for text in ('0 / calls / specified', '2.5 / GPU task wall-seconds / estimated',
+                     '17 / GPU task wall-seconds / measured', 'Missing / CPU task wall-seconds / missing',
+                     'Replaying saved candidates and vectors', 'Benchmark judging only',
+                     'estimate rule: Synthetic', 'source bytes have not been independently checked',
+                     'Field synthetic.components', 'Shared parent work; do not add across methods'):
+            self.assertIn(text, output)
+        self.assertNotIn('Total:', output)
+        del review['cost_rows']
+        self.assertIn('not attached', dashboard.signed_cost_section(section(artifact,review)))
+
+    def test_cost_schema_rejects_foreign_order_missing_scopes_and_unjustified_values(self):
+        artifact, review = fixture()
+        good = costs(review)
+        bad = copy.deepcopy(good); bad.reverse()
+        with self.assertRaisesRegex(ValueError, 'ordered'):
+            adapter.cost_rows_checked(bad, review['condition_ids'])
+        bad = copy.deepcopy(good); bad[0]['components'].pop()
+        with self.assertRaisesRegex(ValueError, 'four scopes'):
+            adapter.cost_rows_checked(bad, review['condition_ids'])
+        for field, value in [('value',float('nan')), ('value',float('inf')), ('value',-1),
+                             ('value',True), ('unit',''), ('basis',''), ('source_refs',[]),
+                             ('status','observed_maybe')]:
+            bad = copy.deepcopy(good); bad[0]['components'][0][field] = value
+            with self.assertRaises(ValueError):
+                adapter.cost_rows_checked(bad, review['condition_ids'])
+        bad = copy.deepcopy(good); del bad[0]['components'][2]['estimate_rule']
+        with self.assertRaisesRegex(ValueError, 'estimate rule'):
+            adapter.cost_rows_checked(bad, review['condition_ids'])
+        bad = copy.deepcopy(good); bad[0]['components'][4]['value'] = 0
+        with self.assertRaisesRegex(ValueError, 'null'):
+            adapter.cost_rows_checked(bad, review['condition_ids'])
+        bad = copy.deepcopy(good); bad[0]['components'][0]['source_refs'][0]['sha256'] = 'short'
+        with self.assertRaisesRegex(ValueError, 'SHA-256'):
+            adapter.cost_rows_checked(bad, review['condition_ids'])
+        bad = copy.deepcopy(good); bad[0]['components'][0]['unit'] = 'wall-seconds'
+        with self.assertRaisesRegex(ValueError, 'algorithmic'):
+            adapter.cost_rows_checked(bad, review['condition_ids'])
+
+    def test_cost_cli_checks_source_bytes_only_after_review_capability(self):
+        artifact, review = fixture()
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            source = root/'costs.json'; source.write_text('{"synthetic":true}')
+            review['cost_rows'] = costs(review,str(source),sha256(source.read_bytes()).hexdigest())
+            (root/'analysis.json').write_text(json.dumps(artifact))
+            (root/'report.json').write_text('{}')
+            args = ['adapter', '--report',str(root/'report.json'), '--artifact',str(root/'analysis.json'),
+                '--review',str(root/'review.json'), '--expected-sha256',review['artifact_sha256'],
+                '--output',str(root/'output.json')]
+            (root/'review.json').write_text(json.dumps(review))
+            with patch('sys.argv',args), patch('builtins.print'):
+                adapter.main()
+            attached = json.loads((root/'output.json').read_text())['signed_comparisons']['validation']
+            self.assertIn('Source byte SHA-256 identities verified', attached['cost_source_verification'])
+            source.write_text('{"changed":true}')
+            with patch('sys.argv',args), self.assertRaisesRegex(ValueError,'source bytes'):
+                adapter.main()
+            review['status'] = 'unreviewed'; (root/'review.json').write_text(json.dumps(review))
+            source.unlink(); (root/'analysis.json').unlink()
+            with patch('sys.argv',args), self.assertRaisesRegex(ValueError,'explicit reviewed'):
+                adapter.main()  # Neither artifact nor evidence is opened before capability checks.
+
     def test_signed_charts_use_only_source_primary_pairs_and_keep_scopes(self):
         artifact, review = fixture()
         result = section(artifact, review)

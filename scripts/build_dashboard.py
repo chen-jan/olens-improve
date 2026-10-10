@@ -262,6 +262,42 @@ def signed_paired_charts(rows, stage):
                            summary='Paired changes between preselected methods: separate task families and cell/item scores')
 
 
+def signed_cost_section(section):
+    rows = section.get('cost_rows', [])
+    if not rows:
+        return paragraphs([section['cost_status']])
+    labels = {'new_input':'Effort and cost for a new input', 'campaign':'Shared research campaign',
+              'cached_replay':'Replaying saved candidates and vectors', 'benchmark_judging':'Benchmark judging only'}
+    output = '<h3>Effort and cost for a new input</h3>'+paragraphs([
+        'Measured values are observations; estimated values use the stated rule. Specified values are exact algorithmic workloads, not measured latency. Missing values are unknown, not zero.',
+        'Components are shown separately. They are not summed into end-to-end latency or GPU dollars. Shared campaign work is not additive across methods; saved-cache replay is not complete inference. Benchmark judging is separate from recurring method helpers.'])
+
+    def table(scope):
+        out = '<div class="table-scroll"><table><thead><tr><th>Method / component</th><th>Value / unit / status</th><th>Basis and limits</th><th>Evidence</th></tr></thead><tbody>'
+        for row in rows:
+            for component in row['components']:
+                if component['scope'] != scope:
+                    continue
+                status = component['status']
+                shown = 'Missing' if status == 'missing' else f"{component['value']:,.6g}"
+                basis = component['basis']
+                if status == 'estimated':
+                    basis += '; estimate rule: '+component['estimate_rule']
+                if component.get('note'):
+                    basis += '; '+component['note']
+                evidence = ''.join('<details><summary>Source '+str(i+1)+'</summary>'+paragraphs([
+                    ref['path'], 'SHA-256 '+ref['sha256'], 'Field '+ref['field']])+'</details>'
+                    for i, ref in enumerate(component.get('source_refs') or []))
+                out += '<tr><td title="'+escape(row['condition'])+'">'+escape(display_label(row['condition']))+' / '+escape(component['component'].replace('_',' '))+'</td>'
+                out += '<td>'+escape(shown+' / '+component['unit']+' / '+status)+'</td><td>'+escape(basis)+'</td><td>'+(evidence or 'No source quantity available')+'</td></tr>'
+        return out+'</tbody></table></div>'
+
+    output += table('new_input')
+    for scope in ('campaign', 'cached_replay', 'benchmark_judging'):
+        output += '<details><summary>'+escape(labels[scope])+'</summary>'+table(scope)+'</details>'
+    return output+paragraphs([section['cost_source_verification']])
+
+
 def signed_comparison_section(section):
     """Show one reviewed immutable stage, keeping endpoints and costs separate."""
     families = ('hallucination', 'multihop_mt', 'chain_intermediates', 'role_bound_association')
@@ -344,7 +380,7 @@ def signed_comparison_section(section):
                 f"{shown} ({metric['numerator']:,} / {metric['denominator']:,})",
                 signed_within_arm(metric, row['endpoint'], row['family'])])+'</tr>'
         output += '</tbody></table></div></details>'
-    output += paragraphs([section['cost_status']])
+    output += signed_cost_section(section)
     if section['traces']:
         output += '<details><summary>Explicitly reviewed paired examples</summary>'+traces(section['traces'])+'</details>'
     output += '<details><summary>Comparison provenance, review and limitations</summary>'+paragraphs(section['limits'])
@@ -668,7 +704,7 @@ TEMPLATE = """<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>__TITLE__</title><link rel="icon" href="data:,"><style>
 :root{--page:#fafcff;--ink:#172b35;--muted:#566875;--line:#dce7ee;--active:#164e63;--accent:#147a9b;--uncertain:#9a4b16}
-*{box-sizing:border-box}body{margin:0;background:var(--page);color:var(--ink);font:16px/1.6 'Segoe UI',Arial,sans-serif}main{max-width:1240px;margin:auto;padding:42px 30px 70px}h1{font-size:36px;line-height:1.18;font-weight:650;max-width:850px;margin:0 0 16px}h2{font-size:22px;line-height:1.35;font-weight:600;margin:0 0 8px}h3{font-size:18px;margin:30px 0 10px}h4{font-size:16px;margin:0 0 10px}p{max-width:80ch;margin:8px 0 14px}.meta,.evidence{color:var(--muted);font-size:14px;overflow-wrap:anywhere}dd{overflow-wrap:anywhere}.findings details{font-size:14px;padding:8px 12px;max-width:80ch}.meta{display:flex;gap:24px;flex-wrap:wrap}.findings{list-style:none;padding:0;margin:32px 0}.findings li{padding:20px 0 20px 20px;border-left:4px solid var(--accent);margin-bottom:18px}.findings p{margin-bottom:6px}.empty-findings{padding:22px;background:#eaf3f8;margin:28px 0}.progress{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 0;margin:0 0 30px}.progress dt{font-size:13px;color:var(--muted)}.progress dd{margin:3px 0;font-weight:600}.tab-list{display:flex;overflow-x:auto;gap:6px;border-bottom:2px solid var(--line);padding-bottom:0}button{background:transparent;border:0;white-space:nowrap;font:inherit;font-size:14px;cursor:pointer;padding:12px 16px;color:var(--muted);border-bottom:3px solid transparent}button[aria-selected=true]{color:var(--active);border-bottom-color:var(--accent);font-weight:650}button:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}.method-panel{padding:28px 0}.method-heading{display:flex;gap:18px;align-items:center;flex-wrap:wrap}.status{font-size:13px;color:var(--active);background:#e4eff5;padding:3px 10px;border-radius:4px}.missing{color:var(--uncertain)}table{border-collapse:collapse;width:100%;font-size:14px}th,td{text-align:left;vertical-align:top;padding:12px 10px;border-bottom:1px solid var(--line)}th{font-weight:600;color:var(--muted);background:#f0f5f9}.table-scroll{overflow-x:auto}details{border:1px solid var(--line);padding:14px 18px;margin:12px 0;border-radius:6px}summary{cursor:pointer;font-weight:600;overflow-wrap:anywhere}.trace-pair{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:18px}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:14px/1.7 'Segoe UI',Arial,sans-serif;margin:0;padding:16px;background:white;border-left:3px solid var(--line)}.curve{max-width:700px;margin:18px 0;overflow-x:auto}svg{width:100%;height:auto;background:white}svg .axis{fill:none;stroke:var(--line);stroke-width:2}svg .line{fill:none;stroke:var(--accent);stroke-width:3}svg .whisker{fill:none;stroke:var(--active);stroke-width:1.5}svg circle{fill:var(--active)}svg text{fill:var(--muted);font:12px 'Segoe UI',Arial,sans-serif}footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font-size:14px}[hidden]{display:none!important}@media(max-width:850px){main{padding:28px 18px}h1{font-size:29px}.progress{grid-template-columns:repeat(3,1fr)}.trace-pair{grid-template-columns:1fr}}@media(max-width:480px){.progress{grid-template-columns:repeat(2,1fr)}}
+*{box-sizing:border-box}body{margin:0;background:var(--page);color:var(--ink);font:16px/1.6 'Segoe UI',Arial,sans-serif}main{max-width:1240px;margin:auto;padding:42px 30px 70px}h1{font-size:36px;line-height:1.18;font-weight:650;max-width:850px;margin:0 0 16px}h2{font-size:22px;line-height:1.35;font-weight:600;margin:0 0 8px}h3{font-size:18px;margin:30px 0 10px}h4{font-size:16px;margin:0 0 10px}p{max-width:80ch;margin:8px 0 14px;overflow-wrap:anywhere}.meta,.evidence{color:var(--muted);font-size:14px;overflow-wrap:anywhere}dd{overflow-wrap:anywhere}.findings details{font-size:14px;padding:8px 12px;max-width:80ch}.meta{display:flex;gap:24px;flex-wrap:wrap}.findings{list-style:none;padding:0;margin:32px 0}.findings li{padding:20px 0 20px 20px;border-left:4px solid var(--accent);margin-bottom:18px}.findings p{margin-bottom:6px}.empty-findings{padding:22px;background:#eaf3f8;margin:28px 0}.progress{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 0;margin:0 0 30px}.progress dt{font-size:13px;color:var(--muted)}.progress dd{margin:3px 0;font-weight:600}.tab-list{display:flex;overflow-x:auto;gap:6px;border-bottom:2px solid var(--line);padding-bottom:0}button{background:transparent;border:0;white-space:nowrap;font:inherit;font-size:14px;cursor:pointer;padding:12px 16px;color:var(--muted);border-bottom:3px solid transparent}button[aria-selected=true]{color:var(--active);border-bottom-color:var(--accent);font-weight:650}button:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}.method-panel{padding:28px 0}.method-heading{display:flex;gap:18px;align-items:center;flex-wrap:wrap}.status{font-size:13px;color:var(--active);background:#e4eff5;padding:3px 10px;border-radius:4px}.missing{color:var(--uncertain)}table{border-collapse:collapse;width:100%;font-size:14px}th,td{text-align:left;vertical-align:top;padding:12px 10px;border-bottom:1px solid var(--line)}th{font-weight:600;color:var(--muted);background:#f0f5f9}.table-scroll{overflow-x:auto}details{border:1px solid var(--line);padding:14px 18px;margin:12px 0;border-radius:6px}summary{cursor:pointer;font-weight:600;overflow-wrap:anywhere}.trace-pair{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:18px}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:14px/1.7 'Segoe UI',Arial,sans-serif;margin:0;padding:16px;background:white;border-left:3px solid var(--line)}.curve{max-width:700px;margin:18px 0;overflow-x:auto}svg{width:100%;height:auto;background:white}svg .axis{fill:none;stroke:var(--line);stroke-width:2}svg .line{fill:none;stroke:var(--accent);stroke-width:3}svg .whisker{fill:none;stroke:var(--active);stroke-width:1.5}svg circle{fill:var(--active)}svg text{fill:var(--muted);font:12px 'Segoe UI',Arial,sans-serif}footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font-size:14px}[hidden]{display:none!important}@media(max-width:850px){main{padding:28px 18px}h1{font-size:29px}.progress{grid-template-columns:repeat(3,1fr)}.trace-pair{grid-template-columns:1fr}}@media(max-width:480px){.progress{grid-template-columns:repeat(2,1fr)}}
 </style></head><body><main><header><h1>__TITLE__</h1><div class="meta"><span>Updated __UPDATED__</span><span>Cohort: __COHORT__</span><span>Runs: __RUNS__</span></div><p><a href="../docs/REPORT.md">Working research report (local Markdown)</a></p></header>
 __FINDINGS__<section aria-label="Execution progress"><h3>Execution progress</h3>__PROGRESS__</section><nav class="tab-list" role="tablist" aria-label="Experiment methods">__TABS__</nav>__PANELS__
 <footer>__NOTES__<p>FVE means fraction of variance explained. Reconstruction fit alone does not establish faithful recovery. Missing results are not zero, and development findings are provisional.</p></footer></main>

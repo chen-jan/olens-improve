@@ -15,6 +15,80 @@ from pathlib import Path
 import re
 
 FAMILIES = ('hallucination', 'multihop_mt', 'chain_intermediates', 'role_bound_association')
+COST_SCOPES = ('new_input', 'campaign', 'cached_replay', 'benchmark_judging')
+
+
+def cost_rows_checked(rows, names):
+    """Validate reviewed quantities without deriving totals or latency."""
+    if rows is None:
+        return []
+    if not isinstance(rows, list) or any(not isinstance(r, dict) for r in rows) or [r.get('condition') for r in rows] != names:
+        raise ValueError('Cost rows must match the exact ordered method identities')
+    for row in rows:
+        components = row.get('components')
+        if not isinstance(components, list) or not components or any(not isinstance(c, dict) for c in components):
+            raise ValueError('Cost row requires components for all four scopes')
+        if {c.get('scope') for c in components} != set(COST_SCOPES):
+            raise ValueError('Cost row requires all four scopes, including explicit missing entries')
+        seen = set()
+        for component in components:
+            for key in ('component', 'unit', 'basis'):
+                if not isinstance(component.get(key), str) or not component[key].strip():
+                    raise ValueError('Cost component requires name, unit and basis')
+            identity = (component['scope'], component['component'], component['unit'])
+            if identity in seen:
+                raise ValueError('Duplicate cost component quantity')
+            seen.add(identity)
+            status, value = component.get('status'), component.get('value')
+            if status not in ('measured', 'estimated', 'specified', 'missing'):
+                raise ValueError('Unknown cost measurement status')
+            if status == 'missing':
+                if 'value' not in component or value is not None:
+                    raise ValueError('Missing cost must have a null value')
+                if component.get('source_refs') not in (None, []):
+                    raise ValueError('Missing cost must not claim source quantities')
+            else:
+                if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value) or value < 0:
+                    raise ValueError('Cost quantity must be finite and nonnegative')
+                refs = component.get('source_refs')
+                if not isinstance(refs, list) or not refs:
+                    raise ValueError('Nonmissing cost requires source evidence')
+                for ref in refs:
+                    if not isinstance(ref, dict) or any(not isinstance(ref.get(k), str) or not ref[k].strip() for k in ('path', 'field')):
+                        raise ValueError('Cost evidence requires path and field')
+                    if not Path(ref['path']).is_absolute():
+                        raise ValueError('Cost source path must be absolute')
+                    require_hash(ref.get('sha256'))
+            if status == 'estimated' and (not isinstance(component.get('estimate_rule'), str) or not component['estimate_rule'].strip()):
+                raise ValueError('Estimated cost requires an explicit estimate rule')
+            if status == 'specified' and component['unit'] not in ('samples', 'calls', 'tokens', 'vectors', 'forward passes', 'refits'):
+                raise ValueError('Specified status is for algorithmic workloads, not timing or monetary measurements')
+            if component.get('note') is not None and not isinstance(component['note'], str):
+                raise ValueError('Invalid cost limitation note')
+    return copy.deepcopy(rows)
+
+
+def verify_cost_source_bytes(rows):
+    """Hash only reviewed references, after stage/cohort capability checks.
+
+    This verifies byte identities, not the meaning of field locators, units,
+    scaling assumptions or allocation of shared work; those remain reviewed.
+    """
+    seen = {}
+    for row in rows:
+        for component in row['components']:
+            if component['status'] == 'missing':
+                continue
+            for ref in component['source_refs']:
+                path = ref['path']
+                if path not in seen:
+                    digest = sha256()
+                    with Path(path).open('rb') as source:
+                        for chunk in iter(lambda: source.read(1024*1024), b''):
+                            digest.update(chunk)
+                    seen[path] = digest.hexdigest()
+                if seen[path] != ref['sha256']:
+                    raise ValueError('Cost source bytes differ from reviewed SHA')
 
 
 def require_hash(value):
@@ -77,6 +151,7 @@ def comparison(artifact, review, source_path, source_sha, review_sha):
     names = [a['condition'] for a in m['conditions']]
     if not names or len(set(names)) != len(names) or names != review.get('condition_ids'):
         raise ValueError('Condition menu differs from exact reviewed order')
+    costs = cost_rows_checked(review.get('cost_rows'), names)
     expected = review['expected_family_counts']
     if set(expected) != set(FAMILIES):
         raise ValueError('Require reviewed counts for all four families')
@@ -169,6 +244,8 @@ def comparison(artifact, review, source_path, source_sha, review_sha):
         'identities': identities, 'condition_ids': names, 'family_counts': copy.deepcopy(expected),
         'cell_rows': cell_rows, 'original_item_rows': item_rows, 'auxiliary_rows': auxiliary_rows,
         'paired_rows': paired, 'length_rows': lengths, 'traces': selected_traces,
+        'cost_rows': costs,
+        'cost_source_verification': 'Root-reviewed references; source bytes have not been independently checked by this in-memory adapter.',
         'limits': artifact['limits'] + ['No combined score across task families or automatic winner is computed.',
             'Only source-provided paired contrasts are displayed; absent intervals remain missing.'],
         'cost_status': 'Timings and helper costs for new inputs in this comparison are not attached. Earlier pilot/DEV costs are separate cohorts; cached replay is not complete inference cost.'}
@@ -191,6 +268,9 @@ def main():
     if actual != args.expected_sha256:
         raise ValueError('Artifact bytes differ from reviewed SHA')
     section = comparison(json.loads(raw), review, args.artifact, actual, sha256(review_raw).hexdigest())
+    if section['cost_rows']:
+        verify_cost_source_bytes(section['cost_rows'])
+        section['cost_source_verification'] = 'Source byte SHA-256 identities verified after review and cohort checks. Field meanings, measurement scope and estimate rules remain root-reviewed claims.'
     report = json.loads(args.report.read_text())
     existing = report.setdefault('signed_comparisons', {})
     if section['stage'] in existing and existing[section['stage']]['source_sha256'] != actual:
