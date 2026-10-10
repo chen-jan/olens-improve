@@ -1,0 +1,22 @@
+[
+  {
+    "method": "pooled_greedy_swap",
+    "n": 16
+  },
+  {
+    "method": "pooled_greedy_swap",
+    "n": 32
+  },
+  {
+    "method": "prune_loo_a32_0.005",
+    "n": 32
+  },
+  {
+    "method": "random_delete_matched_a32_0.005",
+    "n": 32
+  },
+  {
+    "method": "random_complete",
+    "n": 32
+  }
+]

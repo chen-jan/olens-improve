@@ -1,6 +1,6 @@
 # Execution status
 
-Updated: 2026-10-10, approximately 16:13 UTC.
+Updated: 2026-10-10, approximately 16:18 UTC.
 Started: 2026-10-10 01:25:36 UTC (October 9, 21:25:36 EDT).
 Target finish: 2026-10-10 21:25:36 UTC. Execution remains active and authorized.
 
@@ -14,7 +14,11 @@ acquisition-only retry fix passed 48 offline tests and independent review.
 Hallucination resumed at 16:12 UTC in session 88668/PID 3625516 under the sealed
 v4 specification, SHA `423a431df4b18b5830681763db0a1a52b2294cc62c449eeff506bb3324932226`.
 The fix never replays a transaction body or commit, and the running role worker
-remains untouched. Its first sustained-health observation is pending. No TEST quality
+remains untouched. The 16:16:55 UTC bounded checkpoint found 94 settled and six
+active hall attempts, and 95 settled and five active role attempts, in their
+latest 100-attempt windows, with no new unknown charges. All seven prior TEST
+holds ($0.03490775) remain. These windows confirm new responses, not a cumulative
+throughput guarantee. No TEST quality
 has been inspected. Final delivery is currently estimated at 22:00–00:00 UTC
 (6–8 pm Eastern), conditional on reliable remaining judging. The public
 dashboard's 15:49 operational snapshot predates this second stop and continuation.
