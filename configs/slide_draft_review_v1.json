@@ -1,0 +1,31 @@
+{
+  "status": "root_reviewed_draft_foundation",
+  "reviewed_utc": "2026-10-10T16:29:39.041147+00:00",
+  "reviewed_by": "root",
+  "review_receipt": {
+    "path": ".state/slides-layout-v6/review-receipt.json",
+    "sha256": "aebd26bb1acc38b3ff2836a733f759b723470b29322c512b41a40ddf2a079a26"
+  },
+  "artifact_directory": "${OLENS_COMPUTE_ROOT}/slides/comprehensive-dev-val-v6",
+  "source_sha256": "2e52f22fd305d0775089c1dd62d2bdce0a5582d17c48e47e9ea1faada1072676",
+  "report_sha256": "92b46291fa35046ff83c6bb4d48a9ada9f57579d1b04a6dfe00674f567ae3b9f",
+  "builder_sha256": "bc116747db8e7aedc58131e53290c01279e8bff91f854e277f6f82e3fd11ce94",
+  "editable_pptx_sha256": "bd762af1a1c04e585c9fef0fc8f93f4d9112f9ddf7f081ad89a2d91034dcb62d",
+  "pdf_sha256": "ea2dfcdb346e819a3bc725b8ec5506c22a6294f40240efc3db483822a3184d0b",
+  "core_slides": 16,
+  "total_slides": 151,
+  "root_visual_checks": [
+    "Entire contact sheet of unchanged draft foundation",
+    "Slide010: complete development curves and grouped intervals",
+    "Slide017: appendix navigation",
+    "Revised004: branching alternatives, correct independent-site scope",
+    "Revised012: numerical percentage-point axes, group counts, direction and95% intervals"
+  ],
+  "validation": "Four focused tests passed; all151HTML text boxes inspected for overflow; measured values unchanged by presentation revision.",
+  "native_pptx_rendering_validated": false,
+  "limits": [
+    "PDF is rendered from the HTML geometry mirror; native PowerPoint visual parity is unvalidated.",
+    "Draft has no TEST outcomes and cannot substitute for requested final deck.",
+    "Final held-out and descriptive469-item result slots must be filled from independently reviewed complete reports."
+  ]
+}

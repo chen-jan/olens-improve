@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "status": "DRAFT - DEVELOPMENT / VALIDATION ONLY",
+  "cohorts": [
+    "development",
+    "validation"
+  ],
+  "test_quality_access": false,
+  "report_sha256": "393d274b8f6fbe2f4271e336411114f7b67aabd6a4b569d26ac6e6d693e44288",
+  "validation_artifact_sha256": "db223a374f51d9122f8cc430a347e4f82dea75ce3d449008e1def1f7cf89e918",
+  "source_updated_utc": "2026-10-10T13:08:33.909842+00:00",
+  "slides": [
+    {
+      "kind": "question",
+      "title": "Can we choose better descriptions?",
+      "subtitle": "Frozen model. One internal snapshot. Up to 32 candidate readouts.",
+      "notes": "Style proof only. The model and released readers are frozen. One internal activation at one layer and position is read independently. Inference methods never receive benchmark answers or judge verdicts. This is not a final result deck."
+    },
+    {
+      "kind": "validation",
+      "title": "Validation has no overall winner",
+      "conditions": [
+        "raw_n1-n1",
+        "best_n_exact-n16",
+        "best_n_exact-n32",
+        "best_n_specificity_mean-n32"
+      ],
+      "notes": "Validation only: 80 items, 3485 original activation sites, twelve frozen conditions. The four displayed methods are illustration choices from the reviewed public overview, not a new menu. Each method has its exact source rate, numerator, denominator and supplied 95% grouped interval. Hallucination uses contradicted/specific readouts; recovery families use intended cells. Counts and groups differ by task. Paired differences are separate from marginal intervals."
+    },
+    {
+      "kind": "example",
+      "title": "Finding a number can still give a wrong explanation",
+      "cell_id": "chain_intermediates|chain-d2p-0231|L32|p00068",
+      "baseline_condition": "best_n_exact-n32",
+      "condition": "best_n_specificity_mean-n32",
+      "excerpts": [
+        "- Here is the result following the specified rules: 25.",
+        "- The answer is 2. (Here's the step-by-step reduction: 12 - 8 = 4"
+      ],
+      "interpretation": "Intermediate 2 becomes prominent, but starting values and operations remain wrong.",
+      "notes": "This is a reviewed validation win on intermediate-number recovery, not a proof that the explanation is correct. Exact retained selected readout follows:\n- Here is the result following the specified rules: 25.\n- The answer is 2. (Here's the step-by-step reduction: 12 - 8 = 4\n- Here is the thought process to reach the final answer: Start at 3. Apply the rules:\n- 15 (Explanation: The number is reduced by 1 each step, resulting in 2 after two applications.)\n\n**\n\nExact retained parent:\n- Here is the step-by-step deduction to determine the final number based on the rules provided:\n- 9 (The calculation: start at 12, subtract 1, subtract 1 again. 12 - 1 -\n- Here is the result following the instructions strictly: 8\n\nHere is the step-by-step logic:\n1.  Start with 10.\n2.  Subtract 1: 10\n- The answer is 10.\n\n### Explanation of the process:\n\n1.  **Initial number:**\n\nIntermediate 2 becomes prominent, but starting values and operations remain wrong.\nOfficial verdict is preserved. The contextual source and extracted value/kind/basis are retained in the signed analysis. The visible quotes are exact source lines, not rewritten completions."
+    },
+    {
+      "kind": "cost",
+      "title": "New inputs cost work. Replays reuse it.",
+      "conditions": [
+        "raw_n1-n1",
+        "best_n_exact-n16",
+        "best_n_exact-n32",
+        "best_n_specificity_mean-n32"
+      ],
+      "notes": "Sample budgets and zero recurring runtime helper calls are fixed method contracts. The benchmark judge is separate. Campaign API usage is an estimate at the source timestamp, not an invoice or a per-query serving price. Outstanding and uncertain charges remain held. GPU dollar pricing and final-profile fresh-input latency are missing in this snapshot. TEST has 268 items but no quality result is included."
+    }
+  ],
+  "existing_plots": [
+    {
+      "path": "dashboard/figures/validation-v1/family-cell-rates.png",
+      "sha256": "48b0ca004fd236e331909ce2c8f9a263580a6bf4c4cfffa1605bb67cb31deb8f"
+    },
+    {
+      "path": "dashboard/figures/validation-v2/cross-task-error-recovery-zoom.png",
+      "sha256": "2b6c66b9756db28c3fa0fb6a7b59560ca8f8895c0833133fe0a56e87f0b112a2"
+    }
+  ]
+}
