@@ -34,6 +34,51 @@ def random_complete_selection(samples, n, admissible, rng):
     return Selection('random_complete',rng.choice(eligible).bullets,None)
 
 
+def ar_scoreable(bullets, vectors):
+    return all(b.phrase_id in vectors for b in bullets)
+
+
+def selection_fits(selection, exact, released, raw_text=None):
+    if not ar_scoreable(selection.bullets, exact.vectors):
+        return None, 'unavailable_AR_empty_after_cleanup'
+    if raw_text is not None:
+        return None, 'unavailable_for_unmodified_raw_text'
+    return {'exact':exact.fit(selection.phrase_ids).__dict__,
+            'released80':released.fit(selection.phrase_ids).__dict__}, 'emitted_bullets'
+
+
+def prune_parent(source, exact, maximum_loss):
+    if not ar_scoreable(source.bullets, exact.vectors):
+        return Selection('prune_loo',source.bullets,None,reason='unavailable_parent_AR')
+    return prune_leave_one_out(source.bullets,exact.score,maximum_loss=maximum_loss)
+
+
+def coefficient_parent(source, exact, threshold):
+    if not ar_scoreable(source.bullets, exact.vectors):
+        return Selection('prune_coefficient',source.bullets,None,reason='unavailable_parent_AR')
+    fit=exact.fit(source.phrase_ids); scale=sum(fit.coefficients)
+    retained=tuple(b for b,c in zip(source.bullets,fit.coefficients) if c>threshold*scale)
+    return Selection('prune_coefficient',retained,None)
+
+
+def pool_candidates(samples, n, vectors):
+    from dataclasses import replace
+    bullets=[]; representatives={}
+    for sample in samples[:n]:
+        if sample.parsing_uncertain:
+            continue
+        for bullet in sample.bullets:
+            if bullet.phrase_id in vectors and bullet.text not in representatives:
+                representatives[bullet.text]=bullet; bullets.append(bullet)
+    remapped=[]
+    for sample in samples[:n]:
+        if not sample.parsing_uncertain and ar_scoreable(sample.bullets,vectors):
+            mapped=tuple(dict((representatives[b.text].phrase_id,representatives[b.text])
+                              for b in sample.bullets).values())
+            remapped.append(replace(sample,bullets=mapped))
+    return bullets,remapped
+
+
 def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('--runtime',default='configs/runtime.json')
@@ -126,7 +171,8 @@ def main():
             ref=controls_manifest['control_bank'][control_id]
             if any(ref[k]!=own[k] for k in ('family','layer')):
                 raise ValueError('Frozen control has unmatched family/layer')
-    config={'schema_version':1,'primary_solver':'scipy_exact','compatibility_solver':'released80',
+    config={'schema_version':2,'primary_solver':'scipy_exact','compatibility_solver':'released80',
+            'empty_AR_policy':'Invalid cleaned atoms excluded from AR complete selection/pooling; text baselines unchanged; unscoreable N1 pruning is explicit no-op',
             'prefixes':[1,2,4,8,16,32],'max_bullets':4,'max_output_qwen_tokens':256,
             'parser':'source_contiguous_dash_blocks_v1','loo_maximum_losses':[0.,.001,.005],
             'coefficient_relative_thresholds':[.01,.05],'pool_prefixes':[16,32],'swap_passes':1,
@@ -171,7 +217,7 @@ def main():
                     if sha!=cells[target_id]['activation_sha256']:
                         raise ValueError('Fresh activation hash mismatch')
                     targets[target_id]=whitener.whiten(original.reshape(1,-1))[0]
-            samples=[]; provenance={}; needed={}
+            samples=[]; provenance={}; needed={}; invalid_by_sample={}
             for index in range(32):
                 row=rows[index]
                 if row['activation_sha256']!=cell['activation_sha256']:
@@ -184,9 +230,13 @@ def main():
                     info=usage[(cell_id,index,bullet.phrase_id)]
                     if info['text']!=bullet.text or info['activation_sha256']!=cell['activation_sha256']:
                         raise ValueError('AR text/target provenance differs')
+                    provenance[bullet.phrase_id]=info
                     if info['cache_key'] is None:
-                        raise ValueError('Candidate contains an empty cleaned scoring atom')
-                    needed[bullet.phrase_id]=info['cache_key']; provenance[bullet.phrase_id]=info
+                        if info.get('status')!='empty_after_cleanup':
+                            raise ValueError('Missing AR key without explicit empty-cleanup status')
+                        invalid_by_sample.setdefault(index,[]).append(info)
+                        continue
+                    needed[bullet.phrase_id]=info['cache_key']
             missing=sorted(set(needed.values())-whitened_vectors.keys())
             if missing:
                 raw=torch.stack([cache.get(key) for key in missing])
@@ -198,14 +248,12 @@ def main():
                   'vector_contract_sha256':cache.contract['sha256'],'control_ids':bank[cell_id]}
             exact=JointNNLS(targets[cell_id],phrase_vectors,metadata=meta)
             released=JointNNLS(targets[cell_id],phrase_vectors,solver='released80',metadata=meta)
+            scoreable_admissible=lambda bullets: admissible(bullets) and ar_scoreable(bullets,phrase_vectors)
             results=[]
             def save(method,n,selection,raw_text=None,extra=None):
                 text=selection.text if raw_text is None else raw_text
                 ids=selection.phrase_ids
-                fits={'exact':exact.fit(ids).__dict__,'released80':released.fit(ids).__dict__}
-                fit_scope='emitted_bullets'
-                if raw_text is not None:
-                    fits=None; fit_scope='unavailable_for_unmodified_raw_text'
+                fits,fit_scope=selection_fits(selection,exact,released,raw_text)
                 if raw_text is None and not admissible(selection.bullets):
                     raise ValueError('Output violates final cap')
                 results.append({'method':method,'n':n,'text':text,'phrase_ids':list(ids),
@@ -216,41 +264,28 @@ def main():
                  {'raw_baseline_exempt_from_output_cap':True,'parser_flags':list(samples[0].flags)})
             save('capped_n1',1,Selection('capped_n1',samples[0].bullets,None))
             for n in config['prefixes']:
-                best=best_of_n(samples,n,exact.score,admissible=admissible)
+                best=best_of_n(samples,n,exact.score,admissible=scoreable_admissible)
                 save('best_n_exact',n,best)
-                compat=best_of_n(samples,n,released.score,admissible=admissible)
+                compat=best_of_n(samples,n,released.score,admissible=scoreable_admissible)
                 save('best_n_released80',n,compat)
                 rng=random.Random(int(digest(['random_complete_v1',cell_id,n])[:16],16))
                 save('random_complete',n,random_complete_selection(samples,n,admissible,rng))
-            best=best_of_n(samples,32,exact.score,admissible=admissible)
+            best=best_of_n(samples,32,exact.score,admissible=scoreable_admissible)
             for source_name,source in [('a32',best),('n1',Selection('capped_n1',samples[0].bullets,None))]:
                 for loss in config['loo_maximum_losses']:
-                    pruned=prune_leave_one_out(source.bullets,exact.score,maximum_loss=loss)
+                    pruned=prune_parent(source,exact,loss)
                     save(f'prune_loo_{source_name}_{loss:g}',32 if source_name=='a32' else 1,pruned)
                     rng=random.Random(int(digest(['random_delete_v1',cell_id,source_name,loss])[:16],16))
                     chosen=set(rng.sample(range(len(source.bullets)),len(pruned.bullets)))
                     save(f'random_delete_matched_{source_name}_{loss:g}',32 if source_name=='a32' else 1,
-                         Selection('random_delete',tuple(b for i,b in enumerate(source.bullets) if i in chosen),None))
-                fit=exact.fit(source.phrase_ids)
+                         Selection('random_delete',tuple(b for i,b in enumerate(source.bullets) if i in chosen),None,
+                                   reason='unavailable_parent_AR' if pruned.reason=='unavailable_parent_AR' else 'selected'))
                 for threshold in config['coefficient_relative_thresholds']:
-                    scale=sum(fit.coefficients)
-                    retained=tuple(b for b,c in zip(source.bullets,fit.coefficients) if c>threshold*scale)
-                    save(f'prune_coefficient_{source_name}_{threshold:g}',32 if source_name=='a32' else 1,Selection('prune_coefficient',retained,None))
+                    save(f'prune_coefficient_{source_name}_{threshold:g}',32 if source_name=='a32' else 1,
+                         coefficient_parent(source,exact,threshold))
             for n in config['pool_prefixes']:
                 # Exact text dedup only; original source IDs remain provenance representatives.
-                bullets=[]; representatives={}
-                for sample in samples[:n]:
-                    if sample.parsing_uncertain:
-                        continue
-                    for bullet in sample.bullets:
-                        if bullet.text not in representatives:
-                            representatives[bullet.text]=bullet; bullets.append(bullet)
-                remapped=[]
-                from dataclasses import replace
-                for sample in samples[:n]:
-                    if not sample.parsing_uncertain:
-                        mapped=tuple(dict((representatives[b.text].phrase_id,representatives[b.text]) for b in sample.bullets).values())
-                        remapped.append(replace(sample,bullets=mapped))
+                bullets,remapped=pool_candidates(samples,n,phrase_vectors)
                 pooled=greedy_pool(bullets,exact.score,admissible=admissible,swap_passes=1,
                                    complete_samples=remapped)
                 save('pooled_greedy_swap',n,pooled)
@@ -259,7 +294,7 @@ def main():
                 for aggregation in ('mean','max'):
                     def objective(ids,aggregation=aggregation):
                         return control_specificity(exact.score(ids),{key:value.score(ids) for key,value in controls.items()},aggregation=aggregation)['score']
-                    chosen=best_of_n(samples,32,objective,admissible=admissible)
+                    chosen=best_of_n(samples,32,objective,admissible=scoreable_admissible)
                     diagnostics=control_specificity(exact.score(chosen.phrase_ids),
                         {key:value.score(chosen.phrase_ids) for key,value in controls.items()},aggregation=aggregation)
                     save(f'best_n_specificity_{aggregation}',32,chosen,extra=diagnostics)
@@ -267,6 +302,7 @@ def main():
                 'layer':layer,'position':cell['position'],'split':'development','global_pool_id':pool,
                 'activation_sha256':cell['activation_sha256'],'config_sha256':digest(config),
                 'parser_flags_by_sample':{s.index:list(s.flags) for s in samples},
+                'invalid_AR_atoms_by_sample':invalid_by_sample,
                 'selections':results,'seconds_since_start':time.time()-started}
             stream.write(json.dumps(event)+'\n'); stream.flush(); os.fsync(stream.fileno())
             completed.add(cell_id)

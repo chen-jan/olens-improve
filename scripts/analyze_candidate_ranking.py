@@ -32,8 +32,14 @@ def pair_rank(rows, good, bad):
 
 def interval(rows, key, reference):
     """Each cell retains its contribution; resample whole related source groups."""
-    return paired_group_interval({r['cell_id']: r[reference] for r in rows},
-        {r['cell_id']: r[key] for r in rows}, {r['cell_id']: r['group_id'] for r in rows})
+    baseline, proposed = defaultdict(lambda: [0., 0.]), defaultdict(lambda: [0., 0.])
+    for row in rows:
+        item = row['item_id']
+        for index in (0, 1):
+            baseline[item][index] += row[reference][index]
+            proposed[item][index] += row[key][index]
+    return paired_group_interval(dict(baseline), dict(proposed),
+        {r['item_id']: r['group_id'] for r in rows})
 
 
 def analyze(args):
@@ -213,6 +219,7 @@ def analyze(args):
                     'pairs': sum(r['consistent_vs_wrong_rank_pairs'][1] for r in rows)}})
         summary[family] = result
     artifact = {'analysis_status': 'complete_development_partial_grid', 'manifest_sha256': sha(args.manifest),
+        'analysis_revision': 'v2-source-item-bootstrap-metadata',
         'scores_sha256': sha(args.scores), 'a32_selection_sha256': sha(args.a32_selections),
         'judged_conditions': 32, 'judged_candidates': len(labels), 'missing_candidates': 0,
         'bootstrap_seed': 20261010, 'bootstrap_replicates': 2000,
