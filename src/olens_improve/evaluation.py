@@ -28,6 +28,7 @@ from typing import Any
 from .budget import AtomicBudget, BudgetExceeded, request_input_upper_bound
 from .data import BENCH_COMMIT, FAMILIES, SOURCE_ROOT, LAYERS, canonical, file_hash, paths
 from .stage_io import validate_export_stage
+from .performance import CURRENT_PROFILE, profile_condition
 
 JUDGE_MODEL = 'gpt-6-luna'
 BENCH_ROOT = SOURCE_ROOT / 'scratch/repos/workspace-bench-v2'
@@ -124,6 +125,8 @@ class BudgetedCompletions:
         if input_bound + max_output > 272000:
             raise ValueError('Conservative request bound exceeds the priced standard-context contract')
         content_key = request_cache_key(request)
+        profiler = getattr(self.ledger, '_operational_profile', None)
+        if profiler is not None: profiler.ensure_heartbeat()
         serializable = {k: v for k, v in request.items() if k != 'timeout'}
         aid = self.ledger.reserve_attempt(input_bound, max_output, run_id=self.run_id,
                     metadata={**self.metadata, 'content_cache_key': content_key,
@@ -349,7 +352,12 @@ def install_shared_verdict_cache(path: Path, ledger: AtomicBudget, family: str) 
                     'response_id':response,'request_key':request_key,'original_cell_key':key}}
                 with contextlib.closing(sqlite3.connect(path)) as db:
                     db.execute('INSERT OR IGNORE INTO verdicts VALUES (?,?)',(content_key,canonical(body)));db.commit()
-        kwargs['cache']=ExactCache()
+        exact_cache=ExactCache()
+        profiler=getattr(ledger,'_operational_profile',None)
+        if profiler is not None:
+            exact_cache.get=profiler.wrap('exact_cache.get',exact_cache.get)
+            exact_cache.put=profiler.wrap('exact_cache.put',exact_cache.put)
+        kwargs['cache']=exact_cache
         result=original(unique,**kwargs)
         expanded={}
         for call in calls:
@@ -572,6 +580,7 @@ def evaluation_stage(manifest: Path, fresh_manifest: Path | None = None,
     return json.loads(body), stage, captures, authorization
 
 
+@profile_condition
 def evaluate_condition(selections: Path, manifest: Path, out: Path, *, method: str,
                        n: int, ledger_path: Path, run_id: str, run_cap_usd: str = '1',
                        allow_paid: bool = False, concurrency: int = 8,
@@ -622,6 +631,8 @@ def evaluate_condition(selections: Path, manifest: Path, out: Path, *, method: s
     temporary.write_text(json.dumps(condition, indent=2)+'\n')
     os.replace(temporary,identity)
     ledger = AtomicBudget(ledger_path)
+    profiler = CURRENT_PROFILE.get()
+    if profiler is not None: profiler.attach_ledger(ledger)
     if allow_paid:
         ledger.set_run_limit(run_id, run_cap_usd)
     results = {}
@@ -753,11 +764,24 @@ def _main() -> None:
     p.add_argument('--family',choices=FAMILIES)
     p.add_argument('--shared-cache',type=Path)
     p.add_argument('--condition-list',type=Path,help='Sequential conditions within one family worker')
+    p.add_argument('--performance-profile-dir',type=Path,
+                   help='Opt-in bounded timing/heartbeat summaries; no request contents or identities')
+    p.add_argument('--performance-profile-child',action='store_true',help=argparse.SUPPRESS)
     p.add_argument('--stop-file',type=Path,
                    help='If this file exists, stop before the next condition; never cancel current calls. SIGUSR1 requests the same boundary stop in family workers.')
     p.add_argument('--all-families',action='store_true',help='Four processes, one cache writer/family; bounded calls per process')
     p.add_argument('--repeat-request-audit',type=Path,help='Frozen original requests; audit once without changing primary results')
     a = p.parse_args()
+    if a.performance_profile_dir:
+        # One directory per execution; avoid overwriting timing evidence when
+        # a cached condition is resumed. Children use distinct family names.
+        if not a.performance_profile_child:
+            if a.performance_profile_dir.exists():
+                p.error('--performance-profile-dir must be a fresh execution directory')
+            if a.all_families:
+                a.performance_profile_dir.mkdir(parents=True)
+        elif not a.family or a.all_families or not a.performance_profile_dir.is_dir():
+            p.error('Invalid internal profile child configuration')
     evaluation_stage(a.manifest, a.fresh_manifest, a.gate)
     if a.allow_paid:
         if not os.environ.get('OPENAI_API_KEY'):
@@ -777,6 +801,7 @@ def _main() -> None:
         if a.family:p.error('--all-families and --family are mutually exclusive')
         a.output.mkdir(parents=True,exist_ok=True)
         command=[sys.executable,'-m','olens_improve.evaluation']+[x for x in sys.argv[1:] if x!='--all-families']
+        if a.performance_profile_dir: command.append('--performance-profile-child')
         workers=[]
         for family in FAMILIES:
             with (a.output/f'{family}.worker.log').open('a') as log:
@@ -810,7 +835,9 @@ def _main() -> None:
             n=condition['n'], ledger_path=a.ledger, run_id=a.run_id, run_cap_usd=a.run_cap_usd,
             allow_paid=a.allow_paid, concurrency=a.concurrency, service_tier=a.tier,
             family_only=a.family,shared_cache=a.shared_cache,rpm=a.rpm,
-            fresh_manifest=a.fresh_manifest,gate=a.gate)
+            fresh_manifest=a.fresh_manifest,gate=a.gate,
+            performance_profile=(a.performance_profile_dir/f'{a.family or "all"}-{condition["method"]}-n{condition["n"]}.json')
+                if a.performance_profile_dir else None)
         print(json.dumps({'condition':result['condition'], 'budget':result['budget']}),flush=True)
 
 
