@@ -20,6 +20,7 @@ import time
 import sqlite3
 import contextlib
 import inspect
+import math
 from types import SimpleNamespace
 from typing import Any
 
@@ -28,6 +29,25 @@ from .data import BENCH_COMMIT, FAMILIES, SOURCE_ROOT, LAYERS, canonical, file_h
 
 JUDGE_MODEL = 'gpt-6-luna'
 BENCH_ROOT = SOURCE_ROOT / 'scratch/repos/workspace-bench-v2'
+
+
+def positive_rpm(value: Any) -> float:
+    if isinstance(value, bool):
+        raise ValueError('rpm must be finite and positive')
+    result = float(value)
+    if not math.isfinite(result) or result <= 0:
+        raise ValueError('rpm must be finite and positive')
+    return result
+
+
+def transport_settings(concurrency: int, rpm: float, service_tier: str) -> dict:
+    if not isinstance(concurrency, int) or isinstance(concurrency, bool) or concurrency < 1:
+        raise ValueError('concurrency must be a positive integer')
+    if service_tier not in ('flex', 'default'):
+        raise ValueError('Explicit Flex/Standard service tier required')
+    return {'concurrency': concurrency, 'rpm': positive_rpm(rpm), 'service_tier': service_tier,
+        'rate_limit_scope': 'Per family worker, upstream logical calls; physical retries are separately budgeted.',
+        'sdk_max_retries': 0, 'logical_attempt_limit': 2}
 
 
 def _get(obj: Any, name: str, default: Any = None) -> Any:
@@ -322,6 +342,8 @@ def run_family(family: str, readouts: Path, out: Path, manifest_cells: list[dict
                concurrency: int = 4, rpm: float = 120, service_tier: str = 'flex') -> dict:
     if family not in FAMILIES:
         raise ValueError(f'Unsupported core family {family}')
+    execution = transport_settings(concurrency, rpm, service_tier)
+    rpm = execution['rpm']
     provenance = load_upstream()
     from wsbench.judge_config import resolve
     from wsbench.registry import JudgeArgs, get
@@ -372,6 +394,7 @@ def run_family(family: str, readouts: Path, out: Path, manifest_cells: list[dict
     contract = {
         **provenance, 'result_path': str(path), 'project_judge_model': 'regex' if family == 'multihop_mt' else JUDGE_MODEL,
         'project_reasoning_effort': 'none', 'requested_service_tier': service_tier,
+        'execution_transport': execution,
         'partial_grid': partial_grid, 'scientific_status': 'instrument-only' if dry_run else ('partial-cell-diagnostic' if partial_grid else 'frozen-grid-comparison'),
         'upstream_complete_preserved': result.complete,
         'benchmark_pin_note': 'Luna is a declared project instrument override of upstream Gemini; preserve upstream pinned/complete fields.',
@@ -475,12 +498,13 @@ def evaluate_condition(selections: Path, manifest: Path, out: Path, *, method: s
                        n: int, ledger_path: Path, run_id: str, run_cap_usd: str = '1',
                        allow_paid: bool = False, concurrency: int = 8,
                        service_tier: str = 'flex', family_only: str | None = None,
-                       shared_cache: Path | None = None) -> dict:
+                       shared_cache: Path | None = None, rpm: float = 120) -> dict:
     """Evaluate one immutable per-cell condition; run different arms in processes.
 
     The pinned upstream transport is module-global, so independent arms must not
     race its run ID in threads. Paid outputs and provenance stay outside Git.
     """
+    execution = transport_settings(concurrency, rpm, service_tier)
     frozen = json.loads(manifest.read_text())
     selected = []
     for line in selections.read_text().splitlines():
@@ -523,10 +547,29 @@ def evaluate_condition(selections: Path, manifest: Path, out: Path, *, method: s
         if readouts.exists() and readouts.read_text() != content:
             raise ValueError('Readout identity changed in an existing condition directory')
         readouts.write_text(content)
-        results[family] = run_family(family, readouts, out/family, frozen['cells'],
-            ledger=ledger, run_id=run_id, allow_paid=allow_paid, dry_run=not allow_paid,
-            partial_grid=condition['partial_grid'], concurrency=concurrency,
-            service_tier=service_tier)
+        # Transport tuning does not alter the immutable scientific condition.
+        # Record each execution separately, including resumptions using a cache.
+        started = time.monotonic()
+        stamp = time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())
+        event = {'started_utc': stamp, 'pid': os.getpid(), 'family': family, 'run_id': run_id,
+                 'condition': {'method': method, 'n': n}, 'transport': execution,
+                 'allow_paid': allow_paid, 'status': 'running'}
+        history = out/f'{family}.execution.jsonl'
+        def record_execution(row):
+            with history.open('a') as handle:
+                handle.write(json.dumps(row) + '\n')
+        record_execution(event)
+        try:
+            results[family] = run_family(family, readouts, out/family, frozen['cells'],
+                ledger=ledger, run_id=run_id, allow_paid=allow_paid, dry_run=not allow_paid,
+                partial_grid=condition['partial_grid'], concurrency=concurrency,
+                service_tier=service_tier, rpm=execution['rpm'])
+        except BaseException as error:
+            record_execution({**event, 'status': 'failed', 'error_type': type(error).__name__,
+                              'wall_seconds': time.monotonic() - started})
+            raise
+        record_execution({**event, 'status': 'completed', 'wall_seconds': time.monotonic() - started,
+                          'finished_utc': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())})
     summary = {'condition': condition, 'families': results, 'budget': ledger.snapshot()}
     (out/(f'{family_only}.summary.json' if family_only else 'summary.json')).write_text(json.dumps(summary, indent=2)+'\n')
     return summary
@@ -614,6 +657,8 @@ def _main() -> None:
     p.add_argument('--run-cap-usd', default='1')
     p.add_argument('--ledger', type=Path, default=Path('${OLENS_DATA_ROOT}/budget/ledger.sqlite3'))
     p.add_argument('--concurrency', type=int, default=8)
+    p.add_argument('--rpm', type=positive_rpm, default=120,
+                   help='Positive per-family logical calls/minute; default120, not a global provider limit')
     p.add_argument('--tier', choices=['flex','default'], default='flex')
     p.add_argument('--allow-paid', action='store_true')
     p.add_argument('--family',choices=FAMILIES)
@@ -665,7 +710,7 @@ def _main() -> None:
         result = evaluate_condition(a.selections, a.manifest, out, method=condition['method'],
             n=condition['n'], ledger_path=a.ledger, run_id=a.run_id, run_cap_usd=a.run_cap_usd,
             allow_paid=a.allow_paid, concurrency=a.concurrency, service_tier=a.tier,
-            family_only=a.family,shared_cache=a.shared_cache)
+            family_only=a.family,shared_cache=a.shared_cache,rpm=a.rpm)
         print(json.dumps({'condition':result['condition'], 'budget':result['budget']}),flush=True)
 
 
