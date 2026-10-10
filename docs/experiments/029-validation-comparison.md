@@ -159,6 +159,14 @@ health request or automatic concurrency increase. The first approximately one
 hundred responses will be an observation window, not an exact call-count cap.
 Successful launch alone does not establish a durable fix.
 
+The 10:46:00 early checkpoint recorded **218 additional settled responses**, zero
+new unknown charges and ten live requests with the oldest aged 1.67 seconds.
+Recent per-family p95 request latency was 2.54 seconds for hallucination and
+2.10 seconds for role. Every original hold remained intact. This is a healthy
+early window, not proof that later stalls are resolved. Evidence:
+`judgments/checkpoint-recovery-v2-early100-v1.json`, SHA-256
+`0141370baacebe5ca82a70b5cf4c97692d98010aaa227aa6bd04964794153240`.
+
 Report the original contradiction denominator together with assertion share,
 off-topic rate and both hallucination stages. Keep false spans distinct from
 supported and unverifiable claims. Recovery and item-ANY scores do not certify

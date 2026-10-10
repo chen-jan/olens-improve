@@ -1,6 +1,6 @@
 # Execution status
 
-Updated: 2026-10-10, approximately 10:45 UTC.
+Updated: 2026-10-10, approximately 10:46 UTC.
 Started: 2026-10-10 01:25:36 UTC (October 9, 21:25:36 EDT).
 Target finish: 2026-10-10 21:25:36 UTC. Execution remains active and authorized.
 
@@ -81,7 +81,7 @@ first source-checked dashboard with grouped intervals. Nothing has been pushed.
 | Single-method pilots | A/B/C/D/E1/E3/F judged; E2/G diagnostics complete with limits; exact-claim-span v3 stopped after its eight-cell contract audit, without benchmark-quality measurement |
 | Combinations | 65 unique pilot conditions judged and source-checked; larger E1-plus-pruning outputs complete and awaiting judging |
 | Additional controls | All32 judgments and matched-donor N1 complete; all requested cells/stages covered |
-| Held-out evaluation | All 3,485 validation cells have immutable N32 pools; all AR, selectors, pruning and the exact twelve-arm export are complete. Multi-hop and chain judging are complete; hallucination is 11/12 and role 7/12; both resumed their exact unfinished conditions at 10:45 after a tested accounting snapshot repair. Early recovery health is being checked. Blind TEST sampling is running on four H200s; TEST analysis stays closed. |
+| Held-out evaluation | All 3,485 validation cells have immutable N32 pools; all AR, selectors, pruning and the exact twelve-arm export are complete. Multi-hop and chain judging are complete; hallucination is 11/12 and role 7/12; both resumed their exact unfinished conditions at 10:45 after a tested accounting snapshot repair. The early window has 218 new settled responses and no new uncertain charges; monitoring continues. Blind TEST sampling is running on four H200s; TEST analysis stays closed. |
 
 Combination comparisons retain unchanged parents, component-off outputs, and
 random deletion matched on retained bullet count. Fixed support weights are
@@ -106,11 +106,14 @@ requested the SQLite writer lock; role then reached the uncertainty guard.
 The minimal read-only snapshot fix passed eighteen budget tests and is committed
 as `ea0f972`. The one abandoned reservation was classified unknown with its full
 amount retained, and both judges resumed at 10:45 under the reviewed recovery
-spec. No validation conclusion or final method choice has been made.
+spec. At 10:46, 218 additional responses had settled with zero new unknowns;
+recent p95 request latencies were 2.54 seconds for hallucination and 2.10 seconds
+for role. This early health window does not establish a durable fix. No
+validation conclusion or final method choice has been made.
 See [experiment 029](experiments/029-validation-comparison.md).
 
-Blind TEST sampling started at 08:32 UTC. At 10:34:12, 6,697 of 10,714 cells
-(62.5%) were complete, with a conditional generation-only forecast near 11:50 UTC.
+Blind TEST sampling started at 08:32 UTC. At 10:45:36, 7,327 of 10,714 cells
+(68.4%) were complete, with a conditional generation-only forecast near 11:48 UTC.
 TEST text, AR, selection and judging remain sealed until the final freeze and
 separate analysis gate. The GPU work is unaffected by the judging interruption.
 
