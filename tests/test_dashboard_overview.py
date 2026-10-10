@@ -22,13 +22,33 @@ def fixture():
             'cost_rows':cost,'source_sha256':'f'*64}}}
 
 
+def reviewed_test_fixture():
+    report=fixture();section=copy.deepcopy(report['signed_comparisons']['validation'])
+    section.update(stage='test',source_sha256='a'*64)
+    for i,(family,counts) in enumerate(section['family_counts'].items()):
+        counts.update(items=67,cells=2680 if i<3 else 2674,groups=40+i)
+    for scope in ('cell_rows','original_item_rows'):
+        for row in section[scope]:
+            counts=section['family_counts'][row['family']]
+            denominator=counts['cells'] if scope=='cell_rows' or row['family']=='hallucination' else counts['items']
+            row['metric'].update(numerator=2,denominator=denominator,value=2/denominator,
+                items=counts['items'],independent_groups=counts['groups'],ci95=[0,.05])
+    section['review'].update(stage='test',test_reveal_authorized=True,artifact_sha256='a'*64,
+        condition_ids=copy.deepcopy(section['condition_ids']),
+        expected_family_counts=copy.deepcopy(section['family_counts']),
+        findings=[{'claim':'SYNTHETIC REVIEWED TEST FINDING','evidence':'Synthetic fixed-menu evidence.'}])
+    report['signed_comparisons']['test']=section
+    report['activity']['heldout_cells']=10714
+    return report
+
+
 class OverviewTests(unittest.TestCase):
     def test_rendering_preserves_source_and_exposes_counts_intervals_scope(self):
         report=fixture();before=copy.deepcopy(report);page=overview.build(report)
         self.assertEqual(report,before)
         self.assertIn('12/100',page);self.assertIn('95% interval 8.00–20.00%',page)
         self.assertEqual(page.split('<script',1)[0].count('class="task-chart"'),4)
-        self.assertIn('Questions with at least one match',page)
+        self.assertIn('Questions meeting the task criterion',page)
         self.assertIn('No overall winner yet',page);self.assertIn('268 items',page)
         self.assertIn('Lower is better',page);self.assertIn('Higher is better',page)
         self.assertNotIn('/orcd/',page)
@@ -60,8 +80,8 @@ class OverviewTests(unittest.TestCase):
             row['metric'].update(numerator=counts[0],denominator=counts[1],value=counts[2],ci95=None)
         before=copy.deepcopy(report);page=overview.build(report)
         self.assertEqual(report,before)
-        self.assertIn('7/200 activations match (3.50%)',page)
-        self.assertIn('12/20 questions have at least one match (60.00%)',page)
+        self.assertIn('7/200 activations meet the criterion (3.50%)',page)
+        self.assertIn('12/20 questions meet the criterion at a tested site (60.00%)',page)
         self.assertIn('Per activation',page)
         self.assertIn('its complement is not accuracy',page)
         self.assertIn('one unmodified released sample',page)
@@ -77,9 +97,9 @@ class OverviewTests(unittest.TestCase):
         self.assertIn('question switch does not change this readout-level error rate',hall)
         self.assertIn('12/100',hall);self.assertIn('12.0%',hall)
         self.assertIn('Validation: 20 questions',hall)
-        self.assertNotIn('Questions with at least one match at any',hall)
+        self.assertNotIn('Questions meeting the task criterion at any',hall)
         role=overview.chart(data,'role_bound_association',overview.DEFAULT,scope='items')
-        self.assertIn('Questions with at least one match at any',role)
+        self.assertIn('Questions meeting the task criterion at any',role)
         self.assertIn('12/20',role)
 
     def test_method_rate_labels_do_not_change_values_or_diagnostic_fit_units(self):
@@ -99,6 +119,60 @@ class OverviewTests(unittest.TestCase):
         paired_table=m.table([paired],paired=True)
         self.assertIn('change in percentage points; match per activation',paired_table)
         self.assertIn('+2.00 pp',paired_table)
+
+    def test_reviewed_test_defaults_to_test_and_retains_separate_validation(self):
+        report=reviewed_test_fixture();section=report['signed_comparisons']['test']
+        before=copy.deepcopy(report);page=overview.build(report)
+        self.assertEqual(report,before)
+        self.assertEqual(overview.available_stages(report),('test','validation'))
+        data=overview.data_for_page(report)
+        self.assertEqual(data['stage'],'test')
+        self.assertIn('<option value="items" selected>Questions meeting the task criterion</option>',page)
+        self.assertIn('All three multiple-choice checks',page)
+        self.assertIn('same layer readout',page)
+        self.assertIn('top-named computed value',page)
+        self.assertIn('partial matches across sites are not combined',page)
+        self.assertIn('Held-out test: 67 questions / 43 related groups',overview.chart(data,'role_bound_association',overview.DEFAULT))
+        self.assertIn('2/2,674 activations meet the criterion',page)
+        self.assertIn('2/67 questions meet the criterion at a tested site',page)
+        self.assertIn('<select id="stage"><option value="test">Held-out test</option><option value="validation">Validation</option>',page)
+        self.assertIn('Held-out results reviewed.',page)
+        self.assertIn('SYNTHETIC REVIEWED TEST FINDING',page)
+        self.assertIn('80 items · 12 methods',page)
+        self.assertIn('268 items · 12 preselected comparisons',page)
+        self.assertIn('development and validation cohorts',page)
+        payload=__import__('json').loads(page.split('<script id="overview-data" type="application/json">')[1].split('</script>')[0])
+        self.assertEqual(payload['active_stage'],'test')
+        self.assertEqual(payload['stages']['test']['metrics']['cells']['role_bound_association']['raw_n1-n1'],
+                         section['cell_rows'][-12]['metric'])
+        self.assertEqual(payload['stages']['validation']['metrics'],overview.data_for_page(report,stage='validation')['metrics'])
+        bad=copy.deepcopy(report);bad['signed_comparisons']['test']['review']['artifact_sha256']='b'*64
+        with self.assertRaisesRegex(ValueError,'TEST review differs'):overview.build(bad)
+        bad=copy.deepcopy(report);bad['signed_comparisons']['test']['cell_rows'].pop()
+        with self.assertRaisesRegex(ValueError,'Incomplete'):overview.build(bad)
+        bad=copy.deepcopy(report);bad['activity']['heldout_items']=269
+        with self.assertRaisesRegex(ValueError,'held-out item count'):overview.build(bad)
+
+    def test_unreviewed_or_unrevealed_test_never_enters_page_payload(self):
+        class ForbiddenRows:
+            def __iter__(self):raise AssertionError('Unrevealed TEST rows accessed')
+        for review in ({'status':'draft','test_reveal_authorized':True},
+                       {'status':'root_reviewed','test_reveal_authorized':False}):
+            report=fixture()
+            report['signed_comparisons']['test']={'stage':'test','review':review,
+                'cell_rows':ForbiddenRows(),'source_sha256':'UNREVEALED_TEST_SOURCE'}
+            page=overview.build(report)
+            self.assertNotIn('UNREVEALED_TEST_SOURCE',page)
+            self.assertNotIn('<select id="stage">',page)
+            self.assertEqual(overview.data_for_page(report)['stage'],'validation')
+            self.assertIn('<option value="items" selected>Questions meeting the task criterion</option>',page)
+            with self.assertRaisesRegex(ValueError,'reveal authorization'):
+                overview.data_for_page(report,stage='test')
+
+    def test_hallucination_scope_disagreement_is_rejected(self):
+        report=fixture()
+        report['signed_comparisons']['validation']['original_item_rows'][0]['metric']['value']=.9
+        with self.assertRaisesRegex(ValueError,'native hallucination error metric'):overview.build(report)
 
     def test_all_method_variants_and_paired_intervals_preserved_without_filling_missing(self):
         report=fixture();m=overview.method_sections

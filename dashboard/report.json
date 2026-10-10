@@ -1,6 +1,6 @@
 {
   "title": "Readouts: what is established",
-  "updated_utc": "2026-10-10T16:57:35.880713+00:00",
+  "updated_utc": "2026-10-10T17:33:05.626470+00:00",
   "cohort": "development",
   "run_ids": [
     "development-shared-pilot-v2",
@@ -19837,7 +19837,7 @@
     "limits": "These are observed DEV losses, not a new held-out comparison. Mention recovery does not certify the calculation. No new interval is inferred."
   },
   "activity": {
-    "checked_utc": "2026-10-10T16:39:18.540857+00:00",
+    "checked_utc": "2026-10-10T17:33:05.626470+00:00",
     "validation_ar_status": "complete",
     "validation_new_ar_vectors": 421716,
     "shared_zero_copy_catalog_vectors": 1063925,
@@ -19890,15 +19890,15 @@
       }
     ],
     "validation_judging_status": "All 48 validation method-family comparisons and their reviewed analysis are complete. All six development sampling prefixes and grouped comparisons are complete.",
-    "quality_status": "All 10,714 held-out sites have samples, reconstruction and fixed method outputs. Exact twelve-method judging export is complete. Multi-hop and arithmetic judging have finished; hallucination and role judging remain active. No held-out quality result has been inspected; no overall faithfulness winner is established.",
+    "quality_status": "All held-out generation, reconstruction and fixed method outputs are complete. Multi-hop and arithmetic judging have finished. Hallucination stopped after an accounting-storage lock failure; role judging is finishing a condition before both workers adopt a checked writer-coordination update. No held-out quality result has been inspected.",
     "generation_metadata_source": "${OLENS_DATA_ROOT}/runs/test-blind-preparation-v1/throughput-observation-v25.json",
     "generation_metadata_sha256": "30f500f0a6dcb8aef0e6eb61af811d161130348b35df46214c12855de77f0d35",
     "heldout_items": 268,
     "heldout_cells": 10714,
-    "previous_activity_checked_utc": "2026-10-10T16:20:34+00:00",
+    "previous_activity_checked_utc": "2026-10-10T16:39:18.540857+00:00",
     "overview_status": {
       "development": "All six sampling prefixes complete; eight shared cases reviewed across methods, with independent crosschecks.",
-      "test": "Twelve fixed comparisons are in progress. Multi-hop and arithmetic judging have finished. Hallucination and role judging resumed after storage-lock failures; both are completing new requests. Final quality remains unreviewed.",
+      "test": "Two families finished. The remaining judges are moving to checked database coordination after repeated bookkeeping stalls. Final quality remains unreviewed.",
       "heldout_conditions": 12
     },
     "heldout_comparison_amendment": {
@@ -19968,9 +19968,10 @@
         "new_unknown": 0
       },
       "existing_test_unknown_holds_usd": 0.05425425,
-      "receipt_sha256": "849be81b2ac2c8a7369cbd2514fe9b3fa0ea468530a71843fd327391fadddbb9"
+      "receipt_sha256": "849be81b2ac2c8a7369cbd2514fe9b3fa0ea468530a71843fd327391fadddbb9",
+      "historical_snapshot": true
     },
-    "operational_limits": "Recent completed requests confirm progress, not a sustained speed guarantee. Saved results and all uncertain charges are retained."
+    "operational_limits": "The prior health window is historical. All saved judgments and uncertain charges remain retained; progress and completion estimates will be refreshed after the coordinated restart."
   },
   "signed_comparisons": {
     "validation": {
@@ -122335,6 +122336,9 @@
       "Reserved GPU hours include idle time; estimated model work is not measured kernel utilization.",
       "Storage counts project trees; reused external base weights are separate.",
       "GPU dollar prices and Codex/subagent billing are not in the project API ledger."
-    ]
+    ],
+    "measured_generation_and_main_ar_task_hours": 30.192000197417027,
+    "measured_task_time_source_sha256": "74573b5bd712e310035f97f230b757e79ffe28c828fb4e4d2c76d84c3a41a00a",
+    "measured_task_time_limits": "Retained generation/main AR task timers include adjacent CPU work and some loading; exclude capture, unretained abandoned work and idle allocations. Not pure kernel utilization."
   }
 }

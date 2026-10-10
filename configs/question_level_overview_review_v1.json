@@ -1,0 +1,22 @@
+{
+  "status": "root_reviewed_and_published",
+  "reviewed_utc": "2026-10-10T17:36:41.816862+00:00",
+  "reviewed_by": [
+    "root",
+    "adversarial_evaluation"
+  ],
+  "implemented_by": "model_scoring_audit",
+  "source_report_sha256": "3bdf90842f8062dcf48d76cd2afd440bfc8d19a3501f4cb56100d91e54aabcd3",
+  "default_scope": "items",
+  "native_hallucination_error_unchanged": true,
+  "real_TEST_outcomes_inspected": false,
+  "synthetic_TEST_stage_switch_verified": true,
+  "source_sha256": {
+    "scripts/build_dashboard_overview.py": "59591e3cebe14d24c1e6a945d699aef22e2b423fc37e41ceab9fb6169f66bf5c",
+    "tests/test_dashboard_overview.py": "212df46727ee9fe7250f13710f1f7bdc336a3e585dfbb9c2cfe4c07af0065c53",
+    ".state/stage-aware-overview-validation-v2/qa-receipt-v2.json": "74bd71296724d308a4500b8754357b9f1066414bbaeb24c52068c93d2ed70020",
+    ".state/stage-aware-overview-validation-v3/qa-receipt.json": "602c93aebd6a644b549cad0ae9dc69c4ed991203622066d8389325b0c02b8eff"
+  },
+  "focused_tests": 16,
+  "visual_review": "Root inspected actual VAL desktop/mobile; model agent verified synthetic stage/scope/all12 matrix; adversarial source review passed. Native deployment succeeded; user browser not verified."
+}
