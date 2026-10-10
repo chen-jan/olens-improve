@@ -10,7 +10,7 @@ import asyncio
 from concurrent.futures import ThreadPoolExecutor
 from functools import partial
 import uuid
-from collections import defaultdict
+from collections import defaultdict, deque
 import hashlib
 import importlib
 import json
@@ -107,6 +107,13 @@ def writer_reuse_enabled() -> bool:
     return option == '1'
 
 
+def reservation_batch_size() -> int:
+    option = os.environ.get('OLENS_LEDGER_RESERVATION_BATCH_SIZE', '1')
+    if option not in ('1', '16'):
+        raise ValueError('OLENS_LEDGER_RESERVATION_BATCH_SIZE must be 1 or 16')
+    return int(option)
+
+
 def record_writer_reuse(profile, enabled, *, started=None):
     if profile is not None:
         try:
@@ -126,9 +133,13 @@ class AsyncLedgerLane:
     Explicit reuse is lazy and confined to this executor; transactions do not
     move across threads or change their admission/accounting logic.
     """
-    def __init__(self, ledger=None, *, reuse_writer_connection=False):
+    def __init__(self, ledger=None, *, reuse_writer_connection=False, reserve_batch_size=1):
         if reuse_writer_connection and ledger is None:
             raise ValueError('Writer reuse requires the owned ledger')
+        if reserve_batch_size not in (1, 16) or isinstance(reserve_batch_size, bool):
+            raise ValueError('Reservation batch size must be 1 or 16')
+        if reserve_batch_size != 1 and ledger is None:
+            raise ValueError('Reservation batching requires the owned ledger')
         self.executor = ThreadPoolExecutor(max_workers=1, thread_name_prefix='olens-ledger')
         self.slots = asyncio.Semaphore(16)
         self.pending = set()
@@ -138,6 +149,11 @@ class AsyncLedgerLane:
         self.reuse_started = False
         self.closing = False
         self.owner_pid = os.getpid()
+        self.reserve_batch_size = reserve_batch_size
+        self.reserve_queue = deque()
+        self.reserve_operations = set()
+        self.reserve_slots = asyncio.Semaphore(256)
+        self.reserve_worker = None
 
     def _invoke(self, function, *args, **kwargs):
         if not self.reuse_started:
@@ -179,8 +195,75 @@ class AsyncLedgerLane:
             finally:
                 self.pending.discard(future)
 
+    async def reserve(self, input_upper_tokens, max_output_tokens, **kwargs):
+        if self.reserve_batch_size == 1:
+            return await self.call(self.ledger.reserve_attempt,
+                                   input_upper_tokens, max_output_tokens, **kwargs)
+        if self.closing or self.owner_pid != os.getpid():
+            raise RuntimeError('Reservation batch lane is closing or has a different process owner')
+        request = dict(input_upper_tokens=input_upper_tokens,
+                       max_output_tokens=max_output_tokens, **kwargs)
+        if request.get('attempt_id') is None:
+            request['attempt_id'] = str(uuid.uuid4())
+        operation = asyncio.create_task(self._queue_reservation(request))
+        self.reserve_operations.add(operation)
+        try:
+            # Own the queued operation through cancellation, just like call().
+            return await self.drained(operation)
+        finally:
+            self.reserve_operations.discard(operation)
+
+    async def _queue_reservation(self, request):
+        async with self.reserve_slots:
+            future = asyncio.get_running_loop().create_future()
+            self.reserve_queue.append((request, future))
+            if self.reserve_worker is None:
+                self.reserve_worker = asyncio.create_task(self._flush_reservations())
+            return await future
+
+    async def _flush_reservations(self):
+        # One event-loop yield coalesces ready requests without a timed delay.
+        try:
+            await asyncio.sleep(0)
+            while self.reserve_queue:
+                batch = [self.reserve_queue.popleft()
+                         for _ in range(min(self.reserve_batch_size, len(self.reserve_queue)))]
+                try:
+                    ids, _ = await self.call(self.ledger.reserve_attempts,
+                                             [request for request, _future in batch])
+                    if ids != [request['attempt_id'] for request, _future in batch]:
+                        raise RuntimeError('Reservation batch returned unexpected attempt identities')
+                except BaseException as error:
+                    for _request, future in batch:
+                        if not future.done():
+                            future.set_exception(error)
+                    if not isinstance(error, Exception):
+                        raise
+                else:
+                    # The single transaction has committed before any caller
+                    # receives its own attempt ID and may enter the SDK.
+                    for aid, (_request, future) in zip(ids, batch):
+                        if not future.done():
+                            future.set_result(aid)
+        except BaseException as error:
+            while self.reserve_queue:
+                _request, future = self.reserve_queue.popleft()
+                if not future.done():
+                    future.set_exception(error)
+            raise
+        finally:
+            # Last-client close waits for all owned reservation operations.
+            self.reserve_worker = None
+
     async def drain(self):
         cancelled = False
+        while self.reserve_operations:
+            _, interrupted = await self.drained(asyncio.gather(
+                *self.reserve_operations, return_exceptions=True))
+            cancelled |= interrupted
+        if self.reserve_worker is not None:
+            _, interrupted = await self.drained(self.reserve_worker)
+            cancelled |= interrupted
         while self.pending:
             _, interrupted = await self.drained(asyncio.gather(*self.pending, return_exceptions=True))
             cancelled |= interrupted
@@ -202,7 +285,8 @@ class BudgetedCompletions:
         self.helper_diagnostic = helper_reasoning_effort is not None
         lane = getattr(ledger, '_async_ledger_lane', None)
         if lane is None:
-            lane = AsyncLedgerLane(ledger, reuse_writer_connection=writer_reuse_enabled())
+            lane = AsyncLedgerLane(ledger, reuse_writer_connection=writer_reuse_enabled(),
+                                   reserve_batch_size=reservation_batch_size())
             ledger._async_ledger_lane = lane
         if lane.closing:
             raise RuntimeError('Cannot register a client on a closing ledger lane')
@@ -210,6 +294,13 @@ class BudgetedCompletions:
             raise RuntimeError('Cannot register a client on a forked ledger lane')
         record_writer_reuse(getattr(ledger, '_operational_profile', None), lane.reuse_writer_connection,
                             started=lane.reuse_started)
+        profile = getattr(ledger, '_operational_profile', None)
+        if profile is not None:
+            try:
+                with profile.metric_lock:
+                    profile.metadata['ledger_reservation_batch_size'] = lane.reserve_batch_size
+            except Exception as error:
+                AtomicBudget._reuse_cleanup_warning(error)
         self.lane = lane
         lane.users += 1
         self.requests = set()
@@ -275,7 +366,7 @@ class BudgetedCompletions:
         serializable = {k: v for k, v in request.items() if k != 'timeout'}
         aid = str(uuid.uuid4())
         try:
-            aid, cancelled = await self.lane.call(self.ledger.reserve_attempt,input_bound, max_output, run_id=self.run_id, attempt_id=aid,
+            aid, cancelled = await self.lane.reserve(input_bound, max_output, run_id=self.run_id, attempt_id=aid,
                         metadata={**self.metadata, 'content_cache_key': content_key,
                                   'request': serializable, 'pid': os.getpid(),
                                   'helper_effort_opt_in': self.helper_diagnostic,

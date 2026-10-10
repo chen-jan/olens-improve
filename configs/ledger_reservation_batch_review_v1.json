@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "status": "root_and_independent_source_review_passed",
+  "reviewed_utc": "2026-10-10T21:40:01.895138+00:00",
+  "reviewers": [
+    "root",
+    "adversarial_evaluation"
+  ],
+  "implementation_source_sha256": {
+    "src/olens_improve/budget.py": "0373fc072b7b61e3b6a6e020b606df6fb1d333f0d39ca579ccc9ef89ef9ec3cb",
+    "src/olens_improve/evaluation.py": "7e8ed156c6f79520c5960e0c49ce3ddc19b0b60eccdbc35e1e44ceac736cc688",
+    "src/olens_improve/performance.py": "1f03f52918b200e1f2dffa8983e410c1c6d4e88f97fc8bbc35a06f16123c9b0a",
+    "tests/test_budget_batch.py": "9bc5b16acd97b751ca7d37c5464026c54479250503e1b805d012947b11608439",
+    "tests/test_async_reservation_batch.py": "83e877333ddaae529446fa104ed7ca2eb19f0da4ced0419378121af36506be0d"
+  },
+  "default_batch_size": 1,
+  "reviewed_opt_in_batch_size": 16,
+  "environment_flag": "OLENS_LEDGER_RESERVATION_BATCH_SIZE=16",
+  "behavior": "At most16 individually recorded reservations share one transaction and guard/cap scans; exact integer running totals, ordered guard windows, all-or-nothing rollback, and dispatch only after commit. Evidence, settlement, journal/sync mode, ledger location and API requests are unchanged.",
+  "preserved": [
+    "original recovery epoch2026-10-10T07:52:00+00:00",
+    "all original financial holds",
+    "project300USDhard/200USDtarget",
+    "original per-run ceilings",
+    "Standard Luna reasoningnone",
+    "unchanged frozen scientific inputs and exact-cache identities"
+  ],
+  "independent_review": "PASS at exact current source pins. ID order and repeated canceled-close safeguards reviewed. No live data accessed by reviewer.",
+  "validation": {
+    "command": "python -m unittest test_budget_batch test_async_reservation_batch test_budget test_budget_pricing test_budget_lock_acquisition test_budget_transaction_phases test_budget_admission test_budget_connection_reuse test_async_ledger test_async_connection_reuse",
+    "cpu_job": 25508300,
+    "node": "node1603",
+    "cores": [
+      23,
+      26
+    ],
+    "session_id": 1937,
+    "exit_code": 0,
+    "tests": 86,
+    "seconds": 2.246,
+    "network_calls": 0,
+    "test_scope": "Disposable ledgers and fake SDKs only; per-batch cap/guard equivalence, rollback, commit ambiguity, held charges, concurrent cap race, cancellation, wrong identities and shutdown."
+  },
+  "rollout": "Root must bind fresh terminal owner/resource evidence and source pins in a new execution spec; explicitly export batch16 and reuse1. First activate on released role DEV family. Hall applies after current comparison boundary. No presumed end-to-end speedup."
+}

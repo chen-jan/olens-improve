@@ -1,10 +1,18 @@
 # Execution status
 
-Updated: 2026-10-10, approximately 20:29 UTC.
+Updated: 2026-10-10, approximately 21:24 UTC.
 Started: 2026-10-10 01:25:36 UTC (October 9, 21:25:36 EDT).
-Target finish: 2026-10-10 21:25:36 UTC. Execution remains active and authorized.
+Original target finish: 2026-10-10 21:25:36 UTC, superseded by the revised estimate below. Execution remains active and authorized.
 
 ## Latest operational checkpoint
+
+At **21:24:23 UTC (5:24pm Eastern)**, TEST has **96,159 settled requests** and **42/48 completed family/method comparisons**. This adds 6,057 requests since 20:44, although no further whole comparison has closed. Both workers remain live: hallucination has seven of twelve complete and is processing pooled selection at N32; role relationships have eleven of twelve complete and are processing the final matched-deletion control. Multi-hop and chains are complete. The latest twenty-minute interval added 3,055 requests, approximately **152/minute**. No new uncertain charges or worker failures appeared. Receipt SHA: `c4501151930d0897fcbaa79d3c2f2c53c2adabba7990e9c6eb85d8ee20eb8838`, file `durable/diagnostics/test12-operational-v1/storage-recovery-concurrency-v11-operational-reuse-both-v12-v13-2124-v1.json`.
+
+The remaining workload reference is about 20,957 TEST requests plus 22,157 from the older missing-DEV forecast, or roughly 4 hours 44 minutes of judging at the latest rate. These are estimates, not exact live remaining-call counts. Final analysis and review can overlap the DEV tail; plan roughly **five to seven hours more**, approximately **10:30pm–12:30am Eastern**, with further delay possible if throughput falls. Eleven DEV comparisons and final scientific review, report, figures, dashboard and slides still remain. No TEST quality has been revealed or used for tuning.
+
+The 21:17 resource snapshot has no alerts. Recorded estimated API usage is **$28.21**, plus **$5.77** retained reservations (including uncertain charges), approximately **$33.98 committed** against the $200 target/$300 ceiling. Project files occupy **97.59GB**, excluding reused base weights. These are ledger estimates and file totals, not an invoice or quota reading. Project GPU work remains finished and the four H200s remain handed back to the user.
+
+### Earlier operational checkpoints
 
 Monitoring was repaired and extended at 20:36 UTC: the resource watcher now publishes successful snapshots every ten minutes through04:30 UTC October11. The failure was a missing verified submission timestamp in the CPU allocation record; judge workers and their dedicated operational observer were unaffected. Public dashboard version10 was published at20:41:04 UTC with the41/48 queue, measured pace and revised estimate. Scientific results remain unchanged.
 

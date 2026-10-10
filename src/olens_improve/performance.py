@@ -85,7 +85,7 @@ class OperationalProfile:
     def attach_ledger(self, ledger):
         if getattr(ledger, '_operational_profile', None) is not None:
             raise ValueError('Ledger already has an operational profiler')
-        for name in ('snapshot', 'reserve_attempt', 'record_evidence', 'settle', 'mark_unknown'):
+        for name in ('snapshot', 'reserve_attempt', 'reserve_attempts', 'record_evidence', 'settle', 'mark_unknown'):
             original = getattr(ledger, name)
             self.patches.append((ledger, name, original))
             setattr(ledger, name, self.wrap('ledger.'+name, original))

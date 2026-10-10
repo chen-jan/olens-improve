@@ -466,6 +466,97 @@ class AtomicBudget:
             self._event(db, aid, 'reserved', details)
         return aid
 
+    def reserve_attempts(self, attempts: list[dict]) -> list[str]:
+        """Opt-in, bounded atomic reservations; dispatch only after this returns.
+
+        A failed member rolls back the entire batch, including its events. No
+        transaction body is replayed. The ordinary single-attempt API remains
+        unchanged. Committed sums are read once, then increased by exact integer
+        amounts; each guard's latest-100 window follows the inserted rows.
+        """
+        if not isinstance(attempts, list) or not 1 <= len(attempts) <= 16:
+            raise ValueError('Reservation batches require 1 to 16 attempts')
+        allowed = {'input_upper_tokens', 'max_output_tokens', 'run_id',
+                   'metadata', 'attempt_id', 'dispatch_guard'}
+        prepared = []
+        ids = set()
+        for request in attempts:
+            if not isinstance(request, dict) or set(request) - allowed:
+                raise ValueError('Invalid batch reservation fields')
+            input_bound, output_bound = request['input_upper_tokens'], request['max_output_tokens']
+            if input_bound <= 0 or output_bound <= 0:
+                raise ValueError('Positive input/output bounds required')
+            amount = cost_units(input_bound, output_bound, cache_write_tokens=input_bound)
+            run = request['run_id']
+            if not isinstance(run, str) or not run:
+                raise ValueError('Batch reservations require a nonempty run ID')
+            aid = request.get('attempt_id') or str(uuid.uuid4())
+            if not isinstance(aid, str) or aid in ids:
+                raise ValueError('Duplicate or invalid batch attempt ID')
+            ids.add(aid)
+            guard = request.get('dispatch_guard')
+            if guard is not None:
+                if (not isinstance(guard, dict) or
+                        not isinstance(guard.get('since_utc'), str) or not guard['since_utc']):
+                    raise ValueError('Batch guard requires a nonempty since_utc')
+            details = dict(request.get('metadata') or {})
+            details.update(input_upper_tokens=input_bound, max_output_tokens=output_bound,
+                           reservation_pricing='standard; all input at cache-write rate',
+                           pricing_revision=PRICING_REVISION)
+            if guard is not None:
+                details['transport_recovery_guard'] = guard
+            prepared.append((aid, run, amount, details, guard))
+
+        with self._transaction() as db:
+            committed = self._committed(db)
+            run_committed = {}
+            limits = {}
+            guards = {}
+            for _, run, _, _, guard in prepared:
+                if run not in run_committed:
+                    run_committed[run] = self._committed(db, run)
+                    limit = db.execute('SELECT cap FROM run_limits WHERE run_id=?', (run,)).fetchone()
+                    limits[run] = None if limit is None else limit[0]
+                if guard is not None:
+                    key = (run, guard['since_utc'])
+                    if key not in guards:
+                        recent = db.execute('SELECT status,created_utc FROM attempts WHERE run_id=? AND created_utc>=? '
+                            'ORDER BY created_utc DESC LIMIT 100', key).fetchall()
+                        unknown = db.execute("SELECT COALESCE(SUM(reserved),0) FROM attempts WHERE run_id=? "
+                            "AND created_utc>=? AND status='unknown'", key).fetchone()[0]
+                        guards[key] = (recent, unknown)
+            halted = db.execute("SELECT value FROM config WHERE key='halted'").fetchone()[0]
+            for aid, run, amount, details, guard in prepared:
+                if guard is not None:
+                    recent, unknown = guards[(run, guard['since_utc'])]
+                    if sum(row[0] == 'unknown' for row in recent) > 5 or unknown > usd_units('.10'):
+                        raise BudgetExceeded('Transport recovery paused: new uncertain attempts exceed frozen guard')
+                if halted:
+                    raise BudgetExceeded('Ledger halted after accounting-bound failure; explicit reconciliation required')
+                if committed + amount > self.hard:
+                    raise BudgetExceeded('Hard API cap would be exceeded by this physical attempt')
+                if limits[run] is not None and run_committed[run] + amount > limits[run]:
+                    raise BudgetExceeded(f'Frozen run API cap would be exceeded: {run}')
+                now = _utc()
+                db.execute('INSERT INTO attempts VALUES (?,?,?,?,?,?,?,?)',
+                           (aid, run, 'reserved', amount, None,
+                            json.dumps(details, sort_keys=True), now, now))
+                self._event(db, aid, 'reserved', details)
+                committed += amount
+                run_committed[run] += amount
+                for (guard_run, since), (recent, _) in guards.items():
+                    if guard_run == run and now >= since:
+                        if not recent or now > recent[0][1]:
+                            recent.insert(0, ('reserved', now))
+                            del recent[100:]
+                        else:
+                            # Equal/backwards clocks must preserve SQLite's
+                            # original ordering rather than invent a tie rule.
+                            recent[:] = db.execute('SELECT status,created_utc FROM attempts '
+                                'WHERE run_id=? AND created_utc>=? ORDER BY created_utc DESC LIMIT 100',
+                                (guard_run, since)).fetchall()
+        return [row[0] for row in prepared]
+
     def mark_unknown(self, attempt_id: str, reason: str) -> None:
         with self._transaction() as db:
             row = db.execute('SELECT status FROM attempts WHERE attempt_id=?', (attempt_id,)).fetchone()
