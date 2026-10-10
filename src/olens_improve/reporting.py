@@ -4,7 +4,7 @@ from hashlib import sha256
 import json
 from datetime import datetime, timezone
 from pathlib import Path
-from .evaluation import paired_group_interval, BENCH_ROOT
+from .evaluation import paired_group_interval, BENCH_ROOT, evaluation_stage
 
 FAMILIES = ('hallucination', 'multihop_mt', 'chain_intermediates', 'role_bound_association')
 SELECTION_SHA = '055c5ea0e0d85fd5aa83af58f2cd1c2f2ea5a95940f1ecd6af4669c9a1f288c5'
@@ -25,7 +25,7 @@ def unique(rows, key_fn):
         out[k] = row
     return out
 
-def original_grid_contract(frozen):
+def original_grid_contract(frozen, stage='development'):
     """Bind a complete DEV grid to the frozen all-core inference manifest.
 
     A partial pilot cannot acquire item-score status by changing one flag.
@@ -38,14 +38,54 @@ def original_grid_contract(frozen):
     if digest(parent_path)!=frozen['parent_manifest_sha256']:
         raise ValueError('Full-grid parent manifest hash mismatch')
     parent=json.loads(parent_path.read_text())
-    expected=[c for c in parent['cells'] if c['split']=='development']
+    expected=[c for c in parent['cells'] if c['split']==stage]
     def signature(c):return (c['cell_id'],c['family'],str(c['item_id']),int(c['layer']),int(c['position']),c['group_id'])
     actual=unique(frozen['cells'],lambda c:c['cell_id'])
     intended=unique(expected,lambda c:c['cell_id'])
     if {signature(c) for c in actual.values()}!={signature(c) for c in intended.values()}:
-        raise ValueError('Original DEV grids differ from the frozen core manifest')
+        raise ValueError('Original stage grids differ from the frozen core manifest')
     return {'parent_manifest_path':str(parent_path),'parent_manifest_sha256':digest(parent_path),
-            'scope':'complete original development grids; not held-out benchmark accuracy'}
+            'scope':('complete original development grids; not held-out benchmark accuracy' if stage=='development'
+                     else f'complete original {stage} grids; pinned item aggregation')}
+
+
+def reporting_stage(manifest, conditions, *, fresh_manifest=None, gate=None,
+                    condition_list=None, freeze=None):
+    """Verify analysis authority and a prospective menu before reading outcomes."""
+    frozen = json.loads(Path(manifest).read_text())
+    stages = {c['split'] for c in frozen['cells']}
+    if len(stages) != 1 or not stages <= {'development', 'validation', 'test'}:
+        raise ValueError('Require one explicit reporting stage')
+    stage = next(iter(stages))
+    if stage == 'development':
+        return frozen, stage, None
+    if any(p is None for p in (fresh_manifest, gate, condition_list, freeze)):
+        raise ValueError('Held-out reports require fresh captures, analysis gate, signed menu and freeze')
+    frozen, verified_stage, _, authorization = evaluation_stage(
+        Path(manifest), Path(fresh_manifest), Path(gate))
+    body = json.loads(Path(gate).read_text())
+    if body.get('authorization_scope') != 'analysis' or verified_stage != stage:
+        raise ValueError('Reporting requires an explicit analysis capability')
+    if (digest(freeze) != body.get('freeze_sha256')
+            or digest(condition_list) != body.get('condition_list_sha256')
+            or digest(conditions) != digest(condition_list)):
+        raise ValueError('Gate does not bind this exact freeze and signed menu')
+    decision = json.loads(Path(freeze).read_text())
+    if decision.get('status') != 'root_reviewed_frozen' or decision.get('conditions_sha256') != digest(condition_list):
+        raise ValueError('Missing reviewed prospective condition freeze')
+    menu = json.loads(Path(condition_list).read_text())
+    def signature(rows):
+        values = [(r['method'], r['n']) for r in rows]
+        if len(set(values)) != len(values):
+            raise ValueError('Duplicate signed/report condition')
+        return values
+    intended = signature(menu)
+    if signature(decision['conditions']) != intended or signature(json.loads(Path(conditions).read_text())) != intended:
+        raise ValueError('Report menu differs from the exact prospectively frozen conditions')
+    if {c['family'] for c in frozen['cells']} != set(FAMILIES):
+        raise ValueError('Signed report requires all four families')
+    authorization = authorization | {'freeze_sha256':digest(freeze), 'condition_list_sha256':digest(condition_list)}
+    return frozen, stage, authorization
 
 def original_grid_pairs(family, cell_metrics, result):
     """Pinned item ANY rule; hallucination retains its readout-level ratio.
@@ -136,13 +176,14 @@ def family_counts(family, cells, readouts, result):
             sums['cell_recovery'][item][1] += 1
     return {m: {i: tuple(v) for i, v in items.items()} for m, items in sums.items()}, {'expected_cells':len(cells), 'empty_abstentions':int(empty), 'missing_stage1':int(missing1), 'missing_stage2':int(missing2)}
 
-def summarize(manifest, conditions, root, *, selection_sha=SELECTION_SHA):
+def summarize(manifest, conditions, root, *, selection_sha=SELECTION_SHA,
+              fresh_manifest=None, gate=None, condition_list=None, freeze=None,
+              comparison_pairs=()):
     manifest, conditions, root = Path(manifest), Path(conditions), Path(root)
-    frozen = json.loads(manifest.read_text())
-    if any(c['split'] != 'development' for c in frozen['cells']):
-        raise ValueError('This report is restricted to development cells')
+    frozen, stage, authorization = reporting_stage(manifest, conditions,
+        fresh_manifest=fresh_manifest, gate=gate, condition_list=condition_list, freeze=freeze)
     manifest_sha = digest(manifest)
-    grid_contract=original_grid_contract(frozen)
+    grid_contract=original_grid_contract(frozen, stage)
     families = {f: [c for c in frozen['cells'] if c['family'] == f] for f in FAMILIES}
     groups = {}
     for c in frozen['cells']:
@@ -152,6 +193,9 @@ def summarize(manifest, conditions, root, *, selection_sha=SELECTION_SHA):
         groups[ident] = c['group_id']
     report = {'schema_version':1, 'generated_utc':datetime.now(timezone.utc).isoformat(), 'conditions_sha256':digest(conditions), 'condition_root':str(root.resolve()), 'scope':'partial-grid cell diagnostics' if frozen.get('partial_grid') else 'cell diagnostics', 'manifest_sha256':manifest_sha, 'selection_sha256':selection_sha, 'bootstrap_replicates':2000, 'conditions':[], 'paired_comparisons':[], 'caveats':['Whole related groups are resampled after aggregating cells by item.', 'Recovery detects mentions/bindings under the declared judge, not full explanation faithfulness.', 'False spans and true/unverifiable claims have different segmentation.', 'Random selection is one frozen draw.', 'No held-out or official full-grid result is reported.']}
     report['original_grid_contract']=grid_contract
+    if authorization is not None:
+        report['stage'] = stage
+        report['analysis_authorization'] = authorization
     report['original_grid_paired_comparisons']=[]
     if grid_contract:
         source_names=['src/wsbench/evals/hallucination/score.py','src/wsbench/evals/role_bound_association/score.py','src/wsbench/evals/chain_intermediates/judge.py','src/wsbench/multitoken/family.py','src/wsbench/multitoken/regex.py','src/wsbench/family.py','src/wsbench/results.py']
@@ -172,6 +216,9 @@ def summarize(manifest, conditions, root, *, selection_sha=SELECTION_SHA):
                 hashes[str(selection_path)]=actual_selection_sha
                 if actual_selection_sha!=arm.get('selection_sha256',selection_sha):raise ValueError('Selection source bytes differ from the declared SHA')
             identity = read(path/'condition.json')
+            if authorization is not None and identity.get('analysis_authorization') != {
+                    k:v for k,v in authorization.items() if k not in ('freeze_sha256','condition_list_sha256')}:
+                raise ValueError('Condition analysis authorization differs from reporting gate')
             if any(identity.get(k) != arm[k] for k in ('method', 'n')) or identity.get('manifest_sha256') != manifest_sha or identity.get('selection_sha256') != arm.get('selection_sha256', selection_sha):
                 raise ValueError('Condition provenance/hash mismatch')
             coverage = identity['coverage']
@@ -187,7 +234,7 @@ def summarize(manifest, conditions, root, *, selection_sha=SELECTION_SHA):
                 contract = read(path/family/'project_contract.json')
                 if terminal['families'][family].get('project_contract') != contract:
                     raise ValueError(f'{family}: terminal contract differs from result contract')
-                if contract.get('manifest_expected_cells') != len(cells) or contract.get('manifest_produced_cells') != len(cells) or contract.get('manifest_missing_cells') != 0 or contract.get('benchmark_commit') != BENCHMARK_COMMIT or contract.get('partial_grid') != identity['partial_grid'] or contract.get('split') != ['development']:
+                if contract.get('manifest_expected_cells') != len(cells) or contract.get('manifest_produced_cells') != len(cells) or contract.get('manifest_missing_cells') != 0 or contract.get('benchmark_commit') != BENCHMARK_COMMIT or contract.get('partial_grid') != identity['partial_grid'] or contract.get('split') != [stage]:
                     raise ValueError(f'{family}: contract/cohort mismatch')
                 result = read(path/family/'results.json')
                 if result.get('family') != family or result.get('config', {}).get('dry_run'):
@@ -232,6 +279,7 @@ def summarize(manifest, conditions, root, *, selection_sha=SELECTION_SHA):
         n = next(e['n'] for e in report['conditions'] if e['condition']==name)
         if not name.startswith(('best_n_exact-', 'raw_n1-', 'capped_n1-')):
             baselines.append(f'best_n_exact-n{n}')
+        baselines.extend(base for base, proposed in comparison_pairs if proposed == name)
         for baseline in dict.fromkeys(baselines):
             if baseline not in counts_by_arm or baseline == name:
                 continue
@@ -250,13 +298,18 @@ def summarize(manifest, conditions, root, *, selection_sha=SELECTION_SHA):
     if grid_contract:
         if digest(grid_contract['parent_manifest_path'])!=grid_contract['parent_manifest_sha256']:raise ValueError('Full-grid parent changed during reporting')
         if any(digest(path)!=expected for path,expected in report['original_grid_metric_source_sha256'].items()):raise ValueError('Pinned metric source changed during reporting')
-        report['scope']='complete original DEV grids: cell diagnostics and pinned item aggregation'
-        report['caveats'][-1]='Original item aggregation uses complete DEV grids only; no held-out or whole-bank benchmark accuracy is reported.'
+        report['scope']=('complete original DEV grids: cell diagnostics and pinned item aggregation' if stage=='development'
+                         else f'complete original {stage} grids: cell diagnostics and pinned item aggregation')
+        report['caveats'][-1]=('Original item aggregation uses complete DEV grids only; no held-out or whole-bank benchmark accuracy is reported.' if stage=='development'
+                             else f'Original item aggregation uses the frozen {stage} cohort; no whole-bank accuracy is reported.')
+    elif stage != 'development':
+        report['caveats'][-1] = f'Only the authorized {stage} cohort is reported; partial grids do not establish original-grid item accuracy.'
     return report
 
 def markdown(report):
     explanation='Cell endpoints and pinned original item aggregation are separate below.' if report.get('original_grid_contract') else 'These are not official full-grid item scores.'
-    lines = ['# Development results', '', report['scope']+'. Grouped intervals resample whole related groups (2,000 paired draws). '+explanation, '', '| Condition | Complete | Contradictions / specific | Bridge cells | Chain cells | Role cells |', '|---|---|---:|---:|---:|---:|']
+    label = report.get('stage', 'development').capitalize()
+    lines = [f'# {label} results', '', report['scope']+'. Grouped intervals resample whole related groups (2,000 paired draws). '+explanation, '', '| Condition | Complete | Contradictions / specific | Bridge cells | Chain cells | Role cells |', '|---|---|---:|---:|---:|---:|']
     for arm in report['conditions']:
         values=[]
         for family, metric in [('hallucination','contradiction_rate'),('multihop_mt','cell_recovery'),('chain_intermediates','cell_recovery'),('role_bound_association','cell_recovery')]:
@@ -264,7 +317,9 @@ def markdown(report):
             values.append(f"{row['numerator']}/{row['denominator']}" if row else 'Pending')
         lines.append('| '+ ' | '.join([arm['condition'],str(arm['measurement_complete'])]+values)+' |')
     if report.get('original_grid_contract'):
-        lines+=['','Original-grid DEV aggregation uses the pinned item rule (ANY passing site/layer), with whole related groups resampled. Hallucination retains the ratio of readout counts, aggregated by item before resampling. These are development results, not held-out or whole-bank accuracy.','','| Condition | Hall contradictions / specific | Bridge items | Chain items | Role items |','|---|---:|---:|---:|---:|']
+        grid_text = ('Original-grid DEV aggregation uses the pinned item rule (ANY passing site/layer), with whole related groups resampled. Hallucination retains the ratio of readout counts, aggregated by item before resampling. These are development results, not held-out or whole-bank accuracy.' if label == 'Development' else
+                     f'Original-grid {label.lower()} aggregation uses the pinned item ANY rule and whole related groups. Hallucination retains its ratio of readout counts. These results cover the authorized cohort, not the whole bank.')
+        lines+=['',grid_text,'','| Condition | Hall contradictions / specific | Bridge items | Chain items | Role items |','|---|---:|---:|---:|---:|']
         for arm in report['conditions']:
             values=[]
             for family in FAMILIES:
