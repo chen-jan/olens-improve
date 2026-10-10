@@ -1,12 +1,12 @@
 # Execution status
 
-Updated: 2026-10-10, approximately 14:40 UTC.
+Updated: 2026-10-10, approximately 15:00 UTC.
 Started: 2026-10-10 01:25:36 UTC (October 9, 21:25:36 EDT).
 Target finish: 2026-10-10 21:25:36 UTC. Execution remains active and authorized.
 
 ## Latest operational checkpoint
 
-At approximately **14:40 UTC**, all 12 validation methods/controls are complete
+At approximately **15:00 UTC**, all 12 validation methods/controls are complete
 across four families (80 items, 3,485 cells). The prospective final comparison
 now includes those same twelve variants: the original six primary comparisons
 and six additional secondary comparisons. Settings and the two validation-selected
@@ -21,16 +21,20 @@ allocation and completed successfully. The merged selection SHA is
 `547b953be6fff89d2f850001fd6dcdb3aed606708c8a211b6270369a4aa25df1`.
 The prespecified specificity/pruning combinations also completed, SHA
 `0e2f4583bd9ee5a9d3b75960801b0dd656b4355ad3fbe3e78ac55d12592170f8`.
-Exact twelve-condition export is running in root session 92232; forecast and
-reviewed paid TEST dispatch follow. No TEST quality result is available.
+Exact twelve-condition export and its cache-aware forecast are complete. Root
+launched all four TEST evaluators at 14:58–14:59 UTC, with a shared $40 run
+ceiling and expected usage of $19.01. Hallucination has a six-hour ideal service
+reference, before I/O/retries and final review. Allow roughly 1–3 hours beyond
+the original 20-hour target for final delivery; the user has been informed.
+No TEST quality result has been inspected. See experiment 040.
 
 The recovered DEV N=2 role queue completed successfully: 1,556 paid responses
 in 505.421 seconds, about 185/minute. A bounded checkpoint found no new uncertain
-charges in its latest 100 responses; previous holds remain. N=4/8/16 role
-measurements now run in session 21686/PID3529361 with the same Luna model,
-8 slots/200 RPM, original run cap and recovery epoch. Hallucination N=8 needs
-one repaired cell and N=16 remains incomplete. These late DEV measurements
-cannot change the fixed TEST methods.
+charges in its latest 100 responses; previous holds remain. The remaining role
+N=4/8/16 and hallucination N=8 repair/N=16 queues also completed successfully.
+All six DEV prefixes now have terminal jobs; the complete scaling report is
+being independently assembled and checked. These late DEV measurements cannot
+change the fixed TEST methods.
 
 The expanded [public dashboard](https://olens-improve-research.jan618.chatgpt.site)
 was published at **14:35 UTC**. It exposes all eight approach/combination sections,
