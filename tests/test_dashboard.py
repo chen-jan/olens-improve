@@ -10,6 +10,15 @@ spec.loader.exec_module(dashboard)
 
 
 class DashboardTests(unittest.TestCase):
+    def test_readable_labels_keep_exact_condition_in_evidence(self):
+        output = dashboard.metrics_table([{'family':'multihop_mt','condition':'pooled_greedy_swap-n32','endpoint':'Cell recovery','value':.25}])
+        self.assertIn('Multi-hop facts', output)
+        self.assertIn('Pool bullets from 32 samples', output)
+        self.assertIn('title="pooled_greedy_swap-n32"', output)
+        self.assertIn('25.0%', output)
+        claims = dashboard.metrics_table([{'endpoint':'Unverifiable claims per produced output','value':2.5}])
+        self.assertNotIn('250.0%', claims)
+
     def test_nested_test_record_requires_reveal(self):
         with self.assertRaisesRegex(ValueError, "reveal"):
             dashboard.build({"cohort": "development", "methods": {"sample_selection": {

@@ -41,16 +41,59 @@ def paragraphs(values):
     return "".join(f"<p>{escape(text)}</p>" for text in values)
 
 
+def display_label(identifier, kind=None):
+    """Human-facing labels; exact artifact identifiers remain in provenance."""
+    if identifier is None:
+        return "Not measured"
+    identifier = str(identifier)
+    families = {"hallucination": "Contradiction checks", "multihop_mt": "Multi-hop facts",
+                "chain": "Arithmetic chains", "chain_intermediates": "Arithmetic chains",
+                "role": "Social roles", "role_bound_association": "Social roles"}
+    if identifier in families:
+        return families[identifier]
+    if " vs " in identifier:
+        return " versus ".join(display_label(part) for part in identifier.split(" vs "))
+    method, separator, n = identifier.rpartition("-n")
+    if not separator or not n.isdigit():
+        method, n = identifier, None
+    labels = {"raw_n1": "Original lens (1 sample)", "raw N1": "Original lens (1 sample)",
+              "capped_n1": "Common-length baseline", "best_n_exact": "Best reconstruction",
+              "best_n_released80": "Best reconstruction (published solver)",
+              "random_complete": "Random complete sample", "pooled_greedy_swap": "Pool bullets",
+              "best_n_specificity_mean": "Select by contrastive reconstruction (mean)",
+              "best_n_specificity_max": "Select by contrastive reconstruction (maximum)",
+              "likelihood_true_minus_mean_two_controls": "Select by contrastive likelihood",
+              "own_mean_log_likelihood": "Select by target likelihood",
+              "control_mean_log_likelihood": "Select by control likelihood",
+              "editing_round1": "Edit reconstruction, round 1", "editing_round2": "Edit reconstruction, round 2"}
+    if method.startswith("prune_loo_a32_"):
+        label = "Remove low-contribution bullets (threshold " + method.rsplit("_", 1)[-1] + ")"
+    elif method.startswith("consensus_"):
+        label = method.replace("consensus_exact", "Exact consensus").replace("consensus_semantic_v4", "Semantic consensus, instrumentation-limited").replace("_", " ").replace("compatoff", "compatibility off").replace("compaton", "compatibility on")
+    else:
+        label = labels.get(method, method.replace("_", " "))
+    return label + (f" from {n} samples" if n and method not in ("raw_n1", "capped_n1") else "")
+
+
 def metrics_table(rows):
     if not rows:
         return '<p class="missing">No validated comparison yet. Missing values are not zero.</p>'
     output = ['<div class="table-scroll"><table><thead><tr><th>Family / cohort</th><th>Condition</th><th>Endpoint / scope</th><th>Value</th><th>Numerator / denominator</th><th>Coverage / missing</th><th>Uncertainty</th></tr></thead><tbody>']
+    scope_labels={'original_grid_development':'original DEV item/readout endpoint','full_grid_cell_diagnostic':'cell diagnostic, full DEV grid','partial_grid_cell_diagnostic':'partial-grid pilot cell diagnostic'}
     for row in rows:
-        cells = [escape(row.get("family", "Missing family")) + " / " + escape(row.get("cohort", "Unspecified")),
-                 value(row.get("condition")), value(row.get("endpoint")) + " / " + value(row.get("scope")),
-                 value(row.get("value")), value(row.get("numerator")) + " / " + value(row.get("denominator")),
+        metric_value = row.get("value")
+        is_rate = any(term in str(row.get('endpoint', '')).lower() for term in ('recovery', 'rate', 'share', ' / ', 'exceeds', 'paired delta'))
+        shown_value = escape(f"{100*metric_value:.1f}%") if is_rate and isinstance(metric_value, (float, int)) else value(metric_value)
+        uncertainty=row.get('uncertainty',row.get('ci'))
+        if row.get('ci'):
+            bounds=', '.join(f'{100*x:.1f}%' if is_rate else f'{x:.4g}' for x in row['ci'])
+            suffix=str(row.get('uncertainty','')).partition(';')[2]
+            uncertainty=f'Whole-group 95% interval [{bounds}]'+(';' + suffix if suffix else '')
+        cells = [escape(display_label(row.get("family", "Missing family"))) + " / " + escape(row.get("cohort", "Unspecified")),
+                 '<span title="' + escape(row.get("condition")) + '">' + escape(display_label(row.get("condition"))) + '</span>', value(row.get("endpoint")) + " / " + value(scope_labels.get(row.get('scope'),row.get('scope'))),
+                 shown_value, value(row.get("numerator")) + " / " + value(row.get("denominator")),
                  value(row.get("eligible_count")) + " eligible; " + value(row.get("missing_count")) + " missing",
-                 value(row.get("uncertainty", row.get("ci")))]
+                 value(uncertainty)]
         output.append("<tr>" + "".join(f"<td>{cell}</td>" for cell in cells) + "</tr>")
     output.append("</tbody></table></div>")
     return "".join(output)
@@ -67,6 +110,26 @@ def traces(rows):
             output.append(f'<section><h4>{label}</h4><pre>{escape(row.get(key, "Not available"))}</pre></section>')
         output.append("</div>" + paragraphs([row.get("evidence", "Judge evidence not available."), row.get("interpretation", "Interpretation pending.")]) + "</details>")
     return "".join(output)
+
+def full_development_section(section):
+    if not section:return ''
+    output='<section class="full-development"><h2>'+escape(section['title'])+'</h2><p class="meta">'+escape(section['scope'])+'</p>'+paragraphs([section['summary']])
+    role_rows=[row for row in section['metrics'] if row.get('family') in ('role','role_bound_association') and row.get('condition')=='capped_n1-n1']
+    item=next((row for row in role_rows if row.get('scope')=='original_grid_development'),None)
+    cell=next((row for row in role_rows if row.get('endpoint')=='Cell recovery'),None)
+    if item and cell:
+        output+=paragraphs([f"The common-length baseline passes {item['numerator']:,} of {item['denominator']:,} social-role items, but only {cell['numerator']:,} of {cell['denominator']:,} individual cells. The item score counts any passing site; it does not establish complete faithful explanations."])
+    output+='<details class="full-development-evidence"><summary>Full DEV metrics, uncertainty, and baseline audit</summary>'
+    output+='<h3>Original item aggregation and cell coverage</h3>'+metrics_table(section['metrics'])
+    output+='<details><summary>Original versus common-length baseline: paired whole-group uncertainty</summary>'+metrics_table(section['paired_metrics'])+'</details>'
+    cost=section['judge_cost']
+    output+=paragraphs([f"The pre-correction ledger estimates ${cost['actual_usd']:.6f} across {cost['physical_attempts']:,} settled physical judge requests. Cache-write repricing is pending; this is not an invoice charge. Campaign judging cost is separate from deployment selection cost."])
+    output+='<details><summary>Four source-checked baseline audit examples</summary>'+traces(section['traces'])+'</details>'
+    donor=section['donor_readiness']
+    output+=paragraphs([f"Matched-donor diagnostic ready: {donor['cells']:,} target outputs use {donor['distinct_donors']:,} distinct frozen donors. Judging is pending.",section['donor_limits']])
+    output+='<h3>Baseline limitations</h3>'+paragraphs(section['limits'])
+    output+='<details><summary>Full DEV sources</summary>'+paragraphs([str(section['source_sha256'])])+'</details></details></section>'
+    return output
 
 
 def scaling_chart(rows):
@@ -198,6 +261,8 @@ def build(report):
     if findings:
         findings_html = "<ol class=\"findings\">" + "".join(
             f'<li><h2>{escape(item["claim"])}</h2><p>{escape(item.get("detail", ""))}</p><details><summary>Evidence and review</summary><p class="evidence">{escape(item["evidence"])}. Reviewed by {escape(item["reviewed_by"])}.</p></details></li>' for item in findings) + "</ol>"
+        if report.get('full_development'):
+            findings_html='<p class="meta">Reviewed partial-grid DEV pilot findings. Complete original-grid baselines appear separately below.</p>'+findings_html
     else:
         findings_html = '<div class="empty-findings"><h2>Scientific findings are pending review</h2><p>Generation and setup progress are shown separately. No method has been promoted from missing measurements.</p></div>'
     progress = report.get("progress", {})
@@ -205,7 +270,8 @@ def build(report):
     summary = '<dl class="progress">' + "".join(f'<div><dt>{label}</dt><dd>{value(number, unit)}</dd></div>' for label, number, unit in (
         ("Phase", progress.get("phase"), ""), ("Completed cells", progress.get("completed_cells"), ""),
         ("Expected cells", progress.get("expected_cells"), ""), ("Elapsed execution", progress.get("elapsed_hours"), "hours"),
-        ("API billed", api.get("actual_usd"), "USD"), ("API reserved", api.get("reserved_usd"), "USD"))) + "</dl>"
+        ("API usage estimate", api.get("actual_usd"), "USD"), ("API reserved", api.get("reserved_usd"), "USD"))) + "</dl>"
+    if api.get('pricing_status'):summary+=paragraphs([api['pricing_status']])
     provenance = report.get("provenance", {})
     provenance_html = "<dl>" + "".join(f"<dt>{escape(key)}</dt><dd>{value(provenance.get(key))}</dd>" for key in
         ("scope", "split_manifest_sha256", "cohort_manifest_sha256", "source_commit", "artifact_sha256")) + "</dl>"
@@ -213,7 +279,7 @@ def build(report):
     return TEMPLATE.replace("__TITLE__", escape(report.get("title", "Frozen Oracle Lens experiments"))).replace(
         "__UPDATED__", escape(report.get("updated_utc", "Timestamp missing"))).replace("__COHORT__", escape(cohort)).replace(
         "__RUNS__", escape(", ".join(report.get("run_ids", [])) or "No run IDs provided")).replace(
-        "__FINDINGS__", findings_html).replace("__PROGRESS__", summary).replace("__TABS__", "".join(tabs)).replace(
+        "__FINDINGS__", findings_html).replace("__PROGRESS__", summary+full_development_section(report.get('full_development'))).replace("__TABS__", "".join(tabs)).replace(
         "__PANELS__", "".join(panels)).replace("__NOTES__", paragraphs(report.get("endpoint_notes", ["Endpoints and denominators will accompany each validated comparison."])) + provenance_html).replace("__DATA__", payload)
 
 

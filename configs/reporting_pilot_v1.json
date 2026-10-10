@@ -104,5 +104,82 @@
     "n": 8,
     "condition_root": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments",
     "selection_sha256": "4d0e69e77e803197d04f0b3bdf2719fd3d0a7ba30593920b9cddbbd28d6adcab"
+  },
+  {
+    "method": "consensus_exact_support0",
+    "n": 16,
+    "condition_root": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments-b-v4",
+    "selection_sha256": "83157a6390d705b37507da2a83e2096c7c54e0271f27b95cd756c5a835ba3e95",
+    "selection_path": "${OLENS_DATA_ROOT}/selections/consensus-pilot189-v4/selections.jsonl"
+  },
+  {
+    "method": "consensus_semantic_v4_support0_compatoff",
+    "n": 16,
+    "condition_root": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments-b-v4",
+    "selection_sha256": "83157a6390d705b37507da2a83e2096c7c54e0271f27b95cd756c5a835ba3e95",
+    "selection_path": "${OLENS_DATA_ROOT}/selections/consensus-pilot189-v4/selections.jsonl"
+  },
+  {
+    "method": "consensus_semantic_v4_support0_compaton",
+    "n": 16,
+    "condition_root": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments-b-v4",
+    "selection_sha256": "83157a6390d705b37507da2a83e2096c7c54e0271f27b95cd756c5a835ba3e95",
+    "selection_path": "${OLENS_DATA_ROOT}/selections/consensus-pilot189-v4/selections.jsonl"
+  },
+  {
+    "method": "consensus_exact_support0.125",
+    "n": 16,
+    "condition_root": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments-b-v4",
+    "selection_sha256": "83157a6390d705b37507da2a83e2096c7c54e0271f27b95cd756c5a835ba3e95",
+    "selection_path": "${OLENS_DATA_ROOT}/selections/consensus-pilot189-v4/selections.jsonl"
+  },
+  {
+    "method": "consensus_semantic_v4_support0.125_compatoff",
+    "n": 16,
+    "condition_root": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments-b-v4",
+    "selection_sha256": "83157a6390d705b37507da2a83e2096c7c54e0271f27b95cd756c5a835ba3e95",
+    "selection_path": "${OLENS_DATA_ROOT}/selections/consensus-pilot189-v4/selections.jsonl"
+  },
+  {
+    "method": "consensus_semantic_v4_support0.125_compaton",
+    "n": 16,
+    "condition_root": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments-b-v4",
+    "selection_sha256": "83157a6390d705b37507da2a83e2096c7c54e0271f27b95cd756c5a835ba3e95",
+    "selection_path": "${OLENS_DATA_ROOT}/selections/consensus-pilot189-v4/selections.jsonl"
+  },
+  {
+    "method": "consensus_exact_support0.25",
+    "n": 16,
+    "condition_root": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments-b-v4",
+    "selection_sha256": "83157a6390d705b37507da2a83e2096c7c54e0271f27b95cd756c5a835ba3e95",
+    "selection_path": "${OLENS_DATA_ROOT}/selections/consensus-pilot189-v4/selections.jsonl"
+  },
+  {
+    "method": "consensus_semantic_v4_support0.25_compatoff",
+    "n": 16,
+    "condition_root": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments-b-v4",
+    "selection_sha256": "83157a6390d705b37507da2a83e2096c7c54e0271f27b95cd756c5a835ba3e95",
+    "selection_path": "${OLENS_DATA_ROOT}/selections/consensus-pilot189-v4/selections.jsonl"
+  },
+  {
+    "method": "consensus_semantic_v4_support0.25_compaton",
+    "n": 16,
+    "condition_root": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments-b-v4",
+    "selection_sha256": "83157a6390d705b37507da2a83e2096c7c54e0271f27b95cd756c5a835ba3e95",
+    "selection_path": "${OLENS_DATA_ROOT}/selections/consensus-pilot189-v4/selections.jsonl"
+  },
+  {
+    "method": "editing_round1",
+    "n": 32,
+    "condition_root": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments-editing",
+    "selection_sha256": "6b820154f9bbea6839f205986218679ca21cca5d9d85daaa3ffe82ff7920816d",
+    "selection_path": "${OLENS_DATA_ROOT}/selections/editing-pilot189-v1/selections.jsonl"
+  },
+  {
+    "method": "editing_round2",
+    "n": 32,
+    "condition_root": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments-editing",
+    "selection_sha256": "6b820154f9bbea6839f205986218679ca21cca5d9d85daaa3ffe82ff7920816d",
+    "selection_path": "${OLENS_DATA_ROOT}/selections/editing-pilot189-v1/selections.jsonl"
   }
 ]

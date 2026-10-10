@@ -22,39 +22,66 @@ def read_rows(path):
         raise ValueError('Duplicate completed cell')
     return indexed, hashlib.sha256(body).hexdigest()
 
+def parse_args(argv=None):
+    parser = argparse.ArgumentParser()
+    for field in ('selectors', 'manifest', 'fresh-manifest', 'production-cache',
+                  'whitener-directory', 'output'):
+        parser.add_argument('--' + field, type=Path, required=True)
+    parser.add_argument('--edits', type=Path)
+    parser.add_argument('--editing-cache', type=Path)
+    parser.add_argument('--runtime', type=Path, default=Path('configs/runtime.json'))
+    args=parser.parse_args(argv)
+    if (args.edits is None)!=(args.editing_cache is None):
+        parser.error('--edits and --editing-cache must be supplied together')
+    return args
+
+def parent_methods(with_edits):
+    methods=['pooled_greedy_swap','best_n_specificity_mean']
+    return methods+['editing_round2'] if with_edits else methods
+
+def parent_records(selector_row,edit_row=None):
+    parents=[]
+    for method in parent_methods(False):
+        matched=[s for s in selector_row['selections'] if s['method']==method and s['n']==32]
+        if len(matched)!=1:raise ValueError('Missing or duplicate parent method')
+        parent=matched[0]
+        parents.append((method,parent['text'],parent['atoms'],parent['fits']['exact']['fve']))
+    if edit_row is not None:
+        parent=edit_row['best']
+        parents.append(('editing_round2',parent['text'],parent['atom_metadata'],parent['exact_fve']))
+    return parents
+
+def optional_edit_provenance(edit_sha):
+    return {} if edit_sha is None else {'editing_history_sha256':edit_sha}
+
 
 def main():
-    parser = argparse.ArgumentParser()
-    for field in ('selectors', 'edits', 'manifest', 'fresh-manifest', 'production-cache',
-                  'editing-cache', 'whitener-directory', 'output'):
-        parser.add_argument('--' + field, type=Path, required=True)
-    parser.add_argument('--runtime', type=Path, default=Path('configs/runtime.json'))
-    args = parser.parse_args()
+    args = parse_args()
     if not os.environ.get('SLURM_JOB_ID'):
         raise RuntimeError('Use allocated CPU resources')
     torch.set_num_threads(4)
     started = time.time()
     selectors, selector_sha = read_rows(args.selectors)
-    edits, edit_sha = read_rows(args.edits)
+    edits, edit_sha = read_rows(args.edits) if args.edits is not None else (None,None)
     manifest_bytes = args.manifest.read_bytes()
     cohort = {c['cell_id']: c for c in json.loads(manifest_bytes)['cells']}
-    if set(cohort) != set(selectors) or set(cohort) != set(edits):
+    if set(cohort) != set(selectors) or (edits is not None and set(cohort) != set(edits)):
         raise ValueError('All parents must cover the exact same frozen cohort')
     fresh_bytes = args.fresh_manifest.read_bytes()
     fresh = {c['cell_id']: c for c in json.loads(fresh_bytes)['cells']}
     if any(fresh[cid]['split'] != 'development' for cid in cohort):
         raise ValueError('Development only')
     production = RawVectorCache(str(args.production_cache))
-    editing = RawVectorCache(str(args.editing_cache))
-    if production.contract != editing.contract:
+    editing = RawVectorCache(str(args.editing_cache)) if args.editing_cache is not None else None
+    if editing is not None and production.contract != editing.contract:
         raise ValueError('Parent vector contracts differ')
     runtime = json.loads(args.runtime.read_text())
     tokenizer = AutoTokenizer.from_pretrained(runtime['paths']['base_snapshot'], local_files_only=True)
     count = lambda text: len(tokenizer(text, add_special_tokens=False)['input_ids'])
-    spec = {'selector_sha256': selector_sha, 'editing_history_sha256': edit_sha,
+    spec = {'selector_sha256': selector_sha, **optional_edit_provenance(edit_sha),
             'manifest_sha256': hashlib.sha256(manifest_bytes).hexdigest(),
             'fresh_manifest_sha256': hashlib.sha256(fresh_bytes).hexdigest(),
-            'parent_methods': ['pooled_greedy_swap', 'best_n_specificity_mean', 'editing_round2'],
+            'parent_methods': parent_methods(edits is not None),
             'thresholds': [.001, .005], 'pruning_objective': 'exact_joint_nnls_fve',
             'random_control': 'Seeded deletion retaining exactly the pruned bullet count',
             'vector_contract': production.contract, 'new_model_calls': 0,
@@ -91,15 +118,7 @@ def main():
             if layer not in whiteners:
                 whiteners[layer] = Whitener.load(str(args.whitener_directory /
                     f'whitening_iolens_pooled_L{layer}.safetensors'))
-            parents = []
-            for method in spec['parent_methods'][:2]:
-                matched = [s for s in selectors[cid]['selections'] if s['method'] == method and s['n'] == 32]
-                if len(matched) != 1:
-                    raise ValueError('Missing or duplicate parent method')
-                parent = matched[0]
-                parents.append((method, parent['text'], parent['atoms'], parent['fits']['exact']['fve']))
-            parent = edits[cid]['best']
-            parents.append(('editing_round2', parent['text'], parent['atom_metadata'], parent['exact_fve']))
+            parents = parent_records(selectors[cid],edits[cid] if edits is not None else None)
             selections = []
             for method, parent_text, atoms, recorded_fve in parents:
                 raw = {}
@@ -107,7 +126,9 @@ def main():
                 for index, atom in enumerate(atoms):
                     phrase_id = atom.get('phrase_id', atom.get('source_phrase_id'))
                     key = atom['cache_key']
-                    raw[phrase_id] = production.get(key) if key in production.index else editing.get(key)
+                    if key in production.index:raw[phrase_id]=production.get(key)
+                    elif editing is not None:raw[phrase_id]=editing.get(key)
+                    else:raise ValueError('Parent vector missing from production cache; no editing cache supplied')
                     bullets.append(Bullet(phrase_id, atom['text'], f'{cid}:{method}', index))
                 score = JointNNLS.from_raw(target, raw, whiteners[layer])
                 parent_ids = tuple(b.phrase_id for b in bullets)

@@ -29,6 +29,17 @@ partial-grid cell diagnostics. Grouped intervals resample whole related groups (
 | likelihood_true_minus_mean_two_controls-n8 | True | 39/70 | 6/24 | 2/21 | 8/72 |
 | own_mean_log_likelihood-n8 | True | 42/70 | 6/24 | 0/21 | 6/72 |
 | control_mean_log_likelihood-n8 | True | 42/72 | 9/24 | 0/21 | 10/72 |
+| consensus_exact_support0-n16 | True | 42/71 | 4/24 | 0/21 | 8/72 |
+| consensus_semantic_v4_support0_compatoff-n16 | True | 39/70 | 4/24 | 1/21 | 8/72 |
+| consensus_semantic_v4_support0_compaton-n16 | True | 20/63 | 1/24 | 1/21 | 3/72 |
+| consensus_exact_support0.125-n16 | True | 1/8 | 0/24 | 1/21 | 0/72 |
+| consensus_semantic_v4_support0.125_compatoff-n16 | True | 11/34 | 1/24 | 1/21 | 3/72 |
+| consensus_semantic_v4_support0.125_compaton-n16 | True | 9/34 | 1/24 | 1/21 | 2/72 |
+| consensus_exact_support0.25-n16 | True | 0/1 | 0/24 | 1/21 | 0/72 |
+| consensus_semantic_v4_support0.25_compatoff-n16 | True | 0/1 | 0/24 | 1/21 | 0/72 |
+| consensus_semantic_v4_support0.25_compaton-n16 | True | 0/1 | 0/24 | 1/21 | 0/72 |
+| editing_round1-n32 | True | 42/70 | 10/24 | 1/21 | 8/72 |
+| editing_round2-n32 | True | 42/69 | 10/24 | 1/21 | 8/72 |
 
 | Condition vs baseline | Family / endpoint | Paired delta | Grouped 95% interval | Groups |
 |---|---|---:|---|---:|
@@ -128,3 +139,47 @@ partial-grid cell diagnostics. Grouped intervals resample whole related groups (
 | control_mean_log_likelihood-n8 vs capped N1 | multihop_mt / cell_recovery | 0.2083 | [0.047619047619047616, 0.36666666666666664] | 7 |
 | control_mean_log_likelihood-n8 vs capped N1 | chain_intermediates / cell_recovery | 0.0000 | [0.0, 0.0] | 2 |
 | control_mean_log_likelihood-n8 vs capped N1 | role_bound_association / cell_recovery | 0.0278 | [0.0, 0.055555555555555566] | 4 |
+| consensus_exact_support0-n16 vs capped N1 | hallucination / contradiction_rate | -0.0563 | [-0.11865079365079367, 0.0] | 8 |
+| consensus_exact_support0-n16 vs capped N1 | multihop_mt / cell_recovery | 0.0000 | [0.0, 0.0] | 7 |
+| consensus_exact_support0-n16 vs capped N1 | chain_intermediates / cell_recovery | 0.0000 | [0.0, 0.0] | 2 |
+| consensus_exact_support0-n16 vs capped N1 | role_bound_association / cell_recovery | 0.0000 | [0.0, 0.0] | 4 |
+| consensus_semantic_v4_support0_compatoff-n16 vs capped N1 | hallucination / contradiction_rate | -0.0907 | [-0.18055555555555558, -0.011022657685241799] | 8 |
+| consensus_semantic_v4_support0_compatoff-n16 vs capped N1 | multihop_mt / cell_recovery | 0.0000 | [0.0, 0.0] | 7 |
+| consensus_semantic_v4_support0_compatoff-n16 vs capped N1 | chain_intermediates / cell_recovery | 0.0476 | [0.0, 0.08333333333333333] | 2 |
+| consensus_semantic_v4_support0_compatoff-n16 vs capped N1 | role_bound_association / cell_recovery | 0.0000 | [0.0, 0.0] | 4 |
+| consensus_semantic_v4_support0_compaton-n16 vs capped N1 | hallucination / contradiction_rate | -0.3304 | [-0.5012626262626263, -0.17843137254901958] | 8 |
+| consensus_semantic_v4_support0_compaton-n16 vs capped N1 | multihop_mt / cell_recovery | -0.1250 | [-0.3, 0.0] | 7 |
+| consensus_semantic_v4_support0_compaton-n16 vs capped N1 | chain_intermediates / cell_recovery | 0.0476 | [0.0, 0.08333333333333333] | 2 |
+| consensus_semantic_v4_support0_compaton-n16 vs capped N1 | role_bound_association / cell_recovery | -0.0694 | [-0.11111111111111112, -0.027777777777777776] | 4 |
+| consensus_exact_support0.125-n16 vs capped N1 | hallucination / contradiction_rate | -0.5229 | [-0.7464788732394366, -0.32857142857142857] | 8 |
+| consensus_exact_support0.125-n16 vs capped N1 | multihop_mt / cell_recovery | -0.1667 | [-0.3333333333333333, 0.0] | 7 |
+| consensus_exact_support0.125-n16 vs capped N1 | chain_intermediates / cell_recovery | 0.0476 | [0.0, 0.08333333333333333] | 2 |
+| consensus_exact_support0.125-n16 vs capped N1 | role_bound_association / cell_recovery | -0.1111 | [-0.18055555555555555, -0.05555555555555555] | 4 |
+| consensus_semantic_v4_support0.125_compatoff-n16 vs capped N1 | hallucination / contradiction_rate | -0.3244 | [-0.513888888888889, -0.17125237191650852] | 8 |
+| consensus_semantic_v4_support0.125_compatoff-n16 vs capped N1 | multihop_mt / cell_recovery | -0.1250 | [-0.3, 0.0] | 7 |
+| consensus_semantic_v4_support0.125_compatoff-n16 vs capped N1 | chain_intermediates / cell_recovery | 0.0476 | [0.0, 0.08333333333333333] | 2 |
+| consensus_semantic_v4_support0.125_compatoff-n16 vs capped N1 | role_bound_association / cell_recovery | -0.0694 | [-0.1388888888888889, -0.013888888888888895] | 4 |
+| consensus_semantic_v4_support0.125_compaton-n16 vs capped N1 | hallucination / contradiction_rate | -0.3832 | [-0.5560318432333129, -0.20246478873239437] | 8 |
+| consensus_semantic_v4_support0.125_compaton-n16 vs capped N1 | multihop_mt / cell_recovery | -0.1250 | [-0.3, 0.0] | 7 |
+| consensus_semantic_v4_support0.125_compaton-n16 vs capped N1 | chain_intermediates / cell_recovery | 0.0476 | [0.0, 0.08333333333333333] | 2 |
+| consensus_semantic_v4_support0.125_compaton-n16 vs capped N1 | role_bound_association / cell_recovery | -0.0833 | [-0.1388888888888889, -0.05555555555555555] | 4 |
+| consensus_exact_support0.25-n16 vs capped N1 | hallucination / contradiction_rate | -0.6479 | [-0.8194444444444444, -0.45714285714285713] | 8 |
+| consensus_exact_support0.25-n16 vs capped N1 | multihop_mt / cell_recovery | -0.1667 | [-0.3333333333333333, 0.0] | 7 |
+| consensus_exact_support0.25-n16 vs capped N1 | chain_intermediates / cell_recovery | 0.0476 | [0.0, 0.08333333333333333] | 2 |
+| consensus_exact_support0.25-n16 vs capped N1 | role_bound_association / cell_recovery | -0.1111 | [-0.18055555555555555, -0.05555555555555555] | 4 |
+| consensus_semantic_v4_support0.25_compatoff-n16 vs capped N1 | hallucination / contradiction_rate | -0.6479 | [-0.8194444444444444, -0.45714285714285713] | 8 |
+| consensus_semantic_v4_support0.25_compatoff-n16 vs capped N1 | multihop_mt / cell_recovery | -0.1667 | [-0.3333333333333333, 0.0] | 7 |
+| consensus_semantic_v4_support0.25_compatoff-n16 vs capped N1 | chain_intermediates / cell_recovery | 0.0476 | [0.0, 0.08333333333333333] | 2 |
+| consensus_semantic_v4_support0.25_compatoff-n16 vs capped N1 | role_bound_association / cell_recovery | -0.1111 | [-0.18055555555555555, -0.05555555555555555] | 4 |
+| consensus_semantic_v4_support0.25_compaton-n16 vs capped N1 | hallucination / contradiction_rate | -0.6479 | [-0.8194444444444444, -0.45714285714285713] | 8 |
+| consensus_semantic_v4_support0.25_compaton-n16 vs capped N1 | multihop_mt / cell_recovery | -0.1667 | [-0.3333333333333333, 0.0] | 7 |
+| consensus_semantic_v4_support0.25_compaton-n16 vs capped N1 | chain_intermediates / cell_recovery | 0.0476 | [0.0, 0.08333333333333333] | 2 |
+| consensus_semantic_v4_support0.25_compaton-n16 vs capped N1 | role_bound_association / cell_recovery | -0.1111 | [-0.18055555555555555, -0.05555555555555555] | 4 |
+| editing_round1-n32 vs capped N1 | hallucination / contradiction_rate | -0.0479 | [-0.12676056338028163, 0.03731343283582089] | 8 |
+| editing_round1-n32 vs capped N1 | multihop_mt / cell_recovery | 0.2500 | [0.09523809523809523, 0.3939393939393939] | 7 |
+| editing_round1-n32 vs capped N1 | chain_intermediates / cell_recovery | 0.0476 | [0.0, 0.08333333333333333] | 2 |
+| editing_round1-n32 vs capped N1 | role_bound_association / cell_recovery | 0.0000 | [-0.041666666666666664, 0.04166666666666666] | 4 |
+| editing_round2-n32 vs capped N1 | hallucination / contradiction_rate | -0.0392 | [-0.11649899396378272, 0.040182270091135064] | 8 |
+| editing_round2-n32 vs capped N1 | multihop_mt / cell_recovery | 0.2500 | [0.09523809523809523, 0.3939393939393939] | 7 |
+| editing_round2-n32 vs capped N1 | chain_intermediates / cell_recovery | 0.0476 | [0.0, 0.08333333333333333] | 2 |
+| editing_round2-n32 vs capped N1 | role_bound_association / cell_recovery | 0.0000 | [-0.041666666666666664, 0.04166666666666666] | 4 |

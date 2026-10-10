@@ -1,0 +1,14 @@
+[
+  {
+    "method": "raw_n1",
+    "n": 1,
+    "selection_sha256": "de69f103b8e8f9656cd5f729404bd5769e35c662cec1cfe8da95e0504bb31168",
+    "selection_path": "${OLENS_DATA_ROOT}/selections/development-full-grid-v2-baselines/selections.jsonl"
+  },
+  {
+    "method": "capped_n1",
+    "n": 1,
+    "selection_sha256": "de69f103b8e8f9656cd5f729404bd5769e35c662cec1cfe8da95e0504bb31168",
+    "selection_path": "${OLENS_DATA_ROOT}/selections/development-full-grid-v2-baselines/selections.jsonl"
+  }
+]

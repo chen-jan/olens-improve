@@ -1,5 +1,7 @@
 # Measured cost components
 
+Pricing status: the dollar values below are pre-correction derived usage estimates, not invoice charges. The old ledger omitted the cache-write surcharge. Frozen costs-v1 artifacts are preserved; audited repricing will be recorded in a new version. Compute times and scientific labels are unaffected.
+
 These figures separate the 189-cell DEV campaign, a cached CPU selection pass, and the work needed for a new activation. The pilot uses partial grids. GPU dollars are unknown; GPU seconds below mean occupied one-GPU task wall time, including recorded loading and CPU work, rather than pure kernel time.
 
 | Recorded campaign component | Work | Time / concurrency | Helper charge |
@@ -14,7 +16,7 @@ These figures separate the 189-cell DEV campaign, a cached CPU selection pass, a
 
 E3 used 567 production B8 forward calls. Its total task time also includes four fixture forwards (six extra sequence evaluations); the 176.15-second scoring interval starts after that fixture. The table's sequence and token counts describe production scoring only.
 
-B includes 103 paid response-validation failures, 67 retries, and 36 exhausted logical calls. Its v4 semantic grouping audit found false merges, so this instrumentation-limited end-to-end diagnostic does not establish semantic-consensus futility or a validated deployment guarantee. F round 1 had 145 bookkeeping-invalid responses salvaged offline; round 2 had none. Cached input charges use the ledger's actual values. They are not assumed free. The two F rounds share four total proposals per round, rather than four proposals per beam.
+B includes 103 paid response-validation failures, 67 retries, and 36 exhausted logical calls. Its v4 semantic grouping audit found false merges, so this instrumentation-limited end-to-end diagnostic does not establish semantic-consensus futility or a validated deployment guarantee. F round 1 had 145 bookkeeping-invalid responses salvaged offline; round 2 had none. Cached input estimates follow the preserved ledger and await audited repricing. They are not assumed free. The two F rounds share four total proposals per round, rather than four proposals per beam.
 
 Cached CPU selection, measured on eight fixed DEV cells with three repetitions and four Torch threads, costs the following median seconds per cell. These timings start after parsing and cached-vector preparation; preparation took 0.056–10.93 seconds per cell in this instrument and is excluded. That spread includes initialization and cache warming, so it is not a stable per-cell serving estimate.
 
@@ -43,4 +45,4 @@ The shared N32 pilot used 125.66 unique AR inputs and 1.714 AR task seconds per 
 
 Paid external judging, fitting checks, throughput benchmarks, and sensitivity audits belong to campaign cost, not the deployed selection loop. The table does not claim to total all campaign spending or to convert shared caches into free inference. Final quality comparisons must present these distinctions beside their gains.
 
-The compact source-bound record is `durable/diagnostics/costs-v1/components.json`; it records SHA-256 identities of the pilot journals, original instrument run, AR status, selector status, E3 outputs, F statuses, helper-cost ledger export, and cached CPU profile. Rebuild it with `scripts/summarize_costs.py` inside an allocated CPU job. The physical helper attempts remain in the source ledger export rather than being duplicated in the dashboard.
+The compact source-bound record is `durable/diagnostics/costs-v1/components.json`; it records SHA-256 identities of the pilot journals, original instrument run, AR status, selector status, E3 outputs, F statuses, helper-cost ledger export, and cached CPU profile. Preserve this version. Reproduce with `scripts/summarize_costs.py` inside an allocated CPU job, using a new output path rather than replacing costs-v1. The physical helper attempts remain in the source ledger export rather than being duplicated in the dashboard.

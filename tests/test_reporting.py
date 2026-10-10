@@ -2,10 +2,28 @@ import unittest
 import json
 import tempfile
 from pathlib import Path
-from olens_improve.reporting import family_counts, summarize, digest, BENCHMARK_COMMIT
+from olens_improve.reporting import family_counts, summarize, digest, BENCHMARK_COMMIT, original_grid_pairs, original_grid_contract
 from olens_improve.evaluation import paired_group_interval
 
 class ReportingTests(unittest.TestCase):
+    def test_original_grid_item_any_is_not_cell_rate(self):
+        metrics={'cell_recovery':{'a':(1,11),'b':(0,11)}}
+        result={'numbers':{'metric':'pass_rate','value':.5},'rows':[{'id':'a','pass':True},{'id':'b','pass':False}]}
+        self.assertEqual(original_grid_pairs('chain_intermediates',metrics,result)['original_grid_item_pass_rate'],{'a':(1,1),'b':(0,1)})
+        result['rows'][0]['pass']=False
+        with self.assertRaises(ValueError):original_grid_pairs('chain_intermediates',metrics,result)
+    def test_partial_grid_flag_cannot_create_official_item_score(self):
+        self.assertIsNone(original_grid_contract({'partial_grid':True}))
+        with self.assertRaises(ValueError):original_grid_contract({'partial_grid':False})
+    def test_original_grid_must_cover_frozen_core_development(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path=Path(tmp)/'core.json'
+            cell={'cell_id':'c','family':'chain_intermediates','item_id':'a','layer':20,'position':3,'group_id':'g','split':'development'}
+            path.write_text(json.dumps({'cells':[cell]}))
+            manifest={'partial_grid':False,'complete_original_family_grids':True,'benchmark_commit':BENCHMARK_COMMIT,'parent_manifest_path':str(path),'parent_manifest_sha256':digest(path),'cells':[cell]}
+            self.assertIsNotNone(original_grid_contract(manifest))
+            manifest['cells']=[]
+            with self.assertRaises(ValueError):original_grid_contract(manifest)
     def fixture(self, text='a claim'):
         cell={'item_id':'a','layer':20,'position':3}
         read={'id':'a','layer':20,'pos':3,'samples':[text]}

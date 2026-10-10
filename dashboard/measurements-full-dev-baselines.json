@@ -1,0 +1,945 @@
+{
+  "schema_version": 1,
+  "generated_utc": "2026-10-10T04:11:54.100575+00:00",
+  "conditions_sha256": "9db568263f8daf7a0b491f7a83b5f4d9840e6e42ba0c33a1351267c9d998410b",
+  "condition_root": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-baselines",
+  "scope": "complete original DEV grids: cell diagnostics and pinned item aggregation",
+  "manifest_sha256": "dd382ff6e8bc8e70f1d13710e5235efd943537b4936921726b7d59655289ca80",
+  "selection_sha256": "de69f103b8e8f9656cd5f729404bd5769e35c662cec1cfe8da95e0504bb31168",
+  "bootstrap_replicates": 2000,
+  "conditions": [
+    {
+      "method": "raw_n1",
+      "n": 1,
+      "selection_sha256": "de69f103b8e8f9656cd5f729404bd5769e35c662cec1cfe8da95e0504bb31168",
+      "selection_path": "${OLENS_DATA_ROOT}/selections/development-full-grid-v2-baselines/selections.jsonl",
+      "condition_root": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-baselines",
+      "condition": "raw_n1-n1",
+      "measurement_complete": true,
+      "families": {
+        "hallucination": {
+          "expected_cells": 1145,
+          "empty_abstentions": 0,
+          "missing_stage1": 0,
+          "missing_stage2": 0,
+          "metrics": {
+            "contradiction_rate": {
+              "numerator": 545,
+              "denominator": 1136,
+              "value": 0.47975352112676056,
+              "ci95": [
+                0.41582336706531736,
+                0.5454545454545454
+              ],
+              "items": 30,
+              "independent_groups": 30,
+              "defined_draws": 2000,
+              "warning": null
+            },
+            "assertion_share": {
+              "numerator": 1136,
+              "denominator": 1145,
+              "value": 0.9921397379912664,
+              "ci95": [
+                0.9875555555555555,
+                0.9958333333333333
+              ],
+              "items": 30,
+              "independent_groups": 30,
+              "defined_draws": 2000,
+              "warning": null
+            },
+            "off_topic_rate": {
+              "numerator": 145,
+              "denominator": 1136,
+              "value": 0.12764084507042253,
+              "ci95": [
+                0.07436570428696412,
+                0.18889883616830797
+              ],
+              "items": 30,
+              "independent_groups": 30,
+              "defined_draws": 2000,
+              "warning": null
+            },
+            "false_span_tally": {
+              "numerator": 1313,
+              "denominator": 1145,
+              "value": 1.1467248908296943,
+              "ci95": [
+                0.9263157894736842,
+                1.3783549783549784
+              ],
+              "items": 30,
+              "independent_groups": 30,
+              "defined_draws": 2000,
+              "warning": null
+            },
+            "true_claim_tally": {
+              "numerator": 1834,
+              "denominator": 1145,
+              "value": 1.6017467248908297,
+              "ci95": [
+                1.3336170212765956,
+                1.8837837837837839
+              ],
+              "items": 30,
+              "independent_groups": 30,
+              "defined_draws": 2000,
+              "warning": null
+            },
+            "unverifiable_claims_per_output": {
+              "numerator": 4113,
+              "denominator": 1145,
+              "value": 3.5921397379912663,
+              "ci95": [
+                3.1216216216216215,
+                4.116883116883117
+              ],
+              "items": 30,
+              "independent_groups": 30,
+              "defined_draws": 2000,
+              "warning": null
+            }
+          },
+          "original_grid_metrics": {
+            "original_grid_contradiction_rate": {
+              "numerator": 545,
+              "denominator": 1136,
+              "value": 0.47975352112676056,
+              "ci95": [
+                0.41582336706531736,
+                0.5454545454545454
+              ],
+              "items": 30,
+              "independent_groups": 30,
+              "defined_draws": 2000,
+              "warning": null,
+              "unit": "specific readouts; ratio of item sums"
+            }
+          }
+        },
+        "multihop_mt": {
+          "expected_cells": 341,
+          "empty_abstentions": 0,
+          "missing_stage1": 0,
+          "missing_stage2": 0,
+          "metrics": {
+            "cell_recovery": {
+              "numerator": 29,
+              "denominator": 341,
+              "value": 0.08504398826979472,
+              "ci95": [
+                0.0219435736677116,
+                0.16804407713498623
+              ],
+              "items": 31,
+              "independent_groups": 29,
+              "defined_draws": 2000,
+              "warning": null
+            }
+          },
+          "original_grid_metrics": {
+            "original_grid_item_pass_rate": {
+              "numerator": 11,
+              "denominator": 31,
+              "value": 0.3548387096774194,
+              "ci95": [
+                0.18181818181818182,
+                0.53125
+              ],
+              "items": 31,
+              "independent_groups": 29,
+              "defined_draws": 2000,
+              "warning": null,
+              "unit": "original-grid item: ANY passing site/layer"
+            }
+          }
+        },
+        "chain_intermediates": {
+          "expected_cells": 330,
+          "empty_abstentions": 0,
+          "missing_stage1": 0,
+          "missing_stage2": 0,
+          "metrics": {
+            "cell_recovery": {
+              "numerator": 28,
+              "denominator": 330,
+              "value": 0.08484848484848485,
+              "ci95": [
+                0.048295454545454544,
+                0.15019762845849802
+              ],
+              "items": 30,
+              "independent_groups": 7,
+              "defined_draws": 2000,
+              "warning": "Tiny group count; intervals cannot establish robustness"
+            }
+          },
+          "original_grid_metrics": {
+            "original_grid_item_pass_rate": {
+              "numerator": 16,
+              "denominator": 30,
+              "value": 0.5333333333333333,
+              "ci95": [
+                0.4090909090909091,
+                0.7272727272727273
+              ],
+              "items": 30,
+              "independent_groups": 7,
+              "defined_draws": 2000,
+              "warning": "Tiny group count; intervals cannot establish robustness",
+              "unit": "original-grid item: ANY passing site/layer"
+            }
+          }
+        },
+        "role_bound_association": {
+          "expected_cells": 3420,
+          "empty_abstentions": 0,
+          "missing_stage1": 0,
+          "missing_stage2": 0,
+          "metrics": {
+            "cell_recovery": {
+              "numerator": 155,
+              "denominator": 3420,
+              "value": 0.04532163742690058,
+              "ci95": [
+                0.029239766081871343,
+                0.06257309941520468
+              ],
+              "items": 30,
+              "independent_groups": 15,
+              "defined_draws": 2000,
+              "warning": null
+            }
+          },
+          "original_grid_metrics": {
+            "original_grid_item_pass_rate": {
+              "numerator": 23,
+              "denominator": 30,
+              "value": 0.7666666666666667,
+              "ci95": [
+                0.6,
+                0.9
+              ],
+              "items": 30,
+              "independent_groups": 15,
+              "defined_draws": 2000,
+              "warning": null,
+              "unit": "original-grid item: ANY passing site/layer"
+            }
+          }
+        }
+      },
+      "source_sha256": {
+        "${OLENS_DATA_ROOT}/selections/development-full-grid-v2-baselines/selections.jsonl": "de69f103b8e8f9656cd5f729404bd5769e35c662cec1cfe8da95e0504bb31168",
+        "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-baselines/raw_n1-n1/condition.json": "896e92a13765dd831b2e837a273b40e40eaac1c24facfec8eb60b55f87540a01",
+        "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-baselines/raw_n1-n1/hallucination.summary.json": "223ce6b0d285b78d9f0387ceabd25a16009637330cd163d13c35e006feb46b1b",
+        "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-baselines/raw_n1-n1/hallucination/project_contract.json": "da8872653e84d9795ca9a5243a3cb962f6d4762b09c61a61b83c71b79aedc9bf",
+        "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-baselines/raw_n1-n1/hallucination/results.json": "ac868e6d33500d4c595e6cd3c87df8b34ef473bb144030878d9a26ce0aa1608f",
+        "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-baselines/raw_n1-n1/hallucination.readouts.jsonl": "551ea0b98c90212219ec3a5c6ad01b6d3f174816f743695abf234349cf9672c1",
+        "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-baselines/raw_n1-n1/multihop_mt.summary.json": "65162eb8a0a37b1ad9a122b4e2b77c1a9d8d5c685deaab0c792c38d87e9138b7",
+        "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-baselines/raw_n1-n1/multihop_mt/project_contract.json": "ff98e7463bc96252de713760216f3e6d2b0810b5abcd22efb2bf289b317d5030",
+        "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-baselines/raw_n1-n1/multihop_mt/results.json": "2bc287eaf03129ce02e13ae978270c1235c535b720e08aba5c26298004041cc2",
+        "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-baselines/raw_n1-n1/multihop_mt.readouts.jsonl": "4b1a307fc473be82738ff9da10231dadc69da9b9ee645d99b38e206f1c46a44a",
+        "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-baselines/raw_n1-n1/chain_intermediates.summary.json": "86c0ea2a64d93dd01222f08311e71f9e1897b74625c64cd6223c004fb2cfdcc1",
+        "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-baselines/raw_n1-n1/chain_intermediates/project_contract.json": "6d43074fef55f280e139649b1b5be275f7f89ba1f998882329652d576411875d",
+        "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-baselines/raw_n1-n1/chain_intermediates/results.json": "1c7a5692c5d58a3b7c8a0a553d64f26632a218fd5b76d36d7a6f68d230dd7399",
+        "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-baselines/raw_n1-n1/chain_intermediates.readouts.jsonl": "75d9f25746772ce038dcf6d60408d9994a493a7bb281f19a676c1c395f070b8c",
+        "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-baselines/raw_n1-n1/role_bound_association.summary.json": "6cad8b382d2e14fb172097d8957d6bd2b17f9a8fa3252f5468fcaf1dc035fd18",
+        "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-baselines/raw_n1-n1/role_bound_association/project_contract.json": "23d6aeb08292e12d3f1cf1f4e70b518668343aa6cea460ac2e3304871d495901",
+        "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-baselines/raw_n1-n1/role_bound_association/results.json": "a1da0c3233cc79d153667d3756d03449cc4690254f4cecb005a2c27ac9b24064",
+        "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-baselines/raw_n1-n1/role_bound_association.readouts.jsonl": "5941d98b090108d1ab8c6545f4c5dd11a70478645f4407d48840468ca70eefb0"
+      },
+      "errors": []
+    },
+    {
+      "method": "capped_n1",
+      "n": 1,
+      "selection_sha256": "de69f103b8e8f9656cd5f729404bd5769e35c662cec1cfe8da95e0504bb31168",
+      "selection_path": "${OLENS_DATA_ROOT}/selections/development-full-grid-v2-baselines/selections.jsonl",
+      "condition_root": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-baselines",
+      "condition": "capped_n1-n1",
+      "measurement_complete": true,
+      "families": {
+        "hallucination": {
+          "expected_cells": 1145,
+          "empty_abstentions": 0,
+          "missing_stage1": 0,
+          "missing_stage2": 0,
+          "metrics": {
+            "contradiction_rate": {
+              "numerator": 543,
+              "denominator": 1137,
+              "value": 0.47757255936675463,
+              "ci95": [
+                0.41154903758020167,
+                0.5453736654804271
+              ],
+              "items": 30,
+              "independent_groups": 30,
+              "defined_draws": 2000,
+              "warning": null
+            },
+            "assertion_share": {
+              "numerator": 1137,
+              "denominator": 1145,
+              "value": 0.9930131004366812,
+              "ci95": [
+                0.9883408071748879,
+                0.9966244725738397
+              ],
+              "items": 30,
+              "independent_groups": 30,
+              "defined_draws": 2000,
+              "warning": null
+            },
+            "off_topic_rate": {
+              "numerator": 148,
+              "denominator": 1137,
+              "value": 0.13016710642040458,
+              "ci95": [
+                0.07555555555555556,
+                0.19289340101522842
+              ],
+              "items": 30,
+              "independent_groups": 30,
+              "defined_draws": 2000,
+              "warning": null
+            },
+            "false_span_tally": {
+              "numerator": 1305,
+              "denominator": 1145,
+              "value": 1.1397379912663756,
+              "ci95": [
+                0.9220338983050848,
+                1.3650655021834062
+              ],
+              "items": 30,
+              "independent_groups": 30,
+              "defined_draws": 2000,
+              "warning": null
+            },
+            "true_claim_tally": {
+              "numerator": 1827,
+              "denominator": 1145,
+              "value": 1.5956331877729257,
+              "ci95": [
+                1.3236051502145922,
+                1.8767932489451478
+              ],
+              "items": 30,
+              "independent_groups": 30,
+              "defined_draws": 2000,
+              "warning": null
+            },
+            "unverifiable_claims_per_output": {
+              "numerator": 4057,
+              "denominator": 1145,
+              "value": 3.543231441048035,
+              "ci95": [
+                3.0700854700854703,
+                4.078538812785388
+              ],
+              "items": 30,
+              "independent_groups": 30,
+              "defined_draws": 2000,
+              "warning": null
+            }
+          },
+          "original_grid_metrics": {
+            "original_grid_contradiction_rate": {
+              "numerator": 543,
+              "denominator": 1137,
+              "value": 0.47757255936675463,
+              "ci95": [
+                0.41154903758020167,
+                0.5453736654804271
+              ],
+              "items": 30,
+              "independent_groups": 30,
+              "defined_draws": 2000,
+              "warning": null,
+              "unit": "specific readouts; ratio of item sums"
+            }
+          }
+        },
+        "multihop_mt": {
+          "expected_cells": 341,
+          "empty_abstentions": 0,
+          "missing_stage1": 0,
+          "missing_stage2": 0,
+          "metrics": {
+            "cell_recovery": {
+              "numerator": 29,
+              "denominator": 341,
+              "value": 0.08504398826979472,
+              "ci95": [
+                0.0219435736677116,
+                0.16804407713498623
+              ],
+              "items": 31,
+              "independent_groups": 29,
+              "defined_draws": 2000,
+              "warning": null
+            }
+          },
+          "original_grid_metrics": {
+            "original_grid_item_pass_rate": {
+              "numerator": 11,
+              "denominator": 31,
+              "value": 0.3548387096774194,
+              "ci95": [
+                0.18181818181818182,
+                0.53125
+              ],
+              "items": 31,
+              "independent_groups": 29,
+              "defined_draws": 2000,
+              "warning": null,
+              "unit": "original-grid item: ANY passing site/layer"
+            }
+          }
+        },
+        "chain_intermediates": {
+          "expected_cells": 330,
+          "empty_abstentions": 0,
+          "missing_stage1": 0,
+          "missing_stage2": 0,
+          "metrics": {
+            "cell_recovery": {
+              "numerator": 26,
+              "denominator": 330,
+              "value": 0.07878787878787878,
+              "ci95": [
+                0.044226044226044224,
+                0.14049586776859505
+              ],
+              "items": 30,
+              "independent_groups": 7,
+              "defined_draws": 2000,
+              "warning": "Tiny group count; intervals cannot establish robustness"
+            }
+          },
+          "original_grid_metrics": {
+            "original_grid_item_pass_rate": {
+              "numerator": 15,
+              "denominator": 30,
+              "value": 0.5,
+              "ci95": [
+                0.38461538461538464,
+                0.6956521739130435
+              ],
+              "items": 30,
+              "independent_groups": 7,
+              "defined_draws": 2000,
+              "warning": "Tiny group count; intervals cannot establish robustness",
+              "unit": "original-grid item: ANY passing site/layer"
+            }
+          }
+        },
+        "role_bound_association": {
+          "expected_cells": 3420,
+          "empty_abstentions": 0,
+          "missing_stage1": 0,
+          "missing_stage2": 0,
+          "metrics": {
+            "cell_recovery": {
+              "numerator": 151,
+              "denominator": 3420,
+              "value": 0.044152046783625734,
+              "ci95": [
+                0.028070175438596492,
+                0.06140350877192982
+              ],
+              "items": 30,
+              "independent_groups": 15,
+              "defined_draws": 2000,
+              "warning": null
+            }
+          },
+          "original_grid_metrics": {
+            "original_grid_item_pass_rate": {
+              "numerator": 23,
+              "denominator": 30,
+              "value": 0.7666666666666667,
+              "ci95": [
+                0.6,
+                0.9
+              ],
+              "items": 30,
+              "independent_groups": 15,
+              "defined_draws": 2000,
+              "warning": null,
+              "unit": "original-grid item: ANY passing site/layer"
+            }
+          }
+        }
+      },
+      "source_sha256": {
+        "${OLENS_DATA_ROOT}/selections/development-full-grid-v2-baselines/selections.jsonl": "de69f103b8e8f9656cd5f729404bd5769e35c662cec1cfe8da95e0504bb31168",
+        "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-baselines/capped_n1-n1/condition.json": "6a7971822e6c116187f302f638f4d0592ac3259247b060d9734d4f0fae7f7268",
+        "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-baselines/capped_n1-n1/hallucination.summary.json": "bf7805405296916c4d65301ce511ee0cbf5e1178938fb68464e57cc23e47a0bf",
+        "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-baselines/capped_n1-n1/hallucination/project_contract.json": "3cb642fc8149cf264db26a21441b4f975d12eeef4a928a460a72de453992579f",
+        "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-baselines/capped_n1-n1/hallucination/results.json": "52479c679fa46a8f630ae1928343ff1f926033d36528cc16b4000ace68ba62be",
+        "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-baselines/capped_n1-n1/hallucination.readouts.jsonl": "829dd89e76f41715e4c6345b1c97811ca83e02d4f1bec188a446a8b240877839",
+        "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-baselines/capped_n1-n1/multihop_mt.summary.json": "f0b9cc2ab12ab25c6ace8cfbdd51c2396d7295562d8a07b32522163cfb5dde20",
+        "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-baselines/capped_n1-n1/multihop_mt/project_contract.json": "3a1b148a84ffc7749ec491e26e14e58986c11f609a3d89a94466a6a0478f3bad",
+        "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-baselines/capped_n1-n1/multihop_mt/results.json": "2bc287eaf03129ce02e13ae978270c1235c535b720e08aba5c26298004041cc2",
+        "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-baselines/capped_n1-n1/multihop_mt.readouts.jsonl": "b62cd0d8708e453f036273c546b60edbec2a4ea1033b11125469401445b00d19",
+        "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-baselines/capped_n1-n1/chain_intermediates.summary.json": "760ac08ad81e3f9c3a0951ec67814288caf79142c39f5ab56eb6423df59359a1",
+        "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-baselines/capped_n1-n1/chain_intermediates/project_contract.json": "17eaa19e2b9694e4be0c494fcdccaf62eaa4cfc456e0c12ddcbb9590f17122d3",
+        "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-baselines/capped_n1-n1/chain_intermediates/results.json": "c7943ead8cc0b7e3b888dfc30c18455bbb89286ad65bdc50ac6ba5fcba89d32b",
+        "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-baselines/capped_n1-n1/chain_intermediates.readouts.jsonl": "40a8a6518301b4486d0a34c0b5e81836a55228409e03693a6d2c647e049ce4a1",
+        "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-baselines/capped_n1-n1/role_bound_association.summary.json": "13a3dedea64428500452106c7625759b0c9d8bd989459c3b124735f198b82bd5",
+        "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-baselines/capped_n1-n1/role_bound_association/project_contract.json": "6e3b59966c2410a9bca73373ea3629dc1748b4ac083ffebbeff928ed968d220e",
+        "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-baselines/capped_n1-n1/role_bound_association/results.json": "b11112c9e45ef9fd5b64b0b4fedeb66378399410048e7e6e8b75c127a920ba4a",
+        "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-baselines/capped_n1-n1/role_bound_association.readouts.jsonl": "51524fcf48d276c7fae99de33574bbde22e493d32af0d3d47baadf9d33b8a0e5"
+      },
+      "errors": []
+    }
+  ],
+  "paired_comparisons": [
+    {
+      "baseline_condition": "capped_n1-n1",
+      "condition": "raw_n1-n1",
+      "family": "hallucination",
+      "endpoint": "contradiction_rate",
+      "baseline": 0.47757255936675463,
+      "proposed": 0.47975352112676056,
+      "delta": 0.0021809617600059283,
+      "ci95_delta": [
+        -0.0027803521779425355,
+        0.007238848108413354
+      ],
+      "items": 30,
+      "independent_groups": 30,
+      "seed": 20261010,
+      "bootstrap_replicates": 2000,
+      "defined_draws": 2000,
+      "warning": null
+    },
+    {
+      "baseline_condition": "capped_n1-n1",
+      "condition": "raw_n1-n1",
+      "family": "hallucination",
+      "endpoint": "assertion_share",
+      "baseline": 0.9930131004366812,
+      "proposed": 0.9921397379912664,
+      "delta": -0.0008733624454148048,
+      "ci95_delta": [
+        -0.002666666666666706,
+        0.0
+      ],
+      "items": 30,
+      "independent_groups": 30,
+      "seed": 20261010,
+      "bootstrap_replicates": 2000,
+      "defined_draws": 2000,
+      "warning": null
+    },
+    {
+      "baseline_condition": "capped_n1-n1",
+      "condition": "raw_n1-n1",
+      "family": "hallucination",
+      "endpoint": "off_topic_rate",
+      "baseline": 0.13016710642040458,
+      "proposed": 0.12764084507042253,
+      "delta": -0.002526261349982045,
+      "ci95_delta": [
+        -0.0077331460215299686,
+        0.0017754676124208668
+      ],
+      "items": 30,
+      "independent_groups": 30,
+      "seed": 20261010,
+      "bootstrap_replicates": 2000,
+      "defined_draws": 2000,
+      "warning": null
+    },
+    {
+      "baseline_condition": "capped_n1-n1",
+      "condition": "raw_n1-n1",
+      "family": "hallucination",
+      "endpoint": "unverifiable_claims_per_output",
+      "baseline": 3.543231441048035,
+      "proposed": 3.5921397379912663,
+      "delta": 0.04890829694323129,
+      "ci95_delta": [
+        0.0,
+        0.09830508474576272
+      ],
+      "items": 30,
+      "independent_groups": 30,
+      "seed": 20261010,
+      "bootstrap_replicates": 2000,
+      "defined_draws": 2000,
+      "warning": null
+    },
+    {
+      "baseline_condition": "capped_n1-n1",
+      "condition": "raw_n1-n1",
+      "family": "multihop_mt",
+      "endpoint": "cell_recovery",
+      "baseline": 0.08504398826979472,
+      "proposed": 0.08504398826979472,
+      "delta": 0.0,
+      "ci95_delta": [
+        0.0,
+        0.0
+      ],
+      "items": 31,
+      "independent_groups": 29,
+      "seed": 20261010,
+      "bootstrap_replicates": 2000,
+      "defined_draws": 2000,
+      "warning": null
+    },
+    {
+      "baseline_condition": "capped_n1-n1",
+      "condition": "raw_n1-n1",
+      "family": "chain_intermediates",
+      "endpoint": "cell_recovery",
+      "baseline": 0.07878787878787878,
+      "proposed": 0.08484848484848485,
+      "delta": 0.006060606060606072,
+      "ci95_delta": [
+        0.0,
+        0.01652892561983471
+      ],
+      "items": 30,
+      "independent_groups": 7,
+      "seed": 20261010,
+      "bootstrap_replicates": 2000,
+      "defined_draws": 2000,
+      "warning": "Tiny group count; intervals cannot establish robustness"
+    },
+    {
+      "baseline_condition": "capped_n1-n1",
+      "condition": "raw_n1-n1",
+      "family": "role_bound_association",
+      "endpoint": "cell_recovery",
+      "baseline": 0.044152046783625734,
+      "proposed": 0.04532163742690058,
+      "delta": 0.0011695906432748482,
+      "ci95_delta": [
+        -0.00029239766081871205,
+        0.0029239766081871343
+      ],
+      "items": 30,
+      "independent_groups": 15,
+      "seed": 20261010,
+      "bootstrap_replicates": 2000,
+      "defined_draws": 2000,
+      "warning": null
+    },
+    {
+      "baseline_condition": "raw_n1-n1",
+      "condition": "capped_n1-n1",
+      "family": "hallucination",
+      "endpoint": "contradiction_rate",
+      "baseline": 0.47975352112676056,
+      "proposed": 0.47757255936675463,
+      "delta": -0.0021809617600059283,
+      "ci95_delta": [
+        -0.0072644954038053045,
+        0.002777777777777768
+      ],
+      "items": 30,
+      "independent_groups": 30,
+      "seed": 20261010,
+      "bootstrap_replicates": 2000,
+      "defined_draws": 2000,
+      "warning": null
+    },
+    {
+      "baseline_condition": "raw_n1-n1",
+      "condition": "capped_n1-n1",
+      "family": "hallucination",
+      "endpoint": "assertion_share",
+      "baseline": 0.9921397379912664,
+      "proposed": 0.9930131004366812,
+      "delta": 0.0008733624454148048,
+      "ci95_delta": [
+        0.0,
+        0.0026548672566372167
+      ],
+      "items": 30,
+      "independent_groups": 30,
+      "seed": 20261010,
+      "bootstrap_replicates": 2000,
+      "defined_draws": 2000,
+      "warning": null
+    },
+    {
+      "baseline_condition": "raw_n1-n1",
+      "condition": "capped_n1-n1",
+      "family": "hallucination",
+      "endpoint": "off_topic_rate",
+      "baseline": 0.12764084507042253,
+      "proposed": 0.13016710642040458,
+      "delta": 0.002526261349982045,
+      "ci95_delta": [
+        -0.0017761989342806317,
+        0.007697419082395629
+      ],
+      "items": 30,
+      "independent_groups": 30,
+      "seed": 20261010,
+      "bootstrap_replicates": 2000,
+      "defined_draws": 2000,
+      "warning": null
+    },
+    {
+      "baseline_condition": "raw_n1-n1",
+      "condition": "capped_n1-n1",
+      "family": "hallucination",
+      "endpoint": "unverifiable_claims_per_output",
+      "baseline": 3.5921397379912663,
+      "proposed": 3.543231441048035,
+      "delta": -0.04890829694323129,
+      "ci95_delta": [
+        -0.09865470852017921,
+        0.0
+      ],
+      "items": 30,
+      "independent_groups": 30,
+      "seed": 20261010,
+      "bootstrap_replicates": 2000,
+      "defined_draws": 2000,
+      "warning": null
+    },
+    {
+      "baseline_condition": "raw_n1-n1",
+      "condition": "capped_n1-n1",
+      "family": "multihop_mt",
+      "endpoint": "cell_recovery",
+      "baseline": 0.08504398826979472,
+      "proposed": 0.08504398826979472,
+      "delta": 0.0,
+      "ci95_delta": [
+        0.0,
+        0.0
+      ],
+      "items": 31,
+      "independent_groups": 29,
+      "seed": 20261010,
+      "bootstrap_replicates": 2000,
+      "defined_draws": 2000,
+      "warning": null
+    },
+    {
+      "baseline_condition": "raw_n1-n1",
+      "condition": "capped_n1-n1",
+      "family": "chain_intermediates",
+      "endpoint": "cell_recovery",
+      "baseline": 0.08484848484848485,
+      "proposed": 0.07878787878787878,
+      "delta": -0.006060606060606072,
+      "ci95_delta": [
+        -0.01652892561983471,
+        0.0
+      ],
+      "items": 30,
+      "independent_groups": 7,
+      "seed": 20261010,
+      "bootstrap_replicates": 2000,
+      "defined_draws": 2000,
+      "warning": "Tiny group count; intervals cannot establish robustness"
+    },
+    {
+      "baseline_condition": "raw_n1-n1",
+      "condition": "capped_n1-n1",
+      "family": "role_bound_association",
+      "endpoint": "cell_recovery",
+      "baseline": 0.04532163742690058,
+      "proposed": 0.044152046783625734,
+      "delta": -0.0011695906432748482,
+      "ci95_delta": [
+        -0.0029239766081871343,
+        0.00029239766081871205
+      ],
+      "items": 30,
+      "independent_groups": 15,
+      "seed": 20261010,
+      "bootstrap_replicates": 2000,
+      "defined_draws": 2000,
+      "warning": null
+    }
+  ],
+  "caveats": [
+    "Whole related groups are resampled after aggregating cells by item.",
+    "Recovery detects mentions/bindings under the declared judge, not full explanation faithfulness.",
+    "False spans and true/unverifiable claims have different segmentation.",
+    "Random selection is one frozen draw.",
+    "Original item aggregation uses complete DEV grids only; no held-out or whole-bank benchmark accuracy is reported."
+  ],
+  "original_grid_contract": {
+    "parent_manifest_path": "${OLENS_DATA_ROOT}/manifests/core-capture-v2.json",
+    "parent_manifest_sha256": "3cf1cc9c477d24ad3ecda9eafe947bff947a8afe46a08c2c5a4620f0d49412c9",
+    "scope": "complete original development grids; not held-out benchmark accuracy"
+  },
+  "original_grid_paired_comparisons": [
+    {
+      "baseline_condition": "capped_n1-n1",
+      "condition": "raw_n1-n1",
+      "family": "hallucination",
+      "endpoint": "original_grid_contradiction_rate",
+      "baseline": 0.47757255936675463,
+      "proposed": 0.47975352112676056,
+      "delta": 0.0021809617600059283,
+      "ci95_delta": [
+        -0.0027803521779425355,
+        0.007238848108413354
+      ],
+      "items": 30,
+      "independent_groups": 30,
+      "seed": 20261010,
+      "bootstrap_replicates": 2000,
+      "defined_draws": 2000,
+      "warning": null
+    },
+    {
+      "baseline_condition": "capped_n1-n1",
+      "condition": "raw_n1-n1",
+      "family": "multihop_mt",
+      "endpoint": "original_grid_item_pass_rate",
+      "baseline": 0.3548387096774194,
+      "proposed": 0.3548387096774194,
+      "delta": 0.0,
+      "ci95_delta": [
+        0.0,
+        0.0
+      ],
+      "items": 31,
+      "independent_groups": 29,
+      "seed": 20261010,
+      "bootstrap_replicates": 2000,
+      "defined_draws": 2000,
+      "warning": null
+    },
+    {
+      "baseline_condition": "capped_n1-n1",
+      "condition": "raw_n1-n1",
+      "family": "chain_intermediates",
+      "endpoint": "original_grid_item_pass_rate",
+      "baseline": 0.5,
+      "proposed": 0.5333333333333333,
+      "delta": 0.033333333333333326,
+      "ci95_delta": [
+        0.0,
+        0.13043478260869568
+      ],
+      "items": 30,
+      "independent_groups": 7,
+      "seed": 20261010,
+      "bootstrap_replicates": 2000,
+      "defined_draws": 2000,
+      "warning": "Tiny group count; intervals cannot establish robustness"
+    },
+    {
+      "baseline_condition": "capped_n1-n1",
+      "condition": "raw_n1-n1",
+      "family": "role_bound_association",
+      "endpoint": "original_grid_item_pass_rate",
+      "baseline": 0.7666666666666667,
+      "proposed": 0.7666666666666667,
+      "delta": 0.0,
+      "ci95_delta": [
+        0.0,
+        0.0
+      ],
+      "items": 30,
+      "independent_groups": 15,
+      "seed": 20261010,
+      "bootstrap_replicates": 2000,
+      "defined_draws": 2000,
+      "warning": null
+    },
+    {
+      "baseline_condition": "raw_n1-n1",
+      "condition": "capped_n1-n1",
+      "family": "hallucination",
+      "endpoint": "original_grid_contradiction_rate",
+      "baseline": 0.47975352112676056,
+      "proposed": 0.47757255936675463,
+      "delta": -0.0021809617600059283,
+      "ci95_delta": [
+        -0.0072644954038053045,
+        0.002777777777777768
+      ],
+      "items": 30,
+      "independent_groups": 30,
+      "seed": 20261010,
+      "bootstrap_replicates": 2000,
+      "defined_draws": 2000,
+      "warning": null
+    },
+    {
+      "baseline_condition": "raw_n1-n1",
+      "condition": "capped_n1-n1",
+      "family": "multihop_mt",
+      "endpoint": "original_grid_item_pass_rate",
+      "baseline": 0.3548387096774194,
+      "proposed": 0.3548387096774194,
+      "delta": 0.0,
+      "ci95_delta": [
+        0.0,
+        0.0
+      ],
+      "items": 31,
+      "independent_groups": 29,
+      "seed": 20261010,
+      "bootstrap_replicates": 2000,
+      "defined_draws": 2000,
+      "warning": null
+    },
+    {
+      "baseline_condition": "raw_n1-n1",
+      "condition": "capped_n1-n1",
+      "family": "chain_intermediates",
+      "endpoint": "original_grid_item_pass_rate",
+      "baseline": 0.5333333333333333,
+      "proposed": 0.5,
+      "delta": -0.033333333333333326,
+      "ci95_delta": [
+        -0.13043478260869568,
+        0.0
+      ],
+      "items": 30,
+      "independent_groups": 7,
+      "seed": 20261010,
+      "bootstrap_replicates": 2000,
+      "defined_draws": 2000,
+      "warning": "Tiny group count; intervals cannot establish robustness"
+    },
+    {
+      "baseline_condition": "raw_n1-n1",
+      "condition": "capped_n1-n1",
+      "family": "role_bound_association",
+      "endpoint": "original_grid_item_pass_rate",
+      "baseline": 0.7666666666666667,
+      "proposed": 0.7666666666666667,
+      "delta": 0.0,
+      "ci95_delta": [
+        0.0,
+        0.0
+      ],
+      "items": 30,
+      "independent_groups": 15,
+      "seed": 20261010,
+      "bootstrap_replicates": 2000,
+      "defined_draws": 2000,
+      "warning": null
+    }
+  ],
+  "original_grid_metric_source_sha256": {
+    "${OLENS_SOURCE_ROOT}/scratch/repos/workspace-bench-v2/src/wsbench/evals/hallucination/score.py": "86b86df1baed16ab1ef608aea8d7dad14d2af85ac9bd901a673e0a5a25f325a9",
+    "${OLENS_SOURCE_ROOT}/scratch/repos/workspace-bench-v2/src/wsbench/evals/role_bound_association/score.py": "1cfa5f458cd133074ddc66fec3cf0509a12af7d1000e383a0c646b8ca52d626a",
+    "${OLENS_SOURCE_ROOT}/scratch/repos/workspace-bench-v2/src/wsbench/evals/chain_intermediates/judge.py": "4f4d005ba32c9623e2c1a400353088d65446690632afd7d1f10a88273e32126b",
+    "${OLENS_SOURCE_ROOT}/scratch/repos/workspace-bench-v2/src/wsbench/multitoken/family.py": "b74f5174045fe58f4cb4d38950c5082eb937aa987c6a3372c9289ae50412a8a6",
+    "${OLENS_SOURCE_ROOT}/scratch/repos/workspace-bench-v2/src/wsbench/multitoken/regex.py": "71141736467231c2ad8d75900d1d67226b08c22752f62a7fcd2ef070622e0529",
+    "${OLENS_SOURCE_ROOT}/scratch/repos/workspace-bench-v2/src/wsbench/family.py": "c016b1e5ae709ea8c7b7b664aeda96260a9bdb5ae2670afd6ae1aa36e853c553",
+    "${OLENS_SOURCE_ROOT}/scratch/repos/workspace-bench-v2/src/wsbench/results.py": "7679c3428cf49d30d8d425b31598892a5fe1d37c7504d0458a9492a378f7d4d1"
+  }
+}
