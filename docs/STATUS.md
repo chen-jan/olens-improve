@@ -1,6 +1,6 @@
 # Execution status
 
-Updated: 2026-10-10, approximately 10:46 UTC.
+Updated: 2026-10-10, approximately 11:08 UTC.
 Started: 2026-10-10 01:25:36 UTC (October 9, 21:25:36 EDT).
 Target finish: 2026-10-10 21:25:36 UTC. Execution remains active and authorized.
 
@@ -81,7 +81,7 @@ first source-checked dashboard with grouped intervals. Nothing has been pushed.
 | Single-method pilots | A/B/C/D/E1/E3/F judged; E2/G diagnostics complete with limits; exact-claim-span v3 stopped after its eight-cell contract audit, without benchmark-quality measurement |
 | Combinations | 65 unique pilot conditions judged and source-checked; larger E1-plus-pruning outputs complete and awaiting judging |
 | Additional controls | All32 judgments and matched-donor N1 complete; all requested cells/stages covered |
-| Held-out evaluation | All 3,485 validation cells have immutable N32 pools; all AR, selectors, pruning and the exact twelve-arm export are complete. Multi-hop and chain judging are complete; hallucination is 11/12 and role 7/12; both resumed their exact unfinished conditions at 10:45 after a tested accounting snapshot repair. The early window has 218 new settled responses and no new uncertain charges; monitoring continues. Blind TEST sampling is running on four H200s; TEST analysis stays closed. |
+| Held-out evaluation | All 3,485 validation cells have immutable N32 pools; all AR, selectors, pruning and the exact twelve-arm export are complete. Hallucination, multi-hop and chain judging are complete; role is 9/12 at 11:07. The recovered judges have no new uncertain charges so far. Blind TEST sampling is running on four H200s; TEST analysis stays closed. Blind TEST sampling is running on four H200s; TEST analysis stays closed. |
 
 Combination comparisons retain unchanged parents, component-off outputs, and
 random deletion matched on retained bullet count. Fixed support weights are
@@ -109,17 +109,20 @@ amount retained, and both judges resumed at 10:45 under the reviewed recovery
 spec. At 10:46, 218 additional responses had settled with zero new unknowns;
 recent p95 request latencies were 2.54 seconds for hallucination and 2.10 seconds
 for role. This early health window does not establish a durable fix. No
-validation conclusion or final method choice has been made.
+validation conclusion or final method choice has been made. At 11:07:47,
+three families had all twelve conditions complete and role had nine; the role
+latest-100 window had no new unknowns, p95 latency 1.93 seconds and oldest live
+request 1.15 seconds. All fourteen incident holds remain intact.
 See [experiment 029](experiments/029-validation-comparison.md).
 
-Blind TEST sampling started at 08:32 UTC. At 10:45:36, 7,327 of 10,714 cells
-(68.4%) were complete, with a conditional generation-only forecast near 11:48 UTC.
+Blind TEST sampling started at 08:32 UTC. At 11:06:55, 8,499 of 10,714 cells
+(79.3%) were complete, with a conditional generation-only forecast near 11:52 UTC.
 TEST text, AR, selection and judging remain sealed until the final freeze and
 separate analysis gate. The GPU work is unaffected by the judging interruption.
 
-The 10:18:06 read-only resource watcher recorded $11.90501 in usage-based API
-charges plus $4.67023 reserved, including $4.66474 of unresolved charges. This
-is not invoice reconciliation. Project-owned storage was 48.39 GB logical
+The 10:58:29 read-only resource watcher recorded $12.25288 in usage-based API
+charges plus $4.68952 reserved, including $4.67023 of unresolved charges. This
+is not invoice reconciliation. Project-owned storage was 48.56 GB logical
 across fast and durable locations. All four H200 probes succeeded at 99–100%
 utilization; the judge CPU allocation used about 4.91 GiB of its 32 GiB limit
 with no recorded memory-limit failures. A source-bound [cost draft](experiments/031-inference-cost-reporting.md) now
@@ -134,8 +137,10 @@ load check completed 384 fake calls without network use or production accounting
 changes; sixteen slots were faster than eight in that instrument. Intermittent
 local I/O pauses exist, but this did not reproduce the real transport failure.
 The cause remains unresolved; there is no automatic concurrency increase.
-The remaining DEV hallucination and role queues have now stopped at clean
-condition boundaries to prioritize validation. Incomplete DEV comparisons remain
+The DEV queues stopped at clean condition boundaries to prioritize validation.
+After all twelve VAL hallucination conditions completed and its worker exited,
+DEV hallucination resumed only its fourteen unfinished conditions at 10:58.
+The role DEV queue remains prepared pending its validation handoff. Incomplete DEV comparisons remain
 incomplete and cannot change the already frozen validation decision rule.
 At 08:38 UTC the new queue had 9,403 settled requests and one isolated
 unknown charge of $0.00481825, retained in full. Subsequent latest-100 windows

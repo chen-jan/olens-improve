@@ -1,6 +1,6 @@
 {
   "title": "Readouts: what is established",
-  "updated_utc": "2026-10-10T09:15:26.474545+00:00",
+  "updated_utc": "2026-10-10T11:07:34.982866+00:00",
   "cohort": "development",
   "run_ids": [
     "development-shared-pilot-v2",
@@ -65,30 +65,31 @@
     }
   ],
   "progress": {
-    "phase": "Validation selection complete; VAL chain and multi-hop judging complete, hallucination and roles in progress; blind test generation running",
+    "phase": "Validation judging: three families complete, roles 9/12; blind test generation running; development hallucination judging resumed",
     "completed_cells": 3485,
     "expected_cells": 3485,
-    "elapsed_hours": 7.830687373611111,
+    "elapsed_hours": 9.699717462777777,
     "completed_label": "VAL selector cells"
   },
   "api": {
     "status": "observed_read_only",
-    "actual_usd": 8.540720955,
-    "reserved_usd": 4.63147725,
-    "unknown_usd": 4.596534375,
-    "committed_usd": 13.172198204999999,
+    "actual_usd": 12.252877255,
+    "reserved_usd": 4.68951875,
+    "unknown_usd": 4.67023425,
+    "committed_usd": 16.942396005,
     "hard_usd": 300.0,
     "target_usd": 200.0,
     "attempt_counts": {
-      "reserved": 7,
-      "settled": 52117,
-      "unknown": 508
+      "reserved": 4,
+      "settled": 75894,
+      "unknown": 522
     },
-    "observed_utc": "2026-10-10T09:07:42.497271+00:00",
+    "observed_utc": "2026-10-10T10:58:29.338448+00:00",
     "pricing_revision": "luna-cache-write-v1",
     "invoice_reconciled": false,
     "pricing_status": "Usage-derived campaign estimate including cache writes; not invoice reconciled. Reserved totals include uncertain unknown holds. Shared research caches do not make fresh deployment free.",
-    "snapshot_path": "${OLENS_COMPUTE_ROOT}/watcher/latest.json"
+    "snapshot_path": "${OLENS_COMPUTE_ROOT}/watcher/latest.json",
+    "snapshot_sha256": "4b60663a5155d20b201a6463f9dd07ddff91cef6f207cd1159f6943646f2c18d"
   },
   "methods": {
     "sample_selection": {
@@ -18920,7 +18921,7 @@
         "sha256": "3ba1d670decbd208407dc4cba72f9a1a1d567b6a28f3b2cfb894321c8eec9008"
       }
     },
-    "method_comparison_status": "The reviewed full-grid best-of-32 comparison leads this page. Frozen chain pruning losses appear separately. Remaining DEV judging stopped at clean family boundaries; incomplete comparisons are retained. Validation judging and blind test generation are shown as operational progress; no held-out quality results appear here."
+    "method_comparison_status": "The reviewed full-grid best-of-32 comparison leads this page. Frozen chain pruning losses appear separately. Development hallucination judging has resumed only unfinished conditions; role development waits for validation to release its worker. No later development result changes the frozen validation menu. Validation judging and blind test generation are operational progress; no held-out quality results appear here."
   },
   "candidate_diagnostic": {
     "title": "Does reconstruction rank the available matches?",
@@ -19828,7 +19829,7 @@
     "limits": "These are observed DEV losses, not a new held-out comparison. Mention recovery does not certify the calculation. No new interval is inferred."
   },
   "activity": {
-    "checked_utc": "2026-10-10T09:15:26.474545+00:00",
+    "checked_utc": "2026-10-10T11:06:55.129671+00:00",
     "validation_ar_status": "complete",
     "validation_new_ar_vectors": 421716,
     "shared_zero_copy_catalog_vectors": 1063925,
@@ -19861,26 +19862,28 @@
     "blind_test_generation_statuses": [
       {
         "status": "running",
-        "completed_cells": 603,
+        "completed_cells": 2122,
         "expected_cells": 2716
       },
       {
         "status": "running",
-        "completed_cells": 600,
+        "completed_cells": 2122,
         "expected_cells": 2689
       },
       {
         "status": "running",
-        "completed_cells": 601,
+        "completed_cells": 2121,
         "expected_cells": 2711
       },
       {
         "status": "running",
-        "completed_cells": 609,
+        "completed_cells": 2134,
         "expected_cells": 2598
       }
     ],
-    "validation_judging_status": "All four validation judge queues have launched. Chain and multi-hop judging are complete; hallucination and role judging are in progress. Remaining DEV judging stopped at clean family boundaries; incomplete comparisons are retained.",
-    "quality_status": "No validation or test quality outcomes reported. Only reviewed frozen DEV and pilot comparisons appear below."
+    "validation_judging_status": "At 11:05 UTC, hallucination, chain and multi-hop each had all twelve validation conditions complete; roles had nine of twelve. After a reviewed read-only accounting fix, judging resumed with every uncertain charge retained. Development hallucination judging resumed only unfinished conditions on its released worker. No validation quality conclusion has been made.",
+    "quality_status": "No validation or test quality outcomes reported. Only reviewed frozen DEV and pilot comparisons appear below.",
+    "generation_metadata_source": "${OLENS_DATA_ROOT}/runs/test-blind-preparation-v1/throughput-observation-v19.json",
+    "generation_metadata_sha256": "8e319e18efab63970e6feae895210a9e9276b3a419a77fdc5cc9c0db6db91cdb"
   }
 }
