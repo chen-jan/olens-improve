@@ -100,6 +100,15 @@ def main():
         detail["state"] = fields.get("JobState")
         detail["reason"] = fields.get("Reason")
         diagnostic = job in runtime.get("preemptable_allocations", [])
+        if diagnostic and job.get('intentionally_released_utc'):
+            detail['intentional_release'] = {'utc':job['intentionally_released_utc'], 'reason':job.get('release_reason')}
+            if fields.get('JobState') != 'RUNNING':
+                detail['released_as_planned'] = True
+                job.update(state=fields.get('JobState') or 'RELEASED_RECORD_UNAVAILABLE', last_check_utc=now.isoformat())
+                continue
+            release_age=(now-datetime.fromisoformat(job['intentionally_released_utc'].replace('Z','+00:00'))).total_seconds()
+            if release_age > 120:
+                snapshot['alerts'].append(f'Diagnostic job {key} still RUNNING after planned release; verify cancellation')
         if diagnostic:
             previous_state = job.get("state")
             job.update(state=fields.get("JobState"), reason=fields.get("Reason"),

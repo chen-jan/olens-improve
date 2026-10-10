@@ -55,7 +55,7 @@ def main():
     record = {"global_pool_id": config["global_pool_id"], "cells": len(wanted), "samples": len(rows),
         "n": args.n, "flat_sha256": digest(output), "flat_path": str(output),
         "cohort_manifest_sha256": digest(Path(args.manifest)), "parent_journal_sha256": parents,
-        "scope": "cell_pilot", "split": manifest.get("split", "development")}
+        "scope": "cell_pilot" if manifest.get("partial_grid", False) else "full_grid_development", "split": manifest.get("split", "development")}
     output.with_suffix(".manifest.json").write_text(json.dumps(record, indent=2) + "\n")
     print(json.dumps(record))
 
