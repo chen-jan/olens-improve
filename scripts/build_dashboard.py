@@ -7,9 +7,14 @@ values remain missing. Test data require the explicit planned reveal flag.
 import argparse
 from datetime import datetime, timezone
 import html
+import importlib.util
 import json
 import math
 from pathlib import Path
+
+_coverage_spec = importlib.util.spec_from_file_location('coverage_dashboard', Path(__file__).with_name('coverage_dashboard.py'))
+_coverage = importlib.util.module_from_spec(_coverage_spec)
+_coverage_spec.loader.exec_module(_coverage)
 
 
 METHODS = {
@@ -404,6 +409,8 @@ def signed_comparison_section(section):
                 signed_within_arm(metric, row['endpoint'], row['family'])])+'</tr>'
         output += '</tbody></table></div></details>'
     output += signed_cost_section(section)
+    if section.get('coverage'):
+        output += _coverage.render(section['coverage'], section, display_label)
     if section['traces']:
         output += '<details><summary>Explicitly reviewed paired examples</summary>'+traces(section['traces'])+'</details>'
     output += '<details><summary>Comparison provenance, review and limitations</summary>'+paragraphs(section['limits'])
@@ -637,6 +644,8 @@ def validate_report(report):
             raise ValueError('Signed stage dashboard requires matching explicit reviewed metadata')
         if stage == 'test' and review.get('test_reveal_authorized') is not True:
             raise ValueError('Test stage requires its reviewed reveal authorization')
+        if section.get('coverage'):
+            _coverage.validate(section['coverage'], section)
     if any(row.get("cohort") == "test" or row.get("split") == "test" for row in nested) and report.get("test_reveal_authorized") is not True:
         raise ValueError("Test dashboard requires the frozen planned reveal authorization")
     for row in nested:
