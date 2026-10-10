@@ -261,3 +261,30 @@ Coverage checks confirmed all46 currently available VAL family-condition outputs
 are scientifically complete. DEV hallucination A8 separately has one unresolved
 readout despite a clean queue boundary, so it remains incomplete. Queue termination
 is not a substitute for scientific coverage.
+
+
+## Complete validation and retained-trace repair (12:11 UTC)
+
+All 48 method-family comparisons now have complete original-grid coverage and
+no missing API judgments; both hallucination stages are complete. Root checked
+these counts independently of the reporter. The sole final role worker exited
+zero. Remaining development judging has not restarted.
+
+The first report attempt stopped before writing an artifact because a sampled
+role readout used a coalesced request. Its exact request already had a retained
+response under a different layer-position key. The repair requires the same
+item, byte-identical complete pinned request and expected fingerprint; it keeps
+the original representative key, metadata and raw response, attaches the target
+alias, and independently checks the target's official choices and gold options.
+Different items/options/requests, wrong fingerprints and conflicting responses
+are rejected. Four new focused tests and four existing reporting-stage tests
+passed, with independent source review and root's separate four-test run.
+No judge request, verdict, score or sample was changed or regenerated.
+
+The rerun exited zero and produced the immutable source-bound report
+`${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/signed-menu-analysis-v1.json`
+(SHA256 `db223a374f51d9122f8cc430a347e4f82dea75ce3d449008e1def1f7cf89e918`).
+It includes all twelve arms, paired group intervals, output lengths and 37
+paired trace comparisons. Its generation time is 12:11:10 UTC. Final operating
+points and the TEST menu still require the ongoing coordinator/independent
+trace review; no TEST analysis permission is granted by this completion record.

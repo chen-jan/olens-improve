@@ -4,6 +4,7 @@ No judging or inference. All families must be terminal before publication.
 """
 import argparse
 from collections import defaultdict
+import importlib
 import json
 from pathlib import Path
 import random
@@ -103,6 +104,94 @@ def hall_contexts(item_ids):
     return contexts, {str(path):before}
 
 
+def trace_request_builder(family, contexts):
+    """Reconstruct the pinned complete request; never create a client or call it."""
+    from olens_improve.evaluation import JUDGE_MODEL, load_upstream
+    source = load_upstream()['runtime_source_hashes']
+    from wsbench import llm
+    from wsbench.cache import fingerprint
+    from wsbench.judge_config import resolve
+    from wsbench.mc import join_samples
+    from wsbench.registry import get
+    module = importlib.import_module(f'wsbench.evals.{family}.judge')
+    judge = resolve(get(family).judge, flag=JUDGE_MODEL,
+                    env={'WSBENCH_OPENAI_REASONING':'none'})
+    temperature = 0.0 if family == 'chain_intermediates' else None
+    def build(readout):
+        if len(readout.get('samples', [])) != 1:
+            raise ValueError('Trace alias requires the original single prose readout')
+        text = join_samples(readout['samples'])
+        if family == 'role_bound_association':
+            user = module.prompts.render_user(text, contexts[str(readout['id'])]['exact_upstream_mc_block'])
+        elif family == 'chain_intermediates':
+            user = module.render_user(text)
+        else:
+            raise ValueError('No trace alias rule for this family')
+        request = {'model':judge.model, 'reasoning_effort':llm.openai_effort(judge.reasoning),
+            'messages':[{'role':'system','content':module.SYSTEM},{'role':'user','content':user}],
+            'response_format':{'type':'json_schema','json_schema':module.SCHEMA},
+            'max_completion_tokens':llm._DEFAULT_MAX_TOKENS['openai']}
+        if temperature is not None:
+            request['temperature'] = temperature
+        fp = fingerprint(module.PROMPT_VERSION, judge.model, judge.reasoning,
+                         temperature, module.SYSTEM, user)
+        return request, fp
+    build.source_hashes = {str(BENCH_ROOT/name):value for name,value in source.items()}
+    return build
+
+
+def recover_coalesced_trace_records(folder, family, missing, retained, contexts,
+                                    *, request_builder=None):
+    """Resolve only exact local representatives; preserve every original record."""
+    from olens_improve.evaluation import request_cache_key
+    readout_path = folder.parent/f'{family}.readouts.jsonl'
+    readout_hash = digest(readout_path)
+    reads = {}
+    with readout_path.open() as handle:
+        for line in handle:
+            row = json.loads(line)
+            key = (f"{row['id']}__L{row['layer']:03d}__p{row['pos']}"
+                   if family == 'role_bound_association' else f"{row['id']}|L{row['layer']:03d}")
+            if key in reads:
+                raise ValueError('Ambiguous retained trace readout key')
+            reads[key] = row
+    builder = request_builder or trace_request_builder(family, contexts)
+    hashes = {str(readout_path):readout_hash} | getattr(builder, 'source_hashes', {})
+    cache_path = folder/'cells.jsonl'
+    cache_hash = digest(cache_path)
+    recovered = {}
+    for key in sorted(missing):
+        if key not in reads:
+            raise ValueError(f'Missing trace source readout: {family} {key}')
+        target = reads[key]
+        request, fp = builder(target)
+        matches = []
+        for representative, raw in retained.items():
+            if raw.get('fp') != fp or representative not in reads:
+                continue
+            # Role options are item-specific; do not borrow another item's response.
+            if family == 'role_bound_association' and reads[representative]['id'] != target['id']:
+                continue
+            other_request, other_fp = builder(reads[representative])
+            if request == other_request and fp == other_fp:
+                matches.append((representative, raw))
+        if not matches:
+            raise ValueError(f'A sampled trace lacks an exact retained representative: {family} {key}')
+        if any(raw['result'] != matches[0][1]['result'] for _,raw in matches[1:]):
+            raise ValueError(f'Ambiguous retained responses for exact trace request: {family} {key}')
+        representative, raw = matches[0]
+        recovered[key] = raw | {'trace_alias_recovery':{
+            'requested_cell_key':key, 'representative_cell_key':representative,
+            'full_pinned_requests_identical':True, 'expected_fingerprint':fp,
+            'complete_request_key':request_cache_key(request),
+            'representative_cache_path':str(cache_path), 'representative_cache_sha256':cache_hash,
+            'readouts_path':str(readout_path), 'readouts_sha256':readout_hash,
+            'policy':'Exact request coalescing alias only; original key, meta and raw response preserved.'}}
+    if digest(readout_path) != readout_hash or digest(cache_path) != cache_hash:
+        raise ValueError('Trace alias sources changed during extraction')
+    return recovered, hashes
+
+
 def enrich_traces(traces, measurement, cells):
     """Attach retained verdicts to fixed sampled traces, never back to selection."""
     needed = defaultdict(dict)
@@ -145,16 +234,21 @@ def enrich_traces(traces, measurement, cells):
         if raw_keys:
             cache_path = folder/'cells.jsonl'
             before = digest(cache_path)
+            retained = {}
             with cache_path.open() as handle:
                 for line in handle:
                     row = json.loads(line)
-                    if row.get('key') in raw_keys and row.get('result') is not None:
-                        cached[row['key']] = row
+                    if row.get('result') is not None:
+                        retained[row['key']] = row
+                        if row.get('key') in raw_keys:
+                            cached[row['key']] = row
             if digest(cache_path) != before:
                 raise ValueError('Retained verdict cache changed during trace extraction')
             hashes[str(cache_path)] = before
             if set(cached) != raw_keys:
-                raise ValueError('A sampled trace lacks its retained raw verdict')
+                aliases, alias_hashes = recover_coalesced_trace_records(
+                    folder, family, raw_keys-set(cached), retained, contexts)
+                cached.update(aliases); hashes.update(alias_hashes)
         for cid, sample in samples.items():
             if sample['empty']:
                 sample['evidence'] = {'evaluation_only':True,'explicit_empty_abstention':True}

@@ -97,3 +97,13 @@ The independent resource receipt at
 (SHA256 `3b4761130fe43e75927befc35dfa0c1413ce3689253239a194b21897a5958d8d`)
 shows absent generation wrappers, no generation steps, and idle retained GPUs.
 This establishes preparation completion; held-out scientific scoring remains pending.
+
+
+At 12:01 UTC, CPU allocation `25489638` is running on `node1607`, with
+16 verified physical cores, 80 GiB memory and expiry 15:56:40 UTC. Root verified
+four disjoint masks: `0,25,26,38`; `39,40,41,42`; `43,45,46,68`; `69,70,71,74`.
+Use an allocation-wide `srun -c16 --cpu-bind=none` and the explicit mask for
+each worker. The immutable resource receipt is
+`durable/diagnostics/test-cpu-allocation-v1.json` (SHA256
+`394a44d7ae4b9995bb6b4dd92f7e2f11ac99b4d046c7a9f80ca9379c4457708c`).
+The existing watcher now includes this allocation. No TEST analysis launched.
