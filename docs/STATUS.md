@@ -1,6 +1,6 @@
 # Execution status
 
-Updated: 2026-10-10, approximately 08:23 UTC.
+Updated: 2026-10-10, approximately 08:43 UTC.
 Started: 2026-10-10 01:25:36 UTC (October 9, 21:25:36 EDT).
 Target finish: 2026-10-10 21:25:36 UTC. Execution remains active and authorized.
 
@@ -81,7 +81,7 @@ first source-checked dashboard with grouped intervals. Nothing has been pushed.
 | Single-method pilots | A/B/C/D/E1/E3/F judged; E2/G diagnostics complete with limits; exact-claim-span v3 stopped after its eight-cell contract audit, without benchmark-quality measurement |
 | Combinations | 65 unique pilot conditions judged and source-checked; larger E1-plus-pruning outputs complete and awaiting judging |
 | Additional controls | All32 judgments and matched-donor N1 complete; all requested cells/stages covered |
-| Held-out evaluation | All 3,485 validation cells have immutable N32 pools. The twelve-arm shortlist and analysis gate are frozen; four AR workers are running. Separate blind TEST generation authority is issued; its launch checks are pending and TEST analysis stays closed. |
+| Held-out evaluation | All 3,485 validation cells have immutable N32 pools. The twelve-arm shortlist and analysis gate are frozen; all AR and selector shards are complete. Fixed pruning/export precedes judging. Blind TEST sampling is running on four H200s; TEST analysis stays closed. |
 
 Combination comparisons retain unchanged parents, component-off outputs, and
 random deletion matched on retained bullet count. Fixed support weights are
@@ -95,15 +95,17 @@ The corresponding role cell count is only 151/3,420: an item passes when any
 inspected site passes, so item recovery must not be read as uniformly faithful
 readouts. These are original-grid development scores, not held-out results.
 
-Next: finish the four validation AR partitions, merge their catalog, and run
-selection/export for the signed twelve-arm menu. The exact analysis gate binds
-the freeze in experiment 027; later DEV results cannot retune that menu or its
-thresholds. At 08:16 UTC, 167,936 of 421,716 new AR vectors were complete, with
-approximately eleven minutes of encoding remaining at measured throughput.
-Separate blind TEST generation authority now binds all 10,714 existing cells,
-the unchanged N32 recipe and source hashes. Four validate-only checks and
-terminal VAL AR/resource checks must precede launch. TEST outcomes, AR,
-selection and judging remain closed until the final method freeze.
+Next: finish fixed validation pruning and export the signed twelve-arm menu,
+then forecast and launch Luna judging at clean DEV family boundaries. All
+421,716 new AR vectors and all 3,485 selector cells are complete; the catalog
+retains 642,209 inherited vectors without copying tensors. Four selector workers
+took approximately 590–608 seconds each on disjoint four-core groups.
+
+Blind TEST sampling started at 08:32 UTC after four validate-only checks and
+idle-resource verification. At 08:39:45, 380 of 10,714 cells were complete;
+measured rates forecast generation completion near 11:51 UTC if sustained.
+This is generation only. TEST text, AR, selection and judging remain sealed
+until the final method freeze and separate analysis gate.
 
 DEV judging resumed at eight slots/200 RPM per family with fresh operational
 profiles and the same $20 run ceiling, exact requests, caches and uncertain
@@ -112,7 +114,9 @@ load check completed 384 fake calls without network use or production accounting
 changes; sixteen slots were faster than eight in that instrument. Intermittent
 local I/O pauses exist, but this did not reproduce the real transport failure.
 The cause remains unresolved; there is no automatic concurrency increase.
-At 08:12 UTC the new queue had 3,902 settled requests and no new unknowns.
+At 08:38 UTC the new queue had 9,403 settled requests and one isolated
+unknown charge of $0.00481825, retained in full. Subsequent latest-100 windows
+were healthy; no guard reset or concurrency increase was made.
 A read-only monitor was bounded to avoid holding long database read locks;
 this is an operational correction, not proof of the previous failure cause.
 At the frozen evidence snapshot, 24 multihop, 21 chain, four hallucination and
@@ -150,6 +154,9 @@ quality or a complete dependency installation on another machine.
 - Both extra H200 allocations, 25460532 and 25459615, were intentionally
   released after their encoding and diagnostic work completed. Four main
   allocations remain available for the next scientifically authorized stage.
+- Scoped CPU allocation 25481193 supplies sixteen physical cores and 80 GiB
+  through 10:25 UTC for offline validation work. Four selectors used disjoint
+  physical cores; subsequent merge/pruning uses one four-core worker.
 - Fresh CPU allocation 25474685 provides eight physical cores and 32 GiB for
   judging through 21:25:37 UTC. The old allocation 25299630 reached its memory
   limit, predominantly in its external step; unrelated processes are preserved.

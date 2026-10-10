@@ -257,6 +257,12 @@ encodings, local selection, and recurring helper calls. Benchmark judging is
 reported separately. Reusing the research cache makes another comparison cheap;
 it does not remove generation cost from deployment.
 
+The random-selection control retains one eligible response from the recorded
+N32 pool. A deployment implementation need not generate 32 unused responses,
+but matching this control's parser and output-budget eligibility may require
+resampling. Therefore one retained sample is not a guaranteed one-draw cost.
+The experimental pool cost and that deployment distinction are reported separately.
+
 The full development collection measured about 4.33 occupied H200 seconds per
 N32 cell in filled batches. Its phrase encoding workload implies about 1.25
 additional GPU seconds per cell at the measured throughput. These component
