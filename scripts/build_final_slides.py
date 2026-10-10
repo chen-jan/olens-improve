@@ -1,9 +1,11 @@
-"""Comprehensive editable draft from reviewed DEV/VAL, with empty TEST slots.
+"""Editable DEV/VAL draft or explicitly reviewed held-out result deck.
 
 No inference or judging. The source JSON is editable; changing a measured row
 requires a new reviewed report. Existing four-slide style proofs are preserved.
 """
 import argparse
+from copy import deepcopy
+from datetime import datetime
 import json
 import math
 from pathlib import Path
@@ -28,7 +30,9 @@ DEFAULTS = {'sample_selection': 'best_n_exact-n32', 'consensus': 'consensus_exac
 KEY = ['raw_n1-n1', 'best_n_exact-n16', 'best_n_exact-n32', 'best_n_specificity_mean-n32']
 
 
-def prepared(report_path):
+def prepared(report_path, final=False):
+    if final:
+        return prepared_final(report_path)
     report = json.loads(Path(report_path).read_bytes())
     val = report['signed_comparisons']['validation']
     dev = report['development_scaling']
@@ -161,7 +165,254 @@ def prepared(report_path):
             'development_artifact_sha256': dev['source_sha256'], 'slides': slides}
 
 
+def checked_hash(value):
+    if not isinstance(value, str) or len(value) != 64 or any(c not in '0123456789abcdef' for c in value):
+        raise ValueError('A complete source SHA-256 is required')
+    return value
+
+
+def checked_metric(metric, counts, item_endpoint=False, family=None):
+    """Copy source rates and uncertainty; never derive or fit an interval."""
+    value, interval = metric['value'], metric['ci95']
+    numerator, denominator = metric['numerator'], metric['denominator']
+    if any(isinstance(x, bool) or not isinstance(x, int) or x < 0 for x in (numerator, denominator)) or numerator > denominator:
+        raise ValueError('Invalid retained rate counts')
+    if value is not None and (isinstance(value, bool) or not isinstance(value, (int, float))
+                              or not math.isfinite(value) or not 0 <= value <= 1):
+        raise ValueError('Invalid retained rate')
+    if (value is None) != (denominator == 0) or (denominator and value != numerator / denominator):
+        raise ValueError('Retained rate differs from its counts')
+    if interval is not None and (len(interval) != 2 or not all(math.isfinite(x) for x in interval)
+                                 or not 0 <= interval[0] <= interval[1] <= 1):
+        raise ValueError('Invalid retained grouped interval')
+    if metric['items'] != counts['items'] or metric['independent_groups'] != counts['groups']:
+        raise ValueError('Metric cohort differs from the reviewed item/group counts')
+    if item_endpoint and family != 'hallucination' and denominator != counts['items']:
+        raise ValueError('Question metric must use the original item denominator')
+    if not item_endpoint and family != 'hallucination' and denominator != counts['cells']:
+        raise ValueError('Per-activation metric must use all intended cell denominators')
+    return deepcopy(metric)
+
+
+def rate_row(condition, family, endpoint, metric, stage):
+    return {'condition': condition, 'family': family, 'endpoint': endpoint, 'value': metric['value'],
+            'numerator': metric['numerator'], 'denominator': metric['denominator'], 'ci': metric['ci95'],
+            'cohort': stage, 'uncertainty': f"{metric['items']} items / {metric['independent_groups']} related groups; grouped 95% intervals" +
+                (' | ' + metric['warning'] if metric.get('warning') else ''), 'source_metric': deepcopy(metric)}
+
+
+def checked_pairs(rows, metrics, counts, scope):
+    seen, result = set(), []
+    for row in rows:
+        allowed_scopes = ('cell', 'original_grid') if scope == 'original_grid' else ('cell', 'original_item')
+        if row.get('scope') not in allowed_scopes:
+            raise ValueError('Unknown supplied paired contrast scope')
+        if row['scope'] != scope:
+            continue
+        b, p, f, endpoint = (row[k] for k in ('baseline_condition', 'condition', 'family', 'endpoint'))
+        identity = (b, p, f, endpoint)
+        if identity in seen or (b, f, endpoint) not in metrics or (p, f, endpoint) not in metrics:
+            raise ValueError('Duplicate or foreign paired contrast')
+        seen.add(identity)
+        left, right = metrics[b, f, endpoint]['value'], metrics[p, f, endpoint]['value']
+        delta = right-left if left is not None and right is not None else None
+        if row['baseline'] != left or row['proposed'] != right or row['delta'] != delta:
+            raise ValueError('Paired contrast differs from retained endpoint values')
+        if row['items'] != counts[f]['items'] or row['independent_groups'] != counts[f]['groups']:
+            raise ValueError('Paired contrast cohort differs from reviewed counts')
+        interval = row['ci95_delta']
+        if interval is not None and (len(interval) != 2 or not all(math.isfinite(x) for x in interval)
+                                     or not -1 <= interval[0] <= interval[1] <= 1):
+            raise ValueError('Invalid paired grouped interval')
+        result.append(deepcopy(row))
+    return result
+
+
+def reviewed_test(section):
+    """Authorize before iterating any optional held-out result rows."""
+    review = section.get('review', {})
+    if (section.get('stage') != 'test' or review.get('stage') != 'test'
+            or review.get('status') != 'root_reviewed' or not review.get('reviewed_by')
+            or not review.get('reviewed_utc') or review.get('test_reveal_authorized') is not True):
+        raise ValueError('Final slides require explicit reviewed TEST reveal authority')
+    datetime.fromisoformat(review['reviewed_utc'].replace('Z', '+00:00'))
+    if checked_hash(section.get('source_sha256')) != review.get('artifact_sha256'):
+        raise ValueError('TEST review differs from its source artifact')
+    for key in ('manifest_sha256', 'conditions_sha256', 'selection_sha256', 'gate_sha256', 'freeze_sha256'):
+        if checked_hash(section.get('identities', {}).get(key)) != review.get(key):
+            raise ValueError('TEST review differs from its frozen source identities')
+    names, counts = section['condition_ids'], section['family_counts']
+    if (len(names) != 12 or len(set(names)) != 12 or names != review.get('condition_ids')
+            or not set(KEY) <= set(names) or counts != review.get('expected_family_counts')
+            or set(counts) != set(FAMILIES)):
+        raise ValueError('Require the exact reviewed twelve-method/four-family TEST menu')
+    for count in counts.values():
+        if any(isinstance(count[k], bool) or not isinstance(count[k], int) or count[k] < 1
+               for k in ('cells', 'items', 'groups')):
+            raise ValueError('Invalid reviewed TEST cohort')
+    if sum(c['items'] for c in counts.values()) != 268 or sum(c['cells'] for c in counts.values()) != 10714:
+        raise ValueError('TEST must retain the frozen 268 items / 10714 sites')
+    findings = review.get('findings')
+    if not isinstance(findings, list) or not 1 <= len(findings) <= 5 or any(not r.get('claim') or not r.get('evidence') for r in findings):
+        raise ValueError('Require root-authored findings and supporting evidence')
+    maps, rows = {}, {}
+    for scope, field in [('original_item', 'original_item_rows'), ('cell', 'cell_rows')]:
+        maps[scope], rows[scope] = {}, []
+        for row in section[field]:
+            family, name = row['family'], row['condition']
+            endpoint = ('original_grid_contradiction_rate' if family == 'hallucination' else 'original_grid_item_pass_rate') if scope == 'original_item' else ('contradiction_rate' if family == 'hallucination' else 'cell_recovery')
+            if scope == 'original_item' and row.get('endpoint') != endpoint:
+                raise ValueError('Question chart endpoint differs from the official task criterion')
+            identity = (name, family, endpoint)
+            if family not in counts or name not in names or identity in maps[scope]:
+                raise ValueError('Duplicate or foreign TEST metric')
+            metric = checked_metric(row['metric'], counts[family], scope == 'original_item', family)
+            maps[scope][identity] = metric
+            rows[scope].append(rate_row(name, family, endpoint, metric, 'Held-out TEST'))
+        if len(maps[scope]) != 12 * 4:
+            raise ValueError('Complete four-family TEST menu is required')
+    for name in names:
+        a, b = maps['cell'][name, 'hallucination', 'contradiction_rate'], maps['original_item'][name, 'hallucination', 'original_grid_contradiction_rate']
+        if any(a[k] != b[k] for k in ('value', 'numerator', 'denominator', 'ci95')):
+            raise ValueError('Question view must retain native hallucination error counts')
+    pairs = {scope: checked_pairs(section.get('paired_rows', []), maps[scope], counts, scope) for scope in maps}
+    return rows, pairs
+
+
+def whole_cohort(section, names):
+    """A separate optional reviewed descriptive attachment; no pooled estimation."""
+    review = section.get('review', {})
+    if (section.get('status') != 'root_reviewed' or section.get('reviewed_by') != 'root'
+            or review.get('status') != 'root_reviewed' or review.get('test_reveal_authorized') is not True
+            or not review.get('reviewed_utc')):
+        raise ValueError('Whole-469 evidence needs a separate reviewed reveal and source binding')
+    if checked_hash(section.get('source_sha256')) != review.get('artifact_sha256'):
+        raise ValueError('Whole-469 review differs from its artifact')
+    counts = review['expected_family_counts']
+    if set(counts) != set(FAMILIES) or any(any(isinstance(c[k], bool) or not isinstance(c[k], int) or c[k] < 1
+            for k in ('cells', 'items', 'groups')) for c in counts.values()):
+        raise ValueError('Invalid reviewed whole-469 cohort')
+    if (set(counts) != set(FAMILIES) or sum(c['items'] for c in counts.values()) != 469
+            or sum(c['cells'] for c in counts.values()) != 19435):
+        raise ValueError('Whole-469 descriptive cohort differs from original grids')
+    measurement = section['measurement']
+    if (measurement['status'] != 'complete_descriptive_whole_cohort'
+            or [c['condition'] for c in measurement['conditions']] != names
+            or review.get('condition_ids') != names):
+        raise ValueError('Whole-469 must retain the same exact reviewed menu')
+    metrics, rows = {}, []
+    for arm in measurement['conditions']:
+        if not arm.get('measurement_complete') or set(arm['families']) != set(FAMILIES):
+            raise ValueError('Whole-469 method coverage is incomplete')
+        for f in FAMILIES:
+            endpoint = 'original_grid_contradiction_rate' if f == 'hallucination' else 'original_grid_item_pass_rate'
+            metric = arm['families'][f][endpoint]
+            expected_unit = ('contradictory / specific readouts' if f == 'hallucination' else
+                             'items with any passing site / intended items')
+            if metric.get('scope') != 'original_grid' or metric.get('unit') != expected_unit:
+                raise ValueError('Whole-469 chart must preserve original-grid rate units')
+            metric = checked_metric(metric, counts[f], True, f)
+            metrics[arm['condition'], f, endpoint] = metric
+            rows.append(rate_row(arm['condition'], f, endpoint, metric, 'All 469, descriptive DEV + VAL + TEST'))
+    pairs = checked_pairs(measurement.get('paired_comparisons', []), metrics, counts, 'original_grid')
+    return rows, pairs
+
+
+def prepared_final(report_path):
+    report = json.loads(Path(report_path).read_bytes())
+    test = report.get('signed_comparisons', {}).get('test', {})
+    rows, pairs = reviewed_test(test)  # authorize before constructing any result slides
+    whole = report.get('descriptive_whole_cohort')
+    whole_rows, whole_pairs = whole_cohort(whole, test['condition_ids']) if whole is not None else (None, None)
+    source = prepared(report_path)
+    if set(test['condition_ids']) != set(report['signed_comparisons']['validation']['condition_ids']):
+        raise ValueError('TEST must retain the frozen twelve validation method identities')
+    slides = source['slides']
+    findings = deepcopy(test['review']['findings'])
+    slides[0] = {'kind': 'message', 'title': 'What the held-out comparison establishes',
+                 'bullets': [r['claim'] for r in findings[:3]], 'reviewed_findings': findings}
+    slides[1] = {'kind': 'message', 'title': '268 held-out questions, with the original task rules',
+                 'bullets': ['Twelve preselected comparisons; 10,714 original readout sites. Each question uses its complete frozen read grid.',
+                             'Each question uses its original task-specific aggregation rule.',
+                             'Transcript contradictions remain errors per specific readout; they are not question accuracy.'],
+                 'criteria': {'multihop_mt': 'All required connecting names in the same layer.',
+                              'role_bound_association': 'All three checks correct at the same site.',
+                              'chain_intermediates': 'Top-named computed value is an intermediate at any layer in the frozen grid.'}}
+    for index, family in enumerate(FAMILIES, 5):
+        slides[index] = {'kind': 'rates', 'title': FAMILIES[family] + ': held-out TEST',
+                         'rows': [r for r in rows['original_item'] if r['family'] == family and r['condition'] in KEY],
+                         'cohort': 'Held-out TEST / ' + ('contradictions per specific readout' if family == 'hallucination' else 'questions meeting the complete task criterion'),
+                         'note': ('Lower is better. Native readout error rate; not accuracy.' if family == 'hallucination' else
+                                  'Higher is better. Each question uses its original task-specific aggregation rule; a pass does not guarantee a completely correct explanation.')}
+    chosen_pairs = {('best_n_exact-n16', 'best_n_exact-n32'),
+                    ('best_n_exact-n32', 'best_n_specificity_mean-n32'),
+                    ('best_n_specificity_mean-n32', 'best_n_specificity_mean_then_prune_0.005-n32'),
+                    ('prune_loo_a32_0.005-n32', 'best_n_specificity_mean_then_prune_0.005-n32'),
+                    ('best_n_specificity_mean_random_delete_matched_0.005-n32', 'best_n_specificity_mean_then_prune_0.005-n32')}
+    slides[11] = {'kind': 'paired', 'title': 'Do extra steps help on held-out questions?',
+                  'rows': [r for r in pairs['original_item'] if (r['baseline_condition'], r['condition']) in chosen_pairs],
+                  'note': 'Held-out TEST, paired grouped 95% intervals. Recovery uses questions; contradictions retain native readout errors. Matched random deletion is the control.'}
+    slides[15] = {'kind': 'message', 'title': 'Use the evidence within its limits',
+                  'bullets': [r['claim'] for r in findings[:3]], 'reviewed_findings': findings}
+    # Remove only the draft contents and whole-cohort placeholder; retain DEV/VAL evidence.
+    slides = [s for s in slides if s['kind'] != 'contents' and s['title'] != 'All 469 items: same-menu summary pending']
+    first_test = len(slides) + 2
+    for scope, label_text in [('original_item', 'questions / native transcript errors'), ('cell', 'per-activation diagnostics')]:
+        for family in FAMILIES:
+            family_rows = [r for r in rows[scope] if r['family'] == family]
+            for start in range(0, len(family_rows), 6):
+                slides.append({'kind': 'rates', 'title': FAMILIES[family] + ': all 12 TEST comparisons',
+                    'rows': family_rows[start:start+6], 'cohort': 'Held-out TEST / ' + label_text,
+                    'note': 'Exact source counts and grouped 95% intervals. Native transcript error is lower better; recovery is higher better.'})
+        pair_names = list(dict.fromkeys((r['baseline_condition'], r['condition']) for r in pairs[scope]))
+        for start in range(0, len(pair_names), 5):
+            subset = set(pair_names[start:start+5])
+            slides.append({'kind': 'paired', 'title': 'Held-out TEST: paired component and budget changes',
+                'rows': [r for r in pairs[scope] if (r['baseline_condition'], r['condition']) in subset],
+                'note': 'Held-out TEST / ' + label_text + '; only supplied prespecified contrasts, no new estimation.'})
+    whole_page = len(slides) + 2
+    if whole_rows is None:
+        slides.append({'kind': 'message', 'title': 'All 469: descriptive comparison still pending',
+            'bullets': ['This is a reviewed TEST preview, not the completed whole-project delivery.',
+                        'The separate same-menu DEV + VAL + TEST summary is not yet attached.',
+                        'No combined-cohort rates or intervals are inferred from stage averages.']})
+    else:
+        for family in FAMILIES:
+            family_rows = [r for r in whole_rows if r['family'] == family]
+            for start in range(0, len(family_rows), 6):
+                slides.append({'kind': 'rates', 'title': FAMILIES[family] + ': all 469, descriptive',
+                    'rows': family_rows[start:start+6], 'cohort': 'Descriptive DEV + VAL + TEST / original task rules',
+                    'note': '469 combined items are not 469 held-out items. Preserve separate TEST results; copied source ratios and grouped intervals.'})
+        names = list(dict.fromkeys((r['baseline_condition'], r['condition']) for r in whole_pairs))
+        for start in range(0, len(names), 5):
+            subset = set(names[start:start+5])
+            slides.append({'kind': 'paired', 'title': 'All 469: descriptive paired changes',
+                'rows': [r for r in whole_pairs if (r['baseline_condition'], r['condition']) in subset],
+                'note': 'Descriptive DEV + VAL + TEST / original task rules; not an independent held-out confirmation.'})
+    entries = [{'name': 'All 12 validation comparisons', 'page': 18}]
+    for name in METHODS.values():
+        entries.append({'name': name, 'page': next(i+2 for i, s in enumerate(slides) if s['title'].startswith((name+' / ', name+':')))})
+    entries += [{'name': 'Held-out TEST: complete menu and pairs', 'page': first_test},
+                {'name': 'All 469, descriptive' + (' (pending)' if whole_rows is None else ''), 'page': whole_page}]
+    slides.insert(16, {'kind': 'contents', 'title': 'Appendix: separate cohorts and complete evidence',
+        'entries': entries, 'note': 'DEV, VAL, held-out TEST and the descriptive combined cohort remain separate.'})
+    source.update(schema_version=3, mode='reviewed_test', status=('REVIEWED TEST PREVIEW / WHOLE-469 PENDING' if whole is None else 'REVIEWED TEST + DESCRIPTIVE WHOLE-469'),
+                  test_quality_access=True, whole_cohort_complete=whole is not None, slides=slides,
+                  test_artifact_sha256=test['source_sha256'], test_source_identities=deepcopy(test['identities']),
+                  test_review=deepcopy(test['review']), whole_cohort_artifact_sha256=None if whole is None else whole['source_sha256'],
+                  whole_cohort_review=None if whole is None else deepcopy(whole['review']),
+                  whole_cohort_measurement=None if whole is None else deepcopy(whole['measurement']),
+                  implementation_sha256={name: digest(Path(__file__).with_name(name)) for name in
+                                          ('build_final_slides.py', 'build_slides.py', 'render_slides.mjs')})
+    return source
+
+
 def base(title, number, count, source):
+    if source.get('mode') == 'reviewed_test':
+        footer = 'Held-out TEST ' + source['test_artifact_sha256'][:12] + ' | ' + ('All 469: descriptive' if source['whole_cohort_complete'] else 'Whole-469 pending; TEST preview only')
+        return [rect(0, 0, W, H, PAPER), text(60, 28, 1480, 35, 'ORACLE LENS / REVIEWED TEST', 20, MUTED),
+                text(60, 83, 1480, 103, title, 45, serif=True), line(60, 851, 1540, 851),
+                text(60, 865, 1370, 25, footer, 17, MUTED), text(1430, 865, 110, 25, str(number)+' / '+str(count), 18, MUTED)]
     return [rect(0, 0, W, H, PAPER), text(60, 28, 1480, 35, 'ORACLE LENS / DRAFT / DEVELOPMENT + VALIDATION', 20, MUTED),
             text(60, 83, 1480, 103, title, 45, serif=True), line(60, 851, 1540, 851),
             text(60, 865, 1370, 25, 'Reviewed sources: DEV ' + source['development_artifact_sha256'][:12] + ' / VAL ' + source['validation_artifact_sha256'][:12] + ' | TEST quality pending', 17, MUTED),
@@ -254,7 +505,7 @@ def pages(source):
                 direction='Lower is better: left' if family=='hallucination' else 'Higher is better: right'
                 counts='' if not rows else f" / {rows[0]['items']} items, {rows[0]['independent_groups']} related groups"
                 items.append(text(x,y-23,720,25,direction+counts,17,MUTED))
-                span=max([.01]+[abs(v) for r in rows for v in (r['ci95_delta'] or [r['delta']])]);at=lambda v:x+475+125*v/span
+                span=max([.01]+[abs(v) for r in rows for v in (r['ci95_delta'] or [r['delta']]) if v is not None]);at=lambda v:x+475+125*v/span
                 items.append(line(at(0),y+5,at(0),y+160,MUTED))
                 for k,r in enumerate(rows):
                     pair_names={
@@ -263,7 +514,11 @@ def pages(source):
                         ('prune_loo_a32_0.005-n32','best_n_specificity_mean_then_prune_0.005-n32'):'Removal → add other-activation check',
                         ('random_delete_matched_a32_0.005-n32','prune_loo_a32_0.005-n32'):'Random deletion → guided deletion',
                         ('best_n_specificity_mean_random_delete_matched_0.005-n32','best_n_specificity_mean_then_prune_0.005-n32'):'Other activations: random → guided removal'}
-                    yy=y+15+k*33;items.append(text(x,yy-14,330,33,pair_names.get((r['baseline_condition'],r['condition']),label(r['condition'])),15,INK))
+                    fallback = (label(r['baseline_condition'])+' → '+label(r['condition'])) if source.get('mode') == 'reviewed_test' else label(r['condition'])
+                    yy=y+15+k*33;items.append(text(x,yy-14,330,33,pair_names.get((r['baseline_condition'],r['condition']),fallback),15,INK))
+                    if r['delta'] is None:
+                        items.append(text(x+350,yy-13,380,28,'Unavailable; missing denominator',16,MUTED))
+                        continue
                     if r['ci95_delta']:items.append(line(at(r['ci95_delta'][0]),yy,at(r['ci95_delta'][1]),yy,TEAL,2))
                     items += [dict(kind='ellipse',x=at(r['delta'])-4,y=yy-4,w=8,h=8,color=TEAL),text(x+635,yy-13,120,28,f"{r['delta']*100:+.2f} pp",18,TEAL)]
                 for t in [-1,0,1]:
@@ -328,7 +583,7 @@ def pages(source):
 
 
 def build(source_path, report_path, output):
-    source=json.loads(Path(source_path).read_bytes());expected=prepared(report_path)
+    source=json.loads(Path(source_path).read_bytes());expected=prepared(report_path, final=source.get('mode')=='reviewed_test')
     if source!=expected:raise ValueError('Draft source differs from the exact reviewed data/story source; regenerate prospectively')
     output=Path(output)
     if output.exists():raise ValueError('Use a new immutable output directory')
@@ -336,8 +591,9 @@ def build(source_path, report_path, output):
     write_pptx(rendered,output/'draft.pptx');write_html(rendered,output/'draft.html')
     from pptx import Presentation
     deck=Presentation(output/'draft.pptx')
-    deck.core_properties.title='Oracle Lens - comprehensive DEV / VAL draft'
-    deck.core_properties.subject='Reviewed development and validation; final TEST slots are empty'
+    final=source.get('mode')=='reviewed_test'
+    deck.core_properties.title='Oracle Lens - reviewed held-out results' if final else 'Oracle Lens - comprehensive DEV / VAL draft'
+    deck.core_properties.subject=source['status'] if final else 'Reviewed development and validation; final TEST slots are empty'
     deck.save(output/'draft.pptx')
     (output/'source.json').write_bytes(Path(source_path).read_bytes())
     (output/'report-source.json').write_bytes(Path(report_path).read_bytes())
@@ -346,10 +602,14 @@ def build(source_path, report_path, output):
     if digest(report_path)!=source['report_sha256']:raise ValueError('Source report changed during slide build; output remains unsealed')
     receipt={'status':source['status'],'source_sha256':digest(source_path),'report_sha256':digest(report_path),
              'builder_sha256':digest(__file__),'shared_geometry_builder_sha256':digest(Path(__file__).with_name('build_slides.py')),
-             'slides':len(rendered),'core_slides':16,'native_pptx_rendering_validated':False,'test_quality_access':False,
+             'slides':len(rendered),'core_slides':16,'native_pptx_rendering_validated':False,'test_quality_access':source['test_quality_access'],
              'native_pptx_renderer_limit':'No native PowerPoint/LibreOffice rendering was validated; the PDF is an HTML geometry mirror, not PPTX-to-PDF conversion.',
              'pdf_route':'HTML same-content mirror, not native PPTX rendering',
              'outputs':{p.name:digest(p) for p in output.iterdir()}}
+    if final:
+        receipt.update(mode=source['mode'],whole_cohort_complete=source['whole_cohort_complete'],
+            test_artifact_sha256=source['test_artifact_sha256'],whole_cohort_artifact_sha256=source['whole_cohort_artifact_sha256'],
+            implementation_sha256=source['implementation_sha256'])
     (output/'build.json').write_text(json.dumps(receipt,indent=2)+'\n');return receipt
 
 
@@ -362,8 +622,10 @@ def render(output,chrome,node):
     doc=pymupdf.open(output/'draft.pdf')
     if len(doc)!=receipt['slides']:raise ValueError('PDF page count mismatch')
     sheet=Image.new('RGB',(1280,math.ceil(len(doc)/4)*180),'#D6E1EC')
+    expected_header='ORACLE LENS / REVIEWED TEST' if receipt.get('mode')=='reviewed_test' else 'ORACLE LENS / DRAFT'
+    expected_footer=('All 469: descriptive' if receipt['whole_cohort_complete'] else 'Whole-469 pending; TEST preview only') if receipt.get('mode')=='reviewed_test' else 'TEST quality pending'
     for i,p in enumerate(doc):
-        if 'ORACLE LENS / DRAFT' not in p.get_text() or 'TEST quality pending' not in p.get_text():raise ValueError('Draft header/footer clipped')
+        if expected_header not in p.get_text() or expected_footer not in p.get_text():raise ValueError('Source status header/footer clipped')
         if abs(p.rect.width-960)>1 or abs(p.rect.height-540)>1:raise ValueError('Unexpected slide page size')
         path=output/f'slide-{i+1:03}.png';p.get_pixmap(matrix=pymupdf.Matrix(4/3,4/3)).save(path)
         with Image.open(path) as image:sheet.paste(image.resize((320,180)),((i%4)*320,(i//4)*180))
@@ -376,10 +638,11 @@ def render(output,chrome,node):
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--report',type=Path,required=True)
     parser.add_argument('--source',type=Path,required=True);parser.add_argument('--prepare-source',action='store_true')
+    parser.add_argument('--final',action='store_true',help='Prepare explicitly reviewed revealed TEST results; legacy draft is the default')
     parser.add_argument('--output',type=Path);parser.add_argument('--chrome',type=Path);parser.add_argument('--node',default='node');args=parser.parse_args()
     if args.prepare_source:
         if args.source.exists():raise ValueError('Do not overwrite a prepared source')
-        args.source.parent.mkdir(parents=True,exist_ok=True);args.source.write_text(json.dumps(prepared(args.report),ensure_ascii=False,indent=2)+'\n')
+        args.source.parent.mkdir(parents=True,exist_ok=True);args.source.write_text(json.dumps(prepared(args.report,final=args.final),ensure_ascii=False,indent=2)+'\n')
     else:
         if not args.output:parser.error('--output is required for build')
         print(json.dumps(build(args.source,args.report,args.output)))

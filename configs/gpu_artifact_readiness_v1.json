@@ -1,0 +1,98 @@
+{
+  "checked_utc": "2026-10-10T18:03:35.632931+00:00",
+  "scope": "metadata and exact file existence only; no readout, vector, score or verdict contents read",
+  "required_gpu_gap_found": false,
+  "snapshots": [
+    {
+      "path": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/snapshot.json",
+      "sha256": "283a7fc65e1df51765a11d4517d3b855b43fd1ce59533ed0246698c91cbb8a09",
+      "cells": 5236,
+      "samples": 167552,
+      "n": 32,
+      "flat_sha256": "2fabad20c87f439289e77523bf78a56b178b6c5bacc614bf7297a0e4de28d276"
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/snapshot.json",
+      "sha256": "9a97463f8176fedff6835da83b803096c0d2aa6f15197d2c5b433415ff85a319",
+      "cells": 3485,
+      "samples": 111520,
+      "n": 32,
+      "flat_sha256": "9854b1b1afaa78ecb6cd1c1144a0990ecf569c86c4b81f1321641e6d01bf8024"
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/runs/test-full-grid-v1/snapshot.json",
+      "sha256": "9bebdb516e3435206c56a423356fad82f09cdde04aced212a7d7d214f66a55dc",
+      "cells": 10714,
+      "samples": 342848,
+      "n": 32,
+      "flat_sha256": "a9ac1a66d819a2da0a551e40f9b49b309a62aefb767071d7f866e84e36f61c6d"
+    }
+  ],
+  "catalog": {
+    "path": "${OLENS_COMPUTE_ROOT}/vectors/test-catalog-v1/catalog.json",
+    "sha256": "5bb04b117ba50f3642ed49ba3bed89df992eb6be78fa0f557ba2d15132ae1ddd",
+    "status": "complete",
+    "vectors": 2358662,
+    "new_vectors": 1294737,
+    "source_count": 581,
+    "missing_references": 0
+  },
+  "test12_export": {
+    "provenance": "${OLENS_DATA_ROOT}/runs/test-full-grid-comparison-v2/judging-inputs-provenance.json",
+    "provenance_sha256": "ddd2e0e103041e807799e6a9dd639a43d3068c7b881383e09e600eb109b93db2",
+    "status": "complete_immutable_exact_text_projection",
+    "cells": 10714,
+    "conditions": 12,
+    "condition_cell_counts": {
+      "raw_n1-n1": 10714,
+      "capped_n1-n1": 10714,
+      "best_n_exact-n16": 10714,
+      "best_n_exact-n32": 10714,
+      "random_complete-n32": 10714,
+      "best_n_specificity_mean-n32": 10714,
+      "pooled_greedy_swap-n16": 10714,
+      "pooled_greedy_swap-n32": 10714,
+      "best_n_specificity_mean_then_prune_0.005-n32": 10714,
+      "best_n_specificity_mean_random_delete_matched_0.005-n32": 10714,
+      "prune_loo_a32_0.005-n32": 10714,
+      "random_delete_matched_a32_0.005-n32": 10714
+    },
+    "output_sha256": "ae8b6a6e4fdb4eb57f8d4dcabf184071a258ad2bb55e9abc05159798c7472196"
+  },
+  "model_and_activation_files": [
+    {
+      "path": "${OLENS_COMPUTE_ROOT}/cache/huggingface/hub/models--agu18dec--olens_and_ar/snapshots/c95215d5d2f6250f20c305ae55c6e4d7569f92dc/olens_s3d_rl600/adapter_model.safetensors",
+      "present": true,
+      "bytes": 467047680
+    },
+    {
+      "path": "${OLENS_COMPUTE_ROOT}/cache/huggingface/hub/models--agu18dec--olens_and_ar/snapshots/c95215d5d2f6250f20c305ae55c6e4d7569f92dc/ar_ptag_pooled/heads.pt",
+      "present": true,
+      "bytes": 104880783
+    },
+    {
+      "path": "${OLENS_COMPUTE_ROOT}/cache/huggingface/hub/models--agu18dec--olens_and_ar/snapshots/c95215d5d2f6250f20c305ae55c6e4d7569f92dc/ar_ptag_pooled/lora/adapter_model.safetensors",
+      "present": true,
+      "bytes": 467051648
+    },
+    {
+      "path": "${OLENS_COMPUTE_ROOT}/activations/core-v1/activations.safetensors",
+      "present": true,
+      "bytes": 398029080
+    }
+  ],
+  "base_weight_shards": "15 of 15 present at pinned shared snapshot6a9e13bd6fc8f0983b9b99948120bc37f49c13e9",
+  "whitener_files": "11 of 11 present;1153666096bytes;5653a7fead43ecbd87e3b6d2a2990a98b32843ca",
+  "portable_receipts": [
+    {
+      "path": "${OLENS_DATA_ROOT}/engineering/portable-fresh-input-n32-v1/result.json",
+      "sha256": "6bcc65279128c34c67dfd79ba62a46763905d101fdc072a77c82e4d1851a4b9e"
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/engineering/portable-cache-persistence-v2/result.json",
+      "sha256": "590b74bd957c914df862bf5b4cd90c7fc114ed0cceb2d90b07f015aad2b9f171"
+    }
+  ],
+  "remaining_required": "TEST12 and missing DEV11 API judgments; CPU analyses/traces/whole469/figures/dashboard/deck/accounting",
+  "optional_gpu_work": "new edited atoms/detail deletion encodings; full-grid E3 likelihood; residual sampling; NLA42; second AR/new frozen reader diagnostics; local Qwen helper comparison. None required to complete frozen menu."
+}

@@ -37,6 +37,76 @@ def fixture(root):
     p=root/'report.json';p.write_text(json.dumps(report));return p,report
 
 
+def final_fixture(root, whole=False):
+    """Invented rates only; no held-out files are opened."""
+    p, report = fixture(root)
+    names = ['raw_n1-n1', 'capped_n1-n1', 'best_n_exact-n16', 'best_n_exact-n32',
+             'random_complete-n32', 'best_n_specificity_mean-n32', 'pooled_greedy_swap-n16',
+             'pooled_greedy_swap-n32', 'best_n_specificity_mean_then_prune_0.005-n32',
+             'best_n_specificity_mean_random_delete_matched_0.005-n32',
+             'prune_loo_a32_0.005-n32', 'random_delete_matched_a32_0.005-n32']
+    val = report['signed_comparisons']['validation']
+    val['condition_ids'] = names
+    val['cell_rows'] = [{'condition': name, 'family': f, 'metric': deepcopy(val['cell_rows'][0]['metric'])}
+                        for name in names for f in builder.FAMILIES]
+    counts = {f: {'items': 67, 'groups': 33, 'cells': 2678 + (2 if i == 3 else 0)}
+              for i, f in enumerate(builder.FAMILIES)}
+    pins = {key: 'c'*64 for key in ('manifest_sha256', 'conditions_sha256', 'selection_sha256', 'gate_sha256', 'freeze_sha256')}
+    review = dict(status='root_reviewed', stage='test', reviewed_by='root', reviewed_utc='2026-10-10T18:00:00+00:00',
+                  test_reveal_authorized=True, artifact_sha256='d'*64, condition_ids=names,
+                  expected_family_counts=counts, findings=[{'claim': 'Synthetic finding, not research evidence.',
+                                                           'evidence': 'Invented fixture rates only.'}], **pins)
+    test = {'stage': 'test', 'review': review, 'source_sha256': 'd'*64, 'identities': pins,
+            'condition_ids': names, 'family_counts': counts, 'cell_rows': [], 'original_item_rows': [], 'paired_rows': []}
+    for name in names:
+        for f in builder.FAMILIES:
+            denominator = 100 if f == 'hallucination' else counts[f]['cells']
+            cell = dict(value=12/denominator, numerator=12, denominator=denominator,
+                        ci95=[.08,.2] if f=='hallucination' else [.001,.02], items=67,
+                        independent_groups=33, warning='Synthetic source warning; not research evidence.')
+            item = deepcopy(cell) if f == 'hallucination' else dict(cell, numerator=33 if 'specificity' in name else 32,
+                denominator=67, value=(33 if 'specificity' in name else 32)/67, ci95=[.3,.7])
+            endpoint = 'original_grid_contradiction_rate' if f == 'hallucination' else 'original_grid_item_pass_rate'
+            test['cell_rows'].append({'condition':name, 'family':f, 'metric':cell})
+            test['original_item_rows'].append({'condition':name, 'family':f, 'endpoint':endpoint, 'metric':item})
+    for scope, rows in [('cell',test['cell_rows']), ('original_item',test['original_item_rows'])]:
+        for f in builder.FAMILIES:
+            b,pname = 'best_n_exact-n32','best_n_specificity_mean-n32'
+            left = next(r['metric']['value'] for r in rows if r['family']==f and r['condition']==b)
+            right = next(r['metric']['value'] for r in rows if r['family']==f and r['condition']==pname)
+            endpoint = ('original_grid_contradiction_rate' if f=='hallucination' else 'original_grid_item_pass_rate') if scope=='original_item' else ('contradiction_rate' if f=='hallucination' else 'cell_recovery')
+            test['paired_rows'].append(dict(scope=scope, family=f, baseline_condition=b, condition=pname,
+                endpoint=endpoint, baseline=left, proposed=right, delta=right-left, ci95_delta=[-.04,.06],
+                items=67, independent_groups=33, warning='Synthetic paired uncertainty'))
+    report['signed_comparisons']['test'] = test
+    if whole:
+        all_counts = {f: {'items':117+(i==3), 'groups':50, 'cells':4858+(3 if i==3 else 0)}
+                      for i,f in enumerate(builder.FAMILIES)}
+        measurement = {'status':'complete_descriptive_whole_cohort','conditions':[],'paired_comparisons':[],
+                       'source_sha256':{'synthetic':'e'*64},'limits':['Descriptive only; invented fixture.']}
+        for name in names:
+            families = {}
+            for f in builder.FAMILIES:
+                hall = f == 'hallucination'; den = 100 if hall else all_counts[f]['items']
+                endpoint = 'original_grid_contradiction_rate' if hall else 'original_grid_item_pass_rate'
+                families[f] = {endpoint: dict(value=50/den, numerator=50, denominator=den, ci95=[.3,.7],
+                    items=all_counts[f]['items'], independent_groups=50, scope='original_grid',
+                    unit='contradictory / specific readouts' if hall else 'items with any passing site / intended items')}
+            measurement['conditions'].append({'condition':name,'measurement_complete':True,'families':families})
+        for f in builder.FAMILIES:
+            endpoint='original_grid_contradiction_rate' if f=='hallucination' else 'original_grid_item_pass_rate'
+            value=measurement['conditions'][0]['families'][f][endpoint]['value']
+            measurement['paired_comparisons'].append(dict(scope='original_grid', family=f,
+                baseline_condition='best_n_exact-n32', condition='best_n_specificity_mean-n32',
+                endpoint=endpoint, baseline=value, proposed=value, delta=0.0, ci95_delta=[-.02,.04],
+                items=all_counts[f]['items'], independent_groups=50))
+        report['descriptive_whole_cohort'] = {'status':'root_reviewed','reviewed_by':'root','source_sha256':'e'*64,
+            'review':dict(status='root_reviewed', test_reveal_authorized=True, reviewed_utc='2026-10-10T18:01:00+00:00',
+                         artifact_sha256='e'*64, condition_ids=names, expected_family_counts=all_counts),
+            'measurement':measurement}
+    p.write_text(json.dumps(report));return p,report
+
+
 class FinalDraftTests(unittest.TestCase):
     def test_review_gate_and_empty_test_slots(self):
         with tempfile.TemporaryDirectory() as d:
@@ -92,5 +162,106 @@ class FinalDraftTests(unittest.TestCase):
             self.assertEqual(sum('Higher is better: right' in x for x in labels),3)
             self.assertEqual(labels.count('Paired change; lines: grouped 95% intervals'),4)
 
+
+class ReviewedFinalTests(unittest.TestCase):
+    def test_legacy_draft_ignores_optional_test_and_final_requires_explicit_reveal(self):
+        with tempfile.TemporaryDirectory() as d:
+            p,r=final_fixture(Path(d));without=deepcopy(r);without['signed_comparisons'].pop('test')
+            p.write_text(json.dumps(without));old=builder.prepared(p)
+            p.write_text(json.dumps(r));self.assertEqual(builder.prepared(p),dict(old,report_sha256=builder.digest(p)))
+            r['signed_comparisons']['test']['review']['test_reveal_authorized']=False
+            p.write_text(json.dumps(r))
+            with self.assertRaisesRegex(ValueError,'reveal authority'):builder.prepared(p,final=True)
+            class NotReadable:
+                def __iter__(self):raise AssertionError('Unreviewed rows were accessed')
+            r['signed_comparisons']['test']['original_item_rows']=NotReadable()
+            with self.assertRaisesRegex(ValueError,'reveal authority'):builder.reviewed_test(r['signed_comparisons']['test'])
+
+    def test_question_counts_intervals_and_native_hall_are_exact(self):
+        with tempfile.TemporaryDirectory() as d:
+            p,r=final_fixture(Path(d));source=builder.prepared(p,final=True)
+            self.assertEqual(source['core_slides'],16);self.assertTrue(source['test_quality_access'])
+            self.assertFalse(source['whole_cohort_complete']);self.assertIn('PREVIEW',source['status'])
+            for i,f in enumerate(builder.FAMILIES,5):
+                for row in source['slides'][i]['rows']:
+                    exact=next(x for x in r['signed_comparisons']['test']['original_item_rows'] if x['family']==f and x['condition']==row['condition'])
+                    self.assertEqual(row['source_metric'],exact['metric'])
+                    self.assertEqual(row['ci'],exact['metric']['ci95'])
+                    self.assertIn('Synthetic source warning',row['uncertainty'])
+                    self.assertEqual(row['denominator'],100 if f=='hallucination' else 67)
+            pairs=[s for s in source['slides'] if s['kind']=='paired' and 'TEST' in s['title']]
+            found=[x for s in pairs for x in s['rows'] if x['family']=='multihop_mt']
+            exact=next(x for x in r['signed_comparisons']['test']['paired_rows'] if x['scope']=='original_item' and x['family']=='multihop_mt')
+            self.assertIn(exact,found)
+            self.assertIn(exact,source['slides'][11]['rows'])
+            pages=builder.pages(source);texts=[x['text'] for x in pages[5]['items'] if x['kind']=='text']
+            self.assertIn('12/100',texts)
+            self.assertTrue(all('TEST quality pending' not in x['text'] for page in pages for x in page['items'] if x['kind']=='text'))
+
+    def test_foreign_revision_menu_endpoint_hall_and_missing_coverage_reject(self):
+        with tempfile.TemporaryDirectory() as d:
+            p,r=final_fixture(Path(d))
+            edits=[lambda t:t['identities'].__setitem__('gate_sha256','f'*64),
+                   lambda t:t['review'].__setitem__('condition_ids',list(reversed(t['condition_ids']))),
+                   lambda t:t['original_item_rows'][1].__setitem__('endpoint','cell_recovery'),
+                   lambda t:t['original_item_rows'][0]['metric'].__setitem__('ci95',[.01,.9]),
+                   lambda t:t['original_item_rows'].pop(),
+                   lambda t:t['paired_rows'][-1].__setitem__('delta',.1),
+                   lambda t:t['cell_rows'][1]['metric'].update(denominator=100,value=.12),
+                   lambda t:t['paired_rows'][-1].__setitem__('scope','items')]
+            for edit in edits:
+                changed=deepcopy(r);edit(changed['signed_comparisons']['test']);p.write_text(json.dumps(changed))
+                with self.assertRaises(ValueError):builder.prepared(p,final=True)
+
+    def test_whole469_is_separate_descriptive_and_wrong_units_or_review_reject(self):
+        with tempfile.TemporaryDirectory() as d:
+            p,r=final_fixture(Path(d),whole=True);source=builder.prepared(p,final=True)
+            self.assertTrue(source['whole_cohort_complete']);self.assertIn('DESCRIPTIVE',source['status'])
+            self.assertEqual(source['whole_cohort_measurement'],r['descriptive_whole_cohort']['measurement'])
+            whole=[s for s in source['slides'] if s['kind']=='rates' and ': all 469' in s['title']]
+            self.assertEqual(len(whole),8)
+            self.assertTrue(all('Descriptive DEV + VAL + TEST' in s['cohort'] for s in whole))
+            self.assertEqual(sum(c['items'] for c in source['whole_cohort_review']['expected_family_counts'].values()),469)
+            self.assertTrue(all(s['cohort'].startswith('Held-out TEST') for s in source['slides'][5:9]))
+            paired=next(s for s in source['slides'] if s['title']=='All 469: descriptive paired changes')
+            self.assertEqual(paired['rows'],r['descriptive_whole_cohort']['measurement']['paired_comparisons'])
+            for edit in [lambda w:w['review'].__setitem__('test_reveal_authorized',False),
+                         lambda w:w['measurement']['conditions'][0]['families']['multihop_mt']['original_grid_item_pass_rate'].__setitem__('unit','accuracy')]:
+                changed=deepcopy(r);edit(changed['descriptive_whole_cohort']);p.write_text(json.dumps(changed))
+                with self.assertRaises(ValueError):builder.prepared(p,final=True)
+
+    def test_final_editable_build_receipt_and_immutable_source(self):
+        from pptx import Presentation
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);p,r=final_fixture(root,whole=True);source=builder.prepared(p,final=True)
+            s=root/'source.json';s.write_text(json.dumps(source));receipt=builder.build(s,p,root/'out')
+            self.assertTrue(receipt['test_quality_access']);self.assertTrue(receipt['whole_cohort_complete'])
+            self.assertFalse(receipt['native_pptx_rendering_validated'])
+            self.assertEqual(receipt['implementation_sha256']['build_final_slides.py'],builder.digest(builder.__file__))
+            deck=Presentation(root/'out/draft.pptx')
+            self.assertEqual(len(deck.slides),receipt['slides'])
+            self.assertTrue(all(x.notes_slide.notes_text_frame.text for x in deck.slides))
+            self.assertEqual(json.loads((root/'out/source.json').read_text()),source)
+            for entry in source['slides'][16]['entries']:
+                self.assertGreaterEqual(entry['page'],18)
+                self.assertLessEqual(entry['page'],len(source['slides']))
+            source['slides'][5]['rows'][0]['value']=.2;s.write_text(json.dumps(source))
+            with self.assertRaisesRegex(ValueError,'exact reviewed'):builder.build(s,p,root/'changed')
+
+    def test_undefined_native_hall_stays_unavailable_not_zero(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);p,r=final_fixture(root)
+            test=r['signed_comparisons']['test']
+            for field in ('cell_rows','original_item_rows'):
+                for row in test[field]:
+                    if row['family']=='hallucination':
+                        row['metric'].update(value=None,numerator=0,denominator=0,ci95=None)
+            for row in test['paired_rows']:
+                if row['family']=='hallucination':
+                    row.update(baseline=None,proposed=None,delta=None,ci95_delta=None)
+            p.write_text(json.dumps(r));source=builder.prepared(p,final=True)
+            self.assertTrue(all(x['value'] is None for x in source['slides'][5]['rows']))
+            text=[x['text'] for page in builder.pages(source) for x in page['items'] if x['kind']=='text']
+            self.assertIn('Not measured',text);self.assertIn('Unavailable; missing denominator',text)
 
 if __name__=='__main__':unittest.main()

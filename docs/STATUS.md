@@ -1,18 +1,20 @@
 # Execution status
 
-Updated: 2026-10-10, approximately 17:50 UTC.
+Updated: 2026-10-10, approximately 18:10 UTC.
 Started: 2026-10-10 01:25:36 UTC (October 9, 21:25:36 EDT).
 Target finish: 2026-10-10 21:25:36 UTC. Execution remains active and authorized.
 
 ## Latest operational checkpoint
 
-Both remaining TEST judges resumed on the successor CPU at 17:40 UTC using the reviewed database writer-coordination fix. The 17:43 bounded check confirms fresh settled responses from both workers and no new uncertain charges. It covers a short interval, so it does not establish sustained throughput. Logs still contain a 37.6-second database hold; a longer observation and source review are underway. Luna uses Standard/default with reasoning disabled, eight concurrent calls and 200 requests/minute per family. Typical API response medians were 2.51 seconds for hallucination and 1.33 seconds for role binding.
+At 18:07 UTC, the role worker completed specificity selection and stopped cleanly at the requested comparison boundary. Six of its twelve comparisons are complete; the next is pooled selection with 16 samples. Its cache owner is free. Hallucination has completed three comparisons and is processing best-of-32. Multi-hop and chains have finished all twelve. No TEST quality has been inspected.
 
-Current workers are hallucination PID2407614/session73504 and role PID2481603/session68888 on node1603, job 25508300. That allocation expires at 05:32 UTC on October 11. The former CPU job 25474685 was released at 17:42 after its workers exited. Multi-hop and chains are complete. The same caches, $40 TEST cap and original accounting epoch remain. Twelve unknown TEST holds ($0.059636875) and the stopped hall worker's separate unreceipted $0.00538675 reservation remain retained. TEST quality has not been inspected.
+A reviewed one-family transport change is prepared: role judging can increase from eight concurrent requests / 200 requests per minute to sixteen / 400, while hallucination retains its current settings. Twenty-five offline tests, root review and independent source review passed. The prepared specification has passed validation without API dispatch. The old worker exited0 and its terminal accounting check retained all charges. Root sealed the specification and launched the faster role worker at approximately18:10 UTC as PID3690209/session80782. A post-launch throughput check is pending. The 18:00 check measured 296 settlements/minute across both workers over 10.3 minutes, with no new uncertain charges. See experiment047.
 
-The public dashboard version 7 was published at 17:36 UTC. It defaults to original question-level recovery, exposes each task's exact criterion, and keeps the native hallucination error rate separate. The scientific results remain DEV/VAL. The final slide builder is being prepared against synthetic fixtures while judging runs. Remaining work is TEST twelve-method completion, eleven missing DEV family/condition judgments, reviewed held-out and descriptive whole 469 analyses, final report/dashboard/slides, and final accounting. The prior 22:00–00:00 UTC delivery estimate needs a renewed sustained-throughput check.
+All required GPU work for the four-family study is complete. The retained pools cover all 469 items and 19,435 cells, with 621,920 samples. Reconstruction vectors, all twelve final TEST outputs, model artifacts and portable-tool checks are retained. The 17:58 live check found all four H200s idle. Remaining judging, analysis and presentation use CPUs and the API. The user reconfirmed that broader WorkspaceBench transfer is a second stage after these results; no additional families are being launched now.
 
-Receipt: `durable/diagnostics/test12-operational-v1/continuation-v6-first-health-v1.json`, SHA `0f4b0be24d87fcf9f5a15f2c2ccd657513981c6480d93d416214a5502de64c54`. See experiment 046 for the fix and its limits.
+Current delivery planning allows roughly six to nine hours from the 17:58 update at the existing rate, including missing DEV judgments and final review. Four to six hours may be feasible if higher concurrency improves measured throughput; it is not yet established. GPU expiry does not prevent completion. The public dashboard remains reviewed DEV/VAL version7, with question-level recovery as its default. A source-reviewed final slide extension is ready; actual final data and visual review remain pending.
+
+CPU job25508300 on node1603 lasts through 05:32 UTC on October11. Hall remains PID2407614/session73504. Old role PID2481603/session68888 is terminal exit0; current role PID3690209/session80782 uses16/400. Preserve the original accounting epoch, $40 TEST run cap, all twelve unknown TEST charges ($0.059636875) and the separate stopped-hall reservation ($0.00538675). The compute agent remains the sole bounded ledger observer. Research commits are local.
 
 ## Earlier checkpoints
 

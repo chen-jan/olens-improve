@@ -1,0 +1,29 @@
+{
+  "status": "root_and_independently_source_reviewed",
+  "reviewed_utc": "2026-10-10T18:07:31.025755+00:00",
+  "source_sha256": {
+    "scripts/build_final_slides.py": "ccb57bd18f46d337c2eb7bc228bdb93c12efeec7a534a3942510e0e731ba08f5",
+    "tests/test_final_slide_builder.py": "2fb9997896ee7020f906b7c52afb28149b3d68a961d5b2e0b292bfcff0e09f20"
+  },
+  "reviewers": [
+    "root",
+    "adversarial_evaluation"
+  ],
+  "tests": {
+    "count": 10,
+    "scope": "Synthetic TEST/whole469 authorization, counts/CIs, builder, editable PPTX reopen and source identity; no real TEST outcomes",
+    "last_measured_seconds": 2.074
+  },
+  "corrections": [
+    "Non-hall cell denominator must equal intended cells",
+    "Reject unknown paired scope",
+    "Use task-specific aggregation language for MT and chains"
+  ],
+  "required_before_delivery": [
+    "Review actual TEST and whole469 analysis inputs",
+    "Render final HTML/PDF and inspect graphs/labels/layout",
+    "Native PowerPoint appearance remains unvalidated unless a renderer becomes available"
+  ],
+  "current_scientific_publication_unchanged": true,
+  "no_model_or_judge_calls": true
+}

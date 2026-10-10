@@ -48,3 +48,22 @@ receipt is `durable/diagnostics/test12-operational-v1/continuation-v6-health-180
 SHA `35f889cc58132f1f52f95f8329891e598dc985951803bee9516dcff95b834522`.
 At preparation, the role worker remains live and the faster setting has **not**
 been launched.
+
+
+## First-family launch
+
+At approximately18:10 UTC, root sealed
+`configs/judging_test_role_concurrency_v7.json`, SHA
+`59f40157b0c41845dedf1ee3da3986290c4353f9e617008386ecc1e831f8eaf8`,
+and resumed role binding as PID3690209/session80782. The old role worker had
+exited0 after Emean, with the next condition D16. Its exclusive cache-owner
+probe was free. The terminal accounting receipt retained all prior charges and
+found no new role reservations or unknowns. Hall PID2407614 remains at8/200.
+
+The closed Emean profile at8/200 contained3,754 successful reservation,
+evidence and settlement operations, with no recorded exceptions. Its maximum
+reservation delay was41.233558 seconds. This establishes that a long delay
+occurred within the active condition, rather than assigning all logged delays
+to cached-condition setup. It still does not identify a particular filesystem
+operation as the cause. New throughput and error measurements are required
+before changing any other family.
