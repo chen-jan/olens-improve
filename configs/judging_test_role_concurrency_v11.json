@@ -1,0 +1,206 @@
+{
+  "schema_version": 1,
+  "job_id": "25508300",
+  "node": "node1603",
+  "concurrency": 256,
+  "rpm": 4000,
+  "tier": "default",
+  "reasoning_effort": "none",
+  "automatic_ramp": false,
+  "recovery_epoch": "2026-10-10T07:52:00+00:00",
+  "cpu_pairs": {
+    "role_bound_association": [
+      13,
+      20
+    ]
+  },
+  "fresh_manifest": "${OLENS_COMPUTE_ROOT}/activations/core-v1/fresh_manifest_v2.json",
+  "empirical_summary": "${OLENS_DATA_ROOT}/selections/development-full-grid-judging-v1/forecast-v1.json",
+  "ledger": "${OLENS_DATA_ROOT}/budget/ledger.sqlite3",
+  "shared_cache": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments/shared-exact-cache",
+  "logs": "${OLENS_COMPUTE_ROOT}/logs/test-concurrency-v11-role-256-4000",
+  "hold_policy": "Every prior project/DEV uncertain reservation remains held. A separate v2 TEST run does not release, overwrite or reclassify any original hold or reset global financial totals.",
+  "forecast_policy": "The actual immutable12-arm export and exact-cache forecast are bound below. Expected usage includes the conditional upper count of new hallucination stage2 requests at empirical mean prices. The finite40USD run ceiling funds bounded retries and unknown reservations inside unchanged300USD project ceiling/200USD target. Formal gross maximum-output reservation totals are not expected spend; atomic per-attempt/run/global caps remain authoritative.",
+  "status": "root_reviewed_ready",
+  "run_id": "test-full-grid-methods-v2",
+  "run_cap_usd": 40,
+  "authorized_cells": 10714,
+  "manifest": "configs/test-full-grid-analysis-v2.json",
+  "gate": "configs/gates/test-analysis-v2.json",
+  "conditions": "configs/conditions_test_final_v2.json",
+  "freeze": "configs/test_final_method_freeze_v2.json",
+  "selections": "${OLENS_DATA_ROOT}/runs/test-full-grid-comparison-v2/judging-inputs.jsonl",
+  "selection_sha256": "ae8b6a6e4fdb4eb57f8d4dcabf184071a258ad2bb55e9abc05159798c7472196",
+  "export_provenance": "${OLENS_DATA_ROOT}/runs/test-full-grid-comparison-v2/judging-inputs-provenance.json",
+  "export_provenance_sha256": "ddd2e0e103041e807799e6a9dd639a43d3068c7b881383e09e600eb109b93db2",
+  "forecast": "${OLENS_DATA_ROOT}/runs/test-full-grid-comparison-v2/forecast-v2.json",
+  "forecast_sha256": "f39c259138f6a2cc4ad6a9f9832014577bfb736377691fb7242397c19ce5f8ff",
+  "planned_forecast_path": "${OLENS_DATA_ROOT}/runs/test-full-grid-comparison-v2/forecast-storage-v8-if-needed.json",
+  "judgments": "${OLENS_DATA_ROOT}/runs/test-full-grid-comparison-v2/judgments",
+  "performance_profile_dir": "${OLENS_DATA_ROOT}/runs/test-full-grid-comparison-v2/judgments/performance-concurrency-v11-role-256-4000",
+  "manifest_sha256": "e717772952e83ba5c56014cd8abb23e720519d013a6e6a8905f8f2c87f73d207",
+  "fresh_manifest_sha256": "5a61cff89aca532f3e022233b6d2d8e12dab0d3a3f4f44085097bc6dc58fc385",
+  "gate_sha256": "1c0412380a1980b3551d0f750434269572ebf1f79377efa12018373e05c72dcc",
+  "conditions_sha256": "111b0684c8f5eb780e2b3887218757dee9ef6cca25efd26a8c0a515d008f4807",
+  "freeze_sha256": "b46f00851efb71628faa2ffcb404011c4ef1f3543d68fc4f18d0ab6d74d95e86",
+  "empirical_summary_sha256": "c1db2f1fb5a58c727b813f9498726e2e21ff70ca092cc891fb0b40aab0d6a1f6",
+  "implementation_source_sha256": {
+    "infra/launch_test_judges.py": "bb71d8e2f92e0254c9b64e4c7dd5334317e19eba2f1b41b8399e6f25f5e86bb0",
+    "infra/launch_validation_judges.py": "237b19ccf7322aac7fa73f9952eaeaaf3c498406ebb6089dc639c022b1b06e95",
+    "scripts/forecast_judging.py": "e587b75502317bdb60edcc2225268bdc49d87d159a5da3b0a36a79813e3d6b13",
+    "src/olens_improve/evaluation.py": "5ae885ace1ecc974a59cddaef118c68285f4380f1a6fd259fed540e8f5d16039",
+    "src/olens_improve/budget.py": "ef38b1acab702bff67b7edf65fcf9d5fd6720c62842c84a7e53e53e66a09e276",
+    "src/olens_improve/ar_partition.py": "4f250bd78e5adb81faed0568ad004bc8df62dd34d1daf94973ab13052e802499",
+    "src/olens_improve/stage_io.py": "7257f7855faddab8abe0ac487aa33500718979a5de5019a838354a1e0feb884c",
+    "src/olens_improve/performance.py": "d9f5b89d37d8f4eb379d33ada60f4cfc55e19fc3480ae735d3e2b5614e98033b",
+    "scripts/export_judging_inputs.py": "ad5d1eab2eea809f8666b2bbba2e18e520f5d74d2a2ee1bc95684f0b906895fc",
+    "scripts/combine_pruning.py": "f96fe1af7f445d3be7f72f5be54167ccb15a6cde7cab3c3b77110afc8967de94",
+    "src/olens_improve/stage_permissions.py": "7cfe9248e7b529ad38b46ebe46282c4132c366ab1af4ea945c5a85c054ff72bd"
+  },
+  "primary_conditions": [
+    {
+      "method": "raw_n1",
+      "n": 1
+    },
+    {
+      "method": "capped_n1",
+      "n": 1
+    },
+    {
+      "method": "best_n_exact",
+      "n": 16
+    },
+    {
+      "method": "best_n_exact",
+      "n": 32
+    },
+    {
+      "method": "random_complete",
+      "n": 32
+    },
+    {
+      "method": "best_n_specificity_mean",
+      "n": 32
+    }
+  ],
+  "secondary_conditions": [
+    {
+      "method": "pooled_greedy_swap",
+      "n": 16
+    },
+    {
+      "method": "pooled_greedy_swap",
+      "n": 32
+    },
+    {
+      "method": "best_n_specificity_mean_then_prune_0.005",
+      "n": 32
+    },
+    {
+      "method": "best_n_specificity_mean_random_delete_matched_0.005",
+      "n": 32
+    },
+    {
+      "method": "prune_loo_a32_0.005",
+      "n": 32
+    },
+    {
+      "method": "random_delete_matched_a32_0.005",
+      "n": 32
+    }
+  ],
+  "menu_order_policy": "Original six primary in their unchanged order, followed by six existing VAL secondary comparisons. No secondary TEST result changes selected A16/Emean32 points or frozen settings.",
+  "resource": "${OLENS_DATA_ROOT}/diagnostics/test12-operational-v1/successor-preflight-v1.json",
+  "resource_sha256": "ee9442abffb0ae0accd243696fc97db3222d29f73774252db2f4e63babe8566d",
+  "writer_admission_review": {
+    "path": "configs/ledger_writer_admission_review_v1.json",
+    "sha256": "6dfaa6afc0973e1cd8ff30a0ddfc6b81e03dd9ef3c4d880fcb940f0bd19fb0d3"
+  },
+  "writer_admission_fixture": {
+    "path": "${OLENS_COMPUTE_ROOT}/diagnostics/ledger-admission-nfs-v1/report.json",
+    "sha256": "d69fa5025cb39506f148907ef8a640effdafee3edb92cb02ea8a50298373574a",
+    "budget_sha256": "60caff27b9dd717e218822a4115f7f44c8f1820f066f1ec5dbecb021206ca38f",
+    "limits": "Only fresh same-node synthetic3x20cycles and killed owned holder; no real charges/production access."
+  },
+  "hall_reservation_evidence": {
+    "path": "${OLENS_DATA_ROOT}/diagnostics/test12-operational-v1/continuation-v4-hall-reservation-evidence-v1.json",
+    "sha256": "da2fc7a876d4530355e419ff7dd466ea8a31fbc7329c944aae31df4e438eb3ca",
+    "policy": "No retained physical_response/settlement event for the exact inactive reserved ID; absence is not proof of no provider usage. Retain full hold; no automatic settlement/release."
+  },
+  "created_utc": "2026-10-10T19:26:06.603273+00:00",
+  "root_launch_only": true,
+  "transport_review": {
+    "status": "root_reviewed",
+    "profile": "standard_none_256_4000_v1",
+    "family": "role_bound_association",
+    "run_id": "test-full-grid-methods-v2",
+    "recovery_epoch": "2026-10-10T07:52:00+00:00",
+    "concurrency": 256,
+    "rpm": 4000,
+    "tier": "default",
+    "reasoning_effort": "none",
+    "automatic_ramp": false,
+    "reviewed_utc": "2026-10-10T19:26:06.603273+00:00",
+    "authority": "User explicitly requests bold massive concurrency and potential10x speedup. Root authorizes one-family256/4000trial afterverified oldworkerexit0/freeowner. Same exact requests, model, Standardtier, no reasoning, caps and originalunknownguard. Currenthall16/400 continues. ProviderLaunchlisted10kRPM/10MTPM is documentation, not account-headerverification; existingfinancial/transportguardsremain authoritative."
+  },
+  "preserved_operational_parent": {
+    "path": "configs/judging_test_storage_recovery_v9_role.json",
+    "sha256": "a08da4fb8af836d92a9fd3228a3ca965fd11807ee06bd17413786137365cecc0"
+  },
+  "pending_before_seal": [],
+  "forecast_interpretation": "The retained immutable export forecast prices the same Standard logical requests and frozen outputs; it used8/200 only for timing assumptions. Those timing assumptions do not forecast this faster transport. Request counts and per-attempt/run/project caps remain authoritative; retries can add cost. Fresh observed throughput will determine timing, not a presumed2x speedup.",
+  "rollout_policy": "Run role256/4000 first; measure actual completedresponse rate and ledgerwaits/unknowns. No assumed16xgain or automaticramp. Ifhealthy expandhall separately; cache reuse can shorten required paidwork.",
+  "source_review": {
+    "path": "configs/test_transport_review_v3.json",
+    "sha256": "c2e73d57d4bc08325187695044dfa576b3cf2f12f34b893343a39ee65cb915e6"
+  },
+  "observed_operational_limit": "19:09baseline389combined/min over655s; CPU6.4%/16.2% of onecore; short SDK latency but repeated1-3s writer-admission waits. Extra CPU not indicated. Higher API concurrency may or may not overcome serialized database cost.",
+  "phase_timing_review": {
+    "path": "configs/ledger_phase_timing_review_v1.json",
+    "sha256": "05859d7a51735354c1d146d258f0c2d0e85776cd8cec0003553c43f66c385e9e"
+  },
+  "storage_migration": {
+    "status": "completed_and_root_verified",
+    "canonical_ledger_unchanged": "${OLENS_DATA_ROOT}/budget/ledger.sqlite3",
+    "receipt": "${OLENS_DATA_ROOT}/diagnostics/test12-operational-v1/ledger-storage-move-v1.json",
+    "receipt_sha256": "e233bf21b944f04e9b091edf34f5e9613bd24c34e899f9c2702949799e6c3097",
+    "ledger_sha256_before_resume": "4012d205a552c422b6752c6046bdde1b1d47fd0b555eb371e175d7f181ad3629"
+  },
+  "hall_health_receipt": {
+    "path": "${OLENS_DATA_ROOT}/diagnostics/test12-operational-v1/storage-recovery-v8-operational-1848-v1.json",
+    "sha256": "d89c8e969e798bcf3ce8c337345818849fefba4a6089522dfb2d366dd995f8b7",
+    "root_reviewed_utc": "2026-10-10T18:50:07.080330+00:00",
+    "limits": "Recent100-attempt rate spans24seconds;1106newsettlementsaccumulatedduringfirstapproximately5minutesincludingstartup. A long stationary rate is not established."
+  },
+  "latest_operational_baseline": {
+    "path": "${OLENS_DATA_ROOT}/diagnostics/test12-operational-v1/storage-recovery-v9-operational-1909-v1.json",
+    "sha256": "07bc075dcbf905d98bbe0bee26dff82252b93871bfa5e0b901cd30781162ee01",
+    "test_settled_count": 63037,
+    "observed_utc": "2026-10-10T19:09:25+00:00"
+  },
+  "root_sealed_utc": "2026-10-10T19:26:06.603273+00:00",
+  "clean_boundary": {
+    "path": "${OLENS_DATA_ROOT}/diagnostics/test12-operational-v1/concurrency-v11-role-terminal-1920-operational-v1.json",
+    "sha256": "9648266c37e0327ddf6af5a98259b85965d4ebd418be65ff716b964cb8265522",
+    "old_session": 65303,
+    "old_pid": 3802604,
+    "terminal_exit_code": 0,
+    "owner_free": true,
+    "completed_role_conditions": 8
+  },
+  "terminal_accounting": {
+    "path": "${OLENS_DATA_ROOT}/diagnostics/test12-operational-v1/concurrency-v11-role-terminal-1920-health-v1.json",
+    "sha256": "2898c91852f84d2332cc51612ba0574f45e0e4155a4529f833bda71541606132",
+    "test_settled": 67481,
+    "test_usage_usd": 10.246684455,
+    "unknown_count": 12,
+    "unknown_usd": 0.059636875,
+    "all_preserved": true
+  },
+  "root_dispatch_authorization": "Resume roleonly256/4000 onCPU25508300cores13,20. Existinghallcontinues. Worker must acquire existing exclusive family owner before anypaidcalls; preserve originalepoch/allcaps/allholds.",
+  "prepared_source": {
+    "path": "configs/judging_test_role_concurrency_v10.prepared.json",
+    "sha256": "c40d776d13e4cd421f264761227d1023584bfb6f2dda446fd7100b59fcb5d69f",
+    "superseded_before_launch": "64/2400 was validated only, never launched; replaced byuser-requested256/4000"
+  }
+}

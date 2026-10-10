@@ -21,6 +21,7 @@ TRANSPORT_PROFILES = {
     (16, 400): 'standard_none_16_400_v1',
     (32, 1200): 'standard_none_32_1200_v1',
     (64, 2400): 'standard_none_64_2400_v1',
+    (256, 4000): 'standard_none_256_4000_v1',
 }
 
 

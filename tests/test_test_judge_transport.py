@@ -66,9 +66,9 @@ class TestJudgeTransportTests(unittest.TestCase):
                         launch.preflight(self.spec, family='hallucination')
                     stage.assert_not_called()
 
-    def test_reviewed_32_1200_and_64_2400_forward_only_exact_rates(self):
+    def test_reviewed_higher_profiles_forward_only_exact_rates(self):
         legacy = launch.evaluation_command(self.spec, 'hallucination')
-        for concurrency, rpm in [(32, 1200), (64, 2400)]:
+        for concurrency, rpm in [(32, 1200), (64, 2400), (256, 4000)]:
             with self.subTest(concurrency=concurrency, rpm=rpm):
                 self.prepare_transport(concurrency, rpm)
                 before = copy.deepcopy(self.spec)
@@ -83,7 +83,7 @@ class TestJudgeTransportTests(unittest.TestCase):
                 self.assertEqual(self.spec, before)
 
     def test_new_profiles_require_their_own_authority_before_stage_data(self):
-        for concurrency, rpm in [(32, 1200), (64, 2400)]:
+        for concurrency, rpm in [(32, 1200), (64, 2400), (256, 4000)]:
             self.prepare_transport(concurrency, rpm)
             good = copy.deepcopy(self.spec)
             for change in [lambda s: s.pop('transport_review'),
@@ -119,14 +119,16 @@ class TestJudgeTransportTests(unittest.TestCase):
     def test_mixed_profiles_and_automatic_ramp_cannot_widen_silently(self):
         for concurrency, rpm, ramp in [(16, 200, False), (8, 400, False), (32, 600, False),
                                         (32, 400, False), (64, 1200, False), (32, 2400, False),
-                                        (128, 2400, False),
+                                        (128, 2400, False), (256, 2400, False),
+                                        (64, 4000, False), (128, 4000, False),
+                                        (512, 4000, False),
                                         (8, 200, True), (8, 200, 0), (8, True, False)]:
             with self.subTest(concurrency=concurrency, rpm=rpm, ramp=ramp):
                 self.spec.update(concurrency=concurrency, rpm=rpm, automatic_ramp=ramp)
                 with self.assertRaises(ValueError): launch.validate_transport(self.spec)
 
     def test_validation_preflight_still_rejects_higher_transport_before_data(self):
-        for concurrency, rpm in [(16, 400), (32, 1200), (64, 2400)]:
+        for concurrency, rpm in [(16, 400), (32, 1200), (64, 2400), (256, 4000)]:
             self.prepare_transport(concurrency, rpm)
             with self.subTest(concurrency=concurrency), patch.object(validation, 'evaluation_stage') as stage:
                 with self.assertRaisesRegex(ValueError, 'fixed VAL policy'):
@@ -134,7 +136,7 @@ class TestJudgeTransportTests(unittest.TestCase):
                 stage.assert_not_called()
 
     def test_real_main_forwards_each_reviewed_profile_and_retains_guard(self):
-        for concurrency, rpm in [(16, 400), (32, 1200), (64, 2400)]:
+        for concurrency, rpm in [(16, 400), (32, 1200), (64, 2400), (256, 4000)]:
             self.prepare_transport(concurrency, rpm)
             self.spec.update(job_id='synthetic-job', node='synthetic-node', logs=str(self.root/'logs'))
             p = self.root/'spec.json'; p.write_text(json.dumps(self.spec))

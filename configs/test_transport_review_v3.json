@@ -1,0 +1,17 @@
+{
+  "status": "root_and_independently_reviewed",
+  "reviewed_utc": "2026-10-10T19:26:06.603273+00:00",
+  "source_sha256": {
+    "infra/launch_test_judges.py": "bb71d8e2f92e0254c9b64e4c7dd5334317e19eba2f1b41b8399e6f25f5e86bb0",
+    "tests/test_test_judge_transport.py": "53401c16cec2fd266f0ec492a037597c3846842a466ccf0ba645c7356ef31781"
+  },
+  "test_receipt": ".state/test-judge-higher-transport-tests-v3.json",
+  "test_receipt_sha256": "b610a08310c43079129ac33e088e37c47d51e5e5a25614e69c92e64b755f39b0",
+  "tests_passed": 16,
+  "test_environment": "Local synthetic fake Popen; two allocated approval reviews timed out before execution",
+  "scope": "Add exact256/4000profile; other policies and scientific/financial inputs unchanged",
+  "reviewers": [
+    "root",
+    "adversarial_evaluation"
+  ]
+}
