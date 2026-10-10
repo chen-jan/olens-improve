@@ -109,6 +109,10 @@ def main():
                 encoding=SimpleNamespace(runtime=args.runtime,input=[str(path)],input_kind='candidates',checkpoint=args.checkpoint,
                                          output=args.output,batch_size=args.batch_size,shard_size=4096,max_output_tokens=256,
                                          writer_owner_lock=outer_lock)
+                if stage != 'development':
+                    encoding.analysis_manifest=args.cells_manifest
+                    encoding.fresh_manifest=args.fresh_manifest
+                    encoding.analysis_gate=args.gate
                 runs=completed_runs(output,snapshot_sha,path)
                 # Do not replace an already committed run's timing on crash recovery.
                 if not runs:

@@ -1,0 +1,30 @@
+{
+  "gate_id": "validation-full-grid-blind-v1",
+  "authorization_scope": "blind_generation_only",
+  "manifest_sha256": "9293de810635a5ee69fcee3c010ede25c7e147d12d172c2f637015c64042f19d",
+  "fresh_index_sha256": "5a61cff89aca532f3e022233b6d2d8e12dab0d3a3f4f44085097bc6dc58fc385",
+  "capture_version": "fresh-core-v1",
+  "recapture_status": "passed",
+  "production_generation_authorized": true,
+  "historical_cache_reuse_authorized": false,
+  "frozen_test_authorized": false,
+  "maximum_samples_per_cell": 32,
+  "authorized_cells": 3485,
+  "author": "root",
+  "launch_status": "Prepared for coordinator source-bound launch review; not launched.",
+  "pool_policy": "Append existing e8cfd09f7ff1c9195cfd4c3a pool using four unchanged shards; preserve saved samples. No independent pool or resampling.",
+  "prohibited_until_analysis_gate": [
+    "AR encoding",
+    "FVE/scoring",
+    "method selection",
+    "helpers",
+    "judging",
+    "trace/text inspection",
+    "VAL dashboard views"
+  ],
+  "evidence": [
+    "The frozen split v2 and original read plan bind all 3485 validation cells; exact fresh identities and adapter-disabled captures verified.",
+    "Frozen pair, carrier, generation settings, global seed/shards and N32 are unchanged; no validation outcomes informed development.",
+    "Root authorized blind preparation while development judging finishes; separate analysis gate requires development shortlist and operating settings freeze."
+  ]
+}

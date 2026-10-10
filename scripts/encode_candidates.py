@@ -20,6 +20,8 @@ from olens_improve.models import BASE_REVISION, PAIR_REVISION
 from olens_improve.reconstruction import FrozenAR, ar_token_ids
 from olens_improve.selection import PARSER_POLICY, parse_bullets
 from olens_improve.ar_cache import digest, vector_key, input_records
+from olens_improve.stage_permissions import require_record_analysis
+from olens_improve.stage_io import validate_export_stage
 
 
 def atomic_json(path,payload):
@@ -37,6 +39,9 @@ def parse_args():
     p.add_argument("--batch-size",type=int,default=32)
     p.add_argument("--shard-size",type=int,default=4096)
     p.add_argument("--max-output-tokens",type=int,default=256)
+    p.add_argument("--analysis-manifest")
+    p.add_argument("--fresh-manifest")
+    p.add_argument("--analysis-gate")
     return p.parse_args()
 
 
@@ -45,6 +50,20 @@ def encode_snapshot(args, ar=None):
         raise RuntimeError("AR encoding must use assigned GPU")
     if args.batch_size<1 or args.shard_size<1:
         raise ValueError("Positive batch/shard size required")
+    analysis_paths = [getattr(args,k,None) for k in ('analysis_manifest','fresh_manifest','analysis_gate')]
+    if any(analysis_paths) and not all(analysis_paths):
+        raise ValueError('Analysis authorization requires cohort, fresh manifest and gate together')
+    analysis_cells = analysis_captures = None
+    authorization = None
+    if all(analysis_paths):
+        bodies = [Path(p).read_bytes() for p in analysis_paths]
+        _, analysis_cells, analysis_captures = validate_export_stage(*bodies)
+        authorization = dict(zip(('cohort_sha256','fresh_sha256','gate_sha256'),
+                                 (hashlib.sha256(b).hexdigest() for b in bodies)))
+    # Reject sealed source records before tokenizer/checkpoint/model work.
+    for path in args.input:
+        for row in input_records(Path(path).read_bytes()):
+            require_record_analysis(row, analysis_cells, analysis_captures)
     with ExitStack() as stack:
         owner_path=Path(args.output)/"stream_writer.lock";owner_path.parent.mkdir(parents=True,exist_ok=True)
         owner_lock=getattr(args,"writer_owner_lock",None);owns_lock=owner_lock is None
@@ -183,6 +202,7 @@ def encode_snapshot(args, ar=None):
         atomic_json(output/f"usage_{usage_id}.run.json",{
             "status":"complete","contract_sha256":contract_sha,"input_kind":args.input_kind,
             "source_inputs":source_inputs,"usage_path":str(output/f"usage_{usage_id}.jsonl"),
+            "analysis_authorization":authorization,
             "full_text_variants":len(usages),"new_unique_vectors":len(requested),"total_unique_vectors":len(known),
             "seconds":time.time()-started,"batch_size":args.batch_size,"slurm_job_id":os.environ["SLURM_JOB_ID"]})
         atomic_json(output/"progress.json",{"status":"complete","completed_unique_vectors":len(known),

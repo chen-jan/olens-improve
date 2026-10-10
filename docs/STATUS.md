@@ -1,6 +1,6 @@
 # Execution status
 
-Updated: 2026-10-10, approximately 06:00 UTC.
+Updated: 2026-10-10, approximately 06:35 UTC.
 Started: 2026-10-10 01:25:36 UTC (October 9, 21:25:36 EDT).
 Target finish: 2026-10-10 21:25:36 UTC. Execution remains active and authorized.
 
@@ -70,10 +70,10 @@ first source-checked dashboard with grouped intervals. Nothing has been pushed.
 | Full development reconstruction | Complete: 642,209 unique vectors covering all 5,236 cells |
 | Full development selectors | Complete: 5,236 cells and 40 offline conditions; all 2,018 overlapping v3 rows agree exactly; raw/capped baseline identity passed |
 | Full development baseline | Raw and capped N1 judged, all stages/cells complete; pinned item aggregation verified |
-| Single-method pilots | A/B/C/D/E1/E3/F judged; E2/G diagnostics complete with limits; exact-claim-span v2 failed its audit and a bounded v3 repair is being audited |
+| Single-method pilots | A/B/C/D/E1/E3/F judged; E2/G diagnostics complete with limits; exact-claim-span v3 stopped after its eight-cell contract audit, without benchmark-quality measurement |
 | Combinations | 65 unique pilot conditions judged and source-checked; larger E1-plus-pruning outputs complete and awaiting judging |
 | Additional controls | All32 judgments and matched-donor N1 complete; all requested cells/stages covered |
-| Held-out evaluation | Validation and test readouts remain sealed |
+| Held-out evaluation | Blind fixed-pool validation generation is being prepared; analysis remains closed until the DEV shortlist is frozen. Test remains closed. |
 
 Combination comparisons retain unchanged parents, component-off outputs, and
 random deletion matched on retained bullet count. Fixed support weights are
@@ -87,15 +87,22 @@ The corresponding role cell count is only 151/3,420: an item passes when any
 inspected site passes, so item recovery must not be read as uniformly faithful
 readouts. These are original-grid development scores, not held-out results.
 
-Next: finish the exact-request cost forecast and compact judging export, then
-judge the frozen 24-condition development comparison in experiment 019. The
+Next: resume the frozen 24-condition development comparison on the fresh CPU
+allocation after its successful one-request health check. Exact-request cost
+forecast and compact export are complete; the forecast is $10.19 and the shared
+run ceiling remains $20. At the transport pause, all 24 multihop conditions,
+seven chain conditions, and both baselines for hallucination and role were
+complete. Unfinished conditions remain incomplete. The
 merged selection SHA is `54ee50e61ebc11ac66d8d11c294dda60e17a7f9e06ad8632665e6bbb6505635e`;
 the baseline audit verifies all 10,472 raw/capped text-and-token pairs against
 the already judged baseline. Cache reuse does not create independent verdicts.
 The E1 pruning run used 235.75 seconds on four CPU threads, with no new model
 calls. Repaired consensus and pooling-plus-specificity pilots are judged.
-Audit source-preserving claim extraction on eight fixed cells before expanding
-that separate diagnostic. Review development outcomes before the validation
+The repaired source-span diagnostic stopped after eight cells: numeric-only
+fragments were removed, but two accepted claims still depended on an unidentified
+paragraph. This failed the strict self-contained-claim contract; it does not
+establish that those statements are false or that claim consensus cannot work.
+The proposed 32-cell expansion remains incomplete. Review development outcomes before the validation
 shortlist, freeze, and test. A small gain with wide
 intervals can warrant follow-up; significance alone is not an expansion gate.
 
@@ -117,11 +124,14 @@ the complete fresh-install deployment path has not yet been tested.
 - Both extra H200 allocations, 25460532 and 25459615, were intentionally
   released after their encoding and diagnostic work completed. Four main
   allocations remain available for the next scientifically authorized stage.
-- CPU allocation 25299630 runs lightweight judging, selection and monitoring.
+- Fresh CPU allocation 25474685 provides eight physical cores and 32 GiB for
+  judging through 21:25:37 UTC. The old allocation 25299630 reached its memory
+  limit, predominantly in its external step; unrelated processes are preserved.
+  Its existing lightweight watcher remains active and monitors the new allocation.
   A watcher checks every 600 seconds until 21:25:36 UTC; its process and last
   check are recorded under the fast project's `watcher/` directory. An agent
   stopping does not itself guarantee that this process remains healthy.
-- Recorded API usage at approximately 05:56 UTC: **$4.52290**, with **$4.03092**
+- Recorded API usage at approximately 06:34 UTC: **$5.19455**, with **$4.23970**
   unresolved reservations; later activity is accounted in the ledger.
   The earlier cache-write pricing correction added $0.30592
   to settled usage and $0.02011 to unknown-request reservations; original events
@@ -133,7 +143,16 @@ the complete fresh-install deployment path has not yet been tested.
   The existing 55.56 GB base cache is reused without copying. Aggregate
   project allowance is approximately 500 GB; lab group quota remains unresolved.
 
-The donor judge run developed connection failures without provider status codes.
+The full-development judge queue later developed 21 connection failures and
+21 cancellations during guard shutdown. All 42 uncertain holds remain reserved;
+successful cached verdicts are preserved. The cause is unresolved: observed
+CPU cgroup pressure and failure timing do not establish causation. A single
+unchanged Luna request on the isolated CPU allocation succeeded in 2.29 seconds.
+Recovery is authorized at eight slots and 200 requests/minute per family with a
+new documented epoch, the same run cap, and all old holds retained. See experiment
+019 and the immutable incident snapshot. No concurrency increase is automatic.
+
+Earlier, the donor judge run developed connection failures without provider status codes.
 It was stopped, preserving cached successes and uncertain reservations. A
 single-request check succeeded; an eight-slot restart with a shared transport
 failure guard completed 2,110 physical requests without another transport
@@ -151,6 +170,14 @@ full-grid judge throughput measurement. Standard judging now supports explicit
 concurrency/rate limits; a bounded 32-slot/600 logical calls-per-minute pilot
 completed without new unknown reservations. This is per family, not a promise
 of provider capacity.
+
+Blind preparation of the fixed validation pool can overlap development judging:
+3,485 cells at N32 has a measured-component generation reference of about 63
+minutes on four GPUs, plus loading and overhead. This is not a complete evaluation
+forecast. Only operational counts, hashes, and timing may be inspected before
+the development shortlist is frozen. A separate analysis gate is required for
+validation export, reconstruction, selection, judging, and example inspection.
+Test generation remains gated on the later validation decision.
 
 ## Recovery and artifact map
 

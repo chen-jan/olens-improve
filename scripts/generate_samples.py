@@ -19,6 +19,7 @@ import time
 import uuid
 
 from olens_improve.models import BASE_REVISION, PAIR_REVISION
+from olens_improve.stage_permissions import require_gate_capability
 
 
 def sha(data):
@@ -134,6 +135,7 @@ def claim(path, *, recover_dead=False):
 
 
 def check_gate(gate):
+    require_gate_capability(gate, 'generation')
     if gate.get("recapture_status") != "passed" or gate.get("production_generation_authorized") is not True:
         raise RuntimeError("Require passed recapture and explicit coordinator production authorization")
 
@@ -248,6 +250,12 @@ def main():
         raise ValueError("Requested prefix exceeds the gate's sample limit")
     if args.fresh_index and gate.get("fresh_index_sha256") != file_sha(args.fresh_index):
         raise ValueError("Fresh index does not match the coordinator's frozen hash")
+    if gate.get('authorization_scope') == 'blind_generation_only':
+        if not args.fresh_index or manifest.get('split') != 'validation':
+            raise ValueError('Blind generation requires the exact validation cohort and fresh index')
+        from olens_improve.ar_partition import validate_stage
+        validate_stage(manifest, sha(manifest_bytes), json.loads(Path(args.fresh_index).read_bytes()),
+                       file_sha(args.fresh_index), gate, capability='generation')
     cells = [cell for cell in manifest["cells"] if shard_for(cell["cell_id"], args.shard_count) == args.shard_index]
     fresh = {}
     if args.fresh_audit:
@@ -288,6 +296,7 @@ def main():
         "capture_version": args.capture_version,
     }
     launch = {"manifest_sha256": sha(manifest_bytes), "gate_sha256": sha(Path(args.gate).read_bytes()),
+        "authorization_scope": gate.get("authorization_scope"),
         "batch_size": args.batch_size, "target_n": args.n, "shard_index": args.shard_index,
         "cells_per_batch": args.cells_per_batch, "maximum_batch_sequences": args.maximum_batch_sequences,
         "fresh_index": args.fresh_index, "fresh_activations": args.fresh_activations,
@@ -403,6 +412,9 @@ def main():
                             "finish_reason": metadata["finish_reasons"][output_index],
                             "base_revision": BASE_REVISION, "adapter_revision": PAIR_REVISION,
                             "activation_sha256": activation_sha,
+                            **({'generation_authorization_scope': 'blind_generation_only',
+                                'generation_gate_sha256': launch['gate_sha256']}
+                               if gate.get('authorization_scope') == 'blind_generation_only' else {}),
                         })
                 append_event(stream, {"global_pool_id": pool_id, "kind": "generation",
                     "activation_hashes": {cell["cell_id"]: capture[1] for cell, capture in zip(batch_cells, captures)},

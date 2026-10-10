@@ -7,9 +7,11 @@ from hashlib import sha256
 import json
 from pathlib import Path
 from .ar_cache import digest, vector_key
+from .stage_permissions import require_gate_capability
 
 
-def validate_stage(manifest,manifest_sha,fresh,fresh_sha,gate):
+def validate_stage(manifest,manifest_sha,fresh,fresh_sha,gate,*,capability='analysis'):
+    require_gate_capability(gate, capability)
     cells={c['cell_id']:c for c in manifest['cells']}
     captures={c['cell_id']:c for c in fresh['cells']}
     if len(cells)!=len(manifest['cells']) or len(captures)!=len(fresh['cells']):
@@ -18,6 +20,8 @@ def validate_stage(manifest,manifest_sha,fresh,fresh_sha,gate):
     if len(stages)!=1 or not stages.issubset({'development','validation','test'}):
         raise ValueError('Require one explicit intended split')
     stage=next(iter(stages))
+    if stage=='test' and gate.get('authorization_scope')=='blind_generation_only':
+        raise ValueError('Blind preparation is authorized for validation only; test remains sealed')
     if manifest.get('split')!=stage:raise ValueError('Manifest split differs from cells')
     if gate.get('manifest_sha256')!=manifest_sha or gate.get('fresh_index_sha256')!=fresh_sha:
         raise ValueError('Coordinator gate does not bind these exact stage/capture manifests')

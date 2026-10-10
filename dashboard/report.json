@@ -65,7 +65,7 @@
     }
   ],
   "progress": {
-    "phase": "Full DEV selectors and E1 pruning complete; method judging paused by the transport guard",
+    "phase": "Development judging recovery underway; blind validation generation being prepared",
     "completed_cells": 5236,
     "expected_cells": 5236,
     "elapsed_hours": 3.2972228625
@@ -16330,7 +16330,7 @@
         "sha256": "3ba1d670decbd208407dc4cba72f9a1a1d567b6a28f3b2cfb894321c8eec9008"
       }
     },
-    "method_comparison_status": "Full DEV selected-method comparisons are incomplete. Judging paused after transport failures; no full-grid selector gain is established in this report."
+    "method_comparison_status": "Development judging recovery is underway on isolated CPU resources. Full DEV method comparisons remain incomplete; existing quality tables are retained until complete source-checked results are available. Blind validation generation is being prepared and has not launched. No full-grid selector gain is established in this report."
   },
   "candidate_diagnostic": {
     "title": "Does reconstruction rank the available matches?",
