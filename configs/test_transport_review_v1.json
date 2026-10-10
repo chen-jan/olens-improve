@@ -1,0 +1,38 @@
+{
+  "status": "root_and_independently_source_reviewed_runtime_pending",
+  "reviewed_utc": "2026-10-10T18:03:25.456271+00:00",
+  "reviewed_by": "root",
+  "independent_reviewer": "model_scoring_audit",
+  "source_sha256": {
+    "infra/launch_test_judges.py": "0a9bd59aec56822dc542c43cf1d7974a2668cf89ae4649c3399f01513bc8ddda",
+    "infra/launch_validation_judges.py": "237b19ccf7322aac7fa73f9952eaeaaf3c498406ebb6089dc639c022b1b06e95",
+    "tests/test_test_judge_transport.py": "f0c27d25b303f9bcabe4ed9ff8a6391a4047046e5f2c2cc3c705f0d1b0a234d8"
+  },
+  "test_receipt": ".state/test-judge-transport-tests-v1.json",
+  "test_receipt_sha256": "14e63478a9340c5730a92962b9b4078f5d2ed5a0bf43eede57127a3b54fe86d6",
+  "tests_passed": 25,
+  "scope": "Legacy8/200 or explicitly reviewed single-family16/400; actual worker and forecast arguments verified. No evaluator, scientific, accounting, cache, cap or guard changes.",
+  "planned_family": "role_bound_association",
+  "boundary_stop_requested_utc": "2026-10-10T17:55:22.508262+00:00",
+  "prior_pid": 2481603,
+  "prior_session": 68888,
+  "runtime_authorized": false,
+  "runtime_pending": [
+    "Prior role worker terminal at a clean condition boundary",
+    "Role cache owner free",
+    "Fresh bounded accounting and allocation checks",
+    "Root seals concrete specification"
+  ],
+  "healthy_checkpoint": {
+    "path": "${OLENS_DATA_ROOT}/diagnostics/test12-operational-v1/continuation-v6-health-1800-v1.json",
+    "sha256": "35f889cc58132f1f52f95f8329891e598dc985951803bee9516dcff95b834522",
+    "settlements_per_minute_over_10_27_minutes": 295.86,
+    "new_unknowns": 0
+  },
+  "limits": [
+    "Provider limit is not established by these chosen caps.",
+    "Higher concurrency may add retries or accounting contention.",
+    "No assumed2x speedup; observe fresh throughput and errors after launch.",
+    "All existing uncertain charges remain held."
+  ]
+}

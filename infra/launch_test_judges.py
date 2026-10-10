@@ -19,10 +19,36 @@ from infra.launch_validation_judges import digest, evaluation_command
 FAMILIES = ('hallucination', 'multihop_mt', 'chain_intermediates', 'role_bound_association')
 
 
-def preflight(spec, *, require_forecast=True):
-    if (spec['concurrency'], spec['rpm'], spec['tier'], spec['reasoning_effort'],
-            spec['automatic_ramp']) != (8, 200, 'default', 'none', False):
+def validate_transport(spec, family=None):
+    """Legacy transport or one explicitly reviewed, fixed higher-rate family."""
+    values = {key: spec[key] for key in
+              ('concurrency', 'rpm', 'tier', 'reasoning_effort', 'automatic_ramp')}
+    if (not isinstance(values['concurrency'], int) or isinstance(values['concurrency'], bool)
+            or isinstance(values['rpm'], bool)
+            or values['tier'] != 'default' or values['reasoning_effort'] != 'none'
+            or values['automatic_ramp'] is not False
+            or (values['concurrency'], values['rpm']) not in ((8, 200), (16, 400))):
         raise ValueError('Transport differs from the reviewed fixed TEST policy')
+    review = spec.get('transport_review')
+    if (values['concurrency'], values['rpm']) == (8, 200) and review is None:
+        return
+    if (not isinstance(review, dict) or review.get('status') != 'root_reviewed'
+            or review.get('profile') != 'standard_none_16_400_v1'
+            or (values['concurrency'], values['rpm']) != (16, 400)
+            or review.get('family') not in FAMILIES
+            or any(review.get(key) != value for key, value in values.items())
+            or review.get('automatic_ramp') is not False
+            or any(not isinstance(review.get(key), str) or not review[key].strip()
+                   for key in ('authority', 'reviewed_utc'))
+            or any(not isinstance(spec.get(key), str) or not spec[key]
+                   or review.get(key) != spec[key] for key in ('run_id', 'recovery_epoch'))):
+        raise ValueError('Higher-rate TEST transport needs exact root-reviewed profile authority')
+    if family is not None and family != review['family']:
+        raise ValueError('Higher-rate TEST transport is authorized for one reviewed family only')
+
+
+def preflight(spec, *, require_forecast=True, family=None):
+    validate_transport(spec, family)
     # Cohort authority precedes reading any selected text or financial state.
     manifest, stage, _, _ = evaluation_stage(Path(spec['manifest']), Path(spec['fresh_manifest']), Path(spec['gate']))
     if stage != 'test':
@@ -95,10 +121,12 @@ def preflight(spec, *, require_forecast=True):
 
 
 def forecast_command(spec):
+    validate_transport(spec)
     return [sys.executable, 'scripts/forecast_judging.py', '--selections', spec['selections'],
             '--manifest', spec['manifest'], '--fresh-manifest', spec['fresh_manifest'], '--gate', spec['gate'],
             '--conditions', spec['conditions'], '--cache', spec['shared_cache'], '--ledger', spec['ledger'],
-            '--empirical-summary', spec['empirical_summary'], '--concurrency', '8', '--rpm', '200',
+            '--empirical-summary', spec['empirical_summary'], '--concurrency', str(spec['concurrency']),
+            '--rpm', str(spec['rpm']),
             '--output', spec['planned_forecast_path']]
 
 def main():
@@ -110,7 +138,7 @@ def main():
     parser.add_argument('--print-forecast-command', action='store_true')
     args = parser.parse_args()
     spec = json.loads(args.spec.read_bytes())
-    preflight(spec, require_forecast=not args.print_forecast_command)
+    preflight(spec, require_forecast=not args.print_forecast_command, family=args.family)
     if args.print_forecast_command:
         print(json.dumps({'network_model_calls': 0, 'command_argv': forecast_command(spec)}))
         return

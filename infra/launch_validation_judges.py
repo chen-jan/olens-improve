@@ -101,7 +101,8 @@ def evaluation_command(spec, family):
             '--output', spec['judgments'], '--condition-list', spec['conditions'],
             '--method', 'raw_n1', '--n', '1', '--run-id', spec['run_id'],
             '--run-cap-usd', str(spec['run_cap_usd']), '--ledger', spec['ledger'],
-            '--tier', 'default', '--concurrency', '8', '--rpm', '200', '--shared-cache', spec['shared_cache'],
+            '--tier', spec['tier'], '--concurrency', str(spec['concurrency']), '--rpm', str(spec['rpm']),
+            '--shared-cache', spec['shared_cache'],
             '--stop-file', str(Path(spec['judgments']) / ('stop-' + family))]
     if spec.get('performance_profile_dir'):
         command += ['--performance-profile-dir', str(Path(spec['performance_profile_dir']) / family)]
