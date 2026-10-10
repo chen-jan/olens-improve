@@ -1,0 +1,19 @@
+{
+  "status": "root_and_independently_reviewed",
+  "reviewed_utc": "2026-10-10T19:37:41.773714+00:00",
+  "reviewers": [
+    "root",
+    "adversarial_evaluation"
+  ],
+  "source_sha256": {
+    "infra/resume_main_judges.py": "e9564461dbdcbd75641aad73ac5f279223c047a26ca75fc31df7aa3e5200aeb0",
+    "tests/test_dev_judge_transport.py": "37302805e65dd93f1ae7291fd9b36a87653377f9830b226bb5f828f3a60b252f"
+  },
+  "tests": {
+    "count": 3,
+    "seconds": 0.011,
+    "environment": "local disposable transport fixture; no API, DB or process launch",
+    "command": "PYTHONPATH=src:. python -m unittest discover -s tests -p test_dev_judge_transport.py -v"
+  },
+  "scope": "Add opt-in exact one-family256/4000 DEV transport; preserve original run/epoch/remaining-list/source/financial checks. No paid launch or prepared-spec activation."
+}

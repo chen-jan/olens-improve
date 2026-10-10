@@ -23,6 +23,32 @@ def digest(path: Path) -> str:
     return checksum.hexdigest()
 
 
+def validate_transport(spec: dict) -> None:
+    """Keep legacy recovery, or permit an explicitly reviewed single-family trial."""
+    fields = ('concurrency', 'rpm', 'tier', 'reasoning_effort', 'automatic_ramp')
+    values = {key: spec[key] for key in fields}
+    rates = values['concurrency'], values['rpm']
+    if (type(values['concurrency']) is not int or type(values['rpm']) is not int
+            or values['tier'] != 'default' or values['reasoning_effort'] != 'none'
+            or values['automatic_ramp'] is not False or rates not in ((8, 200), (256, 4000))):
+        raise ValueError('Recovery transport differs from the reviewed fixed policy')
+    if rates == (8, 200):
+        return
+    review = spec.get('transport_review', {})
+    family = review.get('family')
+    if (review.get('status') != 'root_reviewed'
+            or review.get('profile') != 'standard_none_256_4000_v1'
+            or family not in ('hallucination', 'role_bound_association')
+            or set(spec['cpu_pairs']) != {family}
+            or any(review.get(key) != value for key, value in values.items())
+            or review.get('automatic_ramp') is not False
+            or any(not isinstance(spec.get(key), str) or not spec[key]
+                   or review.get(key) != spec[key] for key in ('run_id', 'recovery_epoch'))
+            or any(not isinstance(review.get(key), str) or not review[key].strip()
+                   for key in ('authority', 'reviewed_utc'))):
+        raise ValueError('Higher recovery concurrency requires exact one-family review')
+
+
 def dispatch_conditions_path(spec: dict, family: str) -> str:
     """Retain the full scientific menu, dispatch only a reviewed remaining list."""
     bindings = spec.get('dispatch_condition_files')
@@ -83,12 +109,11 @@ def main() -> None:
         raise SystemExit('Coordinator must explicitly authorize this reviewed paid queue')
     if spec.get('dispatch_condition_files') and spec.get('status') != 'root_reviewed_ready':
         raise SystemExit('Root must seal the exact remaining dispatch spec before paid launch')
+    validate_transport(spec)
     for family in spec['cpu_pairs']:
         dispatch_conditions_path(spec, family)
     if str(os.environ.get('SLURM_JOB_ID')) != spec['job_id'] or socket.gethostname().split('.')[0] != spec['node']:
         raise SystemExit('Recovery must run on the reviewed isolated allocation')
-    if (spec['concurrency'],spec['rpm'],spec['tier'],spec['reasoning_effort'],spec['automatic_ramp']) != (8,200,'default','none',False):
-        raise SystemExit('Recovery transport differs from the reviewed policy')
     evidence_fields = ['selections','manifest','conditions','healthcheck','incident','resource']
     if 'index_application' in spec:
         evidence_fields.append('index_application')
