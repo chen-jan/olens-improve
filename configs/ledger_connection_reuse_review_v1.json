@@ -1,0 +1,75 @@
+{
+  "status": "root_and_independently_reviewed",
+  "reviewed_utc": "2026-10-10T19:42:15.045505+00:00",
+  "reviewers": [
+    "root",
+    "adversarial_evaluation"
+  ],
+  "implementation": {
+    "status": "implemented_default_off_not_activated",
+    "source_hashes": {
+      "src/olens_improve/budget.py": "9568c420ed3bc44980f91bf0283719a75f64cbe83318aca5fb876a654a881d32",
+      "src/olens_improve/evaluation.py": "832379996ffb8ebaeba7b1f0560a63e1cfbf35c7a3104d420dec1560d0f5931b",
+      "tests/test_budget_connection_reuse.py": "bf44235332878cda2ea0f531644f8eca53cda5d0414ce094069fc9321d7f7295",
+      "tests/test_async_connection_reuse.py": "3fe859bf7d86fe96a4be86d432daf74dd78e4189a901a26d91f94fc930f1b764"
+    },
+    "environment": "OLENS_LEDGER_REUSE_WRITER_CONNECTION=1",
+    "default": "0; only 0/1 accepted",
+    "execution_metadata": [
+      "ledger_writer_connection_reuse",
+      "ledger_writer_cache_kib"
+    ],
+    "profile_metadata": [
+      "ledger_writer_connection_reuse",
+      "ledger_writer_cache_kib",
+      "ledger_writer_reuse_started"
+    ],
+    "tests": {
+      "test_budget_connection_reuse": {
+        "passed": 8,
+        "local_seconds": 0.054
+      },
+      "test_async_connection_reuse": {
+        "passed": 7,
+        "allocated_seconds": 0.144
+      },
+      "test_async_ledger_default_off": {
+        "passed": 15,
+        "allocated_seconds": 0.194
+      },
+      "test_budget_all": {
+        "passed": 48,
+        "allocated_seconds": 1.297
+      },
+      "exact_cache_transport_performance": {
+        "passed": 22,
+        "allocated_seconds": 0.205,
+        "modules": [
+          "test_evaluation_cache",
+          "test_evaluation_transport",
+          "test_test_judge_transport",
+          "test_performance"
+        ]
+      },
+      "total_distinct_passed": 92
+    },
+    "allocated_resource": {
+      "job_id": 25508300,
+      "physical_cpu_ids": [
+        27,
+        28
+      ],
+      "memory_request": "2G"
+    },
+    "limits": [
+      "Disposable fake SDK/temporary ledgers only; no production SQL/API/cache reads or live activation.",
+      "Page cache and reuse measured together in prior copied-ledger benchmarks, not a production throughput guarantee.",
+      "Snapshots and constructor/main-thread operations remain ephemeral; only executor writer operations reuse.",
+      "Transaction bodies are never replayed; failed cleanup poisons the writer until process restart."
+    ]
+  },
+  "unique_completed_tests": 92,
+  "source_scope": "Opt-in executor-owned SQLite writer connection with16MiB page cache; default off. No changes to accounting SQL, prices, caps, uncertain holds, recovery epoch or scientific inputs.",
+  "production_activation": "Requires fresh source-pinned launch after old worker exits and owner lock is free. Set OLENS_LEDGER_REUSE_WRITER_CONNECTION=1; effective mode is recorded in execution/profile metadata.",
+  "performance_limits": "Offline diagnostic two-writer3.37x was a prototype; actual implementation benchmark and live judging rate remain pending."
+}

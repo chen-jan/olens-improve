@@ -100,17 +100,51 @@ class LedgerOperationError(BudgetExceeded):
     """Fail closed on accounting I/O; never retry a paid attempt automatically."""
 
 
+def writer_reuse_enabled() -> bool:
+    option = os.environ.get('OLENS_LEDGER_REUSE_WRITER_CONNECTION', '0')
+    if option not in ('0', '1'):
+        raise ValueError('OLENS_LEDGER_REUSE_WRITER_CONNECTION must be 0 or 1')
+    return option == '1'
+
+
+def record_writer_reuse(profile, enabled, *, started=None):
+    if profile is not None:
+        try:
+            with profile.metric_lock:
+                profile.metadata['ledger_writer_connection_reuse'] = enabled
+                profile.metadata['ledger_writer_cache_kib'] = 16384 if enabled else None
+                if started is not None:
+                    profile.metadata['ledger_writer_reuse_started'] = started
+        except Exception as error:
+            AtomicBudget._reuse_cleanup_warning(error)  # Profiling cannot alter accounting.
+
+
 class AsyncLedgerLane:
     """One serialized writer lane; bounded queue, drained even on cancellation.
 
-    SQLite connections are created inside each existing ledger operation. The
-    lane never moves connections across threads or changes transaction logic.
+    By default each operation creates its original short-lived connections.
+    Explicit reuse is lazy and confined to this executor; transactions do not
+    move across threads or change their admission/accounting logic.
     """
-    def __init__(self):
+    def __init__(self, ledger=None, *, reuse_writer_connection=False):
+        if reuse_writer_connection and ledger is None:
+            raise ValueError('Writer reuse requires the owned ledger')
         self.executor = ThreadPoolExecutor(max_workers=1, thread_name_prefix='olens-ledger')
         self.slots = asyncio.Semaphore(16)
         self.pending = set()
         self.users = 0
+        self.ledger = ledger
+        self.reuse_writer_connection = reuse_writer_connection
+        self.reuse_started = False
+        self.closing = False
+        self.owner_pid = os.getpid()
+
+    def _invoke(self, function, *args, **kwargs):
+        if not self.reuse_started:
+            self.ledger.enable_writer_connection_reuse(cache_kib=16384)
+            self.reuse_started = True
+            record_writer_reuse(getattr(self.ledger, '_operational_profile', None), True, started=True)
+        return function(*args, **kwargs)
 
     @staticmethod
     async def drained(future):
@@ -126,6 +160,10 @@ class AsyncLedgerLane:
                     raise RuntimeError('Owned ledger future unexpectedly cancelled')
 
     async def call(self, function, *args, **kwargs):
+        if self.reuse_writer_connection and self.owner_pid != os.getpid():
+            raise RuntimeError('Reused ledger lane cannot survive a fork')
+        if self.closing:
+            raise RuntimeError('Ledger lane is closing')
         # Own the queued operation as well as its thread future: terminal
         # bookkeeping cannot be cancelled while waiting behind reservations.
         operation = asyncio.create_task(self._submit(function, *args, **kwargs))
@@ -133,8 +171,8 @@ class AsyncLedgerLane:
 
     async def _submit(self, function, *args, **kwargs):
         async with self.slots:
-            future = asyncio.get_running_loop().run_in_executor(
-                self.executor, partial(function, *args, **kwargs))
+            callback = partial(self._invoke, function, *args, **kwargs) if self.reuse_writer_connection else partial(function, *args, **kwargs)
+            future = asyncio.get_running_loop().run_in_executor(self.executor, callback)
             self.pending.add(future)
             try:
                 return await future
@@ -164,8 +202,14 @@ class BudgetedCompletions:
         self.helper_diagnostic = helper_reasoning_effort is not None
         lane = getattr(ledger, '_async_ledger_lane', None)
         if lane is None:
-            lane = AsyncLedgerLane()
+            lane = AsyncLedgerLane(ledger, reuse_writer_connection=writer_reuse_enabled())
             ledger._async_ledger_lane = lane
+        if lane.closing:
+            raise RuntimeError('Cannot register a client on a closing ledger lane')
+        if lane.reuse_writer_connection and lane.owner_pid != os.getpid():
+            raise RuntimeError('Cannot register a client on a forked ledger lane')
+        record_writer_reuse(getattr(ledger, '_operational_profile', None), lane.reuse_writer_connection,
+                            started=lane.reuse_started)
         self.lane = lane
         lane.users += 1
         self.requests = set()
@@ -182,10 +226,19 @@ class BudgetedCompletions:
         interrupted |= await self.lane.drain()
         self.lane.users -= 1
         if self.lane.users == 0:
-            # All submitted work is complete, so this does not wait on NFS.
-            self.lane.executor.shutdown(wait=True)
-            if getattr(self.ledger, '_async_ledger_lane', None) is self.lane:
-                del self.ledger._async_ledger_lane
+            # Mark before the optional awaited close: a new client must not
+            # attach while the last executor is being drained and shut down.
+            self.lane.closing = True
+            try:
+                if self.lane.reuse_started:
+                    future = asyncio.get_running_loop().run_in_executor(
+                        self.lane.executor, self.ledger.close_writer_connection)
+                    _, cancelled = await self.lane.drained(future)
+                    interrupted |= cancelled
+            finally:
+                self.lane.executor.shutdown(wait=True)
+                if getattr(self.ledger, '_async_ledger_lane', None) is self.lane:
+                    del self.ledger._async_ledger_lane
         if interrupted:
             raise asyncio.CancelledError
 
@@ -350,7 +403,15 @@ class BudgetedClient:
             raise asyncio.CancelledError
 
     async def _close(self):
-        await self.chat.completions.close()
+        try:
+            await self.chat.completions.close()
+        except BaseException:
+            if self.chat.completions.lane.reuse_writer_connection:
+                try:
+                    await self.inner.close()
+                except BaseException as cleanup_error:
+                    self.chat.completions.ledger._reuse_cleanup_warning(cleanup_error)
+            raise  # The ledger close error remains primary.
         await self.inner.close()
 
     def __getattr__(self, name: str) -> Any:
@@ -571,6 +632,8 @@ def run_family(family: str, readouts: Path, out: Path, manifest_cells: list[dict
     if family not in FAMILIES:
         raise ValueError(f'Unsupported core family {family}')
     execution = transport_settings(concurrency, rpm, service_tier)
+    execution['ledger_writer_connection_reuse'] = writer_reuse_enabled()
+    execution['ledger_writer_cache_kib'] = 16384 if execution['ledger_writer_connection_reuse'] else None
     if os.environ.get('OLENS_TRANSPORT_RECOVERY_SINCE'):
         execution['transport_recovery_guard'] = {'since_utc': os.environ['OLENS_TRANSPORT_RECOVERY_SINCE'],
             'maximum_unknown_in_latest_100': 5, 'maximum_new_unknown_usd': .10}
@@ -753,6 +816,9 @@ def evaluate_condition(selections: Path, manifest: Path, out: Path, *, method: s
     """
     frozen, stage, captures, authorization = evaluation_stage(manifest, fresh_manifest, gate)
     execution = transport_settings(concurrency, rpm, service_tier)
+    execution['ledger_writer_connection_reuse'] = writer_reuse_enabled()
+    execution['ledger_writer_cache_kib'] = 16384 if execution['ledger_writer_connection_reuse'] else None
+    record_writer_reuse(CURRENT_PROFILE.get(), execution['ledger_writer_connection_reuse'], started=False)
     selected = []
     with selections.open() as source:
         for line in source:

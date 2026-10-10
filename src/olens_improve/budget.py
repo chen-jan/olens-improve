@@ -16,6 +16,7 @@ import logging
 import os
 from pathlib import Path
 import sqlite3
+import threading
 import time
 from typing import Iterator
 import uuid
@@ -84,6 +85,9 @@ HOTPATH_INDEX_SQL = (
 class AtomicBudget:
     def __init__(self, path: str | Path, hard_usd: str | float = '300',
                  target_usd: str | float = '200', bootstrap_claude: bool = True):
+        # Initialization and all ordinary callers keep the legacy short-lived
+        # connection path. Only an explicit executor-thread opt-in sets this.
+        self._writer_reuse = None
         self.path = Path(path)
         self.path.parent.mkdir(parents=True, exist_ok=True)
         self.hard = usd_units(hard_usd)
@@ -118,6 +122,98 @@ class AtomicBudget:
                            (UNKNOWN_CLAUDE_ID, 'historical-review', 'unknown', amount, None,
                             json.dumps({'reason': 'CLI timeout; no usage or charge returned; availability unverified'}), now, now))
                 self._event(db, UNKNOWN_CLAUDE_ID, 'bootstrap_unknown', {'usd': 2})
+
+    def enable_writer_connection_reuse(self, *, cache_kib: int = 16384) -> None:
+        """Enable a lazy writer handle on this thread only; no SQL is run here."""
+        if not isinstance(cache_kib, int) or isinstance(cache_kib, bool) or cache_kib != 16384:
+            raise ValueError('Writer reuse requires the fixed 16 MiB page cache')
+        state = getattr(self, '_writer_reuse', None)
+        owner = (os.getpid(), threading.current_thread())
+        if state is not None:
+            if state['owner'] != owner or state['poisoned']:
+                raise RuntimeError('Reused ledger writer has a different owner or failed cleanup')
+            return
+        self._writer_reuse = {'owner': owner, 'connection': None, 'identity': None,
+                              'cache_configured': False, 'poisoned': False}
+
+    def _writer_reuse_state(self):
+        state = getattr(self, '_writer_reuse', None)
+        if state is None:
+            return None
+        if state['owner'][0] != os.getpid() or state['poisoned']:
+            raise RuntimeError('Reused ledger writer cannot survive a fork or failed cleanup')
+        # Main-thread status/setup calls remain ephemeral while the lane exists.
+        return state if state['owner'][1] is threading.current_thread() else None
+
+    def _writer_identity(self):
+        path = self.path.resolve()
+        stat = path.stat()
+        return str(path), stat.st_dev, stat.st_ino
+
+    def _writer_connection(self, state):
+        if state is None:
+            return sqlite3.connect(self.path, timeout=30, isolation_level=None)
+        identity = self._writer_identity()
+        if state['identity'] is not None and state['identity'] != identity:
+            state['poisoned'] = True
+            raise RuntimeError('Reused ledger database identity changed; close and restart required')
+        db = state['connection']
+        if db is not None:
+            if db.in_transaction:
+                raise RuntimeError('Nested or unfinished reused ledger transaction')
+            return db
+        db = sqlite3.connect(self.path, timeout=30, isolation_level=None)
+        try:
+            if self._writer_identity() != identity:
+                state['poisoned'] = True
+                raise RuntimeError('Ledger database identity changed while connecting')
+        except BaseException:
+            try:
+                db.close()
+            except BaseException as cleanup_error:
+                state['poisoned'] = True
+                self._reuse_cleanup_warning(cleanup_error)
+            raise
+        state.update(connection=db, identity=identity, cache_configured=False)
+        return db
+
+    @staticmethod
+    def _reuse_cleanup_warning(error):
+        try:
+            _LOG.warning('ledger_reuse_cleanup_failed exception_class=%s', type(error).__name__)
+        except Exception:
+            pass
+
+    def _discard_writer_connection(self, state, db):
+        state.update(connection=None, cache_configured=False)
+        try:
+            with self._transaction_phase('close'):
+                db.close()
+        except BaseException:
+            state['poisoned'] = True
+            raise
+
+    def close_writer_connection(self) -> None:
+        """Drain first, then call on the owning executor before its shutdown."""
+        state = getattr(self, '_writer_reuse', None)
+        if state is None:
+            return
+        if state['owner'] != (os.getpid(), threading.current_thread()):
+            raise RuntimeError('Reused ledger writer must close on its owning thread/process')
+        db = state['connection']
+        if db is not None:
+            with self._writer_admission():
+                if db.in_transaction:
+                    state['poisoned'] = True
+                    try:
+                        db.execute('ROLLBACK')
+                    finally:
+                        self._discard_writer_connection(state, db)
+                    raise RuntimeError('Reused writer had an unfinished transaction at close')
+                self._discard_writer_connection(state, db)
+        if state['poisoned']:
+            raise RuntimeError('Reused ledger writer cleanup failed; process restart required')
+        self._writer_reuse = None
 
     def _observe_transaction_phase(self, name: str, seconds: float,
                                    error: BaseException | None = None) -> None:
@@ -213,10 +309,18 @@ class AtomicBudget:
 
     @contextmanager
     def _transaction(self) -> Iterator[sqlite3.Connection]:
+        state = self._writer_reuse_state()
+        if state is not None and state['connection'] is not None and state['connection'].in_transaction:
+            raise RuntimeError('Nested or unfinished reused ledger transaction')
         with self._writer_admission():
             with self._transaction_phase('connect'):
-                db = sqlite3.connect(self.path, timeout=30, isolation_level=None)
+                db = self._writer_connection(state)
+            failed = False
             try:
+                if state is not None and not state['cache_configured']:
+                    with self._transaction_phase('pragma.cache_size'):
+                        db.execute('PRAGMA cache_size=-16384')
+                    state['cache_configured'] = True
                 with self._transaction_phase('pragma.busy_timeout'):
                     db.execute(f'PRAGMA busy_timeout={NORMAL_BUSY_WAIT_MS}')
                 with self._transaction_phase('pragma.journal_mode'):
@@ -231,14 +335,32 @@ class AtomicBudget:
                     yield db
                 with self._transaction_phase('commit'):
                     db.execute('COMMIT')
+                if state is not None and db.in_transaction:
+                    raise RuntimeError('Reused ledger transaction did not finish')
             except BaseException:
+                failed = True
                 if db.in_transaction:
-                    with self._transaction_phase('rollback'):
-                        db.execute('ROLLBACK')
+                    if state is None:
+                        with self._transaction_phase('rollback'):
+                            db.execute('ROLLBACK')
+                    else:
+                        try:
+                            with self._transaction_phase('rollback'):
+                                db.execute('ROLLBACK')
+                        except BaseException as cleanup_error:
+                            state['poisoned'] = True
+                            self._reuse_cleanup_warning(cleanup_error)
                 raise
             finally:
-                with self._transaction_phase('close'):
-                    db.close()
+                if state is None:
+                    with self._transaction_phase('close'):
+                        db.close()
+                elif failed:
+                    try:
+                        self._discard_writer_connection(state, db)
+                    except BaseException as cleanup_error:
+                        # Preserve the financial operation's original outcome.
+                        self._reuse_cleanup_warning(cleanup_error)
 
     @staticmethod
     def _begin_immediate(db: sqlite3.Connection) -> None:
