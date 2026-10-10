@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "status": "prepared_pending_root_request_review",
+  "root_launch_only": true,
+  "review_request_at_utc": "2026-10-10T19:00:00+00:00",
+  "existing_job": "25474685",
+  "existing_end_utc": "2026-10-10T21:25:37+00:00",
+  "reason": "Scheduler extension alone cannot extend the original sleep54000 batch payload. Prepare continuity well before its natural completion without holding an idle successor all afternoon.",
+  "sbatch_arguments": [
+    "--parsable", "--job-name=olens-judge-cpu-successor",
+    "--account=${SLURM_CPU_ACCOUNT}", "--qos=${SLURM_CPU_ACCOUNT}",
+    "--partition=${SLURM_CPU_PARTITION}", "--nodes=1", "--ntasks=1",
+    "--cpus-per-task=8", "--hint=nomultithread", "--mem=32G",
+    "--time=12:00:00", "--exclude=node3107",
+    "--output=${OLENS_COMPUTE_ROOT}/logs/judge-cpu-successor-hold-%j.log",
+    "--wrap=/bin/sleep 43200"
+  ],
+  "handoff_policy": [
+    "Preserve the existing allocation and all unrelated processes.",
+    "Verify the successor's actual physical cpuset, cgroup headroom and expiry before preparing steps.",
+    "Use the same authoritative NFS ledger and exact family caches; no ledger migration, copying of live authority, WAL change or hold release.",
+    "Stop each prior family at a clean condition boundary, verify its process absent and exclusive family owner released, then bind the successor resource receipt in a reviewed operational spec.",
+    "Preserve exact TEST menu and source hashes, run ceiling, recovery epoch, Standard none and fixed8/200; no automatic ramp or new requests due solely to resource change.",
+    "If the old allocation approaches expiry with a family still active, root reviews a bounded drain/stop rather than relying on involuntary scheduler cancellation."
+  ],
+  "limits": "Prepared only. No job submitted, resource change, paid call or ledger write. Request time is a root-review reminder, not permission for an unattended scheduler action."
+}

@@ -1,6 +1,6 @@
 # Execution status
 
-Updated: 2026-10-10, approximately 15:00 UTC.
+Updated: 2026-10-10, approximately 15:50 UTC.
 Started: 2026-10-10 01:25:36 UTC (October 9, 21:25:36 EDT).
 Target finish: 2026-10-10 21:25:36 UTC. Execution remains active and authorized.
 
@@ -32,9 +32,9 @@ The recovered DEV N=2 role queue completed successfully: 1,556 paid responses
 in 505.421 seconds, about 185/minute. A bounded checkpoint found no new uncertain
 charges in its latest 100 responses; previous holds remain. The remaining role
 N=4/8/16 and hallucination N=8 repair/N=16 queues also completed successfully.
-All six DEV prefixes now have terminal jobs; the complete scaling report is
-being independently assembled and checked. These late DEV measurements cannot
-change the fixed TEST methods.
+All six DEV prefixes and the complete scaling report are now independently
+checked. Source-preserving cell/item figures and grouped intervals are ready.
+These late DEV measurements cannot change the fixed TEST methods.
 
 The expanded [public dashboard](https://olens-improve-research.jan618.chatgpt.site)
 was published at **14:35 UTC**. It exposes all eight approach/combination sections,
@@ -48,7 +48,12 @@ pilot examples are fixed by an outcome-blind seeded group/item/cell rule.
 Three Sol reviewers are assigned A/C/D, E/F/G, and consensus/combinations.
 Each uses exact outputs, evaluation context and judge evidence, with at most
 two separately labeled method-specific supplements. Review gaps and unrun
-methods remain explicit. The richer reviewed case cards are not yet published.
+methods remain explicit. The richer case cards were published at 15:49 UTC: 688 variant/example records
+repeat the same eight examples, with 1,436 exact before/after strings checked
+against source. Thirty-eight focused tests, desktop/mobile checks and exact
+lazy-loaded quote checks passed. These counts are not independent observations
+or an effect estimate. Complete DEV sampling curves and 12 downloadable figure
+files are also published.
 See `configs/qualitative_shared_panel_v1.json` and QUALITATIVE_REVIEW.md.
 
 The latest verified pre-A2 global receipt at 13:56 records $13.15336 usage cost
@@ -135,7 +140,7 @@ first source-checked dashboard with grouped intervals. The research GitHub repos
 | Single-method pilots | A/B/C/D/E1/E3/F judged; E2/G diagnostics complete with limits; exact-claim-span v3 stopped after its eight-cell contract audit, without benchmark-quality measurement |
 | Combinations | 65 unique pilot conditions judged and source-checked; larger E1-plus-pruning outputs complete and awaiting judging |
 | Additional controls | All32 judgments and matched-donor N1 complete; all requested cells/stages covered |
-| Held-out evaluation | Validation complete: 12 methods × four families, with systematic trace review. TEST sampling complete: 10,714 cells × 32. Final six-arm freeze and analysis gate sealed; four reconstruction encoders running; TEST judging pending. |
+| Held-out evaluation | Validation complete: 12 methods × four families, with systematic trace review. TEST sampling complete: 10,714 cells × 32. Twelve final comparisons sealed; reconstruction and selection complete. Multi-hop evaluation is complete. Multi-hop and chain evaluators completed; hallucination and role workers resumed from saved outputs after a ledger-lock interruption. No TEST quality inspected. |
 
 Combination comparisons retain unchanged parents, component-off outputs, and
 random deletion matched on retained bullet count. Fixed support weights are
@@ -149,11 +154,15 @@ The corresponding role cell count is only 151/3,420: an item passes when any
 inspected site passes, so item recovery must not be read as uniformly faithful
 readouts. These are original-grid development scores, not held-out results.
 
-Next: monitor four encoder partitions, then merge their verified catalog and
-run four selector shards on the reserved CPU allocation. The six-arm freeze and gate are committed;
-validation results and figures are published locally and on the public Site. Complete the remaining
-development sampling curves opportunistically without changing the final menu. See [validation experiment 029](experiments/029-validation-comparison.md).
-The final fresh-input timing check and held-out judgments remain pending. A 13:18 forecast is five to seven further hours including review and presentation, contingent on resolving the judge-accounting bottleneck; it is not a guarantee.
+Hall resumed at 15:42 (PID3595134/session12826), and role at 15:47
+(PID3598846/session51027), under unchanged specification23163a9e…, run cap,
+epoch and holds. The healthy hall checkpoint retained all six uncertain charges
+($0.029525125) and found no new unknowns in its latest100 requests. Chain and
+multi-hop are terminal exit0. Next: monitor the remaining unchanged menu.
+Finish the remaining judgments, paired analysis, independent example review,
+report and slides. The fresh-input N32 timing and relocated-cache replay are
+complete (035/036). The 14:55 forecast was about six hours of ideal judge
+service, before contention, retries and review; it is not a deadline guarantee.
 
 ## Earlier operational history
 

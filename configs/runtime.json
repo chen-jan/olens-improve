@@ -82,7 +82,7 @@
       "ram_gib": 64,
       "end_utc": "2026-10-10T22:23:24+00:00",
       "requested_utc": "2026-10-10T02:22:59Z",
-      "last_check_utc": "2026-10-10T12:40:28.255487+00:00",
+      "last_check_utc": "2026-10-10T15:43:00.879284+00:00",
       "state": "RELEASED_RECORD_UNAVAILABLE",
       "reason": "None",
       "partition": "${SLURM_PREEMPT_PARTITION}",
@@ -115,7 +115,7 @@
       "fallback_after_pending_seconds": 720,
       "fallback_gpu": "h100",
       "progress": "Completed; intentional allocation release authorized by root",
-      "last_check_utc": "2026-10-10T12:40:28.255487+00:00",
+      "last_check_utc": "2026-10-10T15:43:00.879284+00:00",
       "intentionally_released_utc": "2026-10-10T04:40:41.401195+00:00",
       "release_reason": "Production AR complete for all 5,236 DEV cells; model owner confirms no queued GPU work and allocated nvidia-smi verifies no compute process."
     }
@@ -123,7 +123,7 @@
   "watcher": {
     "agent": "/root/compute_storage_audit",
     "status": "active-session",
-    "last_check_utc": "2026-10-10T12:40:28.255487+00:00"
+    "last_check_utc": "2026-10-10T15:43:00.879284+00:00"
   },
   "environment_versions": {
     "python": "3.12.13",
@@ -170,7 +170,7 @@
       "memory_failcnt": 0,
       "api_dispatch_by_infra": false,
       "queue_seconds": 46,
-      "last_check_utc": "2026-10-10T12:40:28.255487+00:00"
+      "last_check_utc": "2026-10-10T15:43:00.879284+00:00"
     },
     {
       "job_id": 25481193,
@@ -187,7 +187,7 @@
       "reason": null,
       "purpose": "Four 4-core VAL selector workers overlapping later authorized GPU generation; release after terminal selectors",
       "api_dispatch_by_infra": false,
-      "last_check_utc": "2026-10-10T12:40:28.255487+00:00",
+      "last_check_utc": "2026-10-10T15:43:00.879284+00:00",
       "end_utc": "2026-10-10T10:25:34+00:00",
       "physical_core_representatives": [
         0,
@@ -312,7 +312,7 @@
       "memory_failcnt": 0,
       "resource_receipt": "${OLENS_DATA_ROOT}/diagnostics/test-cpu-allocation-v1.json",
       "resource_receipt_sha256": "394a44d7ae4b9995bb6b4dd92f7e2f11ac99b4d046c7a9f80ca9379c4457708c",
-      "last_check_utc": "2026-10-10T12:40:28.255487+00:00"
+      "last_check_utc": "2026-10-10T15:43:00.879284+00:00"
     }
   ],
   "judging_cpu_allocation_id": 25474685,

@@ -134,6 +134,62 @@ class ReaderTransactionTests(unittest.TestCase):
             writer.execute('INSERT INTO example VALUES(2)')
             writer.execute('COMMIT')
 
+    def test_watcher_interrupted_aggregate_releases_read_lock_for_pending_commit(self):
+        self.make_watch_schema()
+        with closing(sqlite3.connect(self.path)) as db:
+            db.executemany('INSERT INTO attempts VALUES(?,?,?)',
+                           [('settled', 100, 5)] * 2000)
+            db.commit()
+        original_connect = sqlite3.connect
+        opened = []
+        with closing(self.writer()) as writer:
+            test = self
+
+            class InterruptedConnection(sqlite3.Connection):
+                closed_by_caller = False
+                checked_shared_lock = False
+
+                def set_progress_handler(self, handler, instructions):
+                    if handler is None:
+                        return super().set_progress_handler(None, instructions)
+
+                    def while_reading():
+                        if not self.checked_shared_lock:
+                            self.checked_shared_lock = True
+                            writer.execute('BEGIN IMMEDIATE')
+                            writer.execute('INSERT INTO example VALUES(2)')
+                            with test.assertRaises(sqlite3.OperationalError) as caught:
+                                writer.execute('COMMIT')
+                            test.assertEqual(caught.exception.sqlite_errorcode, sqlite3.SQLITE_BUSY)
+                        return handler()
+
+                    return super().set_progress_handler(while_reading, instructions)
+
+                def close(self):
+                    self.closed_by_caller = True
+                    return super().close()
+
+            def connect(*args, **kwargs):
+                db = original_connect(*args, **kwargs, factory=InterruptedConnection)
+                opened.append(db)
+                return db
+
+            # Deterministically cross the real callback's monotonic deadline;
+            # the aggregate still executes SQLite bytecode on a disposable DB.
+            with patch.object(watch.sqlite3, 'connect', connect), \
+                    patch.object(watch.time, 'monotonic', side_effect=[0.0, 3.0]):
+                result = watch.budget_snapshot(self.path)
+            self.assertEqual(result['status'], 'temporarily_unavailable')
+            self.assertTrue(result['query_deadline_exceeded'])
+            self.assertNotIn('actual_usd', result)
+            self.assertNotIn('attempt_counts', result)
+            self.assertTrue(opened[0].checked_shared_lock)
+            self.assertTrue(opened[0].closed_by_caller)
+            # Commit the already-written transaction; never replay its body.
+            writer.execute('COMMIT')
+            self.assertEqual(writer.execute('SELECT value FROM example ORDER BY value').fetchall(),
+                             [(1,), (2,)])
+
     def test_legacy_cli_uses_bounded_reader_and_retains_unknown_hold(self):
         with closing(sqlite3.connect(self.path, isolation_level=None)) as db:
             db.executescript('''

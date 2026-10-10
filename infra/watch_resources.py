@@ -12,7 +12,10 @@ import re
 import subprocess
 import sqlite3
 import sys
+import time
 from zoneinfo import ZoneInfo
+
+BUDGET_READ_QUERY_SECONDS = 2.0
 
 
 def command(args):
@@ -61,16 +64,29 @@ def project_storage(roots, maximum_files=50000):
 def budget_snapshot(path):
     if not path.exists():
         return {"status": "not_initialized", "path": str(path)}
+    expired = False
     try:
         with closing(sqlite3.connect(path.as_uri() + "?mode=ro", uri=True, timeout=2,
                                     isolation_level=None)) as database:
-            database.execute("BEGIN")
+            deadline = time.monotonic() + BUDGET_READ_QUERY_SECONDS
+
+            def query_deadline():
+                nonlocal expired
+                expired = time.monotonic() >= deadline
+                return int(expired)
+
+            # busy_timeout limits lock waiting, not query execution. SQLite's
+            # cooperative VM callback also bounds work in this read snapshot.
+            database.set_progress_handler(query_deadline, 1000)
             try:
+                database.execute("BEGIN")
                 with closing(database.execute("SELECT status,COUNT(*),COALESCE(SUM(reserved),0),COALESCE(SUM(actual),0) FROM attempts GROUP BY status")) as cursor:
                     rows = cursor.fetchall()
                 with closing(database.execute("SELECT key,value FROM config")) as cursor:
                     config = dict(cursor)
             finally:
+                # Cleanup must remain executable after the deadline has passed.
+                database.set_progress_handler(None, 0)
                 # This is a read snapshot: end it before resource probes/output.
                 if database.in_transaction:
                     database.execute("ROLLBACK")
@@ -82,7 +98,10 @@ def budget_snapshot(path):
                 "committed_usd": actual + reserved, "hard_usd": config["hard"] / 1e9,
                 "target_usd": config["target"] / 1e9, "attempt_counts": {key: value["count"] for key, value in statuses.items()}}
     except sqlite3.Error as error:
-        return {"status": "temporarily_unavailable", "error": str(error)}
+        return {"status": "temporarily_unavailable",
+                "error": "Budget read exceeded query deadline" if expired else str(error),
+                "query_deadline_seconds": BUDGET_READ_QUERY_SECONDS,
+                "query_deadline_exceeded": expired}
 
 
 def cpu_memory_alerts(job_id, counters):
