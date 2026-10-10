@@ -46,6 +46,17 @@ class InferenceTests(unittest.TestCase):
             with self.assertRaises(FileExistsError): generate_pool(artifacts, h, 44, path)
             load.assert_not_called()
 
+    def test_blind_benchmark_records_rejected_on_import_and_saved_load(self):
+        p, h = pool(['- Alice owns 2 books.'])
+        records = [dict(p.records[0], generation_authorization_scope='blind_generation_only')]
+        with self.assertRaisesRegex(ValueError, 'coordinator analysis-gated'):
+            CandidatePool.from_records(records, h, 44, source_sha256='f'*64)
+        payload = p.as_dict(); payload['records'] = records
+        with tempfile.TemporaryDirectory() as d:
+            path = Path(d)/'pool.json'; path.write_text(json.dumps(payload))
+            with self.assertRaisesRegex(ValueError, 'coordinator analysis-gated'):
+                CandidatePool.load(path)
+
     def test_replay_baseline_and_unavailable_AR_not_false_score(self):
         p, h = pool(['Preamble\n- <think>\n']); count = lambda s: len(s.split())
         with patch('olens_improve.inference.token_counter', return_value=(None, count)):

@@ -6,11 +6,23 @@ The execution target is approximately 20 hours from the actual start, subject to
 
 Read [the execution plan](docs/PLAN.md) and [detailed method specifications](docs/METHODS.md) before continuing. Record each experiment using [the experiment template](docs/experiments/TEMPLATE.md), and follow [AGENTS.md](AGENTS.md) for cluster and storage rules.
 
-Current state: autonomous execution started on 2026-10-10 at 01:25:36 UTC. The shared 189-cell pilot is generated and scored; semantic comparisons are in progress. See [the local dashboard](dashboard/index.html) and [the current status](docs/STATUS.md) for measured results, spending, active jobs, and recovery instructions. The dashboard is locally browser-checked and has not been published. Local commits only; the user handles pushing.
+Current state: autonomous execution started on 2026-10-10 at 01:25:36 UTC. The shared 189-cell development pilots are judged; the larger development comparison is in progress. Held-out outcomes remain sealed. See [the working report](docs/REPORT.md), [local dashboard](dashboard/index.html) and [current status](docs/STATUS.md) for findings, limitations, costs and active work. The dashboard is locally browser-checked and has not been published. Local commits only; the user handles pushing.
 
-For local vector-first inference or saved-pool replay, the package provides `python -m olens_improve` with `generate`, `import-pool` and `replay` commands. It uses local frozen artifacts and has no scheduler, network download or paid-helper requirement. All method profiles remain experimental until validation selects a recommendation. Install the optional runtime dependencies with `pip install -e '.[inference]'` in an environment outside HOME, or use an existing compatible environment with `PYTHONPATH=src`.
+For local vector-first inference or saved-pool replay, the package provides `python -m olens_improve` (also `olens-improve` after installation) with `generate`, `import-pool` and `replay` commands. It uses local frozen artifacts and has no scheduler, network download or paid-helper requirement. All method profiles remain experimental until validation selects a recommendation. Install with `python -m pip install '.[inference]'` in a compatible environment outside HOME; an editable install is optional for development. If dependencies already exist, use `python -m pip install --no-deps .`. No historical research checkout is needed for the portable API; benchmark judging and experimental helper scripts use separate research dependencies. The tested runtime uses Python 3.12, Torch 2.13, Transformers 5.16.1, PEFT .21.2, Accelerate 1.14, safetensors .8, NumPy 2.5.2 and SciPy 1.18.1; other versions are not validated by that result.
 
-Create an artifact JSON containing local `base_path`, `olens_adapter`, `ar_checkpoint`, `whitener_directory` and `device` paths. The base/pair must match the revisions in [the plan](docs/PLAN.md); matching pooled whiteners are required for AR scoring. For example:
+Create an artifact JSON with explicit local paths. The base/pair must match the revisions in [the plan](docs/PLAN.md); matching pooled whiteners are required for AR scoring. Raw/capped N1 replay needs only `base_path` for its tokenizer. A complete configuration is:
+
+```json
+{
+  "base_path": "/path/to/pinned-Qwen3.6-27B",
+  "olens_adapter": "/path/to/pinned-pair/olens_s3d_rl600",
+  "ar_checkpoint": "/path/to/pinned-pair/ar_ptag_pooled",
+  "whitener_directory": "/path/to/matched/whiteners",
+  "device": "cuda"
+}
+```
+
+For new supplied vectors, generation requires hardware that can load the base model and adapter; measured GPU work used H200. Existing cached-vector replay can use `"device": "cpu"` and does not load base-model weights. For example:
 
 ```bash
 python -m olens_improve generate --artifacts artifacts.json --activation activation.safetensors --layer 44 --n 32 --seed 1 --pool pool.json
@@ -21,8 +33,14 @@ The activation tensor defaults to key `activation`, width 5120; `--key` and `--r
 
 Existing per-cell JSONL pools can be imported without new generation:
 
+Blind benchmark records are rejected by this standalone entrypoint. Held-out replay uses the coordinator pipeline and its separate analysis authorization; importing a saved pool does not grant that authorization.
+
 ```bash
 python -m olens_improve import-pool --records samples.jsonl --cell-id CELL_ID --activation activation.safetensors --layer 44 --pool saved-pool.json
 ```
 
 Library equivalents are `Artifacts`, `CandidatePool`, `generate_pool` and `replay_select` in `olens_improve.inference`. Results record pool/activation hashes, local artifact checks, atom truncation, selection lineage and unavailable inputs. A declared local revision is not a full rehash of base weights; supply the pinned artifacts rather than unrelated files bearing the same names.
+
+For a CPU replay with existing raw vectors, add `--cache-directory /path/to/compatible/raw-cache` and omit `--encode-missing`. Cache indexes must still resolve their referenced tensor files if moved. The package takes an already captured activation, not a natural-language prompt: caller capture must use the frozen base with adapters disabled, the documented decoder-block layer and correct token position. The portable CLI has no raw-text/token-ID capture command. Existing DEV replay establishes installation, provenance and selection compatibility; fresh off-benchmark input quality and end-to-end portability on a different machine have not been validated.
+
+An offline wheel installed into an empty package environment replayed one frozen DEV N16 pool with identical selected text and phrase IDs (FVE difference `1.34e-8`), using explicit existing third-party distributions without executing their `.pth` files or importing historical project code. This check loaded no model, encoded no new vectors and made no API calls; it does not establish a complete fresh dependency installation on another machine.

@@ -74,6 +74,8 @@ class CandidatePool:
         if [r['sample_index'] for r in self.records] != list(range(len(self.records))):
             raise ValueError('Saved pool must contain distinct contiguous sample indexes starting at zero')
         for row in self.records:
+            if row.get('generation_authorization_scope') == 'blind_generation_only':
+                raise ValueError('Blind benchmark records require the coordinator analysis-gated pipeline; portable replay is unavailable')
             if not isinstance(row.get('text'), str) or row.get('activation_sha256') != self.activation_sha256:
                 raise ValueError('Sample text/activation provenance differs')
             if row.get('layer', self.layer) != self.layer:

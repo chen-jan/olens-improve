@@ -6,7 +6,11 @@ build-backend = "setuptools.build_meta"
 name = "olens-improve"
 version = "0.1.0"
 description = "Frozen Oracle Lens inference-time experiments"
+readme = "README.md"
 requires-python = ">=3.12"
+
+[project.scripts]
+olens-improve = "olens_improve.__main__:main"
 
 [project.optional-dependencies]
 inference = ["torch>=2.13", "transformers>=5.16", "peft>=0.21", "accelerate>=1.14", "safetensors>=0.8", "numpy>=2.5", "scipy>=1.18"]
