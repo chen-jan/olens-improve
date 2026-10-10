@@ -1,0 +1,19 @@
+{
+  "project_id": "appgprj_6aca37fc2878819185850105787209f9",
+  "url": "https://olens-improve-research.jan618.chatgpt.site",
+  "access_mode": "public",
+  "version_id": "appgprj_6aca37fc2878819185850105787209f9~appgver_29a956dd842c8191b28cb3f43cfbd5ed",
+  "deployment_id": "appgdep_6aca394ddc288191ba6b53828037b1d7",
+  "site_source_commit": "57f698c01f043e19b762253789ed6f562aab16ad",
+  "published_utc": "2026-10-10T13:10:46.897271+00:00",
+  "source_checkout": ".state/public-dashboard",
+  "static_directory": ".state/public-dashboard/dist",
+  "export_command": "python scripts/build_public_dashboard.py --output .state/public-dashboard/dist",
+  "verification": {
+    "native_deployment": "succeeded",
+    "unauthenticated_get": "HTTP 200; expected dashboard content found",
+    "scientific_numeric_values_unchanged": 12978,
+    "plot_files_byte_identical": 8
+  },
+  "note": "Dedicated Sites repository only. The chen-jan/olens-improve GitHub repository was not pushed. Snapshot updates require a new Site version."
+}

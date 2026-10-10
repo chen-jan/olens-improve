@@ -1,6 +1,6 @@
 {
   "title": "Readouts: what is established",
-  "updated_utc": "2026-10-10T12:45:25.188563+00:00",
+  "updated_utc": "2026-10-10T13:08:33.909842+00:00",
   "cohort": "development",
   "run_ids": [
     "development-shared-pilot-v2",
@@ -98,7 +98,7 @@
         "Partial grids: cell diagnostics, not official item accuracy. Whole related groups are resampled; only 2–8 independent groups per family (chain 2, role 4, bridge 7, hallucination 8).",
         "Mention recovery and transcript contradiction do not establish full factual or relational fidelity."
       ],
-      "next_action": "Compare the complete development grids and review failure cases before freezing the validation shortlist.",
+      "next_action": "Validation review is complete and the final six-method comparison is fixed. Next: finish held-out evaluation, inspect wins and regressions, and report quality alongside inference cost.",
       "metrics": [
         {
           "family": "hallucination",
@@ -5313,7 +5313,7 @@
         "Partial grids: cell diagnostics, not official item accuracy. Whole related groups are resampled; only 2–8 independent groups per family (chain 2, role 4, bridge 7, hallucination 8).",
         "Mention recovery and transcript contradiction do not establish full factual or relational fidelity."
       ],
-      "next_action": "Compare the complete development grids and review failure cases before freezing the validation shortlist.",
+      "next_action": "Validation review is complete and the final six-method comparison is fixed. Next: finish held-out evaluation, inspect wins and regressions, and report quality alongside inference cost.",
       "paired_metrics": [
         {
           "family": "hallucination",
@@ -6379,7 +6379,7 @@
         "Partial grids: cell diagnostics, not official item accuracy. Whole related groups are resampled; only 2–8 independent groups per family (chain 2, role 4, bridge 7, hallucination 8).",
         "Mention recovery and transcript contradiction do not establish full factual or relational fidelity."
       ],
-      "next_action": "Compare the complete development grids and review failure cases before freezing the validation shortlist.",
+      "next_action": "Validation review is complete and the final six-method comparison is fixed. Next: finish held-out evaluation, inspect wins and regressions, and report quality alongside inference cost.",
       "paired_metrics": [
         {
           "family": "hallucination",
@@ -6991,7 +6991,7 @@
         "Partial grids: cell diagnostics, not official item accuracy. Whole related groups are resampled; only 2–8 independent groups per family (chain 2, role 4, bridge 7, hallucination 8).",
         "Mention recovery and transcript contradiction do not establish full factual or relational fidelity."
       ],
-      "next_action": "Compare the complete development grids and review failure cases before freezing the validation shortlist.",
+      "next_action": "Validation review is complete and the final six-method comparison is fixed. Next: finish held-out evaluation, inspect wins and regressions, and report quality alongside inference cost.",
       "traces": [
         {
           "kind": "Recovered bridge, wrong relationship",
@@ -9520,7 +9520,7 @@
         "The repaired helper without reasoning completes every requested pair label. This repairs instrumentation, but manual audits still identify unsafe semantic merges; helper agreement is not benchmark truth.",
         "Medium effort has complete benchmark-output coverage, but only 2,639 of 2,685 requested helper labels are valid: 46 remain unknown across three cells, with 10 schema-invalid physical responses. Unknown labels are never converted automatically into negative votes. Manual audits still identify unsafe semantic merges; helper agreement is not benchmark truth."
       ],
-      "next_action": "Compare the complete development grids and review failure cases before freezing the validation shortlist.",
+      "next_action": "Validation review is complete and the final six-method comparison is fixed. Next: finish held-out evaluation, inspect wins and regressions, and report quality alongside inference cost.",
       "paired_metrics": [
         {
           "family": "hallucination",
@@ -12412,7 +12412,7 @@
         "Partial grids: cell diagnostics, not official item accuracy. Whole related groups are resampled; only 2–8 independent groups per family (chain 2, role 4, bridge 7, hallucination 8).",
         "Mention recovery and transcript contradiction do not establish full factual or relational fidelity."
       ],
-      "next_action": "Compare the complete development grids and review failure cases before freezing the validation shortlist.",
+      "next_action": "Validation review is complete and the final six-method comparison is fixed. Next: finish held-out evaluation, inspect wins and regressions, and report quality alongside inference cost.",
       "paired_metrics": [
         {
           "family": "hallucination",
@@ -12785,7 +12785,7 @@
         "Partial grids: cell diagnostics, not official item accuracy. Whole related groups are resampled; only 2–8 independent groups per family (chain 2, role 4, bridge 7, hallucination 8).",
         "Mention recovery and transcript contradiction do not establish full factual or relational fidelity."
       ],
-      "next_action": "Compare the complete development grids and review failure cases before freezing the validation shortlist.",
+      "next_action": "Validation review is complete and the final six-method comparison is fixed. Next: finish held-out evaluation, inspect wins and regressions, and report quality alongside inference cost.",
       "paired_metrics": []
     },
     "combinations": {
@@ -15064,7 +15064,7 @@
         "Stage2 false counts are verified span counts, not a uniform atomic-claim denominator.",
         "Q<=0 is an operational abstention rule with numerical sensitivity, not a falsehood test."
       ],
-      "next_action": "Compare the complete development grids and review failure cases before freezing the validation shortlist.",
+      "next_action": "Validation review is complete and the final six-method comparison is fixed. Next: finish held-out evaluation, inspect wins and regressions, and report quality alongside inference cost.",
       "paired_metrics": [
         {
           "family": "hallucination",
@@ -19828,7 +19828,7 @@
     "limits": "These are observed DEV losses, not a new held-out comparison. Mention recovery does not certify the calculation. No new interval is inferred."
   },
   "activity": {
-    "checked_utc": "2026-10-10T12:45:25.188563+00:00",
+    "checked_utc": "2026-10-10T13:08:33.909842+00:00",
     "validation_ar_status": "complete",
     "validation_new_ar_vectors": 421716,
     "shared_zero_copy_catalog_vectors": 1063925,
@@ -19880,8 +19880,8 @@
         "expected_cells": 2598
       }
     ],
-    "validation_judging_status": "All 48 validation method-family comparisons and their signed analysis are complete. Two independent trace reviews support best-of-16 and specificity at N32 for final testing. Development judging remains stopped.",
-    "quality_status": "Reviewed validation results are displayed above. The six-arm TEST comparison is frozen. All samples passed identity checks; four GPUs are encoding 1,294,737 new phrase vectors. TEST judging and quality results are pending.",
+    "validation_judging_status": "All 48 validation method-family comparisons and their reviewed analysis are complete. A development scaling extension paused after an accounting database lock; existing completed results are unaffected.",
+    "quality_status": "The six-method held-out comparison is frozen. All candidate samples are collected; four GPUs are encoding phrase vectors. Held-out judging and quality results are pending. No overall faithfulness winner is established.",
     "generation_metadata_source": "${OLENS_DATA_ROOT}/runs/test-blind-preparation-v1/throughput-observation-v25.json",
     "generation_metadata_sha256": "30f500f0a6dcb8aef0e6eb61af811d161130348b35df46214c12855de77f0d35"
   },
