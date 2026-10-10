@@ -27,6 +27,7 @@ from typing import Any
 
 from .budget import AtomicBudget, BudgetExceeded, request_input_upper_bound
 from .data import BENCH_COMMIT, FAMILIES, SOURCE_ROOT, LAYERS, canonical, file_hash, paths
+from .stage_io import validate_export_stage
 
 JUDGE_MODEL = 'gpt-6-luna'
 BENCH_ROOT = SOURCE_ROOT / 'scratch/repos/workspace-bench-v2'
@@ -557,22 +558,42 @@ retain unequal item/cell contributions rather than silently macro-averaging.
             'warning': 'Tiny group count; intervals cannot establish robustness' if len(keys) < 10 else None}
 
 
+def evaluation_stage(manifest: Path, fresh_manifest: Path | None = None,
+                     gate: Path | None = None):
+    """Authorize a stage before reading selected text or opening paid transport."""
+    body = manifest.read_bytes()
+    fresh_body = fresh_manifest.read_bytes() if fresh_manifest else None
+    gate_body = gate.read_bytes() if gate else None
+    stage, cells, captures = validate_export_stage(body, fresh_body, gate_body)
+    authorization = None
+    if gate_body is not None:
+        authorization = {'split':stage,'fresh_manifest_sha256':hashlib.sha256(fresh_body).hexdigest(),
+                         'coordinator_gate_sha256':hashlib.sha256(gate_body).hexdigest()}
+    return json.loads(body), stage, captures, authorization
+
+
 def evaluate_condition(selections: Path, manifest: Path, out: Path, *, method: str,
                        n: int, ledger_path: Path, run_id: str, run_cap_usd: str = '1',
                        allow_paid: bool = False, concurrency: int = 8,
                        service_tier: str = 'flex', family_only: str | None = None,
-                       shared_cache: Path | None = None, rpm: float = 120) -> dict:
+                       shared_cache: Path | None = None, rpm: float = 120,
+                       fresh_manifest: Path | None = None, gate: Path | None = None) -> dict:
     """Evaluate one immutable per-cell condition; run different arms in processes.
 
     The pinned upstream transport is module-global, so independent arms must not
     race its run ID in threads. Paid outputs and provenance stay outside Git.
     """
+    frozen, stage, captures, authorization = evaluation_stage(manifest, fresh_manifest, gate)
     execution = transport_settings(concurrency, rpm, service_tier)
-    frozen = json.loads(manifest.read_text())
     selected = []
     with selections.open() as source:
         for line in source:
             row = json.loads(line)
+            if row.get('split', stage) != stage:
+                raise ValueError('Selected source stage differs from analysis cohort')
+            if captures and (row['cell_id'] not in captures or
+                             row.get('activation_sha256') != captures[row['cell_id']]['activation_sha256']):
+                raise ValueError('Selected source activation differs from analysis-authorized fresh capture')
             if 'selections' in row:
                 matches = [x for x in row['selections'] if x['method'] == method and x['n'] == n]
                 if len(matches) != 1:
@@ -592,6 +613,8 @@ def evaluate_condition(selections: Path, manifest: Path, out: Path, *, method: s
         'manifest_sha256': file_hash(manifest), 'coverage': coverage,
         'partial_grid': bool(frozen.get('partial_grid', False)), 'run_id': run_id,
         'service_tier': service_tier}
+    if authorization is not None:
+        condition['analysis_authorization'] = authorization
     identity = out/'condition.json'
     if identity.exists() and json.loads(identity.read_text()) != condition:
         raise ValueError('Existing condition provenance differs; use a new run directory')
@@ -714,6 +737,8 @@ def _main() -> None:
     p = argparse.ArgumentParser(description='One frozen condition through pinned WorkspaceBench scoring')
     p.add_argument('--selections', type=Path, required=True)
     p.add_argument('--manifest', type=Path, default=Path('configs/splits_pilot_shared_v2.json'))
+    p.add_argument('--fresh-manifest', type=Path)
+    p.add_argument('--gate', type=Path, help='Exact analysis gate; required for validation/test')
     p.add_argument('--output', type=Path, required=True)
     p.add_argument('--method', required=True)
     p.add_argument('--n', type=int, default=1)
@@ -733,6 +758,7 @@ def _main() -> None:
     p.add_argument('--all-families',action='store_true',help='Four processes, one cache writer/family; bounded calls per process')
     p.add_argument('--repeat-request-audit',type=Path,help='Frozen original requests; audit once without changing primary results')
     a = p.parse_args()
+    evaluation_stage(a.manifest, a.fresh_manifest, a.gate)
     if a.allow_paid:
         if not os.environ.get('OPENAI_API_KEY'):
             for line in Path('.env').read_text().splitlines():
@@ -783,7 +809,8 @@ def _main() -> None:
         result = evaluate_condition(a.selections, a.manifest, out, method=condition['method'],
             n=condition['n'], ledger_path=a.ledger, run_id=a.run_id, run_cap_usd=a.run_cap_usd,
             allow_paid=a.allow_paid, concurrency=a.concurrency, service_tier=a.tier,
-            family_only=a.family,shared_cache=a.shared_cache,rpm=a.rpm)
+            family_only=a.family,shared_cache=a.shared_cache,rpm=a.rpm,
+            fresh_manifest=a.fresh_manifest,gate=a.gate)
         print(json.dumps({'condition':result['condition'], 'budget':result['budget']}),flush=True)
 
 

@@ -12,6 +12,7 @@ from transformers import AutoTokenizer
 from olens_improve.ar_cache import digest
 from olens_improve.reconstruction import JointNNLS, RawVectorCache, Whitener
 from olens_improve.selection import Bullet, prune_leave_one_out, render_bullets
+from olens_improve.stage_io import validate_export_stage
 
 
 def read_rows(path):
@@ -32,6 +33,7 @@ def parse_args(argv=None):
     parser.add_argument('--parent-method', action='append', choices=['pooled_greedy_swap','best_n_specificity_mean','editing_round2'],
                         help='Restrict parents; omitted preserves the original D/E1/F behavior')
     parser.add_argument('--runtime', type=Path, default=Path('configs/runtime.json'))
+    parser.add_argument('--gate',type=Path,help='Exact analysis gate; required for validation/test')
     args=parser.parse_args(argv)
     if (args.edits is None)!=(args.editing_cache is None):
         parser.error('--edits and --editing-cache must be supplied together')
@@ -68,16 +70,20 @@ def main():
         raise RuntimeError('Use allocated CPU resources')
     torch.set_num_threads(4)
     started = time.time()
+    manifest_bytes = args.manifest.read_bytes()
+    fresh_bytes = args.fresh_manifest.read_bytes()
+    gate_path=getattr(args,'gate',None);gate_bytes=gate_path.read_bytes() if gate_path else None
+    stage,cohort,fresh=validate_export_stage(manifest_bytes,fresh_bytes,gate_bytes)
     selectors, selector_sha = read_rows(args.selectors)
     edits, edit_sha = read_rows(args.edits) if args.edits is not None else (None,None)
-    manifest_bytes = args.manifest.read_bytes()
-    cohort = {c['cell_id']: c for c in json.loads(manifest_bytes)['cells']}
     if set(cohort) != set(selectors) or (edits is not None and set(cohort) != set(edits)):
         raise ValueError('All parents must cover the exact same frozen cohort')
-    fresh_bytes = args.fresh_manifest.read_bytes()
-    fresh = {c['cell_id']: c for c in json.loads(fresh_bytes)['cells']}
-    if any(fresh[cid]['split'] != 'development' for cid in cohort):
-        raise ValueError('Development only')
+    for source in (selectors,*([edits] if edits is not None else [])):
+        for cid,row in source.items():
+            if any(row[k]!=cohort[cid][k] for k in ('family','item_id','layer','position','split')):
+                raise ValueError('Parent identity differs from analysis cohort')
+            if row['activation_sha256']!=fresh[cid]['activation_sha256']:
+                raise ValueError('Parent activation differs from analysis-authorized fresh capture')
     production = RawVectorCache(str(args.production_cache))
     editing = RawVectorCache(str(args.editing_cache)) if args.editing_cache is not None else None
     if editing is not None and production.contract != editing.contract:
@@ -95,6 +101,8 @@ def main():
             'code_sha256': {str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in
                             [Path(__file__), Path('src/olens_improve/selection.py'),
                              Path('src/olens_improve/reconstruction.py')]}}
+    if gate_bytes is not None:
+        spec.update({'split':stage,'coordinator_gate_sha256':hashlib.sha256(gate_bytes).hexdigest()})
     output = args.output
     output.mkdir(parents=True, exist_ok=True)
     config = output / 'spec.json'
