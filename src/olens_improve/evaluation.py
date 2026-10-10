@@ -64,6 +64,19 @@ recorded beside physical attempts; upstream still owns validated-result caching.
     return hashlib.sha256(canonical(content).encode()).hexdigest()
 
 
+def safe_exception_chain(error: BaseException) -> list[dict]:
+    """Transport diagnostics without exception messages, endpoints or secrets."""
+    chain = []
+    seen = set()
+    while error is not None and id(error) not in seen and len(chain) < 8:
+        seen.add(id(error))
+        number = getattr(error, 'errno', None)
+        chain.append({'class': type(error).__name__,
+                      'errno': number if isinstance(number, int) and not isinstance(number, bool) else None})
+        error = error.__cause__ or (None if error.__suppress_context__ else error.__context__)
+    return chain
+
+
 class BudgetedCompletions:
     def __init__(self, inner: Any, ledger: AtomicBudget, run_id: str,
                  *, allow_paid: bool = False, metadata: dict | None = None,
@@ -101,7 +114,9 @@ class BudgetedCompletions:
                     metadata={**self.metadata, 'content_cache_key': content_key,
                               'request': serializable, 'pid': os.getpid(),
                               'helper_effort_opt_in': self.helper_diagnostic,
-                              'requested_tier': request['service_tier']})
+                              'requested_tier': request['service_tier']},
+                    dispatch_guard={'since_utc': os.environ['OLENS_TRANSPORT_RECOVERY_SINCE']}
+                        if os.environ.get('OLENS_TRANSPORT_RECOVERY_SINCE') else None)
         started = time.monotonic()
         try:
             response = await self.inner.create(**request)
@@ -111,6 +126,7 @@ class BudgetedCompletions:
             self.ledger.mark_unknown(aid, f'{type(error).__name__}; physical attempt outcome uncertain')
             self.ledger.record_evidence(aid, 'transport_failure', {
                 'exception_type': type(error).__name__, 'latency_s': time.monotonic() - started,
+                'cause_chain': safe_exception_chain(error),
                 'provider_request_id': getattr(error, 'request_id', None),
                 'http_status': getattr(error, 'status_code', None),
                 'error_code': getattr(error,'code',None),
@@ -373,6 +389,9 @@ def run_family(family: str, readouts: Path, out: Path, manifest_cells: list[dict
     if family not in FAMILIES:
         raise ValueError(f'Unsupported core family {family}')
     execution = transport_settings(concurrency, rpm, service_tier)
+    if os.environ.get('OLENS_TRANSPORT_RECOVERY_SINCE'):
+        execution['transport_recovery_guard'] = {'since_utc': os.environ['OLENS_TRANSPORT_RECOVERY_SINCE'],
+            'maximum_unknown_in_latest_100': 5, 'maximum_new_unknown_usd': .10}
     rpm = execution['rpm']
     provenance = load_upstream()
     from wsbench.judge_config import resolve

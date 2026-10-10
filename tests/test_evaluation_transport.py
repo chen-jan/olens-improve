@@ -5,10 +5,18 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from olens_improve.evaluation import evaluate_condition, positive_rpm
+from olens_improve.evaluation import evaluate_condition, positive_rpm, safe_exception_chain
 
 
 class EvaluationTransportTests(unittest.TestCase):
+    def test_connection_diagnostics_exclude_messages_and_bound_cycles(self):
+        cause = OSError(24, 'secret URL or token')
+        outer = RuntimeError('private provider response')
+        outer.__cause__ = cause
+        cause.__cause__ = outer
+        self.assertEqual(safe_exception_chain(outer), [
+            {'class': 'RuntimeError', 'errno': None}, {'class': 'OSError', 'errno': 24}])
+
     def test_invalid_rate_rejected_before_dispatch(self):
         for value in (0, -1, float("nan"), float("inf"), True):
             with self.subTest(value=value), self.assertRaises(ValueError):

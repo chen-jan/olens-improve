@@ -1,0 +1,43 @@
+{
+  "manifest": "configs/splits_pilot_shared_v2.json",
+  "manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+  "shared_cache": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments/shared-exact-cache",
+  "queue": [
+    {
+      "name": "B-v5-none",
+      "selections": "${OLENS_DATA_ROOT}/selections/consensus-pilot189-v5/selections.jsonl",
+      "source_sha256": "b62fe86e283a101d8723fa153f4a4cd33e6f08fefba8204b00d634db11c163b8",
+      "conditions": "configs/evaluation_consensus_v5_pilot.json",
+      "output": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments-b-v5",
+      "run_id": "consensus-v5-pilot-conditions-v1",
+      "run_cap_usd": "3"
+    },
+    {
+      "name": "D-specificity-pooling",
+      "selections": "${OLENS_DATA_ROOT}/selections/specificity-pooling-pilot189-v1/selections.jsonl",
+      "source_sha256": "01b32dcead17200adc98600c93d142a3565745964b5df5af1c65fe0fa3496b24",
+      "conditions": "${OLENS_DATA_ROOT}/selections/specificity-pooling-pilot189-v1/conditions.json",
+      "output": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments-specificity-pooling",
+      "run_id": "specificity-pooling-pilot-v1",
+      "run_cap_usd": "3"
+    },
+    {
+      "name": "E-nonpositive-abstention",
+      "selections": "${OLENS_DATA_ROOT}/selections/specificity-abstention-pilot189-v1/selections.jsonl",
+      "source_sha256": "ffcbeec98a10af764aac688d523350b68982e06015f7808e0c2712579a258888",
+      "conditions": "${OLENS_DATA_ROOT}/selections/specificity-abstention-pilot189-v1/conditions.json",
+      "output": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments-specificity-abstention",
+      "run_id": "specificity-pooling-pilot-v1",
+      "run_cap_usd": "3"
+    },
+    {
+      "name": "B-medium-confirmation",
+      "selections": "${OLENS_DATA_ROOT}/selections/consensus-pilot189-v5-medium/selections.jsonl",
+      "source_sha256": "5c9b7898ca7d57c945dd0805ea238e826781a3b6b296bfc97eb098810036f01e",
+      "conditions": "configs/evaluation_consensus_medium_pilot.json",
+      "output": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments-b-v5-medium",
+      "run_id": "consensus-medium-pilot-conditions-v1",
+      "run_cap_usd": "3"
+    }
+  ]
+}

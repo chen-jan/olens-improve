@@ -134,7 +134,7 @@ class AtomicBudget:
 
     def reserve_attempt(self, input_upper_tokens: int, max_output_tokens: int, *,
                         run_id: str, metadata: dict | None = None,
-                        attempt_id: str | None = None) -> str:
+                        attempt_id: str | None = None, dispatch_guard: dict | None = None) -> str:
         if input_upper_tokens <= 0 or max_output_tokens <= 0:
             raise ValueError('Positive input/output bounds required')
         # Reserve Standard prices even for Flex: a billed tier fallback is covered.
@@ -145,7 +145,19 @@ class AtomicBudget:
         details.update(input_upper_tokens=input_upper_tokens, max_output_tokens=max_output_tokens,
                        reservation_pricing='standard; all input at cache-write rate',
                        pricing_revision=PRICING_REVISION)
+        if dispatch_guard is not None:
+            details['transport_recovery_guard'] = dispatch_guard
         with self._transaction() as db:
+            if dispatch_guard is not None:
+                # A transport incident guard is scoped to this recovery epoch,
+                # checked atomically across workers before reserving a request.
+                since = dispatch_guard['since_utc']
+                recent = db.execute('SELECT status FROM attempts WHERE run_id=? AND created_utc>=? '
+                    'ORDER BY created_utc DESC LIMIT 100', (run_id, since)).fetchall()
+                unknown = db.execute("SELECT COALESCE(SUM(reserved),0) FROM attempts WHERE run_id=? "
+                    "AND created_utc>=? AND status='unknown'", (run_id, since)).fetchone()[0]
+                if sum(row[0] == 'unknown' for row in recent) > 5 or unknown > usd_units('.10'):
+                    raise BudgetExceeded('Transport recovery paused: new uncertain attempts exceed frozen guard')
             if db.execute("SELECT value FROM config WHERE key='halted'").fetchone()[0]:
                 raise BudgetExceeded('Ledger halted after accounting-bound failure; explicit reconciliation required')
             if self._committed(db) + amount > self.hard:

@@ -22,6 +22,28 @@ def _race(path, queue):
 
 
 class BudgetTests(unittest.TestCase):
+    def test_shared_transport_guard_ignores_old_epoch_and_blocks_new_unknowns(self):
+        ledger = AtomicBudget(self.path, bootstrap_claude=False)
+        old = ledger.reserve_attempt(1, 1, run_id='recovery')
+        ledger.mark_unknown(old, 'old outage')
+        from datetime import datetime, timezone
+        guard = {'since_utc': datetime.now(timezone.utc).isoformat()}
+        for _ in range(6):
+            aid = ledger.reserve_attempt(1, 1, run_id='recovery', dispatch_guard=guard)
+            ledger.mark_unknown(aid, 'transport')
+        with self.assertRaises(BudgetExceeded):
+            ledger.reserve_attempt(1, 1, run_id='recovery', dispatch_guard=guard)
+        other = ledger.reserve_attempt(1, 1, run_id='independent', dispatch_guard=guard)
+        self.assertIsInstance(other, str)
+
+    def test_transport_guard_blocks_large_unknown_before_next_paid_attempt(self):
+        ledger = AtomicBudget(self.path, bootstrap_claude=False)
+        guard = {'since_utc': '2000-01-01T00:00:00+00:00'}
+        aid = ledger.reserve_attempt(1, 210000, run_id='recovery', dispatch_guard=guard)
+        ledger.mark_unknown(aid, 'uncertain')
+        with self.assertRaises(BudgetExceeded):
+            ledger.reserve_attempt(1, 1, run_id='recovery', dispatch_guard=guard)
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.path = Path(self.temp.name) / 'ledger.sqlite3'
