@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "status": "root_reviewed_ready",
+  "run_id": "validation-full-grid-methods-v1",
+  "run_cap_usd": 15,
+  "job_id": "25474685",
+  "node": "node1600",
+  "authorized_cells": 3485,
+  "concurrency": 8,
+  "rpm": 200,
+  "tier": "default",
+  "reasoning_effort": "none",
+  "automatic_ramp": false,
+  "recovery_epoch": "2026-10-10T10:40:00+00:00",
+  "cpu_pairs": {
+    "hallucination": [
+      24,
+      30
+    ],
+    "multihop_mt": [
+      83,
+      84
+    ],
+    "chain_intermediates": [
+      33,
+      38
+    ],
+    "role_bound_association": [
+      81,
+      82
+    ]
+  },
+  "manifest": "configs/validation-full-grid-blind-v1.json",
+  "fresh_manifest": "${OLENS_COMPUTE_ROOT}/activations/core-v1/fresh_manifest_v2.json",
+  "gate": "configs/gates/validation-analysis-v1.json",
+  "conditions": "configs/conditions_validation_v1.json",
+  "freeze": "configs/validation_shortlist_freeze_v1.json",
+  "selections": "${OLENS_DATA_ROOT}/selections/validation-full-grid-judging-v1/selections.jsonl",
+  "selection_sha256": "a406ca34932be46279af276701417091b2c0a4e5f37206da9d0bc72befebab26",
+  "export_provenance": "${OLENS_DATA_ROOT}/selections/validation-full-grid-judging-v1/provenance.json",
+  "export_provenance_sha256": "e3c73f5c6179a25ea0cca742e766c3b9b83f3d80496f604153ecd84a3c7cd6c8",
+  "forecast": "${OLENS_DATA_ROOT}/selections/validation-full-grid-judging-v1/forecast-v1.json",
+  "forecast_sha256": "6700886ee0dccf95e18c546d35806ecc9c871ebf6b7ea8dd896ec145cb70f9a9",
+  "planned_forecast_path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-judging-v1/forecast-v1.json",
+  "empirical_summary": "${OLENS_DATA_ROOT}/selections/development-full-grid-judging-v1/forecast-v1.json",
+  "ledger": "${OLENS_DATA_ROOT}/budget/ledger.sqlite3",
+  "judgments": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/judgments",
+  "shared_cache": "${OLENS_DATA_ROOT}/runs/development-shared-pilot-v2/judgments/shared-exact-cache",
+  "logs": "${OLENS_COMPUTE_ROOT}/logs",
+  "hold_policy": "Every prior project hold and all14 incident holds remain fully reserved. The single abandoned reservation was reviewed and classified unknown without release; receipt binds unchanged committed totals. No inference of nonbilling from cancellation or later cached success.",
+  "family_owner_policy": "Root launches each family only after original PID exit and cache owner release; evaluator exclusive family owner lock remains authoritative.",
+  "forecast_policy": "Original $4.7571 full-menu usage forecast retained as context. Recovery uses the same $15 run ceiling including all earlier VAL charges and uncertain holds; it is not an additional budget. No new forecast is claimed for remaining cache misses.",
+  "unresolved_fields": [],
+  "dispatch_policy": "Exact exports and read-only forecast are bound. No paid dispatch until root approves the ceiling and seals root_reviewed_ready status; the signed twelve-arm menu remains unchanged.",
+  "manifest_sha256": "9293de810635a5ee69fcee3c010ede25c7e147d12d172c2f637015c64042f19d",
+  "fresh_manifest_sha256": "5a61cff89aca532f3e022233b6d2d8e12dab0d3a3f4f44085097bc6dc58fc385",
+  "gate_sha256": "9ba4b92cbfa9f6a0400aa74b65cbf59d8614791efb2c5b404265a0ea455b88f8",
+  "conditions_sha256": "bed944371e050eff7898d07fe0a2ccb39a49a3359779640525b06c4904aca82a",
+  "freeze_sha256": "30daad423ee9326971f5f08fa4f3a3e7eec37c857b3757a700a8fcbb3a7547e6",
+  "empirical_summary_sha256": "c1db2f1fb5a58c727b813f9498726e2e21ff70ca092cc891fb0b40aab0d6a1f6",
+  "implementation_source_sha256": {
+    "infra/launch_validation_judges.py": "8fe185d916ef78da8d9b4e11c1c0c0f4ee640027fc686d79173d42c51afaa4fb",
+    "scripts/forecast_judging.py": "e587b75502317bdb60edcc2225268bdc49d87d159a5da3b0a36a79813e3d6b13",
+    "src/olens_improve/evaluation.py": "91c5bf39cab00dd15dd0b9b0f9b02463bd7c648197db472ccf6d551de8de27dd",
+    "src/olens_improve/budget.py": "90beef9da7905e57e1b0fad2e2affa14822033451a9f4d86b92bb7325e0fb182",
+    "src/olens_improve/ar_partition.py": "4f250bd78e5adb81faed0568ad004bc8df62dd34d1daf94973ab13052e802499",
+    "src/olens_improve/stage_io.py": "7257f7855faddab8abe0ac487aa33500718979a5de5019a838354a1e0feb884c",
+    "src/olens_improve/performance.py": "2835881775b42960bc671663501d10fdf231c14a1c69e473a5faf58a0f24c9c8",
+    "infra/resume_validation_judges.py": "4ea32a37c11a703b9a5e7fb14ccb37610e124add21f1df4f11aef9fe525c6a2d"
+  },
+  "performance_profile_dir": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/judgments/performance-recovery-v2-readonly-snapshot",
+  "profile_policy": "Fresh execution-specific per-family profile paths; original launch-v1 sidecars remain intact.",
+  "created_utc": "2026-10-10T10:40:13.654177+00:00",
+  "forecast_observation": {
+    "expected_charge_including_unknown_stage2_upper_using_empirical_means_usd": 4.7571018455364005,
+    "unknown_stage2_unique_requests_upper": 5956,
+    "walltime_reference_policy": "Older healthy Standard service estimates; not a current walltime guarantee. Accounting and transport guards remain authoritative."
+  },
+  "reviewed_utc": "2026-10-10T10:45:14.149157+00:00",
+  "review_author": "root",
+  "ceiling_rationale": "Forecast incremental usage is $4.7571 including conditional stage2 upper count; $15 atomic run cap allows uncertainty/retries within existing project target and ceiling. All prior holds remain reserved.",
+  "recovery_label": "v2-readonly-snapshot",
+  "no_extra_health_call": true,
+  "recovery_condition_files": {
+    "hallucination": {
+      "path": "configs/conditions_validation_recovery_hallucination_v2.json",
+      "sha256": "6ceff17c4cc9b8719f83bc6d09af2a32ec092a56edf84aef53253c12c27ae026"
+    },
+    "role_bound_association": {
+      "path": "configs/conditions_validation_recovery_role_bound_association_v2.json",
+      "sha256": "4febde364df0762d7b1d4709fbf809999e5915fda18ade4f23c1bb3a2afde882"
+    }
+  },
+  "stop_files": {
+    "hallucination": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/judgments/stop-recovery-v2-readonly-snapshot-hallucination",
+    "role_bound_association": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/judgments/stop-recovery-v2-readonly-snapshot-role_bound_association"
+  },
+  "incident": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/judgments/transport-incident-validation-v1.json",
+  "incident_sha256": "1d7b56219a80881326bec6a041f92a99be5aa7cb3cfaac65ddd0fb729e9f68aa",
+  "hold_action": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/judgments/hold-preserving-action-validation-v1.json",
+  "hold_action_sha256": "57797f84e02ec2cf7cb285189d9b6ba3fe8394d2a5734e932cf7e13c289ff182",
+  "hold_action_receipt": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/judgments/hold-preserving-action-validation-v1-applied.json",
+  "hold_action_receipt_sha256": "7983abca16f0041287923af5e98a3b05dac156a328df90f4adaa4a62cc8c83ed",
+  "original_validation_spec": "configs/judging_validation_v1.json",
+  "original_validation_spec_sha256": "1a5ba69c25afb3e64340c4e76ac38a0a506fb46adf51aea7a7921e593ec1e49d",
+  "recovery_authorization": "Root reviewed source fix, eighteen budget tests, eight validation launch/recovery tests, independent implementation review and unchanged full holds. Authorize only the exact incident remaining conditions at eight slots/200 RPM under the original signed twelve-arm gate and $15 run ceiling; no completed family-condition artifacts rewritten.",
+  "recovery_epoch_policy": "Root explicitly reviewed a new operational epoch after the documented local preflight writer-lock failure and resulting cancellations. Financial totals and all14 uncertain holds are unchanged; all other project holds remain reserved. This is not a silent retry/rate-limit reset.",
+  "early_checkpoint_policy": {
+    "healthy_new_physical_responses": 100,
+    "bounded_recent_pid_window": 100,
+    "automatic_ramp": false,
+    "stop_on_local_lock_or_recurrent_unknowns": true,
+    "transport_guard": "unchanged latest100unknown>5 or new epoch unknown holds>.10USD"
+  },
+  "offline_test_evidence": {
+    "snapshot_fix": "root18budget tests passed; writer transactions/holds/guards unchanged",
+    "recovery_wrapper": "6 focused tests passed,0.021s; ordered signed subset,hashes,cap/epoch,command invariance,read-only retained holds"
+  }
+}

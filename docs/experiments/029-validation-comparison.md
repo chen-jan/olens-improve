@@ -133,6 +133,32 @@ project storage roots are NFS. These observations do not demonstrate that future
 lock errors are impossible. Recovery of only the unfinished signed conditions
 is being prepared with fresh operational evidence; no scientific menu changes.
 
+Root applied the one abandoned-reservation transition to unknown, retaining its
+entire $0.005490875. All fourteen incident holds total $0.073699875; the global
+committed amount stayed exactly $16.57524863. The immutable receipt is
+`judgments/hold-preserving-action-validation-v1-applied.json`, SHA-256
+`7983abca16f0041287923af5e98a3b05dac156a328df90f4adaa4a62cc8c83ed`.
+The terminal incident is `judgments/transport-incident-validation-v1.json`,
+SHA-256 `1d7b56219a80881326bec6a041f92a99be5aa7cb3cfaac65ddd0fb729e9f68aa`.
+
+At **10:45:14 UTC**, root sealed `configs/judging_validation_recovery_v2.json`,
+SHA-256 `abbcb8c1ee87839294319bab221e4205578e3ca4db2e110979452633b91bad8d`.
+The separate recovery entrypoint checks ordered, hash-bound remaining subsets
+against the original full twelve-condition menu and terminal incident. It
+retains the original gate, requests, caches, $15 shared ceiling and every hold.
+Eight validation launch/recovery tests passed, and independent source review
+found no material blocker. Completed condition artifacts are not rewritten.
+Hallucination resumed its final condition as PID 3427775; role resumed its last
+five as PID 3427889. Both use fresh logs, timing profiles and stop paths.
+
+The explicitly reviewed **10:40 UTC** recovery epoch starts a new operational
+health window after the documented local shutdown; it does not reset financial
+totals or release old charges. Eight slots/200 RPM, Standard Luna with reasoning
+disabled, and the unknown-charge guard are unchanged. There is no extra paid
+health request or automatic concurrency increase. The first approximately one
+hundred responses will be an observation window, not an exact call-count cap.
+Successful launch alone does not establish a durable fix.
+
 Report the original contradiction denominator together with assertion share,
 off-topic rate and both hallucination stages. Keep false spans distinct from
 supported and unverifiable claims. Recovery and item-ANY scores do not certify
