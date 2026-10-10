@@ -1,10 +1,12 @@
 # Execution status
 
-Updated: 2026-10-10, approximately 20:03 UTC.
+Updated: 2026-10-10, approximately 20:18 UTC.
 Started: 2026-10-10 01:25:36 UTC (October 9, 21:25:36 EDT).
 Target finish: 2026-10-10 21:25:36 UTC. Execution remains active and authorized.
 
 ## Latest operational checkpoint
+
+At 20:17 UTC, **41 of 48 held-out comparisons are complete**. Hallucination finished pooled selection with 16 samples, stopped cleanly, and restarted with connection reuse enabled as PID 42548/session 53016. Both active workers now use the reviewed optimization and 256 concurrent requests / 4,000 RPM. Five hallucination comparisons and two role comparisons remain; eleven DEV comparisons follow on each family after its TEST work finishes. No speed improvement has yet been established. The 20:11 terminal check retained all uncertain charges; the next combined measurement is scheduled for 20:22.
 
 At 20:03 UTC, **40 of 48 held-out family/method comparisons are complete**: all twelve multi-hop and chain comparisons, ten role comparisons, and six hallucination comparisons. Eleven development comparisons also remain. These counts do not represent the percentage of runtime left; hallucination comparisons involve two judging stages.
 
