@@ -63,3 +63,31 @@ entire 19,435-cell suite would require about 6.3 h at measured speed, with a pra
 It is a constraints snapshot rather than a complete platform-specific lock;
 the current environment continues its read-only historical dependency overlay.
 Source checkout paths are configurable through the runtime JSON.
+
+At 06:22 UTC, the original CPU allocation's 128 GiB memory cgroup reached its
+limit despite ample free node RAM. Its external step accounted for about
+121 GiB, including 77 GiB of kernel memory. Allocation-failure counters rose;
+judge workers themselves used about 150 MiB RSS each and had no swapped pages.
+This is a resource-pressure observation, not a demonstrated transport-error
+cause. No unrelated external processes or caches were changed.
+
+Root authorized isolated judging resources. CPU job **25474685**, account/QOS
+`${SLURM_CPU_ACCOUNT}`, partition `${SLURM_CPU_PARTITION}`, was requested at 06:24:51 UTC
+and started on **node1600** at 06:25:37 after 46 seconds. It provides eight
+physical cores and 32 GiB until 21:25:37 UTC. The reservation is at most
+120 physical-core hours; this is reserved capacity, not measured CPU usage or
+a dollar charge. At 06:26:32 its cgroup charged 26.4 MiB, with zero allocation
+failures or OOM kills. A read-only ledger schema query completed in 0.039 s.
+Distinct physical CPU representatives are `24,30,33,38,81,82,83,84`.
+The original watcher stays in allocation 25299630 and now monitors the new
+allocation's ownership, expiry and memory counters. Infra made no API calls.
+
+Immutable evidence is `durable/diagnostics/cpu-cgroup-incident-v1/resource.json`
+(SHA256 `b72f884663c7b5673379ea459f790347f85662e441c3b4474b51b92825634955`)
+and its frozen watcher snapshot. The four idle main GPU holds also have large
+memory charges, but these are overwhelmingly clean file cache: anonymous RSS
+is only about 45–61 MiB and kernel memory about 0.15–0.33 GiB. This differs
+from the original CPU allocation's external-step kernel charge. Clean file
+cache can be reclaimed when a later model loader needs RAM. Historical GPU
+hold allocation-failure totals alone do not establish present pressure;
+measure loader peaks and new failures when the next stage is authorized.

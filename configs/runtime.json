@@ -82,8 +82,8 @@
       "ram_gib": 64,
       "end_utc": "2026-10-10T22:23:24+00:00",
       "requested_utc": "2026-10-10T02:22:59Z",
-      "last_check_utc": "2026-10-10T02:27:25.405844+00:00",
-      "state": "RUNNING",
+      "last_check_utc": "2026-10-10T06:30:41.686206+00:00",
+      "state": "RELEASED_RECORD_UNAVAILABLE",
       "reason": "None",
       "partition": "${SLURM_PREEMPT_PARTITION}",
       "account": "${SLURM_GENERAL_PARTITION}",
@@ -91,14 +91,39 @@
       "purpose": "Resumable E3 likelihood,F edit encoding,J++ development diagnostics",
       "fallback_after_pending_seconds": 720,
       "fallback_gpu": "h100",
-      "progress": "Allocated; workload handoff/status must be recorded separately",
-      "started_utc": "2026-10-10T02:23:24Z"
+      "progress": "Completed; intentional hold release authorized by root",
+      "started_utc": "2026-10-10T02:23:24Z",
+      "intentionally_released_utc": "2026-10-10T03:35:30.026795+00:00",
+      "release_reason": "All E2/E3/J++/F and sensitivity work completed; model owner confirms no queued GPU work."
+    },
+    {
+      "job_id": 25460532,
+      "node": "node4601",
+      "gpu": "h200",
+      "count": 1,
+      "cpus": 8,
+      "ram_gib": 64,
+      "requested_utc": "2026-10-10T02:40:10Z",
+      "started_utc": "2026-10-10T02:40:24Z",
+      "end_utc": "2026-10-10T22:40:24+00:00",
+      "state": "RELEASED_RECORD_UNAVAILABLE",
+      "reason": "None",
+      "partition": "${SLURM_PREEMPT_PARTITION}",
+      "account": "${SLURM_GENERAL_PARTITION}",
+      "qos": "normal",
+      "purpose": "StreamingARencoding and B32/64/128throughput profiling",
+      "fallback_after_pending_seconds": 720,
+      "fallback_gpu": "h100",
+      "progress": "Completed; intentional allocation release authorized by root",
+      "last_check_utc": "2026-10-10T06:30:41.686206+00:00",
+      "intentionally_released_utc": "2026-10-10T04:40:41.401195+00:00",
+      "release_reason": "Production AR complete for all 5,236 DEV cells; model owner confirms no queued GPU work and allocated nvidia-smi verifies no compute process."
     }
   ],
   "watcher": {
     "agent": "/root/compute_storage_audit",
     "status": "active-session",
-    "last_check_utc": "2026-10-10T02:27:25.405844+00:00"
+    "last_check_utc": "2026-10-10T06:30:41.686206+00:00"
   },
   "environment_versions": {
     "python": "3.12.13",
@@ -113,5 +138,40 @@
     "openai": "3.6.0",
     "pydra-config": "0.0.17.post1"
   },
-  "environment_status": "imports verified; no model load"
+  "environment_status": "imports verified; no model load",
+  "additional_cpu_allocations": [
+    {
+      "job_id": 25474685,
+      "node": "node1600",
+      "cpus": 8,
+      "physical_core_representatives": [
+        24,
+        30,
+        33,
+        38,
+        81,
+        82,
+        83,
+        84
+      ],
+      "ram_gib": 32,
+      "account": "${SLURM_CPU_ACCOUNT}",
+      "qos": "${SLURM_CPU_ACCOUNT}",
+      "partition": "${SLURM_CPU_PARTITION}",
+      "requested_utc": "2026-10-10T06:24:51Z",
+      "started_utc": "2026-10-10T06:25:37Z",
+      "end_utc": "2026-10-10T21:25:37+00:00",
+      "state": "RUNNING",
+      "reason": "None",
+      "purpose": "Isolated project judging and shared ledger/cache work after original CPU cgroup pressure",
+      "last_headroom_verified_utc": "2026-10-10T06:26:32Z",
+      "memory_charge_bytes": 27668480,
+      "memory_limit_bytes": 34359738368,
+      "memory_failcnt": 0,
+      "api_dispatch_by_infra": false,
+      "queue_seconds": 46,
+      "last_check_utc": "2026-10-10T06:30:41.686206+00:00"
+    }
+  ],
+  "judging_cpu_allocation_id": 25474685
 }

@@ -9,6 +9,7 @@ from pathlib import Path
 import re
 import subprocess
 import sqlite3
+import sys
 from zoneinfo import ZoneInfo
 
 
@@ -66,13 +67,25 @@ def budget_snapshot(path):
         return {"status": "temporarily_unavailable", "error": str(error)}
 
 
+def cpu_memory_alerts(job_id, counters):
+    usage, limit = counters.get("memory.usage_in_bytes"), counters.get("memory.limit_in_bytes")
+    if usage is None or not limit:
+        return [f"CPU allocation {job_id} memory headroom is unavailable"]
+    alerts = []
+    if usage >= .9 * limit:
+        alerts.append(f"CPU allocation {job_id} memory charge exceeds 90% of its cgroup limit")
+    if counters.get("memory.failcnt"):
+        alerts.append(f"CPU allocation {job_id} has recorded memory-limit allocation failures")
+    return alerts
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--runtime", default="configs/runtime.json")
     args = parser.parse_args()
     runtime = json.loads(Path(args.runtime).read_text())
     now = datetime.now(timezone.utc)
-    jobs = runtime["gpu_allocations"] + runtime.get("preemptable_allocations", [])
+    jobs = runtime["gpu_allocations"] + runtime.get("preemptable_allocations", []) + runtime.get("additional_cpu_allocations", [])
     snapshot = {
         "checked_utc": now.isoformat(),
         "watcher": runtime["watcher"]["agent"],
@@ -100,6 +113,14 @@ def main():
         detail["state"] = fields.get("JobState")
         detail["reason"] = fields.get("Reason")
         diagnostic = job in runtime.get("preemptable_allocations", [])
+        cpu_allocation = job in runtime.get("additional_cpu_allocations", [])
+        if cpu_allocation:
+            job.update(state=fields.get("JobState"), reason=fields.get("Reason"),
+                       node=fields.get("NodeList") or None, last_check_utc=now.isoformat())
+            detail["requested_utc"] = job["requested_utc"]
+            detail["purpose"] = job.get("purpose")
+            if fields.get("JobState") == "PENDING":
+                detail["pending_seconds"] = (now-datetime.fromisoformat(job["requested_utc"].replace("Z", "+00:00"))).total_seconds()
         if diagnostic and job.get('intentionally_released_utc'):
             detail['intentional_release'] = {'utc':job['intentionally_released_utc'], 'reason':job.get('release_reason')}
             if fields.get('JobState') != 'RUNNING':
@@ -122,7 +143,7 @@ def main():
             elif fields.get("JobState") == "RUNNING" and previous_state != "RUNNING":
                 job["progress"] = "Allocated; workload handoff/status must be recorded separately"
             detail["progress"] = job.get("progress")
-        if fields.get("JobState") != "RUNNING" and not (diagnostic and fields.get("JobState") == "PENDING"):
+        if fields.get("JobState") != "RUNNING" and not ((diagnostic or cpu_allocation) and fields.get("JobState") == "PENDING"):
             snapshot["alerts"].append(f"Job {key} is not confirmed RUNNING")
         if f"UserId=${USER}({runtime['gpu_owner_uid']})" not in text:
             snapshot["alerts"].append(f"Job {key} ownership needs verification")
@@ -142,7 +163,7 @@ def main():
     snapshot["generation_progress"] = []
     for path in sorted(readouts.glob("*.status.json"))[:100]:
         snapshot["generation_progress"].append(json.loads(path.read_text()))
-    running = [job for job in jobs if snapshot["jobs"][str(job["job_id"])].get("state") == "RUNNING"]
+    running = [job for job in jobs if "gpu" in job and snapshot["jobs"][str(job["job_id"])].get("state") == "RUNNING"]
     def gpu_status(job):
         return str(job["job_id"]), command(["srun", f"--jobid={job['job_id']}", "--overlap", "--mem=512M", "--cpu-bind=none", "-N1", "-n1", "-c1",
             f"--gres=gpu:{job['gpu']}:1", "nvidia-smi", "--query-gpu=name,memory.used,utilization.gpu", "--format=csv,noheader"])
@@ -151,6 +172,23 @@ def main():
     for key, result in snapshot["gpu_status"].items():
         if result.get("returncode") != 0:
             snapshot["alerts"].append(f"GPU observation for job {key} unavailable; see recorded probe error")
+    snapshot["additional_cpu_status"] = {}
+    for job in runtime.get("additional_cpu_allocations", []):
+        key = str(job["job_id"])
+        if snapshot["jobs"][key].get("state") != "RUNNING":
+            continue
+        probe = command(["srun", f"--jobid={key}", "--overlap", "-N1", "-n1", "-c1", "--mem=512M", "--cpu-bind=none",
+                         sys.executable, str(Path(__file__).with_name("probe_cpu_cgroup.py"))])
+        snapshot["additional_cpu_status"][key] = probe
+        if probe.get("returncode") != 0:
+            snapshot["alerts"].append(f"CPU cgroup observation for job {key} unavailable")
+            continue
+        try:
+            counters = json.loads(probe["stdout"])
+            probe["counters"] = counters
+            snapshot["alerts"].extend(cpu_memory_alerts(key, counters))
+        except (ValueError, KeyError):
+            snapshot["alerts"].append(f"CPU cgroup observation for job {key} could not be parsed")
     destination = Path(runtime["paths"]["fast"]) / "watcher"
     destination.mkdir(exist_ok=True)
     payload = json.dumps(snapshot, indent=2) + "\n"
