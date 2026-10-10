@@ -1,6 +1,6 @@
 {
   "title": "Readouts: what is established",
-  "updated_utc": "2026-10-10T05:36:36.987195+00:00",
+  "updated_utc": "2026-10-10T05:39:57.341883+00:00",
   "cohort": "development",
   "run_ids": [
     "development-shared-pilot-v2",
@@ -3142,6 +3142,125 @@
             0.19444444444444445
           ],
           "uncertainty": "Grouped 95% interval ['0.0833', '0.1944']; 4 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "best_n_specificity_mean_abstain_nonpositive-n32",
+          "endpoint": "Transcript contradictions / specific readouts (lower is better)",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.5352112676056338,
+          "numerator": 38,
+          "denominator": 71,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.4166666666666667,
+            0.6666666666666666
+          ],
+          "uncertainty": "Grouped 95% interval ['0.4167', '0.6667']; 8 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "best_n_specificity_mean_abstain_nonpositive-n32",
+          "endpoint": "Specific assertion share",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.9861111111111112,
+          "numerator": 71,
+          "denominator": 72,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.9583333333333334,
+            1.0
+          ],
+          "uncertainty": "Grouped 95% interval ['0.9583', '1.0000']; 8 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "best_n_specificity_mean_abstain_nonpositive-n32",
+          "endpoint": "Off-topic / specific readouts",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.09859154929577464,
+          "numerator": 7,
+          "denominator": 71,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.013888888888888888,
+            0.2222222222222222
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0139', '0.2222']; 8 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "best_n_specificity_mean_abstain_nonpositive-n32",
+          "endpoint": "Unverifiable claims per produced output",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 3.388888888888889,
+          "numerator": 244,
+          "denominator": 72,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            2.5,
+            4.125
+          ],
+          "uncertainty": "Grouped 95% interval ['2.5000', '4.1250']; 8 independent groups"
+        },
+        {
+          "family": "multihop_mt",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "best_n_specificity_mean_abstain_nonpositive-n32",
+          "endpoint": "Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.2916666666666667,
+          "numerator": 7,
+          "denominator": 24,
+          "eligible_count": 24,
+          "missing_count": 0,
+          "ci": [
+            0.047619047619047616,
+            0.5185185185185185
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0476', '0.5185']; 7 independent groups"
+        },
+        {
+          "family": "chain_intermediates",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "best_n_specificity_mean_abstain_nonpositive-n32",
+          "endpoint": "Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.047619047619047616,
+          "numerator": 1,
+          "denominator": 21,
+          "eligible_count": 21,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.08333333333333333
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0000', '0.0833']; 2 independent groups"
+        },
+        {
+          "family": "role_bound_association",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "best_n_specificity_mean_abstain_nonpositive-n32",
+          "endpoint": "Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.125,
+          "numerator": 9,
+          "denominator": 72,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.041666666666666664,
+            0.19444444444444445
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0417', '0.1944']; 4 independent groups"
         }
       ],
       "limits": [
@@ -3829,6 +3948,142 @@
             0.08333333333333334
           ],
           "uncertainty": "Whole-group 95% interval ['0.0000', '0.0833']; 4 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "best_n_specificity_mean_abstain_nonpositive-n32 vs capped_n1-n1",
+          "endpoint": "Paired delta: Transcript contradictions / specific readouts (lower is better)",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.11267605633802824,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.2535211267605634,
+            0.036418511066398374
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.2535', '0.0364']; 8 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "multihop_mt",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "best_n_specificity_mean_abstain_nonpositive-n32 vs capped_n1-n1",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.12500000000000003,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            0.04166666666666666,
+            0.23809523809523808
+          ],
+          "uncertainty": "Whole-group 95% interval ['0.0417', '0.2381']; 7 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "chain_intermediates",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "best_n_specificity_mean_abstain_nonpositive-n32 vs capped_n1-n1",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.047619047619047616,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 7,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.08333333333333333
+          ],
+          "uncertainty": "Whole-group 95% interval ['0.0000', '0.0833']; 2 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "role_bound_association",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "best_n_specificity_mean_abstain_nonpositive-n32 vs capped_n1-n1",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.013888888888888895,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.02777777777777779,
+            0.055555555555555566
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.0278', '0.0556']; 4 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "best_n_specificity_mean_abstain_nonpositive-n32 vs best_n_exact-n32",
+          "endpoint": "Paired delta: Transcript contradictions / specific readouts (lower is better)",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.014084507042253613,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.08333333333333337,
+            0.04347826086956519
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.0833', '0.0435']; 8 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "multihop_mt",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "best_n_specificity_mean_abstain_nonpositive-n32 vs best_n_exact-n32",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.0,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "uncertainty": "Whole-group 95% interval ['0.0000', '0.0000']; 7 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "chain_intermediates",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "best_n_specificity_mean_abstain_nonpositive-n32 vs best_n_exact-n32",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.09523809523809523,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 7,
+          "missing_count": 0,
+          "ci": [
+            -0.1111111111111111,
+            -0.08333333333333333
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.1111', '-0.0833']; 2 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "role_bound_association",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "best_n_specificity_mean_abstain_nonpositive-n32 vs best_n_exact-n32",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.0,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.04166666666666666,
+            0.04166666666666667
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.0417', '0.0417']; 4 groups; Tiny group count; intervals cannot establish robustness"
         }
       ]
     },
@@ -5958,13 +6213,1086 @@
             0.0
           ],
           "uncertainty": "Grouped 95% interval ['0.0000', '0.0000']; 4 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compatoff_vetooff-n16",
+          "endpoint": "Transcript contradictions / specific readouts (lower is better)",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.5714285714285714,
+          "numerator": 40,
+          "denominator": 70,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.4057971014492754,
+            0.7285714285714285
+          ],
+          "uncertainty": "Grouped 95% interval ['0.4058', '0.7286']; 8 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compatoff_vetooff-n16",
+          "endpoint": "Specific assertion share",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.9722222222222222,
+          "numerator": 70,
+          "denominator": 72,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.9444444444444444,
+            1.0
+          ],
+          "uncertainty": "Grouped 95% interval ['0.9444', '1.0000']; 8 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compatoff_vetooff-n16",
+          "endpoint": "Off-topic / specific readouts",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.08571428571428572,
+          "numerator": 6,
+          "denominator": 70,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.027777777777777776,
+            0.15492957746478872
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0278', '0.1549']; 8 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compatoff_vetooff-n16",
+          "endpoint": "Unverifiable claims per produced output",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 3.3333333333333335,
+          "numerator": 240,
+          "denominator": 72,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            2.3055555555555554,
+            4.263888888888889
+          ],
+          "uncertainty": "Grouped 95% interval ['2.3056', '4.2639']; 8 independent groups"
+        },
+        {
+          "family": "multihop_mt",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compatoff_vetooff-n16",
+          "endpoint": "Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.16666666666666666,
+          "numerator": 4,
+          "denominator": 24,
+          "eligible_count": 24,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.3333333333333333
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0000', '0.3333']; 7 independent groups"
+        },
+        {
+          "family": "chain_intermediates",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compatoff_vetooff-n16",
+          "endpoint": "Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.0,
+          "numerator": 0,
+          "denominator": 21,
+          "eligible_count": 21,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0000', '0.0000']; 2 independent groups"
+        },
+        {
+          "family": "role_bound_association",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compatoff_vetooff-n16",
+          "endpoint": "Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.08333333333333333,
+          "numerator": 6,
+          "denominator": 72,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.013888888888888888,
+            0.18055555555555555
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0139', '0.1806']; 4 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compatoff_vetoon-n16",
+          "endpoint": "Transcript contradictions / specific readouts (lower is better)",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.5714285714285714,
+          "numerator": 40,
+          "denominator": 70,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.4057971014492754,
+            0.7285714285714285
+          ],
+          "uncertainty": "Grouped 95% interval ['0.4058', '0.7286']; 8 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compatoff_vetoon-n16",
+          "endpoint": "Specific assertion share",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.9722222222222222,
+          "numerator": 70,
+          "denominator": 72,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.9444444444444444,
+            1.0
+          ],
+          "uncertainty": "Grouped 95% interval ['0.9444', '1.0000']; 8 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compatoff_vetoon-n16",
+          "endpoint": "Off-topic / specific readouts",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.08571428571428572,
+          "numerator": 6,
+          "denominator": 70,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.027777777777777776,
+            0.15492957746478872
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0278', '0.1549']; 8 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compatoff_vetoon-n16",
+          "endpoint": "Unverifiable claims per produced output",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 3.375,
+          "numerator": 243,
+          "denominator": 72,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            2.361111111111111,
+            4.277777777777778
+          ],
+          "uncertainty": "Grouped 95% interval ['2.3611', '4.2778']; 8 independent groups"
+        },
+        {
+          "family": "multihop_mt",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compatoff_vetoon-n16",
+          "endpoint": "Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.16666666666666666,
+          "numerator": 4,
+          "denominator": 24,
+          "eligible_count": 24,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.3333333333333333
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0000', '0.3333']; 7 independent groups"
+        },
+        {
+          "family": "chain_intermediates",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compatoff_vetoon-n16",
+          "endpoint": "Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.0,
+          "numerator": 0,
+          "denominator": 21,
+          "eligible_count": 21,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0000', '0.0000']; 2 independent groups"
+        },
+        {
+          "family": "role_bound_association",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compatoff_vetoon-n16",
+          "endpoint": "Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.09722222222222222,
+          "numerator": 7,
+          "denominator": 72,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.05555555555555555,
+            0.18055555555555555
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0556', '0.1806']; 4 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compaton_vetoon-n16",
+          "endpoint": "Transcript contradictions / specific readouts (lower is better)",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.23809523809523808,
+          "numerator": 15,
+          "denominator": 63,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.12857142857142856,
+            0.36764705882352944
+          ],
+          "uncertainty": "Grouped 95% interval ['0.1286', '0.3676']; 8 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compaton_vetoon-n16",
+          "endpoint": "Specific assertion share",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.875,
+          "numerator": 63,
+          "denominator": 72,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.75,
+            1.0
+          ],
+          "uncertainty": "Grouped 95% interval ['0.7500', '1.0000']; 8 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compaton_vetoon-n16",
+          "endpoint": "Off-topic / specific readouts",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.047619047619047616,
+          "numerator": 3,
+          "denominator": 63,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.11764705882352941
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0000', '0.1176']; 8 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compaton_vetoon-n16",
+          "endpoint": "Unverifiable claims per produced output",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.9027777777777778,
+          "numerator": 65,
+          "denominator": 72,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.6111111111111112,
+            1.2083333333333333
+          ],
+          "uncertainty": "Grouped 95% interval ['0.6111', '1.2083']; 8 independent groups"
+        },
+        {
+          "family": "multihop_mt",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compaton_vetoon-n16",
+          "endpoint": "Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.041666666666666664,
+          "numerator": 1,
+          "denominator": 24,
+          "eligible_count": 24,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.14285714285714285
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0000', '0.1429']; 7 independent groups"
+        },
+        {
+          "family": "chain_intermediates",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compaton_vetoon-n16",
+          "endpoint": "Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.047619047619047616,
+          "numerator": 1,
+          "denominator": 21,
+          "eligible_count": 21,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.08333333333333333
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0000', '0.0833']; 2 independent groups"
+        },
+        {
+          "family": "role_bound_association",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compaton_vetoon-n16",
+          "endpoint": "Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.06944444444444445,
+          "numerator": 5,
+          "denominator": 72,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.013888888888888888,
+            0.1388888888888889
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0139', '0.1389']; 4 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0.125_compatoff_vetoon-n16",
+          "endpoint": "Transcript contradictions / specific readouts (lower is better)",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.18518518518518517,
+          "numerator": 5,
+          "denominator": 27,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.058823529411764705,
+            0.35294117647058826
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0588', '0.3529']; 8 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0.125_compatoff_vetoon-n16",
+          "endpoint": "Specific assertion share",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.375,
+          "numerator": 27,
+          "denominator": 72,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.20833333333333334,
+            0.5416666666666666
+          ],
+          "uncertainty": "Grouped 95% interval ['0.2083', '0.5417']; 8 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0.125_compatoff_vetoon-n16",
+          "endpoint": "Off-topic / specific readouts",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.037037037037037035,
+          "numerator": 1,
+          "denominator": 27,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.1111111111111111
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0000', '0.1111']; 8 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0.125_compatoff_vetoon-n16",
+          "endpoint": "Unverifiable claims per produced output",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.3611111111111111,
+          "numerator": 26,
+          "denominator": 72,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.1527777777777778,
+            0.625
+          ],
+          "uncertainty": "Grouped 95% interval ['0.1528', '0.6250']; 8 independent groups"
+        },
+        {
+          "family": "multihop_mt",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0.125_compatoff_vetoon-n16",
+          "endpoint": "Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.0,
+          "numerator": 0,
+          "denominator": 24,
+          "eligible_count": 24,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0000', '0.0000']; 7 independent groups"
+        },
+        {
+          "family": "chain_intermediates",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0.125_compatoff_vetoon-n16",
+          "endpoint": "Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.0,
+          "numerator": 0,
+          "denominator": 21,
+          "eligible_count": 21,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0000', '0.0000']; 2 independent groups"
+        },
+        {
+          "family": "role_bound_association",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0.125_compatoff_vetoon-n16",
+          "endpoint": "Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.013888888888888888,
+          "numerator": 1,
+          "denominator": 72,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.041666666666666664
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0000', '0.0417']; 4 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0.125_compaton_vetoon-n16",
+          "endpoint": "Transcript contradictions / specific readouts (lower is better)",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.18518518518518517,
+          "numerator": 5,
+          "denominator": 27,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.058823529411764705,
+            0.35294117647058826
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0588', '0.3529']; 8 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0.125_compaton_vetoon-n16",
+          "endpoint": "Specific assertion share",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.375,
+          "numerator": 27,
+          "denominator": 72,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.20833333333333334,
+            0.5416666666666666
+          ],
+          "uncertainty": "Grouped 95% interval ['0.2083', '0.5417']; 8 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0.125_compaton_vetoon-n16",
+          "endpoint": "Off-topic / specific readouts",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.037037037037037035,
+          "numerator": 1,
+          "denominator": 27,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.1111111111111111
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0000', '0.1111']; 8 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0.125_compaton_vetoon-n16",
+          "endpoint": "Unverifiable claims per produced output",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.20833333333333334,
+          "numerator": 15,
+          "denominator": 72,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.09722222222222222,
+            0.3194444444444444
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0972', '0.3194']; 8 independent groups"
+        },
+        {
+          "family": "multihop_mt",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0.125_compaton_vetoon-n16",
+          "endpoint": "Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.0,
+          "numerator": 0,
+          "denominator": 24,
+          "eligible_count": 24,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0000', '0.0000']; 7 independent groups"
+        },
+        {
+          "family": "chain_intermediates",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0.125_compaton_vetoon-n16",
+          "endpoint": "Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.047619047619047616,
+          "numerator": 1,
+          "denominator": 21,
+          "eligible_count": 21,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.08333333333333333
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0000', '0.0833']; 2 independent groups"
+        },
+        {
+          "family": "role_bound_association",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0.125_compaton_vetoon-n16",
+          "endpoint": "Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.013888888888888888,
+          "numerator": 1,
+          "denominator": 72,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.041666666666666664
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0000', '0.0417']; 4 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+          "endpoint": "Transcript contradictions / specific readouts (lower is better)",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.6,
+          "numerator": 42,
+          "denominator": 70,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.42028985507246375,
+            0.7638888888888888
+          ],
+          "uncertainty": "Grouped 95% interval ['0.4203', '0.7639']; 8 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+          "endpoint": "Specific assertion share",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.9722222222222222,
+          "numerator": 70,
+          "denominator": 72,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.9444444444444444,
+            1.0
+          ],
+          "uncertainty": "Grouped 95% interval ['0.9444', '1.0000']; 8 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+          "endpoint": "Off-topic / specific readouts",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.07142857142857142,
+          "numerator": 5,
+          "denominator": 70,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.014492753623188406,
+            0.12857142857142856
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0145', '0.1286']; 8 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+          "endpoint": "Unverifiable claims per produced output",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 3.5277777777777777,
+          "numerator": 254,
+          "denominator": 72,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            2.4027777777777777,
+            4.555555555555555
+          ],
+          "uncertainty": "Grouped 95% interval ['2.4028', '4.5556']; 8 independent groups"
+        },
+        {
+          "family": "multihop_mt",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+          "endpoint": "Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.16666666666666666,
+          "numerator": 4,
+          "denominator": 24,
+          "eligible_count": 24,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.3333333333333333
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0000', '0.3333']; 7 independent groups"
+        },
+        {
+          "family": "chain_intermediates",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+          "endpoint": "Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.0,
+          "numerator": 0,
+          "denominator": 21,
+          "eligible_count": 21,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0000', '0.0000']; 2 independent groups"
+        },
+        {
+          "family": "role_bound_association",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+          "endpoint": "Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.1111111111111111,
+          "numerator": 8,
+          "denominator": 72,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.05555555555555555,
+            0.18055555555555555
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0556', '0.1806']; 4 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0_compaton_vetoon-n16",
+          "endpoint": "Transcript contradictions / specific readouts (lower is better)",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.25396825396825395,
+          "numerator": 16,
+          "denominator": 63,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.15254237288135594,
+            0.36923076923076925
+          ],
+          "uncertainty": "Grouped 95% interval ['0.1525', '0.3692']; 8 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0_compaton_vetoon-n16",
+          "endpoint": "Specific assertion share",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.875,
+          "numerator": 63,
+          "denominator": 72,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.75,
+            1.0
+          ],
+          "uncertainty": "Grouped 95% interval ['0.7500', '1.0000']; 8 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0_compaton_vetoon-n16",
+          "endpoint": "Off-topic / specific readouts",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.047619047619047616,
+          "numerator": 3,
+          "denominator": 63,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.11764705882352941
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0000', '0.1176']; 8 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0_compaton_vetoon-n16",
+          "endpoint": "Unverifiable claims per produced output",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.8888888888888888,
+          "numerator": 64,
+          "denominator": 72,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.5694444444444444,
+            1.2361111111111112
+          ],
+          "uncertainty": "Grouped 95% interval ['0.5694', '1.2361']; 8 independent groups"
+        },
+        {
+          "family": "multihop_mt",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0_compaton_vetoon-n16",
+          "endpoint": "Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.041666666666666664,
+          "numerator": 1,
+          "denominator": 24,
+          "eligible_count": 24,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.14285714285714285
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0000', '0.1429']; 7 independent groups"
+        },
+        {
+          "family": "chain_intermediates",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0_compaton_vetoon-n16",
+          "endpoint": "Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.047619047619047616,
+          "numerator": 1,
+          "denominator": 21,
+          "eligible_count": 21,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.08333333333333333
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0000', '0.0833']; 2 independent groups"
+        },
+        {
+          "family": "role_bound_association",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0_compaton_vetoon-n16",
+          "endpoint": "Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.06944444444444445,
+          "numerator": 5,
+          "denominator": 72,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.013888888888888888,
+            0.1388888888888889
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0139', '0.1389']; 4 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0.125_compatoff_vetoon-n16",
+          "endpoint": "Transcript contradictions / specific readouts (lower is better)",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.25,
+          "numerator": 4,
+          "denominator": 16,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.047619047619047616,
+            0.5
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0476', '0.5000']; 8 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0.125_compatoff_vetoon-n16",
+          "endpoint": "Specific assertion share",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.2222222222222222,
+          "numerator": 16,
+          "denominator": 72,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.06944444444444445,
+            0.4027777777777778
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0694', '0.4028']; 8 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0.125_compatoff_vetoon-n16",
+          "endpoint": "Off-topic / specific readouts",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.0,
+          "numerator": 0,
+          "denominator": 16,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0000', '0.0000']; 8 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0.125_compatoff_vetoon-n16",
+          "endpoint": "Unverifiable claims per produced output",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.1388888888888889,
+          "numerator": 10,
+          "denominator": 72,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.027777777777777776,
+            0.3055555555555556
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0278', '0.3056']; 8 independent groups"
+        },
+        {
+          "family": "multihop_mt",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0.125_compatoff_vetoon-n16",
+          "endpoint": "Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.0,
+          "numerator": 0,
+          "denominator": 24,
+          "eligible_count": 24,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0000', '0.0000']; 7 independent groups"
+        },
+        {
+          "family": "chain_intermediates",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0.125_compatoff_vetoon-n16",
+          "endpoint": "Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.047619047619047616,
+          "numerator": 1,
+          "denominator": 21,
+          "eligible_count": 21,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.08333333333333333
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0000', '0.0833']; 2 independent groups"
+        },
+        {
+          "family": "role_bound_association",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0.125_compatoff_vetoon-n16",
+          "endpoint": "Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.0,
+          "numerator": 0,
+          "denominator": 72,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0000', '0.0000']; 4 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16",
+          "endpoint": "Transcript contradictions / specific readouts (lower is better)",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.3125,
+          "numerator": 5,
+          "denominator": 16,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.2,
+            0.5
+          ],
+          "uncertainty": "Grouped 95% interval ['0.2000', '0.5000']; 8 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16",
+          "endpoint": "Specific assertion share",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.2222222222222222,
+          "numerator": 16,
+          "denominator": 72,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.06944444444444445,
+            0.4027777777777778
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0694', '0.4028']; 8 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16",
+          "endpoint": "Off-topic / specific readouts",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.0,
+          "numerator": 0,
+          "denominator": 16,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0000', '0.0000']; 8 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16",
+          "endpoint": "Unverifiable claims per produced output",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.05555555555555555,
+          "numerator": 4,
+          "denominator": 72,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.013888888888888888,
+            0.1111111111111111
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0139', '0.1111']; 8 independent groups"
+        },
+        {
+          "family": "multihop_mt",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16",
+          "endpoint": "Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.0,
+          "numerator": 0,
+          "denominator": 24,
+          "eligible_count": 24,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0000', '0.0000']; 7 independent groups"
+        },
+        {
+          "family": "chain_intermediates",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16",
+          "endpoint": "Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.047619047619047616,
+          "numerator": 1,
+          "denominator": 21,
+          "eligible_count": 21,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.08333333333333333
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0000', '0.0833']; 2 independent groups"
+        },
+        {
+          "family": "role_bound_association",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16",
+          "endpoint": "Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.0,
+          "numerator": 0,
+          "denominator": 72,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0000', '0.0000']; 4 independent groups"
         }
       ],
       "status": "Development measurements; complete conditions only, interpretation provisional",
       "limits": [
         "Partial grids: cell diagnostics, not official item accuracy. Whole related groups are resampled; only 2\u20138 independent groups per family (chain 2, role 4, bridge 7, hallucination 8).",
         "Mention recovery and transcript contradiction do not establish full factual or relational fidelity.",
-        "B v4 is an instrumentation-limited end-to-end diagnostic: 103 paid response-validation failures and 36 exhausted logical calls. Semantic disagreements are separate. Empty abstentions reduce assertion coverage; lower wrong fractions alone do not establish fidelity or consensus futility."
+        "B v4 is an instrumentation-limited end-to-end diagnostic: 103 paid response-validation failures and 36 exhausted logical calls. Semantic disagreements are separate. Empty abstentions reduce assertion coverage; lower wrong fractions alone do not establish fidelity or consensus futility.",
+        "The repaired helper without reasoning completes every requested pair label. This repairs instrumentation, but manual audits still identify unsafe semantic merges; helper agreement is not benchmark truth.",
+        "Medium effort has complete benchmark-output coverage, but only 2,639 of 2,685 requested helper labels are valid: 46 remain unknown across three cells, with 10 schema-invalid physical responses. Unknown labels are never converted automatically into negative votes. Manual audits still identify unsafe semantic merges; helper agreement is not benchmark truth."
       ],
       "next_action": "Compare the complete development grids and review failure cases before freezing the validation shortlist.",
       "paired_metrics": [
@@ -7179,6 +8507,1230 @@
           "family": "role_bound_association",
           "cohort": "Shared pilot: 31 development items / 189 cells",
           "condition": "consensus_semantic_v4_support0.25_compaton-n16 vs best_n_exact-n16",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.1111111111111111,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.18055555555555555,
+            -0.05555555555555555
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.1806', '-0.0556']; 4 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compatoff_vetooff-n16 vs capped_n1-n1",
+          "endpoint": "Paired delta: Transcript contradictions / specific readouts (lower is better)",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.0764587525150906,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.1971830985915493,
+            0.007042253521126751
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.1972', '0.0070']; 8 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "multihop_mt",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compatoff_vetooff-n16 vs capped_n1-n1",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.0,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "uncertainty": "Whole-group 95% interval ['0.0000', '0.0000']; 7 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "chain_intermediates",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compatoff_vetooff-n16 vs capped_n1-n1",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.0,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 7,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "uncertainty": "Whole-group 95% interval ['0.0000', '0.0000']; 2 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "role_bound_association",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compatoff_vetooff-n16 vs capped_n1-n1",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.027777777777777776,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.08333333333333334,
+            0.0
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.0833', '0.0000']; 4 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compatoff_vetooff-n16 vs best_n_exact-n16",
+          "endpoint": "Paired delta: Transcript contradictions / specific readouts (lower is better)",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.008048289738430525,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.11815336463223791,
+            0.13224637681159424
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.1182', '0.1322']; 8 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "multihop_mt",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compatoff_vetooff-n16 vs best_n_exact-n16",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.20833333333333334,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.37037037037037035,
+            -0.047619047619047616
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.3704', '-0.0476']; 7 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "chain_intermediates",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compatoff_vetooff-n16 vs best_n_exact-n16",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.14285714285714285,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 7,
+          "missing_count": 0,
+          "ci": [
+            -0.16666666666666666,
+            -0.1111111111111111
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.1667', '-0.1111']; 2 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "role_bound_association",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compatoff_vetooff-n16 vs best_n_exact-n16",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.027777777777777776,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.05555555555555556,
+            0.0
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.0556', '0.0000']; 4 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compatoff_vetoon-n16 vs capped_n1-n1",
+          "endpoint": "Paired delta: Transcript contradictions / specific readouts (lower is better)",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.0764587525150906,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.1971830985915493,
+            0.007042253521126751
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.1972', '0.0070']; 8 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "multihop_mt",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compatoff_vetoon-n16 vs capped_n1-n1",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.0,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "uncertainty": "Whole-group 95% interval ['0.0000', '0.0000']; 7 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "chain_intermediates",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compatoff_vetoon-n16 vs capped_n1-n1",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.0,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 7,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "uncertainty": "Whole-group 95% interval ['0.0000', '0.0000']; 2 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "role_bound_association",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compatoff_vetoon-n16 vs capped_n1-n1",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.013888888888888881,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.04166666666666667,
+            0.0
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.0417', '0.0000']; 4 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compatoff_vetoon-n16 vs best_n_exact-n16",
+          "endpoint": "Paired delta: Transcript contradictions / specific readouts (lower is better)",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.008048289738430525,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.11815336463223791,
+            0.13224637681159424
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.1182', '0.1322']; 8 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "multihop_mt",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compatoff_vetoon-n16 vs best_n_exact-n16",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.20833333333333334,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.37037037037037035,
+            -0.047619047619047616
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.3704', '-0.0476']; 7 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "chain_intermediates",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compatoff_vetoon-n16 vs best_n_exact-n16",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.14285714285714285,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 7,
+          "missing_count": 0,
+          "ci": [
+            -0.16666666666666666,
+            -0.1111111111111111
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.1667', '-0.1111']; 2 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "role_bound_association",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compatoff_vetoon-n16 vs best_n_exact-n16",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.013888888888888881,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.04166666666666667,
+            0.0
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.0417', '0.0000']; 4 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compaton_vetoon-n16 vs capped_n1-n1",
+          "endpoint": "Paired delta: Transcript contradictions / specific readouts (lower is better)",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.4097920858484239,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.5964676950592445,
+            -0.2453560371517028
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.5965', '-0.2454']; 8 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "multihop_mt",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compaton_vetoon-n16 vs capped_n1-n1",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.125,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.3,
+            0.0
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.3000', '0.0000']; 7 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "chain_intermediates",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compaton_vetoon-n16 vs capped_n1-n1",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.047619047619047616,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 7,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.08333333333333333
+          ],
+          "uncertainty": "Whole-group 95% interval ['0.0000', '0.0833']; 2 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "role_bound_association",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compaton_vetoon-n16 vs capped_n1-n1",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.04166666666666666,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.055555555555555566,
+            -0.013888888888888895
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.0556', '-0.0139']; 4 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compaton_vetoon-n16 vs best_n_exact-n16",
+          "endpoint": "Paired delta: Transcript contradictions / specific readouts (lower is better)",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.3252850435949028,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.4476861167002012,
+            -0.23320158102766803
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.4477', '-0.2332']; 8 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "multihop_mt",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compaton_vetoon-n16 vs best_n_exact-n16",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.3333333333333333,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.6666666666666666,
+            -0.047619047619047616
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.6667', '-0.0476']; 7 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "chain_intermediates",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compaton_vetoon-n16 vs best_n_exact-n16",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.09523809523809523,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 7,
+          "missing_count": 0,
+          "ci": [
+            -0.1111111111111111,
+            -0.08333333333333333
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.1111', '-0.0833']; 2 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "role_bound_association",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0_compaton_vetoon-n16 vs best_n_exact-n16",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.04166666666666666,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.08333333333333334,
+            0.0
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.0833', '0.0000']; 4 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0.125_compatoff_vetoon-n16 vs capped_n1-n1",
+          "endpoint": "Paired delta: Transcript contradictions / specific readouts (lower is better)",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.4627021387584768,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.6816047801963295,
+            -0.2282608695652174
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.6816', '-0.2283']; 8 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "multihop_mt",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0.125_compatoff_vetoon-n16 vs capped_n1-n1",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.16666666666666666,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.3333333333333333,
+            0.0
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.3333', '0.0000']; 7 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "chain_intermediates",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0.125_compatoff_vetoon-n16 vs capped_n1-n1",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.0,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 7,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "uncertainty": "Whole-group 95% interval ['0.0000', '0.0000']; 2 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "role_bound_association",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0.125_compatoff_vetoon-n16 vs capped_n1-n1",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.09722222222222221,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.18055555555555555,
+            -0.05555555555555555
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.1806', '-0.0556']; 4 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0.125_compatoff_vetoon-n16 vs best_n_exact-n16",
+          "endpoint": "Paired delta: Transcript contradictions / specific readouts (lower is better)",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.3781950965049557,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.567951318458418,
+            -0.21230158730158727
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.5680', '-0.2123']; 8 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "multihop_mt",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0.125_compatoff_vetoon-n16 vs best_n_exact-n16",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.375,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.7272727272727273,
+            -0.047619047619047616
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.7273', '-0.0476']; 7 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "chain_intermediates",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0.125_compatoff_vetoon-n16 vs best_n_exact-n16",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.14285714285714285,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 7,
+          "missing_count": 0,
+          "ci": [
+            -0.16666666666666666,
+            -0.1111111111111111
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.1667', '-0.1111']; 2 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "role_bound_association",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0.125_compatoff_vetoon-n16 vs best_n_exact-n16",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.09722222222222221,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.18055555555555555,
+            -0.027777777777777776
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.1806', '-0.0278']; 4 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0.125_compaton_vetoon-n16 vs capped_n1-n1",
+          "endpoint": "Paired delta: Transcript contradictions / specific readouts (lower is better)",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.4627021387584768,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.6816047801963295,
+            -0.2282608695652174
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.6816', '-0.2283']; 8 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "multihop_mt",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0.125_compaton_vetoon-n16 vs capped_n1-n1",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.16666666666666666,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.3333333333333333,
+            0.0
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.3333', '0.0000']; 7 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "chain_intermediates",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0.125_compaton_vetoon-n16 vs capped_n1-n1",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.047619047619047616,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 7,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.08333333333333333
+          ],
+          "uncertainty": "Whole-group 95% interval ['0.0000', '0.0833']; 2 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "role_bound_association",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0.125_compaton_vetoon-n16 vs capped_n1-n1",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.09722222222222221,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.18055555555555555,
+            -0.05555555555555555
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.1806', '-0.0556']; 4 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0.125_compaton_vetoon-n16 vs best_n_exact-n16",
+          "endpoint": "Paired delta: Transcript contradictions / specific readouts (lower is better)",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.3781950965049557,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.567951318458418,
+            -0.21230158730158727
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.5680', '-0.2123']; 8 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "multihop_mt",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0.125_compaton_vetoon-n16 vs best_n_exact-n16",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.375,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.7272727272727273,
+            -0.047619047619047616
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.7273', '-0.0476']; 7 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "chain_intermediates",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0.125_compaton_vetoon-n16 vs best_n_exact-n16",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.09523809523809523,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 7,
+          "missing_count": 0,
+          "ci": [
+            -0.1111111111111111,
+            -0.08333333333333333
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.1111', '-0.0833']; 2 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "role_bound_association",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_support0.125_compaton_vetoon-n16 vs best_n_exact-n16",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.09722222222222221,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.18055555555555555,
+            -0.027777777777777776
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.1806', '-0.0278']; 4 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16 vs capped_n1-n1",
+          "endpoint": "Paired delta: Transcript contradictions / specific readouts (lower is better)",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.04788732394366202,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.11267605633802813,
+            0.00764587525150906
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.1127', '0.0076']; 8 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "multihop_mt",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16 vs capped_n1-n1",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.0,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "uncertainty": "Whole-group 95% interval ['0.0000', '0.0000']; 7 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "chain_intermediates",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16 vs capped_n1-n1",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.0,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 7,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "uncertainty": "Whole-group 95% interval ['0.0000', '0.0000']; 2 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "role_bound_association",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16 vs capped_n1-n1",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.0,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "uncertainty": "Whole-group 95% interval ['0.0000', '0.0000']; 4 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16 vs best_n_exact-n16",
+          "endpoint": "Paired delta: Transcript contradictions / specific readouts (lower is better)",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.036619718309859106,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.07042253521126762,
+            0.13707729468599034
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.0704', '0.1371']; 8 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "multihop_mt",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16 vs best_n_exact-n16",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.20833333333333334,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.37037037037037035,
+            -0.047619047619047616
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.3704', '-0.0476']; 7 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "chain_intermediates",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16 vs best_n_exact-n16",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.14285714285714285,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 7,
+          "missing_count": 0,
+          "ci": [
+            -0.16666666666666666,
+            -0.1111111111111111
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.1667', '-0.1111']; 2 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "role_bound_association",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16 vs best_n_exact-n16",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.0,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.04166666666666667,
+            0.04166666666666667
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.0417', '0.0417']; 4 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0_compaton_vetoon-n16 vs capped_n1-n1",
+          "endpoint": "Paired delta: Transcript contradictions / specific readouts (lower is better)",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.39391906997540804,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.5857843137254901,
+            -0.2280233122875182
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.5858', '-0.2280']; 8 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "multihop_mt",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0_compaton_vetoon-n16 vs capped_n1-n1",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.125,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.3,
+            0.0
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.3000', '0.0000']; 7 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "chain_intermediates",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0_compaton_vetoon-n16 vs capped_n1-n1",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.047619047619047616,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 7,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.08333333333333333
+          ],
+          "uncertainty": "Whole-group 95% interval ['0.0000', '0.0833']; 2 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "role_bound_association",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0_compaton_vetoon-n16 vs capped_n1-n1",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.04166666666666666,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.08333333333333334,
+            0.0
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.0833', '0.0000']; 4 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0_compaton_vetoon-n16 vs best_n_exact-n16",
+          "endpoint": "Paired delta: Transcript contradictions / specific readouts (lower is better)",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.3094120277218869,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.42803030303030304,
+            -0.20833333333333331
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.4280', '-0.2083']; 8 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "multihop_mt",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0_compaton_vetoon-n16 vs best_n_exact-n16",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.3333333333333333,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.6666666666666666,
+            -0.047619047619047616
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.6667', '-0.0476']; 7 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "chain_intermediates",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0_compaton_vetoon-n16 vs best_n_exact-n16",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.09523809523809523,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 7,
+          "missing_count": 0,
+          "ci": [
+            -0.1111111111111111,
+            -0.08333333333333333
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.1111', '-0.0833']; 2 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "role_bound_association",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0_compaton_vetoon-n16 vs best_n_exact-n16",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.04166666666666666,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.055555555555555566,
+            -0.013888888888888895
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.0556', '-0.0139']; 4 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0.125_compatoff_vetoon-n16 vs capped_n1-n1",
+          "endpoint": "Paired delta: Transcript contradictions / specific readouts (lower is better)",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.397887323943662,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.6833333333333333,
+            -0.10485133020344295
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.6833', '-0.1049']; 8 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "multihop_mt",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0.125_compatoff_vetoon-n16 vs capped_n1-n1",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.16666666666666666,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.3333333333333333,
+            0.0
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.3333', '0.0000']; 7 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "chain_intermediates",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0.125_compatoff_vetoon-n16 vs capped_n1-n1",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.047619047619047616,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 7,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.08333333333333333
+          ],
+          "uncertainty": "Whole-group 95% interval ['0.0000', '0.0833']; 2 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "role_bound_association",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0.125_compatoff_vetoon-n16 vs capped_n1-n1",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.1111111111111111,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.18055555555555555,
+            -0.05555555555555555
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.1806', '-0.0556']; 4 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0.125_compatoff_vetoon-n16 vs best_n_exact-n16",
+          "endpoint": "Paired delta: Transcript contradictions / specific readouts (lower is better)",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.31338028169014087,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.6,
+            -0.03888888888888892
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.6000', '-0.0389']; 8 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "multihop_mt",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0.125_compatoff_vetoon-n16 vs best_n_exact-n16",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.375,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.7272727272727273,
+            -0.047619047619047616
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.7273', '-0.0476']; 7 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "chain_intermediates",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0.125_compatoff_vetoon-n16 vs best_n_exact-n16",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.09523809523809523,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 7,
+          "missing_count": 0,
+          "ci": [
+            -0.1111111111111111,
+            -0.08333333333333333
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.1111', '-0.0833']; 2 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "role_bound_association",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0.125_compatoff_vetoon-n16 vs best_n_exact-n16",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.1111111111111111,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.18055555555555555,
+            -0.05555555555555555
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.1806', '-0.0556']; 4 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16 vs capped_n1-n1",
+          "endpoint": "Paired delta: Transcript contradictions / specific readouts (lower is better)",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.335387323943662,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.5531045751633987,
+            -0.10485133020344295
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.5531', '-0.1049']; 8 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "multihop_mt",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16 vs capped_n1-n1",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.16666666666666666,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.3333333333333333,
+            0.0
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.3333', '0.0000']; 7 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "chain_intermediates",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16 vs capped_n1-n1",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.047619047619047616,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 7,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.08333333333333333
+          ],
+          "uncertainty": "Whole-group 95% interval ['0.0000', '0.0833']; 2 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "role_bound_association",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16 vs capped_n1-n1",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.1111111111111111,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.18055555555555555,
+            -0.05555555555555555
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.1806', '-0.0556']; 4 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16 vs best_n_exact-n16",
+          "endpoint": "Paired delta: Transcript contradictions / specific readouts (lower is better)",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.25088028169014087,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.45833333333333337,
+            -0.035211267605633756
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.4583', '-0.0352']; 8 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "multihop_mt",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16 vs best_n_exact-n16",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.375,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.7272727272727273,
+            -0.047619047619047616
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.7273', '-0.0476']; 7 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "chain_intermediates",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16 vs best_n_exact-n16",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.09523809523809523,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 7,
+          "missing_count": 0,
+          "ci": [
+            -0.1111111111111111,
+            -0.08333333333333333
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.1111', '-0.0833']; 2 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "role_bound_association",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16 vs best_n_exact-n16",
           "endpoint": "Paired delta: Cell mention/binding recovery",
           "scope": "partial_grid_cell_diagnostic",
           "value": -0.1111111111111111,
@@ -9631,17 +12183,371 @@
             0.18055555555555555
           ],
           "uncertainty": "Grouped 95% interval ['0.0556', '0.1806']; 4 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean-n32",
+          "endpoint": "Transcript contradictions / specific readouts (lower is better)",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.5797101449275363,
+          "numerator": 40,
+          "denominator": 69,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.4,
+            0.7361111111111112
+          ],
+          "uncertainty": "Grouped 95% interval ['0.4000', '0.7361']; 8 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean-n32",
+          "endpoint": "Specific assertion share",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.9583333333333334,
+          "numerator": 69,
+          "denominator": 72,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.9027777777777778,
+            1.0
+          ],
+          "uncertainty": "Grouped 95% interval ['0.9028', '1.0000']; 8 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean-n32",
+          "endpoint": "Off-topic / specific readouts",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.08695652173913043,
+          "numerator": 6,
+          "denominator": 69,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.013888888888888888,
+            0.18571428571428572
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0139', '0.1857']; 8 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean-n32",
+          "endpoint": "Unverifiable claims per produced output",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 3.5416666666666665,
+          "numerator": 255,
+          "denominator": 72,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            2.736111111111111,
+            4.402777777777778
+          ],
+          "uncertainty": "Grouped 95% interval ['2.7361', '4.4028']; 8 independent groups"
+        },
+        {
+          "family": "multihop_mt",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean-n32",
+          "endpoint": "Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.375,
+          "numerator": 9,
+          "denominator": 24,
+          "eligible_count": 24,
+          "missing_count": 0,
+          "ci": [
+            0.047619047619047616,
+            0.7037037037037037
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0476', '0.7037']; 7 independent groups"
+        },
+        {
+          "family": "chain_intermediates",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean-n32",
+          "endpoint": "Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.047619047619047616,
+          "numerator": 1,
+          "denominator": 21,
+          "eligible_count": 21,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.08333333333333333
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0000', '0.0833']; 2 independent groups"
+        },
+        {
+          "family": "role_bound_association",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean-n32",
+          "endpoint": "Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.09722222222222222,
+          "numerator": 7,
+          "denominator": 72,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.05555555555555555,
+            0.18055555555555555
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0556', '0.1806']; 4 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean_then_prune_0.005-n32",
+          "endpoint": "Transcript contradictions / specific readouts (lower is better)",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.5492957746478874,
+          "numerator": 39,
+          "denominator": 71,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.34782608695652173,
+            0.7361111111111112
+          ],
+          "uncertainty": "Grouped 95% interval ['0.3478', '0.7361']; 8 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean_then_prune_0.005-n32",
+          "endpoint": "Specific assertion share",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.9861111111111112,
+          "numerator": 71,
+          "denominator": 72,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.9583333333333334,
+            1.0
+          ],
+          "uncertainty": "Grouped 95% interval ['0.9583', '1.0000']; 8 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean_then_prune_0.005-n32",
+          "endpoint": "Off-topic / specific readouts",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.07042253521126761,
+          "numerator": 5,
+          "denominator": 71,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.013888888888888888,
+            0.15492957746478872
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0139', '0.1549']; 8 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean_then_prune_0.005-n32",
+          "endpoint": "Unverifiable claims per produced output",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 3.1805555555555554,
+          "numerator": 229,
+          "denominator": 72,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            2.486111111111111,
+            3.8055555555555554
+          ],
+          "uncertainty": "Grouped 95% interval ['2.4861', '3.8056']; 8 independent groups"
+        },
+        {
+          "family": "multihop_mt",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean_then_prune_0.005-n32",
+          "endpoint": "Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.25,
+          "numerator": 6,
+          "denominator": 24,
+          "eligible_count": 24,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.48484848484848486
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0000', '0.4848']; 7 independent groups"
+        },
+        {
+          "family": "chain_intermediates",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean_then_prune_0.005-n32",
+          "endpoint": "Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.0,
+          "numerator": 0,
+          "denominator": 21,
+          "eligible_count": 21,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0000', '0.0000']; 2 independent groups"
+        },
+        {
+          "family": "role_bound_association",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean_then_prune_0.005-n32",
+          "endpoint": "Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.16666666666666666,
+          "numerator": 12,
+          "denominator": 72,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.1111111111111111,
+            0.2361111111111111
+          ],
+          "uncertainty": "Grouped 95% interval ['0.1111', '0.2361']; 4 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean_random_delete_matched_0.005-n32",
+          "endpoint": "Transcript contradictions / specific readouts (lower is better)",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.5352112676056338,
+          "numerator": 38,
+          "denominator": 71,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.35714285714285715,
+            0.6666666666666666
+          ],
+          "uncertainty": "Grouped 95% interval ['0.3571', '0.6667']; 8 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean_random_delete_matched_0.005-n32",
+          "endpoint": "Specific assertion share",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.9861111111111112,
+          "numerator": 71,
+          "denominator": 72,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.9583333333333334,
+            1.0
+          ],
+          "uncertainty": "Grouped 95% interval ['0.9583', '1.0000']; 8 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean_random_delete_matched_0.005-n32",
+          "endpoint": "Off-topic / specific readouts",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.09859154929577464,
+          "numerator": 7,
+          "denominator": 71,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.027777777777777776,
+            0.18309859154929578
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0278', '0.1831']; 8 independent groups"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean_random_delete_matched_0.005-n32",
+          "endpoint": "Unverifiable claims per produced output",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 2.9583333333333335,
+          "numerator": 213,
+          "denominator": 72,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            2.3194444444444446,
+            3.638888888888889
+          ],
+          "uncertainty": "Grouped 95% interval ['2.3194', '3.6389']; 8 independent groups"
+        },
+        {
+          "family": "multihop_mt",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean_random_delete_matched_0.005-n32",
+          "endpoint": "Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.3333333333333333,
+          "numerator": 8,
+          "denominator": 24,
+          "eligible_count": 24,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.6666666666666666
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0000', '0.6667']; 7 independent groups"
+        },
+        {
+          "family": "chain_intermediates",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean_random_delete_matched_0.005-n32",
+          "endpoint": "Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.047619047619047616,
+          "numerator": 1,
+          "denominator": 21,
+          "eligible_count": 21,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.08333333333333333
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0000', '0.0833']; 2 independent groups"
+        },
+        {
+          "family": "role_bound_association",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean_random_delete_matched_0.005-n32",
+          "endpoint": "Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.1388888888888889,
+          "numerator": 10,
+          "denominator": 72,
+          "eligible_count": 72,
+          "missing_count": 0,
+          "ci": [
+            0.05555555555555555,
+            0.2222222222222222
+          ],
+          "uncertainty": "Grouped 95% interval ['0.0556', '0.2222']; 4 independent groups"
         }
       ],
       "status": "Development measurements; complete conditions only, interpretation provisional",
       "limits": [
         "Partial grids: cell diagnostics, not official item accuracy. Whole related groups are resampled; only 2\u20138 independent groups per family (chain 2, role 4, bridge 7, hallucination 8).",
-        "Mention recovery and transcript contradiction do not establish full factual or relational fidelity.",
-        "Thresholds, exact-support weights, source pools, and output caps were frozen. Original parent reports remain authoritative; repeated parent judging is an audit rather than a replacement.",
-        "Compare pruning with unchanged parents and matched-count random deletion. Lower contradiction fractions alone can reflect shorter or less assertive outputs.",
-        "The two displayed examples are curated source-checked failure audits, not estimates of how often those failures occur."
+        "Mention recovery and transcript contradiction do not establish full factual or relational fidelity."
       ],
-      "next_action": "Complete the frozen full DEV contrastive-selection plus pruning comparison; do not expand the exact-repeat arm on current evidence.",
+      "next_action": "Compare the complete development grids and review failure cases before freezing the validation shortlist.",
       "paired_metrics": [
         {
           "family": "hallucination",
@@ -11818,6 +14724,414 @@
             0.04166666666666667
           ],
           "uncertainty": "Whole-group 95% interval ['-0.0417', '0.0417']; 4 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean-n32 vs capped_n1-n1",
+          "endpoint": "Paired delta: Transcript contradictions / specific readouts (lower is better)",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.06817717901612574,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.1527777777777778,
+            0.0195501366407399
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.1528', '0.0196']; 8 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "multihop_mt",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean-n32 vs capped_n1-n1",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.20833333333333334,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            0.047619047619047616,
+            0.36666666666666664
+          ],
+          "uncertainty": "Whole-group 95% interval ['0.0476', '0.3667']; 7 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "chain_intermediates",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean-n32 vs capped_n1-n1",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.047619047619047616,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 7,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.08333333333333333
+          ],
+          "uncertainty": "Whole-group 95% interval ['0.0000', '0.0833']; 2 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "role_bound_association",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean-n32 vs capped_n1-n1",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.013888888888888881,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.04166666666666667,
+            0.0
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.0417', '0.0000']; 4 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean-n32 vs best_n_exact-n32",
+          "endpoint": "Paired delta: Transcript contradictions / specific readouts (lower is better)",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.030414370279648884,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.040546308151941934,
+            0.09722222222222221
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.0405', '0.0972']; 8 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "multihop_mt",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean-n32 vs best_n_exact-n32",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.08333333333333331,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.19999999999999996
+          ],
+          "uncertainty": "Whole-group 95% interval ['0.0000', '0.2000']; 7 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "chain_intermediates",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean-n32 vs best_n_exact-n32",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.09523809523809523,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 7,
+          "missing_count": 0,
+          "ci": [
+            -0.1111111111111111,
+            -0.08333333333333333
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.1111', '-0.0833']; 2 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "role_bound_association",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean-n32 vs best_n_exact-n32",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.027777777777777776,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.055555555555555566,
+            0.027777777777777776
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.0556', '0.0278']; 4 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean_then_prune_0.005-n32 vs capped_n1-n1",
+          "endpoint": "Paired delta: Transcript contradictions / specific readouts (lower is better)",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.09859154929577463,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.18055555555555547,
+            -0.014084507042253502
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.1806', '-0.0141']; 8 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "multihop_mt",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean_then_prune_0.005-n32 vs capped_n1-n1",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.08333333333333334,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.16666666666666669
+          ],
+          "uncertainty": "Whole-group 95% interval ['0.0000', '0.1667']; 7 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "chain_intermediates",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean_then_prune_0.005-n32 vs capped_n1-n1",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.0,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 7,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "uncertainty": "Whole-group 95% interval ['0.0000', '0.0000']; 2 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "role_bound_association",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean_then_prune_0.005-n32 vs capped_n1-n1",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.05555555555555555,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            0.05555555555555555,
+            0.055555555555555566
+          ],
+          "uncertainty": "Whole-group 95% interval ['0.0556', '0.0556']; 4 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean_then_prune_0.005-n32 vs best_n_exact-n32",
+          "endpoint": "Paired delta: Transcript contradictions / specific readouts (lower is better)",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.0,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.11492141253317001,
+            0.1161971830985915
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.1149', '0.1162']; 8 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "multihop_mt",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean_then_prune_0.005-n32 vs best_n_exact-n32",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.041666666666666685,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.14285714285714285,
+            0.0
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.1429', '0.0000']; 7 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "chain_intermediates",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean_then_prune_0.005-n32 vs best_n_exact-n32",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.14285714285714285,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 7,
+          "missing_count": 0,
+          "ci": [
+            -0.16666666666666666,
+            -0.1111111111111111
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.1667', '-0.1111']; 2 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "role_bound_association",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean_then_prune_0.005-n32 vs best_n_exact-n32",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.04166666666666666,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.08333333333333334
+          ],
+          "uncertainty": "Whole-group 95% interval ['0.0000', '0.0833']; 4 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean_random_delete_matched_0.005-n32 vs capped_n1-n1",
+          "endpoint": "Paired delta: Transcript contradictions / specific readouts (lower is better)",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.11267605633802824,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.2535211267605634,
+            0.014084507042253502
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.2535', '0.0141']; 8 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "multihop_mt",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean_random_delete_matched_0.005-n32 vs capped_n1-n1",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.16666666666666666,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.3333333333333333
+          ],
+          "uncertainty": "Whole-group 95% interval ['0.0000', '0.3333']; 7 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "chain_intermediates",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean_random_delete_matched_0.005-n32 vs capped_n1-n1",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.047619047619047616,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 7,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.08333333333333333
+          ],
+          "uncertainty": "Whole-group 95% interval ['0.0000', '0.0833']; 2 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "role_bound_association",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean_random_delete_matched_0.005-n32 vs capped_n1-n1",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.02777777777777779,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            0.0,
+            0.05555555555555555
+          ],
+          "uncertainty": "Whole-group 95% interval ['0.0000', '0.0556']; 4 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "hallucination",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean_random_delete_matched_0.005-n32 vs best_n_exact-n32",
+          "endpoint": "Paired delta: Transcript contradictions / specific readouts (lower is better)",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.014084507042253613,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.12258454106280187,
+            0.09523809523809523
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.1226', '0.0952']; 8 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "multihop_mt",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean_random_delete_matched_0.005-n32 vs best_n_exact-n32",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.04166666666666663,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.14285714285714285,
+            0.19999999999999996
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.1429', '0.2000']; 7 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "chain_intermediates",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean_random_delete_matched_0.005-n32 vs best_n_exact-n32",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": -0.09523809523809523,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 7,
+          "missing_count": 0,
+          "ci": [
+            -0.1111111111111111,
+            -0.08333333333333333
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.1111', '-0.0833']; 2 groups; Tiny group count; intervals cannot establish robustness"
+        },
+        {
+          "family": "role_bound_association",
+          "cohort": "Shared pilot: 31 development items / 189 cells",
+          "condition": "pooled_specificity_mean_random_delete_matched_0.005-n32 vs best_n_exact-n32",
+          "endpoint": "Paired delta: Cell mention/binding recovery",
+          "scope": "partial_grid_cell_diagnostic",
+          "value": 0.013888888888888895,
+          "numerator": null,
+          "denominator": null,
+          "eligible_count": 8,
+          "missing_count": 0,
+          "ci": [
+            -0.02777777777777779,
+            0.05555555555555555
+          ],
+          "uncertainty": "Whole-group 95% interval ['-0.0278', '0.0556']; 4 groups; Tiny group count; intervals cannot establish robustness"
         }
       ],
       "hypothesis": "Does combining a frozen selector with bullet removal or exact repeat support improve the same-cell quality endpoints at the same sampling budget?",
@@ -12714,7 +16028,7 @@
     }
   },
   "candidate_diagnostic": {
-    "title": "Does reconstruction rank the available answers?",
+    "title": "Does reconstruction rank the available matches?",
     "scope": "Evaluation-only diagnostic on the 189-cell partial-grid DEV pilot",
     "families": {
       "chain_intermediates": {

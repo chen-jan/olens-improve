@@ -78,7 +78,7 @@ def display_label(identifier, kind=None):
     elif method.startswith("prune_loo_a32_"):
         label = "Remove low-contribution bullets (threshold " + method.rsplit("_", 1)[-1] + ")"
     elif method.startswith("consensus_"):
-        label = method.replace("consensus_exact", "Exact consensus").replace("consensus_semantic_v4", "Semantic consensus, instrumentation-limited").replace("_", " ").replace("compatoff", "compatibility off").replace("compaton", "compatibility on")
+        label = method.replace("consensus_exact", "Exact consensus").replace("consensus_semantic_v5_medium", "Repaired semantic consensus, medium effort").replace("consensus_semantic_v5", "Repaired semantic consensus, no reasoning").replace("consensus_semantic_v4", "Semantic consensus, instrumentation-limited").replace("_", " ").replace("compatoff", "compatibility off").replace("compaton", "compatibility on").replace('vetoon','contradiction veto on').replace('vetooff','contradiction veto off')
     else:
         label = labels.get(method, method.replace("_", " "))
     return label + (f" from {n} samples" if n and method not in ("raw_n1", "capped_n1") else "")
@@ -212,6 +212,15 @@ def combination_tables(rows):
     return ''.join('<details><summary>'+escape(label)+'</summary>'+metrics_table(items)+'</details>' for label,items in groups.items()) if groups else metrics_table([])
 
 
+def consensus_tables(rows):
+    primary={'consensus_exact_support0-n16',
+             'consensus_semantic_v5_support0_compatoff_vetoon-n16',
+             'consensus_semantic_v5_medium_support0_compatoff_vetoon-n16'}
+    selected=[row for row in rows if row.get('condition') in primary and
+              row.get('endpoint') in ('Cell mention/binding recovery', 'Transcript contradictions / specific readouts (lower is better)', 'Specific assertion share')]
+    return paragraphs(['Key controls: exact support alone, repaired semantic consensus without reasoning, and repaired semantic consensus with medium effort. Lower contradiction fractions require assertion coverage and recovery alongside them.'])+metrics_table(selected)+'<details><summary>All consensus variants, off-topic output, and claim counts</summary>'+metrics_table(rows)+'</details>'
+
+
 def scaling_chart(rows):
     if not rows:
         return '<p class="missing">Quality versus sample count is not measured yet.</p>'
@@ -331,7 +340,9 @@ def build(report):
         panel += paragraphs(method.get("findings", []))
         if key=='sample_selection':
             panel += candidate_diagnostic_section(report.get('candidate_diagnostic'))
-        panel += "<h3>Comparisons and coverage</h3>" + (combination_tables(method.get('metrics',[])) if key=='combinations' else metrics_table(method.get("metrics", [])))
+        rows=method.get('metrics',[])
+        shown=combination_tables(rows) if key=='combinations' else consensus_tables(rows) if key=='consensus' else metrics_table(rows)
+        panel += "<h3>Comparisons and coverage</h3>" + shown
         if method.get("paired_metrics"):
             panel += '<details><summary>Paired differences with whole-group uncertainty</summary>' + metrics_table(method["paired_metrics"]) + "</details>"
         panel += "<h3>Quality versus sampling budget</h3>" + scaling_chart(method.get("scaling", []))

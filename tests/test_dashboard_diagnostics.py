@@ -12,6 +12,7 @@ def module(name, filename):
 
 append=module('append_diagnostics','append_diagnostic_dashboard.py')
 dashboard=module('dashboard','build_dashboard.py')
+populate=module('populate','populate_dashboard.py')
 
 
 class DiagnosticTests(unittest.TestCase):
@@ -52,6 +53,28 @@ class DiagnosticTests(unittest.TestCase):
         self.assertIn('class="whisker"',rendered)
         self.assertIn('&lt;script&gt;bad',rendered)
         self.assertNotIn('<script>bad',rendered)
+
+    def test_consensus_default_keeps_coverage_and_collapses_all_variants(self):
+        rows=[{'condition':'consensus_semantic_v5_support0_compatoff_vetoon-n16',
+               'endpoint':'Specific assertion share','value':.5},
+              {'condition':'consensus_semantic_v4_support0.25_compaton-n16',
+               'endpoint':'Specific assertion share','value':.1}]
+        rendered=dashboard.consensus_tables(rows)
+        self.assertEqual(rendered.count('50.0%'),2)
+        self.assertEqual(rendered.count('10.0%'),1)
+        self.assertIn('<summary>All consensus variants',rendered)
+        self.assertEqual(populate.method_tab('pooled_specificity_mean'),'combinations')
+
+    def test_medium_helper_unknowns_are_distinct_from_judgment_coverage(self):
+        report={'provenance':{'cohort_manifest_sha256':'cohort'},'methods':{}}
+        arm={'method':'consensus_semantic_v5_medium_support0_compatoff_vetoon','n':16,
+             'measurement_complete':True,'families':{}}
+        measurements={'manifest_sha256':'cohort','conditions':[arm],
+                      'paired_comparisons':[],'caveats':[]}
+        result=populate.populate(report,measurements)
+        limits=' '.join(result['methods']['consensus']['limits'])
+        self.assertIn('46 remain unknown',limits)
+        self.assertNotIn('completes every requested pair label',limits)
 
 
 if __name__=='__main__':unittest.main()

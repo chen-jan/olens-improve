@@ -10,7 +10,7 @@ LABELS={'contradiction_rate':'Transcript contradictions / specific readouts (low
 GRID_LABELS={'original_grid_item_pass_rate':'Original-grid DEV item recovery (ANY passing site/layer)','original_grid_contradiction_rate':'Original-grid DEV contradictions / specific readouts'}
 
 def method_tab(name):
-    if any(part in name for part in ('_then_prune_', '_random_delete_matched_', 'pooling_exact_support_', 'exact_support_only')): return 'combinations'
+    if name.startswith('pooled_specificity_') or any(part in name for part in ('_then_prune_', '_random_delete_matched_', 'pooling_exact_support_', 'exact_support_only')): return 'combinations'
     if name.startswith(('prune_', 'loo_')): return 'pruning'
     if name.startswith(('pooled_', 'greedy_')): return 'pooling'
     if any(part in name.lower() for part in ('likelihood', 'log_likelihood', 'control_ll', 'own_ll', 'e3_', 'specificity')): return 'contrastive_checks'
@@ -38,6 +38,10 @@ def populate(report, measurements):
         method=method_tab(name)
         if name.startswith('consensus_'):
             report['methods'][method]['limits']=list(dict.fromkeys(report['methods'][method]['limits']+['B v4 is an instrumentation-limited end-to-end diagnostic: 103 paid response-validation failures and 36 exhausted logical calls. Semantic disagreements are separate. Empty abstentions reduce assertion coverage; lower wrong fractions alone do not establish fidelity or consensus futility.']))
+        if name.startswith('consensus_semantic_v5_medium_'):
+            report['methods'][method]['limits']=list(dict.fromkeys(report['methods'][method]['limits']+['Medium effort has complete benchmark-output coverage, but only 2,639 of 2,685 requested helper labels are valid: 46 remain unknown across three cells, with 10 schema-invalid physical responses. Unknown labels are never converted automatically into negative votes. Manual audits still identify unsafe semantic merges; helper agreement is not benchmark truth.']))
+        elif name.startswith('consensus_semantic_v5_'):
+            report['methods'][method]['limits']=list(dict.fromkeys(report['methods'][method]['limits']+['The repaired helper without reasoning completes every requested pair label. This repairs instrumentation, but manual audits still identify unsafe semantic merges; helper agreement is not benchmark truth.']))
         report['methods'][method]['status']='Development measurements; complete conditions only, interpretation provisional' if arm['measurement_complete'] else 'Measurements pending repair'
         for family,status in arm['families'].items():
             for endpoint,m in status['metrics'].items():
@@ -55,6 +59,10 @@ def populate(report, measurements):
         name=row['condition'].rsplit('-n',1)[0]
         n=row['condition'].rsplit('-n',1)[1]
         allowed={'capped_n1-n1',f'best_n_exact-n{n}'}
+        if name.startswith('consensus_'):
+            allowed.add('consensus_exact_support0-n16')
+        if name.startswith('consensus_semantic_v5_medium_'):
+            allowed.add(name.replace('consensus_semantic_v5_medium_','consensus_semantic_v5_')+f'-n{n}')
         for separator in ('_then_prune_','_random_delete_matched_'):
             if separator in name:allowed.add(name.split(separator,1)[0]+f'-n{n}')
         if name.startswith('pooling_exact_support_') or name=='exact_support_only':allowed.update({'pooling_exact_support_lambda0-n16','pooled_greedy_swap-n16'})

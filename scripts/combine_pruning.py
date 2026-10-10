@@ -29,24 +29,31 @@ def parse_args(argv=None):
         parser.add_argument('--' + field, type=Path, required=True)
     parser.add_argument('--edits', type=Path)
     parser.add_argument('--editing-cache', type=Path)
+    parser.add_argument('--parent-method', action='append', choices=['pooled_greedy_swap','best_n_specificity_mean','editing_round2'],
+                        help='Restrict parents; omitted preserves the original D/E1/F behavior')
     parser.add_argument('--runtime', type=Path, default=Path('configs/runtime.json'))
     args=parser.parse_args(argv)
     if (args.edits is None)!=(args.editing_cache is None):
         parser.error('--edits and --editing-cache must be supplied together')
+    if args.parent_method and (len(set(args.parent_method))!=len(args.parent_method) or
+                              ('editing_round2' in args.parent_method and args.edits is None)):
+        parser.error('Parent methods must be unique and editing requires both editing inputs')
     return args
 
 def parent_methods(with_edits):
     methods=['pooled_greedy_swap','best_n_specificity_mean']
     return methods+['editing_round2'] if with_edits else methods
 
-def parent_records(selector_row,edit_row=None):
+def parent_records(selector_row,edit_row=None,methods=None):
+    methods=parent_methods(edit_row is not None) if methods is None else methods
     parents=[]
-    for method in parent_methods(False):
+    for method in [method for method in methods if method!='editing_round2']:
         matched=[s for s in selector_row['selections'] if s['method']==method and s['n']==32]
         if len(matched)!=1:raise ValueError('Missing or duplicate parent method')
         parent=matched[0]
         parents.append((method,parent['text'],parent['atoms'],parent['fits']['exact']['fve']))
-    if edit_row is not None:
+    if 'editing_round2' in methods:
+        if edit_row is None:raise ValueError('Editing parent requires editing history')
         parent=edit_row['best']
         parents.append(('editing_round2',parent['text'],parent['atom_metadata'],parent['exact_fve']))
     return parents
@@ -81,7 +88,7 @@ def main():
     spec = {'selector_sha256': selector_sha, **optional_edit_provenance(edit_sha),
             'manifest_sha256': hashlib.sha256(manifest_bytes).hexdigest(),
             'fresh_manifest_sha256': hashlib.sha256(fresh_bytes).hexdigest(),
-            'parent_methods': parent_methods(edits is not None),
+            'parent_methods': args.parent_method or parent_methods(edits is not None),
             'thresholds': [.001, .005], 'pruning_objective': 'exact_joint_nnls_fve',
             'random_control': 'Seeded deletion retaining exactly the pruned bullet count',
             'vector_contract': production.contract, 'new_model_calls': 0,
@@ -118,7 +125,7 @@ def main():
             if layer not in whiteners:
                 whiteners[layer] = Whitener.load(str(args.whitener_directory /
                     f'whitening_iolens_pooled_L{layer}.safetensors'))
-            parents = parent_records(selectors[cid],edits[cid] if edits is not None else None)
+            parents = parent_records(selectors[cid],edits[cid] if edits is not None else None,spec['parent_methods'])
             selections = []
             for method, parent_text, atoms, recorded_fve in parents:
                 raw = {}

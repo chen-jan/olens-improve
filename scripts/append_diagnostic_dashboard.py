@@ -30,7 +30,7 @@ def candidate_summary(artifact, expected_manifest):
         row['rank_ci95'] = [v + .5 for v in interval['ci95_delta']]
         row['rank_definition'] = ('Consistent or off-topic versus hallucinated assertions'
                                   if family == 'hallucination' else 'Passing versus failing readouts')
-    return {'title': 'Does reconstruction rank the available answers?',
+    return {'title': 'Does reconstruction rank the available matches?',
             'scope': 'Evaluation-only diagnostic on the 189-cell partial-grid DEV pilot',
             'families': families, 'candidate_count': artifact['judged_candidates'],
             'limits': artifact['limitations'] + [

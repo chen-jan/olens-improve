@@ -30,5 +30,14 @@ class CombinationParentTests(unittest.TestCase):
     def test_missing_or_duplicate_selector_parent_rejected(self):
         row=self.selectors();row['selections'].append(row['selections'][0])
         with self.assertRaises(ValueError):module.parent_records(row)
+    def test_e1_only_does_not_require_or_emit_d_parent(self):
+        row=self.selectors();row['selections']=[r for r in row['selections'] if r['method']=='best_n_specificity_mean']
+        args=module.parse_args(self.base_args()+['--parent-method','best_n_specificity_mean'])
+        parents=module.parent_records(row,methods=args.parent_method)
+        self.assertEqual([r[0] for r in parents],['best_n_specificity_mean'])
+    def test_edit_parent_without_inputs_and_duplicate_filter_rejected(self):
+        for extra in (['--parent-method','editing_round2'],
+                      ['--parent-method','best_n_specificity_mean','--parent-method','best_n_specificity_mean']):
+            with contextlib.redirect_stderr(io.StringIO()),self.assertRaises(SystemExit):module.parse_args(self.base_args()+extra)
 
 if __name__=='__main__':unittest.main()
