@@ -153,8 +153,9 @@ def main():
         if job.get("end_utc"):
             remaining = (datetime.fromisoformat(job["end_utc"].replace("Z", "+00:00")) - now).total_seconds()
             detail["configured_remaining_seconds"] = remaining
-            if remaining < 7200:
-                snapshot["alerts"].append(f"Job {key} has less than two hours remaining")
+            warning_seconds = job.get("warn_when_remaining_seconds", 7200)
+            if remaining < warning_seconds:
+                snapshot["alerts"].append(f"Job {key} has less than {warning_seconds / 60:g} minutes remaining")
     claims = Path(runtime["paths"]["fast"]) / "claims"
     snapshot["claim_files"] = []
     for path in sorted(claims.glob("*.json"))[:1000]:

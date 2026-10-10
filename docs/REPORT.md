@@ -17,9 +17,11 @@ inspection of the surrounding text necessary.
 
 The most promising pilot combination selects a complete response using matched
 control activations, then removes bullets with small reconstruction contribution.
-It retains more recovery than random deletion on the pilot. Its apparent gains
-include judge-sensitive cases with remaining contradictions, so a larger
-comparison and held-out test are required. Whole-bullet consensus and free editing
+It retains more recovery than random deletion on the pilot. However, the larger
+development chain task shows a substantial loss: the combined method recovers
+16/330 cells, versus 27/330 for its unpruned parent and 23/330 for matched random
+deletion. Its apparent pilot gains include judge-sensitive cases with remaining
+contradictions. Validation must assess this tradeoff before any recommendation. Whole-bullet consensus and free editing
 have not justified broad expansion on the evidence collected so far.
 
 ## Question and experimental controls
@@ -77,7 +79,7 @@ stay together when assigning development, validation and test groups.
 |---|---:|---:|---|
 | Small development pilot | 31 | 189 | Method iteration and failure diagnosis; selected cells |
 | Full development | 121 | 5,236 | Larger method comparison using original complete read grids |
-| Validation | 80 | 3,485 | Selection among development-frozen candidates; outcomes still sealed |
+| Validation | 80 | 3,485 | Analysis authorized for twelve frozen comparisons; judging pending |
 | Test | 268 | 10,714 | Final frozen comparison; not opened |
 
 The pilot is a subset of development. Cells from the same prompt are correlated.
@@ -168,6 +170,18 @@ best-of-4 recovers 15/31 items, best-of-32 14/31, pooled-16 17/31, and pooled-32
 within items. These are development findings from one family; there is no
 four-family winner yet. See the
 [larger comparison](experiments/019-full-dev-method-comparison.md).
+
+Pruning and pooling also show a material chain-recovery regression in the
+evidence available before validation. With the .005 sequential-deletion
+threshold, matched-control selection falls from 27 to 16 recovered cells out of
+330, versus 23 for matched-count random deletion. Best-of-32 followed by pruning
+falls from 30 to 16, versus 28 for its random-deletion control. Pooled N16 and N32
+each recover 18 cells. Item recovery likewise falls: 17→12/30 for matched-control
+selection with pruning and 19→12/30 for best-of-32 with pruning. These are seven
+related template groups, and mention recovery still does not certify the
+calculation. Nevertheless, the observed loss is substantial and should not be
+described as a small tradeoff without compensating evidence. The exact records
+are preserved in the [validation decision snapshot](experiments/027-validation-shortlist-freeze.md).
 
 ## What each approach taught us
 
@@ -269,14 +283,18 @@ uncertain-charge holds are in [STATUS.md](STATUS.md).
 ## Validation, test and release status
 
 The validation candidate pool was generated without inspecting its text,
-scores, selected outputs or judgments. A prospective twelve-arm shortlist
+scores, selected outputs or judgments. The frozen twelve-arm shortlist
 preserves both sampling budgets, pooling, matched-control selection and the
 specificity/pruning component comparisons. Its evidence and selection procedure
 are recorded in [the validation freeze](experiments/027-validation-shortlist-freeze.md).
 Some development judging was unfinished at that decision; later development
 results cannot alter this menu or its thresholds after validation opens.
-Test analysis remains closed until the final methods, comparisons and decision
-rule are frozen. Held-out results will be added after those stages complete.
+All validation reconstruction partitions are complete; selection and judging
+are next. A separately reviewed blind-generation gate permits preparation of
+the fixed test sample pool while validation judging proceeds. Test text and
+quality remain sealed: test analysis requires the final methods, comparisons
+and decision rule to be frozen. Held-out results will be added after those
+stages complete.
 
 The implementation provides a vector-first Python API and command-line tool,
 immutable candidate pools, cached phrase encodings and replayable selectors.

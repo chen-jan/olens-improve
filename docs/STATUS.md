@@ -19,8 +19,8 @@ The remaining findings below come from the **189-cell development pilot** unless
 explicitly labeled otherwise. It contains only 2–8 independent groups per family.
 Other complete-grid method comparisons remain partly unfinished.
 
-- Selecting the best reconstruction from more samples reliably raises the
-  reconstruction score. Quality moves differently across tasks. Best-of-32 has
+- Selecting the best reconstruction from a larger nested pool cannot lower the
+  score, by construction. Quality moves differently across tasks. Best-of-32 has
   39 contradicted readouts among 71 specific outputs, compared with 46/71 for
   capped N1; a single random draw from N32 has 38/72. Larger measurement is needed.
 - Pooling bullets raises reconstruction further. It recovers bridge mentions in
