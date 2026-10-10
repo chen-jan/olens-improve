@@ -1,10 +1,12 @@
 # Execution status
 
-Updated: 2026-10-10, approximately 16:18 UTC.
+Updated: 2026-10-10, approximately 16:39 UTC.
 Started: 2026-10-10 01:25:36 UTC (October 9, 21:25:36 EDT).
 Target finish: 2026-10-10 21:25:36 UTC. Execution remains active and authorized.
 
 ## Latest operational checkpoint
+
+At 16:38 UTC, both remaining TEST sessions are active: hallucination v4 (session 88668/PID 3625516) and role v5 (session 63575/PID 3651167). The old role worker stopped on the same lock-acquisition failure; v5 resumed at 16:34 with the reviewed retry patch and saved results. All eleven uncertain TEST holds ($0.05425425) remain reserved. The role log includes a successful 91-second lock wait, so active sessions do not establish healthy sustained throughput. The16:39 bounded checkpoint confirms new settlements in both workers: hall95settled/5active and role94settled/6active in recent100-attempt windows, with no newunknowns. Receipt849be81b… retains all prior holds. Multi-hop and chains have finished judging. TEST quality remains uninspected. Reviewed DEV/VAL read-site maps and an editable presentation draft are ready; the map website update is prepared but unpublished, and the final deck still awaits final results. The 22:00–00:00 UTC delivery estimate remains conditional on judging progress.
 
 At 16:06 UTC, multi-hop and chains have finished the twelve-condition TEST
 judging queue. Role binding remains active and has completed raw/capped N1.
