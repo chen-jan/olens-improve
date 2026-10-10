@@ -138,9 +138,65 @@ def full_development_section(section):
     output+=paragraphs([f"{pricing} estimates ${cost['actual_usd']:.6f} across {cost['physical_attempts']:,} settled physical judge requests. {status} Campaign judging cost is separate from deployment selection cost."])
     output+='<details><summary>Four source-checked baseline audit examples</summary>'+traces(section['traces'])+'</details>'
     donor=section['donor_readiness']
-    output+=paragraphs([f"Matched-donor diagnostic ready: {donor['cells']:,} target outputs use {donor['distinct_donors']:,} distinct frozen donors. Judging is pending.",section['donor_limits']])
+    if section.get('donor'):
+        output+=donor_section(section['donor'])
+    else:
+        output+=paragraphs([f"Matched-donor diagnostic ready: {donor['cells']:,} target outputs use {donor['distinct_donors']:,} distinct frozen donors. Judging is pending.",section['donor_limits']])
     output+='<h3>Baseline limitations</h3>'+paragraphs(section['limits'])
     output+='<details><summary>Full DEV sources</summary>'+paragraphs([str(section['source_sha256'])])+'</details></details></section>'
+    return output
+
+
+def donor_section(section):
+    output='<h3>Readouts from matched donor activations</h3>'
+    output+=paragraphs(['No multi-hop or social-role recovery was observed with this fixed donor bank, while arithmetic recovery remained in some cells. This contextualizes target-specific recovery; it does not verify every emitted claim.',
+        'The lower donor contradiction fraction comes with much more off-topic output and far less consistent output. It is not a fidelity improvement.'])
+    hall=section['families']['hallucination']['coverage_and_classes']
+    output+='<div class="table-scroll"><table><thead><tr><th>Contradiction-check class</th><th>Target activation</th><th>Matched donor activation</th></tr></thead><tbody>'
+    for label, key in [('Contradictory','hallucinated'),('Off topic','off_topic'),('Consistent','consistent'),('Generic','generic')]:
+        values=[f"{hall[arm]['class_counts'].get(key,0):,} / {hall[arm]['expected_cells']:,} ({100*hall[arm]['class_counts'].get(key,0)/hall[arm]['expected_cells']:.1f}%)" for arm in ('target','donor')]
+        output+='<tr><td>'+escape(label)+'</td>'+''.join('<td>'+escape(v)+'</td>' for v in values)+'</tr>'
+    output+='</tbody></table></div><details><summary>Recovery counts and paired target-group intervals</summary><div class="table-scroll"><table><thead><tr><th>Family</th><th>Target / donor cell recovery</th><th>Target / donor item recovery (ANY site)</th><th>Donor minus target, cells</th></tr></thead><tbody>'
+    for family, row in section['families'].items():
+        if family=='hallucination':continue
+        m=row['cell_comparison']; n=row['coverage_and_classes']['target']['expected_cells']
+        cells=f"{round(m['baseline']*n):,} / {n:,} versus {round(m['proposed']*n):,} / {n:,}"
+        items=row['any_cell_item_counts']; interval=', '.join(f'{100*v:.1f}' for v in m['ci95_delta'])
+        output+='<tr>'+''.join('<td>'+escape(v)+'</td>' for v in [display_label(family),cells,f"{items['target']} / {row['items']} versus {items['donor']} / {row['items']}",f"{100*m['delta']:.1f} pp; 95% interval [{interval}] pp; {row['independent_target_groups']} groups"] )+'</tr>'
+    output+='</tbody></table></div>'+paragraphs(section['limitations'])+'</details>'
+    output+='<details><summary>Donor source provenance</summary>'+paragraphs([str(section['source'])])+'</details>'
+    return output
+
+
+def candidate_diagnostic_section(section):
+    if not section:return ''
+    output='<details class="candidate-diagnostic"><summary>Why sample selection misses available matches: evaluation-only pilot diagnostic</summary>'
+    output+='<h3>'+escape(section['title'])+'</h3>'+paragraphs([section['scope'], 'The available-match ceiling uses all 32 judged outputs. It is an optimistic evaluation diagnostic, not a deployable selector or a measure of full faithfulness.'])
+    colors=['#bdcbd7','#587991','#bf6b42']
+    names=['Available match (ceiling)','Uniform random expectation','Best reconstruction of 32']
+    output+='<div class="curve"><svg viewBox="0 0 650 330" role="img" aria-label="Available, random expected, and reconstruction-selected match coverage">'
+    output+='<path d="M180 35V270H625" class="axis"/>'
+    for index,(family,row) in enumerate((f,r) for f,r in section['families'].items() if f!='hallucination'):
+        y=48+index*75
+        output+=f'<text x="8" y="{y+25}">{escape(display_label(family))}</text>'
+        for j,key in enumerate(('available','random_expected','selected')):
+            m=row[key]; width=330*m['rate']; yy=y+j*20
+            output+=f'<rect x="180" y="{yy}" width="{width:.3f}" height="14" fill="{colors[j]}"/><text x="{188+width:.3f}" y="{yy+12}">{m["numerator"]:.4g} / {m["denominator"]}</text>'
+    for j,label in enumerate(names):
+        output+=f'<rect x="10" y="{285+j*15}" width="10" height="10" fill="{colors[j]}"/><text x="26" y="{294+j*15}">{escape(label)}</text>'
+    output+='</svg></div><h3>Within-cell reconstruction ranking</h3>'
+    output+=paragraphs(['The score is the fraction of positive/negative pairs where the positive readout has higher reconstruction FVE, with half credit for ties. A value of 50% means no pairwise discrimination; raw FVE is never pooled across unrelated activations.'])
+    output+='<div class="curve"><svg viewBox="0 0 650 245" role="img" aria-label="Within-cell reconstruction rank with grouped 95 percent intervals"><path d="M205 15V195H605" class="axis"/><path d="M405 15V195" stroke="#bdcbd7" stroke-dasharray="4 4"/>'
+    for index,(family,row) in enumerate(section['families'].items()):
+        y=35+index*43; score=row['within_cell_rank_pooled_pairs']['rate']; lo,hi=row['rank_ci95']
+        output+=f'<text x="8" y="{y+4}">{escape(display_label(family))}</text><path d="M{205+400*lo:.3f} {y}H{205+400*hi:.3f}" class="whisker"/><circle cx="{205+400*score:.3f}" cy="{y}" r="4"/><text x="205" y="{y+18}">{100*score:.1f}%; {row["rank_mixed_cells"]} mixed cells; {row["independent_groups"]} groups</text>'
+    output+='<text x="200" y="225">0%</text><text x="395" y="225">50%</text><text x="580" y="225">100%</text></svg></div>'
+    output+=paragraphs(section['limits'])
+    output+='<details><summary>Diagnostic denominators, definitions, and source hashes</summary><div class="table-scroll"><table><thead><tr><th>Family</th><th>Rank definition</th><th>Pair wins / pairs</th><th>Undefined cells</th><th>Source items / groups</th></tr></thead><tbody>'
+    for family,row in section['families'].items():
+        pairs=row['within_cell_rank_pooled_pairs']
+        output+='<tr>'+''.join('<td>'+escape(v)+'</td>' for v in [display_label(family),row['rank_definition'],f"{pairs['numerator']} / {pairs['denominator']}",row['rank_undefined_cells'],f"{row['items']} / {row['independent_groups']}"])+'</tr>'
+    output+='</tbody></table></div>'+paragraphs([section['random_note'],str(section['source'])])+'</details></details>'
     return output
 
 
@@ -273,6 +329,8 @@ def build(report):
         panel = f'<section class="method-panel" id="panel-{key}" role="tabpanel" aria-labelledby="tab-{key}" {"" if index==0 else "hidden"}><div class="method-heading"><h2>{label}</h2><span class="status">{escape(status)}</span></div>'
         panel += f'<p>{escape(method.get("hypothesis", "This comparison has not been specified in the current report."))}</p>'
         panel += paragraphs(method.get("findings", []))
+        if key=='sample_selection':
+            panel += candidate_diagnostic_section(report.get('candidate_diagnostic'))
         panel += "<h3>Comparisons and coverage</h3>" + (combination_tables(method.get('metrics',[])) if key=='combinations' else metrics_table(method.get("metrics", [])))
         if method.get("paired_metrics"):
             panel += '<details><summary>Paired differences with whole-group uncertainty</summary>' + metrics_table(method["paired_metrics"]) + "</details>"

@@ -1,6 +1,6 @@
 {
   "title": "Readouts: what is established",
-  "updated_utc": "2026-10-10T04:43:26.000706+00:00",
+  "updated_utc": "2026-10-10T05:36:36.987195+00:00",
   "cohort": "development",
   "run_ids": [
     "development-shared-pilot-v2",
@@ -12459,6 +12459,637 @@
     "source_sha256": {
       "dashboard/measurements-full-dev-baselines.json": "384002cb4fcc7537e466850d9c313163d9d19019e8526c0e8eab3e4eab9d09a4",
       "${OLENS_DATA_ROOT}/diagnostics/costs-v2/baseline-review.json": "ceb354a961b3bb9298c6fa5860e50d68483dbd135b50e3d4efd20bd3622d536f"
+    },
+    "donor": {
+      "status": "complete_project_development_grid",
+      "manifest_sha256": "dd382ff6e8bc8e70f1d13710e5235efd943537b4936921726b7d59655289ca80",
+      "baseline_condition_sha256": "6a7971822e6c116187f302f638f4d0592ac3259247b060d9734d4f0fae7f7268",
+      "donor_condition_sha256": "9ed1c813beab2972282208c9897bd4c0e18d4d2db47499a7f1ba6a79809fc3d8",
+      "families": {
+        "chain_intermediates": {
+          "cell_comparison": {
+            "baseline": 0.07878787878787878,
+            "proposed": 0.030303030303030304,
+            "delta": -0.04848484848484848,
+            "ci95_delta": [
+              -0.12396694214876032,
+              -0.005681818181818184
+            ],
+            "items": 30,
+            "independent_groups": 7,
+            "seed": 20261010,
+            "bootstrap_replicates": 2000,
+            "defined_draws": 2000,
+            "warning": "Tiny group count; intervals cannot establish robustness",
+            "direction": "donor minus target"
+          },
+          "coverage_and_classes": {
+            "target": {
+              "upstream_complete_preserved": false,
+              "class_counts": {},
+              "expected_cells": 330,
+              "produced_cells": 330,
+              "missing_cells": 0,
+              "results_sha256": "c7943ead8cc0b7e3b888dfc30c18455bbb89286ad65bdc50ac6ba5fcba89d32b",
+              "project_contract_sha256": "17eaa19e2b9694e4be0c494fcdccaf62eaa4cfc456e0c12ddcbb9590f17122d3"
+            },
+            "donor": {
+              "upstream_complete_preserved": false,
+              "class_counts": {},
+              "expected_cells": 330,
+              "produced_cells": 330,
+              "missing_cells": 0,
+              "results_sha256": "3934c5673305b5566bb4d010442800cbe744509199bd34a6e27dde687252fd13",
+              "project_contract_sha256": "ac1d50ed7810738c03221e78586b388bfe20d0f095217e6aa5585b3721296793"
+            }
+          },
+          "items": 30,
+          "independent_target_groups": 7,
+          "any_cell_item_comparison": {
+            "baseline": 0.5,
+            "proposed": 0.26666666666666666,
+            "delta": -0.23333333333333334,
+            "ci95_delta": [
+              -0.5454545454545454,
+              -0.030303030303030276
+            ],
+            "items": 30,
+            "independent_groups": 7,
+            "seed": 20261010,
+            "bootstrap_replicates": 2000,
+            "defined_draws": 2000,
+            "warning": "Tiny group count; intervals cannot establish robustness",
+            "direction": "donor minus target"
+          },
+          "any_cell_item_counts": {
+            "target": 15,
+            "donor": 8
+          }
+        },
+        "hallucination": {
+          "cell_comparison": {
+            "baseline": 0.47757255936675463,
+            "proposed": 0.025201612903225805,
+            "delta": -0.4523709464635288,
+            "ci95_delta": [
+              -0.52667511010865,
+              -0.3793799563684488
+            ],
+            "items": 30,
+            "independent_groups": 30,
+            "seed": 20261010,
+            "bootstrap_replicates": 2000,
+            "defined_draws": 2000,
+            "warning": null,
+            "direction": "donor minus target"
+          },
+          "coverage_and_classes": {
+            "target": {
+              "upstream_complete_preserved": false,
+              "class_counts": {
+                "hallucinated": 543,
+                "off_topic": 148,
+                "consistent": 446,
+                "generic": 8
+              },
+              "expected_cells": 1145,
+              "produced_cells": 1145,
+              "missing_cells": 0,
+              "results_sha256": "52479c679fa46a8f630ae1928343ff1f926033d36528cc16b4000ace68ba62be",
+              "project_contract_sha256": "3cb642fc8149cf264db26a21441b4f975d12eeef4a928a460a72de453992579f"
+            },
+            "donor": {
+              "upstream_complete_preserved": false,
+              "class_counts": {
+                "off_topic": 956,
+                "generic": 153,
+                "hallucinated": 25,
+                "consistent": 11
+              },
+              "expected_cells": 1145,
+              "produced_cells": 1145,
+              "missing_cells": 0,
+              "results_sha256": "32dc9d6a462fc9542e11baa27b5953a0ead3212c5f87a7f523e5a167e0d7d633",
+              "project_contract_sha256": "bf3e3ca5cb46a7f974f7305380381e71a4fc2d2b5d4be7cb75668725336af3c6"
+            }
+          },
+          "items": 30,
+          "independent_target_groups": 30,
+          "assertion_share": {
+            "target": 0.9930131004366812,
+            "donor": 0.8663755458515284
+          }
+        },
+        "multihop_mt": {
+          "cell_comparison": {
+            "baseline": 0.08504398826979472,
+            "proposed": 0.0,
+            "delta": -0.08504398826979472,
+            "ci95_delta": [
+              -0.17045454545454544,
+              -0.0219435736677116
+            ],
+            "items": 31,
+            "independent_groups": 29,
+            "seed": 20261010,
+            "bootstrap_replicates": 2000,
+            "defined_draws": 2000,
+            "warning": null,
+            "direction": "donor minus target"
+          },
+          "coverage_and_classes": {
+            "target": {
+              "upstream_complete_preserved": false,
+              "class_counts": {},
+              "expected_cells": 341,
+              "produced_cells": 341,
+              "missing_cells": 0,
+              "results_sha256": "2bc287eaf03129ce02e13ae978270c1235c535b720e08aba5c26298004041cc2",
+              "project_contract_sha256": "3a1b148a84ffc7749ec491e26e14e58986c11f609a3d89a94466a6a0478f3bad"
+            },
+            "donor": {
+              "upstream_complete_preserved": false,
+              "class_counts": {},
+              "expected_cells": 341,
+              "produced_cells": 341,
+              "missing_cells": 0,
+              "results_sha256": "650d1aa0e4f4959a7d4744326c5fca607cdb86e58e7d5155da3acc008d553e1f",
+              "project_contract_sha256": "32fa80cb9fccca44faf4e0dabc1b4f7ce9a2501e854719a803be50f99bac8cac"
+            }
+          },
+          "items": 31,
+          "independent_target_groups": 29,
+          "any_cell_item_comparison": {
+            "baseline": 0.3548387096774194,
+            "proposed": 0.0,
+            "delta": -0.3548387096774194,
+            "ci95_delta": [
+              -0.53125,
+              -0.1875
+            ],
+            "items": 31,
+            "independent_groups": 29,
+            "seed": 20261010,
+            "bootstrap_replicates": 2000,
+            "defined_draws": 2000,
+            "warning": null,
+            "direction": "donor minus target"
+          },
+          "any_cell_item_counts": {
+            "target": 11,
+            "donor": 0
+          }
+        },
+        "role_bound_association": {
+          "cell_comparison": {
+            "baseline": 0.044152046783625734,
+            "proposed": 0.0,
+            "delta": -0.044152046783625734,
+            "ci95_delta": [
+              -0.06140350877192982,
+              -0.028070175438596492
+            ],
+            "items": 30,
+            "independent_groups": 15,
+            "seed": 20261010,
+            "bootstrap_replicates": 2000,
+            "defined_draws": 2000,
+            "warning": null,
+            "direction": "donor minus target"
+          },
+          "coverage_and_classes": {
+            "target": {
+              "upstream_complete_preserved": false,
+              "class_counts": {},
+              "expected_cells": 3420,
+              "produced_cells": 3420,
+              "missing_cells": 0,
+              "results_sha256": "b11112c9e45ef9fd5b64b0b4fedeb66378399410048e7e6e8b75c127a920ba4a",
+              "project_contract_sha256": "6e3b59966c2410a9bca73373ea3629dc1748b4ac083ffebbeff928ed968d220e"
+            },
+            "donor": {
+              "upstream_complete_preserved": false,
+              "class_counts": {},
+              "expected_cells": 3420,
+              "produced_cells": 3420,
+              "missing_cells": 0,
+              "results_sha256": "7981f0d92c4527871b70c6048587e28f36c35eb3146051d91d87a284bf706910",
+              "project_contract_sha256": "6cbfbadeacfaa42351dacfc4b01f5243e427e842635f6b95ae3d22872321fe3e"
+            }
+          },
+          "items": 30,
+          "independent_target_groups": 15,
+          "any_cell_item_comparison": {
+            "baseline": 0.7666666666666667,
+            "proposed": 0.0,
+            "delta": -0.7666666666666667,
+            "ci95_delta": [
+              -0.9,
+              -0.6
+            ],
+            "items": 30,
+            "independent_groups": 15,
+            "seed": 20261010,
+            "bootstrap_replicates": 2000,
+            "defined_draws": 2000,
+            "warning": null,
+            "direction": "donor minus target"
+          },
+          "any_cell_item_counts": {
+            "target": 23,
+            "donor": 0
+          }
+        }
+      },
+      "limitations": [
+        "These are fixed target/donor mapping comparisons, not activation truth.",
+        "Donor reuse couples targets: target-group bootstrap is conditional on this mapping and does not fully resample donor-source uncertainty.",
+        "Pinned upstream complete flags remain false for the selected development subset.",
+        "Recovery criteria do not verify additional emitted facts."
+      ],
+      "source": {
+        "path": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-donor/paired-analysis-v1.json",
+        "sha256": "3ba1d670decbd208407dc4cba72f9a1a1d567b6a28f3b2cfb894321c8eec9008"
+      }
+    }
+  },
+  "candidate_diagnostic": {
+    "title": "Does reconstruction rank the available answers?",
+    "scope": "Evaluation-only diagnostic on the 189-cell partial-grid DEV pilot",
+    "families": {
+      "chain_intermediates": {
+        "cells": 21,
+        "items": 7,
+        "independent_groups": 2,
+        "eligible_candidates": 672,
+        "disqualified_candidates": 0,
+        "selected": {
+          "numerator": 3,
+          "denominator": 21,
+          "rate": 0.14285714285714285
+        },
+        "random_expected": {
+          "numerator": 0.6875,
+          "denominator": 21,
+          "rate": 0.03273809523809524
+        },
+        "selected_minus_random_group_interval": {
+          "baseline": 0.03273809523809524,
+          "proposed": 0.14285714285714285,
+          "delta": 0.11011904761904762,
+          "ci95_delta": [
+            0.0798611111111111,
+            0.1328125
+          ],
+          "items": 7,
+          "independent_groups": 2,
+          "seed": 20261010,
+          "bootstrap_replicates": 2000,
+          "defined_draws": 2000,
+          "warning": "Tiny group count; intervals cannot establish robustness"
+        },
+        "within_cell_rank_pooled_pairs": {
+          "numerator": 290.0,
+          "denominator": 578,
+          "rate": 0.5017301038062284
+        },
+        "within_cell_rank_equal_cell_mean": 0.4873438687954817,
+        "rank_mixed_cells": 9,
+        "rank_undefined_cells": 12,
+        "rank_minus_half_group_interval": {
+          "baseline": 0.5,
+          "proposed": 0.5017301038062284,
+          "delta": 0.0017301038062284002,
+          "ci95_delta": [
+            -0.06603773584905659,
+            0.0591054313099042
+          ],
+          "items": 7,
+          "independent_groups": 2,
+          "seed": 20261010,
+          "bootstrap_replicates": 2000,
+          "defined_draws": 2000,
+          "warning": "Tiny group count; intervals cannot establish robustness"
+        },
+        "selected_mean_tokens": 87.95238095238095,
+        "scorer_suffix_diagnostic": {
+          "eligible_candidates_with_unscored_suffix": 105,
+          "same_effective_inputs_different_text_groups": 0,
+          "same_effective_inputs_different_quality_groups": 0,
+          "strict_disagreements_by_suffix": {
+            "both": 12,
+            "only_good": 52,
+            "only_bad": 60,
+            "neither": 164
+          },
+          "compared_pairs_by_suffix": {
+            "both": 34,
+            "only_good": 109,
+            "only_bad": 123,
+            "neither": 312
+          },
+          "note": "Exact effective token/cache-key multiset, preserving duplicate multiplicity. Different labels can reflect unscored content or judge variation; inspect text before interpreting."
+        },
+        "available": {
+          "numerator": 9,
+          "denominator": 21,
+          "rate": 0.42857142857142855
+        },
+        "missed_available_cells": 6,
+        "all_good_cells": 0,
+        "all_bad_cells": 12,
+        "rank_ci95": [
+          0.4339622641509434,
+          0.5591054313099042
+        ],
+        "rank_definition": "Passing versus failing readouts"
+      },
+      "hallucination": {
+        "cells": 72,
+        "items": 8,
+        "independent_groups": 8,
+        "eligible_candidates": 2304,
+        "disqualified_candidates": 0,
+        "selected": {
+          "numerator": 39,
+          "denominator": 71,
+          "rate": 0.5492957746478874
+        },
+        "random_expected": {
+          "numerator": 40.0625,
+          "denominator": 71.0625,
+          "rate": 0.5637642919964819
+        },
+        "selected_minus_random_group_interval": {
+          "baseline": 0.5637642919964819,
+          "proposed": 0.5492957746478874,
+          "delta": -0.014468517348594556,
+          "ci95_delta": [
+            -0.09104060296620475,
+            0.06529869107371322
+          ],
+          "items": 8,
+          "independent_groups": 8,
+          "seed": 20261010,
+          "bootstrap_replicates": 2000,
+          "defined_draws": 2000,
+          "warning": "Tiny group count; intervals cannot establish robustness"
+        },
+        "within_cell_rank_pooled_pairs": {
+          "numerator": 4984.0,
+          "denominator": 9315,
+          "rate": 0.5350509930220075
+        },
+        "within_cell_rank_equal_cell_mean": 0.5414304392319629,
+        "rank_mixed_cells": 62,
+        "rank_undefined_cells": 10,
+        "rank_minus_half_group_interval": {
+          "baseline": 0.5,
+          "proposed": 0.5350509930220075,
+          "delta": 0.03505099302200754,
+          "ci95_delta": [
+            -0.0018776231499889606,
+            0.07288828337874664
+          ],
+          "items": 8,
+          "independent_groups": 8,
+          "seed": 20261010,
+          "bootstrap_replicates": 2000,
+          "defined_draws": 2000,
+          "warning": "Tiny group count; intervals cannot establish robustness"
+        },
+        "selected_mean_tokens": 103.52777777777777,
+        "scorer_suffix_diagnostic": {
+          "eligible_candidates_with_unscored_suffix": 530,
+          "same_effective_inputs_different_text_groups": 0,
+          "same_effective_inputs_different_quality_groups": 0,
+          "strict_disagreements_by_suffix": {
+            "both": 156,
+            "only_good": 394,
+            "only_bad": 432,
+            "neither": 1957
+          },
+          "compared_pairs_by_suffix": {
+            "both": 322,
+            "only_good": 730,
+            "only_bad": 962,
+            "neither": 4278
+          },
+          "note": "Exact effective token/cache-key multiset, preserving duplicate multiplicity. Different labels can reflect unscored content or judge variation; inspect text before interpreting."
+        },
+        "consistent_available_cells": 54,
+        "nonwrong_asserting_available_cells": 66,
+        "selected_classes": {
+          "hallucinated": 39,
+          "off_topic": 8,
+          "consistent": 24,
+          "generic": 1
+        },
+        "no_asserting_candidate_cells": 0,
+        "all_wrong_asserting_cells": 6,
+        "consistent_vs_wrong_pair_counts": {
+          "wins": 3353.0,
+          "pairs": 6292
+        },
+        "rank_ci95": [
+          0.49812237685001104,
+          0.5728882833787466
+        ],
+        "rank_definition": "Consistent or off-topic versus hallucinated assertions"
+      },
+      "multihop_mt": {
+        "cells": 24,
+        "items": 8,
+        "independent_groups": 7,
+        "eligible_candidates": 768,
+        "disqualified_candidates": 0,
+        "selected": {
+          "numerator": 7,
+          "denominator": 24,
+          "rate": 0.2916666666666667
+        },
+        "random_expected": {
+          "numerator": 6.09375,
+          "denominator": 24,
+          "rate": 0.25390625
+        },
+        "selected_minus_random_group_interval": {
+          "baseline": 0.25390625,
+          "proposed": 0.2916666666666667,
+          "delta": 0.037760416666666685,
+          "ci95_delta": [
+            -0.049479166666666685,
+            0.1532738095238095
+          ],
+          "items": 8,
+          "independent_groups": 7,
+          "seed": 20261010,
+          "bootstrap_replicates": 2000,
+          "defined_draws": 2000,
+          "warning": "Tiny group count; intervals cannot establish robustness"
+        },
+        "within_cell_rank_pooled_pairs": {
+          "numerator": 741.0,
+          "denominator": 1369,
+          "rate": 0.5412710007304602
+        },
+        "within_cell_rank_equal_cell_mean": 0.496491126140495,
+        "rank_mixed_cells": 13,
+        "rank_undefined_cells": 11,
+        "rank_minus_half_group_interval": {
+          "baseline": 0.5,
+          "proposed": 0.5412710007304602,
+          "delta": 0.041271000730460194,
+          "ci95_delta": [
+            -0.09395973154362414,
+            0.15363128491620115
+          ],
+          "items": 8,
+          "independent_groups": 7,
+          "seed": 20261010,
+          "bootstrap_replicates": 2000,
+          "defined_draws": 1999,
+          "warning": "Tiny group count; intervals cannot establish robustness"
+        },
+        "selected_mean_tokens": 103.29166666666667,
+        "scorer_suffix_diagnostic": {
+          "eligible_candidates_with_unscored_suffix": 161,
+          "same_effective_inputs_different_text_groups": 0,
+          "same_effective_inputs_different_quality_groups": 0,
+          "strict_disagreements_by_suffix": {
+            "both": 46,
+            "only_good": 116,
+            "only_bad": 79,
+            "neither": 387
+          },
+          "compared_pairs_by_suffix": {
+            "both": 65,
+            "only_good": 217,
+            "only_bad": 145,
+            "neither": 942
+          },
+          "note": "Exact effective token/cache-key multiset, preserving duplicate multiplicity. Different labels can reflect unscored content or judge variation; inspect text before interpreting."
+        },
+        "available": {
+          "numerator": 14,
+          "denominator": 24,
+          "rate": 0.5833333333333334
+        },
+        "missed_available_cells": 7,
+        "all_good_cells": 1,
+        "all_bad_cells": 10,
+        "rank_ci95": [
+          0.40604026845637586,
+          0.6536312849162011
+        ],
+        "rank_definition": "Passing versus failing readouts"
+      },
+      "role_bound_association": {
+        "cells": 72,
+        "items": 8,
+        "independent_groups": 4,
+        "eligible_candidates": 2304,
+        "disqualified_candidates": 0,
+        "selected": {
+          "numerator": 9,
+          "denominator": 72,
+          "rate": 0.125
+        },
+        "random_expected": {
+          "numerator": 8.65625,
+          "denominator": 72,
+          "rate": 0.12022569444444445
+        },
+        "selected_minus_random_group_interval": {
+          "baseline": 0.12022569444444445,
+          "proposed": 0.125,
+          "delta": 0.0047743055555555525,
+          "ci95_delta": [
+            -0.07074652777777778,
+            0.06684027777777776
+          ],
+          "items": 8,
+          "independent_groups": 4,
+          "seed": 20261010,
+          "bootstrap_replicates": 2000,
+          "defined_draws": 2000,
+          "warning": "Tiny group count; intervals cannot establish robustness"
+        },
+        "within_cell_rank_pooled_pairs": {
+          "numerator": 1424.0,
+          "denominator": 2645,
+          "rate": 0.5383742911153119
+        },
+        "within_cell_rank_equal_cell_mean": 0.5182106784175599,
+        "rank_mixed_cells": 18,
+        "rank_undefined_cells": 54,
+        "rank_minus_half_group_interval": {
+          "baseline": 0.5,
+          "proposed": 0.5383742911153119,
+          "delta": 0.038374291115311876,
+          "ci95_delta": [
+            -0.0358455882352941,
+            0.09616919393455703
+          ],
+          "items": 8,
+          "independent_groups": 4,
+          "seed": 20261010,
+          "bootstrap_replicates": 2000,
+          "defined_draws": 2000,
+          "warning": "Tiny group count; intervals cannot establish robustness"
+        },
+        "selected_mean_tokens": 98.75,
+        "scorer_suffix_diagnostic": {
+          "eligible_candidates_with_unscored_suffix": 622,
+          "same_effective_inputs_different_text_groups": 0,
+          "same_effective_inputs_different_quality_groups": 0,
+          "strict_disagreements_by_suffix": {
+            "both": 192,
+            "only_good": 259,
+            "only_bad": 195,
+            "neither": 575
+          },
+          "compared_pairs_by_suffix": {
+            "both": 381,
+            "only_good": 465,
+            "only_bad": 421,
+            "neither": 1378
+          },
+          "note": "Exact effective token/cache-key multiset, preserving duplicate multiplicity. Different labels can reflect unscored content or judge variation; inspect text before interpreting."
+        },
+        "available": {
+          "numerator": 20,
+          "denominator": 72,
+          "rate": 0.2777777777777778
+        },
+        "missed_available_cells": 11,
+        "all_good_cells": 2,
+        "all_bad_cells": 52,
+        "rank_ci95": [
+          0.4641544117647059,
+          0.596169193934557
+        ],
+        "rank_definition": "Passing versus failing readouts"
+      }
+    },
+    "candidate_count": 6048,
+    "limits": [
+      "Development partial grids; few independent groups.",
+      "Official recovery is not precision for additional emitted facts.",
+      "Judge-derived available pools are noisy optimistic evaluation-only ceilings.",
+      "Shared cached verdicts are not independent judge repeats.",
+      "Raw FVE is compared within cells only; equality ties count half.",
+      "Available means at least one judged match among the existing 32 samples. Gold judgments never guide the selector.",
+      "The arithmetic-chain interval uses only two related groups; its apparent width cannot establish robustness.",
+      "The hallucination rank includes off-topic assertions on its nonwrong side; it does not measure factual precision."
+    ],
+    "random_note": "Uniform sampling among originally A-eligible candidates, retaining sample multiplicity. Hall ratio of expected count contributions, not expectation of a random realized ratio.",
+    "source": {
+      "path": "${OLENS_DATA_ROOT}/diagnostics/all-candidate-scores-v1/quality-analysis-v2.json",
+      "sha256": "c27d0c18c53704452adff048d94752c6c997ccca7278e218715bfc99a57f8b51",
+      "manifest_sha256": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+      "scores_sha256": "035b1ad6c7132679706c9c23c317af845700b42892f9a8b7eabd81107f4951bf",
+      "a32_selection_sha256": "055c5ea0e0d85fd5aa83af58f2cd1c2f2ea5a95940f1ecd6af4669c9a1f288c5"
     }
   }
 }
