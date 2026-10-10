@@ -13,6 +13,7 @@ import re
 import shutil
 
 from build_dashboard import build
+from build_dashboard_overview import build as build_overview
 
 
 LOCAL_PATH = re.compile(r"/(?:orcd|home|tmp|scratch|workspace)/[^\s\"'<>`\\)\],;]+")
@@ -47,7 +48,8 @@ def main():
     page = page.replace('<a href="../docs/REPORT.md">Working research report (local Markdown)</a>',
                         '<a href="report.md">Research report (Markdown)</a> · <a href="figures.html">Download charts</a>')
     page = page.replace("<header>", '<header><p class="meta">Public research snapshot. Last update shown below; held-out results remain pending until reviewed.</p>', 1)
-    (output / "index.html").write_text(page)
+    (output / "details.html").write_text(page)
+    (output / "index.html").write_text(build_overview(report))
     (output / "report.json").write_text(json.dumps(report, ensure_ascii=False) + "\n")
     markdown = public_text((root / "docs/REPORT.md").read_text())
     # Keep genuine web citations and packaged figures; local-only evidence is

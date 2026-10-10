@@ -4,6 +4,14 @@ URL: https://olens-improve-research.jan618.chatgpt.site
 
 Anyone with the link can visit. The first publication is a reviewed validation and development snapshot; held-out evaluation is still underway. Publication succeeded and an unauthenticated HTTP request returned the dashboard. No claim is made about the user's own browser session.
 
+The second version, published at 13:42 UTC on October 10, adds a findings-first
+overview with four task charts, uncertainty ranges, optional comparison views,
+and expandable explanations. The full earlier dashboard remains at `details.html`.
+Local desktop and 390-pixel mobile browser checks passed. An independent review
+verified all 96 overview metric objects, eight chart files, and 29 local links;
+the native service confirmed successful public deployment. The source-data
+timestamp remains distinct from the publication time.
+
 The dashboard's timestamp identifies its content snapshot. It is updated at research milestones, not connected directly to a live judge or database. All 12,978 numeric values in the public data were checked against the local report; all eight exported charts are byte-identical. An independent reviewer checked the exported files and links. Internal filesystem paths and job/process identifiers are removed; no credentials, model files, activation caches or private ledgers are published.
 
 Regenerate the public copy with:
