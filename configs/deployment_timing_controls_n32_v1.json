@@ -1,0 +1,99 @@
+{
+  "status": "root_reviewed_engineering_controls",
+  "scientific_results_eligible": false,
+  "layer": 44,
+  "bank_sha256": "518e1e11df48d172c9e1d78e055af8e6724bd83de3a60b743e2b3c75bc8ac0d7",
+  "bank_path": "${OLENS_DATA_ROOT}/manifests/development-matched-controls-v2.json",
+  "matching_policy": "Engineering calibration only: sort eligible DEV hallucination L44 cell IDs lexicographically, keep the first ID for each distinct frozen activation_sha256, then take eight. Same layer only; not scientifically matched to the arbitrary synthetic library prompt, with no quality or specificity-validity claim. Donors may repeat an item or related group; eight vectors are not eight independent groups. Controls are preexisting activations and their capture cost is excluded.",
+  "controls": [
+    {
+      "id": "hallucination|chat-dailydialog-0002|L44|p00020",
+      "path": "${OLENS_COMPUTE_ROOT}/activations/core-v1/activations.safetensors",
+      "key": "resid",
+      "row": 90,
+      "activation_sha256": "ca44a33acc1169ac57f8b18ffa54d66fca225a4ba057ccd0c85a8c84cb5c1fbd",
+      "split": "development",
+      "layer": 44
+    },
+    {
+      "id": "hallucination|chat-dailydialog-0002|L44|p00022",
+      "path": "${OLENS_COMPUTE_ROOT}/activations/core-v1/activations.safetensors",
+      "key": "resid",
+      "row": 91,
+      "activation_sha256": "e588426d723c5c8e79726b653d8898d5032c66253876b73a166f78af43b349bc",
+      "split": "development",
+      "layer": 44
+    },
+    {
+      "id": "hallucination|chat-dailydialog-0002|L44|p00032",
+      "path": "${OLENS_COMPUTE_ROOT}/activations/core-v1/activations.safetensors",
+      "key": "resid",
+      "row": 92,
+      "activation_sha256": "ddebe83a2bb8dd6b7b294cdd659dca4bbe8990782bb0d8a5c33d21dd2bd23a08",
+      "split": "development",
+      "layer": 44
+    },
+    {
+      "id": "hallucination|chat-dailydialog-0002|L44|p00042",
+      "path": "${OLENS_COMPUTE_ROOT}/activations/core-v1/activations.safetensors",
+      "key": "resid",
+      "row": 93,
+      "activation_sha256": "e1654b1e8abc823f3d974ff626dfe3392480851e7057d8a492d109838d6b2ae6",
+      "split": "development",
+      "layer": 44
+    },
+    {
+      "id": "hallucination|chat-dailydialog-0002|L44|p00049",
+      "path": "${OLENS_COMPUTE_ROOT}/activations/core-v1/activations.safetensors",
+      "key": "resid",
+      "row": 94,
+      "activation_sha256": "03d32180a4f662338f41ef1f69d8baa4dad06cf663b3b7c57846765b9e17872d",
+      "split": "development",
+      "layer": 44
+    },
+    {
+      "id": "hallucination|chat-dailydialog-0009|L44|p00039",
+      "path": "${OLENS_COMPUTE_ROOT}/activations/core-v1/activations.safetensors",
+      "key": "resid",
+      "row": 356,
+      "activation_sha256": "3a77ba8a2d60f97548be8deafe01e6e8cae26d5e51c0a47c66673b1f50386e82",
+      "split": "development",
+      "layer": 44
+    },
+    {
+      "id": "hallucination|chat-dailydialog-0009|L44|p00065",
+      "path": "${OLENS_COMPUTE_ROOT}/activations/core-v1/activations.safetensors",
+      "key": "resid",
+      "row": 357,
+      "activation_sha256": "8bd9b4df40cd53a76321b7eb42c156619cf958140353dc2475fd1ccca84b2c97",
+      "split": "development",
+      "layer": 44
+    },
+    {
+      "id": "hallucination|chat-dailydialog-0009|L44|p00085",
+      "path": "${OLENS_COMPUTE_ROOT}/activations/core-v1/activations.safetensors",
+      "key": "resid",
+      "row": 358,
+      "activation_sha256": "2c8b8d13c2f1403954ae66d05b5158f011ce319620ffbde1809963dc804191c4",
+      "split": "development",
+      "layer": 44
+    }
+  ],
+  "provenance": {
+    "dev_manifest_path": "${OLENS_REPO_ROOT}/configs/development-full-grid-v2.json",
+    "dev_manifest_sha256": "dd382ff6e8bc8e70f1d13710e5235efd943537b4936921726b7d59655289ca80",
+    "fresh_reference_manifest_path": "${OLENS_COMPUTE_ROOT}/activations/core-v1/fresh_manifest_v2.json",
+    "fresh_reference_manifest_sha256": "5a61cff89aca532f3e022233b6d2d8e12dab0d3a3f4f44085097bc6dc58fc385",
+    "control_metadata_path": "${OLENS_DATA_ROOT}/manifests/development-matched-controls-v2-metadata-v1.json",
+    "control_metadata_sha256": "ccca28d80794d4de7e612b3a7b1924a9f1e2a43259e31f3b77841e14a18be520"
+  },
+  "selection_rule": "Sort eligible DEV cell IDs; keep first ID per distinct frozen activation_sha256, then take eight.",
+  "bank_content_sha256": "5b11e931fea5513c1b8b14afbbf3cd9d24f4a4bd780b47493e633b62345aa5ef",
+  "donor_independence": "Repeated items/related groups are permitted; this is a runtime calibration, not a statistical comparison.",
+  "reviewed_by": "root",
+  "reviewed_utc": "2026-10-10T12:53:40.507154+00:00",
+  "verification_receipt": "${OLENS_DATA_ROOT}/diagnostics/deployment-timing-controls-v1/verification.json",
+  "verification_sha256": "122d6b6366e7f282b5f81f7346dacb5fc14a4e7f5217775a2996f9cd0d89ff65",
+  "verified_draft_sha256": "b48fa4778c923e2711a76de60b4ae44e8efce05ff80521d4d81234a608a2a733",
+  "review_note": "Only review metadata changes after tensor verification; donor rows and hashes remain exact. Engineering timing, not a specificity-quality test."
+}

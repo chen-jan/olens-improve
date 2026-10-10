@@ -107,3 +107,25 @@ each worker. The immutable resource receipt is
 `durable/diagnostics/test-cpu-allocation-v1.json` (SHA256
 `394a44d7ae4b9995bb6b4dd92f7e2f11ac99b4d046c7a9f80ca9379c4457708c`).
 The existing watcher now includes this allocation. No TEST analysis launched.
+
+## Execution after final freeze
+
+The final six-arm menu and analysis gate were sealed in local commit `9544e96`.
+The original blind files remain unchanged. On CPU allocation 25489638,
+`freeze_pool.py` and `partition_ar.py prepare` both exited 0. The pool contains
+exactly 10,714 cells and 342,848 samples, with zero original-instrument overlap.
+Snapshot SHA: `9bebdb516e3435206c56a423356fad82f09cdde04aced212a7d7d214f66a55dc`;
+flat samples SHA: `a9ac1a66d819a2da0a551e40f9b49b309a62aefb767071d7f866e84e36f61c6d`.
+
+Preparation took 227.69 seconds, with 11,562,716 KiB maximum process RSS.
+The resource observer measured 15.06 GiB peak for the whole 80-GiB allocation
+and no memory-limit failures. The final plan contains 1,294,737 new keys split
+323,234 / 323,679 / 323,944 / 323,880, using the frozen batch size 128.
+Plan SHA: `b950bb00d23cb884987faf2f83be874250f16d8f0c3746d87c47895d3bde6629`.
+
+All four encoding steps were launched by 12:44 UTC on the retained H200 jobs.
+Their tool sessions are 47306, 32936, 36308 and 8980 for indices 0–3. Logs are
+`fast/logs/test-ar-worker-{index}-v1.log`; outputs are
+`fast/vectors/test-partitions-v1/worker-{index}`. These are running steps,
+not terminal encodings. Require all four successful exits and exact planned
+key coverage before catalog merge and selection.

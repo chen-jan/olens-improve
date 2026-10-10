@@ -1,0 +1,39 @@
+{
+  "status": "root_reviewed_timing_profiles",
+  "freeze_sha256": "3e6d0894179f3d27507425f642d286fd0e36b30181b6cc5cf2be589fad38bf19",
+  "scientific_results_eligible": false,
+  "profiles": [
+    {
+      "id": "raw_n1",
+      "method": "raw_n1",
+      "n": 1
+    },
+    {
+      "id": "capped_n1",
+      "method": "capped_n1",
+      "n": 1
+    },
+    {
+      "id": "best_n16",
+      "method": "best_n",
+      "n": 16
+    },
+    {
+      "id": "best_n32",
+      "method": "best_n",
+      "n": 32
+    },
+    {
+      "id": "specificity_mean32",
+      "method": "specificity_mean",
+      "n": 32
+    }
+  ],
+  "scope": "One new synthetic N32 lifecycle plus saved-prefix replay; no fresh N1 or N16 generation measurement, no benchmark input or API.",
+  "reviewed_by": "root",
+  "reviewed_utc": "2026-10-10T12:53:40.507154+00:00",
+  "controls": "configs/deployment_timing_controls_n32_v1.json",
+  "controls_sha256": "5833af7e3bb4efc6d96c6604bbf76bbaa2c126dadbd8620b8314f987c0df3ff4",
+  "driver_sha256": "12a6c6c16dae0b5a34fe0cf360f27497ec241806220d8cbe3ee5bff8744033ed",
+  "launch_policy": "Run once only after a TEST AR worker exits successfully on that GPU; do not delay any held-out encoding. Preserve installed wheel sources and distinguish N32 generation from saved-prefix replay."
+}

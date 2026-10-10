@@ -17,7 +17,8 @@ will retain raw/capped N1, best-of-16, best-of-32, random N32 and specificity N3
 
 All 10,714 held-out cells already have 32 samples. The final method freeze and
 separate analysis gate are sealed; all 342,848 samples passed identity checks.
-Reconstruction input preparation is running on the allocated CPU. No TEST
+Reconstruction input preparation finished successfully; four H200 encoders
+are running on the frozen 1,294,737-key plan. No TEST
 quality result is available.
 The 12:19 resource watcher confirms all four H200s idle and both scoped CPU
 allocations running without memory-limit failures. The new 16-core/80-GiB CPU
@@ -112,7 +113,7 @@ first source-checked dashboard with grouped intervals. Nothing has been pushed.
 | Single-method pilots | A/B/C/D/E1/E3/F judged; E2/G diagnostics complete with limits; exact-claim-span v3 stopped after its eight-cell contract audit, without benchmark-quality measurement |
 | Combinations | 65 unique pilot conditions judged and source-checked; larger E1-plus-pruning outputs complete and awaiting judging |
 | Additional controls | All32 judgments and matched-donor N1 complete; all requested cells/stages covered |
-| Held-out evaluation | Validation complete: 12 methods × four families, with systematic trace review. TEST sampling complete: 10,714 cells × 32. Final six-arm freeze and analysis gate sealed; reconstruction input preparation running; TEST scoring pending. |
+| Held-out evaluation | Validation complete: 12 methods × four families, with systematic trace review. TEST sampling complete: 10,714 cells × 32. Final six-arm freeze and analysis gate sealed; four reconstruction encoders running; TEST judging pending. |
 
 Combination comparisons retain unchanged parents, component-off outputs, and
 random deletion matched on retained bullet count. Fixed support weights are
@@ -126,8 +127,8 @@ The corresponding role cell count is only 151/3,420: an item passes when any
 inspected site passes, so item recovery must not be read as uniformly faithful
 readouts. These are original-grid development scores, not held-out results.
 
-Next: finish reconstruction input preparation, then run four encoder
-partitions on the retained H200s. The six-arm freeze and gate are committed;
+Next: monitor four encoder partitions, then merge their verified catalog and
+run four selector shards on the reserved CPU allocation. The six-arm freeze and gate are committed;
 validation results and figures are published locally. Complete the remaining
 development sampling curves opportunistically without changing the final menu. See [validation experiment 029](experiments/029-validation-comparison.md).
 The final fresh-input timing check and held-out judgments remain pending.

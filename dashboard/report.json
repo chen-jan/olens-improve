@@ -1,6 +1,6 @@
 {
   "title": "Readouts: what is established",
-  "updated_utc": "2026-10-10T12:39:18.739600+00:00",
+  "updated_utc": "2026-10-10T12:45:25.188563+00:00",
   "cohort": "development",
   "run_ids": [
     "development-shared-pilot-v2",
@@ -65,7 +65,7 @@
     }
   ],
   "progress": {
-    "phase": "TEST reconstruction preparation",
+    "phase": "TEST reconstruction: four GPUs",
     "completed_cells": 3485,
     "expected_cells": 3485,
     "elapsed_hours": 11.228538777777779,
@@ -19828,7 +19828,7 @@
     "limits": "These are observed DEV losses, not a new held-out comparison. Mention recovery does not certify the calculation. No new interval is inferred."
   },
   "activity": {
-    "checked_utc": "2026-10-10T12:39:18.739600+00:00",
+    "checked_utc": "2026-10-10T12:45:25.188563+00:00",
     "validation_ar_status": "complete",
     "validation_new_ar_vectors": 421716,
     "shared_zero_copy_catalog_vectors": 1063925,
@@ -19881,7 +19881,7 @@
       }
     ],
     "validation_judging_status": "All 48 validation method-family comparisons and their signed analysis are complete. Two independent trace reviews support best-of-16 and specificity at N32 for final testing. Development judging remains stopped.",
-    "quality_status": "Reviewed validation results are displayed above. The six-arm TEST comparison is frozen, and all 342,848 samples passed identity checks. Reconstruction inputs are being prepared; no TEST quality result is available.",
+    "quality_status": "Reviewed validation results are displayed above. The six-arm TEST comparison is frozen. All samples passed identity checks; four GPUs are encoding 1,294,737 new phrase vectors. TEST judging and quality results are pending.",
     "generation_metadata_source": "${OLENS_DATA_ROOT}/runs/test-blind-preparation-v1/throughput-observation-v25.json",
     "generation_metadata_sha256": "30f500f0a6dcb8aef0e6eb61af811d161130348b35df46214c12855de77f0d35"
   },
