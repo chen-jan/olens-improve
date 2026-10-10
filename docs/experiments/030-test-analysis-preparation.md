@@ -78,3 +78,22 @@ VAL encoded 421,716 new keys over 3,485 cells at **95.28 vectors/second/GPU**, u
 For final cost reporting, cached replay is distinct from a new activation's generation, AR encoding and CPU selection. The prepared `scripts/deployment_timing.py` uses the same fixed synthetic library prompt as experiment 026, a single new N32 pool, an isolated new phrase cache and the installed portable tool. Two offline checks passed for frozen profile/control requirements and transparent timing wrappers. No GPU run has launched, and no final profiles have been supplied.
 
 After validation selects the final profiles, root can assign an idle main GPU after its TEST generation or AR worker exits; the timing check must not delay the four-way TEST AR work. Measure model initialization, adapter-off capture, warm N32 generation, fresh AR loading/encoding and subsequent cached replays separately. Nested timings overlap and must not be added together. CUDA peaks are cumulative across this engineering run. Cold refers to model initialization in this process; filesystem caches are not flushed. Prefix replays do not measure actual smaller-N generation latency. Specificity requires an explicit frozen same-layer calibration manifest and matching policy. Use no extra allocation or judge/API, and exclude this input from all benchmark results. The earlier N2 lifecycle and amortized DEV throughput describe different regimes.
+
+
+## Prepared dispatch and generation completion (11:52 UTC)
+
+`infra/launch_test_judges.py` now supports the final variable-length, ordered
+TEST menu with exact source/export/forecast hashes and the reviewed fixed
+Luna 8-concurrency/200-RPM policy. Six synthetic guard tests passed independently
+under root, and a second agent reviewed the source. `OLENS_TEST_FROZEN=1` reaches
+the child only after final analysis permission, ready/paid flags, allocation,
+CPU placement and fresh profile checks. No production TEST specification or
+analysis permission was created and no TEST API call was dispatched.
+
+Generation metadata v25 records all 10,714 cells complete (SHA256
+`30f500f0a6dcb8aef0e6eb61af811d161130348b35df46214c12855de77f0d35`).
+The independent resource receipt at
+`${OLENS_DATA_ROOT}/diagnostics/test-generation-terminal-resource-v1/receipt.json`
+(SHA256 `3b4761130fe43e75927befc35dfa0c1413ce3689253239a194b21897a5958d8d`)
+shows absent generation wrappers, no generation steps, and idle retained GPUs.
+This establishes preparation completion; held-out scientific scoring remains pending.
