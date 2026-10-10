@@ -1,0 +1,31 @@
+{
+  "status": "source_reviewed_execution_pending_complete_inputs",
+  "reviewed_by": "root",
+  "independent_reviewer": "adversarial_evaluation",
+  "reviewed_utc": "2026-10-10T16:50:38.789134+00:00",
+  "source_sha256": {
+    "scripts/analyze_whole_cohort_descriptive.py": "5e1fb1af288d71f9cf452bf554e6821d3a0622f6b557917d187cba190c3fc6dc",
+    "tests/test_whole_cohort_descriptive.py": "ca642411572d98b13f0bece83fea40afe3dd584f8ca840c900e74264fd266a37",
+    "configs/whole_cohort_descriptive_v1.prepared.json": "da21189128568d2f963523af1715ac6f3beb725ee0861cb667f3bee6c421c863"
+  },
+  "test_receipt": {
+    "path": ".state/whole-cohort-helper-tests-v3.json",
+    "sha256": "2b54a69379bb671775eeda46dbd2f1b06824fe8c748ac3ce578e0df6f2cd529a",
+    "tests": 8,
+    "scope": "Synthetic only; no real TEST outcomes opened"
+  },
+  "review": [
+    "Historical stage menus retain their own exact order; only the same twelve unique method identities can be combined.",
+    "Output uses canonical final menu order; missing, extra or duplicate methods are rejected.",
+    "All three stage capabilities are verified before outcome reads.",
+    "Root-reviewed completed reports and source hashes are required; pending DEV/TEST reports remain unbound.",
+    "Counts are pooled as ratios of sums, with original item aggregation and family-qualified related-group paired intervals.",
+    "Full469 is descriptive; final268 TEST stays separately reported."
+  ],
+  "execution_authorized": false,
+  "remaining": [
+    "Complete eleven missing DEV family/method judgments.",
+    "Complete and review all twelve TEST conditions across four families and both hallucination stages.",
+    "Bind exact completed stage reports and review immutable final execution plan."
+  ]
+}

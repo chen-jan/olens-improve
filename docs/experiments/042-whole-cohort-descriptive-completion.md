@@ -11,7 +11,7 @@ The metadata receipt `.state/dev12-coverage-verified-v1.json` verifies 37 of 48 
 | Role | Emean matched deletion .005; pooled bullets N16; pooled bullets N32; A32 pruning .005; A32 matched deletion .005; random complete N32 | All twelve TEST role contracts complete, worker absent and role cache owner released |
 | Hallucination | Pooled bullets N16; pooled bullets N32; A32 pruning .005; A32 matched deletion .005; random complete N32 | All twelve TEST hallucination contracts complete, both judge stages complete, worker absent and hallucination cache owner released |
 
-These are ordered subsets of the original DEV24 menu. The descriptive report will use the fixed twelve-method VAL/TEST display order. Preserve every existing complete DEV contract and artifact; dispatch only the missing eleven family conditions. If a condition becomes complete before handoff, prepare a smaller reviewed subset instead of replaying it.
+These are ordered subsets of the original DEV24 menu. The descriptive report will use the canonical TEST twelve-method display order. Historical VAL has the same twelve identities in a different frozen order; preserve it and validate its report against that own order. Preserve every existing complete DEV contract and artifact; dispatch only the missing eleven family conditions. If a condition becomes complete before handoff, prepare a smaller reviewed subset instead of replaying it.
 
 Prepared menus and specs:
 
@@ -32,10 +32,22 @@ The old immutable DEV forecast is a workload reference, not current cache state.
 
 ## Minimal descriptive analysis plan
 
-1. Bind immutable completed results for each stage to its exact cohort, source readouts, fixed twelve-method identity/order and analysis artifact hashes. Reuse the 37 complete DEV contracts byte-for-byte; add only the eleven completed contracts. Require zero missing API verdicts, complete hallucination stages for produced nonempty readouts, and explicit abstention counts. An upstream whole-bank `complete` flag does not replace project coverage checks.
+1. Bind immutable completed results for each stage to its exact cohort, source readouts, fixed twelve-method identities, each stage’s own frozen order, and analysis artifact hashes. Reuse the 37 complete DEV contracts byte-for-byte; add only the eleven completed contracts. Require zero missing API verdicts, complete hallucination stages for produced nonempty readouts, and explicit abstention counts. An upstream whole-bank `complete` flag does not replace project coverage checks.
 2. Verify the stage item/cell identities are disjoint and their union equals the intended 469 items and 19,435 read cells (DEV 5,236; VAL 3,485; TEST 10,714), with each item's original layer/read-position grid intact. Check related-group membership before pooling; do not silently split a related group between bootstrap units.
 3. Preserve TEST and VAL tables and supplied paired comparisons separately. Add a clearly labeled descriptive whole-cohort table for the identical twelve methods, with each family shown separately. Hallucination uses contradiction/specific-readout counts and also assertion/consistent coverage; multihop/chain recovery and role task passes use their intended denominators. Preserve empty outputs, errors and other classes explicitly. Do not introduce a hidden cross-family average.
 4. Compute pooled values from source numerators and denominators, not means of stage percentages or stage intervals. If pooled uncertainty is requested, use the existing related-group paired bootstrap on the complete union, with supplied stage/group provenance and a descriptive interpretation. Keep cell endpoints distinct from original-item endpoints (items with any passing site); mentions, role passes and ANY-grid success do not establish full-output faithfulness.
 5. Retain exact output lengths, source/condition hashes, stage scopes and missingness. Attach only root-reviewed findings; do not select a new winner or settings from the late DEV appendix. Research campaign, cached selector replay, fresh-input effort and benchmark-judge charges stay separate; unavailable fresh latency/GPU dollars remain unavailable.
 
 The source review for this preparation validated exact subset order, frozen membership, current implementation hashes and historical health/incident/index/copied-load evidence using the existing resume wrapper's source-only functions. No production DB connection, live cache inspection, paid dispatch or TEST outcome access occurred.
+
+## Implementation preparation
+
+`scripts/analyze_whole_cohort_descriptive.py` reuses the existing stage authority, family count definitions, original-grid checks and grouped paired bootstrap. `configs/whole_cohort_descriptive_v1.prepared.json` intentionally leaves all three reviewed report inputs pending, including the unavailable fixed12 DEV report. It cannot execute in prepared status. Root binds complete immutable reports and reviews the fixed contrasts before a separate ready plan is used.
+
+Eight synthetic-only tests cover pending inputs, all-stage capability checks before outcomes, incomplete arms, changed source bytes, exact disjoint family-qualified item/group unions, ratio-of-sums aggregation, whole-group paired intervals, units, output-length/stage-reference retention, reordered historical VAL compatibility, and missing/extra/duplicate method rejection. Canonical output retains TEST order; each report must match its own bound stage menu order. No real TEST outcomes were opened. Full469 analysis remains unrun.
+
+## Operational checkpoint before completion
+
+At 2026-10-10 16:46 UTC, closing-only TEST operational profiles show two hallucination conditions closed (raw and capped single-sample baselines), and three role conditions closed (those baselines and best reconstruction of16). This is a progress observation, not authorization to read outcomes or a claim that remaining family conditions are complete. The patched hallucination and role workers remain under root supervision; no restart or ledger query was performed for this check. Review the prepared successor CPU hold at19:00 UTC, since the current judge allocation ends at21:25:37.
+
+Root and independent source review passed after preserving historical stage-menu order while combining the same exact twelve identities. Eight synthetic checks passed; source review is recorded in `configs/whole_cohort_source_review_v1.json`. This is preparation only: incomplete DEV/TEST measurements remain unbound and no real aggregate was run.
