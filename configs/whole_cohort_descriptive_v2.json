@@ -1,0 +1,196 @@
+{
+  "status": "root_reviewed_ready",
+  "reviewed_by": "root",
+  "menu": {
+    "path": "configs/conditions_test_final_v2.json",
+    "sha256": "111b0684c8f5eb780e2b3887218757dee9ef6cca25efd26a8c0a515d008f4807"
+  },
+  "expected_union": {
+    "items": 469,
+    "cells": 19435
+  },
+  "expected_stage_counts": {
+    "development": {
+      "items": 121,
+      "cells": 5236
+    },
+    "validation": {
+      "items": 80,
+      "cells": 3485
+    },
+    "test": {
+      "items": 268,
+      "cells": 10714
+    }
+  },
+  "stages": {
+    "development": {
+      "manifest": {
+        "path": "configs/development-full-grid-v2.json",
+        "sha256": "dd382ff6e8bc8e70f1d13710e5235efd943537b4936921726b7d59655289ca80"
+      },
+      "conditions": {
+        "path": "configs/conditions_development_final12_reporting_v1.json",
+        "sha256": "7fb268432c32713d8f9fbf5b7d5d8e9e27eff30226e9ef41300a73828bc7b1a4"
+      },
+      "report": {
+        "path": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/final12-analysis-v1.json",
+        "sha256": "234e11ba4e99df7854264d9826a37f0804310352ebdca76bfa36e72bd85c29f9"
+      },
+      "authority": {},
+      "status": "root_verified_complete_source_for_descriptive_aggregation",
+      "report_creation": "Reviewed signed reporter, exact12projection with original DEV24source identities, complete original-grid metrics and lengths."
+    },
+    "validation": {
+      "manifest": {
+        "path": "configs/validation-full-grid-blind-v1.json",
+        "sha256": "9293de810635a5ee69fcee3c010ede25c7e147d12d172c2f637015c64042f19d"
+      },
+      "conditions": {
+        "path": "configs/conditions_validation_v1.json",
+        "sha256": "bed944371e050eff7898d07fe0a2ccb39a49a3359779640525b06c4904aca82a"
+      },
+      "report": {
+        "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/signed-menu-analysis-v1.json",
+        "sha256": "db223a374f51d9122f8cc430a347e4f82dea75ce3d449008e1def1f7cf89e918"
+      },
+      "authority": {
+        "fresh_manifest": {
+          "path": "${OLENS_COMPUTE_ROOT}/activations/core-v1/fresh_manifest_v2.json",
+          "sha256": "5a61cff89aca532f3e022233b6d2d8e12dab0d3a3f4f44085097bc6dc58fc385"
+        },
+        "gate": {
+          "path": "configs/gates/validation-analysis-v1.json",
+          "sha256": "9ba4b92cbfa9f6a0400aa74b65cbf59d8614791efb2c5b404265a0ea455b88f8"
+        },
+        "condition_list": {
+          "path": "configs/conditions_validation_v1.json",
+          "sha256": "bed944371e050eff7898d07fe0a2ccb39a49a3359779640525b06c4904aca82a"
+        },
+        "freeze": {
+          "path": "configs/validation_shortlist_freeze_v1.json",
+          "sha256": "30daad423ee9326971f5f08fa4f3a3e7eec37c857b3757a700a8fcbb3a7547e6"
+        }
+      },
+      "status": "root_verified_complete_source_for_descriptive_aggregation"
+    },
+    "test": {
+      "manifest": {
+        "path": "configs/test-full-grid-analysis-v2.json",
+        "sha256": "e717772952e83ba5c56014cd8abb23e720519d013a6e6a8905f8f2c87f73d207"
+      },
+      "conditions": {
+        "path": "configs/conditions_test_final_v2.json",
+        "sha256": "111b0684c8f5eb780e2b3887218757dee9ef6cca25efd26a8c0a515d008f4807"
+      },
+      "report": {
+        "path": "${OLENS_DATA_ROOT}/runs/test-full-grid-comparison-v2/final-analysis-v2.json",
+        "sha256": "75dee255d88104450fa4424610178baa4df24964394be77812fa218379cfcef8"
+      },
+      "authority": {
+        "fresh_manifest": {
+          "path": "${OLENS_COMPUTE_ROOT}/activations/core-v1/fresh_manifest_v2.json",
+          "sha256": "5a61cff89aca532f3e022233b6d2d8e12dab0d3a3f4f44085097bc6dc58fc385"
+        },
+        "gate": {
+          "path": "configs/gates/test-analysis-v2.json",
+          "sha256": "1c0412380a1980b3551d0f750434269572ebf1f79377efa12018373e05c72dcc"
+        },
+        "condition_list": {
+          "path": "configs/conditions_test_final_v2.json",
+          "sha256": "111b0684c8f5eb780e2b3887218757dee9ef6cca25efd26a8c0a515d008f4807"
+        },
+        "freeze": {
+          "path": "configs/test_final_method_freeze_v2.json",
+          "sha256": "b46f00851efb71628faa2ffcb404011c4ef1f3543d68fc4f18d0ab6d74d95e86"
+        }
+      },
+      "status": "root_verified_complete_source_for_descriptive_aggregation"
+    }
+  },
+  "comparison_pairs": [
+    [
+      "capped_n1-n1",
+      "raw_n1-n1"
+    ],
+    [
+      "capped_n1-n1",
+      "best_n_exact-n16"
+    ],
+    [
+      "capped_n1-n1",
+      "best_n_exact-n32"
+    ],
+    [
+      "capped_n1-n1",
+      "random_complete-n32"
+    ],
+    [
+      "capped_n1-n1",
+      "best_n_specificity_mean-n32"
+    ],
+    [
+      "capped_n1-n1",
+      "pooled_greedy_swap-n16"
+    ],
+    [
+      "capped_n1-n1",
+      "pooled_greedy_swap-n32"
+    ],
+    [
+      "capped_n1-n1",
+      "best_n_specificity_mean_then_prune_0.005-n32"
+    ],
+    [
+      "capped_n1-n1",
+      "best_n_specificity_mean_random_delete_matched_0.005-n32"
+    ],
+    [
+      "capped_n1-n1",
+      "prune_loo_a32_0.005-n32"
+    ],
+    [
+      "capped_n1-n1",
+      "random_delete_matched_a32_0.005-n32"
+    ],
+    [
+      "best_n_exact-n16",
+      "pooled_greedy_swap-n16"
+    ],
+    [
+      "best_n_exact-n32",
+      "pooled_greedy_swap-n32"
+    ],
+    [
+      "best_n_exact-n32",
+      "best_n_specificity_mean-n32"
+    ],
+    [
+      "best_n_specificity_mean-n32",
+      "best_n_specificity_mean_then_prune_0.005-n32"
+    ],
+    [
+      "best_n_specificity_mean_random_delete_matched_0.005-n32",
+      "best_n_specificity_mean_then_prune_0.005-n32"
+    ],
+    [
+      "best_n_exact-n32",
+      "prune_loo_a32_0.005-n32"
+    ],
+    [
+      "random_delete_matched_a32_0.005-n32",
+      "prune_loo_a32_0.005-n32"
+    ]
+  ],
+  "implementation_source_sha256": {
+    "scripts/analyze_whole_cohort_descriptive.py": "5e1fb1af288d71f9cf452bf554e6821d3a0622f6b557917d187cba190c3fc6dc",
+    "src/olens_improve/reporting.py": "7bc728136f19eac771ed3fb8c3b9077f416d047197bb3c9c0de2c431985ee319",
+    "src/olens_improve/evaluation.py": "7e8ed156c6f79520c5960e0c49ce3ddc19b0b60eccdbc35e1e44ceac736cc688"
+  },
+  "pending_inputs": [],
+  "scope": "Descriptive whole469 appendix; retain distinct DEV/VAL/TEST reports and TEST268 held-out scope.",
+  "menu_order_policy": "Require identical unique twelve-method identities across stages; preserve each stage frozen menu/report order and emit canonical TEST12 output order.",
+  "reviewed_utc": "2026-10-10T22:04:06.160069+00:00",
+  "review_scope": "Complete source identity/count validation for descriptive aggregation. Scientific interpretation and publication remain separately reviewed; no new selected method or TEST tuning.",
+  "output": "${OLENS_DATA_ROOT}/runs/whole-cohort-descriptive-v1.json"
+}

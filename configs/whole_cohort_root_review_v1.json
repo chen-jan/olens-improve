@@ -1,0 +1,48 @@
+{
+  "status": "root_reviewed",
+  "reviewed_by": "root",
+  "reviewed_utc": "2026-10-10T22:14:41.297427+00:00",
+  "test_reveal_authorized": true,
+  "artifact_sha256": "a6510b74fabb410efe859197d295c31ba67bc7274537eeb084c1d16382d5e00f",
+  "condition_ids": [
+    "raw_n1-n1",
+    "capped_n1-n1",
+    "best_n_exact-n16",
+    "best_n_exact-n32",
+    "random_complete-n32",
+    "best_n_specificity_mean-n32",
+    "pooled_greedy_swap-n16",
+    "pooled_greedy_swap-n32",
+    "best_n_specificity_mean_then_prune_0.005-n32",
+    "best_n_specificity_mean_random_delete_matched_0.005-n32",
+    "prune_loo_a32_0.005-n32",
+    "random_delete_matched_a32_0.005-n32"
+  ],
+  "expected_family_counts": {
+    "hallucination": {
+      "items": 149,
+      "groups": 149,
+      "cells": 5615
+    },
+    "multihop_mt": {
+      "items": 100,
+      "groups": 94,
+      "cells": 1100
+    },
+    "chain_intermediates": {
+      "items": 120,
+      "groups": 42,
+      "cells": 1320
+    },
+    "role_bound_association": {
+      "items": 100,
+      "groups": 50,
+      "cells": 11400
+    }
+  },
+  "independent_review": {
+    "path": "configs/whole_cohort_review_v1.json",
+    "sha256": "f2e21e125a41549e803a1668239341196fa675fce53d0b53d0367b1c4a73e737"
+  },
+  "interpretation": "Descriptive union of development, validation and test. It is not a second held-out test or a basis for changing operating points."
+}

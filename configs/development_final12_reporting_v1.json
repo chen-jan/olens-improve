@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "status": "root_reviewed_ready",
+  "created_utc": "2026-10-10T21:52:04.942246+00:00",
+  "scope": "Read-only descriptive DEV12 report; 121 items and 5236 original-grid cells; does not change TEST or VAL decisions.",
+  "no_api_or_model_calls": true,
+  "canonical_method_menu": {
+    "path": "configs/conditions_test_final_v2.json",
+    "sha256": "111b0684c8f5eb780e2b3887218757dee9ef6cca25efd26a8c0a515d008f4807"
+  },
+  "reporting_conditions": {
+    "path": "configs/conditions_development_final12_reporting_v1.json",
+    "sha256": "7fb268432c32713d8f9fbf5b7d5d8e9e27eff30226e9ef41300a73828bc7b1a4"
+  },
+  "manifest": {
+    "path": "configs/development-full-grid-v2.json",
+    "sha256": "dd382ff6e8bc8e70f1d13710e5235efd943537b4936921726b7d59655289ca80"
+  },
+  "selected_text_projection": {
+    "path": "${OLENS_DATA_ROOT}/selections/development-full-grid-judging-v1/final12-exact-v2.jsonl",
+    "sha256": "a638c102a2e762543d0d81f28575fa2a46dd64ea7d12641b071622736a89c91e"
+  },
+  "projection_provenance": {
+    "path": "${OLENS_DATA_ROOT}/selections/development-full-grid-judging-v1/final12-exact-provenance-v2.json",
+    "sha256": "fc413327e9f783cd87f53ab996f0a823659f4b06f9894b903ab088146192fe17"
+  },
+  "original_judgment_selection_source": {
+    "path": "${OLENS_DATA_ROOT}/selections/development-full-grid-judging-v1/selections.jsonl",
+    "sha256": "acfcdefc425f48da612059f7bcb157bf037f91ba4e70fa9c68b0db142bfc46a4"
+  },
+  "judgments": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1",
+  "output": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/final12-analysis-v1.json",
+  "expected": {
+    "conditions": 12,
+    "families": 4,
+    "family_contracts": 48,
+    "cells": 5236,
+    "items": 121
+  },
+  "prepared_reporting_implementation_sha256": {
+    "scripts/analyze_signed_menu.py": "82afc579a36f1176465252c19cd8a3d300597f038e9cd9e2ca00d4dad8bc061d",
+    "scripts/analyze_consensus_conditions.py": "853827001140b7c7fd8aeb0be6b4485e2a02a7f3a2e5fbf61833efc6dedb40ce",
+    "src/olens_improve/reporting.py": "7bc728136f19eac771ed3fb8c3b9077f416d047197bb3c9c0de2c431985ee319",
+    "src/olens_improve/evaluation.py": "7e8ed156c6f79520c5960e0c49ce3ddc19b0b60eccdbc35e1e44ceac736cc688",
+    "src/olens_improve/data.py": "d7c90871a0725ea0538c1a924da1b76e5651196bd6266fb2da5e07bbc3c715ae"
+  },
+  "source_pin_policy": "These are preparation-time source pins. Root must review current approved sources and hold the reporter implementation unchanged during execution; the reporter records and verifies its own actual source hash window.",
+  "condition_provenance_policy": "Each arm retains the original authoritative DEV24 selection source SHA. The separate immutable DEV12 text projection is checked for exact condition order, cell identity, and equality with judged text. No condition/result identity is rewritten.",
+  "execution_preconditions": [
+    "Root confirms all 48 DEV12 family contracts are complete, including both hallucination stages and explicit abstentions.",
+    "Run on allocated CPU only, after judging source changes have paused for the reporter hash window.",
+    "Use a new absent output path; do not overwrite immutable reports."
+  ],
+  "command_argv": [
+    "${OLENS_COMPUTE_ROOT}/envs/runtime/bin/python",
+    "scripts/analyze_signed_menu.py",
+    "--manifest",
+    "configs/development-full-grid-v2.json",
+    "--conditions",
+    "configs/conditions_development_final12_reporting_v1.json",
+    "--judgments",
+    "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/judgments-methods-v1",
+    "--selections",
+    "${OLENS_DATA_ROOT}/selections/development-full-grid-judging-v1/final12-exact-v2.jsonl",
+    "--selection-sha256",
+    "a638c102a2e762543d0d81f28575fa2a46dd64ea7d12641b071622736a89c91e",
+    "--output",
+    "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/final12-analysis-v1.json"
+  ],
+  "output_contract": {
+    "measurement": "Complete existing summarize result with exact sources and original-grid/grouped metrics.",
+    "lengths": "Complete per-condition/family outputs, mean_qwen_tokens_all_intended, and mean_bullets_all_intended from the exact projection.",
+    "paired_traces": "Existing deterministic cell-change sampling and retained raw evidence; no verdict replacement."
+  },
+  "whole_cohort_followup": "Prepare a NEW root_reviewed_ready whole-cohort plan with this report path/SHA, its DEV reporting-conditions path/SHA, reviewed VAL and TEST reports, and current approved implementation hashes. Preserve the historical prepared plan and frozen TEST menu.",
+  "no_ledger_or_cache_database_queries": true,
+  "reviewed_by": "root",
+  "reviewed_utc": "2026-10-10T22:02:37.696769+00:00",
+  "completion_receipt": {
+    "path": "${OLENS_DATA_ROOT}/diagnostics/test12-operational-v1/final-dev-hall-batch-v4-accounting-contracts-v1.json",
+    "sha256": "0918cc9ec390ef0df1a66cac740847eee51a9e77370b5c968306ffaacc907f95"
+  },
+  "root_scope": "AllDEV12complete; original source identity and exact projection preserved; no tuning or API calls."
+}

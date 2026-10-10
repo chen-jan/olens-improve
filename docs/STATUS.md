@@ -1,10 +1,22 @@
 # Execution status
 
-Updated: 2026-10-10, approximately 21:55 UTC.
+Updated: 2026-10-10, approximately 22:18 UTC.
 Started: 2026-10-10 01:25:36 UTC (October 9, 21:25:36 EDT).
-Original target finish: 2026-10-10 21:25:36 UTC, superseded. Execution remains active and authorized; final judging, analysis and delivery are tracked below.
+Original target finish: 2026-10-10 21:25:36 UTC, superseded. Paid execution ended at approximately 22:02 UTC; final delivery assembly and review continue.
 
-## Latest operational checkpoint
+## Latest handoff: scientific work complete, delivery under review
+
+All **48 TEST**, **48 VAL** and **48 DEV** frozen method/family comparisons are complete, with both hallucination stages and all intended grids covered. All paid workers ended; the final DEV hall wrapper exited zero at approximately **22:02 UTC**. Final statistical reporting and independent family trace reviews are complete. The descriptive whole-469-item report keeps DEV/VAL/TEST identities and intervals separate from the primary 268-item TEST evidence; it is not another independent held-out result.
+
+The final TEST analysis is `durable/runs/test-full-grid-comparison-v2/final-analysis-v2.json`, SHA `75dee255d88104450fa4424610178baa4df24964394be77812fa218379cfcef8`. Root-reviewed attachment metadata is [test_final_review_v1.json](../configs/test_final_review_v1.json), SHA `affeeb07dc331ba74eaaeef3dff77d26f10e15d06448a3e55677f73120aafdd9`. TEST PNG/PDF figures were exported from supplied values and intervals; provenance SHA `94f9cc11dee4389325abe67c7d03e4da54f362465ca7b6f9bf88908cddbd607a` at `durable/figures/test-final-v1/provenance.json`.
+
+Final accounting at **22:02:08 UTC** records **$36.50759506 estimated API usage** and **$4.8597425 retained reservations**, including the **$4.85435575 unknown subset**; committed total **$41.36733756**. These are usage-derived estimates, not invoice charges. All uncertain/inactive holds remain retained. The scoped storage count at **22:10:53 UTC** is **98.704 GB / 14,974 files**, excluding reused external weights. Measured generation plus main reconstructor task time is **30.192 hours**; project-reserved H200 time through the user handoff is **70.220 GPU-hours**. These quantities must not be added. See [054 final resources](experiments/054-final-resources.md) and its immutable receipt, SHA `07f91cc0508af646bc8f7670a14e0816157d5621bd638f3e025ccb7b7d0d2ee1`.
+
+No project GPU workload or paid judge worker is active. GPU access ended at the **18:10:48 UTC** user handoff; subsequent user work is excluded. CPU **25508300** is retained for final figures/deck and must not be released before root confirms completion. Final slides/PDF, attachment/link checks, and the final public dashboard update remain under review. Earlier public versions and engineering checks do not establish that final publication is complete. Root alone commits; the user handles GitHub pushing.
+
+The earlier incidental TEST auxiliary-field exposure remains disclosed below and in final review metadata. It did not change the frozen menu; final outcome review was subsequently authorized after all TEST contracts completed.
+
+## Historical operational checkpoint, 21:55 UTC
 
 At **21:55:16 UTC (5:55pm Eastern)**, **all 48 TEST family/method comparisons are complete**. The hall worker exited zero, its PID is absent, its cache owner is free, and all twelve exact hall contracts cover 3,705 cells with both judging stages complete. Terminal receipt: `durable/diagnostics/test12-operational-v1/hall-batch-v14-terminal-contracts-v1.json`, SHA `5119be87fdea7dc4cf536cc29f9af0e3a97870eae751a4ee6352fed52a83d7ea`. Signed TEST analysis is now running on allocated CPU; no final quality findings are reported here.
 
@@ -222,7 +234,7 @@ Reviewed sources and paired examples are in the experiment records and
 [local dashboard](../dashboard/index.html). Local commit `f62adb6` contains the
 first source-checked dashboard with grouped intervals. The research GitHub repository has not been pushed. A separate Sites source repository hosts the sanitized public dashboard.
 
-## Current work
+## Historical work checkpoint before final completion
 
 | Work | State |
 |---|---|
@@ -314,7 +326,7 @@ encodings and identical cache-only replay in 156 seconds on one H200. This
 validates installed plumbing in the existing environment, not explanation
 quality or a complete dependency installation on another machine.
 
-## Resources and limits
+## Historical resources and limits
 
 - Four main H200 allocations: 25330001, 25330006, 25330007, 25417596.
 - Both extra H200 allocations, 25460532 and 25459615, were intentionally
@@ -416,8 +428,8 @@ records before continuing. Preserve the historical `mats/workspace` checkout.
   exact-support pooling uses `judgments-support-pooling`.
   Report exact condition roots and selection hashes, not a directory glob.
 - Full development: immutable `runs/development-full-grid-v2`, baseline
-  judgments in its `judgments-baselines` directory. Selector comparisons are
-  pending. A parallel AR-cache extension preserved all keys and inherited
+  judgments in its `judgments-baselines` directory. The frozen twelve-method
+  selector comparisons and all six sampling prefixes are now complete. A parallel AR-cache extension preserved all keys and inherited
   vectors in a four-cell real fixture, with no changed best-of-32 winner.
   Its expanded 12-cell batch-size audit exceeded both provisional equivalence
   guards: maximum FVE drift .003524, with 0/12 best-of-32 winners, 2/12 pooled

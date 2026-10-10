@@ -174,6 +174,18 @@ Make local commits at meaningful reviewed milestones, keeping code, documentatio
 
 ## Current status and continuation
 
+Latest handoff: **2026-10-10 approximately 22:18 UTC**. All paid judging is complete: the frozen twelve methods cover every intended DEV/VAL/TEST family grid, including both hallucination stages. Statistical reports and systematic independent trace reviews are complete. The primary final scope remains TEST 268; whole 469 is a separately labeled descriptive appendix, not independent held-out confirmation. Final figures are exported; reviewed report/dashboard attachments and slides are being assembled before final publication.
+
+Final TEST review metadata is [test_final_review_v1.json](../configs/test_final_review_v1.json); its exact analysis SHA is `75dee255d88104450fa4424610178baa4df24964394be77812fa218379cfcef8`. [054 final resources](experiments/054-final-resources.md) binds the terminal accounting and scoped storage receipt. API usage is $36.50759506, retained reservations $4.8597425, committed $41.36733756 at 22:02:08 UTC; unknown charges are already inside reservations. Storage is 98.704 GB / 14,974 files at 22:10:53 UTC. Major generation/AR task time is 30.192 hours; project-reserved H200 time through the 18:10:48 handoff is 70.220 GPU-hours. No GPU dollar price is available.
+
+No paid worker or project GPU workload remains. Do not schedule new GPU work against handed-back allocations. CPU 25508300 remains available for final figures/deck until root coordinates release. Final public dashboard and editable/PDF slides are still under delivery review; no final-publication or GitHub-push claim is made. Root is the sole Git writer, and the user handles pushing. Preserve all samples, exact caches, raw evidence, holds and historical records. No new scientific tuning or calls are required for this handoff.
+
+The bounded pre-reveal auxiliary-field exposure remains disclosed in the final review metadata and historical handoffs below; do not replace it with a universal zero-exposure claim.
+
+## Historical operational handoffs
+
+### Handoffs retained through 21:55 UTC
+
 **GPU handoff:** all four H200s were verified idle at 18:10:48 UTC and are available for the user to reuse. Do not schedule new project GPU work or attribute subsequent user GPU time to this project. The allocations remain intact. Current judging uses CPU job25508300. See `configs/gpu_handoff_v1.json`.
 
 Latest handoff: **2026-10-10 21:55 UTC**. All 48 TEST comparisons are complete, including twelve hall contracts covering3,705 cells with both stages; root collected exit 0 and cache-owner release. Terminal receipt SHA `5119be87fdea7dc4cf536cc29f9af0e3a97870eae751a4ee6352fed52a83d7ea`. Signed TEST analysis is running on allocated CPU. All six late DEV role comparisons are complete with 3,420 cells each and no missing judgments; five hall DEV comparisons remain. Released-hall family-only forecast and batch-v4 preparation are ready for root sealing, with the same original five-condition order/run $20 / 07:52 epoch.

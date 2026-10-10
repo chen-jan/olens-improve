@@ -1,0 +1,884 @@
+{
+  "status": "independent_review_complete_pending_root",
+  "reviewed_by": "model_scoring_audit",
+  "reviewed_utc": "2026-10-10T22:11:12.513318+00:00",
+  "artifact": {
+    "path": "${OLENS_DATA_ROOT}/runs/whole-cohort-descriptive-v1.json",
+    "sha256": "a6510b74fabb410efe859197d295c31ba67bc7274537eeb084c1d16382d5e00f"
+  },
+  "plan": {
+    "path": "configs/whole_cohort_descriptive_v2.json",
+    "sha256": "e3f6e4a755593d17a685021f5d34bb52b540334d6a471ca29adf3a6197874a6d"
+  },
+  "scope": "Descriptive DEV + VAL + TEST; not 469 held-out items and not a new operating-point selection.",
+  "condition_ids": [
+    "raw_n1-n1",
+    "capped_n1-n1",
+    "best_n_exact-n16",
+    "best_n_exact-n32",
+    "random_complete-n32",
+    "best_n_specificity_mean-n32",
+    "pooled_greedy_swap-n16",
+    "pooled_greedy_swap-n32",
+    "best_n_specificity_mean_then_prune_0.005-n32",
+    "best_n_specificity_mean_random_delete_matched_0.005-n32",
+    "prune_loo_a32_0.005-n32",
+    "random_delete_matched_a32_0.005-n32"
+  ],
+  "expected_family_counts": {
+    "hallucination": {
+      "items": 149,
+      "groups": 149,
+      "cells": 5615
+    },
+    "multihop_mt": {
+      "items": 100,
+      "groups": 94,
+      "cells": 1100
+    },
+    "chain_intermediates": {
+      "items": 120,
+      "groups": 42,
+      "cells": 1320
+    },
+    "role_bound_association": {
+      "items": 100,
+      "groups": 50,
+      "cells": 11400
+    }
+  },
+  "stage_reports": {
+    "development": {
+      "path": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/final12-analysis-v1.json",
+      "sha256": "234e11ba4e99df7854264d9826a37f0804310352ebdca76bfa36e72bd85c29f9"
+    },
+    "validation": {
+      "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/signed-menu-analysis-v1.json",
+      "sha256": "db223a374f51d9122f8cc430a347e4f82dea75ce3d449008e1def1f7cf89e918"
+    },
+    "test": {
+      "path": "${OLENS_DATA_ROOT}/runs/test-full-grid-comparison-v2/final-analysis-v2.json",
+      "sha256": "75dee255d88104450fa4424610178baa4df24964394be77812fa218379cfcef8"
+    }
+  },
+  "checks": {
+    "exact_plan_source_authority_and_stage_artifact_hashes": true,
+    "implementation_hashes_unchanged": {
+      "scripts/analyze_whole_cohort_descriptive.py": "5e1fb1af288d71f9cf452bf554e6821d3a0622f6b557917d187cba190c3fc6dc",
+      "src/olens_improve/reporting.py": "7bc728136f19eac771ed3fb8c3b9077f416d047197bb3c9c0de2c431985ee319",
+      "src/olens_improve/evaluation.py": "7e8ed156c6f79520c5960e0c49ce3ddc19b0b60eccdbc35e1e44ceac736cc688"
+    },
+    "source_hash_map_equals_stage_union": true,
+    "raw_outcome_bytes_rehashed_in_this_review": false,
+    "raw_source_provenance_note": "Aggregator hash-checks each raw source twice; this review independently verifies the stage artifacts and equality of all retained raw source pins, without rerunning raw judgments.",
+    "disjoint_items_cells_and_related_groups_between_stages": true,
+    "all12_by3_by4_coverage_checks": 144,
+    "all_endpoint_numerator_denominator_sum_checks": 156,
+    "weighted_length_and_empty_output_checks": 48,
+    "paired_values_counts_checks": 234,
+    "grouped_ci_method": "Unchanged pinned paired_group_interval with 2000 related-group draws over union item pairs; no average of stage intervals.",
+    "bootstrap_not_reexecuted_in_this_review": true
+  },
+  "headline_metrics": [
+    {
+      "condition": "raw_n1-n1",
+      "families": {
+        "hallucination": {
+          "numerator": 2648,
+          "denominator": 5560,
+          "value": 0.4762589928057554,
+          "ci95": [
+            0.4420731707317073,
+            0.511566307610807
+          ],
+          "items": 149,
+          "independent_groups": 149,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "contradictory / specific readouts",
+          "scope": "original_grid"
+        },
+        "multihop_mt": {
+          "numerator": 34,
+          "denominator": 100,
+          "value": 0.34,
+          "ci95": [
+            0.24271844660194175,
+            0.4387755102040816
+          ],
+          "items": 100,
+          "independent_groups": 94,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "items with any passing site / intended items",
+          "scope": "original_grid"
+        },
+        "chain_intermediates": {
+          "numerator": 59,
+          "denominator": 120,
+          "value": 0.49166666666666664,
+          "ci95": [
+            0.40145985401459855,
+            0.5867768595041323
+          ],
+          "items": 120,
+          "independent_groups": 42,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "items with any passing site / intended items",
+          "scope": "original_grid"
+        },
+        "role_bound_association": {
+          "numerator": 78,
+          "denominator": 100,
+          "value": 0.78,
+          "ci95": [
+            0.71,
+            0.85
+          ],
+          "items": 100,
+          "independent_groups": 50,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "items with any passing site / intended items",
+          "scope": "original_grid"
+        }
+      }
+    },
+    {
+      "condition": "capped_n1-n1",
+      "families": {
+        "hallucination": {
+          "numerator": 2641,
+          "denominator": 5554,
+          "value": 0.47551314368023045,
+          "ci95": [
+            0.4413706942709263,
+            0.5114641632063549
+          ],
+          "items": 149,
+          "independent_groups": 149,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "contradictory / specific readouts",
+          "scope": "original_grid"
+        },
+        "multihop_mt": {
+          "numerator": 34,
+          "denominator": 100,
+          "value": 0.34,
+          "ci95": [
+            0.24271844660194175,
+            0.4387755102040816
+          ],
+          "items": 100,
+          "independent_groups": 94,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "items with any passing site / intended items",
+          "scope": "original_grid"
+        },
+        "chain_intermediates": {
+          "numerator": 57,
+          "denominator": 120,
+          "value": 0.475,
+          "ci95": [
+            0.375,
+            0.5789473684210527
+          ],
+          "items": 120,
+          "independent_groups": 42,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "items with any passing site / intended items",
+          "scope": "original_grid"
+        },
+        "role_bound_association": {
+          "numerator": 78,
+          "denominator": 100,
+          "value": 0.78,
+          "ci95": [
+            0.71,
+            0.85
+          ],
+          "items": 100,
+          "independent_groups": 50,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "items with any passing site / intended items",
+          "scope": "original_grid"
+        }
+      }
+    },
+    {
+      "condition": "best_n_exact-n16",
+      "families": {
+        "hallucination": {
+          "numerator": 2633,
+          "denominator": 5564,
+          "value": 0.47322070452911574,
+          "ci95": [
+            0.4390602055800294,
+            0.507548526240115
+          ],
+          "items": 149,
+          "independent_groups": 149,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "contradictory / specific readouts",
+          "scope": "original_grid"
+        },
+        "multihop_mt": {
+          "numerator": 41,
+          "denominator": 100,
+          "value": 0.41,
+          "ci95": [
+            0.3163265306122449,
+            0.5151515151515151
+          ],
+          "items": 100,
+          "independent_groups": 94,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "items with any passing site / intended items",
+          "scope": "original_grid"
+        },
+        "chain_intermediates": {
+          "numerator": 61,
+          "denominator": 120,
+          "value": 0.5083333333333333,
+          "ci95": [
+            0.4016393442622951,
+            0.6166666666666667
+          ],
+          "items": 120,
+          "independent_groups": 42,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "items with any passing site / intended items",
+          "scope": "original_grid"
+        },
+        "role_bound_association": {
+          "numerator": 81,
+          "denominator": 100,
+          "value": 0.81,
+          "ci95": [
+            0.74,
+            0.88
+          ],
+          "items": 100,
+          "independent_groups": 50,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "items with any passing site / intended items",
+          "scope": "original_grid"
+        }
+      }
+    },
+    {
+      "condition": "best_n_exact-n32",
+      "families": {
+        "hallucination": {
+          "numerator": 2550,
+          "denominator": 5565,
+          "value": 0.4582210242587601,
+          "ci95": [
+            0.42423701588434765,
+            0.4948750224779716
+          ],
+          "items": 149,
+          "independent_groups": 149,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "contradictory / specific readouts",
+          "scope": "original_grid"
+        },
+        "multihop_mt": {
+          "numerator": 40,
+          "denominator": 100,
+          "value": 0.4,
+          "ci95": [
+            0.30303030303030304,
+            0.5051546391752577
+          ],
+          "items": 100,
+          "independent_groups": 94,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "items with any passing site / intended items",
+          "scope": "original_grid"
+        },
+        "chain_intermediates": {
+          "numerator": 61,
+          "denominator": 120,
+          "value": 0.5083333333333333,
+          "ci95": [
+            0.40186915887850466,
+            0.6146788990825688
+          ],
+          "items": 120,
+          "independent_groups": 42,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "items with any passing site / intended items",
+          "scope": "original_grid"
+        },
+        "role_bound_association": {
+          "numerator": 77,
+          "denominator": 100,
+          "value": 0.77,
+          "ci95": [
+            0.7,
+            0.84
+          ],
+          "items": 100,
+          "independent_groups": 50,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "items with any passing site / intended items",
+          "scope": "original_grid"
+        }
+      }
+    },
+    {
+      "condition": "random_complete-n32",
+      "families": {
+        "hallucination": {
+          "numerator": 2572,
+          "denominator": 5556,
+          "value": 0.462922966162707,
+          "ci95": [
+            0.4296047988708539,
+            0.49812332439678286
+          ],
+          "items": 149,
+          "independent_groups": 149,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "contradictory / specific readouts",
+          "scope": "original_grid"
+        },
+        "multihop_mt": {
+          "numerator": 37,
+          "denominator": 100,
+          "value": 0.37,
+          "ci95": [
+            0.27722772277227725,
+            0.46938775510204084
+          ],
+          "items": 100,
+          "independent_groups": 94,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "items with any passing site / intended items",
+          "scope": "original_grid"
+        },
+        "chain_intermediates": {
+          "numerator": 54,
+          "denominator": 120,
+          "value": 0.45,
+          "ci95": [
+            0.34951456310679613,
+            0.5526315789473685
+          ],
+          "items": 120,
+          "independent_groups": 42,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "items with any passing site / intended items",
+          "scope": "original_grid"
+        },
+        "role_bound_association": {
+          "numerator": 76,
+          "denominator": 100,
+          "value": 0.76,
+          "ci95": [
+            0.68,
+            0.84
+          ],
+          "items": 100,
+          "independent_groups": 50,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "items with any passing site / intended items",
+          "scope": "original_grid"
+        }
+      }
+    },
+    {
+      "condition": "best_n_specificity_mean-n32",
+      "families": {
+        "hallucination": {
+          "numerator": 2550,
+          "denominator": 5566,
+          "value": 0.4581386992454186,
+          "ci95": [
+            0.42474738521538735,
+            0.4943080754180007
+          ],
+          "items": 149,
+          "independent_groups": 149,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "contradictory / specific readouts",
+          "scope": "original_grid"
+        },
+        "multihop_mt": {
+          "numerator": 41,
+          "denominator": 100,
+          "value": 0.41,
+          "ci95": [
+            0.31313131313131315,
+            0.5151515151515151
+          ],
+          "items": 100,
+          "independent_groups": 94,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "items with any passing site / intended items",
+          "scope": "original_grid"
+        },
+        "chain_intermediates": {
+          "numerator": 61,
+          "denominator": 120,
+          "value": 0.5083333333333333,
+          "ci95": [
+            0.4224137931034483,
+            0.6
+          ],
+          "items": 120,
+          "independent_groups": 42,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "items with any passing site / intended items",
+          "scope": "original_grid"
+        },
+        "role_bound_association": {
+          "numerator": 81,
+          "denominator": 100,
+          "value": 0.81,
+          "ci95": [
+            0.74,
+            0.88
+          ],
+          "items": 100,
+          "independent_groups": 50,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "items with any passing site / intended items",
+          "scope": "original_grid"
+        }
+      }
+    },
+    {
+      "condition": "pooled_greedy_swap-n16",
+      "families": {
+        "hallucination": {
+          "numerator": 2647,
+          "denominator": 5558,
+          "value": 0.4762504498020871,
+          "ci95": [
+            0.4429264785187848,
+            0.5111150950161348
+          ],
+          "items": 149,
+          "independent_groups": 149,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "contradictory / specific readouts",
+          "scope": "original_grid"
+        },
+        "multihop_mt": {
+          "numerator": 44,
+          "denominator": 100,
+          "value": 0.44,
+          "ci95": [
+            0.3431372549019608,
+            0.5436893203883495
+          ],
+          "items": 100,
+          "independent_groups": 94,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "items with any passing site / intended items",
+          "scope": "original_grid"
+        },
+        "chain_intermediates": {
+          "numerator": 56,
+          "denominator": 120,
+          "value": 0.4666666666666667,
+          "ci95": [
+            0.36153846153846153,
+            0.5701754385964912
+          ],
+          "items": 120,
+          "independent_groups": 42,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "items with any passing site / intended items",
+          "scope": "original_grid"
+        },
+        "role_bound_association": {
+          "numerator": 83,
+          "denominator": 100,
+          "value": 0.83,
+          "ci95": [
+            0.76,
+            0.89
+          ],
+          "items": 100,
+          "independent_groups": 50,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "items with any passing site / intended items",
+          "scope": "original_grid"
+        }
+      }
+    },
+    {
+      "condition": "pooled_greedy_swap-n32",
+      "families": {
+        "hallucination": {
+          "numerator": 2621,
+          "denominator": 5555,
+          "value": 0.47182718271827184,
+          "ci95": [
+            0.437921248669741,
+            0.5075458138699246
+          ],
+          "items": 149,
+          "independent_groups": 149,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "contradictory / specific readouts",
+          "scope": "original_grid"
+        },
+        "multihop_mt": {
+          "numerator": 41,
+          "denominator": 100,
+          "value": 0.41,
+          "ci95": [
+            0.3137254901960784,
+            0.5148514851485149
+          ],
+          "items": 100,
+          "independent_groups": 94,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "items with any passing site / intended items",
+          "scope": "original_grid"
+        },
+        "chain_intermediates": {
+          "numerator": 53,
+          "denominator": 120,
+          "value": 0.44166666666666665,
+          "ci95": [
+            0.3448275862068966,
+            0.5446428571428571
+          ],
+          "items": 120,
+          "independent_groups": 42,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "items with any passing site / intended items",
+          "scope": "original_grid"
+        },
+        "role_bound_association": {
+          "numerator": 81,
+          "denominator": 100,
+          "value": 0.81,
+          "ci95": [
+            0.73,
+            0.88
+          ],
+          "items": 100,
+          "independent_groups": 50,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "items with any passing site / intended items",
+          "scope": "original_grid"
+        }
+      }
+    },
+    {
+      "condition": "best_n_specificity_mean_then_prune_0.005-n32",
+      "families": {
+        "hallucination": {
+          "numerator": 2252,
+          "denominator": 5567,
+          "value": 0.40452667504939827,
+          "ci95": [
+            0.3686274509803922,
+            0.44097035040431265
+          ],
+          "items": 149,
+          "independent_groups": 149,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "contradictory / specific readouts",
+          "scope": "original_grid"
+        },
+        "multihop_mt": {
+          "numerator": 32,
+          "denominator": 100,
+          "value": 0.32,
+          "ci95": [
+            0.2268041237113402,
+            0.41836734693877553
+          ],
+          "items": 100,
+          "independent_groups": 94,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "items with any passing site / intended items",
+          "scope": "original_grid"
+        },
+        "chain_intermediates": {
+          "numerator": 51,
+          "denominator": 120,
+          "value": 0.425,
+          "ci95": [
+            0.32,
+            0.5333333333333333
+          ],
+          "items": 120,
+          "independent_groups": 42,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "items with any passing site / intended items",
+          "scope": "original_grid"
+        },
+        "role_bound_association": {
+          "numerator": 79,
+          "denominator": 100,
+          "value": 0.79,
+          "ci95": [
+            0.72,
+            0.86
+          ],
+          "items": 100,
+          "independent_groups": 50,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "items with any passing site / intended items",
+          "scope": "original_grid"
+        }
+      }
+    },
+    {
+      "condition": "best_n_specificity_mean_random_delete_matched_0.005-n32",
+      "families": {
+        "hallucination": {
+          "numerator": 2167,
+          "denominator": 5510,
+          "value": 0.3932849364791289,
+          "ci95": [
+            0.36082474226804123,
+            0.4275335997094079
+          ],
+          "items": 149,
+          "independent_groups": 149,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "contradictory / specific readouts",
+          "scope": "original_grid"
+        },
+        "multihop_mt": {
+          "numerator": 31,
+          "denominator": 100,
+          "value": 0.31,
+          "ci95": [
+            0.21875,
+            0.40816326530612246
+          ],
+          "items": 100,
+          "independent_groups": 94,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "items with any passing site / intended items",
+          "scope": "original_grid"
+        },
+        "chain_intermediates": {
+          "numerator": 53,
+          "denominator": 120,
+          "value": 0.44166666666666665,
+          "ci95": [
+            0.3425925925925926,
+            0.5333333333333333
+          ],
+          "items": 120,
+          "independent_groups": 42,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "items with any passing site / intended items",
+          "scope": "original_grid"
+        },
+        "role_bound_association": {
+          "numerator": 77,
+          "denominator": 100,
+          "value": 0.77,
+          "ci95": [
+            0.7,
+            0.84
+          ],
+          "items": 100,
+          "independent_groups": 50,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "items with any passing site / intended items",
+          "scope": "original_grid"
+        }
+      }
+    },
+    {
+      "condition": "prune_loo_a32_0.005-n32",
+      "families": {
+        "hallucination": {
+          "numerator": 2261,
+          "denominator": 5567,
+          "value": 0.4061433447098976,
+          "ci95": [
+            0.3701776422034811,
+            0.44301765650080255
+          ],
+          "items": 149,
+          "independent_groups": 149,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "contradictory / specific readouts",
+          "scope": "original_grid"
+        },
+        "multihop_mt": {
+          "numerator": 31,
+          "denominator": 100,
+          "value": 0.31,
+          "ci95": [
+            0.21782178217821782,
+            0.40594059405940597
+          ],
+          "items": 100,
+          "independent_groups": 94,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "items with any passing site / intended items",
+          "scope": "original_grid"
+        },
+        "chain_intermediates": {
+          "numerator": 56,
+          "denominator": 120,
+          "value": 0.4666666666666667,
+          "ci95": [
+            0.3673469387755102,
+            0.5727272727272728
+          ],
+          "items": 120,
+          "independent_groups": 42,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "items with any passing site / intended items",
+          "scope": "original_grid"
+        },
+        "role_bound_association": {
+          "numerator": 76,
+          "denominator": 100,
+          "value": 0.76,
+          "ci95": [
+            0.69,
+            0.83
+          ],
+          "items": 100,
+          "independent_groups": 50,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "items with any passing site / intended items",
+          "scope": "original_grid"
+        }
+      }
+    },
+    {
+      "condition": "random_delete_matched_a32_0.005-n32",
+      "families": {
+        "hallucination": {
+          "numerator": 2124,
+          "denominator": 5508,
+          "value": 0.38562091503267976,
+          "ci95": [
+            0.35347043701799485,
+            0.420810476021943
+          ],
+          "items": 149,
+          "independent_groups": 149,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "contradictory / specific readouts",
+          "scope": "original_grid"
+        },
+        "multihop_mt": {
+          "numerator": 34,
+          "denominator": 100,
+          "value": 0.34,
+          "ci95": [
+            0.24489795918367346,
+            0.4375
+          ],
+          "items": 100,
+          "independent_groups": 94,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "items with any passing site / intended items",
+          "scope": "original_grid"
+        },
+        "chain_intermediates": {
+          "numerator": 67,
+          "denominator": 120,
+          "value": 0.5583333333333333,
+          "ci95": [
+            0.453125,
+            0.6666666666666666
+          ],
+          "items": 120,
+          "independent_groups": 42,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "items with any passing site / intended items",
+          "scope": "original_grid"
+        },
+        "role_bound_association": {
+          "numerator": 79,
+          "denominator": 100,
+          "value": 0.79,
+          "ci95": [
+            0.72,
+            0.86
+          ],
+          "items": 100,
+          "independent_groups": 50,
+          "defined_draws": 2000,
+          "warning": null,
+          "unit": "items with any passing site / intended items",
+          "scope": "original_grid"
+        }
+      }
+    }
+  ],
+  "limits": [
+    "Whole469 is descriptive, not469 held-out items; preserve separate stage reports.",
+    "Related groups are family-qualified and resampled intact; intervals are unadjusted.",
+    "Cells and items with any passing site are separate; neither establishes full-output truth.",
+    "No hidden family average, winner selection, new trace sampling or cost numbers."
+  ],
+  "findings": [
+    {
+      "claim": "Best of16 and comparison against other activations both recover41/100 multi-hop questions,61/120 arithmetic questions and81/100 role questions in the descriptive union.",
+      "evidence": "headline_metrics; no held-out winner inference."
+    },
+    {
+      "claim": "Pooling16 has44/100 multi-hop and83/100 role question passes, but56/120 arithmetic passes and2647/5558 contradictory specific readouts.",
+      "evidence": "pooled_greedy_swap-n16; descriptive mixed-stage endpoints."
+    },
+    {
+      "claim": "Shortening reduces contradiction rates but also drops multi-hop passes; matched random deletion can reduce contradictions more, so reduced error alone does not establish better explanatory coverage.",
+      "evidence": "A32 prune2261/5567 vs matched deletion2124/5508; multi-hop31/100 vs34/100; Emean prune2252/5567 vs matched2167/5510; multi-hop32/100 vs31/100."
+    }
+  ]
+}

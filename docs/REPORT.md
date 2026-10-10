@@ -1,512 +1,348 @@
 # Improving Oracle Lens with inference-time computation
 
-Working research report, 2026-10-10. **Validation and development sampling curves are complete; final TEST judging is running.**
-The findings below distinguish development from the fixed validation comparison;
-no final method recommendation has been validated on TEST. Live operational status is in
-[STATUS.md](STATUS.md); the [dashboard](../dashboard/index.html) provides
-interactive results and method details.
+Final research report, October 10, 2026. The signed twelve-method TEST comparison and the separate whole-bank descriptive analysis are complete. This report preserves the two operating points chosen before TEST: best-of-16 reconstruction selection and matched-control selection from 32 candidates. The [dashboard](../dashboard/index.html) provides the interactive evidence; the experiment records retain exact sources and reviews.
 
-## What we have learned
+## Main findings
 
-Oracle Lens can produce useful concepts that its reconstruction score fails to
-select. More sampling and recombining bullets improve the reconstruction score,
-but useful recovery varies by task and does not consistently increase with the
-sample count. A correct name or number can also appear inside an incorrect
-relationship or calculation. These findings make independent evaluation and
-inspection of the surrounding text necessary.
+Additional inference computation produces useful local changes, with no clear improvement across all four tasks. On the 268 held-out questions, best-of-16 recovers 18/49 hidden-name questions, 36/70 arithmetic-intermediate questions and 40/50 directed-role questions. The released single sample recovers 15/49, 34/70 and 40/50. Their paired uncertainty intervals include zero. The judged hallucination error rate is almost unchanged: 48.7% versus 48.9%.
 
-The most promising pilot combination selects a complete response using matched
-control activations, then removes bullets with small reconstruction contribution.
-It retains more recovery than random deletion on the pilot. However, the larger
-development chain task shows a substantial loss: the combined method recovers
-16/330 cells, versus 27/330 for its unpruned parent and 23/330 for matched random
-deletion. Its apparent pilot gains include judge-sensitive cases with remaining
-contradictions. Completed validation likewise does not support promoting pruning
-over matched-count random deletion. Whole-bullet consensus and free editing
-have not justified broad expansion on the evidence collected so far.
+Sampling and activation-specific selection give modest gains in hidden-name recovery. Best-of-16 and best-of-32 each recover 18/49 questions; comparing target reconstruction with other activations recovers 19/49. That last difference is one question over best-of-32, with a paired change of +2.04 percentage points [0.00, +6.25]. Best-of-32 reduces the judged hallucination rate to 47.2%. A frozen random complete response reaches 46.9%, so this task does not establish an advantage from reconstruction ranking over the sampling control.
 
-## What changed in the actual explanations
+Deleting text reduces judged errors and can remove useful information. Pruning best-of-32 lowers its hallucination rate from 47.2% to 41.4%; deleting the same number of bullets at random reaches 39.5%. Targeted pruning is 1.96 percentage points worse than that control [+0.44, +3.50]. It also loses five hidden-name questions, falling from 18/49 to 13/49. The matched controls make shortening a central explanation for the lower error rate.
 
-Three reviewers, with rotating independent checks, compared the same eight
-development examples across all method sections. The examples were fixed without
-looking at outcomes, with two per task. Separate rare-change examples are clearly
-labeled as selected afterward. They illustrate behavior, rather than estimating
-how frequently it occurs; unchanged outputs and missing diagnostics stay visible.
+A benchmark pass captures a limited kind of recovery. Required names can appear alongside incorrect alternatives; a credited intermediate can sit inside wrong arithmetic; a correct abstract role can coexist with invented people or reversed relationships. Independent reviewers inspected fixed wins, regressions and unchanged cases for every reported contrast. Those cases help explain the measurements, and their deliberately selected frequencies do not estimate how common each failure is.
 
-Sampling and pooling sometimes recover the required phrase “Simula 67” while
-still inventing its collaborators. Repetition-based filtering can keep generic
-claims but discard that useful phrase or a needed intermediate number. Pruning
-can remove an incorrect chemical identity, yet leave no useful chemical fact;
-other apparent improvements retain the very statement previously flagged by the
-judge. These cases separate recovering a mention, removing information and
-correcting an explanation.
+## What the results measure
 
-Editing changes none of the eight shared outputs; its separately inspected rare
-changes include cleanup and added completions, without an established recovery
-gain. The independent token reader cannot distinguish a correct number from a
-longer number containing the same digit, or reversed relations with the same
-words. Contradictory reviewer and judge interpretations remain side by side.
-The dashboard's expandable method sections provide exact before/after text,
-source context, variant choices and retained judge evidence. The full review and
-coverage limits are recorded in [the qualitative inventory](QUALITATIVE_COVERAGE.md).
+Question-level recovery leads the three recovery tasks because it follows their original complete read grids. A **cell** is one activation at one layer and token position. A question passes if its task criterion is met somewhere in its fixed grid. Passing sites can be rare even when question coverage is high.
 
-## Question and experimental controls
-
-We ask whether additional inference computation can make a frozen activation
-reader more useful and faithful. We use the released Qwen3.6-27B Oracle Lens and
-its matched activation reconstructor from
-[agu18dec/olens_and_ar](https://huggingface.co/agu18dec/olens_and_ar).
-All methods interpret the same vector at the same layer and token position.
-There are no weight updates and no extra observation sites for improved methods.
-The exact model revisions, injection settings, whitening transformation and
-source-code checks are recorded in [the plan](PLAN.md) and
-[model validation](experiments/001-model-setup.md).
-
-A cell is one prompt at one model layer and token position. N is the number of
-candidate responses available to a method. Each cell has one shared pool of at
-most 32 sampled responses. Best-of-N uses
-nested prefixes, so its N16 candidates are included in N32. Improved outputs
-contain at most four intact source bullets and 256 Qwen text tokens; a separate
-capped single-sample baseline isolates this restriction. We retain the unmodified
-released baseline, including its 256-new-token generation limit. Only the explicitly labeled editing and source-span
-experiments change text within a bullet.
-
-With fixed candidate scores, the highest reconstruction score cannot decrease
-as a nested pool grows. Pooling also retains the best complete response as a
-fallback. These score guarantees follow from the selection rules; the empirical
-question is whether the resulting descriptions become more faithful.
-
-The reconstructor converts each phrase to a predicted activation. We center and
-whiten both predictions and target using matched released statistics, then
-normalize phrase directions while retaining the target's magnitude. Exact
-SciPy nonnegative least squares combines those directions; the released
-80-step approximate solver is a separately reported diagnostic. The fraction of
-variance explained, abbreviated FVE, measures how well the combined prediction
-fits the observed vector. It is a reconstruction objective; correctness is
-measured separately. Inference methods receive neither benchmark answers nor
-judge results.
-
-For .005 pruning, remove a complete bullet only when refitting the remaining
-bullets lowers FVE by at most 0.005, then repeat. This is an absolute loss of
-0.5 percentage points per deletion, not a relative percentage or a truth test.
-
-The released encoder scores only the first 32 cleaned tokens of each phrase;
-the judge sees the full output. Reconstruction therefore does not verify details
-beyond that span. All comparisons share persisted phrase vectors, including
-earlier batch-32 entries and newly encoded batch-128 entries. An expanded
-batch-size audit exceeded its provisional equivalence limits: maximum FVE drift
-was .003524, with pooled output text changing in 2/12 cells and matched-control
-selection in 1/12. The fixed implementation remains reproducible, but small
-selection margins and pruning thresholds are not certified numerically robust.
-See [the numerical audit](experiments/018-parallel-ar-cache.md).
-
-## Data and what the measurements mean
-
-The four [WorkspaceBench](https://github.com/camilablank/workspace-bench) families
-cover transcript contradictions, hidden bridge concepts, computational
-intermediates, and directed entity roles. Related prompts and role reversals
-stay together when assigning development, validation and test groups.
-
-| Cohort | Items | Activation cells | Role in this study |
-|---|---:|---:|---|
-| Small development pilot | 31 | 189 | Method iteration and failure diagnosis; selected cells |
-| Full development | 121 | 5,236 | Larger method comparison using original complete read grids |
-| Validation | 80 | 3,485 | Twelve frozen comparisons; complete |
-| Test | 268 | 10,714 | Twelve comparisons frozen; judging running |
-
-The pilot is a subset of development. Cells from the same prompt are correlated.
-Paired uncertainty intervals resample related item groups, not individual cells.
-The pilot has only 2–8 independent groups per family; full development has seven
-chain-template groups. A large number of cells does not erase those limitations.
-
-| Family | Development groups | Validation groups | Test groups |
-|---|---:|---:|---:|
-| Transcript contradictions | 30 | 20 | 99 |
-| Hidden bridge concepts | 29 | 17 | 48 |
-| Arithmetic intermediates | 7 | 7 | 28 |
-| Directed roles | 15 | 10 | 25 |
-
-These counts come from the frozen group manifests, independent of model
-outcomes. Validation helps choose among the fixed candidates; its smaller
-group counts limit precision. The larger untouched test supplies the final
-comparison. Useful effects can merit follow-up despite wide intervals.
-These intervals resample benchmark groups; they do not separately model the
-additional variability from rerunning the generator or judge.
-
-GPT-6 Luna is the sole language-model benchmark judge, with its reasoning setting
-fixed to none. Multi-hop bridge recovery uses the released deterministic matching
-rule. Results retain the original item aggregation alongside cell-level rates.
-A question passes under its original task rule: all required bridge names must
-appear at one layer; the top-named computed value must be a hidden intermediate
-at one layer; or all three who-did-what answers must be correct at one site.
-One passing site can therefore make a question pass even when most descriptions
-fail. Partial role answers from different sites are not combined. Hallucination
-keeps its separate readout-level error rate, described below. Reusing an exactly
-matching cached judgment saves evaluation cost without creating another
-independent measurement.
-
-For hallucinations, we report contradicted readouts divided by specific readouts,
-following the benchmark. Specific readouts include off-topic outputs. We also
-report the fraction of all outputs that make specific assertions, off-topic
-outputs, and claim-verification results. Unverifiable claims remain distinct
-from false claims. The four families use different prompts: plotting their
-error and recovery rates together is a cross-task tradeoff, not a precision–recall
-curve over the same items.
-
-## Results from the shared pilot
-
-The following selected comparisons use the same 189 cells. The recovery columns
-count cells containing the benchmark-required information; they do not certify
-every statement in the output. The hallucination family contains 72 cells, with
-the asserting denominator shown for each method. Complete results and paired
-grouped intervals are available in the
-[pilot comparison](experiments/009-pilot-grouped-comparisons.md).
-
-| Method | Contradicted / specific | Bridge mentions / 24 | Intermediate-number matches / 21 | Role task passes / 72 |
-|---|---:|---:|---:|---:|
-| Capped single sample | 46/71 | 4 | 0 | 8 |
-| Best reconstruction, N4 | 42/72 | 7 | 1 | 9 |
-| Best reconstruction, N16 | 40/71 | 9 | 3 | 8 |
-| Best reconstruction, N32 | 39/71 | 7 | 3 | 9 |
-| One frozen random sample from N32 | 38/72 | 8 | 2 | 8 |
-| Pooled bullets, N32 | 42/70 | 10 | 1 | 8 |
-| Matched-control selection, N32 | 38/71 | 7 | 1 | 9 |
-| Matched-control selection then .005 pruning | 36/72 | 7 | 1 | 12 |
-| Same parent, matched-count random deletion | 37/72 | 5 | 0 | 7 |
-
-Best-of-32 has fewer contradicted outputs than the single-sample baseline here,
-but one frozen random draw does too. The all-candidate diagnostic therefore
-evaluates the entire saved pool on this small cohort. A bridge mention occurs
-in at least one candidate in 14/24 cells, versus 7/24 selected by best-of-32.
-This identifies missed selection opportunities. It is an evaluation-only ceiling
-and cannot be used to select a deployable answer. Passing candidates can still
-contain false surrounding claims. See
-[candidate ranking](experiments/012-all-candidate-diagnostic.md).
-
-## Larger development results
-
-All six best-of-N prefixes, N=1/2/4/8/16/32, are complete on the same 5,236
-development cells, with separate raw and capped single-sample references. Other
-method comparisons have the coverage recorded individually below. Intervals
-resample related groups in pairs; these exploratory comparisons are not adjusted
-for the other methods examined during development. The late completed curves
-cannot change the already frozen TEST choices.
-
-| Endpoint | Capped single sample | Best-of-32 | Change in percentage points [95% interval] |
-|---|---:|---:|---:|
-| Contradicted / specific readouts | 543/1,137 | 523/1,140 | −1.88 [−5.41, +1.76] |
-| Bridge mentions / 341 cells | 29 | 43 | +4.11 [+1.82, +6.61] |
-| Intermediate-number matches / 330 cells | 26 | 30 | +1.21 [−3.16, +4.85] |
-| Role task passes / 3,420 cells | 151 | 182 | +0.91 [+0.15, +1.73] |
-
-The original item-level aggregation gives 11→14/31 bridge items, 15→19/30 chain
-items, and 23→23/30 role items. Thus more role cells pass without recovering an
-additional item. The chain comparison contains only seven independent template
-groups. The hallucination difference remains uncertain: fewer readouts are
-flagged wrong, but the total flagged false spans rises from 1,305 to 1,324.
-Span counts and supported-claim counts use different segmentation and cannot
-be combined into a claim-precision estimate. Off-topic outputs decrease from
-148 to 134. Both the favorable changes and these limits matter.
-
-The complete sampling curve is nonmonotonic in quality. Best-of-16 recovers
-48 bridge cells and 185 role cells, versus 43 and 182 at best-of-32; it recovers
-only 19 arithmetic-intermediate cells versus 30 at best-of-32. These are observed
-counts, not evidence of a universally optimal sample budget. The hallucination
-changes at both N16 and N32 have intervals spanning zero. The N1 reconstruction
-selector is distinct from the released baseline: score eligibility yields one
-empty hallucination output and eleven empty role outputs. Full per-prefix
-counts, cell/item intervals, paired changes, lengths and limitations are in
-[the completed development scaling record](experiments/034-development-scaling-completion.md).
-
-Systematic trace inspection confirms that recovery can coexist with error.
-One selected chain output contains the required intermediate 18 alongside an
-incorrect account of how it was calculated and competing numbers. Some newly
-passing role descriptions retain unsupported names or details, with judgment
-sensitive to how unnamed roles are interpreted. The comparison changes both
-the number of samples and the selection rule; it does not isolate their effects.
-
-The completed multi-hop family also shows why sample count and output quality
-need separate reporting:
-best-of-4 recovers 15/31 items, best-of-32 14/31, pooled-16 17/31, and pooled-32
-14/31. Pooled-32 recovers more individual cells than pooled-16, 56/341 versus
-54/341, illustrating the difference between item coverage and repeated recovery
-within items. These are development findings from one family; there is no
-four-family winner yet. See the
-[larger comparison](experiments/019-full-dev-method-comparison.md).
-
-Pruning and pooling also show a material chain-recovery regression in the
-evidence available before validation. With the .005 sequential-deletion
-threshold, matched-control selection falls from 27 to 16 recovered cells out of
-330, versus 23 for matched-count random deletion. Best-of-32 followed by pruning
-falls from 30 to 16, versus 28 for its random-deletion control. Pooled N16 and N32
-each recover 18 cells. Item recovery likewise falls: 17→12/30 for matched-control
-selection with pruning and 19→12/30 for best-of-32 with pruning. These are seven
-related template groups, and mention recovery still does not certify the
-calculation. Nevertheless, the observed loss is substantial and should not be
-described as a small tradeoff without compensating evidence. The exact records
-are preserved in the [validation decision snapshot](experiments/027-validation-shortlist-freeze.md).
-
-## Completed validation comparison
-
-The twelve settings frozen before validation outcome inspection are complete on
-80 items and all 3,485 intended cells. There is **no global faithfulness winner**.
-The prospective final comparison retains best reconstruction from 16 samples and
-matched-control selection from 32 as two experimental operating points, alongside
-released/capped N1, best-of-32 and random selection controls. This choice does not
-make validation a fresh confirmation of a method selected from these results;
-the separately frozen TEST comparison will supply that measurement.
-
-| Method | Contradicted / specific | Bridge mentions / 220 | Intermediate-number matches / 220 | Role task passes / 2,280 |
-|---|---:|---:|---:|---:|
-| Released single sample | 312/760 | 26 | 16 | 85 |
-| Capped single sample | 313/761 | 26 | 15 | 85 |
-| Best reconstruction, N16 | 307/762 | 31 | 17 | 97 |
-| Best reconstruction, N32 | 299/762 | 29 | 12 | 96 |
-| Random eligible sample, N32 pool | 317/762 | 24 | 17 | 95 |
-| Pooled bullets, N16 | 307/759 | 30 | 10 | 102 |
-| Pooled bullets, N32 | 305/760 | 29 | 10 | 98 |
-| Matched-control selection, N32 | 295/763 | 30 | 16 | 95 |
-| Matched-control selection + .005 pruning | 271/759 | 20 | 10 | 97 |
-| Same parent + matched random deletion | 262/756 | 20 | 15 | 96 |
-| Best reconstruction N32 + .005 pruning | 277/759 | 20 | 9 | 94 |
-| Same best-N32 parent + matched random deletion | 267/752 | 18 | 17 | 83 |
-
-Each recovery family has 20 items. With the original any-site item aggregation,
-best-of-16 recovers 9 bridge, 11 chain and 17 role items; matched-control selection
-from 32 recovers 8, 10 and 17. Best-of-32 recovers 8, 8 and 16. Those summaries
-answer a different question from how often individual cells recover information.
-For example, pooled-16 yields 18 passing role items but only 6 chain items,
-compared with 17 and 11 for best-of-16. More samples and larger reconstruction
-scores do not uniformly improve these task endpoints.
-
-Relative to best-of-32, matched-control selection changes the contradiction rate
-from 39.24% to 38.66%: a paired change of −0.58 percentage points, with a grouped
-95% interval of [−1.46, +0.23]. Bridge recovery is unchanged at 8/20 items;
-chain changes 8→10/20, paired +10 percentage points [0, +22.22]; role changes
-16→17/20, +5 points [0, +15]. The cell-level role count instead changes 96→95.
-The intervals use 20 hallucination, 17 bridge, 7 chain and 10 role groups, and
-cannot remove generator/judge variability or certify every statement. These
-are reported effects and uncertainties, not a significance gate or a hidden
-average across families.
-
-Matched-control selection also increases off-topic outputs from 60/762 to
-68/763 specific readouts. Its six wrong→off-topic transitions and four
-wrong→consistent transitions coexist with five consistent→wrong transitions.
-For `chat-dailydialog-0010` at layer 60, position 24, it removes unsupported
-library/online-banking detail and better matches the original bank response.
-For `chat-dailydialog-0001` at layer 20, position 78, the unsupported identity
-is instead replaced with off-topic capabilities and ChatGPT discussion. Thus
-fewer contradiction flags do not always mean more useful transcript recovery.
-
-Pruning is not promoted to the final operating points. Its apparent error
-reduction is not separated convincingly from shortening: matched-control
-selection followed by .005 pruning has 271/759 contradicted outputs, while
-matched-count random deletion has 262/756. Both retain an average of 2.27
-bullets in the hallucination family, versus 4.00 for the unpruned parent;
-mean token counts are 60.90, 58.76 and 102.75 respectively. Random deletion
-matches bullet count, not exact token length. Pruning versus that control
-changes bridge recovery 20→20 cells, chain 15→10 and role 96→97. At item level,
-chain is 10→6/20 and role 15→14/20. The bounded evidence does not justify
-attributing the lower contradiction rate to reconstruction-guided deletion
-rather than reduced content.
-
-The fixed trace audit preserves official judgments while qualifying their
-meaning. `mhh-aztec-coatepec-sister`, layer 32, position 34, gains the required
-Huitzilopochtli bridge but retains incompatible god alternatives. In
-`chain-d2p-0231`, layer 32, position 68, the intermediate 2 becomes prominent
-amid wrong starting values and operations. Conversely, the scored regression
-`chain-d2p-0396`, layer 40, position 61, includes the correct final computation
-12×2×2=48 while losing the intermediate-focused hit. Number recovery is not
-calculation accuracy.
-
-Role options permit people to be identified by description. At
-`oa-burglar-neighbor-spy-ab`, layer 36, position 164, both responses describe a
-burglar observing a neighbor, but descriptive identities are accepted only for
-the selected response. Some pooling gains also depend on inferred composition:
-`oa-babysitter-toddler-feed-ab`, layer 52, position 104, is judged as Maya feeding
-a toddler by combining Maya settling a toddler with Maddie feeding a younger
-sister in a different bullet. These cases illustrate judge sensitivity and
-remaining ambiguity; they do not warrant changing the retained verdicts.
-
-All values, grouped intervals and fixed sampled traces are supplied by the
-immutable [signed validation analysis](${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/signed-menu-analysis-v1.json),
-SHA-256 `db223a374f51d9122f8cc430a347e4f82dea75ce3d449008e1def1f7cf89e918`.
-The [family comparison figure](../dashboard/figures/validation-v1/family-cell-rates.png)
-and [zoomed cross-task plot](../dashboard/figures/validation-v2/cross-task-error-recovery-zoom.png)
-use those same values, with distinct family denominators and supplied marginal
-intervals. The [full-range plot](../dashboard/figures/validation-v1/cross-task-error-recovery.png)
-is preserved; zoomed axes change neither values nor intervals. The dashboard
-uses the same reviewed source, with no inferred cross-task winner. No TEST
-outcomes are included here.
-
-## What each approach taught us
-
-| Approach | Completed evidence | Current interpretation |
+| Task | Original question or readout criterion | What a pass leaves unresolved |
 |---|---|---|
-| Sample selection | Shared N1–32 pilot and complete six-prefix development comparison | Better fit is reliable; useful recovery varies across tasks and sample counts. |
-| Consensus | Exact and semantic whole-bullet pilots, repaired helper and reasoning-enabled follow-up | Strict agreement removes useful coverage; audited semantic grouping still makes unsafe merges. Atomic-claim consensus remains unresolved. |
-| Pruning | Single-response and pooled/contrastive-parent deletion, with matched-count random controls | Deleting low-contribution text can preserve some recovery, but also deletes required concepts. Reconstruction contribution is not a truth score. |
-| Pooling | Greedy selection with joint refitting and local swaps at N16/32 | Complementary bullets improve bridge mention recovery in the pilot; selected sets can retain incompatible relationships. |
-| Contrastive checks | Matched-control selection, controlled near misses, and activation-conditioned likelihood | Unpruned matched-control selection is a final experimental candidate. Validation does not establish pruning over random shortening. Fine semantic discrimination varies with layer and wording; likelihood selection has no broad pilot advantage. |
-| Editing | Two bounded proposal rounds, rescoring, judging, and all eight selected-edit audits | Mostly formatting changes, no aggregate recovery gain, and two source-preservation violations. Broad expansion is not justified. |
-| Independent checks | Compatible J++ development token diagnostics | Token agreement cannot validate a directed relation; no selection improvement is established. Unresolved fitting-data overlap excludes J++ from clean held-out claims. No second compatible reconstructor is established. |
+| Hidden multi-hop names | Every required bridge matches within one layer across that layer's frozen positions. | Other statements may be wrong. A final target name alone cannot replace a required bridge. |
+| Arithmetic intermediates | At any grid layer, the judge's top-named verified integer is a true hidden intermediate. | The rest of the calculation may be wrong; a correct final answer alone is insufficient. |
+| Directed roles | At one site, all three agent/action/patient choices are correct. Names or role descriptions are permitted. | Invented names, contradictory bullets and extra events may remain. Answers from separate sites are never combined. |
+| Transcript contradictions | Wrong readouts divided by specific readouts, over the original grid. Specific includes hallucinated, consistent and off-topic outputs. | This is a readout error rate. Its complement is not the proportion of fully correct explanations. |
 
-Whole-bullet consensus is a restricted version of the original claim-level idea.
-An exact-source-span revision stopped after eight audited cells because accepted
-claims still contained unresolved references. Its planned 32-cell expansion and
-quality evaluation were not completed. This is a failed input-contract check,
-not evidence that all claim-level consensus fails. The optional layer-42 NLA
-study has not been run. Candidate-consistency checks use the consensus helper
-and are not an independent activation reader. Those limits remain explicit in
-[the claim-span record](experiments/024-exact-source-span-consensus.md) and
-[method scope](METHODS.md).
+The three recovery families use the original any-site question aggregation. Multi-hop uses the released deterministic matching rule. GPT-6 Luna, with reasoning fixed to `none`, supplies the chain, role and hallucination judgments. This is a pinned WorkspaceBench adaptation with the same banks, grids and aggregation; language-model-judged values are not direct reproductions of another judge's published scores. The multi-hop headline preserves the released regex rule rather than replacing it with historical optional multiple-choice judging.
 
-Combining methods is evaluated as a sequence of additions and removals. Pruning
-combinations retain their unchanged parent and a control that deletes the same
-number of bullets at random. Support and specificity pooling retain their
-component-off and objective controls, with an additional abstention diagnostic
-for specificity. We tested pooling with pruning,
-matched-control selection with pruning, editing with pruning, repeat-support
-pooling, and pooling with specificity. The
-[component comparisons](experiments/011-cached-combinations.md) explain which
-effects survive removal of each component. Random deletion matches bullet count,
-so remaining token-length differences still require reporting.
+Hallucination's denominator excludes generic and empty outputs. We therefore report assertion coverage, off-topic outputs, output length and supported-claim tallies alongside its error rate. False spans and true/unverifiable claims have different segmentation. They cannot be combined into claim accuracy. The second stage receives the first stage's wrong spans as established false, so its false-span tally is not an independent confirmation of the wrong labels.
 
-We also tested the three-part combination of pooling, specificity and pruning.
-On the same pilot it recovered six bridge cells, zero chain cells and twelve
-role cells, with 39/71 contradicted specific readouts. The simpler specificity
-selection plus pruning recovered seven, one and twelve, with 36/72 contradicted
-readouts. These small development comparisons do not establish a population
-ranking, but they provide no reason to expand the more complicated combination
-before the final comparison. The [three-part experiment](experiments/020-pooled-specificity.md)
-includes component controls, matched random deletion and inspected regressions.
-The limit of two proposed final operating points does not mean only two
-combinations were explored.
+## Cohorts and uncertainty
 
-## Failure modes that aggregate scores can hide
+All four released banks in the frozen study are covered. Related questions, arithmetic templates and role reversals stay together in development, validation and TEST. The full-bank union is analyzed separately because development and validation informed method design.
 
-**A recovered concept can sit inside a wrong explanation.** In inspected
-multi-hop outputs, selection recovers “Simula 67” while retaining conflicting
-collaborator names. Other outputs preserve “Humbaba” but lose the required
-“Enkidu” bridge and add incorrect relationships. Pooling does not make the
-surrounding explanation correct merely by collecting more matching concepts.
+| Cohort | Questions/items | Cells | Purpose |
+|---|---:|---:|---|
+| Small development pilot | 31 | 189 | Method iteration and targeted failure diagnosis; partial grids |
+| Full development | 121 | 5,236 | Complete scaling curves and larger descriptive comparisons |
+| Validation | 80 | 3,485 | Twelve prospectively fixed candidates; selection of at most two operating points |
+| Held-out TEST | 268 | 10,714 | Final frozen twelve-method comparison |
+| Whole-bank union | 469 | 19,435 | Descriptive DEV + VAL + TEST appendix |
 
-**Shorter text can change the judge without removing the disputed phrase.**
-In a pruning comparison, a retained “packing list” phrase receives a different
-verdict after neighboring text is deleted. Inspected role improvements still
-contain competing names or roles. Those cases require distinguishing genuine
-disambiguation from judgment instability. Primary verdicts are preserved;
-example audits do not silently replace them.
+The pilot is a subset of development. The complete question counts and independent related groups differ by task:
 
-**An apparently low error rate can reflect irrelevance.** The matched-donor
-control substitutes a frozen donor's capped single-sample readout, matched on
-layer and task/site type and drawn from a different related-item group. It reuses
-saved readouts and does not guarantee that their content has no semantic overlap.
-Contradicted specific outputs fall from
-543/1,137 to 25/992, but 956/1,145 donor outputs are off-topic and only 11 are
-consistent, versus 446 for the target activations. This control makes coverage
-essential to interpreting the error endpoint. It is described in
-[activation-dependence controls](experiments/014-matched-donor-readouts.md).
+| Task | DEV items/groups | VAL items/groups | TEST items/groups | TEST cells |
+|---|---:|---:|---:|---:|
+| Transcript contradictions | 30/30 | 20/20 | 99/99 | 3,705 |
+| Hidden multi-hop names | 31/29 | 20/17 | 49/48 | 539 |
+| Arithmetic intermediates | 30/7 | 20/7 | 70/28 | 770 |
+| Directed roles | 30/15 | 20/10 | 50/25 | 5,700 |
 
-**The scorer has limited resolution for some important details.** Controlled
-number and role reversals often favor the same wording under both activations.
-Among four numerical pairs, both correct descriptions win in 0/4 pairs at layer
-20, 0/4 at layer 44, and 2/4 at layer 60. These are small, correlated diagnostic
-sets; they do not show that every target state encodes the known answer or that
-the reconstructor always ignores numbers. They caution against interpreting a
-small score margin as factual verification. See
-[near-miss diagnostics](experiments/004-contrastive-diagnostic.md).
+All reported 95% intervals use 2,000 bootstrap draws of whole related groups. Paired intervals resample the same groups for both methods and compute the difference within each draw. Hallucination uses the ratio of summed wrong and specific readouts. Question rates use passing items divided by intended items. Thousands of correlated cells do not create thousands of independent questions.
 
-## Cost and practical use
+Intervals are pointwise and unadjusted for the many contrasts and endpoints examined. They describe uncertainty over these benchmark groups; they do not separately include rerunning the generator or judge. An interval touching zero is compatible with useful effects and does not prove equivalence. We report observed changes, regressions, costs and examples together. We use neither a significance gate nor an average of unlike task scores to declare a winner.
 
-A resource snapshot at 16:49 UTC records $18.13 in project API usage estimates, plus $4.90 reserved for outstanding or uncertain requests ($23.03 committed). The 16:43 storage inventory is 93.73 GB of project files, excluding 55.56 GB of reused base weights. GPU allocation during the project totals 64.77 H200-hours including idle time; major model work is estimated at 30.17 GPU task-hours, rather than measured GPU utilization. These snapshots exclude GPU dollar charges and Codex/subagent billing. Source receipt: `resource-usage-1649-v1/receipt.json`, SHA256 `f9b69d2b7ec2d0500e1e809d979c56461653e3640a56e1e34b5f9366710c558a`. These are interim totals; judging continues.
+## The twelve held-out methods
 
-The cost of a method on a new activation includes its sampled responses, phrase
-encodings, local selection, and recurring helper calls. Benchmark judging is
-reported separately. Reusing the research cache makes another comparison cheap;
-it does not remove generation cost from deployment.
+Every method reads the same frozen activation. Each cell has a shared pool of 32 sampled descriptions. A16 and A32 use nested prefixes of that pool. Improved outputs contain at most four intact source bullets and 256 Qwen text tokens. The released baseline retains its 256-new-token generation limit. Its unmodified text remains available separately from a downstream capped baseline, so formatting and eligibility changes can be distinguished from search.
 
-The random-selection control retains one eligible response from the recorded
-N32 pool. A deployment implementation need not generate 32 unused responses,
-but matching this control's parser and output-budget eligibility may require
-resampling. Therefore one retained sample is not a guaranteed one-draw cost.
-The experimental pool cost and that deployment distinction are reported separately.
+| Label | Procedure | Status in the final comparison |
+|---|---|---|
+| Released N1 | Original first sample, without the downstream bullet-selection cap | Primary baseline |
+| Capped N1 | Same first sample under the four-bullet/256-text-token policy | Primary budget control |
+| A16 | Select the complete candidate with the highest exact joint reconstruction fit among the first 16 | Preselected operating point; primary |
+| A32 | The same complete-candidate selector among 32 | Primary sampling-budget control |
+| Random complete, N32 | One frozen uniformly drawn eligible complete candidate from the same pool | Primary sampling control |
+| E32 | Select by target reconstruction fit minus mean fit to eight frozen matched control activations | Preselected operating point; primary |
+| D16 / D32 | Pool source bullets, greedily refit their nonnegative weights, then make a bounded local swap | Secondary pooling comparisons |
+| E32 + pruning | Repeatedly delete a whole bullet with at most .005 reconstruction loss per step | Secondary combination |
+| E32 + matched deletion | Random deletion from the same parent, retaining the targeted arm's bullet count | Secondary shortening control |
+| A32 + pruning | Apply the same deletion rule to A32 | Secondary component comparison |
+| A32 + matched deletion | The corresponding matched-count random deletion | Secondary shortening control |
 
-The full development collection measured about 4.33 H200 task wall-seconds per
-N32 cell, amortized over filled batches. Its phrase encoding workload implies
-about 1.25 additional GPU task wall-seconds per cell at the measured throughput. These component
-averages include batching and deduplication effects; they are not single-input
-latency guarantees. GPU dollar pricing is unavailable.
+The original six primary comparisons were frozen after validation. A prospective amendment added the other six existing validation variants before TEST judging or deliberate quality inspection. It preserved the original primary designation, A16/E32 operating points, thresholds, seeds and cells. The amendment addresses uncertainty from only twenty validation items per family; it does not imply that methods omitted from this twelve-arm menu are inferior.
 
-A separate installed-tool check measured one new synthetic input on an H200.
-With Oracle Lens already loaded, capturing its activation took 0.30 seconds
-and generating 32 descriptions took 12.04 seconds. Starting with no model
-loaded in the process, the pipeline through the first selected description
-took 59.59 seconds. This includes loading both models sequentially, encoding
-128 phrase vectors, preparing the scoring transform and choosing a response.
-The phrase encoding itself took 1.34 seconds. These components overlap with
-the pipeline total and must not be added twice. This is one input using
-existing filesystem caches, not a latency distribution or a measurement of
-fresh 16-sample generation. See [new-input timing](experiments/035-new-input-timing.md).
+The .005 pruning threshold permits an absolute loss of 0.5 percentage points of FVE **per sequential deletion**. Each deletion refits the remaining bullets. The threshold is neither a total loss budget nor a truth test. All random choices use their frozen seed and source-derived identity; neither these choices nor the threshold was fitted to TEST.
 
-Cached selector timings help compare local overhead: median cached selector
-wall time per cell was .0112 seconds for best-of-32, .0123 for that parent plus pruning, .0591 for
-matched-control selection, and .2323 for pooled selection. These measurements
-use four threads and exclude input/cache preparation. They must be combined with
-generation and encoding work when comparing complete methods.
+## Held-out question results
 
-Runtime semantic helpers also have recurring costs. The repaired N16
-whole-bullet consensus helper with reasoning disabled cost about $0.00101 per
-pilot cell. Medium-reasoning confirmation, including the necessary proposal
-phase, cost about $0.00196.
-Two editing rounds cost about $0.000282 per cell in helper calls, plus their
-parent method and new phrase encodings. All figures are usage-based estimates,
-not reconciled invoice charges. Full component sources and caveats are in
-[measured costs](experiments/013-measured-costs.md); current campaign totals and
-uncertain-charge holds are in [STATUS.md](STATUS.md).
+The table gives count/denominator, percentage and a grouped 95% interval. Higher question recovery is better. Lower hallucination error is better; that column keeps its native readout denominator. All twelve methods have complete intended coverage, including both hallucination stages. Failed transport attempts were repaired cache-aware or retained financially; they are never counted as successful abstentions.
 
-## Validation, test and release status
+| Method | Hallucination error ↓ | Bridge questions ↑ | Intermediate questions ↑ | Role questions ↑ |
+|---|---:|---:|---:|---:|
+| Released N1 | 1791/3664; 48.9% [44.6, 53.4] | 15/49; 30.6% [18.4, 44.9] | 34/70; 48.6% [35.4, 62.3] | 40/50; 80.0% [70.0, 90.0] |
+| Capped N1 | 1785/3656; 48.8% [44.5, 53.4] | 15/49; 30.6% [18.4, 44.9] | 34/70; 48.6% [34.6, 62.9] | 40/50; 80.0% [70.0, 90.0] |
+| A16: best complete | 1784/3661; 48.7% [44.2, 53.1] | 18/49; 36.7% [23.1, 50.0] | 36/70; 51.4% [35.0, 67.1] | 40/50; 80.0% [70.0, 90.0] |
+| A32: best complete | 1728/3663; 47.2% [42.7, 51.6] | 18/49; 36.7% [22.9, 52.0] | 34/70; 48.6% [34.7, 62.1] | 38/50; 76.0% [66.0, 86.0] |
+| Random complete, N32 | 1715/3654; 46.9% [42.6, 51.2] | 17/49; 34.7% [22.0, 49.0] | 29/70; 41.4% [28.6, 55.7] | 39/50; 78.0% [68.0, 88.0] |
+| E32: matched controls | 1730/3663; 47.2% [43.0, 51.6] | 19/49; 38.8% [24.5, 53.1] | 34/70; 48.6% [35.5, 62.2] | 38/50; 76.0% [64.0, 86.0] |
+| D16: pooled + swaps | 1799/3658; 49.2% [44.7, 53.5] | 18/49; 36.7% [22.9, 52.1] | 34/70; 48.6% [33.3, 64.2] | 41/50; 82.0% [72.0, 90.0] |
+| D32: pooled + swaps | 1787/3662; 48.8% [44.5, 53.1] | 18/49; 36.7% [22.9, 52.1] | 33/70; 47.1% [33.3, 61.6] | 41/50; 82.0% [72.0, 92.0] |
+| E32 + pruning | 1514/3670; 41.3% [36.6, 45.9] | 14/49; 28.6% [16.3, 42.0] | 33/70; 47.1% [32.4, 61.7] | 39/50; 78.0% [68.0, 88.0] |
+| E32 + matched deletion | 1474/3620; 40.7% [36.3, 45.0] | 14/49; 28.6% [16.3, 41.7] | 25/70; 35.7% [23.2, 49.3] | 38/50; 76.0% [66.0, 86.0] |
+| A32 + pruning | 1521/3670; 41.4% [36.7, 46.1] | 13/49; 26.5% [14.6, 39.6] | 36/70; 51.4% [37.0, 66.1] | 39/50; 78.0% [68.0, 88.0] |
+| A32 + matched deletion | 1433/3629; 39.5% [35.1, 44.0] | 16/49; 32.7% [20.0, 45.8] | 38/70; 54.3% [39.4, 68.5] | 42/50; 84.0% [74.0, 94.0] |
 
-The validation candidate pool was generated without inspecting its text,
-scores, selected outputs or judgments. The frozen twelve-arm shortlist
-preserves both sampling budgets, pooling, matched-control selection and the
-specificity/pruning component comparisons. Its evidence and selection procedure
-are recorded in [the validation freeze](experiments/027-validation-shortlist-freeze.md).
-Some development judging was unfinished at that decision; later development
-results cannot alter this menu or its thresholds after validation opens.
-Validation reconstruction, selection, judging and the signed twelve-condition
-analysis are complete; see
-[the validation comparison](experiments/029-validation-comparison.md).
-The original six-method final comparison was frozen after two independent
-reviews and coordinator approval. Following the user's concern about noisy
-shortlisting, a prospective amendment adds the other six already frozen
-validation variants as secondary comparisons. This was recorded before any
-TEST judgments or quality inspection. The original six primary comparisons,
-settings and two validation-selected operating points remain unchanged.
-Small validation samples do not establish that excluded variants are inferior.
-All 342,848 TEST samples passed source and cell identity checks; reconstruction
-and selection are complete for all 10,714 sites. All four final evaluators
-launched at 14:58–14:59 UTC; no TEST quality results have been inspected yet. See the [original freeze](experiments/032-test-final-method-freeze.md)
-and [expanded comparison](experiments/038-expanded-heldout-comparison.md).
-Consensus and editing remain pilot evidence, and independent-reader checks
-remain diagnostics; the twelve-method comparison is not an exhaustive test of
-all seven approach categories.
+A16's bridge gain over capped N1 is three questions, +6.12 percentage points [−2.08, +14.58]. Its chain gain is two questions, +2.86 [−10.45, +16.67]. Role question coverage is unchanged, with paired change 0.00 [−6.00, +6.00]. These observed changes support A16 as a measured lower-sample operating point, with uncertain gains and no established cross-task superiority.
 
-The implementation provides a vector-first Python API and command-line tool,
-immutable candidate pools, cached phrase encodings and replayable selectors.
-An installed wheel replayed an existing development pool with identical selected
-text and phrase IDs, using existing third-party dependencies. A separate
-synthetic-input check then completed adapter-disabled capture, N2 generation,
-eight new phrase encodings and an identical cache-only replay in 156 seconds
-on one H200. This validates the installed execution path in the existing
-environment; semantic quality and a complete dependency installation on another
-machine remain unvalidated. The later N32 check above measured a separate
-new-input run. The cache-saving release also passed an installed-wheel check:
-after eight vectors were saved and their cache directory moved, replay returned
-exactly the same text, source phrases and reconstruction score without loading
-the reconstructor. See [cache persistence](experiments/036-portable-cache-persistence.md).
-Installation and artifact requirements are in
-[README.md](../README.md). Code and documentation are committed locally in
-milestones; the research GitHub repository has not been pushed. The separately
-hosted [public dashboard](https://olens-improve-research.jan618.chatgpt.site)
-contains a reviewed snapshot with clear task charts and expandable detail.
+E32 recovers four more bridge questions than capped N1, +8.16 points [0.00, +18.37]. Relative to A32 it adds one bridge question and leaves chain and role question counts unchanged. Its hallucination difference from A32 is +0.05 points [−0.47, +0.58]. E32 remains the prospectively chosen activation-specific comparator; this TEST result does not justify promoting a new winner.
+
+Pooling reaches 41/50 role questions at both N16 and N32, compared with 40/50 for capped N1. The paired change is +2.00 points [−6.00, +10.00]. D32 also increases passing role cells relative to A32, but a cell-level advantage does not establish a question-level or complete-explanation improvement. The pooled bridge counts equal A16/A32, and its arithmetic counts are 34/70 and 33/70.
+
+The next table reports all changes against capped N1. Entries are **percentage-point changes [paired 95% interval]**, calculated directly from the signed analysis. Marginal intervals in the previous table must not be subtracted to obtain a paired interval.
+
+| Method minus capped N1 | Hallucination error | Bridge question recovery | Intermediate question recovery | Role question recovery |
+|---|---:|---:|---:|---:|
+| Released N1 | +0.06 [-0.31, +0.44] | +0.00 [+0.00, +0.00] | +0.00 [-4.11, +4.17] | +0.00 [+0.00, +0.00] |
+| A16: best complete | -0.09 [-1.72, +1.52] | +6.12 [-2.08, +14.58] | +2.86 [-10.45, +16.67] | +0.00 [-6.00, +6.00] |
+| A32: best complete | -1.65 [-3.33, -0.01] | +6.12 [-2.08, +14.58] | +0.00 [-12.70, +13.16] | -4.00 [-12.00, +4.00] |
+| Random complete, N32 | -1.89 [-3.79, -0.13] | +4.08 [+0.00, +10.20] | -7.14 [-20.78, +6.94] | -2.00 [-6.00, +0.00] |
+| E32: matched controls | -1.59 [-3.26, +0.12] | +8.16 [+0.00, +18.37] | +0.00 [-11.11, +10.53] | -4.00 [-14.00, +4.00] |
+| D16: pooled + swaps | +0.36 [-1.47, +2.29] | +6.12 [-2.08, +16.00] | +0.00 [-13.24, +13.04] | +2.00 [-6.00, +10.00] |
+| D32: pooled + swaps | -0.03 [-1.84, +1.89] | +6.12 [-2.08, +14.58] | -1.43 [-14.75, +12.33] | +2.00 [-6.00, +10.00] |
+| E32 + pruning | -7.57 [-9.81, -5.37] | -2.04 [-12.50, +8.16] | -1.43 [-14.49, +11.59] | -2.00 [-10.00, +6.00] |
+| E32 + matched deletion | -8.11 [-10.09, -6.17] | -2.04 [-12.50, +8.16] | -12.86 [-25.76, +0.00] | -4.00 [-14.00, +6.00] |
+| A32 + pruning | -7.38 [-9.57, -5.30] | -4.08 [-14.29, +4.17] | +2.86 [-8.33, +14.49] | -2.00 [-8.00, +4.00] |
+| A32 + matched deletion | -9.34 [-11.48, -7.23] | +2.04 [-6.25, +10.42] | +5.71 [-6.06, +17.46] | +4.00 [+0.00, +10.00] |
+
+## Shortening and component comparisons
+
+The strongest apparent hallucination improvement comes from deleting content. Both targeted pruning arms lose five bridge questions from their respective complete parents. Each parent-to-prune change is −10.20 percentage points [−20.00, −2.08]. E32 pruning and its random control both recover 14/49 bridge questions; A32 pruning recovers 13/49 versus 16/49 for its random control.
+
+There is a real task-specific contrast in chains: E32 pruning recovers 33/70 questions versus 25/70 for matched random deletion, +11.43 points [+1.45, +22.73]. Its unpruned parent recovers 34/70. Preserving more information than a damaged deletion control therefore does not establish improvement over the complete parent. A32 pruning recovers 36/70 versus 38/70 for its matched deletion control.
+
+The component table makes those tradeoffs explicit. It also shows that increasing A16 to A32 improves the judged hallucination rate while leaving bridge question coverage unchanged and reducing chain and role question counts. Every change refers to the exact paired outputs, with no TEST-driven threshold changes.
+
+| Baseline → proposed | Hallucination error | Bridge question recovery | Intermediate question recovery | Role question recovery |
+|---|---:|---:|---:|---:|
+| A16: best complete → A32: best complete | -1.56 [-2.56, -0.53] | +0.00 [-8.16, +8.16] | -2.86 [-12.33, +6.76] | -4.00 [-10.00, +0.00] |
+| A32: best complete → Random complete, N32 | -0.24 [-1.99, +1.44] | -2.04 [-10.42, +6.25] | -7.14 [-22.73, +8.22] | +2.00 [-4.00, +8.00] |
+| A32: best complete → E32: matched controls | +0.05 [-0.47, +0.58] | +2.04 [+0.00, +6.25] | +0.00 [-9.23, +8.96] | +0.00 [-6.00, +6.00] |
+| A16: best complete → D16: pooled + swaps | +0.45 [-1.34, +2.31] | +0.00 [-10.20, +10.42] | -2.86 [-14.86, +10.34] | +2.00 [-6.00, +10.00] |
+| A32: best complete → D32: pooled + swaps | +1.62 [-0.26, +3.40] | +0.00 [-10.42, +10.00] | -1.43 [-14.06, +10.96] | +6.00 [-2.00, +14.00] |
+| E32: matched controls → E32 + pruning | -5.98 [-7.86, -4.14] | -10.20 [-20.00, -2.08] | -1.43 [-10.26, +7.69] | +2.00 [-4.00, +8.00] |
+| E32: matched controls → E32 + matched deletion | -6.51 [-8.47, -4.66] | -10.20 [-20.00, -2.08] | -12.86 [-25.37, +1.32] | +0.00 [-8.00, +8.00] |
+| E32 + matched deletion → E32 + pruning | +0.54 [-0.90, +2.06] | +0.00 [-6.12, +6.12] | +11.43 [+1.45, +22.73] | +2.00 [-4.00, +8.00] |
+| A32: best complete → A32 + pruning | -5.73 [-7.52, -3.96] | -10.20 [-20.00, -2.08] | +2.86 [-4.76, +10.61] | +2.00 [-4.00, +10.00] |
+| A32: best complete → A32 + matched deletion | -7.69 [-9.50, -5.94] | -4.08 [-10.42, +0.00] | +5.71 [-5.26, +17.33] | +8.00 [+0.00, +18.00] |
+| A32 + matched deletion → A32 + pruning | +1.96 [+0.44, +3.50] | -6.12 [-16.00, +2.04] | -2.86 [-11.94, +5.56] | -6.00 [-12.00, +0.00] |
+| A32 + pruning → E32 + pruning | -0.19 [-0.67, +0.30] | +2.04 [+0.00, +6.25] | -4.29 [-13.89, +4.48] | +0.00 [-6.00, +6.00] |
+
+Random deletion matches bullet count, rather than exact token length. In hallucination, targeted pruning retains about 2.2 bullets and 59 tokens per output; its controls retain the same average bullet count and about 56–57 tokens. Targeted pruning still yields specific readouts at 3,670/3,705 sites. Its lower error rate cannot be explained solely by generic or empty readouts leaving the denominator. It does, however, remove substantial content, including supported claims. The controls demonstrate why saying less and selecting more truthful content need separate evaluation.
+
+| Method | Specific / 3,705 | Off-topic / specific | True claims / output | Tokens / bullets, mean |
+|---|---:|---:|---:|---:|
+| Released N1 | 3664/3,705 (98.9%) | 379/3664 (10.3%) | 1.84 | 103.0 / 4.00 |
+| Capped N1 | 3656/3,705 (98.7%) | 369/3656 (10.1%) | 1.82 | 101.7 / 4.00 |
+| A16: best complete | 3661/3,705 (98.8%) | 358/3661 (9.8%) | 1.86 | 102.3 / 4.00 |
+| A32: best complete | 3663/3,705 (98.9%) | 344/3663 (9.4%) | 1.87 | 102.4 / 4.00 |
+| Random complete, N32 | 3654/3,705 (98.6%) | 399/3654 (10.9%) | 1.85 | 101.7 / 4.00 |
+| E32: matched controls | 3663/3,705 (98.9%) | 346/3663 (9.4%) | 1.87 | 102.5 / 4.00 |
+| D16: pooled + swaps | 3658/3,705 (98.7%) | 338/3658 (9.2%) | 1.85 | 108.5 / 3.99 |
+| D32: pooled + swaps | 3662/3,705 (98.8%) | 347/3662 (9.5%) | 1.88 | 109.6 / 4.00 |
+| E32 + pruning | 3670/3,705 (99.1%) | 266/3670 (7.2%) | 1.23 | 58.8 / 2.20 |
+| E32 + matched deletion | 3620/3,705 (97.7%) | 237/3620 (6.5%) | 1.21 | 56.6 / 2.20 |
+| A32 + pruning | 3670/3,705 (99.1%) | 261/3670 (7.1%) | 1.24 | 58.8 / 2.20 |
+| A32 + matched deletion | 3629/3,705 (97.9%) | 235/3629 (6.5%) | 1.22 | 56.5 / 2.20 |
+
+Supported-claim means are judge-produced tallies per intended output, including outputs without a specific assertion. Their decline from about 1.87 to 1.23–1.24 after targeted pruning accompanies the lower error rate. A lower wrong count is useful information about the retained text, with an explicit cost in how much that text says.
+
+## What changes in individual explanations
+
+The fixed final review inspected the first retained example in every nonempty win, regression and unchanged category of all 37 unique contrasts. Hallucination also includes separate class-change categories. Three reviewers covered 196 hallucination references, 212 chain/multi-hop references and 111 role references. Duplicate evidence is linked to each contrast; related examples are not independent observations. The [hallucination review](experiments/051-test-hall-review.md), [chain/multi-hop review](experiments/052-test-chain-multihop-review.md) and [role review](experiments/053-test-role-review.md) retain exact cell and artifact references.
+
+**Useful bridge recovery can remain incomplete.** At `mhh-1976philadelphia-bacterium`, L44 p28, E32 adds the required Legionnaires' disease name and a correct disease relation. Competing organism and location claims survive. At `mhh-1975-kit-chip-designer`, L52 p30, A16 recovers the required bridge amid incompatible designer alternatives. These are useful name-recovery changes with limits on the surrounding explanation.
+
+**Deletion can remove the concept needed for the task.** At `mhh-1973-triple-crown-stud-farm`, L56 p33, pruning removes Secretariat but leaves Claiborne Farm. A plausible final target remains, yet the required bridge disappears. This illustrates how pruning can lose bridge coverage.
+
+**Some local calculations improve; other credited numbers are misleading.** At `chain-d2p-0227`, L48 p62, a pruned output correctly describes doubling 8 to get 16 and subtracting 2 to get 14, removing conflicting alternatives. At L32 p62, another retained output says “16.50”; the judge extracts 16 and the official criterion credits it. The recorded pass is preserved with the disputed numerical interpretation. A recovered integer alone cannot verify the calculation.
+
+**Role descriptions can recover direction alongside invented details.** At `oa-accountant-client-deceive-ab`, L44 p143, A16 removes a conflicting client name and helps map accountant/client descriptions to the answer options. At L52 p146, E32 includes one reversed-role bullet and invented names alongside repeated accountant-to-client cues. Other audited cases have a returned choice that conflicts with the judge's own rationale. These distinctions matter because the prompt legitimately permits role descriptions without exact names.
+
+**A changed hallucination label can leave the disputed content unchanged.** At `chat-dailydialog-0034`, L60 p47, raw and capped outputs differ only in whitespace but change from wrong to consistent. At `chat-dailydialog-0000`, L20 p38, pruning retains the same AI no-sleep/no-personal-life phrase that receives a new wrong flag. At L20 p23, deletion removes a denial that an AI has children, although that denial is compatible with the source. The pinned judging prompt tolerates reformatting, compatible extra detail and broken fragments. These examples illustrate label sensitivity without estimating its prevalence.
+
+There are also clear company, address and architecture substitutions in the fixed hallucination cases. Removing an invented London apartment can be a useful local deletion, even when an unsupported partner statement survives. An accepted remnant saying little more than “Here is how we handle it” provides little explanatory content. Empty outputs abstain entirely. We preserve all these official verdicts and explain what changed, rather than treating every favorable class transition as a corrected explanation.
+
+## Cell-level results
+
+Question and cell metrics answer different questions. A question can pass after one successful site even when almost all its descriptions fail. D32, for example, has 269/5,700 role passes and 41/50 passing questions; A16 has 253/5,700 and 40/50. More passing sites within an already recovered question can improve the cell metric without changing question coverage.
+
+The table reports passing cells, percentages and grouped 95% intervals. Hallucination's readout endpoint and its coverage already appear above.
+
+| Method | Bridge cells / 539 | Intermediate cells / 770 | Role cells / 5,700 |
+|---|---:|---:|---:|
+| Released N1 | 51/539; 9.5% [4.6, 15.0] | 52/770; 6.8% [4.6, 9.1] | 256/5700; 4.5% [3.4, 5.6] |
+| Capped N1 | 51/539; 9.5% [4.6, 15.0] | 52/770; 6.8% [4.5, 9.2] | 254/5700; 4.5% [3.4, 5.6] |
+| A16: best complete | 55/539; 10.2% [5.3, 16.1] | 58/770; 7.5% [5.0, 10.1] | 253/5700; 4.4% [3.1, 5.9] |
+| A32: best complete | 57/539; 10.6% [5.9, 16.0] | 58/770; 7.5% [5.1, 10.1] | 234/5700; 4.1% [2.8, 5.4] |
+| Random complete, N32 | 58/539; 10.8% [5.5, 16.5] | 44/770; 5.7% [3.8, 7.9] | 244/5700; 4.3% [3.1, 5.5] |
+| E32: matched controls | 59/539; 10.9% [6.1, 16.5] | 48/770; 6.2% [4.3, 8.4] | 234/5700; 4.1% [2.9, 5.4] |
+| D16: pooled + swaps | 63/539; 11.7% [6.2, 18.0] | 55/770; 7.1% [4.5, 10.2] | 244/5700; 4.3% [3.2, 5.5] |
+| D32: pooled + swaps | 61/539; 11.3% [5.9, 17.6] | 52/770; 6.8% [4.1, 9.8] | 269/5700; 4.7% [3.5, 6.0] |
+| E32 + pruning | 39/539; 7.2% [3.6, 11.4] | 62/770; 8.1% [4.9, 11.7] | 217/5700; 3.8% [2.7, 4.9] |
+| E32 + matched deletion | 33/539; 6.1% [2.8, 9.7] | 35/770; 4.5% [2.6, 6.9] | 224/5700; 3.9% [2.7, 5.2] |
+| A32 + pruning | 38/539; 7.1% [3.5, 11.2] | 61/770; 7.9% [5.0, 11.2] | 215/5700; 3.8% [2.6, 5.0] |
+| A32 + matched deletion | 40/539; 7.4% [3.8, 11.9] | 52/770; 6.8% [4.8, 8.8] | 216/5700; 3.8% [2.7, 5.0] |
+
+## Why reconstruction fit needs independent evaluation
+
+The released [Oracle Lens and activation reconstructor](https://huggingface.co/agu18dec/olens_and_ar) are frozen Qwen3.6-27B readers. We capture the same source model activation for every method and make no weight updates. Selectors receive candidate text and activation-based scores, without benchmark answers, transcripts or quality judgments. Matched controls come only from the frozen development bank, excluding related groups and matching family, layer and site type.
+
+The reconstructor predicts an activation direction for each phrase. We center and whiten predictions and target using the released matched statistics, normalize phrase directions and retain target magnitude. Exact SciPy nonnegative least squares fits nonnegative phrase weights. Fraction of variance explained (FVE) measures reconstruction fit. It supplies a selection objective and does not establish the truth of a phrase.
+
+With fixed scores and nested pools, best-of-N's maximum fit cannot decrease as N grows. Pooling retains a best-complete fallback under the same objective and admissible dictionary. Those are properties of the search rules. Semantic quality, required-name recovery and directed relations remain separate empirical measurements.
+
+The encoder sees only the first 32 cleaned tokens of each bullet; the judge sees the complete output. In the all-candidate pilot diagnostic, 1,418/6,048 eligible candidates have at least one unscored suffix. Ranking disagreements occur with and without suffixes. No two different full readouts share an identical complete effective AR-key multiset in that diagnostic, so it provides no direct full-readout collision demonstration. Truncation is a concrete resolution limit, without an established causal attribution for every ranking error.
+
+The small all-candidate diagnostic also exposes missed opportunities: at least one candidate contains a required bridge in 14/24 pilot cells, versus 7/24 selected by A32. This is an evaluation-only availability ceiling. It cannot be used to choose a deployable answer, and a passing candidate can still contain wrong surrounding claims. See [candidate ranking](experiments/012-all-candidate-diagnostic.md).
+
+Numerical reproducibility has limits near small margins. Earlier batch-32 vectors remain immutable; new vectors use the fixed batch-128 convention, common across methods. An expanded batching audit exceeded provisional equivalence limits: maximum FVE drift was .003524, pooled text changed in 2/12 cells and matched-control selection changed in 1/12. Exact SciPy fitting and source-bound caches make the implementation reproducible, with uncertain robustness of tiny score margins and some pruning decisions. The [numerical audit](experiments/018-parallel-ar-cache.md) preserves those findings.
+
+A matched-donor diagnostic tests whether the target activation supplies information beyond task/layer priors. It replaces capped N1 with a frozen donor readout from another related group, matched on family, layer and site type, and judges against the target context. Bridge cell recovery falls from 29/341 to 0/341; role recovery falls from 151/3,420 to 0/3,420. Chain recovery falls from 26/330 to 10/330, showing residual numerical hits. This supports target-specific recovery under the stated control and does not establish that every target-conditioned claim is true.
+
+The same donor control lowers judged hallucination error from 543/1,137 to 25/992, yet 956/1,145 donor outputs are off-topic and only 11 are consistent. Its low error rate reflects largely irrelevant readouts. Frozen donor reuse also couples targets, beyond the dependence captured by target-group intervals. This is a direct reason to show content and coverage beside the headline error rate; see [the matched-donor experiment](experiments/014-matched-donor-readouts.md).
+
+## What all seven approaches contributed
+
+The study explored all seven approach categories, with different levels of evidence. The final twelve-method comparison covers selected A/C/D/E variants and their controls. B and F have judged development pilots; G has numerical/token diagnostics. A completed instrument or a specified method is distinct from a completed held-out quality comparison.
+
+| Approach | Implemented and evaluated work | Scope and result | Remaining limits |
+|---|---|---|---|
+| **A: complete-sample selection** | Exact reconstruction selection on N1/2/4/8/16/32; raw/capped and random controls | All six prefixes judged on full DEV; A16/A32 and controls judged on VAL and TEST | Quality is task-dependent and nonmonotonic despite improved fit. |
+| **B: repeated support** | Exact whole-bullet support, repaired semantic matching, support thresholds, compatibility/veto controls, medium reasoning replay | Judged on the same 189 pilot cells; soft variants lose useful bridge/numerical coverage, strict thresholds mostly abstain | Whole-bullet equivalence has audited false merges; exact-span revision stopped after input-contract failures. No claim that all atomic-claim consensus fails. |
+| **C: deletion** | Coefficient/leave-one-out pilots and .005 sequential whole-bullet pruning with matched deletion | Selected parent/combination variants judged on pilot, VAL and TEST | Reconstruction contribution is dispensability for the fit; required bridges and supported details can be deleted. |
+| **D: pooled composition** | Fully refitted greedy selection and bounded local swaps from the existing N16/N32 pool | Judged on pilot, VAL and TEST; local mention/role gains coexist with wrong relations | This is greedy NNLS selection, rather than classical OMP's correlation rule. Residual resampling was deferred under the shared 32-sample cap. |
+| **E: activation specificity** | Mean matched-control reconstruction, controlled near misses, N8 conditional likelihood and component controls | E32 and deletion variants judged on VAL/TEST; other checks remain development diagnostics | Controls distinguish specificity, not factual truth. Likelihood has no broad pilot advantage; semantic discrimination depends on layer/wording. |
+| **F: bounded editing** | Two sequential proposal rounds, fresh encoding, best-state retention and all selected-edit audits | Judged 189-cell pilot; eight final edited winners, with no aggregate recovery gain over D32 | Added completions and one name-surface alteration violate source preservation. More powerful iterative editing remains untested. |
+| **G: independent check** | Compatible J++ token-support instrument and adversarial numerical probes | Development numerical evidence; no established improved output selector | Unknown fitting-data overlap prevents clean held-out claims. A second compatible reconstructor and optional layer-42 NLA study were not run. |
+
+**Consensus encountered both coverage and contract problems.** The repaired none-effort semantic helper labels all requested pairs after one successful retry, so its later weak outputs cannot be attributed to missing comparisons alone. Its native .25 support rule empties 178/189 cells. Soft consensus recovers 4/24 bridges and 0/21 intermediates, compared with A16's 9/24 and 3/21. Manual audits find unsafe merges that ignore entity, arithmetic history or qualifications. These are concrete selection/faithfulness issues, rather than exclusion solely for a nonsignificant p-value.
+
+The medium replay reuses exactly 2,685 proposed pairs, obtaining 2,639 valid labels and leaving 46 unknown. Whole-chunk validation rejects inconsistent relation fields; the unknown labels are not negative support. A fresh audit finds a false domain-restriction merge that affects a cluster. Its soft outputs also recover 4/24 bridges and 0/21 intermediates. No dedicated compatibility-phase requests were made, so compatibility-filtered variants retain an explicit coverage caveat. The [consensus record](experiments/015-consensus-pilot.md) and [reasoning replay](experiments/021-medium-consensus-reconfirmation.md) keep these versions separate.
+
+The separate exact-source-span revision tests the atomic-claim idea more directly. An eight-cell audit finds accepted bare-number fragments and unresolved references despite a source-entailment/qualification check. A versioned repair removes some numeric fragments but does not resolve all self-containedness failures. Its planned 32-cell expansion and quality judging were not completed. This is an input-contract failure in that implementation, and a better claim-preserving extraction method remains an open direction. See [the source-span experiment](experiments/024-exact-source-span-consensus.md).
+
+**Editing was iterative within a small bound.** Each of two rounds returns four proposals total across at most two retained states: eight proposals per cell across both rounds. The second round receives the full first-round history; earlier candidates remain available. New strings receive fresh reconstruction vectors and are accepted by the fixed reconstruction objective. Eight of 189 final outputs change: three chain, three hallucination, one bridge and one role output. All eight were inspected. Aggregate bridge/chain/role recovery stays at 10/24, 1/21 and 8/72, and wrong hallucination readouts remain 42. Most selected changes remove formatting or headings while preserving wrong numbers or mixed roles. A name-surface alteration and added fragment completions expose source-preservation failures. This evidence limits promotion of the tested editor, with substantial uncertainty about a better editor or objective. See [editing and rescoring](experiments/010-editing-scoring.md).
+
+**Independent token support has a narrower meaning than semantic verification.** J++ supplies a compatible frozen development reader after coordinate checks. Its token ranking cannot by itself distinguish 16 from a larger number containing the same digits or validate who did what to whom. Fitting-data overlap remains unresolved, so no G output was invented or folded into clean held-out results. The [J++ diagnostic](experiments/006-jpp-development-reader.md) describes engineering coverage and its boundaries.
+
+## Pilot and combination evidence
+
+The shared pilot uses 189 cells from 31 development items and partial grids. These are cell diagnostics with few related groups, rather than the original full-grid question scores. The selected comparisons below retain the same pool and explicit hallucination denominators.
+
+| Method | Wrong / specific | Bridge cells / 24 | Intermediate cells / 21 | Role cells / 72 |
+|---|---:|---:|---:|---:|
+| Capped N1 | 46/71 | 4 | 0 | 8 |
+| A4 | 42/72 | 7 | 1 | 9 |
+| A16 | 40/71 | 9 | 3 | 8 |
+| A32 | 39/71 | 7 | 3 | 9 |
+| Frozen random complete N32 | 38/72 | 8 | 2 | 8 |
+| D32 | 42/70 | 10 | 1 | 8 |
+| E32 | 38/71 | 7 | 1 | 9 |
+| E32 + pruning | 36/72 | 7 | 1 | 12 |
+| E32 + matched deletion | 37/72 | 5 | 0 | 7 |
+
+The early E32-pruning pilot looked promising for role recovery. Larger development and validation exposed substantial losses of bridge and numerical coverage, and the final TEST comparisons confirm the need for deletion controls. The pilot therefore motivated experiments without certifying a generally better method. Full pilot intervals remain in [the grouped comparisons](experiments/009-pilot-grouped-comparisons.md).
+
+Combination search was bounded and adaptive. We tested pooling with pruning; specificity with pruning; editing with pruning; support-filtered pooling; pooling with specificity; and the three-part pooling/specificity/pruning method. Each promising combination retained its unchanged parent, component-off alternatives and shortening controls when applicable. This covers concrete combinations, rather than an exhaustive cross-product of every algorithm and threshold.
+
+On the pilot, pooling + specificity + pruning recovers six bridge cells, zero chain cells and twelve role cells, with 39/71 wrong specific readouts. Simpler E32 + pruning recovers seven, one and twelve, with 36/72 wrong. The additional pooling component gives no clear practical advantage in those bounded results. A separate nonpositive-specificity abstention control accounts for the empty-set option; its gaps remain explicit. See [cached combinations and support pooling](experiments/011-cached-combinations.md) and [pooled specificity](experiments/020-pooled-specificity.md).
+
+Conditional-likelihood selection adds local model forwards rather than external helper calls. On the same N8 pilot, target minus control likelihood scores 39/70 wrong specific readouts and 6/24 bridge, 2/21 chain and 8/72 role passes. A8 scores 39/70, 7/24, 2/21 and 7/72. The control-only likelihood proxy scores better on bridge and role, weakening an activation-specific interpretation. Isolated changes and broad intervals keep this as an exploratory component rather than a disproven idea. See [the likelihood pilot](experiments/007-likelihood-pilot.md).
+
+The earlier qualitative review also uses eight outcome-blind anchors shared across runnable methods, two distinct items/groups per family. At most two clearly labeled supplemental changed examples are added per conceptual method or materially distinct variant. Exact source/context and independent checks are recorded in [qualitative coverage](QUALITATIVE_COVERAGE.md). F changes none of these shared anchors; rare edited winners are shown separately. Missing or unrun diagnostics remain visible.
+
+## Inference effort and campaign cost
+
+Every deployment method pays for its required sampling, encoding, fitting and recurring helper work on a new activation. Research cache reuse amortizes those costs across comparisons. Benchmark judging is a separate campaign cost, and its dollars are not a method's deployment inference bill.
+
+| Final method | Candidate generation budget | Reconstruction/helper work beyond capture | Median cached selector seconds per cell, where measured |
+|---|---:|---|---:|
+| Released/capped N1 | 1 sample | Formatting only; no reconstructor or helper required | Not measured as a selector |
+| A16 | 16 samples | Up to 64 retained source-bullet inputs before deduplication; exact fits | 0.00690 |
+| A32 | 32 samples | Up to 128 retained source-bullet inputs before deduplication; exact fits | 0.01122 |
+| Random complete N32 | Shared 32-sample campaign pool | Fixed eligible draw; no reconstruction objective or helper | Not measured |
+| E32 | 32 samples | Same candidate inputs, target and eight frozen-control fits | 0.05908 |
+| D16 / D32 | 16 / 32 samples | Up to 64 / 128 source inputs; greedy joint refits and local swaps | D32: 0.23227 |
+| A32 + pruning | 32 samples | A32 plus repeated subset refits; no new phrase inputs or helpers | 0.01232 including parent |
+| A32 + matched deletion | 32 samples | Same A32 parent plus seeded matched-count deletion | Not measured |
+| E32 + pruning | 32 samples | E32 plus repeated subset refits; no new phrase inputs or helpers | No isolated measurement |
+| E32 + matched deletion | 32 samples | Same E32 parent plus seeded matched-count deletion | No isolated measurement |
+
+These twelve methods require zero recurring language-model helper calls. The cached times are medians from eight fixed DEV cells, three repetitions and four CPU threads, measured after parsing/vector preparation. They exclude model loading, activation capture, sampling and encoding. The 64/128 phrase bounds apply after the four-bullet cap; raw prose can contain more bullet markers. Random complete selection uses one retained candidate, but a standalone implementation may need resampling to satisfy eligibility. The experimental control's N32 pool should not be presented as a guaranteed one-draw deployment cost.
+
+Measured larger-development collection averaged about 4.33 H200 task wall-seconds per N32 cell, with filled batches. Phrase encoding implied about 1.25 further task seconds per cell at the measured throughput. These averages depend on batching, deduplication and startup. They are not single-input latency guarantees or directly measured N16 serving time.
+
+One synthetic installed-tool input provides a separate practical timing. With the model loaded, capture took 0.30 seconds and 32 descriptions took 12.04 seconds. Starting without a model loaded in the process, the complete pipeline through its first selected description took 59.59 seconds, including sequential model loads and 128 phrase encodings. Encoding took 1.34 seconds within that total. This is one engineering input using existing filesystem caches, not a latency distribution. Nested times must not be added twice. See [new-input timing](experiments/035-new-input-timing.md).
+
+Pilot runtime helpers have additional recurring costs. Repaired none-effort B costs about $0.00101 per cell. Medium confirmation costs about $0.00196 per cell after including the necessary proposal phase, even though the campaign reuses it. Two editing rounds cost about $0.000282 per cell, plus the parent method and fresh phrase encodings. N8 conditional likelihood requires 4,536 teacher-forced sequence evaluations on 1,512 candidates and took 176.15 scoring seconds on one H200. These measured components, exact token counts, retries and scope limits are in [measured costs](experiments/013-measured-costs.md). Full fresh-input latency and GPU dollar prices remain unavailable for most variants.
+
+The paid campaign ends with a usage-derived API estimate of **$36.50759506**, plus **$4.8597425 retained reservations**, for **$41.36733756 committed**. The reservations include $4.85435575 in unknown-charge holds and one inactive reservation. No uncertain charge was released. Original full-DEV judging accounts for $7.61822211 estimated usage; final TEST judging accounts for $19.492558205. These runs are subsets of the global figure, so adding them again would double count. Usage estimates include reported cache writes and are not provider-invoice reconciliation.
+
+Project storage at the final inventory is 98.704 GB logical, 79.355 GB allocated and 14,974 files, excluding 55.563 GB of reused external weights. Recorded generation and main reconstructor tasks total 30.192 task-hours. Project-reserved H200 windows total 70.220 GPU-hours, including idle holds, through the 18:10:48 UTC handoff to the user. The two timers measure different things and must not be summed. Capture, separate diagnostics, abandoned work and CPU use are not fully totaled. Cluster prices and Codex/research-agent billing are excluded. The [final resource record](experiments/054-final-resources.md) preserves the dated receipt and all limits.
+
+## Appendix: complete development sampling curves
+
+All six nested prefixes N1/2/4/8/16/32 are judged on all 5,236 DEV cells. The following table shows nonmonotonic quality even as the highest attainable reconstruction fit increases. Late DEV results cannot change the already frozen validation menu or TEST operating points.
+
+| Method | Wrong / specific | Bridge cells / 341 | Chain cells / 330 | Role cells / 3,420 | Bridge questions / 31 | Chain questions / 30 | Role questions / 30 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Released N1 | 545/1136 | 29 | 28 | 155 | 11 | 16 | 23 |
+| Capped N1 | 543/1137 | 29 | 26 | 151 | 11 | 15 | 23 |
+| A1 | 543/1136 | 29 | 26 | 150 | 11 | 15 | 23 |
+| A2 | 554/1139 | 38 | 24 | 160 | 13 | 16 | 23 |
+| A4 | 550/1139 | 44 | 20 | 164 | 15 | 16 | 25 |
+| A8 | 538/1140 | 45 | 20 | 163 | 13 | 15 | 24 |
+| A16 | 542/1141 | 48 | 19 | 185 | 14 | 14 | 24 |
+| A32 | 523/1140 | 43 | 30 | 182 | 14 | 19 | 23 |
+
+A32 versus capped N1 changes cell bridge recovery by +4.11 percentage points [+1.82, +6.61] and role recovery by +0.91 [+0.15, +1.73]. Role question coverage stays 23/30. Its chain change is +1.21 [−3.16, +4.85], and hallucination change is −1.88 [−5.42, +1.75]. A16 recovers more bridge and role cells than A32 but fewer arithmetic cells. These exploratory comparisons have only seven independent chain-template groups; they do not establish a scaling law or a universal sample budget.
+
+A1 reconstruction eligibility is distinct from capped N1: it produces one empty hallucination output and eleven empty role outputs for invalid scoring atoms. The baselines preserve their original text. Those differences are an eligibility control, rather than a reconstruction-quality gain. The [complete scaling record](experiments/034-development-scaling-completion.md) contains exact denominators, lengths, absolute/paired intervals and source identity.
+
+The original smaller validation comparison has twenty items per family, with only 17 bridge, 7 chain and 10 role independent groups. A16 recovers 9/20 bridge, 11/20 chain and 17/20 role items; E32 recovers 8/20, 10/20 and 17/20. Validation motivates the two prospective operating points, with broad uncertainty and no claim that excluded approaches are worse. The [validation comparison](experiments/029-validation-comparison.md) retains all twelve arms and their fixed traces.
+
+## Appendix: all 469 questions, descriptive comparison
+
+The full-bank appendix combines 121 DEV, 80 VAL and 268 TEST items, with 19,435 cells and all twelve fixed methods complete. Family totals are 149 hallucination, 100 bridge, 120 chain and 100 role items. It answers how the fixed methods behave across the complete four-bank collection. Development and validation informed their design, so this union is descriptive evidence; the independent held-out comparison remains the 268-item TEST above.
+
+| Method | Hallucination error ↓ | Bridge questions / 100 ↑ | Intermediate questions / 120 ↑ | Role questions / 100 ↑ |
+|---|---:|---:|---:|---:|
+| Released N1 | 2648/5560 (47.6%) | 34/100 (34.0%) | 59/120 (49.2%) | 78/100 (78.0%) |
+| Capped N1 | 2641/5554 (47.6%) | 34/100 (34.0%) | 57/120 (47.5%) | 78/100 (78.0%) |
+| A16: best complete | 2633/5564 (47.3%) | 41/100 (41.0%) | 61/120 (50.8%) | 81/100 (81.0%) |
+| A32: best complete | 2550/5565 (45.8%) | 40/100 (40.0%) | 61/120 (50.8%) | 77/100 (77.0%) |
+| Random complete, N32 | 2572/5556 (46.3%) | 37/100 (37.0%) | 54/120 (45.0%) | 76/100 (76.0%) |
+| E32: matched controls | 2550/5566 (45.8%) | 41/100 (41.0%) | 61/120 (50.8%) | 81/100 (81.0%) |
+| D16: pooled + swaps | 2647/5558 (47.6%) | 44/100 (44.0%) | 56/120 (46.7%) | 83/100 (83.0%) |
+| D32: pooled + swaps | 2621/5555 (47.2%) | 41/100 (41.0%) | 53/120 (44.2%) | 81/100 (81.0%) |
+| E32 + pruning | 2252/5567 (40.5%) | 32/100 (32.0%) | 51/120 (42.5%) | 79/100 (79.0%) |
+| E32 + matched deletion | 2167/5510 (39.3%) | 31/100 (31.0%) | 53/120 (44.2%) | 77/100 (77.0%) |
+| A32 + pruning | 2261/5567 (40.6%) | 31/100 (31.0%) | 56/120 (46.7%) | 76/100 (76.0%) |
+| A32 + matched deletion | 2124/5508 (38.6%) | 34/100 (34.0%) | 67/120 (55.8%) | 79/100 (79.0%) |
+
+A16 and E32 each recover 41/100 bridge items in this union. D16 recovers 44/100. Those descriptive counts do not supersede the held-out ranking uncertainty or promote pooling. Pruning again reduces bridge coverage: A32 falls from 40/100 to 31/100, and E32 from 41/100 to 32/100. A32's matched deletion retains 34/100. The complete artifact also preserves stage-specific results, paired group intervals and lengths, so the union cannot hide a task or cohort regression.
+
+Descriptive layer/position maps accompany the complete DEV/VAL comparisons. Position is ranked within each item's read grid; the same rank is not the same absolute token or semantic location across items. The maps show sampled coverage and task rates, with related-group uncertainty where applicable. They are descriptive views of the fixed grids, with no layer or position selected from TEST outcomes.
+
+## Boundaries and reproducibility
+
+The evidence covers four WorkspaceBench families with their full released banks and original grids. Broader WorkspaceBench families remain a separate second-stage study. This study runs no new generations beyond the shared 32-candidate cap, performs no weight training and uses no gold answer in inference selection. The fixed menu is preserved after TEST opening, including secondary variants whose results are less favorable.
+
+The two selected points remain A16 and E32. The results support reporting their tradeoffs and useful local examples, with further evaluation needed before an automatic upgrade across tasks. A better independent semantic scorer, source-preserving claim extraction or editing objective could change the outcome. The current B/F evidence combines small samples with concrete coverage or contract failures; weak evidence does not exclude entire approach categories.
+
+The signed TEST analysis is `final-analysis-v2.json`, SHA256 `75dee255d88104450fa4424610178baa4df24964394be77812fa218379cfcef8`. Its exact frozen menu is [conditions_test_final_v2.json](../configs/conditions_test_final_v2.json), SHA256 `111b0684c8f5eb780e2b3887218757dee9ef6cca25efd26a8c0a515d008f4807`. The [prospective amendment](experiments/038-expanded-heldout-comparison.md) binds the unchanged source pool, ordered cells and primary/secondary status. The original method freeze and inference conventions are in [experiment 032](experiments/032-test-final-method-freeze.md).
+
+The whole-bank descriptive source is `whole-cohort-descriptive-v1.json`, SHA256 `a6510b74fabb410efe859197d295c31ba67bc7274537eeb084c1d16382d5e00f`. The final resource receipt is `final-resources-v1/receipt.json`, SHA256 `07f91cc0508af646bc8f7670a14e0816157d5621bd638f3e025ccb7b7d0d2ee1`. Model revisions, whitening, exact solver, input order, parser/cap rules and control bank hashes are recorded in [METHODS.md](METHODS.md) and the frozen configuration files. Raw source hashes, retained evidence and target-to-representative cache provenance remain auditable; no manual review rewrites a paid verdict.
+
+There was one scoped pre-review exposure. An operational observer inadvertently emitted two auxiliary raw-N1 hallucination fields between 21:29:11.640535 and 21:31:56 UTC. The original six primary comparisons were frozen hours earlier, and the early-report proposal predated that exposure. No synthesis, menu or tuning change was based on it. The exposure is recorded in `primary-six-completion-contracts-v2.json`, SHA256 `b0b69992c882e503ab8e016c2090d216b0c3d51491224a6fd5b7b7e4ef8b1758`; the complete scientific review was subsequently authorized after all 48 family/condition contracts passed.

@@ -1,0 +1,20 @@
+{
+  "status": "root_reviewed",
+  "reviewed_by": "root",
+  "reviewed_utc": "2026-10-10T22:14:56.987555+00:00",
+  "test_reveal_authorized": true,
+  "test_artifact_sha256": "75dee255d88104450fa4424610178baa4df24964394be77812fa218379cfcef8",
+  "test_review_metadata_sha256": "affeeb07dc331ba74eaaeef3dff77d26f10e15d06448a3e55677f73120aafdd9",
+  "sources": {
+    "test_figures": {
+      "path": "${OLENS_DATA_ROOT}/figures/test-final-v1/provenance.json",
+      "sha256": "94f9cc11dee4389325abe67c7d03e4da54f362465ca7b6f9bf88908cddbd607a"
+    },
+    "whole_cohort": {
+      "path": "${OLENS_DATA_ROOT}/runs/whole-cohort-descriptive-v1.json",
+      "sha256": "a6510b74fabb410efe859197d295c31ba67bc7274537eeb084c1d16382d5e00f"
+    }
+  },
+  "downloads": [],
+  "verification": "Root inspected family question/cell charts, paired-delta and cross-task charts. Scientific values were independently reviewed and matched immutable sources. Deck and final report downloads will follow separate review."
+}
