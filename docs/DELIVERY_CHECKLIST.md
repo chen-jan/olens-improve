@@ -44,3 +44,29 @@ NLA layer 42, a second compatible AR, more J++ inference integration after fitti
 Before final delivery, synchronize the current-status openings of METHODS/README/experiment029 with completed validation and the actual final stage; retain historical planned/observed sections. REPORT already has complete validation but its approach table and release-status ending still need a final completion pass. Verify every “in progress,” “pending,” “unavailable,” and “not run” against its exact scope. Keep the reported numerical sensitivity and 32-token AR blind spot visible. The complete statement about G must remain “diagnostic evidence,” not “validated independent selector.”
 
 The [README quickstart](../README.md) supplies explicit local base/adapter/AR/whitener paths, installation, vector generation, saved-pool import and replay. Retain a runnable example for A16 and one for Emean32 with caller-frozen controls, plus source manifests/cache tensor references and experimental-profile caveats. The installed-wheel DEV replay and synthetic N2 capture, generation, AR and replay are validated plumbing, not a full clean-machine dependency installation or semantic accuracy guarantee. The portable CLI is vector-first; it does not accept arbitrary raw text or bypass held-out gates. Final recommended-profile documentation should use the frozen identifiers and actual limitations, without hardcoded cluster defaults or mandatory helper/API infrastructure.
+
+## Final six-method result and trace review
+
+This is a preparation checklist, not an inspection of TEST quality. Do not run the reporter until all six signed conditions have all four families complete, including both hallucination stages. Preserve official verdicts, exact selected texts and the original menu order: raw N1, capped N1, best reconstruction N16, best reconstruction N32, random complete N32, and mean matched-control selection N32. The fixed cohort has 10,714 cells / 268 items: hallucination 3,705/99, multi-hop facts 539/49, chains 770/70 and roles 5,700/50.
+
+- [ ] Root confirms the final [menu](../configs/conditions_test_final_v1.json), [freeze](../configs/test_final_method_freeze_v1.json), [analysis gate](../configs/gates/test-analysis-v1.json), terminal judgment files and exact compact-export SHA. Missing results remain missing; do not publish a partial final comparison as complete.
+- [ ] Run the existing [signed reporter](../scripts/analyze_signed_menu.py) on allocated CPU with those exact authorities and a new immutable output. It checks authority before data, complete original-grid/menu coverage, source text equality, retained evidence hashes and unchanged reporting implementation. It never calls a judge or tunes a selector.
+- [ ] Verify separate cell/item endpoints and related-group intervals, assertion/off-topic/generic coverage, false spans versus true/unverifiable claims, and tokens/bullets across all intended outputs. Keep numerical reconstruction fit separate from truth.
+- [ ] Review its fixed sampled wins, regressions and seeded unchanged cases for the selected profiles versus raw/capped N1 and A32, A16→A32 sampling cost, A32→specificity component contrast, and random N32 control. Hallucination traces include the original context; multi-hop traces retain required-name evidence; chain traces include named values/kind/basis; role traces preserve official choices/answer/rationale and exact-request cache aliases. A mention, correct number or accepted role answer need not establish a correct explanation.
+- [ ] Have root and an independent reviewer inspect the same immutable traces. Record disagreements as judge/interpretation limitations without replacing verdicts. Do not select a new TEST operating point or layer. Publish reviewed TEST summaries, plots and descriptive coverage from the same source, visibly separate from DEV/VAL and provisional findings.
+
+Prepared command shape; actual export path/SHA are filled from the reviewed TEST dispatch, not guessed:
+
+```bash
+"$PY" scripts/analyze_signed_menu.py \
+  --manifest configs/test-full-grid-analysis-v1.json \
+  --conditions configs/conditions_test_final_v1.json \
+  --condition-list configs/conditions_test_final_v1.json \
+  --freeze configs/test_final_method_freeze_v1.json \
+  --fresh-manifest "$FRESH" --gate configs/gates/test-analysis-v1.json \
+  --judgments "$TEST_RUN/judgments" --selections "$EXACT_TEST_EXPORT" \
+  --selection-sha256 EXACT_REVIEWED_EXPORT_SHA \
+  --output "$TEST_RUN/final-analysis-v1.json"
+```
+
+`$PY`, `$FRESH` and `$TEST_RUN` use the reviewed execution paths in [record 030](experiments/030-test-analysis-preparation.md). The [portable-cache engineering record](experiments/036-portable-cache-persistence.md) separately tracks the candidate wheel and persistence checks; neither changes this scientific comparison.

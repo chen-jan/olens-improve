@@ -11,8 +11,9 @@ from pathlib import Path
 from typing import Any
 
 from .models import BASE_REVISION, PAIR_REVISION, SUPPORTED_LAYERS, FrozenOLens
-from .reconstruction import FrozenAR, RawVectorCache, Whitener, JointNNLS, ar_token_ids
-from .ar_cache import vector_key
+from .reconstruction import FrozenAR, Whitener, JointNNLS, ar_token_ids
+from .ar_cache import digest, vector_key
+from .portable_cache import load_cache, new_cache_path, save_cache
 from .selection import (Selection, parse_bullets, best_of_n, greedy_pool,
                         prune_leave_one_out, output_admissible)
 from .contrastive import control_specificity
@@ -214,8 +215,13 @@ def select_scored_pool(pool, samples, count, *, method, scorer=None, controls=No
 
 
 def replay_select(artifacts, pool, activation, *, method='best_n', n=None, cache_directory=None,
-                  encode_missing=False, controls=None, control_provenance=None, maximum_loss=.005):
+                  encode_missing=False, controls=None, control_provenance=None, maximum_loss=.005,
+                  save_cache_directory=None):
     """Select one saved pool against the same h; all controls must be caller-frozen."""
+    if save_cache_directory is not None:
+        new_cache_path(save_cache_directory)
+        if method in ('raw_n1', 'capped_n1') or not artifacts.ar_checkpoint or not artifacts.whitener_directory:
+            raise ValueError('Saving an AR cache requires an AR-scored replay, not a raw/capped baseline')
     value = vector(activation)
     if activation_hash(value) != pool.activation_sha256: raise ValueError('Replay activation differs from saved pool')
     tok, count = token_counter(artifacts); samples = samples_for_pool(pool, count, n)
@@ -238,27 +244,35 @@ def replay_select(artifacts, pool, activation, *, method='best_n', n=None, cache
         text, ids = ar_token_ids(tok, b.text); cleaned[b.phrase_id] = (text, ids)
         metadata[b.phrase_id] = {'text': b.text, 'scored_token_ids': ids[:32], 'original_token_count': len(ids),
                                 'scored_token_count': min(32, len(ids)), 'truncated': len(ids) > 32}
-    cache = RawVectorCache(cache_directory) if cache_directory else None
-    if cache and (cache.contract['base_revision'] != BASE_REVISION or
-                  cache.contract['pair_revision'] != PAIR_REVISION or
-                  cache.contract['tokenizer_revision'] != BASE_REVISION or
-                  cache.contract['head_sha256'] != file_sha(checkpoint/'heads.pt') or
-                  cache.contract['meta_sha256'] != file_sha(checkpoint/'meta.json') or
-                  cache.contract['adapter_sha256'] != file_sha(checkpoint/'lora/adapter_model.safetensors') or
-                  cache.contract['adapter_config_sha256'] != file_sha(checkpoint/'lora/adapter_config.json') or
-                  cache.contract['span_limit'] != 32 or cache.contract['tokenizer_cleanup'] != 'source_scaffolding_and_special_ids_v1' or
-                  cache.contract['padding'] != 'right_zero' or cache.contract['head_layer_norm'] is not True or
-                  cache.contract['head_layer_norm_epsilon'] != 1e-5 or cache.contract['final_norm'] != 'Identity' or
-                  cache.contract['backbone_dtype'] != 'bfloat16' or cache.contract['head_dtype'] != 'float32' or
-                  cache.contract['key_policy'] != 'effective_scored_tokens_and_tag_v1'):
+    cfg = json.loads((checkpoint/'meta.json').read_text())['config']
+    if cfg.get('head_layer_norm') is not True:
+        raise ValueError('Portable replay requires the frozen layer-normalized AR head')
+    contract = {'base_revision':BASE_REVISION,'pair_revision':PAIR_REVISION,'tokenizer_revision':BASE_REVISION,
+        'head_sha256':file_sha(checkpoint/'heads.pt'),'meta_sha256':file_sha(checkpoint/'meta.json'),
+        'adapter_sha256':file_sha(checkpoint/'lora/adapter_model.safetensors'),
+        'adapter_config_sha256':file_sha(checkpoint/'lora/adapter_config.json'),
+        'span_limit':32,'tokenizer_cleanup':'source_scaffolding_and_special_ids_v1',
+        'padding':'right_zero','head_layer_norm':True,'head_layer_norm_epsilon':1e-5,'final_norm':'Identity',
+        'backbone_dtype':'bfloat16','head_dtype':'float32','key_policy':'effective_scored_tokens_and_tag_v1'}
+    contract['sha256'] = digest(contract)
+    cache = load_cache(cache_directory) if cache_directory else None
+    if cache and cache.contract != contract:
         raise ValueError('Cached vectors differ from exact local AR artifacts/input contract')
-    missing = {}
+    missing = {}; entries = {}
     for b in atoms:
         text, ids = cleaned[b.phrase_id]
-        if not ids: continue
+        if not ids:
+            metadata[b.phrase_id].update(cache_key=None,reason='empty_after_AR_cleanup')
+            continue
         identity = tuple(ids[:32])
-        key = vector_key(cache.contract['sha256'], tags, list(identity)) if cache else None
-        if cache and key in cache.index: raw[b.phrase_id] = cache.get(key)
+        key = vector_key(contract['sha256'], tags, list(identity))
+        metadata[b.phrase_id]['cache_key'] = key
+        if cache and key in cache.index:
+            raw[b.phrase_id] = cache.get(key)
+            entries[key] = {'vector':raw[b.phrase_id], 'layer':pool.layer,'tag_ids':tags,'scored_token_ids':list(identity),
+                'execution':cache.index[key].get('execution'), 'origin':{'kind':'inherited_readonly_cache',
+                    'directory':str(cache_directory),'cache_key':key,'tensor_path':cache.index[key]['tensor_path'],
+                    'row':cache.index[key]['row']}}
         else: missing.setdefault(identity, []).append(b)
     if missing:
         if not encode_missing: raise ValueError('Missing AR vectors; use explicit encode_missing or replay a complete cache')
@@ -266,8 +280,17 @@ def replay_select(artifacts, pool, activation, *, method='best_n', n=None, cache
         try:
             reader = FrozenAR.load(artifacts.base_path, str(checkpoint), artifacts.device)
             ordered = sorted(missing); predictions, encoding_meta = reader.encode([missing[k][0].text for k in ordered], pool.layer)
-            for key, prediction in zip(ordered, predictions.detach().float().cpu()):
-                for b in missing[key]: raw[b.phrase_id] = prediction
+            if len(predictions) != len(ordered) or len(encoding_meta) != len(ordered):
+                raise ValueError('AR output rows differ from requested effective inputs')
+            batch_keys = [vector_key(contract['sha256'],tags,list(ids)) for ids in ordered]
+            for identity, prediction, encoded in zip(ordered, predictions.detach().float().cpu(), encoding_meta):
+                if encoded['input_ids'] != list(identity) or encoded['tag_ids'] != tags:
+                    raise ValueError('Actual AR encoding differs from portable cache input')
+                key = vector_key(contract['sha256'],tags,list(identity))
+                entries[key] = {'vector':prediction,'layer':pool.layer,'tag_ids':tags,'scored_token_ids':list(identity),
+                    'execution':{'batch_size':len(ordered),'ordered_batch_keys_sha256':digest(batch_keys),
+                        'padded_token_width':max(map(len,ordered))+len(tags)},'origin':{'kind':'new_portable_encoding'}}
+                for b in missing[identity]: raw[b.phrase_id] = prediction
         finally:
             if reader is not None: release_reader(reader)
     ruler = Path(artifacts.whitener_directory)/f'whitening_iolens_pooled_L{pool.layer}.safetensors'
@@ -283,4 +306,11 @@ def replay_select(artifacts, pool, activation, *, method='best_n', n=None, cache
                'implementation_sha256': {name: file_sha(Path(__file__).with_name(name))
                                           for name in ('inference.py', 'models.py', 'reconstruction.py', 'selection.py', 'contrastive.py')},
                'numerical_note': 'Fixed local batch packing; not equivalent to other batch sizes. 32-token scorer suffix blind spot.'}
+    if save_cache_directory is not None:
+        usages = [{'source_phrase_id':b.phrase_id, **metadata[b.phrase_id]} for b in atoms]
+        result['saved_cache'] = save_cache(save_cache_directory, contract, entries, usages,
+            {'pool_provenance':pool.provenance,'records':list(pool.records[:len(samples)]),
+             'pool_layer':pool.layer,'activation_sha256':pool.activation_sha256,
+             'requested_prefix':len(samples),'implementation_sha256':result['implementation_sha256'] |
+                 {'portable_cache.py':file_sha(Path(__file__).with_name('portable_cache.py'))}})
     return result

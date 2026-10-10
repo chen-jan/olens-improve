@@ -5,6 +5,7 @@ from pathlib import Path
 
 from .inference import (Artifacts, CandidatePool, file_sha, generate_pool, replay_select,
                         save_once, vector)
+from .portable_cache import new_cache_path
 
 
 def read_vector(path, key, row=None):
@@ -41,6 +42,7 @@ def main(argv=None):
             p.add_argument('--method', choices=('raw_n1', 'capped_n1', 'best_n', 'prune_n1',
                             'prune_best', 'pool', 'specificity_mean', 'specificity_mean_prune'), default='best_n')
             p.add_argument('--cache-directory', type=Path)
+            p.add_argument('--save-cache', type=Path, help='New immutable standalone raw AR cache; input caches remain read-only')
             p.add_argument('--encode-missing', action='store_true')
             p.add_argument('--maximum-loss', type=float, default=.005)
             p.add_argument('--controls', type=Path,
@@ -49,6 +51,12 @@ def main(argv=None):
     args = parser.parse_args(argv)
     if args.command == 'replay' and args.output.exists():
         raise FileExistsError('Replay output already exists; choose a new immutable output')
+    if args.command == 'replay' and args.save_cache:
+        new_cache_path(args.save_cache)
+        if args.output.resolve() == args.save_cache.resolve() or args.save_cache.resolve() in args.output.resolve().parents:
+            raise ValueError('Replay JSON must be outside the immutable saved-cache directory')
+        if args.method in ('raw_n1','capped_n1'):
+            raise ValueError('--save-cache requires an AR-scored method')
     activation = read_vector(args.activation, args.key, args.row)
     if args.command == 'import-pool':
         rows = [r for r in map(json.loads, args.records.read_text().splitlines()) if r['cell_id'] == args.cell_id]
@@ -73,7 +81,8 @@ def main(argv=None):
                       'matching_policy': declared.get('matching_policy', 'Caller must validate matched calibration controls.')}
     result = replay_select(artifacts, pool, activation, method=args.method, n=args.n,
                cache_directory=args.cache_directory, encode_missing=args.encode_missing,
-               controls=controls, control_provenance=provenance, maximum_loss=args.maximum_loss)
+               controls=controls, control_provenance=provenance, maximum_loss=args.maximum_loss,
+               save_cache_directory=args.save_cache)
     result['replay_inputs'] = {'pool_sha256': file_sha(args.pool), 'activation_file_sha256': file_sha(args.activation),
                               'activation_key': args.key, 'activation_row': args.row,
                               'artifacts_config_sha256': file_sha(args.artifacts)}
