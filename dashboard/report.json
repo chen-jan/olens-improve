@@ -1,6 +1,6 @@
 {
   "title": "Readouts: what is established",
-  "updated_utc": "2026-10-10T11:22:10.728718+00:00",
+  "updated_utc": "2026-10-10T11:39:04.598979+00:00",
   "cohort": "development",
   "run_ids": [
     "development-shared-pilot-v2",
@@ -65,31 +65,31 @@
     }
   ],
   "progress": {
-    "phase": "Validation judging incomplete; two judge queues stopping at condition boundaries after connection errors; blind test generation running",
+    "phase": "Validation:46 of48 method-family comparisons complete; final two role comparisons running; blind test generation95%",
     "completed_cells": 3485,
     "expected_cells": 3485,
-    "elapsed_hours": 9.942980199444444,
+    "elapsed_hours": 10.224610827500001,
     "completed_label": "VAL selector cells"
   },
   "api": {
     "status": "observed_read_only",
-    "actual_usd": 12.252877255,
-    "reserved_usd": 4.68951875,
-    "unknown_usd": 4.67023425,
-    "committed_usd": 16.942396005,
+    "actual_usd": 12.93956358,
+    "reserved_usd": 4.7946305,
+    "unknown_usd": 4.7801865,
+    "committed_usd": 17.73419408,
     "hard_usd": 300.0,
     "target_usd": 200.0,
     "attempt_counts": {
-      "reserved": 4,
-      "settled": 75894,
-      "unknown": 522
+      "reserved": 3,
+      "settled": 80522,
+      "unknown": 544
     },
-    "observed_utc": "2026-10-10T10:58:29.338448+00:00",
+    "observed_utc": "2026-10-10T11:38:53.463659+00:00",
     "pricing_revision": "luna-cache-write-v1",
     "invoice_reconciled": false,
     "pricing_status": "Usage-derived campaign estimate including cache writes; not invoice reconciled. Reserved totals include uncertain unknown holds. Shared research caches do not make fresh deployment free.",
     "snapshot_path": "${OLENS_COMPUTE_ROOT}/watcher/latest.json",
-    "snapshot_sha256": "4b60663a5155d20b201a6463f9dd07ddff91cef6f207cd1159f6943646f2c18d"
+    "snapshot_sha256": "7727960ebd61d78685f37cacec151ae189164a7f216b7a5f06f2005fdd5b7626"
   },
   "methods": {
     "sample_selection": {
@@ -19829,7 +19829,7 @@
     "limits": "These are observed DEV losses, not a new held-out comparison. Mention recovery does not certify the calculation. No new interval is inferred."
   },
   "activity": {
-    "checked_utc": "2026-10-10T11:20:03.394615+00:00",
+    "checked_utc": "2026-10-10T11:37:31.287735+00:00",
     "validation_ar_status": "complete",
     "validation_new_ar_vectors": 421716,
     "shared_zero_copy_catalog_vectors": 1063925,
@@ -19862,28 +19862,28 @@
     "blind_test_generation_statuses": [
       {
         "status": "running",
-        "completed_cells": 2309,
+        "completed_cells": 2553,
         "expected_cells": 2716
       },
       {
         "status": "running",
-        "completed_cells": 2306,
+        "completed_cells": 2546,
         "expected_cells": 2689
       },
       {
         "status": "running",
-        "completed_cells": 2305,
+        "completed_cells": 2549,
         "expected_cells": 2711
       },
       {
         "status": "running",
-        "completed_cells": 2312,
+        "completed_cells": 2560,
         "expected_cells": 2598
       }
     ],
-    "validation_judging_status": "Three families are complete; roles had nine of twelve conditions at 11:07 UTC. Overlapping role and development hallucination connection errors appeared around 11:13. At approximately 11:19, root requested both queues finish their current condition and stop. Existing guards and all uncertain charge holds remain intact. Validation completion has priority; no validation quality conclusion has been made.",
+    "validation_judging_status": "Hallucination, multi-hop and chain are12/12 scientifically complete; roles are10/12. The exact final two role conditions resumed around11:36 UTC as the sole judge worker, keeping the original rate, epoch, budget and every uncertain hold. The first251 additional responses settled with zero new unknowns; p95 latency2.20s at11:37:50. Development judging remains stopped. No validation quality conclusion has been made.",
     "quality_status": "No validation or test quality outcomes reported. Only reviewed frozen DEV and pilot comparisons appear below.",
-    "generation_metadata_source": "${OLENS_DATA_ROOT}/runs/test-blind-preparation-v1/throughput-observation-v21.json",
-    "generation_metadata_sha256": "ec563f99a8e068ad9380b3fc21770bd6bd8ea9c937455bfe2bc813a02ec65c64"
+    "generation_metadata_source": "${OLENS_DATA_ROOT}/runs/test-blind-preparation-v1/throughput-observation-v23.json",
+    "generation_metadata_sha256": "b4ab1b94b1cf987e0764f055d61bf4946197afb83de4cedeb395f76b9a4ab62a"
   }
 }

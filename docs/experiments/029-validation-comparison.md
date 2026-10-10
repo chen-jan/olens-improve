@@ -1,11 +1,11 @@
 # Twelve frozen validation comparisons
 
-Status: incomplete, 2026-10-10 11:20 UTC. All generation, reconstruction,
-selection and exact-text exports are complete. Hallucination, multi-hop and
-chain judging are complete; role was nine of twelve at 11:07. Connection errors
-in the role and DEV hallucination queues prompted clean boundary-stop requests
-at 11:19. No validation quality conclusion is reported yet. TEST analysis remains
-closed.
+Status: final two role comparisons running, 2026-10-10 11:38 UTC. All
+collection, reconstruction and exports are complete. Hallucination, multi-hop
+and chain are scientifically complete; role is ten of twelve. Root resumed
+only its exact remaining two conditions after a clean queue boundary, leaving
+DEV judging stopped. No validation conclusion is reported yet; TEST analysis
+remains closed.
 
 ## Question and decision
 
@@ -221,3 +221,43 @@ uncertainty guard remains active. No in-flight request was deliberately canceled
 no hold released, and no rate or health epoch reset. Current terminal state and
 any remaining conditions must be checked before a reviewed resumption. Validation
 has priority over further descriptive development judging.
+
+### Clean handoff to the final two role conditions
+
+Both old workers exited zero and released their exclusive family cache owners.
+The 11:30 terminal record is
+`durable/diagnostics/transport-incident-boundary-1130-v1.json`, SHA-256
+`efad4aec07a644a7175d8a546d49a320ccb89ce4637f81571e88e2596be2ebca`.
+VAL retained 31,458 settled requests, no live reservations and 29 unknown charges
+holding $0.146030375. Fifteen of those holds, $0.0723305, arose in this later
+incident. All earlier and new holds remain committed. DEV hallucination adds
+seven separate uncertain holds totaling $0.03762175. No financial transition or
+release was needed at the clean boundary.
+
+The role's completed-condition profile recorded 814.60 seconds in synchronous
+reservations, with a 55.96-second maximum, and a 153.65-second maximum event-loop
+scheduling lag. DEV hallucination likewise showed long reservation waits and
+147.51 seconds of scheduling lag. These are concrete local stalls; they do not
+prove the exclusive cause of the observed connection errors. The final hundred
+role responses all settled, with p95 latency 1.739 seconds. The existing CPU
+allocation had ample memory and zero memory-limit failures at the earlier check.
+
+Root chose to resume only role, keeping the other writer stopped, while retaining
+8 slots/200 RPM and the original 10:40 epoch. This isolates removal of competing
+work without silently resetting transport guards. Four slots/100 RPM remains a
+fallback to review if degradation recurs. No extra paid health request was made.
+The same $.10 epoch-hold and latest-hundred guard remain active.
+
+The exact final conditions are best-of-32 with .005 pruning and its matched-count
+random-deletion control. `configs/judging_validation_role_boundary_v3.json`, SHA
+`fd15526e47c9f087ddbbc89608e2e433358c25280d1cf90a809799a980b7197b`,
+binds the clean terminal record, prior sealed recovery, original scientific
+contract, retained holds and fresh operational paths. Nine focused tests passed
+independently under root, and a separate source review found no substantive issue.
+Only the exact remaining suffix is dispatched; completed conditions are preserved.
+The role worker launched around 11:36, PID3459358, on the same CPU81/82 pair.
+
+Coverage checks confirmed all46 currently available VAL family-condition outputs
+are scientifically complete. DEV hallucination A8 separately has one unresolved
+readout despite a clean queue boundary, so it remains incomplete. Queue termination
+is not a substitute for scientific coverage.

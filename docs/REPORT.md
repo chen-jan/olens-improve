@@ -237,6 +237,17 @@ pooling, and pooling with specificity. The
 effects survive removal of each component. Random deletion matches bullet count,
 so remaining token-length differences still require reporting.
 
+We also tested the three-part combination of pooling, specificity and pruning.
+On the same pilot it recovered six bridge cells, zero chain cells and twelve
+role cells, with 39/71 contradicted specific readouts. The simpler specificity
+selection plus pruning recovered seven, one and twelve, with 36/72 contradicted
+readouts. These small development comparisons do not establish a population
+ranking, but they provide no reason to expand the more complicated combination
+before the final comparison. The [three-part experiment](experiments/020-pooled-specificity.md)
+includes component controls, matched random deletion and inspected regressions.
+The limit of two proposed final operating points does not mean only two
+combinations were explored.
+
 ## Failure modes that aggregate scores can hide
 
 **A recovered concept can sit inside a wrong explanation.** In inspected

@@ -86,6 +86,62 @@ class ValidationRecoveryTest(unittest.TestCase):
             after[after.index(flag)+1] = before[before.index(flag)+1]
         self.assertEqual(before, after)
 
+    def set_handoff(self):
+        self.spec['status'] = 'root_reviewed_ready'
+        prior = self.write('prior-recovery.json', self.spec)
+        remaining = self.subset[-2:]
+        record = self.write('boundary.json', {
+            'no_hold_or_epoch_changes': True,
+            'families': [{'family': 'role_bound_association', 'run_id': self.spec['run_id'],
+                          'pid_exists': False, 'exclusive_cache_owner_released': True,
+                          'completed_signed_count': len(self.signed)-2,
+                          'signed_menu_count': len(self.signed),
+                          'remaining_signed_conditions': remaining,
+                          'total': {'active_reserved_nanodollars': 0},
+                          'boundary_events': [{'status': 'condition_queue_stopped_at_boundary',
+                                               'family': 'role_bound_association',
+                                               'run_id': self.spec['run_id'],
+                                               'next_condition': remaining[0]}]}]})
+        self.spec['boundary_handoff'] = {
+            'record': str(record), 'record_sha256': digest(record),
+            'prior_recovery_spec': str(prior), 'prior_recovery_spec_sha256': digest(prior)}
+        # Preserve the parent's dispatch artifact before preparing the new file.
+        path = self.write('handoff-remaining.json', remaining)
+        self.spec['recovery_condition_files'] = {'role_bound_association': {
+            'path': str(path), 'sha256': digest(path)}}
+        return remaining
+
+    def test_clean_boundary_accepts_only_exact_unfinished_suffix(self):
+        remaining = self.set_handoff()
+        self.assertEqual(self.preflight(), remaining)
+        for rows in [remaining[:1], self.subset, remaining[::-1],
+                     [remaining[0]]*2, [{'method': 'foreign', 'n': 32}]]:
+            with self.subTest(rows=rows):
+                # Leave the prior source immutable: use only the handoff file.
+                path = self.write('handoff-remaining.json', rows)
+                self.spec['recovery_condition_files']['role_bound_association'] = {
+                    'path': str(path), 'sha256': digest(path)}
+                with self.assertRaises(ValueError): self.preflight()
+
+    def test_handoff_requires_ready_hashes_and_unchanged_epoch(self):
+        self.set_handoff()
+        for field, value in [('status', 'prepared'),
+                             ('recovery_epoch', '2026-10-10T11:40:00+00:00')]:
+            old = self.spec[field]
+            self.spec[field] = value
+            with self.assertRaises(ValueError): self.preflight()
+            self.spec[field] = old
+        self.spec['boundary_handoff']['record_sha256'] = '0'*64
+        with self.assertRaises(ValueError): self.preflight()
+
+    def test_handoff_keeps_operational_arguments_and_epoch(self):
+        before = recovery_command(self.spec, 'role_bound_association')
+        self.set_handoff()
+        after = recovery_command(self.spec, 'role_bound_association')
+        after[after.index('--condition-list')+1] = before[before.index('--condition-list')+1]
+        self.assertEqual(before, after)
+        self.assertEqual(self.spec['recovery_epoch'], '2026-10-10T10:40:00+00:00')
+
     def test_live_holds_check_is_read_only_and_rejects_pending_transition(self):
         path = self.root/'ledger.sqlite3'
         with sqlite3.connect(path) as db:

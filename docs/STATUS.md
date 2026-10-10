@@ -1,6 +1,6 @@
 # Execution status
 
-Updated: 2026-10-10, approximately 11:20 UTC.
+Updated: 2026-10-10, approximately 11:38 UTC.
 Started: 2026-10-10 01:25:36 UTC (October 9, 21:25:36 EDT).
 Target finish: 2026-10-10 21:25:36 UTC. Execution remains active and authorized.
 
@@ -81,7 +81,7 @@ first source-checked dashboard with grouped intervals. Nothing has been pushed.
 | Single-method pilots | A/B/C/D/E1/E3/F judged; E2/G diagnostics complete with limits; exact-claim-span v3 stopped after its eight-cell contract audit, without benchmark-quality measurement |
 | Combinations | 65 unique pilot conditions judged and source-checked; larger E1-plus-pruning outputs complete and awaiting judging |
 | Additional controls | All32 judgments and matched-donor N1 complete; all requested cells/stages covered |
-| Held-out evaluation | All 3,485 validation cells have immutable N32 pools; all AR, selectors, pruning and the exact twelve-arm export are complete. Hallucination, multi-hop and chain judging are complete; role was 9/12 at 11:07. New role and DEV hallucination connection errors appeared around 11:13; root requested clean condition-boundary stops at 11:19. Blind TEST sampling was 8,833/10,714 cells at 11:12:54 on four H200s; TEST analysis stays closed. |
+| Held-out evaluation | All 3,485 validation cells have immutable pools, reconstruction and twelve-method exports. Hallucination, multi-hop and chain are scientifically complete; role is 10/12. Only the final two role conditions resumed at 11:36 as the sole judge worker, after both queues stopped cleanly. Blind TEST sampling is 10,208/10,714 cells (95.3%) at 11:37:31 on four H200s; TEST analysis stays closed. |
 
 Combination comparisons retain unchanged parents, component-off outputs, and
 random deletion matched on retained bullet count. Fixed support weights are
@@ -95,10 +95,8 @@ The corresponding role cell count is only 151/3,420: an item passes when any
 inspected site passes, so item recovery must not be read as uniformly faithful
 readouts. These are original-grid development scores, not held-out results.
 
-Next: confirm the two judge queues stop at a clean boundary or the existing
-transport guard, preserve every uncertain hold, and review current service health.
-Prioritize the remaining validation conditions over additional descriptive DEV
-judging. Finish the twelve fixed comparisons and inspect systematic traces. Then
+Next: monitor the sole role worker finishing the final two validation conditions.
+Run the exact signed twelve-method report and inspect systematic traces, then
 select at most two quality/cost operating points before freezing the TEST menu.
 The unchanged VAL forecast is $4.7571 with a $15 atomic run cap; eight slots/200
 RPM remain fixed. At 10:14:43, VAL had 25,944 settled attempts, thirteen unknown
@@ -117,8 +115,8 @@ latest-100 window had no new unknowns, p95 latency 1.93 seconds and oldest live
 request 1.15 seconds. All fourteen incident holds remain intact.
 See [experiment 029](experiments/029-validation-comparison.md).
 
-Blind TEST sampling started at 08:32 UTC. At 11:06:55, 8,499 of 10,714 cells
-(79.3%) were complete, with a conditional generation-only forecast near 11:52 UTC.
+Blind TEST sampling started at 08:32 UTC. At 11:37:31, 10,208 of 10,714 cells
+(95.3%) were complete, with a conditional generation-only forecast near 11:49 UTC.
 TEST text, AR, selection and judging remain sealed until the final freeze and
 separate analysis gate. The GPU work is unaffected by the judging interruption.
 
@@ -127,7 +125,7 @@ charges plus $4.68952 reserved, including $4.67023 of unresolved charges. This
 is not invoice reconciliation. Project-owned storage was 48.56 GB logical
 across fast and durable locations. All four H200 probes succeeded at 99–100%
 utilization; the judge CPU allocation used about 4.91 GiB of its 32 GiB limit
-with no recorded memory-limit failures. A source-bound [cost draft](experiments/031-inference-cost-reporting.md) now
+with no recorded memory-limit failures. Source-bound [reviewed cost metadata](experiments/031-inference-cost-reporting.md) now
 covers each method and combination, separating new-input inference,
 shared research computation, cached replay and benchmark judging. The prepared
 N32 new-input timing driver has not yet run.
@@ -142,6 +140,9 @@ The cause remains unresolved; there is no automatic concurrency increase.
 The DEV queues stopped at clean condition boundaries to prioritize validation.
 After all twelve VAL hallucination conditions completed and its worker exited,
 DEV hallucination resumed only its fourteen unfinished conditions at 10:58.
+Both DEV queues are now held while validation finishes. The resumed hall A4 is
+complete; A8 reached its queue boundary with one unresolved readout in both
+stages and remains scientifically incomplete. Its successful judgments are cached.
 The role DEV queue remains prepared pending its validation handoff. Incomplete DEV comparisons remain
 incomplete and cannot change the already frozen validation decision rule.
 At 08:38 UTC the new queue had 9,403 settled requests and one isolated

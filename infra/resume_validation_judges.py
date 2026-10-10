@@ -16,6 +16,58 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from infra.launch_validation_judges import digest, evaluation_command, preflight
 
 
+def boundary_handoff(spec: dict, family: str, signed: list[dict],
+                     incident: dict, subset: list[dict]) -> dict | None:
+    """Bind a later clean stop without altering the original recovery authority."""
+    bound = spec.get('boundary_handoff')
+    if bound is None:
+        return None
+    if spec['status'] != 'root_reviewed_ready':
+        raise ValueError('Boundary handoff requires a root-reviewed ready spec')
+    for field in ('record', 'prior_recovery_spec'):
+        if digest(bound[field]) != bound[field + '_sha256']:
+            raise ValueError('Boundary handoff source hash differs: ' + field)
+    prior = json.loads(Path(bound['prior_recovery_spec']).read_bytes())
+    if prior['status'] != 'root_reviewed_ready' or prior.get('boundary_handoff'):
+        raise ValueError('Require the original sealed recovery spec as the handoff parent')
+    unchanged = ('run_id', 'run_cap_usd', 'manifest_sha256', 'fresh_manifest_sha256',
+                 'gate_sha256', 'conditions_sha256', 'freeze_sha256', 'selection_sha256',
+                 'judgments', 'shared_cache', 'ledger', 'recovery_epoch', 'concurrency',
+                 'rpm', 'tier', 'reasoning_effort', 'automatic_ramp', 'no_extra_health_call',
+                 'incident_sha256', 'hold_action_sha256', 'hold_action_receipt_sha256',
+                 'original_validation_spec_sha256')
+    if any(spec[field] != prior[field] for field in unchanged):
+        raise ValueError('Boundary handoff changed the original recovery contract')
+    previous = prior['recovery_condition_files'][family]
+    if digest(previous['path']) != previous['sha256']:
+        raise ValueError('Prior recovery dispatch source changed')
+    previous_rows = json.loads(Path(previous['path']).read_bytes())
+    if previous_rows != incident['remaining_conditions_by_family'][family]:
+        raise ValueError('Prior dispatch differs from the original incident list')
+    record = json.loads(Path(bound['record']).read_bytes())
+    rows = [row for row in record['families'] if row['family'] == family]
+    if len(rows) != 1 or record.get('no_hold_or_epoch_changes') is not True:
+        raise ValueError('Require one unchanged-hold terminal boundary record')
+    row = rows[0]
+    completed = row['completed_signed_count']
+    if (row['run_id'] != spec['run_id'] or row['pid_exists'] is not False
+            or row['exclusive_cache_owner_released'] is not True
+            or row['total']['active_reserved_nanodollars'] != 0
+            or row['signed_menu_count'] != len(signed)
+            or isinstance(completed, bool) or not isinstance(completed, int)
+            or not 0 <= completed < len(signed)
+            or subset != row['remaining_signed_conditions']
+            or subset != signed[completed:]
+            or subset != previous_rows[-len(subset):]):
+        raise ValueError('Handoff differs from the exact terminal unfinished suffix')
+    stops = [event for event in row['boundary_events']
+             if event['status'] == 'condition_queue_stopped_at_boundary'
+             and event['family'] == family and event['run_id'] == spec['run_id']]
+    if not stops or stops[-1]['next_condition'] != subset[0]:
+        raise ValueError('Terminal boundary does not identify the first remaining condition')
+    return row
+
+
 def preflight_recovery(spec: dict, family: str) -> list[dict]:
     signed = preflight(spec)
     if family not in ('hallucination', 'role_bound_association'):
@@ -53,7 +105,8 @@ def preflight_recovery(spec: dict, family: str) -> list[dict]:
         indices.append(signed.index(row))
     if indices != sorted(set(indices)):
         raise ValueError('Recovery conditions must be distinct and retain signed order')
-    if subset != incident['remaining_conditions_by_family'][family]:
+    handoff = boundary_handoff(spec, family, signed, incident, subset)
+    if handoff is None and subset != incident['remaining_conditions_by_family'][family]:
         raise ValueError('Recovery differs from the exact unfinished incident list')
     epoch = datetime.fromisoformat(spec['recovery_epoch'])
     if epoch <= max([datetime.fromisoformat(h['updated_utc']) for h in incident['uncertain_holds']]
@@ -78,6 +131,16 @@ def check_retained_holds(spec: dict) -> None:
                              (h['attempt_id'],)).fetchone()
             if row != ('unknown', h['retained_reserved_nanodollars'], None):
                 raise ValueError('Original uncertain hold differs or reviewed transition is pending')
+        if spec.get('boundary_handoff'):
+            record = json.loads(Path(spec['boundary_handoff']['record']).read_bytes())
+            for family in record['families']:
+                if family['run_id'] != spec['run_id']:
+                    continue
+                for hold in family.get('current_pid_unknown_holds', []):
+                    row = db.execute('SELECT status,reserved,actual FROM attempts WHERE attempt_id=?',
+                                     (hold['attempt_id'],)).fetchone()
+                    if row != ('unknown', hold['reserved_nanodollars'], None):
+                        raise ValueError('Boundary uncertain hold is no longer fully retained')
     finally:
         db.close()
 

@@ -1,0 +1,10 @@
+[
+  {
+    "method": "prune_loo_a32_0.005",
+    "n": 32
+  },
+  {
+    "method": "random_delete_matched_a32_0.005",
+    "n": 32
+  }
+]
