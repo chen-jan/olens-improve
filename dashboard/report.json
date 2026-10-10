@@ -1,6 +1,6 @@
 {
   "title": "Readouts: what is established",
-  "updated_utc": "2026-10-10T09:00:12.168204+00:00",
+  "updated_utc": "2026-10-10T09:15:26.474545+00:00",
   "cohort": "development",
   "run_ids": [
     "development-shared-pilot-v2",
@@ -65,26 +65,26 @@
     }
   ],
   "progress": {
-    "phase": "Validation selection complete; VAL multi-hop judging complete, other three families in progress; blind test generation running",
+    "phase": "Validation selection complete; VAL chain and multi-hop judging complete, hallucination and roles in progress; blind test generation running",
     "completed_cells": 3485,
     "expected_cells": 3485,
-    "elapsed_hours": 7.57671339,
+    "elapsed_hours": 7.830687373611111,
     "completed_label": "VAL selector cells"
   },
   "api": {
     "status": "observed_read_only",
-    "actual_usd": 7.89175968,
-    "reserved_usd": 4.61619075,
+    "actual_usd": 8.540720955,
+    "reserved_usd": 4.63147725,
     "unknown_usd": 4.596534375,
-    "committed_usd": 12.507950430000001,
+    "committed_usd": 13.172198204999999,
     "hard_usd": 300.0,
     "target_usd": 200.0,
     "attempt_counts": {
-      "reserved": 4,
-      "settled": 47487,
+      "reserved": 7,
+      "settled": 52117,
       "unknown": 508
     },
-    "observed_utc": "2026-10-10T08:57:38.310969+00:00",
+    "observed_utc": "2026-10-10T09:07:42.497271+00:00",
     "pricing_revision": "luna-cache-write-v1",
     "invoice_reconciled": false,
     "pricing_status": "Usage-derived campaign estimate including cache writes; not invoice reconciled. Reserved totals include uncertain unknown holds. Shared research caches do not make fresh deployment free.",
@@ -19828,7 +19828,7 @@
     "limits": "These are observed DEV losses, not a new held-out comparison. Mention recovery does not certify the calculation. No new interval is inferred."
   },
   "activity": {
-    "checked_utc": "2026-10-10T09:00:12.168204+00:00",
+    "checked_utc": "2026-10-10T09:15:26.474545+00:00",
     "validation_ar_status": "complete",
     "validation_new_ar_vectors": 421716,
     "shared_zero_copy_catalog_vectors": 1063925,
@@ -19861,26 +19861,26 @@
     "blind_test_generation_statuses": [
       {
         "status": "running",
-        "completed_cells": 388,
+        "completed_cells": 603,
         "expected_cells": 2716
       },
       {
         "status": "running",
-        "completed_cells": 384,
+        "completed_cells": 600,
         "expected_cells": 2689
       },
       {
         "status": "running",
-        "completed_cells": 380,
+        "completed_cells": 601,
         "expected_cells": 2711
       },
       {
         "status": "running",
-        "completed_cells": 392,
+        "completed_cells": 609,
         "expected_cells": 2598
       }
     ],
-    "validation_judging_status": "All four validation judge queues have launched. Multi-hop judging is complete; chain, hallucination, and role judging are in progress. Remaining DEV judging stopped at clean family boundaries; incomplete comparisons are retained.",
+    "validation_judging_status": "All four validation judge queues have launched. Chain and multi-hop judging are complete; hallucination and role judging are in progress. Remaining DEV judging stopped at clean family boundaries; incomplete comparisons are retained.",
     "quality_status": "No validation or test quality outcomes reported. Only reviewed frozen DEV and pilot comparisons appear below."
   }
 }

@@ -84,6 +84,12 @@ def display_label(identifier, kind=None):
     return label + (f" from {n} samples" if n and method not in ("raw_n1", "capped_n1") else "")
 
 
+def recovery_label(family):
+    return {"role": "Role task passes", "role_bound_association": "Role task passes",
+            "multihop_mt": "Bridge mentions", "chain": "Intermediate-number recovery",
+            "chain_intermediates": "Intermediate-number recovery"}.get(family, "Cell recovery")
+
+
 def metrics_table(rows):
     if not rows:
         return '<p class="missing">No validated comparison yet. Missing values are not zero.</p>'
@@ -99,8 +105,11 @@ def metrics_table(rows):
             bounds=', '.join(f'{100*x:.1f}{rate_unit}' if is_rate else f'{x:.4g}' for x in row['ci'])
             suffix=str(row.get('uncertainty','')).partition(';')[2]
             uncertainty=f'Whole-group 95% interval [{bounds}]'+(';' + suffix if suffix else '')
+        endpoint = row.get("endpoint")
+        if endpoint in ("Cell recovery", "Cell mention/binding recovery", "Cell mention/role recovery"):
+            endpoint = recovery_label(row.get("family"))
         cells = [escape(display_label(row.get("family", "Missing family"))) + " / " + escape(row.get("cohort", "Unspecified")),
-                 '<span title="' + escape(row.get("condition")) + '">' + escape(display_label(row.get("condition"))) + '</span>', value(row.get("endpoint")) + " / " + value(scope_labels.get(row.get('scope'),row.get('scope'))),
+                 '<span title="' + escape(row.get("condition")) + '">' + escape(display_label(row.get("condition"))) + '</span>', value(endpoint) + " / " + value(scope_labels.get(row.get('scope'),row.get('scope'))),
                  shown_value, value(row.get("numerator")) + " / " + value(row.get("denominator")),
                  value(row.get("eligible_count")) + " eligible; " + value(row.get("missing_count")) + " missing",
                  value(uncertainty)]
@@ -153,13 +162,14 @@ def full_dev_a32_section(section):
     if not section:
         return ''
     output='<section class="full-development"><h2>'+escape(section['title'])+'</h2><p class="meta">'+escape(section['scope'])+'</p>'+paragraphs([section['key_finding']])
+    output+=paragraphs(['A cell is one prompt at one model layer and token position. N is the number of candidate responses considered for that cell. FVE means fraction of variance explained: a reconstruction-fit score, not a measure of truth.'])
 
     def table(rows, grid=False):
         result='<div class="table-scroll"><table><thead><tr><th>Family / endpoint</th><th>Capped single-sample baseline</th><th>Best of 32</th><th>Paired change [95% interval]</th><th>Groups</th></tr></thead><tbody>'
         for row in rows:
             def count(metric):
                 return f'{metric["numerator"]:,}/{metric["denominator"]:,}'
-            label=('Original item ANY recovery' if grid else 'Contradicted / specific readouts' if row['family']=='hallucination' else 'Cell mention/role recovery')
+            label=('Original item ANY recovery' if grid else 'Contradicted / specific readouts' if row['family']=='hallucination' else recovery_label(row['family']))
             ci=' to '.join(f'{b*100:+.2f}' for b in row['ci']) if row.get('ci') else 'Not measured'
             result+=f'<tr><td>{escape(display_label(row["family"]))}<br>{label}</td><td>{count(row["baseline"])}</td><td>{count(row["proposed"])}</td><td>{row["delta"]*100:+.2f} pp [{escape(ci)}]</td><td>{row["groups"]}<br>{escape(row.get("warning") or "")}</td></tr>'
         return result+'</tbody></table></div>'
@@ -273,9 +283,10 @@ def consensus_tables(rows):
 
 def cost_components_table(rows,notes):
     if not rows:return ''
-    output='<details><summary>Measured cost components: campaign, cache replay, and new input</summary><div class="table-scroll"><table><thead><tr><th>Component</th><th>Scope</th><th>Value / unit</th><th>Measurement and limits</th></tr></thead><tbody>'
+    output='<details><summary>Measured and estimated cost components: campaign, cache replay, and new input</summary><div class="table-scroll"><table><thead><tr><th>Component</th><th>Scope</th><th>Value / unit</th><th>Measurement and limits</th></tr></thead><tbody>'
     for row in rows:
-        output+='<tr>'+''.join('<td>'+v+'</td>' for v in [escape(row['component']),escape(row['scope']),value(row['value'],row['unit']),escape(row['measurement'])])+'</tr>'
+        shown_unit = row['unit'].replace('GPU task seconds', 'GPU task wall-seconds')
+        output+='<tr>'+''.join('<td>'+v+'</td>' for v in [escape(row['component']),escape(row['scope']),value(row['value'],shown_unit),escape(row['measurement'])])+'</tr>'
     return output+'</tbody></table></div>'+paragraphs(notes)+'</details>'
 
 
@@ -362,14 +373,14 @@ def cost_chart(series_rows):
             else:
                 output.append(f'<text x="55" y="166">{escape(round(min_x, 4))}</text><text x="495" y="166" text-anchor="end">{escape(round(max_x, 4))}</text>')
             output.append(f'<text x="275" y="188" text-anchor="middle">{escape("Prescribed experimental sample prefixes" if unit == "samples" else unit)}</text></svg>')
-        output.append('<details><summary>Exact conditions, coverage and measured cost components</summary><table><thead><tr><th>Condition</th><th>Budget</th><th>Value / interval</th><th>Count</th><th>Cached selector wall time / cell</th><th>Recurring helper calls / USD per cell</th><th>Generation component / limits</th></tr></thead><tbody>')
+        output.append('<details><summary>Exact conditions, coverage and measured or estimated cost components</summary><table><thead><tr><th>Condition</th><th>Budget</th><th>Value / interval</th><th>Count</th><th>Cached selector wall time / cell</th><th>Recurring helper calls / USD per cell</th><th>Generation component / limits</th></tr></thead><tbody>')
         for point in points:
             condition = point.get('condition', 'Unspecified')
             coverage = ''
             if 'assertion_share' in point:
                 coverage = f'<br>Specific assertion share: {rate(point["assertion_share"])}; off-topic / specific: {rate(point.get("off_topic_share_of_specific"))}'
             interval = ('Not measured' if point.get('ci') is None else ' to '.join(rate(v) for v in point['ci']))
-            output.append(f'<tr><td title="{escape(condition)}">{escape(display_label(condition))}</td><td>{value(point.get("cost"))}</td><td>{rate(point.get("value"))}<br>{interval}{coverage}</td><td>{value(point.get("count"))}</td><td>{value(point.get("cached_selector_wall_seconds"), "seconds")}<br>{escape(point.get("cached_timer_cohort", "Timing not measured"))}</td><td>{value(point.get("recurring_helper_calls_per_cell"))} calls / {value(point.get("recurring_helper_usd_per_cell"), "USD")}<br>{escape(point.get("helper_cost_scope", "Not measured"))}</td><td>{value(point.get("generation_component_gpu_seconds"), "GPU task seconds")}<br>{escape(point.get("generation_component_measurement", "Not measured"))}<br>{escape(point.get("control_note", ""))}</td></tr>')
+            output.append(f'<tr><td title="{escape(condition)}">{escape(display_label(condition))}</td><td>{value(point.get("cost"))}</td><td>{rate(point.get("value"))}<br>{interval}{coverage}</td><td>{value(point.get("count"))}</td><td>{value(point.get("cached_selector_wall_seconds"), "seconds")}<br>{escape(point.get("cached_timer_cohort", "Timing not measured"))}</td><td>{value(point.get("recurring_helper_calls_per_cell"))} calls / {value(point.get("recurring_helper_usd_per_cell"), "USD")}<br>{escape(point.get("helper_cost_scope", "Not measured"))}</td><td>{value(point.get("generation_component_gpu_seconds"), "GPU task wall-seconds")}<br>{escape(point.get("generation_component_measurement", "Not measured"))}<br>{escape(point.get("control_note", ""))}</td></tr>')
         output.append("</tbody></table></details></section>")
     return "".join(output)
 

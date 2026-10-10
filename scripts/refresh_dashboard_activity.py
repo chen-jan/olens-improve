@@ -92,14 +92,14 @@ def main():
     report['updated_utc'] = now.isoformat()
     selector_state = 'complete' if all(s['status'] == 'complete' for s in selectors) else 'running'
     generation_state = 'complete' if all(s['status'] == 'complete' for s in generation) else 'running'
-    report['progress'].update(phase=f'Validation selection {selector_state}; VAL multi-hop judging complete, other three families in progress; blind test generation {generation_state}',
+    report['progress'].update(phase=f'Validation selection {selector_state}; VAL chain and multi-hop judging complete, hallucination and roles in progress; blind test generation {generation_state}',
         completed_cells=sum(s['completed_cells'] for s in selectors), expected_cells=3485,
         completed_label='VAL selector cells',
         elapsed_hours=(now - datetime(2026, 10, 10, 1, 25, 36, tzinfo=timezone.utc)).total_seconds()/3600)
     report['activity'] = {'checked_utc': now.isoformat(), 'validation_ar_status': 'complete',
         'validation_new_ar_vectors': 421716, 'shared_zero_copy_catalog_vectors': 1063925,
         'validation_selector_statuses': selectors, 'blind_test_generation_statuses': generation,
-        'validation_judging_status': 'All four validation judge queues have launched. Multi-hop judging is complete; chain, hallucination, and role judging are in progress. Remaining DEV judging stopped at clean family boundaries; incomplete comparisons are retained.',
+        'validation_judging_status': 'All four validation judge queues have launched. Chain and multi-hop judging are complete; hallucination and role judging are in progress. Remaining DEV judging stopped at clean family boundaries; incomplete comparisons are retained.',
         'quality_status': 'No validation or test quality outcomes reported. Only reviewed frozen DEV and pilot comparisons appear below.'}
     report['full_development_a32']['scope'] = ('121 DEV items / 5,236 cells, complete original grids. '
         'Separate from the 189-cell pilot; validation judging is underway; test outcomes remain sealed.')
