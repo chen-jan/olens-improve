@@ -1,5 +1,15 @@
 # Execution status
 
+## More examples and reconstruction scaling reviewed — 2026-10-11 03:14 UTC
+
+Public dashboard version **16** is live at <https://olens-improve-research.jan618.chatgpt.site>. Its source-checked statistical snapshot has 235/280 complete method/task measurements, with 47 settings complete across all four banks. Reconstruction has 249 defined means, including 221 complete comparable rows. Each method drawer and the sampling chart can show reconstruction separately from benchmark quality. The original study and downloads remain available; expanded final slides and report are pending.
+
+The deployed update adds 295 distinct comparison identities from 330 newly audited references, preserving 1,476 previous case entries. Four reviews inspect 190 fresh pairs; 17 unchanged pairs inherit prior context-and-official-evidence checks. The number task now explicitly explains the frozen first-ranked-integer endpoint. See [the follow-up audit](experiments/060-expanded-qualitative-followup.md). A populated four-task reconstruction scaling slide passed source checks and browser layout inspection.
+
+Operational judging is 253/280: 64 settings complete in each non-role task and 61 in roles. The role worker was recovered after its previous Slurm step ended with signal 9; the cause is unresolved. All 50 earlier completion records and summary hashes were preserved, and eleven more completed after recovery. The remaining settings are role likelihood and editing, not an unprocessed API-only backlog. The GPU has processed 12,619/19,435 likelihood sites at about 0.82 seconds per site, followed by fresh reconstruction encoding for editing. The three owned allocations and independent monitors remain healthy.
+
+The dated 02:50 UTC ledger estimates $135.47 settled project API usage, $4.89 retained unknown amounts and $0.17 pending reservations, against the $340 ceiling. These are estimated usage and reservations, not an invoice. Research Git remains local; source results, active pins and official scores are unchanged.
+
 ## Reconstruction and parent comparisons reviewed — 2026-10-11 02:20 UTC
 
 The secondary reconstruction artifact now has all 280 method/task slots, with 215 currently complete comparable rows. It uses the existing frozen phrase vectors, not new model encoding. Best-of-32 improves explained activation variance by 3.7–6.7 percentage points over the capped baseline across the four tasks; pooled-32 improves it by 5.6–8.7 points. These are reconstruction changes, not benchmark accuracy changes. All numeric means, paired masks and grouped intervals passed independent source checks. A separate immutable version classifies site changes at the validated 1e-5 numerical tolerance without changing the reported means or intervals. See [the diagnostic record](experiments/059-expanded-reconstruction-and-trace-audit.md).

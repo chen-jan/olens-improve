@@ -1,0 +1,326 @@
+{
+  "status": "passed",
+  "numeric_v2_sha256": "f2fbe23e5c7ded42e7d86323559495d6b20a16976b9cec578d9befb899a9fd6d",
+  "numeric_v3_sha256": "c7d6ee68c9481fc52e7bbbd01cda416c416b8f8bf15854a730977e958ded7e75",
+  "quality_analysis_sha256": "eea3510637c4f0b849585882e88f6dec00f85073f10525460070ab70e75d8082",
+  "active_condition_family_rows": 280,
+  "unchanged_raw_diagnostic_rows": 270,
+  "newly_available_rows": [
+    {
+      "condition": "likelihood_true_minus_mean_two_controls-n8",
+      "family": "hallucination",
+      "previous_selected_sites": 0,
+      "selected_sites": 5615,
+      "scored_sites": 5615,
+      "invalid_sites": 0,
+      "status": "complete_comparable",
+      "mean_fve": 0.37164107651193806,
+      "mean_fve_ci95": [
+        0.3618161854141764,
+        0.3811426737946395
+      ]
+    },
+    {
+      "condition": "likelihood_true_minus_mean_two_controls-n8",
+      "family": "multihop_mt",
+      "previous_selected_sites": 0,
+      "selected_sites": 1100,
+      "scored_sites": 1100,
+      "invalid_sites": 0,
+      "status": "complete_comparable",
+      "mean_fve": 0.30097718464068923,
+      "mean_fve_ci95": [
+        0.28504087061158007,
+        0.31703312245856774
+      ]
+    },
+    {
+      "condition": "own_mean_log_likelihood-n8",
+      "family": "hallucination",
+      "previous_selected_sites": 0,
+      "selected_sites": 5615,
+      "scored_sites": 5615,
+      "invalid_sites": 0,
+      "status": "complete_comparable",
+      "mean_fve": 0.37364909899643234,
+      "mean_fve_ci95": [
+        0.3642436896078647,
+        0.38306057778440555
+      ]
+    },
+    {
+      "condition": "own_mean_log_likelihood-n8",
+      "family": "multihop_mt",
+      "previous_selected_sites": 0,
+      "selected_sites": 1100,
+      "scored_sites": 1100,
+      "invalid_sites": 0,
+      "status": "complete_comparable",
+      "mean_fve": 0.3044826856067499,
+      "mean_fve_ci95": [
+        0.28828221677416166,
+        0.3207256034579973
+      ]
+    },
+    {
+      "condition": "control_mean_log_likelihood-n8",
+      "family": "hallucination",
+      "previous_selected_sites": 0,
+      "selected_sites": 5615,
+      "scored_sites": 5615,
+      "invalid_sites": 0,
+      "status": "complete_comparable",
+      "mean_fve": 0.3704716999601629,
+      "mean_fve_ci95": [
+        0.3610426928869801,
+        0.3796701581096182
+      ]
+    },
+    {
+      "condition": "control_mean_log_likelihood-n8",
+      "family": "multihop_mt",
+      "previous_selected_sites": 0,
+      "selected_sites": 1100,
+      "scored_sites": 1100,
+      "invalid_sites": 0,
+      "status": "complete_comparable",
+      "mean_fve": 0.3019042508225388,
+      "mean_fve_ci95": [
+        0.28555047428242414,
+        0.31839850285041765
+      ]
+    },
+    {
+      "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+      "family": "role_bound_association",
+      "previous_selected_sites": 0,
+      "selected_sites": 11400,
+      "scored_sites": 11265,
+      "invalid_sites": 135,
+      "status": "partial_or_unavailable",
+      "mean_fve": 0.1923597429495859,
+      "mean_fve_ci95": [
+        0.19068947576814346,
+        0.19397544567462555
+      ]
+    },
+    {
+      "condition": "consensus_semantic_v5_medium_support0_compaton_vetoon-n16",
+      "family": "role_bound_association",
+      "previous_selected_sites": 0,
+      "selected_sites": 11400,
+      "scored_sites": 11276,
+      "invalid_sites": 124,
+      "status": "partial_or_unavailable",
+      "mean_fve": 0.11304080237323529,
+      "mean_fve_ci95": [
+        0.11148876547990332,
+        0.11450890784127671
+      ]
+    },
+    {
+      "condition": "consensus_semantic_v5_medium_support0.125_compatoff_vetoon-n16",
+      "family": "role_bound_association",
+      "previous_selected_sites": 0,
+      "selected_sites": 11400,
+      "scored_sites": 11271,
+      "invalid_sites": 129,
+      "status": "partial_or_unavailable",
+      "mean_fve": 0.03474120628301582,
+      "mean_fve_ci95": [
+        0.033569393631259284,
+        0.03593403040164969
+      ]
+    },
+    {
+      "condition": "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16",
+      "family": "role_bound_association",
+      "previous_selected_sites": 0,
+      "selected_sites": 11400,
+      "scored_sites": 11276,
+      "invalid_sites": 124,
+      "status": "partial_or_unavailable",
+      "mean_fve": 0.03051320216080642,
+      "mean_fve_ci95": [
+        0.029320023209142756,
+        0.03162453180288324
+      ]
+    }
+  ],
+  "quality_metric_availability_changes": [
+    {
+      "condition": "likelihood_true_minus_mean_two_controls-n8",
+      "family": "multihop_mt"
+    },
+    {
+      "condition": "own_mean_log_likelihood-n8",
+      "family": "multihop_mt"
+    },
+    {
+      "condition": "control_mean_log_likelihood-n8",
+      "family": "multihop_mt"
+    },
+    {
+      "condition": "consensus_exact_support0-n16",
+      "family": "chain_intermediates"
+    },
+    {
+      "condition": "consensus_exact_support0.125-n16",
+      "family": "chain_intermediates"
+    },
+    {
+      "condition": "consensus_exact_support0.25-n16",
+      "family": "chain_intermediates"
+    },
+    {
+      "condition": "pooled_greedy_swap_then_prune_0.001-n32",
+      "family": "hallucination"
+    },
+    {
+      "condition": "pooled_greedy_swap_then_prune_0.001-n32",
+      "family": "chain_intermediates"
+    },
+    {
+      "condition": "pooled_greedy_swap_random_delete_matched_0.001-n32",
+      "family": "hallucination"
+    },
+    {
+      "condition": "pooled_greedy_swap_random_delete_matched_0.001-n32",
+      "family": "chain_intermediates"
+    },
+    {
+      "condition": "pooled_greedy_swap_random_delete_matched_0.001-n32",
+      "family": "role_bound_association"
+    },
+    {
+      "condition": "pooled_greedy_swap_then_prune_0.005-n32",
+      "family": "hallucination"
+    },
+    {
+      "condition": "pooled_greedy_swap_then_prune_0.005-n32",
+      "family": "chain_intermediates"
+    },
+    {
+      "condition": "pooled_greedy_swap_then_prune_0.005-n32",
+      "family": "role_bound_association"
+    },
+    {
+      "condition": "pooled_greedy_swap_random_delete_matched_0.005-n32",
+      "family": "hallucination"
+    },
+    {
+      "condition": "pooled_greedy_swap_random_delete_matched_0.005-n32",
+      "family": "chain_intermediates"
+    },
+    {
+      "condition": "pooled_greedy_swap_random_delete_matched_0.005-n32",
+      "family": "role_bound_association"
+    },
+    {
+      "condition": "pooling_exact_support_lambda0.05-n16",
+      "family": "chain_intermediates"
+    },
+    {
+      "condition": "pooling_exact_support_lambda0.2-n16",
+      "family": "hallucination"
+    },
+    {
+      "condition": "pooling_exact_support_lambda0.2-n16",
+      "family": "chain_intermediates"
+    },
+    {
+      "condition": "exact_support_only-n16",
+      "family": "chain_intermediates"
+    },
+    {
+      "condition": "pooled_specificity_mean-n32",
+      "family": "hallucination"
+    },
+    {
+      "condition": "pooled_specificity_mean-n32",
+      "family": "chain_intermediates"
+    },
+    {
+      "condition": "pooled_specificity_mean_then_prune_0.005-n32",
+      "family": "hallucination"
+    },
+    {
+      "condition": "pooled_specificity_mean_then_prune_0.005-n32",
+      "family": "chain_intermediates"
+    },
+    {
+      "condition": "pooled_specificity_mean_random_delete_matched_0.005-n32",
+      "family": "chain_intermediates"
+    }
+  ],
+  "row_status_counts": {
+    "partial_or_unavailable": 59,
+    "complete_comparable": 221
+  },
+  "source_pin_count": 2740,
+  "replay_audits": [
+    {
+      "path": "${OLENS_DATA_ROOT}/expansion-v1/reconstruction/replay-v1/shard-0",
+      "sites": 4925,
+      "maximum_a32_fve_replay_delta": 2.759031902943576e-08,
+      "status_sha256": "178dc54fbe81b99caa22d8289de48450aaa823f708668bef4b16ab00e2121659",
+      "resume_pin_policy": "initial_uninterrupted_legacy_tranche"
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/expansion-v1/reconstruction/replay-v1/shard-1",
+      "sites": 4770,
+      "maximum_a32_fve_replay_delta": 3.1057685756508135e-08,
+      "status_sha256": "efdb3ed97d46be970ce42ef324d42ae5401dc156733173b500db3819f378f81b",
+      "resume_pin_policy": "initial_uninterrupted_legacy_tranche"
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/expansion-v1/reconstruction/replay-v1/shard-2",
+      "sites": 4855,
+      "maximum_a32_fve_replay_delta": 2.595628667556582e-08,
+      "status_sha256": "c464b10472aef3a5c02dd34bb80d7cfaac162ac55d6251d07f520334a9f5f000",
+      "resume_pin_policy": "initial_uninterrupted_legacy_tranche"
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/expansion-v1/reconstruction/replay-v1/shard-3",
+      "sites": 4885,
+      "maximum_a32_fve_replay_delta": 3.0891477487138275e-08,
+      "status_sha256": "1789c6d0f272dabe95df51b20c7e5bdead27934a65061c95e5f73e2b0325db75",
+      "resume_pin_policy": "initial_uninterrupted_legacy_tranche"
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/expansion-v1/reconstruction/replay-addon-v1/shard-0",
+      "sites": 6250,
+      "maximum_a32_fve_replay_delta": 2.759031902943576e-08,
+      "status_sha256": "dbe5fad9504a21a1188a5d5c09d5c5e01321edcfa505635ddaae7b57d5b42619",
+      "resume_pin_policy": "durable_cumulative_used_source_map_v2; pinned before each dependent journal commit",
+      "resumed_existing_cells": 0,
+      "source_map_sha256": "0170411df5aabc4e2e3ffe8f36bd2ddb88fb005e2bd885a6545c27245927d325"
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/expansion-v1/reconstruction/replay-addon-v1/shard-1",
+      "sites": 6250,
+      "maximum_a32_fve_replay_delta": 3.1057685756508135e-08,
+      "status_sha256": "0482e2d2db87c56fd73d6af8a9ceb0b2991b21a58752b7191748161bf8dd09eb",
+      "resume_pin_policy": "durable_cumulative_used_source_map_v2; pinned before each dependent journal commit",
+      "resumed_existing_cells": 0,
+      "source_map_sha256": "0a5340fd5678cecf9422ab217636cd14856fb357f9554615a4dd68e880303cfc"
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/expansion-v1/reconstruction/replay-hall-addon-v1/shard-0",
+      "sites": 5615,
+      "maximum_a32_fve_replay_delta": 0.0,
+      "status_sha256": "c2b7499052f54d8e5294c60a157ad2087d5451a499e30d09d8fd36237fc321ab",
+      "resume_pin_policy": "durable_cumulative_used_source_map_v2; pinned before each dependent journal commit",
+      "resumed_existing_cells": 0,
+      "source_map_sha256": "c5f14a4f0141aee7ed323260a5ea5dfe5cec0be2babf27d31734d1946e2da45f"
+    }
+  ],
+  "site_equivalence_tolerance": 1e-05,
+  "implementation_sha256": {
+    "${OLENS_REPO_ROOT}/scripts/analyze_expansion_reconstruction_v3.py": "8ca93637d07e838276c53204411bf12e5d1f3bfe9005177fb08b0c14a9dbdb07",
+    "src/olens_improve/reconstruction_diagnostics_v2.py": "f54401b361ff87873bc23e093c5cdbd284338feaec6b7c6049adc01a66d8625a",
+    "src/olens_improve/reconstruction.py": "aef42c5dd1d7493f26a961bb053381464009d446329939354f090c6ba4803c6a",
+    "src/olens_improve/selection.py": "003c05f8bfbc1cc5b492faf0aaa11f53f8bdfd29750a3b93297b4462ab28e3c5"
+  },
+  "preserved_numeric_v1_sha256": "86b1b0bd80a5265e6ff8696c7cb851d46df0d5c323e25aa34ceb2146a5fc6df6"
+}

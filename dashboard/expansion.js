@@ -2,7 +2,7 @@
 
 const element = id => document.getElementById(id);
 const families = ['hallucination', 'multihop_mt', 'chain_intermediates', 'role_bound_association'];
-const titles = ['Transcript contradictions', 'Hidden intermediate names', 'Arithmetic steps', 'Who did what'];
+const titles = ['Transcript contradictions', 'Hidden intermediate names', 'Intermediate numbers', 'Who did what'];
 const groups = {
   selection: 'Choose a complete readout',
   consensus: 'Keep repeated statements',
@@ -358,7 +358,7 @@ function tradeoff() {
     const vertical = metric(condition.condition_id, 'hallucination');
     const hint = `${condition.label}; ${titles[families.indexOf(family)]}: ${measurementHint(horizontal)}; ` +
       `Transcript contradictions: ${measurementHint(vertical)}. Outcomes from different task banks.`;
-    const opacity = condition.group === selectedGroup ? 0.95 : 0.28;
+    const opacity = selectedGroup === 'all' || condition.group === selectedGroup ? 0.95 : 0.28;
     const horizontalBar = horizontal.ci95 ? `<line class='horizontal-interval'
       x1='${x(horizontal.ci95[0])}' x2='${x(horizontal.ci95[1])}' y1='${y(vertical.value)}' y2='${y(vertical.value)}'/>
       <path d='M${x(horizontal.ci95[0])} ${y(vertical.value) - 4}v8M${x(horizontal.ci95[1])} ${y(vertical.value) - 4}v8'/>` : '';

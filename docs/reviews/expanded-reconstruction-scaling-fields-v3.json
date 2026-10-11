@@ -1,0 +1,152 @@
+{
+  "status": "actual_source_field_qa_passed",
+  "numeric_path": "${OLENS_DATA_ROOT}/expansion-v1/reconstruction/first-live-v3.json",
+  "numeric_sha256": "c7d6ee68c9481fc52e7bbbd01cda416c416b8f8bf15854a730977e958ded7e75",
+  "quality_analysis_sha256": "eea3510637c4f0b849585882e88f6dec00f85073f10525460070ab70e75d8082",
+  "implementation_sha256": "750edcdc722a6aedbc66eb96a2eed3253c15b7be06851a26735db6833a1b026e",
+  "checks": [
+    "All36 displayed numeric rows and their complete original masks/warnings/CIs retained verbatim in notes",
+    "All24 best-N markers and8 pooled markers agree with recorded FVE coordinate mapping",
+    "Eight paired labels use exact recorded parent deltas in percentage points rather than unpaired differences of means",
+    "All family warning daggers match recorded partial coverage or CI warnings"
+  ],
+  "families": [
+    {
+      "family": "hallucination",
+      "coverage_warning_dagger": false,
+      "best_mean_fve": [
+        0.37078361312588276,
+        0.3872838305615422,
+        0.40008568908557396,
+        0.4099391025124804,
+        0.41818414460665393,
+        0.4250203116286793
+      ],
+      "paired_labels": [
+        {
+          "condition": "best_n_exact-n32",
+          "reference": "capped_n1-n1",
+          "delta_pp": 5.407401475105514,
+          "ci95_delta_pp": [
+            5.246075146761889,
+            5.570397504866788
+          ],
+          "paired_sites": 5615
+        },
+        {
+          "condition": "pooled_greedy_swap-n32",
+          "reference": "best_n_exact-n32",
+          "delta_pp": 2.5296538448938746,
+          "ci95_delta_pp": [
+            2.453921471213481,
+            2.603506929040362
+          ],
+          "paired_sites": 5615
+        }
+      ]
+    },
+    {
+      "family": "multihop_mt",
+      "coverage_warning_dagger": false,
+      "best_mean_fve": [
+        0.30198971081240744,
+        0.3164507628163408,
+        0.32839278647506454,
+        0.33774279309488714,
+        0.34476873665301516,
+        0.3517095722545617
+      ],
+      "paired_labels": [
+        {
+          "condition": "best_n_exact-n32",
+          "reference": "capped_n1-n1",
+          "delta_pp": 4.971986144215419,
+          "ci95_delta_pp": [
+            4.6930374379505855,
+            5.257223100591116
+          ],
+          "paired_sites": 1100
+        },
+        {
+          "condition": "pooled_greedy_swap-n32",
+          "reference": "best_n_exact-n32",
+          "delta_pp": 2.246624696714681,
+          "ci95_delta_pp": [
+            2.16317907153407,
+            2.3336275306462197
+          ],
+          "paired_sites": 1100
+        }
+      ]
+    },
+    {
+      "family": "chain_intermediates",
+      "coverage_warning_dagger": false,
+      "best_mean_fve": [
+        0.17132267485736558,
+        0.18981368234369628,
+        0.2040211793476819,
+        0.21737348227086917,
+        0.22782807445890887,
+        0.23788636889702724
+      ],
+      "paired_labels": [
+        {
+          "condition": "best_n_exact-n32",
+          "reference": "capped_n1-n1",
+          "delta_pp": 6.656369403966169,
+          "ci95_delta_pp": [
+            6.3354217212518655,
+            7.006992882413507
+          ],
+          "paired_sites": 1320
+        },
+        {
+          "condition": "pooled_greedy_swap-n32",
+          "reference": "best_n_exact-n32",
+          "delta_pp": 2.018115895159981,
+          "ci95_delta_pp": [
+            1.9031202693820077,
+            2.1366479897421202
+          ],
+          "paired_sites": 1320
+        }
+      ]
+    },
+    {
+      "family": "role_bound_association",
+      "coverage_warning_dagger": true,
+      "best_mean_fve": [
+        0.1932488994967065,
+        0.20440378676873322,
+        0.21280893581273344,
+        0.2198220064760821,
+        0.22573358363857865,
+        0.23076646650532176
+      ],
+      "paired_labels": [
+        {
+          "condition": "best_n_exact-n32",
+          "reference": "capped_n1-n1",
+          "delta_pp": 3.6741028683083448,
+          "ci95_delta_pp": [
+            3.6316210349008697,
+            3.718317379175942
+          ],
+          "paired_sites": 11357
+        },
+        {
+          "condition": "pooled_greedy_swap-n32",
+          "reference": "best_n_exact-n32",
+          "delta_pp": 1.9630438915068893,
+          "ci95_delta_pp": [
+            1.94656910542534,
+            1.9798640464682173
+          ],
+          "paired_sites": 11400
+        }
+      ]
+    }
+  ],
+  "limits": "Read-only helper-field QA, not visual browser or final deck attestation; no source score changes."
+}

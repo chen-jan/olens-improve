@@ -84,6 +84,40 @@ class SourceBoundDashboardReview(unittest.TestCase):
         self.assertEqual(result['baseline_text'], 'Actual chosen parent')
         self.assertEqual(result['baseline_condition'], 'best_n_exact-n16')
 
+    def parent_case(self, *, status='complete', include_parent=True):
+        case = self.pack['conditions'][self.condition]['families']['hallucination']['outcome_selected'][0]
+        case['original_baseline'] = case.pop('baseline')
+        case['original_baseline_condition'] = case.pop('baseline_condition')
+        case['endpoint_evidence'] = None
+        case['parents'] = {'capped_n1-n1': {
+            'status': status, 'output': case['original_baseline'],
+            'endpoint_evidence': {'unit': 'whole_original_question_grid',
+                                  'parent_first_passing_cell': 'other-cell'}}} if include_parent else {}
+        raw = json.dumps(self.pack).encode()
+        self.pack_path.write_bytes(raw)
+        digest = hashlib.sha256(raw).hexdigest()
+        self.review['qualitative_sources'][0]['sha256'] = digest
+        self.review['dashboard_examples'][self.condition][0].update(
+            source_sha256=digest, reference='capped_n1-n1')
+
+    def test_original_reference_retains_declared_parent_grid_witness(self):
+        self.parent_case()
+        result = self.resolve()['resolved_examples'][self.condition][0]
+        self.assertEqual(result['baseline_text'], 'Before')
+        grid = json.loads(result['evidence'])['whole_question_evidence']
+        self.assertEqual(grid['parent_first_passing_cell'], 'other-cell')
+
+    def test_original_reference_without_declared_parent_keeps_original_evidence(self):
+        self.parent_case(include_parent=False)
+        result = self.resolve()['resolved_examples'][self.condition][0]
+        self.assertEqual(result['baseline_text'], 'Before')
+        self.assertIsNone(json.loads(result['evidence'])['whole_question_evidence'])
+
+    def test_incomplete_declared_original_parent_is_rejected(self):
+        self.parent_case(status='pending')
+        with self.assertRaisesRegex(ValueError, 'not complete'):
+            self.resolve()
+
     def artifact(self, kind, payload, *, bound=True):
         path = self.root / (kind + '.json')
         raw = json.dumps(payload).encode()

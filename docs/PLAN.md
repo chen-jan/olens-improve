@@ -1,6 +1,6 @@
 # Frozen Oracle Lens: inference-time improvement plan
 
-**Current handoff, 2026-10-11 00:17 UTC:** the user approved the [expanded comparison plan](EXPANSION_PLAN.md) and execution goal. One new preemptable H20025536297 and separate API CPU25536291 are running; exact method freezing and resumable runners precede scientific dispatch. The $340 total API ceiling is applied with historical holds retained. Other-reader experiments remain postponed. The addendum governs this phase; the first-study record below is preserved.
+**Current handoff, 2026-10-11 03:14 UTC:** the approved [expanded comparison](EXPANSION_PLAN.md) remains active on one owned preemptable H20025536297, API CPU25536291 and analysis CPU25536417. Operational judging is253/280; the public source-checked snapshot is235/280. Role likelihood and editing remain. Source-bound reconstruction and expanded qualitative audits are complete for currently available outputs; final analysis, report, slides and delivery await terminal runs. The $340 total API ceiling and retained unknown holds remain in force. Other-reader experiments are postponed. See [STATUS.md](STATUS.md) for current receipts; the first-study record below is preserved.
 
 Updated: 2026-10-10 UTC. Status: execution started at 2026-10-10 01:25:36 UTC (October 9, 21:25:36 EDT). The user has authorized autonomous implementation and experiments while away, within this plan's limits. Routine steps do not need fresh permission. See [STATUS.md](STATUS.md) for current progress and recovery instructions.
 

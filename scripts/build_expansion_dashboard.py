@@ -107,15 +107,17 @@ def checked_review(path, inventory_sha, results_sha, known):
             case = matches[0]
             reference = item.get('reference', case.get('baseline_condition'))
             if 'parents' in case:
-                if reference == case['original_baseline_condition']:
-                    before = case['original_baseline']
-                    endpoint = case.get('endpoint_evidence')
-                else:
+                if reference in case['parents']:
                     parent = case['parents'][reference]
                     if parent['status'] != 'complete':
                         raise ValueError('Reviewed parent comparison is not complete')
                     before = parent['output']
                     endpoint = parent['endpoint_evidence']
+                elif reference == case['original_baseline_condition']:
+                    before = case['original_baseline']
+                    endpoint = case.get('endpoint_evidence')
+                else:
+                    raise ValueError('Reviewed reference has no parent evidence')
             else:
                 if reference != case['baseline_condition']:
                     raise ValueError('Different reference requires actual parent evidence')

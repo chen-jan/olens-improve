@@ -13,7 +13,7 @@ import subprocess
 import textwrap
 
 from build_slides import W, H, INK, MUTED, PAPER, TEAL, BLUE, LINE, text, rect, line, write_pptx, write_html
-from build_expansion_report import checked_inputs, read, TITLES, GROUPS
+from build_expansion_report import checked_inputs, checked_reconstruction, read, TITLES, GROUPS
 from build_expansion_dashboard import FAMILIES, ACTIVE, category, label
 
 COLORS = ['8495A7', BLUE, TEAL, 'B57123', '7359AA', '388357', 'AA506D', '65713D', '447E97']
@@ -203,7 +203,11 @@ def load(results_path, inventory_path, review_path, qa=False,reconstruction_path
         if e['condition'] not in active or e['family'] not in FAMILIES or reference not in active: raise ValueError('Off-menu example or unspecified reference')
         if reference not in ('raw_n1-n1','capped_n1-n1') and (e['condition'],reference,e['family']) not in expected:raise ValueError('Example parent is not a frozen declared contrast')
     if reconstruction_path:
-        reconstruction,xsha=read(reconstruction_path)
+        if qa:
+            reconstruction,xsha=read(reconstruction_path)
+        else:
+            reconstruction,xsha=checked_reconstruction(
+                reconstruction_path,inventory,review,active,hashes)
         if presentation.get('reconstruction_sha256')!=xsha or reconstruction.get('manifest_sha256')!=hashes['inventory'] or reconstruction.get('quality_analysis_sha256')!=hashes['results']:raise ValueError('Reconstruction diagnostics are not bound to reviewed sources')
         if reconstruction.get('objective')!='1-squared_residual/squared_target' or reconstruction.get('solver')!='scipy_exact':raise ValueError('Incompatible reconstruction objective')
         seen=set()
@@ -267,6 +271,91 @@ def reconstruction_comparison(row, quality_reference):
     if matching is not None:
         return matching
     return next((p for p in parents if p.get('kind') == 'frozen_parent'), None)
+
+
+def reconstruction_scaling(rows, names):
+    """Draw saved fit means and intervals; never manufacture a baseline fit."""
+    conditions = [f'best_n_exact-n{n}' for n in N_VALUES] + [
+        'pooled_greedy_swap-n16', 'pooled_greedy_swap-n32', 'capped_n1-n1']
+    recorded = {(r['condition'], r['family']): r for r in rows}
+    displayed = [recorded[c, f] for f in FAMILIES for c in conditions
+                 if (c, f) in recorded]
+    values = [v for r in displayed for v in
+              ([r['mean_fve']] + list(r.get('mean_fve_ci95') or [])) if v is not None]
+    low = min(0, math.floor(min(values, default=0) * 10) / 10)
+    high = max(.5, math.ceil(max(values, default=.5) * 10) / 10)
+    if high == low:
+        high = low + .5
+    items = []
+    for i, family in enumerate(FAMILIES):
+        x, y = 70 + (i % 2) * 760, 215 + (i // 2) * 285
+        warning = any(r.get('status') != 'complete_comparable' or r.get('mean_fve_warnings')
+                      for r in displayed if r['family'] == family)
+        items += [rect(x, y, 710, 270, 'FFFFFF'),
+                  text(x + 20, y + 10, 675, 36,
+                       TITLES[family] + (' †' if warning else ''), 25, bold=True)]
+        px, py, pw, ph = x + 70, y + 197, 600, 133
+        at_y = lambda value: py - ph * (value - low) / (high - low)
+        for v in (low, (low + high) / 2, high):
+            items += [line(px, at_y(v), px + pw, at_y(v), LINE),
+                      text(x + 6, at_y(v) - 11, 62, 24, f'{100 * v:g}%', 16, MUTED)]
+        for j, n in enumerate(N_VALUES):
+            items.append(text(px + pw * j / 5 - 12, py + 7, 48, 24, str(n), 17, MUTED))
+        previous = None
+        for j, n in enumerate(N_VALUES):
+            row = recorded.get((f'best_n_exact-n{n}', family), {})
+            value = row.get('mean_fve')
+            xx = px + pw * j / 5
+            if value is None:
+                previous = None
+                continue
+            yy = at_y(value)
+            if row.get('mean_fve_ci95'):
+                lo, hi = row['mean_fve_ci95']
+                items.append(line(xx, at_y(lo), xx, at_y(hi), BLUE, 2))
+            if previous:
+                items.append(line(*previous, xx, yy, BLUE, 3))
+            items.append(dot(xx, yy, BLUE, 5))
+            previous = xx, yy
+        for n in (16, 32):
+            row = recorded.get((f'pooled_greedy_swap-n{n}', family), {})
+            if row.get('mean_fve') is None:
+                continue
+            xx = px + pw * N_VALUES.index(n) / 5 - 7
+            yy = at_y(row['mean_fve'])
+            if row.get('mean_fve_ci95'):
+                lo, hi = row['mean_fve_ci95']
+                items.append(line(xx, at_y(lo), xx, at_y(hi), 'B57123', 3))
+            items.append(rect(xx - 5, yy - 5, 10, 10, 'B57123'))
+        baseline = recorded.get(('capped_n1-n1', family), {})
+        if baseline.get('mean_fve') is not None:
+            yy = at_y(baseline['mean_fve'])
+            items.append(line(px, yy, px + pw, yy, TEAL, 1))
+            if baseline.get('mean_fve_ci95'):
+                lo, hi = baseline['mean_fve_ci95']
+                items.append(line(px + 7, at_y(lo), px + 7, at_y(hi), TEAL, 3))
+        gains = []
+        for condition, reference, title in [
+                ('best_n_exact-n32', 'capped_n1-n1', 'Best32 vs capped'),
+                ('pooled_greedy_swap-n32', 'best_n_exact-n32', 'Pool32 vs Best32')]:
+            row = recorded.get((condition, family), {})
+            pair = next((p for p in row.get('parent_comparisons', [])
+                         if p['reference'] == reference and p.get('mean_delta') is not None), None)
+            if pair:
+                gains.append(title + ': ' + pp(pair['mean_delta']))
+        items.append(text(x + 18, y + 237, 675, 26,
+                          ' · '.join(gains) or 'No recorded paired parent gain', 16, MUTED))
+    items.append(text(80, 804, 1450, 35,
+                      'Explained variance · blue: best · amber: pooled · teal: capped · group 95% CI · † coverage/warnings in notes', 19, MUTED))
+    notes = ('Secondary reconstruction diagnostic, not native task quality. Fractions are displayed as percentages; '
+             'paired changes are percentage points. Site-weighted means and whole-related-group pointwise95% '
+             'bootstrap intervals are copied without recomputation. No raw cap-exempt N1 fit is inferred. '
+             'N1 best complete and capped may differ because recorded cleanup/fit scopes differ. '
+             'Pooled markers are offset horizontally for legibility, at the labeled N. Missing means/intervals '
+             'remain absent; partial coverage and zero/undefined variation warnings remain in exact rows. '
+             'Each displayed parent gain names its exact paired reference; no difference-of-means is mislabeled paired. '
+             'Objective, solver, normalization, masks, coverage and full records: ')
+    return items, notes + json.dumps(displayed, ensure_ascii=False)
 
 
 METHOD_STEPS={
@@ -489,8 +578,19 @@ def pages_from(inputs,qa=False):
         else:caption=f'{len(graph_conditions)} of {len(members)} variants plotted · all {len(members)} variants and exact counts in appendix'
         graphs.append(text(550,817,1010,26,caption+' · pointwise 95%; † see notes',15,MUTED))
         add(a['action_title'],left+graphs,'Approach: '+group+'\nReviewed evidence: '+json.dumps(a,ensure_ascii=False)+'\nAll variants: '+json.dumps(members)+'\nPlotted: '+json.dumps(graph_conditions)+'\nExact native metrics: '+json.dumps({c:{f:metrics[c,f] for f in FAMILIES} for c in members})+'\nExact paired changes: '+json.dumps(delta)+'\nReconstruction diagnostics: '+json.dumps(fit_notes)+'\nFVE measures original reconstruction fit; its scale is not semantic faithfulness. Quality comparisons stay task-native. Example context: '+json.dumps(e.get('_source_context'),ensure_ascii=False));method_pages.append(pages[-1])
+    reconstruction_page = None
+    if results.get('_reconstruction') is not None:
+        fit_items, fit_notes = reconstruction_scaling(results['_reconstruction']['rows'], names)
+        source = results['_reconstruction']
+        add('Reconstruction fit across the sample budgets', fit_items,
+            fit_notes + '\nArtifact SHA: ' + hashes['reconstruction'] +
+            '\nFit contract: ' + json.dumps({k:source.get(k) for k in
+                ('objective','solver','normalization','vector_contract_sha256','limits')}, ensure_ascii=False))
+        reconstruction_page = pages[-1]
     # User-requested narrative: findings and tradeoffs first, then seven visual/result pairs.
     pages[:]=[original_pages[i] for i in (0,1,9,2)]+method_pages+[original_pages[i] for i in (7,12,13,15,16,17,18)]
+    if reconstruction_page is not None:
+        pages.insert(19, reconstruction_page)
     for i,p in enumerate(pages,1):p['items'][5]['text']=str(i)
     core_count=len(pages)
     # All70 settings, five rows per page; no ranking or significance filter.
@@ -521,6 +621,8 @@ def pages_from(inputs,qa=False):
 
 
 def build(results_path,inventory_path,review_path,output,qa=False,reconstruction_path=None):
+    if not qa and reconstruction_path is None:
+        raise ValueError('Final deck requires source-bound reconstruction diagnostics')
     inputs=load(results_path,inventory_path,review_path,qa,reconstruction_path);pages,refs,core=pages_from(inputs,qa)
     output=Path(output)
     if output.exists():raise ValueError('Use a new immutable output directory')

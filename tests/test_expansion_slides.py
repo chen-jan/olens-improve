@@ -218,7 +218,9 @@ class ExpansionSlideContract(unittest.TestCase):
                      'ci95_delta':[.01,.04],'independent_groups':40,'warning':'Synthetic fixture only'}]})
         xp=self.root/'fit.json';review['presentation']['reconstruction_sha256']=write(xp,x);write(paths[2],review)
         with self.assertRaisesRegex(ValueError,'must be supplied'):b.load(*paths,qa=True)
-        inputs=b.load(*paths,qa=True,reconstruction_path=xp);pages,_,_=b.pages_from(inputs,qa=True)
+        inputs=b.load(*paths,qa=True,reconstruction_path=xp);pages,_,core=b.pages_from(inputs,qa=True)
+        self.assertEqual(core,26)
+        self.assertIn('Reconstruction fit across the sample budgets',[p['title'] for p in pages])
         alltext=' '.join(i.get('text','') for p in pages for i in p['items'])
         self.assertIn('FVE Δ (pp) vs',alltext)
         self.assertIn('+2.5 pp',alltext)
@@ -235,6 +237,46 @@ class ExpansionSlideContract(unittest.TestCase):
         self.assertEqual(actual['paired_sites'],98)
         self.assertEqual(b.reconstruction_comparison(row,'raw_n1-n1')['reference'],'raw_n1-n1')
         self.assertIsNone(b.reconstruction_comparison({},'capped_n1-n1'))
+
+    def test_reconstruction_scaling_percent_scope_and_actual_parent(self):
+        rows=[]
+        for f in b.FAMILIES:
+            for n in b.N_VALUES:
+                rows.append({'condition':f'best_n_exact-n{n}','family':f,
+                    'mean_fve':.2+n/1000,'mean_fve_ci95':[.18,.26],
+                    'status':'complete_comparable','mean_fve_warnings':[],
+                    'scored_site_count':100,'full_site_count':100,
+                    'parent_comparisons':[{'reference':'capped_n1-n1',
+                        'paired_sites':97,'mean_delta':.025,'ci95_delta':[.01,.04]}]})
+            for n in (16,32):
+                rows.append({'condition':f'pooled_greedy_swap-n{n}','family':f,
+                    'mean_fve':.3,'mean_fve_ci95':[.28,.32],
+                    'status':'complete_comparable','parent_comparisons':[
+                        {'reference':'best_n_exact-n32','paired_sites':96,
+                         'mean_delta':.065,'ci95_delta':[.04,.08]}]})
+            rows.append({'condition':'capped_n1-n1','family':f,
+                'mean_fve':None,'mean_fve_ci95':None,'status':'partial_or_unavailable',
+                'scored_site_count':0,'full_site_count':100,'parent_comparisons':[]})
+            # This raw fit must never be silently substituted for the capped row.
+            rows.append({'condition':'raw_n1-n1','family':f,'mean_fve':.99})
+        items,notes=b.reconstruction_scaling(rows,{})
+        visible=' '.join(i.get('text','') for i in items)
+        self.assertIn('50%',visible)
+        self.assertIn('Best32 vs capped: +2.5 pp',visible)
+        self.assertIn('Pool32 vs Best32: +6.5 pp',visible)
+        self.assertIn('†',visible)
+        self.assertEqual(sum(i['kind']=='rect' and i['color']=='B57123' for i in items),8)
+        self.assertFalse(any(i['kind']=='line' and i['color']==b.TEAL for i in items))
+        self.assertIn('"paired_sites": 97',notes)
+        self.assertNotIn('"condition": "raw_n1-n1"',notes)
+        # Negative recorded fit/CI must extend the axis, without clipping.
+        rows[0].update(mean_fve=-.2,mean_fve_ci95=[-.25,-.1])
+        items,_=b.reconstruction_scaling(rows,{})
+        self.assertIn('-30%', ' '.join(i.get('text','') for i in items))
+
+    def test_final_build_requires_numeric_artifact(self):
+        with self.assertRaisesRegex(ValueError,'source-bound reconstruction'):
+            b.build(None,None,None,self.root/'final')
 
     def test_native_task_labels_and_boundary_warning_are_visible(self):
         paths,results,_,review=fixture(self.root)
