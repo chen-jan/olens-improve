@@ -1,5 +1,13 @@
 # Execution status
 
+## Likelihood finished; editing scoring active — 2026-10-11 05:02 UTC
+
+The same owned preemptable H200 job 25536297 completed all **19,435 likelihood cells at 04:57:36 UTC** and automatically moved to frozen editor scoring. Its first round-one number-task dispatch completed all 1,320 cells in 171.1 seconds (scorer status 164.9 seconds), encoding 3,380 new vectors; these are wall timers, not kernel measurements. The name-task round-one dispatch is now active. The larger hallucination and role tasks remain, followed by round two and its pruning variants. A revised full-stage estimate awaits their measured throughput; no terminal editing quality or final method ranking is claimed.
+
+The role likelihood descriptor is now published and its CPU fit replay has started. Existing Luna and editor orchestration continue in parallel. All 70 settings across four full banks remain in scope, within the total $340 API ceiling. Final native, reconstruction, qualitative and effort gates are healthy and still waiting for exact terminal dependencies. The public reviewed version 16 remains unchanged until a newly reviewed snapshot is assembled.
+
+The final assembly checklist is prepared in [reviews/expanded-final-assembly-checklist-v1.md](reviews/expanded-final-assembly-checklist-v1.md). Task-specific reconstruction explanations are being checked against the retained native and fit snapshots. Reconstruction fit, question recovery, transcript contradiction, site masks and their uncertainty remain separate quantities. Final full-context qualitative reviews and the report/dashboard/slides follow terminal source availability. Research Git remains local.
+
 ## Terminal analyses and presentation intake ready — 2026-10-11 04:41 UTC
 
 Operational judging remains **253/280**; public version 16 retains its reviewed **235/280** snapshot. The same preemptable H200 job25536297 is healthy on node4010 after its natural restart, with **18,335/19,435 likelihood sites** committed. Recent throughput projects the likelihood handoff around04:58UTC. Both editor scoring rounds still follow; their duration will be revised from the first real encoding shards and scoring progress. No final editing result or final ranking is claimed.

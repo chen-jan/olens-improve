@@ -1,0 +1,23 @@
+{
+  "status": "root_source_arithmetic_reviewed_provisional_not_terminal",
+  "created_utc": "2026-10-11T05:05:19.295571+00:00",
+  "memo_json_sha256": "0f6d1640ef4edcf40646de2e06895444fa36eba9045fc5a058652c36fb2ffd99",
+  "memo_markdown_sha256": "b2ff8756d49ce41dfe545bb164d7193a83894c05bd50e4f41a1e5db0cf41df42",
+  "source_sha256": {
+    "${OLENS_DATA_ROOT}/expansion-v1/analysis/first-live-v3.json": "eea3510637c4f0b849585882e88f6dec00f85073f10525460070ab70e75d8082",
+    "${OLENS_DATA_ROOT}/expansion-v1/reconstruction/first-live-v3.json": "c7d6ee68c9481fc52e7bbbd01cda416c416b8f8bf15854a730977e958ded7e75",
+    "configs/expansion_manifest_v1.json": "753b2d9cab0daea0d19efef7d3222fd44921dbcf4669e6864d4f1bd4805421f8",
+    ".state/expanded-final-review-draft-v3.json": "d1889a8c31c5422b5805577cf00e8df9b353e81af9ac84a79a72a5c9bb17b2f7",
+    ".state/expanded-final-review-draft-v3.schema-receipt.json": "a6201d7082a9fc312de390375314211bb17d50e2dedd99dd463e8d3c1bebeb15"
+  },
+  "main_records": 56,
+  "additional_recorded_fit_contrasts": 8,
+  "source_field_blocks_verified": 277,
+  "root_interpretation_checks": [
+    "Fit and native task endpoints remain distinct.",
+    "Parent contrasts use saved common masks; no difference of means is presented as paired uncertainty.",
+    "Raw baseline has no comparable saved fit; capped and scored best-of-one are distinct.",
+    "Missing editor and likelihood outcomes stay unavailable in this dated snapshot.",
+    "This memo is provisional, exploratory and not an estimate of qualitative failure prevalence."
+  ]
+}
