@@ -1,0 +1,4017 @@
+{
+  "schema_version": 1,
+  "status": "preliminary_prospective_r1_selected_edit_review",
+  "created_utc": "2026-10-11T05:38:38.744728+00:00",
+  "manifest_sha256": "753b2d9cab0daea0d19efef7d3222fd44921dbcf4669e6864d4f1bd4805421f8",
+  "source_sha256": {
+    "${OLENS_DATA_ROOT}/expansion-v1/qualitative/first-live-v4.json": "15139648dd09b10ae931e7600a2aa643fae3e02ec37ccd0098a34443d9ee320c",
+    "${OLENS_REPO_ROOT}/configs/qualitative_shared_panel_v1.json": "36aa5977c631a84b1fceca0cfd22d60de7de58e124930ab7503ed617acefc5cf",
+    "${OLENS_REPO_ROOT}/docs/reviews/expanded-editing-fixed-anchor-preliminary-v1.json": "544fef0b75c0665c3ad70fc5772ac2b0c7c7bec0bf9a2ee48efccb97ae7646b4",
+    "${OLENS_DATA_ROOT}/expansion-v1/editing-scores/round1/chain_intermediates/scored_candidates.jsonl": "1d903e76f663777c4098c0a2666865965f1c7fc44d24a93c16c59444c1b80d95",
+    "${OLENS_DATA_ROOT}/expansion-v1/editing-scores/round1/hallucination/scored_candidates.jsonl": "ad89e236067d874c8f154d66531505df8fdd5d76f92471e2f69db45a1d9cb9a6",
+    "${OLENS_DATA_ROOT}/expansion-v1/editing-scores/round1/multihop_mt/scored_candidates.jsonl": "89ab5aa98cb64843544de44867e78df697ed1cfcb1a9008107c809f407c224f5",
+    "${OLENS_DATA_ROOT}/expansion-v1/editing-scores/round1/role_bound_association/scored_candidates.jsonl": "607c9516748bd89af3a9814adc316328fcb032b3bd7738786ebff51b61898348",
+    "${OLENS_DATA_ROOT}/expansion-v1/editing-scores/round1/hallucination/status.json": "15d58cad6835c73bbb84e889393bfbd2a2ffc2cc294ae4ed700e792bf818b791",
+    "${OLENS_DATA_ROOT}/expansion-v1/editing-scores/round1/hallucination/spec.json": "1a8bd4d74e0beda4bb9d18b72240cb972e4bf94c7f965729d00d9312647ccb4a",
+    "${OLENS_DATA_ROOT}/expansion-v1/selections/editing-round1-v1/hallucination.ready.json": "911126bf7f73c9c04c5396ca4c2fae98ca3ef7d71b5ecef1c8f1bb932e2cc2f8",
+    "${OLENS_DATA_ROOT}/expansion-v1/selections/editing-round1-v1/hallucination.jsonl": "607804270dc4f1c586d921315b09d9a4829a9c4da7e2fee69cca7b036199c31b",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_exact-n32/hallucination/results.json": "42ba43726d606877c71737b7eeb8994caf85e79aabafd6bab4d5c082af0dc539",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_exact-n32/hallucination/project_contract.json": "2f89bbdbf2dd731b9c8113b034710f0eb0de93972823f7a8b2c7d2d5ef6af93a",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap-n32/hallucination/results.json": "079306d1c9d654ab93ff3812da4a8005dbdefa6bf43bbe26c8e5d467e3d48229",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap-n32/hallucination/project_contract.json": "5d0f9c9e8280cb269b0a7bda00ff95009b281cc79c5ebe9f30ebfd221153d605",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/editing_round1-n32/hallucination/results.json": "aea56222b58f2133b0faa8e0c2c33f2c9a004a3b7d21521fd606816aab6c3f45",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/editing_round1-n32/hallucination/project_contract.json": "a9c4039dbcbd6c16b3f560e19ca90ffd0f3713a75783e314c58fc1163d3da224",
+    "${OLENS_DATA_ROOT}/expansion-v1/editing-scores/round1/multihop_mt/status.json": "fed6c4f01bd23ee37afd0134de1bd8038817ad786ed236ad3bcd9b13678e0c4b",
+    "${OLENS_DATA_ROOT}/expansion-v1/editing-scores/round1/multihop_mt/spec.json": "f6de42b3c94bd96234e76a4da0ea071631b2073eaed85c229c80e52debc72858",
+    "${OLENS_DATA_ROOT}/expansion-v1/selections/editing-round1-v1/multihop_mt.ready.json": "744f1d9681908be0ba19f993f98048bf43b36a8fbff0b7ba5f919969d4e283a7",
+    "${OLENS_DATA_ROOT}/expansion-v1/selections/editing-round1-v1/multihop_mt.jsonl": "aa94ab0c9ec37ecf8003cc10981e54dc21fe83d42237f7c54c5266f4e921af66",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_exact-n32/multihop_mt/results.json": "47288023a201e2a30b925d90e8fc91a37d5643daec968e3e0dfd9a3b5b85e0ac",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_exact-n32/multihop_mt/project_contract.json": "635b4485f5db0293d3b9088a9d8974525fd2745c952d788afeb2f583dd6b4d0e",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap-n32/multihop_mt/results.json": "6ca199109e4e902c72d5b732aa8ea934f42949588c6326bfa4f72811b36fe410",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap-n32/multihop_mt/project_contract.json": "ecd465ff53c7e0742830bd503e0e7f6fc9aadb7617e8a0ea1b349fd9bc33feb7",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/editing_round1-n32/multihop_mt/results.json": "6ca199109e4e902c72d5b732aa8ea934f42949588c6326bfa4f72811b36fe410",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/editing_round1-n32/multihop_mt/project_contract.json": "8ce3fd8f8591b70cf2fe43bb4457240abc3d6063f4f9f77536b5c9dd567d8738",
+    "${OLENS_DATA_ROOT}/expansion-v1/editing-scores/round1/chain_intermediates/status.json": "df549ce15398a6d7e721dea7e9ce4fc986d80032333567a31cb6dd793365a835",
+    "${OLENS_DATA_ROOT}/expansion-v1/editing-scores/round1/chain_intermediates/spec.json": "6a8310e68bb9410052c688ff5cf9fdec07d6b449a34d3b7415a4cbee6bc300b2",
+    "${OLENS_DATA_ROOT}/expansion-v1/selections/editing-round1-v1/chain_intermediates.ready.json": "c391fa475a93f9046036fbd9897dbc099a251d3f45e47dbd8b9cbe34112c9dd6",
+    "${OLENS_DATA_ROOT}/expansion-v1/selections/editing-round1-v1/chain_intermediates.jsonl": "4de7c9fe957739f79817d25489c25d2133c0b0402c906475114ca11ac1cb640e",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_exact-n32/chain_intermediates/results.json": "636eccf30b21df77a57bc7facb7de8e9ca07ab48235c51e722928848ec1e5944",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_exact-n32/chain_intermediates/project_contract.json": "e256f27c5cd260961f2d7f231ffa07ff95698470bb6270f5d7343c75aacda5e3",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap-n32/chain_intermediates/results.json": "69c9016c6e9d5ef02a3163f5d175d61db0e21757646e945931d5854daece1996",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap-n32/chain_intermediates/project_contract.json": "d65a259392e0c622588f77a0f0448b054d697bddfe17a027093ca7d343d5bbaf",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/editing_round1-n32/chain_intermediates/results.json": "93ae0e4cb38b489f5017edbbaf3ff10497315c2cacaebbc720cd1a5c56bbaeb0",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/editing_round1-n32/chain_intermediates/project_contract.json": "5e138e810be96422a1891e7a5f4019cdb6d41be12466839bfafb4676a902cf4c",
+    "${OLENS_DATA_ROOT}/expansion-v1/editing-scores/round1/role_bound_association/status.json": "ef3ce4cd094e3ef24e9c824738753877ae53e6d7a3bebd8b47a708215f57930a",
+    "${OLENS_DATA_ROOT}/expansion-v1/editing-scores/round1/role_bound_association/spec.json": "2546d9c7cb675cda612a76013eaaf520aad035626264313acaa5da9a1bd21666",
+    "${OLENS_DATA_ROOT}/expansion-v1/selections/editing-round1-v1/role_bound_association.ready.json": "4b8f459671fda8b0bc1b6d0d838597fb5b378ac500998d81888387d14706ba3c",
+    "${OLENS_DATA_ROOT}/expansion-v1/selections/editing-round1-v1/role_bound_association.jsonl": "36cda8d8c4e355064fdddc152f1a50b8c1bead6f1276f2daa7bfdfd95d9f16fb",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_exact-n32/role_bound_association/results.json": "b2f145cc161f855e0a0ea7b0df0d766c13e2cbf373f4f6e01535cc850fef1186",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_exact-n32/role_bound_association/project_contract.json": "84c7f143b7b0b3b2f5fffb10b7072db3d4ebe90b92dfadb4459e6b6f8dad365c",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap-n32/role_bound_association/results.json": "9fbcf874155092472e9135eae98bd4a97aa067ac27f1c80caf03b293e55a3075",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap-n32/role_bound_association/project_contract.json": "52200974b56e46d1bd66d506273de94a894fa217cfba20c98f79466b43fdfb39",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/editing_round1-n32/role_bound_association/results.json": "70e21c628b6d7791e714d3ccb7a7fbcfb84205f3bae3cd4d87f026197aa6edd8",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/editing_round1-n32/role_bound_association/project_contract.json": "7aaaa2072da6f459e41fffce3709cab96f30c6d51e5cef762ee30db0e336f9f6",
+    "${OLENS_REPO_ROOT}/.state/expanded-gpu-edit-descriptors/round1-chain_intermediates.json": "6eb0e8585a1da95e55363b792f5c34d5b4e4311a338ae715eb28c506288b0fd0",
+    "${OLENS_DATA_ROOT}/expansion-v1/helpers/editing-round1/chain_intermediates/editing_proposals.jsonl": "22c63f113cc68ba6b8d9020495bb39c7e19ab161e0768160d0eb882b2798e449",
+    "${OLENS_DATA_ROOT}/expansion-v1/helper-inputs/chain_intermediates/cohort.json": "7af848cc7037223c165a9ae545c9cf54f4f053fb6dd7b425c159d4258cacf84c",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_exact-n32/chain_intermediates.readouts.jsonl": "0b33be7b8fb46a0fcf5b29005bca265f9715097183a1f51374538f53d36dde56",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap-n32/chain_intermediates.readouts.jsonl": "75ef3c725fdb18b86fca937013672aabc1934a8713108ed6f67ea7a6c61e3473",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/editing_round1-n32/chain_intermediates.readouts.jsonl": "359a42c80ba7c2a4d073d1bff15518d2801af70c4eba862ce8bc93429c949c11"
+  },
+  "bounded_scope": {
+    "fixed_anchors_checked": 8,
+    "fixed_anchors_selected_unchanged_pooled_parent": 8,
+    "additional_changed_selected_outputs_reviewed": 2,
+    "allowed_additional_panel": "Already retained first-live-v4 outcome_selected diagnostic cell IDs only; lexicographic selection, at most2.",
+    "new_calls": 0,
+    "new_fits": 0,
+    "new_quality_verdicts": 0,
+    "prevalence_claim": false,
+    "round2_evidence_used": false,
+    "final_claims": false
+  },
+  "prior_four_anchor_dossier": {
+    "path": "docs/reviews/expanded-editing-fixed-anchor-preliminary-v1.json",
+    "sha256": "544fef0b75c0665c3ad70fc5772ac2b0c7c7bec0bf9a2ee48efccb97ae7646b4"
+  },
+  "all_eight_fixed_anchor_selected_text_checks": [
+    {
+      "anchor": {
+        "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+        "family": "hallucination",
+        "item_id": "chat-lmsys-0052",
+        "group_id": "hallucination:35f3492cdf5d57c7",
+        "layer": 20,
+        "position": 253,
+        "label": "hallucination · chat-lmsys-0052 · layer 20"
+      },
+      "origin": "unchanged_parent",
+      "candidate_id": "hallucination|chat-lmsys-0052|L20|p00253:initial:pooled_greedy_swap",
+      "selected_full_text": "- *   And so on, showing a gradual increase with temperature. However, most standard chemistry references state that\n- 4.  **Room Temperature (~20°C):** Approximately **1 g/100\n- (and other data points found in chemical handbooks) show that its solubility increases slightly as temperature rises. Here are the approximate solubility values:\n\n###\n- (This is based on standard reference tables found in chemistry and physics textbooks). These values show that solubility increases steadily with temperature.\n",
+      "selected_exact_fve": 0.2089242223913691,
+      "byte_identical_to_pooled_parent": true,
+      "canonical_spec_sha256": "d97721b93a8d7996d30495e088a4bb4cccf1ac3fc79d1d1205d9a3851ca82ad4"
+    },
+    {
+      "anchor": {
+        "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+        "family": "hallucination",
+        "item_id": "chat-lmsys-0023",
+        "group_id": "hallucination:5c85a16c7bca4791",
+        "layer": 60,
+        "position": 464,
+        "label": "hallucination · chat-lmsys-0023 · layer 60"
+      },
+      "origin": "unchanged_parent",
+      "candidate_id": "hallucination|chat-lmsys-0023|L60|p00464:initial:pooled_greedy_swap",
+      "selected_full_text": "- Performs poorly on tiny objects due to attention mechanism limitations. Later DETR variants improved this.\n- DETR struggles with it early on due to its focus on global object relationships. Later variants improved small object detection.\n- It performed less well on small objects due to DETR’s attention mechanism.\n- Struggles with detecting very small objects due to lack of fine-grained attention. Later versions (DETR) improved this with attention mechanisms\n",
+      "selected_exact_fve": 0.6384269356906964,
+      "byte_identical_to_pooled_parent": true,
+      "canonical_spec_sha256": "d97721b93a8d7996d30495e088a4bb4cccf1ac3fc79d1d1205d9a3851ca82ad4"
+    },
+    {
+      "anchor": {
+        "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+        "family": "multihop_mt",
+        "item_id": "mhh-1967-norwegian-classes-objects-codesigner",
+        "group_id": "multihop_mt:bridge-component:a046b74450ba7c00",
+        "layer": 44,
+        "position": 28,
+        "label": "multihop mt · mhh-1967-norwegian-classes-objects-codesigner · layer 44"
+      },
+      "origin": "unchanged_parent",
+      "candidate_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028:initial:pooled_greedy_swap",
+      "selected_full_text": "- 他的 colleague **Ole Dahl** to create the programming language Simula. Here’s how Simula 67 was\n- Øystein Aasgard to create **Simula 67**. So, Oop was invented by **Ole Dahl** and **\n- 另一位同事 Ole-Henrik Dahl to create the programming language Simula 67. They\n- 卡雷尔·Weyth (Karel Weyth) together to create the object-oriented programming language Simula\n",
+      "selected_exact_fve": 0.31743914166467546,
+      "byte_identical_to_pooled_parent": true,
+      "canonical_spec_sha256": "1884675f2097359686e97941f1fa992aaff7b074f6dc0971ec79a42904c54803"
+    },
+    {
+      "anchor": {
+        "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+        "family": "multihop_mt",
+        "item_id": "mhh-mesopotamian-wildman-cedar",
+        "group_id": "multihop_mt:bridge-component:be6c03c9fb6be262",
+        "layer": 60,
+        "position": 46,
+        "label": "multihop mt · mhh-mesopotamian-wildman-cedar · layer 60"
+      },
+      "origin": "unchanged_parent",
+      "candidate_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046:initial:pooled_greedy_swap",
+      "selected_full_text": "- Humabaz (or Humbaba), the guardian of the forest. Gilgamesh killed the monster\n- 胡利 (Huw) or the Tree Man, and his demon guards. He was slain by Gilgamesh\n- Goliath, or *Yaksha* in some versions. He broke down a gate and devoured people. Gilgamesh killed Humbaba\n- Humbaba (or Huwang), the tree-monster. And there was a shepherd named Enkidu\n",
+      "selected_exact_fve": 0.614160330029631,
+      "byte_identical_to_pooled_parent": true,
+      "canonical_spec_sha256": "1884675f2097359686e97941f1fa992aaff7b074f6dc0971ec79a42904c54803"
+    },
+    {
+      "anchor": {
+        "cell_id": "chain_intermediates|chain-w2-d2p-0013|L60|p00062",
+        "family": "chain_intermediates",
+        "item_id": "chain-w2-d2p-0013",
+        "group_id": "chain_intermediates:37eccc588aafa111",
+        "layer": 60,
+        "position": 62,
+        "label": "chain intermediates · chain-w2-d2p-0013 · layer 60"
+      },
+      "origin": "unchanged_parent",
+      "candidate_id": "chain_intermediates|chain-w2-d2p-0013|L60|p00062:initial:pooled_greedy_swap",
+      "selected_full_text": "- 1401** *(11 + 33)*\n\n***Note on Interpretation:* While 4 is the mathematical sum,\n- 14$$ 14 $$ **Explanation:** The sum of the last four cards (2,\n- 142 $$ (16 + 11 + 15)\n- 14** *(14 + 12 = 26, which is the rightmost number in the target expression `14 +\n",
+      "selected_exact_fve": 0.17336864817340725,
+      "byte_identical_to_pooled_parent": true,
+      "canonical_spec_sha256": "f4cd0dce919dce19ea7a6eb9478e270520576c91a5d291f38b57586eb5096aaf"
+    },
+    {
+      "anchor": {
+        "cell_id": "chain_intermediates|chain-d2p-0385|L20|p00066",
+        "family": "chain_intermediates",
+        "item_id": "chain-d2p-0385",
+        "group_id": "chain_intermediates:787ce21baf539c52",
+        "layer": 20,
+        "position": 66,
+        "label": "chain intermediates · chain-d2p-0385 · layer 20"
+      },
+      "origin": "unchanged_parent",
+      "candidate_id": "chain_intermediates|chain-d2p-0385|L20|p00066:initial:pooled_greedy_swap",
+      "selected_full_text": "- Here is the answer, following your instruction to give only the final result after applying the operation twice as specified.\n- 135 (Explanation: Apply the rule immediately: start with 20, subtract 3, then divide by 2. No other operations were\n- Here is the answer with 0 words of explanation, as requested:\n- Step 1: Subtract 3 from 20 to get 17. Since the instruction asks to round to\n",
+      "selected_exact_fve": 0.254954943937445,
+      "byte_identical_to_pooled_parent": true,
+      "canonical_spec_sha256": "f4cd0dce919dce19ea7a6eb9478e270520576c91a5d291f38b57586eb5096aaf"
+    },
+    {
+      "anchor": {
+        "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+        "family": "role_bound_association",
+        "item_id": "oa-waiter-customer-apologize-ab",
+        "group_id": "role_bound_association:eeeaafd155b88847",
+        "layer": 20,
+        "position": 92,
+        "label": "role bound association · oa-waiter-customer-apologize-ab · layer 20"
+      },
+      "origin": "unchanged_parent",
+      "candidate_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092:initial:pooled_greedy_swap",
+      "selected_full_text": "- mmarize this paragraph in one sentence, focusing on the implications for Elias’s character. Sum\n- mmarize this paragraph: David attends a high-stakes dinner at his club, maintaining a composed exterior despite internal friction. Summarize\n- marize Elias's action in this brief excerpt. Summarize\n- marize the narrative beat and implied details from this short paragraph:\n\nJohn’s morning routine was disrupted by a sudden financial revelation. Sum",
+      "selected_exact_fve": 0.057665948875632256,
+      "byte_identical_to_pooled_parent": true,
+      "canonical_spec_sha256": "bf9e88c1682084c332657c09edc1badfb5f3dded848d1fc93fc5c3688fa5fbf6"
+    },
+    {
+      "anchor": {
+        "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+        "family": "role_bound_association",
+        "item_id": "oa-comedian-heckler-humiliate-ab",
+        "group_id": "role_bound_association:678e30ea4ee5fd05",
+        "layer": 60,
+        "position": 178,
+        "label": "role bound association · oa-comedian-heckler-humiliate-ab · layer 60"
+      },
+      "origin": "unchanged_parent",
+      "candidate_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178:initial:pooled_greedy_swap",
+      "selected_full_text": "- After being interrupted by a heckler, stand-up comedian Matthew Reily remained composed and regained control of the room by delivering a\n- Comedian Marcus effortlessly reclaims control during a heckle by continuing his set and delivering a scathing, witty comeback, which immediately silences the\n- During a comedy set, Marcus shuts down an interrupting audience member by calmly reclaiming\n- After an audience member rudely interrupted his set, comedian Chris calmly resumed his routine. Using precise timing and a sharp retort, he successfully silenced the",
+      "selected_exact_fve": 0.5417940089414168,
+      "byte_identical_to_pooled_parent": true,
+      "canonical_spec_sha256": "bf9e88c1682084c332657c09edc1badfb5f3dded848d1fc93fc5c3688fa5fbf6"
+    }
+  ],
+  "current_r1_absolute_quality_and_actual_parent_sources": [
+    {
+      "family": "hallucination",
+      "condition": "best_n_exact-n32",
+      "metric": "hallucination_rate",
+      "value": 0.4582210242587601,
+      "ci95": [
+        0.42177858439201454,
+        0.49536956141883626
+      ],
+      "higher_is_better": false,
+      "numerator": 2550,
+      "denominator": 5565,
+      "denominator_description": "specific nonempty readouts; contradiction incidence, not per-claim false fraction",
+      "source_fields": {
+        "value": "numbers.value",
+        "ci95": "numbers.ci95",
+        "count_source": "numbers.extras.n_hallucinated / n_specific"
+      },
+      "coverage": {
+        "stage2_complete_for_produced_readouts": true,
+        "produced_nonempty_readouts": 5614,
+        "produced_empty_abstentions": 1,
+        "stage2_api_or_missing_readouts": 0
+      },
+      "upstream_complete_preserved": false,
+      "scientific_status": "exploratory-full-bank-comparison",
+      "interpretation": "Current R1 absolute upstream numbers/pointwise CIs; final frozen native paired/joint comparisons not supplied here."
+    },
+    {
+      "family": "hallucination",
+      "condition": "pooled_greedy_swap-n32",
+      "metric": "hallucination_rate",
+      "value": 0.47182718271827184,
+      "ci95": [
+        0.43584772647162495,
+        0.5075229357798166
+      ],
+      "higher_is_better": false,
+      "numerator": 2621,
+      "denominator": 5555,
+      "denominator_description": "specific nonempty readouts; contradiction incidence, not per-claim false fraction",
+      "source_fields": {
+        "value": "numbers.value",
+        "ci95": "numbers.ci95",
+        "count_source": "numbers.extras.n_hallucinated / n_specific"
+      },
+      "coverage": {
+        "stage2_complete_for_produced_readouts": true,
+        "produced_nonempty_readouts": 5614,
+        "produced_empty_abstentions": 1,
+        "stage2_api_or_missing_readouts": 0
+      },
+      "upstream_complete_preserved": false,
+      "scientific_status": "exploratory-full-bank-comparison",
+      "interpretation": "Current R1 absolute upstream numbers/pointwise CIs; final frozen native paired/joint comparisons not supplied here."
+    },
+    {
+      "family": "hallucination",
+      "condition": "editing_round1-n32",
+      "metric": "hallucination_rate",
+      "value": 0.4710223182145428,
+      "ci95": [
+        0.43537777777777775,
+        0.5067726205526458
+      ],
+      "higher_is_better": false,
+      "numerator": 2617,
+      "denominator": 5556,
+      "denominator_description": "specific nonempty readouts; contradiction incidence, not per-claim false fraction",
+      "source_fields": {
+        "value": "numbers.value",
+        "ci95": "numbers.ci95",
+        "count_source": "numbers.extras.n_hallucinated / n_specific"
+      },
+      "coverage": {
+        "stage2_complete_for_produced_readouts": true,
+        "produced_nonempty_readouts": 5614,
+        "produced_empty_abstentions": 1,
+        "stage2_api_or_missing_readouts": 0
+      },
+      "upstream_complete_preserved": false,
+      "scientific_status": "exploratory-full-bank-comparison",
+      "interpretation": "Current R1 absolute upstream numbers/pointwise CIs; final frozen native paired/joint comparisons not supplied here."
+    },
+    {
+      "family": "multihop_mt",
+      "condition": "best_n_exact-n32",
+      "metric": "pass_rate",
+      "value": 0.4,
+      "ci95": [
+        0.31,
+        0.49
+      ],
+      "higher_is_better": true,
+      "numerator": 40,
+      "denominator": 100,
+      "denominator_description": "questions whose required hidden bridges are found across original layers; optional final target excluded",
+      "source_fields": {
+        "value": "numbers.value",
+        "ci95": "numbers.ci95",
+        "count_source": "rows.pass / n_items"
+      },
+      "coverage": {
+        "expected_cells": 1100,
+        "judged_cells": 1100,
+        "api_or_missing_unjudged_cells": 0
+      },
+      "upstream_complete_preserved": false,
+      "scientific_status": "exploratory-full-bank-comparison",
+      "interpretation": "Current R1 absolute upstream numbers/pointwise CIs; final frozen native paired/joint comparisons not supplied here."
+    },
+    {
+      "family": "multihop_mt",
+      "condition": "pooled_greedy_swap-n32",
+      "metric": "pass_rate",
+      "value": 0.41,
+      "ci95": [
+        0.31,
+        0.5
+      ],
+      "higher_is_better": true,
+      "numerator": 41,
+      "denominator": 100,
+      "denominator_description": "questions whose required hidden bridges are found across original layers; optional final target excluded",
+      "source_fields": {
+        "value": "numbers.value",
+        "ci95": "numbers.ci95",
+        "count_source": "rows.pass / n_items"
+      },
+      "coverage": {
+        "expected_cells": 1100,
+        "judged_cells": 1100,
+        "api_or_missing_unjudged_cells": 0
+      },
+      "upstream_complete_preserved": false,
+      "scientific_status": "exploratory-full-bank-comparison",
+      "interpretation": "Current R1 absolute upstream numbers/pointwise CIs; final frozen native paired/joint comparisons not supplied here."
+    },
+    {
+      "family": "multihop_mt",
+      "condition": "editing_round1-n32",
+      "metric": "pass_rate",
+      "value": 0.41,
+      "ci95": [
+        0.31,
+        0.5
+      ],
+      "higher_is_better": true,
+      "numerator": 41,
+      "denominator": 100,
+      "denominator_description": "questions whose required hidden bridges are found across original layers; optional final target excluded",
+      "source_fields": {
+        "value": "numbers.value",
+        "ci95": "numbers.ci95",
+        "count_source": "rows.pass / n_items"
+      },
+      "coverage": {
+        "expected_cells": 1100,
+        "judged_cells": 1100,
+        "api_or_missing_unjudged_cells": 0
+      },
+      "upstream_complete_preserved": false,
+      "scientific_status": "exploratory-full-bank-comparison",
+      "interpretation": "Current R1 absolute upstream numbers/pointwise CIs; final frozen native paired/joint comparisons not supplied here."
+    },
+    {
+      "family": "chain_intermediates",
+      "condition": "best_n_exact-n32",
+      "metric": "pass_rate",
+      "value": 0.5083333333333333,
+      "ci95": [
+        0.425,
+        0.5916666666666667
+      ],
+      "higher_is_better": true,
+      "numerator": 61,
+      "denominator": 120,
+      "denominator_description": "questions with any original-grid passing site; chain uses first-ranked integer only",
+      "source_fields": {
+        "value": "numbers.value",
+        "ci95": "numbers.ci95",
+        "count_source": "rows.pass / n_items"
+      },
+      "coverage": {
+        "expected_cells": 1320,
+        "judged_cells": 1320,
+        "api_or_missing_unjudged_cells": 0
+      },
+      "upstream_complete_preserved": false,
+      "scientific_status": "exploratory-full-bank-comparison",
+      "interpretation": "Current R1 absolute upstream numbers/pointwise CIs; final frozen native paired/joint comparisons not supplied here."
+    },
+    {
+      "family": "chain_intermediates",
+      "condition": "pooled_greedy_swap-n32",
+      "metric": "pass_rate",
+      "value": 0.44166666666666665,
+      "ci95": [
+        0.35,
+        0.5333333333333333
+      ],
+      "higher_is_better": true,
+      "numerator": 53,
+      "denominator": 120,
+      "denominator_description": "questions with any original-grid passing site; chain uses first-ranked integer only",
+      "source_fields": {
+        "value": "numbers.value",
+        "ci95": "numbers.ci95",
+        "count_source": "rows.pass / n_items"
+      },
+      "coverage": {
+        "expected_cells": 1320,
+        "judged_cells": 1320,
+        "api_or_missing_unjudged_cells": 0
+      },
+      "upstream_complete_preserved": false,
+      "scientific_status": "exploratory-full-bank-comparison",
+      "interpretation": "Current R1 absolute upstream numbers/pointwise CIs; final frozen native paired/joint comparisons not supplied here."
+    },
+    {
+      "family": "chain_intermediates",
+      "condition": "editing_round1-n32",
+      "metric": "pass_rate",
+      "value": 0.44166666666666665,
+      "ci95": [
+        0.35,
+        0.5333333333333333
+      ],
+      "higher_is_better": true,
+      "numerator": 53,
+      "denominator": 120,
+      "denominator_description": "questions with any original-grid passing site; chain uses first-ranked integer only",
+      "source_fields": {
+        "value": "numbers.value",
+        "ci95": "numbers.ci95",
+        "count_source": "rows.pass / n_items"
+      },
+      "coverage": {
+        "expected_cells": 1320,
+        "judged_cells": 1320,
+        "api_or_missing_unjudged_cells": 0
+      },
+      "upstream_complete_preserved": false,
+      "scientific_status": "exploratory-full-bank-comparison",
+      "interpretation": "Current R1 absolute upstream numbers/pointwise CIs; final frozen native paired/joint comparisons not supplied here."
+    },
+    {
+      "family": "role_bound_association",
+      "condition": "best_n_exact-n32",
+      "metric": "pass_rate",
+      "value": 0.77,
+      "ci95": [
+        0.69,
+        0.85
+      ],
+      "higher_is_better": true,
+      "numerator": 77,
+      "denominator": 100,
+      "denominator_description": "questions with any original-grid site recovering all three role components",
+      "source_fields": {
+        "value": "numbers.value",
+        "ci95": "numbers.ci95",
+        "count_source": "rows grouped by id with any pass"
+      },
+      "coverage": {
+        "expected_cells": 11400,
+        "judged_cells": 11400,
+        "api_or_missing_unjudged_cells": 0
+      },
+      "upstream_complete_preserved": false,
+      "scientific_status": "exploratory-full-bank-comparison",
+      "interpretation": "Current R1 absolute upstream numbers/pointwise CIs; final frozen native paired/joint comparisons not supplied here."
+    },
+    {
+      "family": "role_bound_association",
+      "condition": "pooled_greedy_swap-n32",
+      "metric": "pass_rate",
+      "value": 0.81,
+      "ci95": [
+        0.73,
+        0.88
+      ],
+      "higher_is_better": true,
+      "numerator": 81,
+      "denominator": 100,
+      "denominator_description": "questions with any original-grid site recovering all three role components",
+      "source_fields": {
+        "value": "numbers.value",
+        "ci95": "numbers.ci95",
+        "count_source": "rows grouped by id with any pass"
+      },
+      "coverage": {
+        "expected_cells": 11400,
+        "judged_cells": 11400,
+        "api_or_missing_unjudged_cells": 0
+      },
+      "upstream_complete_preserved": false,
+      "scientific_status": "exploratory-full-bank-comparison",
+      "interpretation": "Current R1 absolute upstream numbers/pointwise CIs; final frozen native paired/joint comparisons not supplied here."
+    },
+    {
+      "family": "role_bound_association",
+      "condition": "editing_round1-n32",
+      "metric": "pass_rate",
+      "value": 0.81,
+      "ci95": [
+        0.73,
+        0.88
+      ],
+      "higher_is_better": true,
+      "numerator": 81,
+      "denominator": 100,
+      "denominator_description": "questions with any original-grid site recovering all three role components",
+      "source_fields": {
+        "value": "numbers.value",
+        "ci95": "numbers.ci95",
+        "count_source": "rows grouped by id with any pass"
+      },
+      "coverage": {
+        "expected_cells": 11400,
+        "judged_cells": 11400,
+        "api_or_missing_unjudged_cells": 0
+      },
+      "upstream_complete_preserved": false,
+      "scientific_status": "exploratory-full-bank-comparison",
+      "interpretation": "Current R1 absolute upstream numbers/pointwise CIs; final frozen native paired/joint comparisons not supplied here."
+    }
+  ],
+  "task_wide_reconstruction_gain_status": "Not reported: final v5 source-bound grouped/common-valid summaries are pending. Individual selected-cell gains below do not estimate a bank-wide gain.",
+  "changed_selected_output_cases": [
+    {
+      "cell_id": "chain_intermediates|chain-d2p-0230|L48|p00066",
+      "family": "chain_intermediates",
+      "item_id": "chain-d2p-0230",
+      "selection_policy": "Lexicographic first eligible changed selected R1 proposal among only the already-retained V4 diagnostic cell panel; maximum two total.",
+      "retained_diagnostic_references": [
+        {
+          "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+          "retained_diagnostic_case": {
+            "cell_id": "chain_intermediates|chain-d2p-0230|L48|p00066",
+            "item_id": "chain-d2p-0230",
+            "layer": 48,
+            "position": 66,
+            "baseline": {
+              "text": "- 18\n- 6 **(Because (3-1) = 2, and (2*5) = 10\n- 12** (Explanation: First, the value 5 was doubled to get 10, and then 2 was subtracted, resulting in\n- 6  (Explanation: $(3+5)=8$, then multiplied by 2 results in 16.",
+              "empty": false,
+              "pass": false,
+              "class": null,
+              "evidence": {
+                "named_values": [
+                  6,
+                  12,
+                  10
+                ],
+                "kind": "near",
+                "basis": "numeral_bag",
+                "reference_context": {
+                  "start": 11,
+                  "intermediates": [
+                    9
+                  ],
+                  "answer": 27,
+                  "depth": 2
+                },
+                "retained_raw_cache_record": {
+                  "key": "chain-d2p-0230|L048",
+                  "fp": "839226989b1920df",
+                  "ts": 1791679102.2757092,
+                  "result": {
+                    "basis": "numeral_bag",
+                    "quote": "- 18\n- 6",
+                    "states_value": true,
+                    "values": [
+                      6,
+                      12,
+                      10,
+                      16
+                    ]
+                  },
+                  "meta": {
+                    "item": "chain-d2p-0230",
+                    "layer": 48,
+                    "pos": null
+                  },
+                  "shared_cache_hit": {
+                    "content_key": "447d35161a7f18f8453247aa746da78340105e4c3ca202ae005ec5271d3abfa4",
+                    "request_key": "71fce789207ac20382b2f5e92024a66d67ad6361c1f927e9da4b7ea8b91f6fdd",
+                    "origin": {
+                      "attempt_id": "975e2864-a9ec-4c29-8df6-71366c013296",
+                      "original_cell_key": "chain-d2p-0230|L048",
+                      "request_key": "71fce789207ac20382b2f5e92024a66d67ad6361c1f927e9da4b7ea8b91f6fdd",
+                      "response_id": "chatcmpl-EXN641HrpglbDvdernYGiUgP9q1QS"
+                    }
+                  }
+                },
+                "evaluation_only": true
+              }
+            },
+            "proposed": {
+              "text": "- 12\n- 6\n- 9. (Note: The expression `(5-2)*3` equals 9\n- 24\n",
+              "empty": false,
+              "pass": true,
+              "class": null,
+              "evidence": {
+                "named_values": [
+                  9
+                ],
+                "kind": "hit",
+                "basis": "arithmetic",
+                "reference_context": {
+                  "start": 11,
+                  "intermediates": [
+                    9
+                  ],
+                  "answer": 27,
+                  "depth": 2
+                },
+                "retained_raw_cache_record": {
+                  "key": "chain-d2p-0230|L048",
+                  "fp": "92476d023f639df5",
+                  "ts": 1791679688.3591866,
+                  "result": {
+                    "states_value": true,
+                    "values": [
+                      9
+                    ],
+                    "basis": "arithmetic",
+                    "quote": "(5-2)*3` equals 9"
+                  },
+                  "meta": {
+                    "item": "chain-d2p-0230",
+                    "layer": 48,
+                    "pos": null
+                  }
+                },
+                "evaluation_only": true
+              }
+            },
+            "category": "win",
+            "endpoint_evidence": {
+              "unit": "whole_original_question_grid",
+              "item_id": "chain-d2p-0230",
+              "baseline_item_pass": false,
+              "proposed_item_pass": true,
+              "baseline_passing_cells": 0,
+              "proposed_passing_cells": 1,
+              "grid_cells": 11,
+              "witness_rule": "first passing proposed site"
+            },
+            "cell": {
+              "cell_id": "chain_intermediates|chain-d2p-0230|L48|p00066",
+              "family": "chain_intermediates",
+              "item_id": "chain-d2p-0230",
+              "group_id": "chain_intermediates:4bad98e0aa75e83c",
+              "layer": 48,
+              "position": 66,
+              "split": "validation",
+              "activation_sha256": "eeb26256141d965f22b29ef00c427945110aaa53f0d1686c99258388548ee33a"
+            },
+            "context_ref": "chain_intermediates|chain-d2p-0230|L48|p00066",
+            "baseline_condition": "capped_n1-n1",
+            "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+            "text_changed": true,
+            "review_status": "unreviewed_source_evidence",
+            "selection_policy": "deterministic_outcome_selected_supplement"
+          }
+        },
+        {
+          "condition": "consensus_semantic_v5_medium_support0.125_compatoff_vetoon-n16",
+          "retained_diagnostic_case": {
+            "cell_id": "chain_intermediates|chain-d2p-0230|L48|p00066",
+            "item_id": "chain-d2p-0230",
+            "layer": 48,
+            "position": 66,
+            "baseline": {
+              "text": "- 18\n- 6 **(Because (3-1) = 2, and (2*5) = 10\n- 12** (Explanation: First, the value 5 was doubled to get 10, and then 2 was subtracted, resulting in\n- 6  (Explanation: $(3+5)=8$, then multiplied by 2 results in 16.",
+              "empty": false,
+              "pass": false,
+              "class": null,
+              "evidence": {
+                "named_values": [
+                  6,
+                  12,
+                  10
+                ],
+                "kind": "near",
+                "basis": "numeral_bag",
+                "reference_context": {
+                  "start": 11,
+                  "intermediates": [
+                    9
+                  ],
+                  "answer": 27,
+                  "depth": 2
+                },
+                "retained_raw_cache_record": {
+                  "key": "chain-d2p-0230|L048",
+                  "fp": "839226989b1920df",
+                  "ts": 1791679102.2757092,
+                  "result": {
+                    "basis": "numeral_bag",
+                    "quote": "- 18\n- 6",
+                    "states_value": true,
+                    "values": [
+                      6,
+                      12,
+                      10,
+                      16
+                    ]
+                  },
+                  "meta": {
+                    "item": "chain-d2p-0230",
+                    "layer": 48,
+                    "pos": null
+                  },
+                  "shared_cache_hit": {
+                    "content_key": "447d35161a7f18f8453247aa746da78340105e4c3ca202ae005ec5271d3abfa4",
+                    "request_key": "71fce789207ac20382b2f5e92024a66d67ad6361c1f927e9da4b7ea8b91f6fdd",
+                    "origin": {
+                      "attempt_id": "975e2864-a9ec-4c29-8df6-71366c013296",
+                      "original_cell_key": "chain-d2p-0230|L048",
+                      "request_key": "71fce789207ac20382b2f5e92024a66d67ad6361c1f927e9da4b7ea8b91f6fdd",
+                      "response_id": "chatcmpl-EXN641HrpglbDvdernYGiUgP9q1QS"
+                    }
+                  }
+                },
+                "evaluation_only": true
+              }
+            },
+            "proposed": {
+              "text": "- 12\n- 6\n- 9. (Note: The expression `(5-2)*3` equals 9\n- 24\n",
+              "empty": false,
+              "pass": true,
+              "class": null,
+              "evidence": {
+                "named_values": [
+                  9
+                ],
+                "kind": "hit",
+                "basis": "arithmetic",
+                "reference_context": {
+                  "start": 11,
+                  "intermediates": [
+                    9
+                  ],
+                  "answer": 27,
+                  "depth": 2
+                },
+                "retained_raw_cache_record": {
+                  "key": "chain-d2p-0230|L048",
+                  "fp": "92476d023f639df5",
+                  "ts": 1791679702.1835623,
+                  "result": {
+                    "basis": "arithmetic",
+                    "quote": "(5-2)*3` equals 9",
+                    "states_value": true,
+                    "values": [
+                      9
+                    ]
+                  },
+                  "meta": {
+                    "item": "chain-d2p-0230",
+                    "layer": 48,
+                    "pos": null
+                  },
+                  "shared_cache_hit": {
+                    "content_key": "09bba14c4e7cd7fca9922946a39198b53dc459af35306745ac2176b20145239f",
+                    "request_key": "e27d7b5a84865695744b98b0c4422139ca5df498912cc4931530645412f39e23",
+                    "origin": {
+                      "attempt_id": "7de3189a-c715-4354-a7b9-6e4b8732fbd6",
+                      "original_cell_key": "chain-d2p-0230|L048",
+                      "request_key": "e27d7b5a84865695744b98b0c4422139ca5df498912cc4931530645412f39e23",
+                      "response_id": "chatcmpl-EXc1OkHfzXyTOoU5UORqooJi8vdd7"
+                    }
+                  }
+                },
+                "evaluation_only": true
+              }
+            },
+            "category": "win",
+            "endpoint_evidence": {
+              "unit": "whole_original_question_grid",
+              "item_id": "chain-d2p-0230",
+              "baseline_item_pass": false,
+              "proposed_item_pass": true,
+              "baseline_passing_cells": 0,
+              "proposed_passing_cells": 1,
+              "grid_cells": 11,
+              "witness_rule": "first passing proposed site"
+            },
+            "cell": {
+              "cell_id": "chain_intermediates|chain-d2p-0230|L48|p00066",
+              "family": "chain_intermediates",
+              "item_id": "chain-d2p-0230",
+              "group_id": "chain_intermediates:4bad98e0aa75e83c",
+              "layer": 48,
+              "position": 66,
+              "split": "validation",
+              "activation_sha256": "eeb26256141d965f22b29ef00c427945110aaa53f0d1686c99258388548ee33a"
+            },
+            "context_ref": "chain_intermediates|chain-d2p-0230|L48|p00066",
+            "baseline_condition": "capped_n1-n1",
+            "condition": "consensus_semantic_v5_medium_support0.125_compatoff_vetoon-n16",
+            "text_changed": true,
+            "review_status": "unreviewed_source_evidence",
+            "selection_policy": "deterministic_outcome_selected_supplement"
+          }
+        }
+      ],
+      "full_context": {
+        "source_bank_item": {
+          "depth": 2,
+          "cond": false,
+          "kinds": [
+            "sub",
+            "triple"
+          ],
+          "steps": [
+            "Subtract 2.",
+            "Multiply it by 3."
+          ],
+          "start": 11,
+          "intermediates": [
+            9
+          ],
+          "untaken": [
+            null
+          ],
+          "answer": 27,
+          "prompt": "Apply the steps below, in order, to the starting number given at the end.\nSubtract 2.\nMultiply it by 3.\nThe starting number is 11. What is the final number? Reply with only the final number, nothing else.",
+          "prompt_first": "Start with the number 11 and apply the steps below, in order.\nSubtract 2.\nMultiply it by 3.\nWhat is the final number? Reply with only the final number, nothing else.",
+          "literals": [
+            2,
+            3,
+            11
+          ],
+          "distractors": [
+            [
+              11,
+              27,
+              8,
+              3
+            ]
+          ],
+          "name": "chain-d2p-0230",
+          "gate": {
+            "last": {
+              "ok": true,
+              "greedy_ok": true,
+              "correct": 10,
+              "n": 10,
+              "perfect": true
+            },
+            "first": {
+              "ok": false,
+              "greedy_ok": true,
+              "correct": 7,
+              "n": 10,
+              "perfect": false
+            }
+          }
+        },
+        "historical_anchor_context": null,
+        "evaluation_context": null,
+        "evaluation_only": true
+      },
+      "exact_cohort_cell": {
+        "activation_sha256": "eeb26256141d965f22b29ef00c427945110aaa53f0d1686c99258388548ee33a",
+        "cell_id": "chain_intermediates|chain-d2p-0230|L48|p00066",
+        "family": "chain_intermediates",
+        "group_id": "chain_intermediates:4bad98e0aa75e83c",
+        "item_id": "chain-d2p-0230",
+        "layer": 48,
+        "original_split": "validation",
+        "position": 66,
+        "split": "validation",
+        "token": "\n\n"
+      },
+      "canonical_spec_sha256": "f4cd0dce919dce19ea7a6eb9478e270520576c91a5d291f38b57586eb5096aaf",
+      "full_selected_candidate": {
+        "candidate_id": "chain_intermediates|chain-d2p-0230|L48|p00066:F:r1:p1",
+        "change_summary": "Closed the complete explanations where their endings were clear; left the final truncated assertion unchanged.",
+        "deleted_words": [
+          "2",
+          "(3*3",
+          "3"
+        ],
+        "id": "p1",
+        "introduced_words": [
+          "2)",
+          "(3*3)",
+          "3)"
+        ],
+        "parent_candidate_id": "chain_intermediates|chain-d2p-0230|L48|p00066:initial:pooled_greedy_swap",
+        "parent_id": "s1",
+        "provider_proposal_id": null,
+        "text": "- 18** (Explanation: First, subtract 2 from 20 to get 18, then multiply by 2)\n- 6 ** Explanation: First subtract 2 from the input (5-2=3), then multiply by 3 (3*3)\n- 27 (Explanation: First subtract 2 from 29 to get 27, then multiply by 3)\n- 15 ## Explanation: First subtract 1 from the input (10 - 1 = 9), then multiply the",
+        "word_delta_caveat": "Text differences, not an atomic factual-claim or truth audit.",
+        "origin": "editing_round1",
+        "parser_flags": [],
+        "atom_metadata": [
+          {
+            "phrase_id": "chain_intermediates|chain-d2p-0230|L48|p00066:F:r1:p1:0",
+            "text": "18** (Explanation: First, subtract 2 from 20 to get 18, then multiply by 2)\n",
+            "scored_text": "18** (Explanation: First, subtract 2 from 20 to get 18, then multiply by 2)",
+            "scored_token_ids": [
+              16,
+              23,
+              332,
+              318,
+              67407,
+              25,
+              5339,
+              11,
+              31192,
+              220,
+              17,
+              494,
+              220,
+              17,
+              15,
+              310,
+              615,
+              220,
+              16,
+              23,
+              11,
+              1179,
+              29283,
+              539,
+              220,
+              17,
+              8
+            ],
+            "original_token_count": 27,
+            "scored_token_count": 27,
+            "truncated": false,
+            "unscored_suffix_ids": [],
+            "cache_key": "4ec812fa5db8fd815ffdec8ff6643611dc3da6f5884974106108c37eec822524",
+            "layer": 48,
+            "source_span": [
+              2,
+              78
+            ]
+          },
+          {
+            "phrase_id": "chain_intermediates|chain-d2p-0230|L48|p00066:F:r1:p1:1",
+            "text": "6 ** Explanation: First subtract 2 from the input (5-2=3), then multiply by 3 (3*3)\n",
+            "scored_text": "6 ** Explanation: First subtract 2 from the input (5-2=3), then multiply by 3 (3*3)",
+            "scored_token_ids": [
+              21,
+              2972,
+              68868,
+              25,
+              5339,
+              31192,
+              220,
+              17,
+              494,
+              279,
+              1879,
+              318,
+              20,
+              12,
+              17,
+              28,
+              18,
+              681,
+              1179,
+              29283,
+              539,
+              220,
+              18,
+              318,
+              18,
+              9,
+              18,
+              8
+            ],
+            "original_token_count": 28,
+            "scored_token_count": 28,
+            "truncated": false,
+            "unscored_suffix_ids": [],
+            "cache_key": "11506f8ffe33e25cd7e107b08e46b55c6e34ecbf3ab7588c9116962de27f571d",
+            "layer": 48,
+            "source_span": [
+              80,
+              164
+            ]
+          },
+          {
+            "phrase_id": "chain_intermediates|chain-d2p-0230|L48|p00066:F:r1:p1:2",
+            "text": "27 (Explanation: First subtract 2 from 29 to get 27, then multiply by 3)\n",
+            "scored_text": "27 (Explanation: First subtract 2 from 29 to get 27, then multiply by 3)",
+            "scored_token_ids": [
+              17,
+              22,
+              318,
+              67407,
+              25,
+              5339,
+              31192,
+              220,
+              17,
+              494,
+              220,
+              17,
+              24,
+              310,
+              615,
+              220,
+              17,
+              22,
+              11,
+              1179,
+              29283,
+              539,
+              220,
+              18,
+              8
+            ],
+            "original_token_count": 25,
+            "scored_token_count": 25,
+            "truncated": false,
+            "unscored_suffix_ids": [],
+            "cache_key": "ac9b6dd7e71bc124d9e796e453e683fc6cb0dbd781ba90c9bf1f3fa027825e0a",
+            "layer": 48,
+            "source_span": [
+              166,
+              239
+            ]
+          },
+          {
+            "phrase_id": "chain_intermediates|chain-d2p-0230|L48|p00066:F:r1:p1:3",
+            "text": "15 ## Explanation: First subtract 1 from the input (10 - 1 = 9), then multiply the",
+            "scored_text": "15 ## Explanation: First subtract 1 from the input (10 - 1 = 9), then multiply the",
+            "scored_token_ids": [
+              16,
+              20,
+              7460,
+              68868,
+              25,
+              5339,
+              31192,
+              220,
+              16,
+              494,
+              279,
+              1879,
+              318,
+              16,
+              15,
+              471,
+              220,
+              16,
+              283,
+              220,
+              24,
+              681,
+              1179,
+              29283,
+              279
+            ],
+            "original_token_count": 25,
+            "scored_token_count": 25,
+            "truncated": false,
+            "unscored_suffix_ids": [],
+            "cache_key": "f7b80c429c805fbde03c0676a861830509f6f0ee8e725e8675ce7b48dab5b5ef",
+            "layer": 48,
+            "source_span": [
+              241,
+              323
+            ]
+          }
+        ],
+        "exact_fve": 0.4159099911861043,
+        "coefficients": [
+          16.20202290885824,
+          2.9186002244150284,
+          17.18238595315497,
+          2.668734136080064
+        ],
+        "released80_fve": 0.415894091129303,
+        "token_count": 116,
+        "bullet_count": 4
+      },
+      "actual_eligible_parent": {
+        "candidate_id": "chain_intermediates|chain-d2p-0230|L48|p00066:initial:pooled_greedy_swap",
+        "exact_fve": 0.41193308185159494,
+        "source_method": "pooled_greedy_swap",
+        "text": "- 18** (Explanation: First, subtract 2 from 20 to get 18, then multiply by 2\n- 6 ** Explanation: First subtract 2 from the input (5-2=3), then multiply by 3 (3*3\n- 27 (Explanation: First subtract 2 from 29 to get 27, then multiply by 3\n- 15 ## Explanation: First subtract 1 from the input (10 - 1 = 9), then multiply the\n",
+        "origin": "unchanged_parent",
+        "parent_reported_fve": 0.4119330945900668,
+        "parser_flags": [],
+        "atom_metadata": [
+          {
+            "phrase_id": "chain_intermediates|chain-d2p-0230|L48|p00066:initial:pooled_greedy_swap:0",
+            "text": "18** (Explanation: First, subtract 2 from 20 to get 18, then multiply by 2\n",
+            "scored_text": "18** (Explanation: First, subtract 2 from 20 to get 18, then multiply by 2",
+            "scored_token_ids": [
+              16,
+              23,
+              332,
+              318,
+              67407,
+              25,
+              5339,
+              11,
+              31192,
+              220,
+              17,
+              494,
+              220,
+              17,
+              15,
+              310,
+              615,
+              220,
+              16,
+              23,
+              11,
+              1179,
+              29283,
+              539,
+              220,
+              17
+            ],
+            "original_token_count": 26,
+            "scored_token_count": 26,
+            "truncated": false,
+            "unscored_suffix_ids": [],
+            "cache_key": "cf2c96a39eb270ba3984fbe410004ae38418887e0d949535ffea42a0c4933512",
+            "layer": 48,
+            "source_span": [
+              2,
+              77
+            ]
+          },
+          {
+            "phrase_id": "chain_intermediates|chain-d2p-0230|L48|p00066:initial:pooled_greedy_swap:1",
+            "text": "6 ** Explanation: First subtract 2 from the input (5-2=3), then multiply by 3 (3*3\n",
+            "scored_text": "6 ** Explanation: First subtract 2 from the input (5-2=3), then multiply by 3 (3*3",
+            "scored_token_ids": [
+              21,
+              2972,
+              68868,
+              25,
+              5339,
+              31192,
+              220,
+              17,
+              494,
+              279,
+              1879,
+              318,
+              20,
+              12,
+              17,
+              28,
+              18,
+              681,
+              1179,
+              29283,
+              539,
+              220,
+              18,
+              318,
+              18,
+              9,
+              18
+            ],
+            "original_token_count": 27,
+            "scored_token_count": 27,
+            "truncated": false,
+            "unscored_suffix_ids": [],
+            "cache_key": "cb52b54768176dc49238ae76bd9bdcbee8d7468336ce811402bc518920f1bf81",
+            "layer": 48,
+            "source_span": [
+              79,
+              162
+            ]
+          },
+          {
+            "phrase_id": "chain_intermediates|chain-d2p-0230|L48|p00066:initial:pooled_greedy_swap:2",
+            "text": "27 (Explanation: First subtract 2 from 29 to get 27, then multiply by 3\n",
+            "scored_text": "27 (Explanation: First subtract 2 from 29 to get 27, then multiply by 3",
+            "scored_token_ids": [
+              17,
+              22,
+              318,
+              67407,
+              25,
+              5339,
+              31192,
+              220,
+              17,
+              494,
+              220,
+              17,
+              24,
+              310,
+              615,
+              220,
+              17,
+              22,
+              11,
+              1179,
+              29283,
+              539,
+              220,
+              18
+            ],
+            "original_token_count": 24,
+            "scored_token_count": 24,
+            "truncated": false,
+            "unscored_suffix_ids": [],
+            "cache_key": "afe8d0a814e8083f16f015514da45bf373f92dcd942407c0de0b020064929932",
+            "layer": 48,
+            "source_span": [
+              164,
+              236
+            ]
+          },
+          {
+            "phrase_id": "chain_intermediates|chain-d2p-0230|L48|p00066:initial:pooled_greedy_swap:3",
+            "text": "15 ## Explanation: First subtract 1 from the input (10 - 1 = 9), then multiply the\n",
+            "scored_text": "15 ## Explanation: First subtract 1 from the input (10 - 1 = 9), then multiply the",
+            "scored_token_ids": [
+              16,
+              20,
+              7460,
+              68868,
+              25,
+              5339,
+              31192,
+              220,
+              16,
+              494,
+              279,
+              1879,
+              318,
+              16,
+              15,
+              471,
+              220,
+              16,
+              283,
+              220,
+              24,
+              681,
+              1179,
+              29283,
+              279
+            ],
+            "original_token_count": 25,
+            "scored_token_count": 25,
+            "truncated": false,
+            "unscored_suffix_ids": [],
+            "cache_key": "f7b80c429c805fbde03c0676a861830509f6f0ee8e725e8675ce7b48dab5b5ef",
+            "layer": 48,
+            "source_span": [
+              238,
+              321
+            ]
+          }
+        ],
+        "coefficients": [
+          24.9198692709531,
+          4.231696856362031,
+          7.42162529676554,
+          2.172387097381458
+        ],
+        "released80_fve": 0.41153860092163086,
+        "token_count": 114,
+        "bullet_count": 4
+      },
+      "all_eligible_original_parent_full_texts": [
+        {
+          "candidate_id": "chain_intermediates|chain-d2p-0230|L48|p00066:initial:best_n_exact",
+          "exact_fve": 0.4076170964238769,
+          "source_method": "best_n_exact",
+          "text": "- 36\n- 12 （Explanation: (5 - 2) * 3 = 3 * 3 = 9\n- 18** (Explanation: First, subtract 2 from 20 to get 18, then multiply by 2\n- 15 **Explanation:** First, subtract 2 from 35 to get 33. Then multiply by 2 to get the final result",
+          "origin": "unchanged_parent",
+          "parent_reported_fve": 0.40761710644172366,
+          "parser_flags": [],
+          "atom_metadata": [
+            {
+              "phrase_id": "chain_intermediates|chain-d2p-0230|L48|p00066:initial:best_n_exact:0",
+              "text": "36\n",
+              "scored_text": "36",
+              "scored_token_ids": [
+                18,
+                21
+              ],
+              "original_token_count": 2,
+              "scored_token_count": 2,
+              "truncated": false,
+              "unscored_suffix_ids": [],
+              "cache_key": "9cfa6a16e5f74816c5d58da967b76d00279954c4e4b2c95470d7e6bad88bea42",
+              "layer": 48,
+              "source_span": [
+                2,
+                5
+              ]
+            },
+            {
+              "phrase_id": "chain_intermediates|chain-d2p-0230|L48|p00066:initial:best_n_exact:1",
+              "text": "12 （Explanation: (5 - 2) * 3 = 3 * 3 = 9\n",
+              "scored_text": "12 （Explanation: (5 - 2) * 3 = 3 * 3 = 9",
+              "scored_token_ids": [
+                16,
+                17,
+                40938,
+                67407,
+                25,
+                318,
+                20,
+                471,
+                220,
+                17,
+                8,
+                348,
+                220,
+                18,
+                283,
+                220,
+                18,
+                348,
+                220,
+                18,
+                283,
+                220,
+                24
+              ],
+              "original_token_count": 23,
+              "scored_token_count": 23,
+              "truncated": false,
+              "unscored_suffix_ids": [],
+              "cache_key": "e0239f2052553d81bd2fb57c1c1b985dff2c1c9765d45acdd9903c1fb0d29e9a",
+              "layer": 48,
+              "source_span": [
+                7,
+                48
+              ]
+            },
+            {
+              "phrase_id": "chain_intermediates|chain-d2p-0230|L48|p00066:initial:best_n_exact:2",
+              "text": "18** (Explanation: First, subtract 2 from 20 to get 18, then multiply by 2\n",
+              "scored_text": "18** (Explanation: First, subtract 2 from 20 to get 18, then multiply by 2",
+              "scored_token_ids": [
+                16,
+                23,
+                332,
+                318,
+                67407,
+                25,
+                5339,
+                11,
+                31192,
+                220,
+                17,
+                494,
+                220,
+                17,
+                15,
+                310,
+                615,
+                220,
+                16,
+                23,
+                11,
+                1179,
+                29283,
+                539,
+                220,
+                17
+              ],
+              "original_token_count": 26,
+              "scored_token_count": 26,
+              "truncated": false,
+              "unscored_suffix_ids": [],
+              "cache_key": "cf2c96a39eb270ba3984fbe410004ae38418887e0d949535ffea42a0c4933512",
+              "layer": 48,
+              "source_span": [
+                50,
+                125
+              ]
+            },
+            {
+              "phrase_id": "chain_intermediates|chain-d2p-0230|L48|p00066:initial:best_n_exact:3",
+              "text": "15 **Explanation:** First, subtract 2 from 35 to get 33. Then multiply by 2 to get the final result",
+              "scored_text": "15 **Explanation:** First, subtract 2 from 35 to get 33. Then multiply by 2 to get the final result",
+              "scored_token_ids": [
+                16,
+                20,
+                2972,
+                67407,
+                64700,
+                5339,
+                11,
+                31192,
+                220,
+                17,
+                494,
+                220,
+                18,
+                20,
+                310,
+                615,
+                220,
+                18,
+                18,
+                13,
+                4844,
+                29283,
+                539,
+                220,
+                17,
+                310,
+                615,
+                279,
+                1534,
+                1067
+              ],
+              "original_token_count": 30,
+              "scored_token_count": 30,
+              "truncated": false,
+              "unscored_suffix_ids": [],
+              "cache_key": "1340a040d959370a0837ed2051928629041af1bbc3a5f7ce36806e8912bb1810",
+              "layer": 48,
+              "source_span": [
+                127,
+                226
+              ]
+            }
+          ],
+          "coefficients": [
+            0.0,
+            0.0,
+            37.31071388119197,
+            0.25182858905181343
+          ],
+          "released80_fve": 0.406424880027771,
+          "token_count": 92,
+          "bullet_count": 4
+        },
+        {
+          "candidate_id": "chain_intermediates|chain-d2p-0230|L48|p00066:initial:pooled_greedy_swap",
+          "exact_fve": 0.41193308185159494,
+          "source_method": "pooled_greedy_swap",
+          "text": "- 18** (Explanation: First, subtract 2 from 20 to get 18, then multiply by 2\n- 6 ** Explanation: First subtract 2 from the input (5-2=3), then multiply by 3 (3*3\n- 27 (Explanation: First subtract 2 from 29 to get 27, then multiply by 3\n- 15 ## Explanation: First subtract 1 from the input (10 - 1 = 9), then multiply the\n",
+          "origin": "unchanged_parent",
+          "parent_reported_fve": 0.4119330945900668,
+          "parser_flags": [],
+          "atom_metadata": [
+            {
+              "phrase_id": "chain_intermediates|chain-d2p-0230|L48|p00066:initial:pooled_greedy_swap:0",
+              "text": "18** (Explanation: First, subtract 2 from 20 to get 18, then multiply by 2\n",
+              "scored_text": "18** (Explanation: First, subtract 2 from 20 to get 18, then multiply by 2",
+              "scored_token_ids": [
+                16,
+                23,
+                332,
+                318,
+                67407,
+                25,
+                5339,
+                11,
+                31192,
+                220,
+                17,
+                494,
+                220,
+                17,
+                15,
+                310,
+                615,
+                220,
+                16,
+                23,
+                11,
+                1179,
+                29283,
+                539,
+                220,
+                17
+              ],
+              "original_token_count": 26,
+              "scored_token_count": 26,
+              "truncated": false,
+              "unscored_suffix_ids": [],
+              "cache_key": "cf2c96a39eb270ba3984fbe410004ae38418887e0d949535ffea42a0c4933512",
+              "layer": 48,
+              "source_span": [
+                2,
+                77
+              ]
+            },
+            {
+              "phrase_id": "chain_intermediates|chain-d2p-0230|L48|p00066:initial:pooled_greedy_swap:1",
+              "text": "6 ** Explanation: First subtract 2 from the input (5-2=3), then multiply by 3 (3*3\n",
+              "scored_text": "6 ** Explanation: First subtract 2 from the input (5-2=3), then multiply by 3 (3*3",
+              "scored_token_ids": [
+                21,
+                2972,
+                68868,
+                25,
+                5339,
+                31192,
+                220,
+                17,
+                494,
+                279,
+                1879,
+                318,
+                20,
+                12,
+                17,
+                28,
+                18,
+                681,
+                1179,
+                29283,
+                539,
+                220,
+                18,
+                318,
+                18,
+                9,
+                18
+              ],
+              "original_token_count": 27,
+              "scored_token_count": 27,
+              "truncated": false,
+              "unscored_suffix_ids": [],
+              "cache_key": "cb52b54768176dc49238ae76bd9bdcbee8d7468336ce811402bc518920f1bf81",
+              "layer": 48,
+              "source_span": [
+                79,
+                162
+              ]
+            },
+            {
+              "phrase_id": "chain_intermediates|chain-d2p-0230|L48|p00066:initial:pooled_greedy_swap:2",
+              "text": "27 (Explanation: First subtract 2 from 29 to get 27, then multiply by 3\n",
+              "scored_text": "27 (Explanation: First subtract 2 from 29 to get 27, then multiply by 3",
+              "scored_token_ids": [
+                17,
+                22,
+                318,
+                67407,
+                25,
+                5339,
+                31192,
+                220,
+                17,
+                494,
+                220,
+                17,
+                24,
+                310,
+                615,
+                220,
+                17,
+                22,
+                11,
+                1179,
+                29283,
+                539,
+                220,
+                18
+              ],
+              "original_token_count": 24,
+              "scored_token_count": 24,
+              "truncated": false,
+              "unscored_suffix_ids": [],
+              "cache_key": "afe8d0a814e8083f16f015514da45bf373f92dcd942407c0de0b020064929932",
+              "layer": 48,
+              "source_span": [
+                164,
+                236
+              ]
+            },
+            {
+              "phrase_id": "chain_intermediates|chain-d2p-0230|L48|p00066:initial:pooled_greedy_swap:3",
+              "text": "15 ## Explanation: First subtract 1 from the input (10 - 1 = 9), then multiply the\n",
+              "scored_text": "15 ## Explanation: First subtract 1 from the input (10 - 1 = 9), then multiply the",
+              "scored_token_ids": [
+                16,
+                20,
+                7460,
+                68868,
+                25,
+                5339,
+                31192,
+                220,
+                16,
+                494,
+                279,
+                1879,
+                318,
+                16,
+                15,
+                471,
+                220,
+                16,
+                283,
+                220,
+                24,
+                681,
+                1179,
+                29283,
+                279
+              ],
+              "original_token_count": 25,
+              "scored_token_count": 25,
+              "truncated": false,
+              "unscored_suffix_ids": [],
+              "cache_key": "f7b80c429c805fbde03c0676a861830509f6f0ee8e725e8675ce7b48dab5b5ef",
+              "layer": 48,
+              "source_span": [
+                238,
+                321
+              ]
+            }
+          ],
+          "coefficients": [
+            24.9198692709531,
+            4.231696856362031,
+            7.42162529676554,
+            2.172387097381458
+          ],
+          "released80_fve": 0.41153860092163086,
+          "token_count": 114,
+          "bullet_count": 4
+        }
+      ],
+      "selected_proposal_lineage": {
+        "candidate_id": "chain_intermediates|chain-d2p-0230|L48|p00066:F:r1:p1",
+        "change_summary": "Closed the complete explanations where their endings were clear; left the final truncated assertion unchanged.",
+        "deleted_words": [
+          "2",
+          "(3*3",
+          "3"
+        ],
+        "id": "p1",
+        "introduced_words": [
+          "2)",
+          "(3*3)",
+          "3)"
+        ],
+        "parent_candidate_id": "chain_intermediates|chain-d2p-0230|L48|p00066:initial:pooled_greedy_swap",
+        "parent_id": "s1",
+        "provider_proposal_id": null,
+        "text": "- 18** (Explanation: First, subtract 2 from 20 to get 18, then multiply by 2)\n- 6 ** Explanation: First subtract 2 from the input (5-2=3), then multiply by 3 (3*3)\n- 27 (Explanation: First subtract 2 from 29 to get 27, then multiply by 3)\n- 15 ## Explanation: First subtract 1 from the input (10 - 1 = 9), then multiply the",
+        "word_delta_caveat": "Text differences, not an atomic factual-claim or truth audit."
+      },
+      "published_selected_row": {
+        "activation_sha256": "eeb26256141d965f22b29ef00c427945110aaa53f0d1686c99258388548ee33a",
+        "cell_id": "chain_intermediates|chain-d2p-0230|L48|p00066",
+        "family": "chain_intermediates",
+        "group_id": "chain_intermediates:4bad98e0aa75e83c",
+        "inventory_sha256": "753b2d9cab0daea0d19efef7d3222fd44921dbcf4669e6864d4f1bd4805421f8",
+        "item_id": "chain-d2p-0230",
+        "layer": 48,
+        "original_split": "validation",
+        "position": 66,
+        "selections": [
+          {
+            "bullet_count": 4,
+            "candidate_id": "chain_intermediates|chain-d2p-0230|L48|p00066:F:r1:p1",
+            "fits": {
+              "exact": {
+                "coefficients": [
+                  16.20202290885824,
+                  2.9186002244150284,
+                  17.18238595315497,
+                  2.668734136080064
+                ],
+                "fve": 0.4159099911861043
+              },
+              "released80": {
+                "fve": 0.415894091129303
+              }
+            },
+            "method": "editing_round1",
+            "n": 32,
+            "origin": "editing_round1",
+            "phrase_ids": [
+              "chain_intermediates|chain-d2p-0230|L48|p00066:F:r1:p1:0",
+              "chain_intermediates|chain-d2p-0230|L48|p00066:F:r1:p1:1",
+              "chain_intermediates|chain-d2p-0230|L48|p00066:F:r1:p1:2",
+              "chain_intermediates|chain-d2p-0230|L48|p00066:F:r1:p1:3"
+            ],
+            "text": "- 18** (Explanation: First, subtract 2 from 20 to get 18, then multiply by 2)\n- 6 ** Explanation: First subtract 2 from the input (5-2=3), then multiply by 3 (3*3)\n- 27 (Explanation: First subtract 2 from 29 to get 27, then multiply by 3)\n- 15 ## Explanation: First subtract 1 from the input (10 - 1 = 9), then multiply the",
+            "token_count": 116,
+            "trace": {
+              "scored_source_sha256": "1d903e76f663777c4098c0a2666865965f1c7fc44d24a93c16c59444c1b80d95",
+              "scoring_spec_sha256": "f4cd0dce919dce19ea7a6eb9478e270520576c91a5d291f38b57586eb5096aaf"
+            }
+          }
+        ],
+        "split": "validation",
+        "token": "\n\n"
+      },
+      "official_evidence": {
+        "best_n_exact-n32": {
+          "whole_question_and_grid_result": {
+            "id": "chain-d2p-0230",
+            "depth": 2,
+            "intermediates": [
+              9
+            ],
+            "answer": 27,
+            "start": 11,
+            "pass": false,
+            "earliest_layer": null,
+            "hitting_layers": [],
+            "hits_at": [],
+            "any_of_3": true,
+            "null_top1_near": 0.018181818181818184,
+            "named_by_layer": {
+              "20": [
+                -4
+              ],
+              "24": [],
+              "28": [
+                4,
+                7,
+                12
+              ],
+              "32": [
+                8,
+                27
+              ],
+              "36": [
+                15,
+                12,
+                -3
+              ],
+              "40": [
+                24,
+                27,
+                90
+              ],
+              "44": [
+                42,
+                15,
+                3
+              ],
+              "48": [
+                18,
+                9,
+                15
+              ],
+              "52": [
+                22,
+                375,
+                207
+              ],
+              "56": [
+                1,
+                86,
+                27
+              ],
+              "60": [
+                54,
+                246,
+                264
+              ]
+            },
+            "kind_by_layer": {
+              "20": "other",
+              "24": "none",
+              "28": "other",
+              "32": "near",
+              "36": "other",
+              "40": "other",
+              "44": "other",
+              "48": "other",
+              "52": "other",
+              "56": "other",
+              "60": "other"
+            },
+            "basis_by_layer": {
+              "20": "stated_result",
+              "24": "none",
+              "28": "stated_result",
+              "32": "stated_result",
+              "36": "stated_result",
+              "40": "stated_result",
+              "44": "stated_result",
+              "48": "arithmetic",
+              "52": "arithmetic",
+              "56": "arithmetic",
+              "60": "arithmetic"
+            }
+          },
+          "full_grid_readouts": [
+            {
+              "id": "chain-d2p-0230",
+              "layer": 20,
+              "pos": 66,
+              "samples": [
+                "- Here is the answer, following the instruction to subtract 45 from the result.\n- Here is the step-by-step deduction to arrive at the single number requested, following the\n- Here is the answer: -4. The instruction specifies the final step is to apply the square root function to the result of the addition. Here\n- Calculate 2 only. Here is the step-by-step solution, starting with the transformation rule provided.\n\n**Step 1:"
+              ],
+              "token": ""
+            },
+            {
+              "id": "chain-d2p-0230",
+              "layer": 24,
+              "pos": 66,
+              "samples": [
+                "- Here is the step-by-step solution to reach the final answer.\n- Here is the result of following the instructions step-by-step: Subtract 5, then reverse the digits. The answer is\n- Here is the step-by-step deduction to reach the final number. Please follow the steps exactly as requested.\n- Here is the step-by-step solution following the reverse order of instructions: **Divide by two, then subtract five.**\n\n### Step 1:"
+              ],
+              "token": ""
+            },
+            {
+              "id": "chain-d2p-0230",
+              "layer": 28,
+              "pos": 66,
+              "samples": [
+                "- Here is the step-by-step thought process to reach the final answer, keeping the steps\n- 12 (or simply the final number after the transformation). Here is the step-by-step deduction.\n- The final number is 4. Here is the single-line answer as requested: 4\n\n- Here is the final number after following the instructions: 7\n\n**Explanation of Steps:**\n\n1."
+              ],
+              "token": ""
+            },
+            {
+              "id": "chain-d2p-0230",
+              "layer": 32,
+              "pos": 66,
+              "samples": [
+                "- Here is the result following the instructions strictly: Subtract 1 from the result of the\n- 12 (The number after performing the math: 12 + 15 = 27, then subtract \n- 12 (Here is the step-by-step calculation: Start with 48, subtract 12, then double the result.)\n\n1\n- The final number is 8.\n\n**Explanation:**\n1. Start with 15.\n2. Add 3 to"
+              ],
+              "token": ""
+            },
+            {
+              "id": "chain-d2p-0230",
+              "layer": 36,
+              "pos": 66,
+              "samples": [
+                "- 12\n- 12 (Explanation: The input number is 2. Subtract 5 to get -3. Multiply by 2 to get -6\n- 15 (Explanation: First, multiply 6 by 2 to get 12. Then add 3 to get 15.)\n- 18**\n\nExplanation: The formula is (5 × x - 3) × 2. Starting with 2, subtract 3 to get"
+              ],
+              "token": ""
+            },
+            {
+              "id": "chain-d2p-0230",
+              "layer": 40,
+              "pos": 66,
+              "samples": [
+                "- 15\n- 27 (Explanation: First, (6 - 2) = 4. Then, multiply by 3: 4 * 3 =\n- 24  # Explanation: The result is 24. First, subtract 2 from the input to get 5, then multiply by\n- 90** (Explanation: First, subtract 2 from the input to get 8. Then, multiply by 3: 8 * 3 = 2"
+              ],
+              "token": ""
+            },
+            {
+              "id": "chain-d2p-0230",
+              "layer": 44,
+              "pos": 66,
+              "samples": [
+                "- 12\n- 15  Here is the step-by-step calculation:\n- 15  # Explanation: (3 - 2) * 3 = 3. The result is 15.\n- 42** (Explanation: First subtract 1 from 15 to get 14, then multiply by 3 to get 42.)\n\nLet's break down the calculation step-by-step"
+              ],
+              "token": ""
+            },
+            {
+              "id": "chain-d2p-0230",
+              "layer": 48,
+              "pos": 66,
+              "samples": [
+                "- 36\n- 12 （Explanation: (5 - 2) * 3 = 3 * 3 = 9\n- 18** (Explanation: First, subtract 2 from 20 to get 18, then multiply by 2\n- 15 **Explanation:** First, subtract 2 from 35 to get 33. Then multiply by 2 to get the final result"
+              ],
+              "token": ""
+            },
+            {
+              "id": "chain-d2p-0230",
+              "layer": 52,
+              "pos": 66,
+              "samples": [
+                "- 18 | Explanation: (7 * 3) + 1 = 22\n- 375 $$ (or 207 if you prefer the\n- 729 $$ *(Or, in Google Sheets, simply `=(7*12) + 48`)\n- 1077 | (Explanation: $(32+23) \\times 3$)\n```\n\n###"
+              ],
+              "token": ""
+            },
+            {
+              "id": "chain-d2p-0230",
+              "layer": 56,
+              "pos": 66,
+              "samples": [
+                "- 33                     # Note: 13*(9-1) = 1\n- 29                          # Modified for syntax validity\n- 31                          # Original math: 27 * 3 + 5 = 86\n- 27 * (3 - 1)  # Output: 27 (Original expression: 27 * 3 + 5"
+              ],
+              "token": ""
+            },
+            {
+              "id": "chain-d2p-0230",
+              "layer": 60,
+              "pos": 66,
+              "samples": [
+                "- 29] Multiply by 97 and add 25 to get the\n- 27    %29  # Final rotation degrees (30 + 97)\n- 27      % (Note: 17*3 + 3 = 54, corrected from 25\n- 294, 504       # Note: (43-1)*6 = 246. You wrote 264"
+              ],
+              "token": ""
+            }
+          ],
+          "anchor_readout": {
+            "id": "chain-d2p-0230",
+            "layer": 48,
+            "pos": 66,
+            "samples": [
+              "- 36\n- 12 （Explanation: (5 - 2) * 3 = 3 * 3 = 9\n- 18** (Explanation: First, subtract 2 from 20 to get 18, then multiply by 2\n- 15 **Explanation:** First, subtract 2 from 35 to get 33. Then multiply by 2 to get the final result"
+            ],
+            "token": ""
+          },
+          "local_first_ranked_numbers": [
+            18,
+            9,
+            15
+          ],
+          "local_kind": "other",
+          "local_pass": false
+        },
+        "pooled_greedy_swap-n32": {
+          "whole_question_and_grid_result": {
+            "id": "chain-d2p-0230",
+            "depth": 2,
+            "intermediates": [
+              9
+            ],
+            "answer": 27,
+            "start": 11,
+            "pass": true,
+            "earliest_layer": 40,
+            "hitting_layers": [
+              40
+            ],
+            "hits_at": [],
+            "any_of_3": true,
+            "null_top1_near": 0.03636363636363637,
+            "named_by_layer": {
+              "20": [
+                -4,
+                30,
+                140
+              ],
+              "24": [
+                7,
+                2
+              ],
+              "28": [
+                32,
+                7,
+                3
+              ],
+              "32": [
+                64,
+                120
+              ],
+              "36": [
+                6,
+                -2,
+                7
+              ],
+              "40": [
+                9,
+                7,
+                27
+              ],
+              "44": [
+                42,
+                14,
+                12
+              ],
+              "48": [
+                18,
+                6,
+                27
+              ],
+              "52": [
+                4,
+                15,
+                1077
+              ],
+              "56": [
+                86,
+                1,
+                45
+              ],
+              "60": [
+                54,
+                25,
+                27
+              ]
+            },
+            "kind_by_layer": {
+              "20": "other",
+              "24": "near",
+              "28": "other",
+              "32": "other",
+              "36": "near",
+              "40": "hit",
+              "44": "other",
+              "48": "other",
+              "52": "other",
+              "56": "other",
+              "60": "other"
+            },
+            "basis_by_layer": {
+              "20": "stated_result",
+              "24": "stated_result",
+              "28": "stated_result",
+              "32": "stated_result",
+              "36": "stated_result",
+              "40": "arithmetic",
+              "44": "arithmetic",
+              "48": "stated_result",
+              "52": "stated_result",
+              "56": "arithmetic",
+              "60": "arithmetic"
+            }
+          },
+          "full_grid_readouts": [
+            {
+              "id": "chain-d2p-0230",
+              "layer": 20,
+              "pos": 66,
+              "samples": [
+                "- Here is the answer: -4. The instruction specifies the final step is to apply the square root function to the result of the addition. Here\n- 140 (Explanation: Follow the instruction strictly: Multiply the initial number by 3. No other steps or conditions are required.)\n- The prompt asks for the final number after applying the specific operation described. Here is the single-line answer as requested:\n- **30** (Explanation: Subtract 5 from the starting number 35 to get the final result\n"
+              ],
+              "token": ""
+            },
+            {
+              "id": "chain-d2p-0230",
+              "layer": 24,
+              "pos": 66,
+              "samples": [
+                "- Here is the result of following the instructions step-by-step: Subtract 5, then reverse the digits. The answer is\n- Here is the answer following the steps backward: 2. Divide the result by 2. 1. Subtract 5. The answer is\n- 2. Subtract 2 from the result. (Please note: The prompt asks for the final number after following the chain of operations.\n- The final answer is **7**. Here is the step-by-step deduction following the reverse order of instructions provided:\n"
+              ],
+              "token": ""
+            },
+            {
+              "id": "chain-d2p-0230",
+              "layer": 28,
+              "pos": 66,
+              "samples": [
+                "- Here is the final number after following the instructions: 7\n\n**Explanation of Steps:**\n\n1.\n- Here is the final result without showing intermediate steps, as requested.\n\n**3**\n\n###\n- Here is the step-by-step calculation followed by the final answer on one line.\n\n**\n- 32 (or simply the final state after following the steps) The answer is **32**. Here is the step-by-step\n"
+              ],
+              "token": ""
+            },
+            {
+              "id": "chain-d2p-0230",
+              "layer": 32,
+              "pos": 66,
+              "samples": [
+                "- Here is the result following the instructions strictly: Subtract 1 from the result of the\n- 16. (Explanation: The final result after applying all the specified operations is\n- Here is the result following the instructions strictly: **64**\n\n*(Explanation: 10 + 5 =\n- 120 (Explanation: Start with 100, subtract 2, then square the result. $100 - 2 = 98$. $98^"
+              ],
+              "token": ""
+            },
+            {
+              "id": "chain-d2p-0230",
+              "layer": 36,
+              "pos": 66,
+              "samples": [
+                "- 66** Explanation: First, multiply the initial number by 2, then subtract 3. (5 *\n- 12 (Explanation: 3 - 5 = -2, multiplied by 2 equals -\n- The answer is 6. Here's the step-by-step calculation: Start with 3, multiply by 2 to get 6,\n- 21** Explanation: The expression is ((5 * 2) - 3) * 3. First, multiply 5 by 2 to get"
+              ],
+              "token": ""
+            },
+            {
+              "id": "chain-d2p-0230",
+              "layer": 40,
+              "pos": 66,
+              "samples": [
+                "- 90** (Explanation: First, subtract 2 from the input to get 8. Then, multiply by 3: 8 * 3 = 2\n- 27 ``` Explanation: First, the input 4 is subtracted by 1 to get 3. Then, that result is multiplied by\n- 63 (Explanation: First, (10 - 7) = 3. Then, multiply by 3: 3 * 3 = 9.)\n\n###\n- The result of applying the formula (2 * (3 + 1)) - 1 is **7\n"
+              ],
+              "token": ""
+            },
+            {
+              "id": "chain-d2p-0230",
+              "layer": 44,
+              "pos": 66,
+              "samples": [
+                "- 42** (Explanation: First subtract 1 from 15 to get 14, then multiply by 3 to get 42.)\n\nLet's break down the calculation step-by-step\n- 12  # Explanation: (5 - 1) * 3 = 12\n- 36``` Explanation: The expression (7-1) results in 6, and multiplying that by 3 gives 18.\n- 15** (Here's how the calculation works step-by-step based on your instructions: `(5 - 1) * 3 = 12`)\n\nLet me\n"
+              ],
+              "token": ""
+            },
+            {
+              "id": "chain-d2p-0230",
+              "layer": 48,
+              "pos": 66,
+              "samples": [
+                "- 18** (Explanation: First, subtract 2 from 20 to get 18, then multiply by 2\n- 6 ** Explanation: First subtract 2 from the input (5-2=3), then multiply by 3 (3*3\n- 27 (Explanation: First subtract 2 from 29 to get 27, then multiply by 3\n- 15 ## Explanation: First subtract 1 from the input (10 - 1 = 9), then multiply the\n"
+              ],
+              "token": ""
+            },
+            {
+              "id": "chain-d2p-0230",
+              "layer": 52,
+              "pos": 66,
+              "samples": [
+                "- 33 | Explanation: The formula `(A2*3)+B2` results in 4\n- 15 | (Explanation: (10-3) * 5)\n```\n*Note: In your prompt, you asked for Excel formula outputs,\n- 1077 | (Explanation: $(32+23) \\times 3$)\n```\n\n###\n- 39                   // (15 * 3) - 6\n"
+              ],
+              "token": ""
+            },
+            {
+              "id": "chain-d2p-0230",
+              "layer": 56,
+              "pos": 66,
+              "samples": [
+                "- 31                          # Original math: 27 * 3 + 5 = 86\n- 33                     # Note: 13*(9-1) = 1\n- 27 ------------------ # Initial assignment (3 teams * 15 = 45\n- 29                ' Expression 2: 15 * (3 * 5) - 10\n"
+              ],
+              "token": ""
+            },
+            {
+              "id": "chain-d2p-0230",
+              "layer": 60,
+              "pos": 66,
+              "samples": [
+                "- 27      % (Note: 17*3 + 3 = 54, corrected from 25\n- 29,57    % 27 * 11 + 6\n- 23   % (14 * 13) + 9\n- 27                  %  (27*3=81)\n"
+              ],
+              "token": ""
+            }
+          ],
+          "anchor_readout": {
+            "id": "chain-d2p-0230",
+            "layer": 48,
+            "pos": 66,
+            "samples": [
+              "- 18** (Explanation: First, subtract 2 from 20 to get 18, then multiply by 2\n- 6 ** Explanation: First subtract 2 from the input (5-2=3), then multiply by 3 (3*3\n- 27 (Explanation: First subtract 2 from 29 to get 27, then multiply by 3\n- 15 ## Explanation: First subtract 1 from the input (10 - 1 = 9), then multiply the\n"
+            ],
+            "token": ""
+          },
+          "local_first_ranked_numbers": [
+            18,
+            6,
+            27
+          ],
+          "local_kind": "other",
+          "local_pass": false
+        },
+        "editing_round1-n32": {
+          "whole_question_and_grid_result": {
+            "id": "chain-d2p-0230",
+            "depth": 2,
+            "intermediates": [
+              9
+            ],
+            "answer": 27,
+            "start": 11,
+            "pass": true,
+            "earliest_layer": 40,
+            "hitting_layers": [
+              40
+            ],
+            "hits_at": [],
+            "any_of_3": true,
+            "null_top1_near": 0.03636363636363637,
+            "named_by_layer": {
+              "20": [
+                -4,
+                30,
+                140
+              ],
+              "24": [
+                7,
+                2
+              ],
+              "28": [
+                32,
+                7,
+                3
+              ],
+              "32": [
+                64,
+                120
+              ],
+              "36": [
+                6,
+                -2,
+                7
+              ],
+              "40": [
+                9,
+                7,
+                27
+              ],
+              "44": [
+                42,
+                14,
+                12
+              ],
+              "48": [
+                18,
+                6,
+                27
+              ],
+              "52": [
+                4,
+                15,
+                1077
+              ],
+              "56": [
+                86,
+                1,
+                45
+              ],
+              "60": [
+                54,
+                25,
+                27
+              ]
+            },
+            "kind_by_layer": {
+              "20": "other",
+              "24": "near",
+              "28": "other",
+              "32": "other",
+              "36": "near",
+              "40": "hit",
+              "44": "other",
+              "48": "other",
+              "52": "other",
+              "56": "other",
+              "60": "other"
+            },
+            "basis_by_layer": {
+              "20": "stated_result",
+              "24": "stated_result",
+              "28": "stated_result",
+              "32": "stated_result",
+              "36": "stated_result",
+              "40": "arithmetic",
+              "44": "arithmetic",
+              "48": "stated_result",
+              "52": "stated_result",
+              "56": "arithmetic",
+              "60": "arithmetic"
+            }
+          },
+          "full_grid_readouts": [
+            {
+              "id": "chain-d2p-0230",
+              "layer": 20,
+              "pos": 66,
+              "samples": [
+                "- Here is the answer: -4. The instruction specifies the final step is to apply the square root function to the result of the addition. Here\n- 140 (Explanation: Follow the instruction strictly: Multiply the initial number by 3. No other steps or conditions are required.)\n- The prompt asks for the final number after applying the specific operation described. Here is the single-line answer as requested:\n- **30** (Explanation: Subtract 5 from the starting number 35 to get the final result\n"
+              ],
+              "token": "\n\n"
+            },
+            {
+              "id": "chain-d2p-0230",
+              "layer": 24,
+              "pos": 66,
+              "samples": [
+                "- Here is the result of following the instructions step-by-step: Subtract 5, then reverse the digits. The answer is\n- Here is the answer following the steps backward: 2. Divide the result by 2. 1. Subtract 5. The answer is\n- 2. Subtract 2 from the result. (Please note: The prompt asks for the final number after following the chain of operations.\n- The final answer is **7**. Here is the step-by-step deduction following the reverse order of instructions provided:\n"
+              ],
+              "token": "\n\n"
+            },
+            {
+              "id": "chain-d2p-0230",
+              "layer": 28,
+              "pos": 66,
+              "samples": [
+                "- Here is the final number after following the instructions: 7\n\n**Explanation of Steps:**\n\n1.\n- Here is the final result without showing intermediate steps, as requested.\n\n**3**\n\n###\n- Here is the step-by-step calculation followed by the final answer on one line.\n\n**\n- 32 (or simply the final state after following the steps) The answer is **32**. Here is the step-by-step\n"
+              ],
+              "token": "\n\n"
+            },
+            {
+              "id": "chain-d2p-0230",
+              "layer": 32,
+              "pos": 66,
+              "samples": [
+                "- Here is the result following the instructions strictly: Subtract 1 from the result of the\n- 16. (Explanation: The final result after applying all the specified operations is\n- Here is the result following the instructions strictly: **64**\n\n*(Explanation: 10 + 5 =\n- 120 (Explanation: Start with 100, subtract 2, then square the result. $100 - 2 = 98$. $98^"
+              ],
+              "token": "\n\n"
+            },
+            {
+              "id": "chain-d2p-0230",
+              "layer": 36,
+              "pos": 66,
+              "samples": [
+                "- 66** Explanation: First, multiply the initial number by 2, then subtract 3. (5 *\n- 12 (Explanation: 3 - 5 = -2, multiplied by 2 equals -\n- The answer is 6. Here's the step-by-step calculation: Start with 3, multiply by 2 to get 6,\n- 21** Explanation: The expression is ((5 * 2) - 3) * 3. First, multiply 5 by 2 to get"
+              ],
+              "token": "\n\n"
+            },
+            {
+              "id": "chain-d2p-0230",
+              "layer": 40,
+              "pos": 66,
+              "samples": [
+                "- 90** (Explanation: First, subtract 2 from the input to get 8. Then, multiply by 3: 8 * 3 = 2\n- 27 ``` Explanation: First, the input 4 is subtracted by 1 to get 3. Then, that result is multiplied by\n- 63 (Explanation: First, (10 - 7) = 3. Then, multiply by 3: 3 * 3 = 9.)\n\n###\n- The result of applying the formula (2 * (3 + 1)) - 1 is **7\n"
+              ],
+              "token": "\n\n"
+            },
+            {
+              "id": "chain-d2p-0230",
+              "layer": 44,
+              "pos": 66,
+              "samples": [
+                "- 42** (Explanation: First subtract 1 from 15 to get 14, then multiply by 3 to get 42.)\n\nLet's break down the calculation step-by-step\n- 12  # Explanation: (5 - 1) * 3 = 12\n- 36``` Explanation: The expression (7-1) results in 6, and multiplying that by 3 gives 18.\n- 15** (Here's how the calculation works step-by-step based on your instructions: `(5 - 1) * 3 = 12`)\n\nLet me\n"
+              ],
+              "token": "\n\n"
+            },
+            {
+              "id": "chain-d2p-0230",
+              "layer": 48,
+              "pos": 66,
+              "samples": [
+                "- 18** (Explanation: First, subtract 2 from 20 to get 18, then multiply by 2)\n- 6 ** Explanation: First subtract 2 from the input (5-2=3), then multiply by 3 (3*3)\n- 27 (Explanation: First subtract 2 from 29 to get 27, then multiply by 3)\n- 15 ## Explanation: First subtract 1 from the input (10 - 1 = 9), then multiply the"
+              ],
+              "token": "\n\n"
+            },
+            {
+              "id": "chain-d2p-0230",
+              "layer": 52,
+              "pos": 66,
+              "samples": [
+                "- 33 | Explanation: The formula `(A2*3)+B2` results in 4\n- 15 | (Explanation: (10-3) * 5)\n```\n*Note: In your prompt, you asked for Excel formula outputs,\n- 1077 | (Explanation: $(32+23) \\times 3$)\n```\n\n###\n- 39                   // (15 * 3) - 6\n"
+              ],
+              "token": "\n\n"
+            },
+            {
+              "id": "chain-d2p-0230",
+              "layer": 56,
+              "pos": 66,
+              "samples": [
+                "- 31 # Original math: 27 * 3 + 5 = 86\n- 33 # Note: 13*(9-1) = 1\n- 27 # Initial assignment (3 teams * 15 = 45\n- 29 # Expression 2: 15 * (3 * 5) - 10"
+              ],
+              "token": "\n\n"
+            },
+            {
+              "id": "chain-d2p-0230",
+              "layer": 60,
+              "pos": 66,
+              "samples": [
+                "- 27      % (Note: 17*3 + 3 = 54, corrected from 25\n- 29,57    % 27 * 11 + 6\n- 23   % (14 * 13) + 9\n- 27                  %  (27*3=81)\n"
+              ],
+              "token": "\n\n"
+            }
+          ],
+          "anchor_readout": {
+            "id": "chain-d2p-0230",
+            "layer": 48,
+            "pos": 66,
+            "samples": [
+              "- 18** (Explanation: First, subtract 2 from 20 to get 18, then multiply by 2)\n- 6 ** Explanation: First subtract 2 from the input (5-2=3), then multiply by 3 (3*3)\n- 27 (Explanation: First subtract 2 from 29 to get 27, then multiply by 3)\n- 15 ## Explanation: First subtract 1 from the input (10 - 1 = 9), then multiply the"
+            ],
+            "token": "\n\n"
+          },
+          "local_first_ranked_numbers": [
+            18,
+            6,
+            27
+          ],
+          "local_kind": "other",
+          "local_pass": false
+        }
+      },
+      "selected_fve_gain_vs_actual_replayed_parent": {
+        "raw": 0.003976909334509338,
+        "percentage_points": 0.39769093345093376,
+        "selected_raw": 0.4159099911861043,
+        "parent_raw": 0.41193308185159494,
+        "site_mask": "same activation/event and recorded exact NNLS scorer; one source-bound cell, no sampling interval",
+        "exceeds_approved_1e_5_tolerance": true
+      },
+      "review": {
+        "change": "The selected proposal adds closing parentheses to three truncated bullets and removes the final newline. The unrelated starting values20/5/29 and subtraction-by1 fragment remain.",
+        "context": "The actual source starts11, subtracts2 to get required intermediate9, then multiplies3 to get final27. The selected anchor instead has first-ranked18; its numeral9 appears only inside an unrelated start10/subtract1 fragment.",
+        "quality": "The official anchor remains other with ranked[18,6,27], and the item stays passing via layer40 exactly as in its pooled parent. The best32-to-pool whole-question gain already exists upstream of this edit.",
+        "interpretation": "Recorded fit rises for a formatting change without a new official recovery outcome. This does not establish a causal explanation for the fit change or validate the arithmetic."
+      },
+      "scored_prefix_vs_full_prose_audit": {
+        "atom_pairs": [
+          {
+            "atom_index": 0,
+            "before_original_tokens": 26,
+            "after_original_tokens": 27,
+            "before_scored_tokens": 26,
+            "after_scored_tokens": 27,
+            "before_scored_text": "18** (Explanation: First, subtract 2 from 20 to get 18, then multiply by 2",
+            "after_scored_text": "18** (Explanation: First, subtract 2 from 20 to get 18, then multiply by 2)",
+            "full_atom_text_changed": true,
+            "scored_token_ids_changed": true,
+            "before_truncated": false,
+            "after_truncated": false,
+            "before_unscored_suffix_ids": [],
+            "after_unscored_suffix_ids": []
+          },
+          {
+            "atom_index": 1,
+            "before_original_tokens": 27,
+            "after_original_tokens": 28,
+            "before_scored_tokens": 27,
+            "after_scored_tokens": 28,
+            "before_scored_text": "6 ** Explanation: First subtract 2 from the input (5-2=3), then multiply by 3 (3*3",
+            "after_scored_text": "6 ** Explanation: First subtract 2 from the input (5-2=3), then multiply by 3 (3*3)",
+            "full_atom_text_changed": true,
+            "scored_token_ids_changed": true,
+            "before_truncated": false,
+            "after_truncated": false,
+            "before_unscored_suffix_ids": [],
+            "after_unscored_suffix_ids": []
+          },
+          {
+            "atom_index": 2,
+            "before_original_tokens": 24,
+            "after_original_tokens": 25,
+            "before_scored_tokens": 24,
+            "after_scored_tokens": 25,
+            "before_scored_text": "27 (Explanation: First subtract 2 from 29 to get 27, then multiply by 3",
+            "after_scored_text": "27 (Explanation: First subtract 2 from 29 to get 27, then multiply by 3)",
+            "full_atom_text_changed": true,
+            "scored_token_ids_changed": true,
+            "before_truncated": false,
+            "after_truncated": false,
+            "before_unscored_suffix_ids": [],
+            "after_unscored_suffix_ids": []
+          },
+          {
+            "atom_index": 3,
+            "before_original_tokens": 25,
+            "after_original_tokens": 25,
+            "before_scored_tokens": 25,
+            "after_scored_tokens": 25,
+            "before_scored_text": "15 ## Explanation: First subtract 1 from the input (10 - 1 = 9), then multiply the",
+            "after_scored_text": "15 ## Explanation: First subtract 1 from the input (10 - 1 = 9), then multiply the",
+            "full_atom_text_changed": true,
+            "scored_token_ids_changed": false,
+            "before_truncated": false,
+            "after_truncated": false,
+            "before_unscored_suffix_ids": [],
+            "after_unscored_suffix_ids": []
+          }
+        ],
+        "auditable_fact": "All retained atoms in these two before/after pairs are below32 cleaned tokens. Recorded unscored suffix token lists are empty; no newly introduced factual suffix outside the scored prefix is observed here. Full text still contains trailing newline/spacing differences beyond what the cleaned atom text preserves.",
+        "hypothesis_only": "These observed scored-token changes are consistent with punctuation/spacing sensitivity of phrase reconstruction. This is not a causal mechanism audit, a general truncation claim, or evidence that the arithmetic became correct."
+      }
+    },
+    {
+      "cell_id": "chain_intermediates|chain-d2p-0263|L52|p00063",
+      "family": "chain_intermediates",
+      "item_id": "chain-d2p-0263",
+      "selection_policy": "Lexicographic first eligible changed selected R1 proposal among only the already-retained V4 diagnostic cell panel; maximum two total.",
+      "retained_diagnostic_references": [
+        {
+          "condition": "best_n_exact-n4",
+          "retained_diagnostic_case": {
+            "cell_id": "chain_intermediates|chain-d2p-0263|L52|p00063",
+            "item_id": "chain-d2p-0263",
+            "layer": 52,
+            "position": 63,
+            "baseline": {
+              "text": "- 9 解析：这是最后剩下的结果。\n- 6 （因为 -5 + 14 = 9\n- 9 $ （这是最终的答案，但题目问的是“经过加减运算后的值”）\n- 9$$ (Explanation: After subtracting 4, we added 8. $5 + 8 = 13$.)",
+              "empty": false,
+              "pass": false,
+              "class": null,
+              "evidence": {
+                "named_values": [
+                  9,
+                  13
+                ],
+                "kind": "other",
+                "basis": "arithmetic",
+                "reference_context": {
+                  "start": 6,
+                  "intermediates": [
+                    1
+                  ],
+                  "answer": 10,
+                  "depth": 2
+                },
+                "retained_raw_cache_record": {
+                  "key": "chain-d2p-0263|L052",
+                  "fp": "5cebda65067ee361",
+                  "ts": 1791679102.2958202,
+                  "result": {
+                    "basis": "arithmetic",
+                    "quote": "-5 + 14 = 9",
+                    "states_value": true,
+                    "values": [
+                      9,
+                      13
+                    ]
+                  },
+                  "meta": {
+                    "item": "chain-d2p-0263",
+                    "layer": 52,
+                    "pos": null
+                  },
+                  "shared_cache_hit": {
+                    "content_key": "145ea0dcbea329d6034aa4781db91517e144067d16bac8c4fdc6e2e3992b9364",
+                    "request_key": "cea63a50deed2545c0bce734e64414816a62aa084d982b70ba48dc765c77fd38",
+                    "origin": {
+                      "attempt_id": "ee0f51cb-ef39-4520-9869-1602da6b7cd1",
+                      "original_cell_key": "chain-d2p-0263|L052",
+                      "request_key": "cea63a50deed2545c0bce734e64414816a62aa084d982b70ba48dc765c77fd38",
+                      "response_id": "chatcmpl-EXSpNuh934NoYxke1KPi2PihO0GA2"
+                    }
+                  }
+                },
+                "evaluation_only": true
+              }
+            },
+            "proposed": {
+              "text": "- 9\n- 6 $ (since adding -4 is the inverse of subtracting 4)\n\nSo\n- 7$  (Explanation: 15 + (-3) + 6 = 18\n- 11  (Explanation: After subtracting 4, we added 8, resulting in 11)\n\n**Final Answer:**\nThe new number is **1",
+              "empty": false,
+              "pass": true,
+              "class": null,
+              "evidence": {
+                "named_values": [
+                  1,
+                  18,
+                  11
+                ],
+                "kind": "hit",
+                "basis": "stated_result",
+                "reference_context": {
+                  "start": 6,
+                  "intermediates": [
+                    1
+                  ],
+                  "answer": 10,
+                  "depth": 2
+                },
+                "retained_raw_cache_record": {
+                  "key": "chain-d2p-0263|L052",
+                  "fp": "cf91da1756f6e120",
+                  "ts": 1791679123.0937915,
+                  "result": {
+                    "states_value": true,
+                    "values": [
+                      1,
+                      18,
+                      11
+                    ],
+                    "basis": "stated_result",
+                    "quote": "The new number is **1"
+                  },
+                  "meta": {
+                    "item": "chain-d2p-0263",
+                    "layer": 52,
+                    "pos": null
+                  }
+                },
+                "evaluation_only": true
+              }
+            },
+            "category": "win",
+            "endpoint_evidence": {
+              "unit": "whole_original_question_grid",
+              "item_id": "chain-d2p-0263",
+              "baseline_item_pass": false,
+              "proposed_item_pass": true,
+              "baseline_passing_cells": 0,
+              "proposed_passing_cells": 1,
+              "grid_cells": 11,
+              "witness_rule": "first passing proposed site"
+            },
+            "cell": {
+              "cell_id": "chain_intermediates|chain-d2p-0263|L52|p00063",
+              "family": "chain_intermediates",
+              "item_id": "chain-d2p-0263",
+              "group_id": "chain_intermediates:2813bd9d6c9aa283",
+              "layer": 52,
+              "position": 63,
+              "split": "test",
+              "activation_sha256": "65a1d5b541297feb037bef9a9411563823a58ee5aa5274e743bb65f4e853c346"
+            },
+            "context_ref": "chain_intermediates|chain-d2p-0263|L52|p00063",
+            "baseline_condition": "capped_n1-n1",
+            "condition": "best_n_exact-n4",
+            "text_changed": true,
+            "review_status": "unreviewed_source_evidence",
+            "selection_policy": "deterministic_outcome_selected_supplement"
+          }
+        }
+      ],
+      "full_context": {
+        "source_bank_item": {
+          "depth": 2,
+          "cond": false,
+          "kinds": [
+            "sub",
+            "add"
+          ],
+          "steps": [
+            "Subtract 5.",
+            "Add 9."
+          ],
+          "start": 6,
+          "intermediates": [
+            1
+          ],
+          "untaken": [
+            null
+          ],
+          "answer": 10,
+          "prompt": "Apply the steps below, in order, to the starting number given at the end.\nSubtract 5.\nAdd 9.\nThe starting number is 6. What is the final number? Reply with only the final number, nothing else.",
+          "prompt_first": "Start with the number 6 and apply the steps below, in order.\nSubtract 5.\nAdd 9.\nWhat is the final number? Reply with only the final number, nothing else.",
+          "literals": [
+            5,
+            6,
+            9
+          ],
+          "distractors": [
+            [
+              6,
+              10,
+              2,
+              5
+            ]
+          ],
+          "name": "chain-d2p-0263",
+          "gate": {
+            "last": {
+              "ok": true,
+              "greedy_ok": true,
+              "correct": 10,
+              "n": 10,
+              "perfect": true
+            },
+            "first": {
+              "ok": true,
+              "greedy_ok": true,
+              "correct": 10,
+              "n": 10,
+              "perfect": true
+            }
+          }
+        },
+        "historical_anchor_context": null,
+        "evaluation_context": null,
+        "evaluation_only": true
+      },
+      "exact_cohort_cell": {
+        "activation_sha256": "65a1d5b541297feb037bef9a9411563823a58ee5aa5274e743bb65f4e853c346",
+        "cell_id": "chain_intermediates|chain-d2p-0263|L52|p00063",
+        "family": "chain_intermediates",
+        "group_id": "chain_intermediates:2813bd9d6c9aa283",
+        "item_id": "chain-d2p-0263",
+        "layer": 52,
+        "original_split": "test",
+        "position": 63,
+        "split": "test",
+        "token": "\n\n"
+      },
+      "canonical_spec_sha256": "f4cd0dce919dce19ea7a6eb9478e270520576c91a5d291f38b57586eb5096aaf",
+      "full_selected_candidate": {
+        "candidate_id": "chain_intermediates|chain-d2p-0263|L52|p00063:F:r1:p1",
+        "change_summary": "Normalized spacing while preserving the original statements.",
+        "deleted_words": [],
+        "id": "p1",
+        "introduced_words": [],
+        "parent_candidate_id": "chain_intermediates|chain-d2p-0263|L52|p00063:initial:pooled_greedy_swap",
+        "parent_id": "s1",
+        "provider_proposal_id": null,
+        "text": "- 8 $$ （解析：从7开始，加上9得到16，再减去4得到12）\n\n**答案\n- 10 (Explanation: After adding 7 and subtracting 2, we are left with\n- 6",
+        "word_delta_caveat": "Text differences, not an atomic factual-claim or truth audit.",
+        "origin": "editing_round1",
+        "parser_flags": [],
+        "atom_metadata": [
+          {
+            "phrase_id": "chain_intermediates|chain-d2p-0263|L52|p00063:F:r1:p1:0",
+            "text": "8 $$ （解析：从7开始，加上9得到16，再减去4得到12）\n\n**答案\n",
+            "scored_text": "8 $$ （解析：从7开始，加上9得到16，再减去4得到12）\n\n**答案",
+            "scored_token_ids": [
+              23,
+              25273,
+              40938,
+              100596,
+              4960,
+              96200,
+              22,
+              96932,
+              3709,
+              103717,
+              24,
+              98257,
+              16,
+              21,
+              3709,
+              96390,
+              130185,
+              19,
+              98257,
+              16,
+              17,
+              7313,
+              271,
+              332,
+              97632
+            ],
+            "original_token_count": 25,
+            "scored_token_count": 25,
+            "truncated": false,
+            "unscored_suffix_ids": [],
+            "cache_key": "bd0f1e7d332f525de4a503d2c0ce6cbd01324553fd4915c8aea901c08e399181",
+            "layer": 52,
+            "source_span": [
+              2,
+              40
+            ]
+          },
+          {
+            "phrase_id": "chain_intermediates|chain-d2p-0263|L52|p00063:F:r1:p1:1",
+            "text": "10 (Explanation: After adding 7 and subtracting 2, we are left with\n",
+            "scored_text": "10 (Explanation: After adding 7 and subtracting 2, we are left with",
+            "scored_token_ids": [
+              16,
+              15,
+              318,
+              67407,
+              25,
+              4486,
+              7594,
+              220,
+              22,
+              321,
+              31192,
+              286,
+              220,
+              17,
+              11,
+              567,
+              513,
+              2047,
+              440
+            ],
+            "original_token_count": 19,
+            "scored_token_count": 19,
+            "truncated": false,
+            "unscored_suffix_ids": [],
+            "cache_key": "8bb3b78e459c0e8819e84cdc2b40c6e33e5fb8adc811fa81f077d8a280209e03",
+            "layer": 52,
+            "source_span": [
+              42,
+              110
+            ]
+          },
+          {
+            "phrase_id": "chain_intermediates|chain-d2p-0263|L52|p00063:F:r1:p1:2",
+            "text": "6",
+            "scored_text": "6",
+            "scored_token_ids": [
+              21
+            ],
+            "original_token_count": 1,
+            "scored_token_count": 1,
+            "truncated": false,
+            "unscored_suffix_ids": [],
+            "cache_key": "3a8b50baa47b077a620e5c02a66476ecfd9b06090140f0877f36956d53c817c7",
+            "layer": 52,
+            "source_span": [
+              112,
+              113
+            ]
+          }
+        ],
+        "exact_fve": 0.2683160277084553,
+        "coefficients": [
+          14.060893931607351,
+          26.900310903904824,
+          0.584876307021597
+        ],
+        "released80_fve": 0.2683159112930298,
+        "token_count": 53,
+        "bullet_count": 3
+      },
+      "actual_eligible_parent": {
+        "candidate_id": "chain_intermediates|chain-d2p-0263|L52|p00063:initial:pooled_greedy_swap",
+        "exact_fve": 0.24988649354495696,
+        "source_method": "pooled_greedy_swap",
+        "text": "- 8 $$ （解析：从7开始，加上9得到16，再减去4得到12）\n\n**答案\n- 10  (Explanation: After adding 7 and subtracting 2, we are left with\n- 6\n",
+        "origin": "unchanged_parent",
+        "parent_reported_fve": 0.249886532193631,
+        "parser_flags": [],
+        "atom_metadata": [
+          {
+            "phrase_id": "chain_intermediates|chain-d2p-0263|L52|p00063:initial:pooled_greedy_swap:0",
+            "text": "8 $$ （解析：从7开始，加上9得到16，再减去4得到12）\n\n**答案\n",
+            "scored_text": "8 $$ （解析：从7开始，加上9得到16，再减去4得到12）\n\n**答案",
+            "scored_token_ids": [
+              23,
+              25273,
+              40938,
+              100596,
+              4960,
+              96200,
+              22,
+              96932,
+              3709,
+              103717,
+              24,
+              98257,
+              16,
+              21,
+              3709,
+              96390,
+              130185,
+              19,
+              98257,
+              16,
+              17,
+              7313,
+              271,
+              332,
+              97632
+            ],
+            "original_token_count": 25,
+            "scored_token_count": 25,
+            "truncated": false,
+            "unscored_suffix_ids": [],
+            "cache_key": "bd0f1e7d332f525de4a503d2c0ce6cbd01324553fd4915c8aea901c08e399181",
+            "layer": 52,
+            "source_span": [
+              2,
+              40
+            ]
+          },
+          {
+            "phrase_id": "chain_intermediates|chain-d2p-0263|L52|p00063:initial:pooled_greedy_swap:1",
+            "text": "10  (Explanation: After adding 7 and subtracting 2, we are left with\n",
+            "scored_text": "10  (Explanation: After adding 7 and subtracting 2, we are left with",
+            "scored_token_ids": [
+              16,
+              15,
+              220,
+              318,
+              67407,
+              25,
+              4486,
+              7594,
+              220,
+              22,
+              321,
+              31192,
+              286,
+              220,
+              17,
+              11,
+              567,
+              513,
+              2047,
+              440
+            ],
+            "original_token_count": 20,
+            "scored_token_count": 20,
+            "truncated": false,
+            "unscored_suffix_ids": [],
+            "cache_key": "201631347a25ac7697a21118d6f131d9692f94f1cbb80248a2789f9b279ea067",
+            "layer": 52,
+            "source_span": [
+              42,
+              111
+            ]
+          },
+          {
+            "phrase_id": "chain_intermediates|chain-d2p-0263|L52|p00063:initial:pooled_greedy_swap:2",
+            "text": "6\n",
+            "scored_text": "6",
+            "scored_token_ids": [
+              21
+            ],
+            "original_token_count": 1,
+            "scored_token_count": 1,
+            "truncated": false,
+            "unscored_suffix_ids": [],
+            "cache_key": "3a8b50baa47b077a620e5c02a66476ecfd9b06090140f0877f36956d53c817c7",
+            "layer": 52,
+            "source_span": [
+              113,
+              115
+            ]
+          }
+        ],
+        "coefficients": [
+          21.853238703464843,
+          18.179385455005832,
+          0.6811304889350688
+        ],
+        "released80_fve": 0.24988651275634766,
+        "token_count": 55,
+        "bullet_count": 3
+      },
+      "all_eligible_original_parent_full_texts": [
+        {
+          "candidate_id": "chain_intermediates|chain-d2p-0263|L52|p00063:initial:best_n_exact",
+          "exact_fve": 0.22870484115268142,
+          "source_method": "best_n_exact",
+          "text": "- 9 (Explanation: Starting with 5, add 4 to get 9, then subtract\n- 6  (since $11 + 3 = 14$, and $14 - 4 =\n- 9$$ （解释：先加 2 得 9，再加 -3 等于 6）\n\n### 答案\n- 8 $$ （解析：从7开始，加上9得到16，再减去4得到12）\n\n**答案",
+          "origin": "unchanged_parent",
+          "parent_reported_fve": 0.22870489233003943,
+          "parser_flags": [],
+          "atom_metadata": [
+            {
+              "phrase_id": "chain_intermediates|chain-d2p-0263|L52|p00063:initial:best_n_exact:0",
+              "text": "9 (Explanation: Starting with 5, add 4 to get 9, then subtract\n",
+              "scored_text": "9 (Explanation: Starting with 5, add 4 to get 9, then subtract",
+              "scored_token_ids": [
+                24,
+                318,
+                67407,
+                25,
+                26760,
+                440,
+                220,
+                20,
+                11,
+                884,
+                220,
+                19,
+                310,
+                615,
+                220,
+                24,
+                11,
+                1179,
+                31192
+              ],
+              "original_token_count": 19,
+              "scored_token_count": 19,
+              "truncated": false,
+              "unscored_suffix_ids": [],
+              "cache_key": "9b3663dbee60a2675de6d39e76d88ebc1c34d3c98811ce968e7418c84374935e",
+              "layer": 52,
+              "source_span": [
+                2,
+                65
+              ]
+            },
+            {
+              "phrase_id": "chain_intermediates|chain-d2p-0263|L52|p00063:initial:best_n_exact:1",
+              "text": "6  (since $11 + 3 = 14$, and $14 - 4 =\n",
+              "scored_text": "6  (since $11 + 3 = 14$, and $14 - 4 =",
+              "scored_token_ids": [
+                21,
+                220,
+                318,
+                10957,
+                393,
+                16,
+                16,
+                478,
+                220,
+                18,
+                283,
+                220,
+                16,
+                19,
+                53031,
+                321,
+                393,
+                16,
+                19,
+                471,
+                220,
+                19,
+                283
+              ],
+              "original_token_count": 23,
+              "scored_token_count": 23,
+              "truncated": false,
+              "unscored_suffix_ids": [],
+              "cache_key": "87881c1ff4cd0fe982b73909ecc842a464f31556b07b472946b53a2d856601db",
+              "layer": 52,
+              "source_span": [
+                67,
+                106
+              ]
+            },
+            {
+              "phrase_id": "chain_intermediates|chain-d2p-0263|L52|p00063:initial:best_n_exact:2",
+              "text": "9$$ （解释：先加 2 得 9，再加 -3 等于 6）\n\n### 答案\n",
+              "scored_text": "9$$ （解释：先加 2 得 9，再加 -3 等于 6）\n\n### 答案",
+              "scored_token_ids": [
+                24,
+                13682,
+                40938,
+                98682,
+                4960,
+                96218,
+                95984,
+                220,
+                17,
+                220,
+                95930,
+                220,
+                24,
+                3709,
+                117046,
+                471,
+                18,
+                220,
+                102149,
+                220,
+                21,
+                7313,
+                271,
+                13962,
+                220,
+                97632
+              ],
+              "original_token_count": 26,
+              "scored_token_count": 26,
+              "truncated": false,
+              "unscored_suffix_ids": [],
+              "cache_key": "8594acebc2c3c39f9b5b243fe9798e8c38acb13cb467e6a741dcc911474413a4",
+              "layer": 52,
+              "source_span": [
+                108,
+                145
+              ]
+            },
+            {
+              "phrase_id": "chain_intermediates|chain-d2p-0263|L52|p00063:initial:best_n_exact:3",
+              "text": "8 $$ （解析：从7开始，加上9得到16，再减去4得到12）\n\n**答案",
+              "scored_text": "8 $$ （解析：从7开始，加上9得到16，再减去4得到12）\n\n**答案",
+              "scored_token_ids": [
+                23,
+                25273,
+                40938,
+                100596,
+                4960,
+                96200,
+                22,
+                96932,
+                3709,
+                103717,
+                24,
+                98257,
+                16,
+                21,
+                3709,
+                96390,
+                130185,
+                19,
+                98257,
+                16,
+                17,
+                7313,
+                271,
+                332,
+                97632
+              ],
+              "original_token_count": 25,
+              "scored_token_count": 25,
+              "truncated": false,
+              "unscored_suffix_ids": [],
+              "cache_key": "bd0f1e7d332f525de4a503d2c0ce6cbd01324553fd4915c8aea901c08e399181",
+              "layer": 52,
+              "source_span": [
+                147,
+                184
+              ]
+            }
+          ],
+          "coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            36.4012530597752
+          ],
+          "released80_fve": 0.22870486974716187,
+          "token_count": 104,
+          "bullet_count": 4
+        },
+        {
+          "candidate_id": "chain_intermediates|chain-d2p-0263|L52|p00063:initial:pooled_greedy_swap",
+          "exact_fve": 0.24988649354495696,
+          "source_method": "pooled_greedy_swap",
+          "text": "- 8 $$ （解析：从7开始，加上9得到16，再减去4得到12）\n\n**答案\n- 10  (Explanation: After adding 7 and subtracting 2, we are left with\n- 6\n",
+          "origin": "unchanged_parent",
+          "parent_reported_fve": 0.249886532193631,
+          "parser_flags": [],
+          "atom_metadata": [
+            {
+              "phrase_id": "chain_intermediates|chain-d2p-0263|L52|p00063:initial:pooled_greedy_swap:0",
+              "text": "8 $$ （解析：从7开始，加上9得到16，再减去4得到12）\n\n**答案\n",
+              "scored_text": "8 $$ （解析：从7开始，加上9得到16，再减去4得到12）\n\n**答案",
+              "scored_token_ids": [
+                23,
+                25273,
+                40938,
+                100596,
+                4960,
+                96200,
+                22,
+                96932,
+                3709,
+                103717,
+                24,
+                98257,
+                16,
+                21,
+                3709,
+                96390,
+                130185,
+                19,
+                98257,
+                16,
+                17,
+                7313,
+                271,
+                332,
+                97632
+              ],
+              "original_token_count": 25,
+              "scored_token_count": 25,
+              "truncated": false,
+              "unscored_suffix_ids": [],
+              "cache_key": "bd0f1e7d332f525de4a503d2c0ce6cbd01324553fd4915c8aea901c08e399181",
+              "layer": 52,
+              "source_span": [
+                2,
+                40
+              ]
+            },
+            {
+              "phrase_id": "chain_intermediates|chain-d2p-0263|L52|p00063:initial:pooled_greedy_swap:1",
+              "text": "10  (Explanation: After adding 7 and subtracting 2, we are left with\n",
+              "scored_text": "10  (Explanation: After adding 7 and subtracting 2, we are left with",
+              "scored_token_ids": [
+                16,
+                15,
+                220,
+                318,
+                67407,
+                25,
+                4486,
+                7594,
+                220,
+                22,
+                321,
+                31192,
+                286,
+                220,
+                17,
+                11,
+                567,
+                513,
+                2047,
+                440
+              ],
+              "original_token_count": 20,
+              "scored_token_count": 20,
+              "truncated": false,
+              "unscored_suffix_ids": [],
+              "cache_key": "201631347a25ac7697a21118d6f131d9692f94f1cbb80248a2789f9b279ea067",
+              "layer": 52,
+              "source_span": [
+                42,
+                111
+              ]
+            },
+            {
+              "phrase_id": "chain_intermediates|chain-d2p-0263|L52|p00063:initial:pooled_greedy_swap:2",
+              "text": "6\n",
+              "scored_text": "6",
+              "scored_token_ids": [
+                21
+              ],
+              "original_token_count": 1,
+              "scored_token_count": 1,
+              "truncated": false,
+              "unscored_suffix_ids": [],
+              "cache_key": "3a8b50baa47b077a620e5c02a66476ecfd9b06090140f0877f36956d53c817c7",
+              "layer": 52,
+              "source_span": [
+                113,
+                115
+              ]
+            }
+          ],
+          "coefficients": [
+            21.853238703464843,
+            18.179385455005832,
+            0.6811304889350688
+          ],
+          "released80_fve": 0.24988651275634766,
+          "token_count": 55,
+          "bullet_count": 3
+        }
+      ],
+      "selected_proposal_lineage": {
+        "candidate_id": "chain_intermediates|chain-d2p-0263|L52|p00063:F:r1:p1",
+        "change_summary": "Normalized spacing while preserving the original statements.",
+        "deleted_words": [],
+        "id": "p1",
+        "introduced_words": [],
+        "parent_candidate_id": "chain_intermediates|chain-d2p-0263|L52|p00063:initial:pooled_greedy_swap",
+        "parent_id": "s1",
+        "provider_proposal_id": null,
+        "text": "- 8 $$ （解析：从7开始，加上9得到16，再减去4得到12）\n\n**答案\n- 10 (Explanation: After adding 7 and subtracting 2, we are left with\n- 6",
+        "word_delta_caveat": "Text differences, not an atomic factual-claim or truth audit."
+      },
+      "published_selected_row": {
+        "activation_sha256": "65a1d5b541297feb037bef9a9411563823a58ee5aa5274e743bb65f4e853c346",
+        "cell_id": "chain_intermediates|chain-d2p-0263|L52|p00063",
+        "family": "chain_intermediates",
+        "group_id": "chain_intermediates:2813bd9d6c9aa283",
+        "inventory_sha256": "753b2d9cab0daea0d19efef7d3222fd44921dbcf4669e6864d4f1bd4805421f8",
+        "item_id": "chain-d2p-0263",
+        "layer": 52,
+        "original_split": "test",
+        "position": 63,
+        "selections": [
+          {
+            "bullet_count": 3,
+            "candidate_id": "chain_intermediates|chain-d2p-0263|L52|p00063:F:r1:p1",
+            "fits": {
+              "exact": {
+                "coefficients": [
+                  14.060893931607351,
+                  26.900310903904824,
+                  0.584876307021597
+                ],
+                "fve": 0.2683160277084553
+              },
+              "released80": {
+                "fve": 0.2683159112930298
+              }
+            },
+            "method": "editing_round1",
+            "n": 32,
+            "origin": "editing_round1",
+            "phrase_ids": [
+              "chain_intermediates|chain-d2p-0263|L52|p00063:F:r1:p1:0",
+              "chain_intermediates|chain-d2p-0263|L52|p00063:F:r1:p1:1",
+              "chain_intermediates|chain-d2p-0263|L52|p00063:F:r1:p1:2"
+            ],
+            "text": "- 8 $$ （解析：从7开始，加上9得到16，再减去4得到12）\n\n**答案\n- 10 (Explanation: After adding 7 and subtracting 2, we are left with\n- 6",
+            "token_count": 53,
+            "trace": {
+              "scored_source_sha256": "1d903e76f663777c4098c0a2666865965f1c7fc44d24a93c16c59444c1b80d95",
+              "scoring_spec_sha256": "f4cd0dce919dce19ea7a6eb9478e270520576c91a5d291f38b57586eb5096aaf"
+            }
+          }
+        ],
+        "split": "test",
+        "token": "\n\n"
+      },
+      "official_evidence": {
+        "best_n_exact-n32": {
+          "whole_question_and_grid_result": {
+            "id": "chain-d2p-0263",
+            "depth": 2,
+            "intermediates": [
+              1
+            ],
+            "answer": 10,
+            "start": 6,
+            "pass": false,
+            "earliest_layer": null,
+            "hitting_layers": [],
+            "hits_at": [],
+            "any_of_3": false,
+            "null_top1_near": 0.0606060606060606,
+            "named_by_layer": {
+              "20": [
+                15,
+                6
+              ],
+              "24": [
+                3,
+                4
+              ],
+              "28": [
+                2,
+                3,
+                12
+              ],
+              "32": [
+                18,
+                16,
+                24
+              ],
+              "36": [
+                5,
+                3,
+                10
+              ],
+              "40": [
+                11,
+                0
+              ],
+              "44": [
+                12,
+                5,
+                6
+              ],
+              "48": [
+                5,
+                12
+              ],
+              "52": [
+                9,
+                6,
+                12
+              ],
+              "56": [
+                10,
+                11,
+                12
+              ],
+              "60": [
+                10
+              ]
+            },
+            "kind_by_layer": {
+              "20": "other",
+              "24": "near",
+              "28": "near",
+              "32": "other",
+              "36": "other",
+              "40": "other",
+              "44": "other",
+              "48": "other",
+              "52": "other",
+              "56": "other",
+              "60": "other"
+            },
+            "basis_by_layer": {
+              "20": "stated_result",
+              "24": "arithmetic",
+              "28": "stated_result",
+              "32": "stated_result",
+              "36": "stated_result",
+              "40": "arithmetic",
+              "44": "arithmetic",
+              "48": "stated_result",
+              "52": "arithmetic",
+              "56": "stated_result",
+              "60": "stated_result"
+            }
+          },
+          "full_grid_readouts": [
+            {
+              "id": "chain-d2p-0263",
+              "layer": 20,
+              "pos": 63,
+              "samples": [
+                "- Here is the step-by-step deduction to reach the result 15, as requested.\n- 28 (Explanation: The instruction explicitly asks for the result after subtracting 2 from the original value, regardless of\n- The answer is 6. Here is the step-by-step deduction without extra text, as requested: Start with 1. Subtract 4 to get\n- Here is the calculation, following your instructions precisely to reach the answer in one line.\n\n**Answer:**"
+              ],
+              "token": ""
+            },
+            {
+              "id": "chain-d2p-0263",
+              "layer": 24,
+              "pos": 63,
+              "samples": [
+                "- Here is the step-by-step deduction to solve the riddle.\n- Here is the result after applying the steps in reverse order: 4. Subtract 1 from 4 to get 3. The final\n- 1. Reverse the operation (subtract 7) and provide the final answer. Here is the step-by-step deduction to reach the answer.\n- The user wants me to subtract 3 from the result of the previous step. The prompt provides a series of instructions. I"
+              ],
+              "token": ""
+            },
+            {
+              "id": "chain-d2p-0263",
+              "layer": 28,
+              "pos": 63,
+              "samples": [
+                "- Here is the thought process to solve the riddle and output only the final number as requested:\n- Here is the final number after performing the subtraction: 2\n- The answer is **3**. (Since the prompt asks to perform the steps, here is the final coordinate after the transformation.)\n- Here is the final number after the operation. Do not explain the steps, just the result as requested.\n\n**12**\n\n###"
+              ],
+              "token": ""
+            },
+            {
+              "id": "chain-d2p-0263",
+              "layer": 32,
+              "pos": 63,
+              "samples": [
+                "- Here is the step-by-step calculation based on the instructions provided:\n- 16 (The final result after following the instructions: subtract 5 from the number that results from adding 5 and\n- Here is the result following the instructions strictly: 18\n\n*(Explanation: Start at 8, add 5 to get 13, then subtract 3 to get 10\n- 24**\n\n**Explanation:**\n1. Start with 2.\n2. Add 3 → 5."
+              ],
+              "token": ""
+            },
+            {
+              "id": "chain-d2p-0263",
+              "layer": 36,
+              "pos": 63,
+              "samples": [
+                "- 12\n- 5 (Explanation: Starting at 1, add 2 to get 3, then subtract 1 to get\n- 30 Explanation: The number after adding 4 and subtracting 2 is 5.\n- 12** (Explanation: Starting at 6, adding 5 results in 11, and subtracting 1 results in 10. The final answer is 10.)\n\nThe\n"
+              ],
+              "token": ""
+            },
+            {
+              "id": "chain-d2p-0263",
+              "layer": 40,
+              "pos": 63,
+              "samples": [
+                "- 11\n- 15\n- 12 (Explanation: 10 + 3 - 2 = 11. The final number after adding 5\n- 13 (Explanation: Starting with 5, the number becomes 8 after adding 3, then 0 after subtracting 8, resulting in a final value of\n"
+              ],
+              "token": ""
+            },
+            {
+              "id": "chain-d2p-0263",
+              "layer": 44,
+              "pos": 63,
+              "samples": [
+                "- 11\n- 3 + 3 = 6. The final value after subtracting 2 is **1\n- 12 (Explanation: Starting number 10, plus 3 equals 13, minus 1 equals 12\n- 5  // Explanation: The number was first incremented by 3, then decreased by 1, resulting in 5.\n\n```python"
+              ],
+              "token": ""
+            },
+            {
+              "id": "chain-d2p-0263",
+              "layer": 48,
+              "pos": 63,
+              "samples": [
+                "- 5\n- 12 (Explanation: Start at 10, add 5, subtract 3,\n- 5$$ (The result after adding 5 and subtracting 5 is 5\n- 5  // The final result after adding and subtracting is 5\n```\n\n### Step-by-step\n"
+              ],
+              "token": ""
+            },
+            {
+              "id": "chain-d2p-0263",
+              "layer": 52,
+              "pos": 63,
+              "samples": [
+                "- 9 (Explanation: Starting with 5, add 4 to get 9, then subtract\n- 6  (since $11 + 3 = 14$, and $14 - 4 =\n- 9$$ （解释：先加 2 得 9，再加 -3 等于 6）\n\n### 答案\n- 8 $$ （解析：从7开始，加上9得到16，再减去4得到12）\n\n**答案"
+              ],
+              "token": ""
+            },
+            {
+              "id": "chain-d2p-0263",
+              "layer": 56,
+              "pos": 63,
+              "samples": [
+                "- 6$$ (Explanation: $10 + 4 - 3 = 11\n- 10 $$ **Explanation:** We add 10 and then subtract 1. The result is\n- 12 $$ (Because $10 + 2 = 12$, and there were no subtractions)\n- 10$$ (After subtracting the 10)\n\nSo, the final answer is **10**.\n\n**"
+              ],
+              "token": ""
+            },
+            {
+              "id": "chain-d2p-0263",
+              "layer": 60,
+              "pos": 63,
+              "samples": [
+                "- 10 $$\n- 10$$ (This is the first complete answer)\n- 10-0 $$ *(The sum is now 10)*\n- 10** (Since $1 + 9 = 10$)\n\n***\n\n### Summary\nThe\n"
+              ],
+              "token": ""
+            }
+          ],
+          "anchor_readout": {
+            "id": "chain-d2p-0263",
+            "layer": 52,
+            "pos": 63,
+            "samples": [
+              "- 9 (Explanation: Starting with 5, add 4 to get 9, then subtract\n- 6  (since $11 + 3 = 14$, and $14 - 4 =\n- 9$$ （解释：先加 2 得 9，再加 -3 等于 6）\n\n### 答案\n- 8 $$ （解析：从7开始，加上9得到16，再减去4得到12）\n\n**答案"
+            ],
+            "token": ""
+          },
+          "local_first_ranked_numbers": [
+            9,
+            6,
+            12
+          ],
+          "local_kind": "other",
+          "local_pass": false
+        },
+        "pooled_greedy_swap-n32": {
+          "whole_question_and_grid_result": {
+            "id": "chain-d2p-0263",
+            "depth": 2,
+            "intermediates": [
+              1
+            ],
+            "answer": 10,
+            "start": 6,
+            "pass": false,
+            "earliest_layer": null,
+            "hitting_layers": [],
+            "hits_at": [],
+            "any_of_3": false,
+            "null_top1_near": 0.0,
+            "named_by_layer": {
+              "20": [
+                6,
+                13,
+                100
+              ],
+              "24": [
+                13,
+                4,
+                3
+              ],
+              "28": [
+                12,
+                37
+              ],
+              "32": [
+                18,
+                12,
+                5
+              ],
+              "36": [
+                5,
+                4,
+                3
+              ],
+              "40": [
+                6,
+                8,
+                0
+              ],
+              "44": [
+                12,
+                13,
+                15
+              ],
+              "48": [
+                5,
+                12
+              ],
+              "52": [
+                12,
+                16,
+                10
+              ],
+              "56": [
+                11,
+                10
+              ],
+              "60": [
+                10,
+                14,
+                100
+              ]
+            },
+            "kind_by_layer": {
+              "20": "other",
+              "24": "other",
+              "28": "other",
+              "32": "other",
+              "36": "other",
+              "40": "other",
+              "44": "other",
+              "48": "other",
+              "52": "other",
+              "56": "other",
+              "60": "other"
+            },
+            "basis_by_layer": {
+              "20": "stated_result",
+              "24": "stated_result",
+              "28": "stated_result",
+              "32": "stated_result",
+              "36": "stated_result",
+              "40": "arithmetic",
+              "44": "arithmetic",
+              "48": "stated_result",
+              "52": "arithmetic",
+              "56": "arithmetic",
+              "60": "arithmetic"
+            }
+          },
+          "full_grid_readouts": [
+            {
+              "id": "chain-d2p-0263",
+              "layer": 20,
+              "pos": 63,
+              "samples": [
+                "- The answer is 6. Here is the step-by-step deduction without extra text, as requested: Start with 1. Subtract 4 to get\n- 100 (Explanation: Subtract 10 from the initial value, then apply the operation specified. The final result is 13.)\n\n- Here is the step-by-step solution, strictly following the instruction to output only the final number.\n\n**\n- Here is the result following the exact instruction: Subtract 10 and output the result. No explanation or working out needed, as requested.\n"
+              ],
+              "token": ""
+            },
+            {
+              "id": "chain-d2p-0263",
+              "layer": 24,
+              "pos": 63,
+              "samples": [
+                "- Here is the answer following the instructions in reverse order: Subtract 2, then add 7. The final answer is **13\n- 5.1  (The user's instruction is to perform the steps in reverse order, starting from the final number and working backwards to the initial number.) Here is the\n- Here is the result after applying the steps in reverse order: 4. Subtract 1 from 4 to get 3. The final\n- Here is the answer after following the instructions step-by-step: **5**\n\nHere is the step-by-step deduction based"
+              ],
+              "token": ""
+            },
+            {
+              "id": "chain-d2p-0263",
+              "layer": 28,
+              "pos": 63,
+              "samples": [
+                "- Here is the final number after the operation. Do not explain the steps, just the result as requested.\n\n**12**\n\n###\n- Here is the thought process and final answer. Since the prompt asks for a short response, I will provide just the final number.\n\n**Answer: 37**\n- 12 (or more precisely, the final position is 12 after the specified transformations).\n\n**\n- Here is the thought process to solve the riddle and output only the final number as requested:\n"
+              ],
+              "token": ""
+            },
+            {
+              "id": "chain-d2p-0263",
+              "layer": 32,
+              "pos": 63,
+              "samples": [
+                "- Here is the result following the instructions strictly: 18\n\n*(Explanation: Start at 8, add 5 to get 13, then subtract 3 to get 10\n- 12 (Here is the final result after following the instructions strictly, without showing the intermediate steps.)\n\n1\n- Here is the step-by-step reasoning and the final answer, following the strict instruction to output only the final result:\n- The answer is 5.\n\n*(Explanation: Starting with 7, subtract 4 results in 3. Then, subtract 1 from that result,\n"
+              ],
+              "token": ""
+            },
+            {
+              "id": "chain-d2p-0263",
+              "layer": 36,
+              "pos": 63,
+              "samples": [
+                "- 30 Explanation: The number after adding 4 and subtracting 2 is 5.\n- 12  # Explanation: Starting at 2, add 5, subtract 3. The result is 4.\n- The result is 5. Here is the calculation: Start at 2, add 3 to get 5, subtract 2 to get 3, then add\n- 13 (Explanation: Start with 2, subtract 1, then add 5. 2 - 1 =\n"
+              ],
+              "token": ""
+            },
+            {
+              "id": "chain-d2p-0263",
+              "layer": 40,
+              "pos": 63,
+              "samples": [
+                "- 13 (Explanation: Starting with 5, the number becomes 8 after adding 3, then 0 after subtracting 8, resulting in a final value of\n- 5``` (Explanation: The user adds 5 to the initial value and subtracts 1. 0 + 5 -\n- 8 # Explanation: The final result is 8 because 5 + 3 - 2 = 6\n- 13 (Explanation: Start with 5, subtract 3, add 4. The result is\n"
+              ],
+              "token": ""
+            },
+            {
+              "id": "chain-d2p-0263",
+              "layer": 44,
+              "pos": 63,
+              "samples": [
+                "- 12 (Explanation: Starting number 10, plus 3 equals 13, minus 1 equals 12\n- 13 ## Explanation: First, we subtract 2 from the starting number, then add 5. The result is\n- 12** (The number 9 plus 5 equals 14, and then subtracting 1 results in 13.)\n\n### Explanation of\n- 12** (Explanation: The initial age was 10. Adding 5 results in 15. Then subtracting"
+              ],
+              "token": ""
+            },
+            {
+              "id": "chain-d2p-0263",
+              "layer": 48,
+              "pos": 63,
+              "samples": [
+                "- 12 (Explanation: Start at 10, add 5, subtract 3,\n- 5 ## Explanation: The expression 5 + (-3) + 3 evaluates to 5. The result is\n"
+              ],
+              "token": ""
+            },
+            {
+              "id": "chain-d2p-0263",
+              "layer": 52,
+              "pos": 63,
+              "samples": [
+                "- 8 $$ （解析：从7开始，加上9得到16，再减去4得到12）\n\n**答案\n- 10  (Explanation: After adding 7 and subtracting 2, we are left with\n- 6\n"
+              ],
+              "token": ""
+            },
+            {
+              "id": "chain-d2p-0263",
+              "layer": 56,
+              "pos": 63,
+              "samples": [
+                "- 6$$ (Explanation: $10 + 4 - 3 = 11\n- 10 $$ **Explanation:** We add 10 and then subtract 1. The result is\n- 10\n- 6$$ (Explanation: After adding 4 and then subtracting 2, the total is\n"
+              ],
+              "token": ""
+            },
+            {
+              "id": "chain-d2p-0263",
+              "layer": 60,
+              "pos": 63,
+              "samples": [
+                "- 10** (Since $1 + 9 = 10$)\n\n***\n\n### Summary\nThe\n- 10-11 $$ Explanation: The sum is 10. The\n- 10\n- 100 $$ (Because 5 + 9 = 14, and we add the 1 carried over\n"
+              ],
+              "token": ""
+            }
+          ],
+          "anchor_readout": {
+            "id": "chain-d2p-0263",
+            "layer": 52,
+            "pos": 63,
+            "samples": [
+              "- 8 $$ （解析：从7开始，加上9得到16，再减去4得到12）\n\n**答案\n- 10  (Explanation: After adding 7 and subtracting 2, we are left with\n- 6\n"
+            ],
+            "token": ""
+          },
+          "local_first_ranked_numbers": [
+            12,
+            16,
+            10
+          ],
+          "local_kind": "other",
+          "local_pass": false
+        },
+        "editing_round1-n32": {
+          "whole_question_and_grid_result": {
+            "id": "chain-d2p-0263",
+            "depth": 2,
+            "intermediates": [
+              1
+            ],
+            "answer": 10,
+            "start": 6,
+            "pass": false,
+            "earliest_layer": null,
+            "hitting_layers": [],
+            "hits_at": [],
+            "any_of_3": false,
+            "null_top1_near": 0.0,
+            "named_by_layer": {
+              "20": [
+                6,
+                13,
+                100
+              ],
+              "24": [
+                13,
+                4,
+                3
+              ],
+              "28": [
+                12,
+                37
+              ],
+              "32": [
+                18,
+                12,
+                5
+              ],
+              "36": [
+                5,
+                4,
+                3
+              ],
+              "40": [
+                6,
+                8,
+                0
+              ],
+              "44": [
+                12,
+                13,
+                15
+              ],
+              "48": [
+                5,
+                12
+              ],
+              "52": [
+                12,
+                10,
+                6
+              ],
+              "56": [
+                11,
+                10
+              ],
+              "60": [
+                10,
+                14,
+                100
+              ]
+            },
+            "kind_by_layer": {
+              "20": "other",
+              "24": "other",
+              "28": "other",
+              "32": "other",
+              "36": "other",
+              "40": "other",
+              "44": "other",
+              "48": "other",
+              "52": "other",
+              "56": "other",
+              "60": "other"
+            },
+            "basis_by_layer": {
+              "20": "stated_result",
+              "24": "stated_result",
+              "28": "stated_result",
+              "32": "stated_result",
+              "36": "stated_result",
+              "40": "arithmetic",
+              "44": "arithmetic",
+              "48": "stated_result",
+              "52": "stated_result",
+              "56": "arithmetic",
+              "60": "arithmetic"
+            }
+          },
+          "full_grid_readouts": [
+            {
+              "id": "chain-d2p-0263",
+              "layer": 20,
+              "pos": 63,
+              "samples": [
+                "- The answer is 6. Here is the step-by-step deduction without extra text, as requested: Start with 1. Subtract 4 to get\n- 100 (Explanation: Subtract 10 from the initial value, then apply the operation specified. The final result is 13.)\n\n- Here is the step-by-step solution, strictly following the instruction to output only the final number.\n\n**\n- Here is the result following the exact instruction: Subtract 10 and output the result. No explanation or working out needed, as requested.\n"
+              ],
+              "token": "\n\n"
+            },
+            {
+              "id": "chain-d2p-0263",
+              "layer": 24,
+              "pos": 63,
+              "samples": [
+                "- Here is the answer following the instructions in reverse order: Subtract 2, then add 7. The final answer is **13\n- 5.1  (The user's instruction is to perform the steps in reverse order, starting from the final number and working backwards to the initial number.) Here is the\n- Here is the result after applying the steps in reverse order: 4. Subtract 1 from 4 to get 3. The final\n- Here is the answer after following the instructions step-by-step: **5**\n\nHere is the step-by-step deduction based"
+              ],
+              "token": "\n\n"
+            },
+            {
+              "id": "chain-d2p-0263",
+              "layer": 28,
+              "pos": 63,
+              "samples": [
+                "- Here is the final number after the operation. Do not explain the steps, just the result as requested.\n\n**12**\n\n###\n- Here is the thought process and final answer. Since the prompt asks for a short response, I will provide just the final number.\n\n**Answer: 37**\n- 12 (or more precisely, the final position is 12 after the specified transformations).\n\n**\n- Here is the thought process to solve the riddle and output only the final number as requested:\n"
+              ],
+              "token": "\n\n"
+            },
+            {
+              "id": "chain-d2p-0263",
+              "layer": 32,
+              "pos": 63,
+              "samples": [
+                "- Here is the result following the instructions strictly: 18\n\n*(Explanation: Start at 8, add 5 to get 13, then subtract 3 to get 10\n- 12 (Here is the final result after following the instructions strictly, without showing the intermediate steps.)\n\n1\n- Here is the step-by-step reasoning and the final answer, following the strict instruction to output only the final result:\n- The answer is 5.\n\n*(Explanation: Starting with 7, subtract 4 results in 3. Then, subtract 1 from that result,\n"
+              ],
+              "token": "\n\n"
+            },
+            {
+              "id": "chain-d2p-0263",
+              "layer": 36,
+              "pos": 63,
+              "samples": [
+                "- 30 Explanation: The number after adding 4 and subtracting 2 is 5.\n- 12  # Explanation: Starting at 2, add 5, subtract 3. The result is 4.\n- The result is 5. Here is the calculation: Start at 2, add 3 to get 5, subtract 2 to get 3, then add\n- 13 (Explanation: Start with 2, subtract 1, then add 5. 2 - 1 =\n"
+              ],
+              "token": "\n\n"
+            },
+            {
+              "id": "chain-d2p-0263",
+              "layer": 40,
+              "pos": 63,
+              "samples": [
+                "- 13 (Explanation: Starting with 5, the number becomes 8 after adding 3, then 0 after subtracting 8, resulting in a final value of\n- 5``` (Explanation: The user adds 5 to the initial value and subtracts 1. 0 + 5 -\n- 8 # Explanation: The final result is 8 because 5 + 3 - 2 = 6\n- 13 (Explanation: Start with 5, subtract 3, add 4. The result is\n"
+              ],
+              "token": "\n\n"
+            },
+            {
+              "id": "chain-d2p-0263",
+              "layer": 44,
+              "pos": 63,
+              "samples": [
+                "- 12 (Explanation: Starting number 10, plus 3 equals 13, minus 1 equals 12\n- 13 ## Explanation: First, we subtract 2 from the starting number, then add 5. The result is\n- 12** (The number 9 plus 5 equals 14, and then subtracting 1 results in 13.)\n\n### Explanation of\n- 12** (Explanation: The initial age was 10. Adding 5 results in 15. Then subtracting"
+              ],
+              "token": "\n\n"
+            },
+            {
+              "id": "chain-d2p-0263",
+              "layer": 48,
+              "pos": 63,
+              "samples": [
+                "- 12 (Explanation: Start at 10, add 5, subtract 3,\n- 5 ## Explanation: The expression 5 + (-3) + 3 evaluates to 5. The result is\n"
+              ],
+              "token": "\n\n"
+            },
+            {
+              "id": "chain-d2p-0263",
+              "layer": 52,
+              "pos": 63,
+              "samples": [
+                "- 8 $$ （解析：从7开始，加上9得到16，再减去4得到12）\n\n**答案\n- 10 (Explanation: After adding 7 and subtracting 2, we are left with\n- 6"
+              ],
+              "token": "\n\n"
+            },
+            {
+              "id": "chain-d2p-0263",
+              "layer": 56,
+              "pos": 63,
+              "samples": [
+                "- 6$$ (Explanation: $10 + 4 - 3 = 11\n- 10 $$ **Explanation:** We add 10 and then subtract 1. The result is\n- 10\n- 6$$ (Explanation: After adding 4 and then subtracting 2, the total is\n"
+              ],
+              "token": "\n\n"
+            },
+            {
+              "id": "chain-d2p-0263",
+              "layer": 60,
+              "pos": 63,
+              "samples": [
+                "- 10** (Since $1 + 9 = 10$)\n\n***\n\n### Summary\nThe\n- 10-11 $$ Explanation: The sum is 10. The\n- 10\n- 100 $$ (Because 5 + 9 = 14, and we add the 1 carried over\n"
+              ],
+              "token": "\n\n"
+            }
+          ],
+          "anchor_readout": {
+            "id": "chain-d2p-0263",
+            "layer": 52,
+            "pos": 63,
+            "samples": [
+              "- 8 $$ （解析：从7开始，加上9得到16，再减去4得到12）\n\n**答案\n- 10 (Explanation: After adding 7 and subtracting 2, we are left with\n- 6"
+            ],
+            "token": "\n\n"
+          },
+          "local_first_ranked_numbers": [
+            12,
+            10,
+            6
+          ],
+          "local_kind": "other",
+          "local_pass": false
+        }
+      },
+      "selected_fve_gain_vs_actual_replayed_parent": {
+        "raw": 0.01842953416349835,
+        "percentage_points": 1.8429534163498351,
+        "selected_raw": 0.2683160277084553,
+        "parent_raw": 0.24988649354495696,
+        "site_mask": "same activation/event and recorded exact NNLS scorer; one source-bound cell, no sampling interval",
+        "exceeds_approved_1e_5_tolerance": true
+      },
+      "review": {
+        "change": "The selected proposal collapses the double space after10 to one space and removes the trailing newline. Its other full-text content is unchanged from the pooled parent.",
+        "context": "The source starts6, subtracts5 to get required intermediate1, then adds9 to reach10. The selected text instead uses a start7/add9/subtract4 explanation and an unrelated add7/subtract2 fragment.",
+        "quality": "At the anchor the official ranked extraction changes from[12,16,10] to[12,10,6]; top-ranked12 is still wrong. All layers still miss required intermediate1, so whole-question recovery stays false. Final-answer10 presence is not the chain endpoint.",
+        "interpretation": "Recorded fit rises despite nearly identical prose and unchanged task failure. Do not call the change a successful semantic repair or infer a mechanism."
+      },
+      "scored_prefix_vs_full_prose_audit": {
+        "atom_pairs": [
+          {
+            "atom_index": 0,
+            "before_original_tokens": 25,
+            "after_original_tokens": 25,
+            "before_scored_tokens": 25,
+            "after_scored_tokens": 25,
+            "before_scored_text": "8 $$ （解析：从7开始，加上9得到16，再减去4得到12）\n\n**答案",
+            "after_scored_text": "8 $$ （解析：从7开始，加上9得到16，再减去4得到12）\n\n**答案",
+            "full_atom_text_changed": false,
+            "scored_token_ids_changed": false,
+            "before_truncated": false,
+            "after_truncated": false,
+            "before_unscored_suffix_ids": [],
+            "after_unscored_suffix_ids": []
+          },
+          {
+            "atom_index": 1,
+            "before_original_tokens": 20,
+            "after_original_tokens": 19,
+            "before_scored_tokens": 20,
+            "after_scored_tokens": 19,
+            "before_scored_text": "10  (Explanation: After adding 7 and subtracting 2, we are left with",
+            "after_scored_text": "10 (Explanation: After adding 7 and subtracting 2, we are left with",
+            "full_atom_text_changed": true,
+            "scored_token_ids_changed": true,
+            "before_truncated": false,
+            "after_truncated": false,
+            "before_unscored_suffix_ids": [],
+            "after_unscored_suffix_ids": []
+          },
+          {
+            "atom_index": 2,
+            "before_original_tokens": 1,
+            "after_original_tokens": 1,
+            "before_scored_tokens": 1,
+            "after_scored_tokens": 1,
+            "before_scored_text": "6",
+            "after_scored_text": "6",
+            "full_atom_text_changed": true,
+            "scored_token_ids_changed": false,
+            "before_truncated": false,
+            "after_truncated": false,
+            "before_unscored_suffix_ids": [],
+            "after_unscored_suffix_ids": []
+          }
+        ],
+        "auditable_fact": "All retained atoms in these two before/after pairs are below32 cleaned tokens. Recorded unscored suffix token lists are empty; no newly introduced factual suffix outside the scored prefix is observed here. Full text still contains trailing newline/spacing differences beyond what the cleaned atom text preserves.",
+        "hypothesis_only": "These observed scored-token changes are consistent with punctuation/spacing sensitivity of phrase reconstruction. This is not a causal mechanism audit, a general truncation claim, or evidence that the arithmetic became correct."
+      }
+    }
+  ],
+  "final_review_checklist": [
+    {
+      "item": "Gate and source completeness",
+      "check": "Wait for exact final native70x4 and final v5 numeric receipt. Require eight immutable successful editor tasks, exact final native binding, terminal R2/pruning and valid unavailable/invalid masks. Current R1 availability does not authorize final claims."
+    },
+    {
+      "item": "Reconstruction gain for each task",
+      "check": "Report R1 versus actual eligible pooled/best32 sources, and R2 versus previous-round chosen output separately for each bank. Use final v5 mean/median, grouped95%CI, common-valid paired mean delta and percentage points, scored/intended sites and warnings. Do not average unlike banks into a universal gain. Task-wide R1/R2 fit summaries remain pending here."
+    },
+    {
+      "item": "Quality comparison and denominators",
+      "check": "Use final native absolute counts/pointwise CIs and frozen actual-parent paired/joint interval fields. Hall: wrong readouts over specific readouts and assertion/empty coverage. Hidden names: required bridge question recovery; final answer optional. Chain: first-ranked intermediate any original site; any-of-three diagnostic only. Roles: all three directed components at a complete original site, then any-site question recovery. Distinguish cell fit masks from question endpoints."
+    },
+    {
+      "item": "Actual accepted edit",
+      "check": "Require published selection, official evaluated full text, canonical spec, proposal parent_candidate_id and scored candidate lineage to match. Count selected unchanged original parent, inherited prior edit and newly selected current-round edit separately from exact-text changes; unselected proposals are not results."
+    },
+    {
+      "item": "Whole-grid inheritance",
+      "check": "A displayed local change does not prove the whole-question gain arose there. Compare the exact parent and child grid readouts/official witnesses; retain inherited gains/losses and optional-target status. Preserve official extraction disagreements separately; do not rescore."
+    },
+    {
+      "item": "Full-prose precision",
+      "check": "Inspect only selected outputs with supplied context, exact pre/post qualifiers and unsupported fragments. Reconstruction covers first32 cleaned tokens per atom; full text and unscored suffixes remain in official evaluation. A fit increase is not truth, a recovered string is not a faithful derivation, and formatting sensitivity is an observation rather than a mechanism claim."
+    },
+    {
+      "item": "Costs and evidence scope",
+      "check": "Use terminal effort physical/logical/helper-valid proposal statistics with cache and retained-hold distinctions. Keep method helper inference costs separate from benchmark judging; reused parent proposals/shared artifacts are not unique new per-variant charges. These eight fixed anchors and two retained diagnostic examples provide no prevalence estimate."
+    }
+  ],
+  "limits": [
+    "Separate prospective dossier; no current example is a final slide example until final-index overlap/official/context checks and root review.",
+    "Current R1 absolute quality pointwise intervals are upstream numbers, not a new paired-difference CI or the final joint interval set.",
+    "Only actual selected outputs and their parents support observations; no conclusion from unselected proposals.",
+    "Exact source hashes were retained before/after intake; producer and scientific pins unchanged."
+  ],
+  "task_specific_r1_prospective_interpretation": {
+    "hallucination": {
+      "current_quality": "2617/5556 specific readouts flagged in R1 versus2621/5555 pooled and2550/5565 best32; changing denominators remain explicit. A lower contradiction fraction is a readout-level endpoint, not a per-claim truth gain.",
+      "reconstruction": "Task-wide R1 paired fit gain versus the actual eligible parent is pending final v5. Two fixed anchors retain pooled text exactly; they cannot establish a task-wide absence of selected edits.",
+      "final_check": "Read final grouped fitCI/common-valid masks alongside final native contradiction deltaCI, assertion coverage and empty outputs. Preserve any newly added unsupported suffixes if actual selected cases show them."
+    },
+    "multihop_mt": {
+      "current_quality": "R1 and pooled each recover required hidden bridges for41/100 questions; best32 recovers40/100. Equal whole-question totals can conceal offsetting changes; no paired equality conclusion follows.",
+      "reconstruction": "Task-wide R1 paired fit gain is pending final v5. The two fixed anchors retain pooled text; correct bridge strings coexist with unsupported names/details.",
+      "final_check": "Separate required bridge recovery from optional final answer, and identify whether passing witnesses are inherited from the pooled parent or changed at selected edited cells."
+    },
+    "chain_intermediates": {
+      "current_quality": "R1 and pooled each have first-ranked intermediate recovery for53/120 questions versus61/120 best32. The two changed selected retained diagnostic cells keep their parent local and whole-question outcomes despite recorded site fit increases of0.39769093345093376pp and1.8429534163498351pp.",
+      "reconstruction": "Those are single-cell changes versus the actual re-scored eligible pooled parent, not task means or confidence intervals. Task-wide common-valid paired fit summaries remain pending final v5.",
+      "final_check": "Use first-ranked extraction only; mark the surviving layer40 witness in0230 as inherited and final-answer10 in0263 as insufficient for intermediate1. Keep any-of-three diagnostic separate."
+    },
+    "role_bound_association": {
+      "current_quality": "R1 and pooled each recover all role components at some original-grid site for81/100 questions versus77/100 best32. R1 has538 passing individual cells versus539 pooled; question and cell denominators differ.",
+      "reconstruction": "Task-wide R1 paired fit gain is pending final v5. Both fixed anchors retain pooled text exactly; the early generic summary anchor remains distinct from a directed binding recovery.",
+      "final_check": "Require all three native directed role components together at one site. Use actual recorded role evidence; do not infer invented components from cleaner prose or fit gain."
+    }
+  }
+}

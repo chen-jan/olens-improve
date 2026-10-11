@@ -1,0 +1,30 @@
+{
+  "status": "root_reviewed_bounded_preliminary_r1_cases",
+  "created_utc": "2026-10-11T05:45:04.192148+00:00",
+  "dossier_path": "docs/reviews/expanded-editing-r1-prospective-review-v1.json",
+  "dossier_sha256": "3390d2c67da42029f6dbb10f26fcb8a3c858a3a1680e82686cab04c717b38efb",
+  "source_file_count_checked_before_after": 53,
+  "fixed_anchor_checks": 8,
+  "changed_selected_cases": [
+    {
+      "cell_id": "chain_intermediates|chain-d2p-0230|L48|p00066",
+      "fit_delta_percentage_points": 0.39769093345093376,
+      "local_pass": false,
+      "whole_question_pass_unchanged": true,
+      "text_change_verified": "recorded punctuation or spacing only"
+    },
+    {
+      "cell_id": "chain_intermediates|chain-d2p-0263|L52|p00063",
+      "fit_delta_percentage_points": 1.8429534163498351,
+      "local_pass": false,
+      "whole_question_pass_unchanged": false,
+      "text_change_verified": "recorded punctuation or spacing only"
+    }
+  ],
+  "human_review_scope": "Root read both complete selected texts, actual eligible parent texts, source prompts, local and whole-question official outcomes and reviewer interpretations. Source hashes were checked separately; this does not attest a human review of every full grid text or raw scoring journal.",
+  "limits": [
+    "Illustrative retained diagnostic panel; no prevalence estimate or final-method ranking.",
+    "No final R2 evidence, new quality judgments, fitting or API calls.",
+    "Root final slide choice remains gated on exact terminal sources and final qualitative review."
+  ]
+}

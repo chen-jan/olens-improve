@@ -1,0 +1,19 @@
+{
+  "status": "root_reviewed_prospective_final_candidate_assembly",
+  "created_utc": "2026-10-11T05:45:43.577994+00:00",
+  "source_sha256": {
+    "scripts/assemble_expansion_final_review.py": "9e5243af2d3b307bdfcbee4ffb1086081578e1404a27aae51d6898e33a86f3b8",
+    "tests/test_expansion_final_review_assembly.py": "993612ea0ad2ddde5cd7041876f8c90eb1c5163337202f7805deb7277f6cf71b",
+    "docs/reviews/expanded-final-review-assembly-procedure-v1.md": "f1ff5907f23a37eb415cfc09714f1d226423dbf54d8d3a4ace20af78d19585a8",
+    "docs/reviews/expanded-final-review-assembler-promotion-v1.json": "428a6e253d01b4f3befa2e940a2b039189462f8012d1367e3e81cdb5198b8994",
+    ".state/expanded-final-review-assembly-checks-v1.json": "b2b4aba4959ef81637380953195cfd6a6634b399dfef962339296a39d63d78d8"
+  },
+  "reviewed_boundary": [
+    "Root read full helper, including terminal source checks, exact old-entry preservation and full-evidence deduplication.",
+    "Nine source-preservation fixtures and historical1771/330 replay passed; root inspected fixture coverage and the promotion receipt.",
+    "Candidate remains explicitly pending human root review; narrative overlay cannot replace source identity or authorize final publication.",
+    "Actual final numerical values, qualitative cases, candidate assembly and final rendering remain unrun or unreviewed at this preparation checkpoint."
+  ],
+  "no_final_assembly_executed": true,
+  "no_new_calls_or_allocations": true
+}

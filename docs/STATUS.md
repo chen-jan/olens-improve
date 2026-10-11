@@ -1,5 +1,13 @@
 # Execution status
 
+## All first-round editing scores complete — 2026-10-11 05:35 UTC
+
+All four first-round editor tasks are terminal: **19,435 cells and 72,821 new reconstruction vectors**, with 2,016.3 seconds of summed dispatcher wall time. The role task ended at 05:31:14 UTC. Second-round number-task scoring is also complete (1,320 cells, 2,197 new vectors); name-task scoring is active. The same single owned preemptable H200 continues, with checkpointing and no source, batch or policy changes. Second-round helper proposals, fixed pruning variants and Luna judging overlap on existing CPU jobs.
+
+Native completion is **260/280 condition–task units**, with 24/32 canonical descriptors available. Final source gates remain waiting; this is operational progress, not a reviewed final result. Public version 16 still uses its reviewed 235/280 snapshot. All 70 settings and four full banks remain in scope. The current remaining GPU planning range is 30–50 minutes, to be revised from the larger second-round tasks; final statistics, qualitative review and delivery follow.
+
+The reviewed [task-specific reconstruction memo](reviews/expanded-task-reconstruction-interpretation-v1.md) separates fit gains from task correctness. Each method's final results slide will retain four task graphs, its recorded reconstruction changes and a full-context example. The prepared terminal edit-selection supplement will count actual chosen edits and inherited parents without adding quality tests or calls. Final public-example assembly and browser checks are being prepared in parallel. Reviewed preparation is locally committed through `6eb32d5`; research Git is not pushed.
+
 ## Likelihood finished; editing scoring active — 2026-10-11 05:02 UTC
 
 The same owned preemptable H200 job 25536297 completed all **19,435 likelihood cells at 04:57:36 UTC** and automatically moved to frozen editor scoring. Its first round-one number-task dispatch completed all 1,320 cells in 171.1 seconds (scorer status 164.9 seconds), encoding 3,380 new vectors; these are wall timers, not kernel measurements. The name-task round-one dispatch is now active. The larger hallucination and role tasks remain, followed by round two and its pruning variants. A revised full-stage estimate awaits their measured throughput; no terminal editing quality or final method ranking is claimed.

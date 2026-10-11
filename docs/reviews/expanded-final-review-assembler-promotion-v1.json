@@ -1,0 +1,31 @@
+{
+  "status": "byte_identical_tracked_promotion_passed_prospective_not_final_assembly",
+  "created_utc": "2026-10-11T05:44:52.057143+00:00",
+  "source_sha256": {
+    ".state/assemble-root-expansion-final-v1.py": "9e5243af2d3b307bdfcbee4ffb1086081578e1404a27aae51d6898e33a86f3b8",
+    "scripts/assemble_expansion_final_review.py": "9e5243af2d3b307bdfcbee4ffb1086081578e1404a27aae51d6898e33a86f3b8",
+    "tests/test_expansion_final_review_assembly.py": "993612ea0ad2ddde5cd7041876f8c90eb1c5163337202f7805deb7277f6cf71b",
+    "docs/reviews/expanded-final-review-assembly-procedure-v1.md": "f1ff5907f23a37eb415cfc09714f1d226423dbf54d8d3a4ace20af78d19585a8",
+    ".state/expanded-final-review-assembly-checks-v1.json": "b2b4aba4959ef81637380953195cfd6a6634b399dfef962339296a39d63d78d8"
+  },
+  "old_new_source_bytes_equal": true,
+  "changes": [
+    "Byte-identical helper copied into scripts/assemble_expansion_final_review.py.",
+    "Test import now points to tracked script.",
+    "Procedure path/command references now point to tracked script; historical prepromotion receipt and test hashes remain unchanged as prior evidence."
+  ],
+  "tests": {
+    "count": 9,
+    "exit_code": 0,
+    "seconds": 0.001,
+    "exec_chunk": "ad4021",
+    "command": "PYTHONDONTWRITEBYTECODE=1 ${OLENS_COMPUTE_ROOT}/envs/runtime/bin/python -m unittest discover -s tests -p test_expansion_final_review_assembly.py"
+  },
+  "approved_prior_source_sha256": "9e5243af2d3b307bdfcbee4ffb1086081578e1404a27aae51d6898e33a86f3b8",
+  "independent_review": "API source/prospective-boundary review approved exact prior source and historical1771/330 replay; tracked promotion changes no helper bytes.",
+  "final_assembly_executed": false,
+  "calls": 0,
+  "new_allocations": 0,
+  "git_actions": 0,
+  "pinned_runtime_changes": 0
+}
