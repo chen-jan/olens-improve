@@ -1,0 +1,33 @@
+{
+  "status": "root_reviewed_final_qualitative_pipeline",
+  "reviewed_utc": "2026-10-11T04:05:20.296578+00:00",
+  "source_sha256": {
+    "scripts/expanded_final_qualitative_gate.py": "dba84ea432c8aff56a13e0c0b9eabe3711b4b9eece31292ffe95648a21f1ad26",
+    "tests/test_expanded_final_qualitative_gate.py": "544bea5b7658fd5fe42f2a100691479c6395ffeac6f6c3e7ce13e8837d55aa7c",
+    ".state/expanded-final-qualitative-v1.sh": "a497f81eb52e2691cddc39fc4cec023b64baec63778fa905398bcb81a79a6937",
+    ".state/expanded-final-qualitative-v1.pins.json": "e587acc1a4a0fca98cc0e265d042bfa6ae93d7e296df63c7459b2602ffc97fb5",
+    ".state/expanded-final-qualitative-v1.guard-tests.json": "1604f8b093ca38e7da19d3295b736ba833a302b78101be23f54336147c81685b",
+    ".state/expanded-final-qualitative-producer-preservation-v1.json": "9246b2370d9e5d9f515c72905545b597f81126a9f444cbd78e31705caf5969d8"
+  },
+  "decision": "Launch one bounded source-only watcher on owned CPU25536417; selected final cases await actual terminal native sources.",
+  "verified": [
+    "Root and independent API agent read-only reviews pass; four guard fixtures and28 static pins pass.",
+    "Approved native output, receipt and terminal-state hashes are retained and rechecked before/after every unchanged evidence producer.",
+    "Exact canonical32 descriptors and full70-by-four condition/family source coverage are required.",
+    "Earlier full cases, context, original baseline text and complete official parent comparisons remain verbatim.",
+    "New-reference coverage and all four partition counts derive from actual differences, including explicit zero pending partitions.",
+    "No overwritten outputs or silent second attempt; no new calls, scores, prose truth judgments or publication."
+  ],
+  "no_actual_final_case_pack_attested_yet": true,
+  "command": [
+    "srun",
+    "--jobid=25536417",
+    "--overlap",
+    "--ntasks=1",
+    "--cpus-per-task=1",
+    "--mem=12G",
+    "--cpu-bind=cores",
+    "bash",
+    "${OLENS_REPO_ROOT}/.state/expanded-final-qualitative-v1.sh"
+  ]
+}

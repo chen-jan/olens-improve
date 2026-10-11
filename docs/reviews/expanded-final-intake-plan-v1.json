@@ -1,0 +1,75 @@
+{
+  "status": "prepared_only_not_final_evidence",
+  "manifest_sha256": "753b2d9cab0daea0d19efef7d3222fd44921dbcf4669e6864d4f1bd4805421f8",
+  "prepared_utc": "2026-10-11T03:35:04+00:00",
+  "source_sha256": {
+    "scripts/expanded_final_effort_gate.py": "c9c39872f7aac668b0ad15fc6beb50b44ec36e470b02353e58e6c64bfafd7bac",
+    "scripts/export_expansion_effort.py": "636543613ddde525645b0a03e010630f0f730bcb15df484d29ee1e7ac6c072af",
+    "scripts/build_expansion_dashboard.py": "761941ffb677beb5c6d374fbbf52cb0c2701f0af4567dbed491c1c0d55bd2d43",
+    "scripts/build_expansion_qualitative.py": "7fbc8b0a1cfe47e80f8d7d8964fda4557bbd592014e6f2d06a3384155738ddc2",
+    "scripts/build_expansion_parent_qualitative.py": "9a831d435a34a5a46de5b62e6912fa3665d0d63f2efcaaee3c566bea0d1637bd",
+    "scripts/build_expansion_qualitative_delta.py": "bd5b6c2c29a203467d4461657a9c833655abdc76603a45176610ab6d17ece2fa",
+    "scripts/build_expansion_qualitative_delta_v2.py": "f256deadf33797e2828a01885224168acbbad7256cc4965d08e26023e0841bc4",
+    "scripts/validate_expansion_qualitative_reviews_v4.py": "e3afcf1bd2ba50c76482c44a4c4ffdcd1bc484861d725c2e26c9b389b0c23d00",
+    "docs/reviews/expanded-qualitative-v4-new-case-index-v1.json": "837e15aae032297a5190f2132b73b5bdab0eccd16c8561868bda553c4f6a4d95",
+    "docs/reviews/expanded-qualitative-v4-root-v2.json": "6031ca2d526e1aeb6d0ee8fe54f9a380f178f477cee94b02fca8ac15beee68be",
+    "docs/reviews/expanded-qualitative-v4-agent1-v2.json": "a32253119b7b55c22660bd0c8e0aed084c1f6bb2bd8e3d8c41bebf6cb1ba7081",
+    "docs/reviews/expanded-qualitative-v4-agent2-v2.json": "6de2e076238724dfd6c76e65e1eb813b33ba10ee47cfa8bf0045692d4192a483",
+    "docs/reviews/expanded-qualitative-v4-agent3-v1.json": "78a23630e987e95889b765c1d8a5fb2f24a72bab33e7ba5aab9157fe3b5d8d0a",
+    "docs/reviews/expanded-qualitative-v4-merged-notes-v1.json": "1ff9945d87c319266daec27109f0ead60b64b358141725a7e9927f0178973ffc",
+    "${OLENS_DATA_ROOT}/expansion-v1/qualitative/first-live-v4.json": "15139648dd09b10ae931e7600a2aa643fae3e02ec37ccd0098a34443d9ee320c",
+    "${OLENS_DATA_ROOT}/expansion-v1/qualitative/parent-comparisons-first-live-v3.json": "f471b3bda848701547a973e0b766b67a5c8a3c3934809caab75b420f76eed4e5",
+    "scripts/validate_expansion_qualitative_final_reviews.py": "c02b5c60f7538900e1ae25cb2f68b67fd4496126e60edea0dbc6198a009de48d",
+    "scripts/analyze_expansion_reconstruction_v5.py": "cb9cc9a7578f0a617e6a567e2c14e3fcee720e1a807c0b452ca9b40f925a99f8",
+    "scripts/expanded_editor_fit_intake_v2.py": "ec6a8de982fd25023a1130c6c4cb4ae87418765e0991629b171f58bf1c6e436f",
+    "configs/expansion_editor_fit_intake_v1.json": "fe88d843424bf7c9bdc0b51d7796613ba77602f77ff2ba237b3931cab5260d61",
+    "docs/reviews/editor-fit-intake-v5-review-v1.json": "fc5e339f585462781bb68a881cd1d03287d492a5667433c765630f5d504b0737"
+  },
+  "owners": {
+    "native_reconstruction_qualitative_pack": "expanded_manifest_cpu",
+    "effort_intake": "expanded_api",
+    "human_review_and_publication": "root"
+  },
+  "final_outputs": {
+    "native": "${OLENS_DATA_ROOT}/expansion-v1/analysis/final-v1.json",
+    "effort": "${OLENS_DATA_ROOT}/expansion-v1/analysis/effort-final-v1/effort.json",
+    "qualitative": "${OLENS_DATA_ROOT}/expansion-v1/qualitative/final-v1.json",
+    "parents": "${OLENS_DATA_ROOT}/expansion-v1/qualitative/parent-comparisons-final-v1.json",
+    "delta_index": "docs/reviews/expanded-qualitative-final-new-case-index-v1.json",
+    "merged_notes": "docs/reviews/expanded-qualitative-final-merged-notes-v1.json"
+  },
+  "effort_runtime": {
+    "pid": 778184,
+    "job_id": "25536291",
+    "core": 83,
+    "state": ".state/expanded-final-effort-v1.service.json",
+    "log": "${OLENS_COMPUTE_ROOT}/logs/expanded-final-effort-v1.log",
+    "tool_session": 42077,
+    "max_watch_seconds": 28800,
+    "slurm_step_id": "25536291.86",
+    "verified_tasks": 1,
+    "verified_process_count": 1
+  },
+  "guards": [
+    "No early export: terminal 70 exact condition IDs per family, all finite helper grids/GPU tasks, registrar terminal and CPU native complete_pending_root_review with scientific_inputs_validated_complete true.",
+    "Final native exact 280 unique pairs, original manifest hash and 32 canonical ready descriptors; queue aliases excluded.",
+    "Effort preserves original budget/holds, uses readonly settled ledger partition and checkpoint coverage, and seals an atomic immutable bundle once.",
+    "Qualitative old full case objects, old complete actual-parent objects and source contexts must remain exact; any changed official pair/context requires explicit new review.",
+    "No final merger reuse of v4 hardcoded330/426 counts; derive final scope from exact index and verify all partitions/inherited links."
+  ],
+  "api_calls": 0,
+  "new_allocations": 0,
+  "publication_authorized_by_this_plan": false,
+  "reconstruction_extractor": "scripts/analyze_expansion_reconstruction_v5.py",
+  "reconstruction_editor_authority": "Reviewed immutable task projection and successful per-task receipt, bound by approved v5 review; live whole-queue/service hashes are observation provenance only.",
+  "validation": {
+    "unit_guard_tests": 8,
+    "real_prior_authority_synthetic_new_index_receipt": ".state/final-qualitative-merger-fixture-v1/receipt.json",
+    "receipt_sha256": "fc1f4d20a7d3aff612aacfeb13f93f75d2ac1ece79a957ba2d02ef3ba233972e",
+    "prior_audited_refs_retained_verbatim": 330,
+    "historical_pair_authority_verified": 426,
+    "scientific_results_eligible": false
+  },
+  "reconstruction_editor_validator": "scripts/expanded_editor_fit_intake_v2.py",
+  "historical_reconstruction_versions": "Existing numerical v1-v3 artifacts and unrun v4 prototype retained unchanged; v5 only at actual final boundary."
+}
