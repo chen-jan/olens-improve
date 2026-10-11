@@ -1,5 +1,7 @@
 # Frozen Oracle Lens: inference-time improvement plan
 
+**Current handoff, 2026-10-10 23:57 UTC:** the first study is published. The [expanded comparison plan](EXPANSION_PLAN.md) is prepared for one preemptable H200 running alongside CPU and API work. **Planning only; wait for the user's start instruction and allocation.** Other-reader experiments are postponed. The addendum governs the next phase; the original schedule, scope decisions and resource limits below are retained as the first-study record.
+
 Updated: 2026-10-10 UTC. Status: execution started at 2026-10-10 01:25:36 UTC (October 9, 21:25:36 EDT). The user has authorized autonomous implementation and experiments while away, within this plan's limits. Routine steps do not need fresh permission. See [STATUS.md](STATUS.md) for current progress and recovery instructions.
 
 Read [METHODS.md](METHODS.md) for concrete A–G algorithms, shared data flow, helper-model costs, failure checks, and the iterative development loop. This plan remains authoritative for scope, frozen contracts, evaluation, and resources.
@@ -174,7 +176,9 @@ Make local commits at meaningful reviewed milestones, keeping code, documentatio
 
 ## Current status and continuation
 
-**Completed: 2026-10-10 22:43 UTC.** All scientific judging, analysis, independent reviews, report, final dashboard and editable/PDF presentation are delivered. The public dashboard is version 12; see [DELIVERY.md](DELIVERY.md). The primary comparison remains 268 held-out items, with all 469 separately labeled descriptive. No new winning method or setting was chosen after TEST. The owned watcher and successor CPU allocation have been released; user allocations were preserved. All data, caches and financial holds remain retained. GitHub pushing is the user's action.
+**First study completed: 2026-10-10 22:43 UTC.** Scientific judging, analysis, independent reviews, report, final dashboard and editable/PDF presentation are delivered for its frozen scope. The public dashboard is version 12; see [DELIVERY.md](DELIVERY.md). Its primary comparison remains 268 held-out items, with all 469 separately labeled descriptive. No winning method or setting in that study was changed after TEST. The owned watcher and successor CPU allocation have been released; user allocations were preserved. All data, caches and financial holds remain retained. GitHub pushing is the user's action.
+
+**Next phase prepared, not started:** follow [EXPANSION_PLAN.md](EXPANSION_PLAN.md). Expand the distinct methods on the same four complete banks, add pooling length controls, preserve the 32-sample cap, and defer all other readers. The user will supply one preemptable H200 and a start instruction. Do not reuse historical allocations, launch paid work, or activate a goal while waiting. New analyses of the already observed 469 items are exploratory; they do not replace the original held-out report.
 
 ## Prior handoff, before final packaging
 

@@ -1,5 +1,11 @@
 # Execution status
 
+## Expansion planning handoff, 2026-10-10 23:57 UTC
+
+The [expanded comparison plan](EXPANSION_PLAN.md) is prepared. The user accepted the estimated API spend and additional contingency, postponed other-reader work, and will provide **one preemptable H200** later. **Wait for their start instruction and allocation; no expansion experiments, paid calls, watcher or jobs have started.** The next phase overlaps cached CPU selection, Luna helpers/judging and resumable GPU work; it adds full-bank coverage and pooling length controls. Planning expectation: 12–20 elapsed hours with about eight H200 task-hours, roughly $230–250 extra API usage, a conservative $340 total project operating ceiling, and 30–60 GB extra persistent storage. Existing runtime/ledger settings are unchanged. The earlier completed study and public version 12 remain intact; new full-469 analyses will be exploratory.
+
+The completion statements and operational history below concern the first study.
+
 Updated: 2026-10-10, approximately 22:44 UTC.
 Started: 2026-10-10 01:25:36 UTC (October 9, 21:25:36 EDT).
 Original target finish: 2026-10-10 21:25:36 UTC, superseded. Paid execution ended at approximately 22:02 UTC; final public delivery completed at 22:43 UTC.
