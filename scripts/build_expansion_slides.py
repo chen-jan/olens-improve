@@ -427,6 +427,7 @@ def pages_from(inputs,qa=False):
     for f in FAMILIES:
         caption=('Wrong specific readouts / all specific readouts, including off-topic ones.' if f=='hallucination'
                  else 'Required intermediate entities; final answer is optional.' if f=='multihop_mt'
+                 else 'Required integer ranked first at any reading site / all original questions.' if f=='chain_intermediates'
                  else 'Questions with required content at any site / all original questions.')
         add(TITLES[f]+(' · fewer contradictions' if f=='hallucination' else ' · required-content recovery'),native_panel(70,210,1460,575,f,chosen,metrics,names)+[text(70,801,1440,35,caption+' Grouped 95% pointwise intervals; † see notes.',21,MUTED)],caption+'\n'+f'Independent related groups: {inventory["family_group_counts"][f]}. Pointwise group-bootstrap intervals. Quality is not averaged across tasks.\nAbsolute warnings: '+json.dumps({c:native_warning(metrics[c,f]) for c in chosen if native_warning(metrics[c,f])}))
         refs.extend({'condition':c,'family':f,'metric':metrics[c,f]} for c in chosen)
@@ -577,7 +578,7 @@ def pages_from(inputs,qa=False):
         if selection:caption='All 14 variants: blue best · gray random · orange raw · teal capped · N=1,2,4,8,16,32'
         else:caption=f'{len(graph_conditions)} of {len(members)} variants plotted · all {len(members)} variants and exact counts in appendix'
         graphs.append(text(550,817,1010,26,caption+' · pointwise 95%; † see notes',15,MUTED))
-        add(a['action_title'],left+graphs,'Approach: '+group+'\nReviewed evidence: '+json.dumps(a,ensure_ascii=False)+'\nAll variants: '+json.dumps(members)+'\nPlotted: '+json.dumps(graph_conditions)+'\nExact native metrics: '+json.dumps({c:{f:metrics[c,f] for f in FAMILIES} for c in members})+'\nExact paired changes: '+json.dumps(delta)+'\nReconstruction diagnostics: '+json.dumps(fit_notes)+'\nFVE measures original reconstruction fit; its scale is not semantic faithfulness. Quality comparisons stay task-native. Example context: '+json.dumps(e.get('_source_context'),ensure_ascii=False));method_pages.append(pages[-1])
+        add(a['action_title'],left+graphs,'Approach: '+group+'\nReviewed evidence: '+json.dumps(a,ensure_ascii=False)+'\nTask-specific interpretation: '+json.dumps(review['method_findings'][group].get('task_comparison'),ensure_ascii=False)+'\nAll variants: '+json.dumps(members)+'\nPlotted: '+json.dumps(graph_conditions)+'\nExact native metrics: '+json.dumps({c:{f:metrics[c,f] for f in FAMILIES} for c in members})+'\nExact paired changes: '+json.dumps(delta)+'\nReconstruction diagnostics: '+json.dumps(fit_notes)+'\nFVE measures original reconstruction fit; its scale is not semantic faithfulness. Quality comparisons stay task-native. Example context: '+json.dumps(e.get('_source_context'),ensure_ascii=False));method_pages.append(pages[-1])
     reconstruction_page = None
     if results.get('_reconstruction') is not None:
         fit_items, fit_notes = reconstruction_scaling(results['_reconstruction']['rows'], names)

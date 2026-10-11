@@ -138,6 +138,23 @@ class ReconstructionReportTests(unittest.TestCase):
         self.assertNotIn('## Reconstruction fit:', rendered)
         self.assertIn('Complete result table', rendered)
 
+    def test_task_notes_stay_bound_to_their_declared_comparison(self):
+        comparison = {'condition': self.condition, 'reference': 'capped_n1-n1',
+                      'notes': {family: f'Reviewed observation for {family}.'
+                                for family in report.FAMILIES}}
+        self.review['method_findings']['selection']['task_comparison'] = comparison
+        self.seal()
+        rendered = self.render()
+        self.assertIn('These notes describe this setting, not every variant.', rendered)
+        self.assertIn('Reviewed observation for chain_intermediates.', rendered)
+        comparison['notes'].pop('chain_intermediates')
+        with self.assertRaisesRegex(ValueError, 'declared representative comparison'):
+            self.seal()
+        comparison['notes']['chain_intermediates'] = 'Restored task note.'
+        comparison['reference'] = 'undeclared-reference'
+        with self.assertRaisesRegex(ValueError, 'declared representative comparison'):
+            self.seal()
+
 
 if __name__ == '__main__':
     unittest.main()

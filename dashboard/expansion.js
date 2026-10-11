@@ -475,6 +475,13 @@ function detail(id) {
   if (reviewedFinding) {
     parts.push(`<h3>What the audited examples show</h3><p>${escape(reviewedFinding.finding)}</p>
       <p class='detail-note'>${escape(reviewedFinding.limits)}</p>`);
+    const taskComparison = reviewedFinding.task_comparison;
+    if (taskComparison) {
+      parts.push(`<details><summary>What changed on each task</summary>
+        <p class='detail-note'>Representative comparison: ${escape(conditionLabel(taskComparison.condition))}
+        versus ${escape(conditionLabel(taskComparison.reference))}. These notes describe this comparison, not every variant.</p>
+        ${families.map((family, index) => `<p><strong>${titles[index]}:</strong> ${escape(taskComparison.notes[family])}</p>`).join('')}</details>`);
+    }
   }
   const comparisons = families.map(family => paired(id, family)).filter(Boolean);
   if (comparisons.length) {

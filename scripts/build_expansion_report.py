@@ -56,6 +56,20 @@ def checked_inputs(results_path, inventory_path, review_path):
         raise ValueError('A final report requires every active condition and task')
     if results['missing_condition_families'] or not full['comparison_family_complete']:
         raise ValueError('The full question grids and contrast menu must be complete')
+    comparisons = {(c['condition'], c['reference'], c['family']) for c in full['comparisons']}
+    for group, finding in review.get('method_findings', {}).items():
+        task_comparison = finding.get('task_comparison')
+        if task_comparison is None:
+            continue
+        condition, reference = task_comparison.get('condition'), task_comparison.get('reference')
+        notes = task_comparison.get('notes', {})
+        if (condition not in active or reference not in active
+                or category(active[condition]['method']) != group
+                or set(notes) != set(FAMILIES)
+                or any(not isinstance(note, str) or not note.strip() or len(note) > 450
+                       for note in notes.values())
+                or any((condition, reference, family) not in comparisons for family in FAMILIES)):
+            raise ValueError('Task-specific notes require a complete, declared representative comparison')
     for (_, family), metric in metrics.items():
         endpoint = ('original_grid_contradiction_rate' if family == 'hallucination'
                     else 'original_grid_item_pass_rate')
@@ -227,8 +241,9 @@ def render(results, inventory, review, active, metrics, hashes, *, reconstructio
               'Editing uses explicitly recorded Luna proposals and fresh reconstruction vectors.', '',
               'Transcript contradictions measure wrong specific readouts divided by all specific readouts, '
               'including off-topic readouts. Hidden intermediate names measure required intermediate entities; '
-              'the final answer is optional. The other tasks measure whether the required intermediate '
-              'number or role bindings appear at any site in the complete original question grid. '
+              'the final answer is optional. Intermediate numbers count only the judge’s first-ranked '
+              'verified integer at a reading site; a required value appearing lower in the list does not '
+              'count. Number and role recovery then aggregate over the complete original question grid. '
               'Recovering that content can coexist with incorrect surrounding prose. '
               'We keep the four endpoints separate.', '',
               '| Task | Questions | Related groups | Better direction |',
@@ -240,6 +255,16 @@ def render(results, inventory, review, active, metrics, hashes, *, reconstructio
     for group, title in GROUPS.items():
         body = review['method_findings'][group]
         lines += [f'### {title}', '', body['finding'], '', body['limits'], '']
+        task_comparison = body.get('task_comparison')
+        if task_comparison:
+            condition, reference = task_comparison['condition'], task_comparison['reference']
+            lines += [f"Representative comparison: **{label(active[condition])}** versus "
+                      f"**{label(active[reference])}**. These notes describe this setting, not every variant.", '',
+                      '| Task | What changed |', '|---|---|']
+            for family in FAMILIES:
+                note = task_comparison['notes'][family].replace('|', '\\|').replace('\n', ' ')
+                lines.append(f'| {TITLES[family]} | {note} |')
+            lines.append('')
     lines += reconstruction_section(reconstruction, reconstruction_sha256, reconstruction_source,
                                     review, active)
     lines += ['## Uncertainty and interpretation', '',
