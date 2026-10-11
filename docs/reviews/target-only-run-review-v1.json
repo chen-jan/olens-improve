@@ -1,0 +1,217 @@
+{
+  "status": "pass",
+  "checked_utc": "2026-10-11T16:26:37.075298+00:00",
+  "inventory_sha256": "181fcc259ed81213a7b26ea18142b6cd35648e89b83100a5cf07590ed75b2c47",
+  "quality_status": "unjudged",
+  "source_pins_match": true,
+  "placement_correction": "Root resumed same scientific args after preserving 21 rows; observed much faster preparation with distinct CPU affinities.",
+  "sampled_cells": 300,
+  "sample_policy": "First25 and latest25 cells from each shard; snapshot during ongoing run",
+  "sampled_invariants_pass": true,
+  "checks": [
+    "Retained LOO keys equal emitted IDs and gains strictly above .005+1e-8",
+    "At most 4 bullets and 256 output tokens",
+    "Terminal pruning uses emitted repeat_swap IDs as actual parent",
+    "Guided and deterministic random deletion are subsets of identical refined parent with equal retained counts",
+    "Exact fit atom IDs equal emitted phrase IDs",
+    "No duplicate committed cell IDs during resume",
+    "Reviewed code hashes match startup spec and inventory v2",
+    "Cached old plain parent replay FVE absolute difference <=1e-5"
+  ],
+  "sampled_parent_fve_maxdiff": 0.0,
+  "sampled_retained_margin_min": 4.016084766577353e-06,
+  "sampled_budget_stops": {
+    "repeat_swap": 0,
+    "repeat_swap_then_prune_005": 0,
+    "bounded_prune_refill_005": 3
+  },
+  "limitations": [
+    "This review establishes numerical and provenance validity, not benchmark quality; no quality conclusions before judging.",
+    "Six independently replayed threshold-near cells were selected from available partial journals before terminal completion; whole-run LOO audit inspects stored gains."
+  ],
+  "independent_threshold_replay": {
+    "status": "pass",
+    "cells": 6,
+    "decisions": 43,
+    "max_absolute_gain_difference": 3.3306690738754696e-16,
+    "decision_disagreements": 0,
+    "solver": "independent scipy.optimize.nnls float64 residual objective",
+    "inputs": "one own raw target; recorded atom cache keys from frozen matched AR contract; same pinned whitening and normalization; no labels or controls",
+    "numeric_tolerance": 1e-08,
+    "allocation": "25299630",
+    "cpu_affinity": [
+      83,
+      84,
+      85,
+      86,
+      179,
+      180,
+      181,
+      182
+    ],
+    "new_api_calls": 0,
+    "new_gpu_calls": 0,
+    "artifact": ".state/target-only-threshold-audit-v1.json"
+  },
+  "random_seed_replay_pass": true,
+  "whole_run_invariants_pass": true,
+  "completed_cells": 19435,
+  "terminal_method_counts": {
+    "repeat_swap": 19435,
+    "repeat_swap_then_prune_005": 19435,
+    "bounded_prune_refill_005": 19435,
+    "repeated_swaps_random_delete_match_005": 19435,
+    "pooled_greedy_swap": 19435
+  },
+  "terminal_family_counts": {
+    "chain_intermediates": 1320,
+    "hallucination": 5615,
+    "multihop_mt": 1100,
+    "role_bound_association": 11400
+  },
+  "parent_fve_maxdiff": 2.8140149099797895e-08,
+  "budget_stops": {
+    "repeat_swap": 1,
+    "repeat_swap_then_prune_005": 1,
+    "bounded_prune_refill_005": 317
+  },
+  "nearest_retained_margins": [
+    {
+      "margin": 2.84742109612178e-07,
+      "gain": 0.005000294742109612,
+      "cell_id": "role_bound_association|oa-manager-intern-distrust-ba|L60|p00170",
+      "method": "bounded_prune_refill_005",
+      "phrase_id": "e8cfd09f7ff1c9195cfd4c3a:role_bound_association|oa-manager-intern-distrust-ba|L60|p00170:9:1"
+    },
+    {
+      "margin": 7.348542404020039e-07,
+      "gain": 0.005000744854240402,
+      "cell_id": "role_bound_association|oa-priest-parishioner-forgive-ba|L60|p00132",
+      "method": "repeat_swap_then_prune_005",
+      "phrase_id": "e8cfd09f7ff1c9195cfd4c3a:role_bound_association|oa-priest-parishioner-forgive-ba|L60|p00132:0:1"
+    },
+    {
+      "margin": 7.348542404020039e-07,
+      "gain": 0.005000744854240402,
+      "cell_id": "role_bound_association|oa-priest-parishioner-forgive-ba|L60|p00132",
+      "method": "bounded_prune_refill_005",
+      "phrase_id": "e8cfd09f7ff1c9195cfd4c3a:role_bound_association|oa-priest-parishioner-forgive-ba|L60|p00132:0:1"
+    },
+    {
+      "margin": 8.782310604851448e-07,
+      "gain": 0.005000888231060485,
+      "cell_id": "role_bound_association|oa-manager-intern-distrust-ab|L44|p00147",
+      "method": "repeat_swap_then_prune_005",
+      "phrase_id": "e8cfd09f7ff1c9195cfd4c3a:role_bound_association|oa-manager-intern-distrust-ab|L44|p00147:0:1"
+    },
+    {
+      "margin": 8.782310604851448e-07,
+      "gain": 0.005000888231060485,
+      "cell_id": "role_bound_association|oa-manager-intern-distrust-ab|L44|p00147",
+      "method": "bounded_prune_refill_005",
+      "phrase_id": "e8cfd09f7ff1c9195cfd4c3a:role_bound_association|oa-manager-intern-distrust-ab|L44|p00147:0:1"
+    },
+    {
+      "margin": 1.0804717926462745e-06,
+      "gain": 0.005001090471792646,
+      "cell_id": "role_bound_association|oa-critic-musician-mock-ba|L36|p00138",
+      "method": "repeat_swap_then_prune_005",
+      "phrase_id": "e8cfd09f7ff1c9195cfd4c3a:role_bound_association|oa-critic-musician-mock-ba|L36|p00138:5:2"
+    },
+    {
+      "margin": 1.0804717926462745e-06,
+      "gain": 0.005001090471792646,
+      "cell_id": "role_bound_association|oa-critic-musician-mock-ba|L36|p00138",
+      "method": "bounded_prune_refill_005",
+      "phrase_id": "e8cfd09f7ff1c9195cfd4c3a:role_bound_association|oa-critic-musician-mock-ba|L36|p00138:5:2"
+    },
+    {
+      "margin": 1.1531279193168972e-06,
+      "gain": 0.005001163127919317,
+      "cell_id": "role_bound_association|oa-burglar-neighbor-spy-ab|L28|p00162",
+      "method": "repeat_swap_then_prune_005",
+      "phrase_id": "e8cfd09f7ff1c9195cfd4c3a:role_bound_association|oa-burglar-neighbor-spy-ab|L28|p00162:10:3"
+    },
+    {
+      "margin": 1.1531279193168972e-06,
+      "gain": 0.005001163127919317,
+      "cell_id": "role_bound_association|oa-burglar-neighbor-spy-ab|L28|p00162",
+      "method": "bounded_prune_refill_005",
+      "phrase_id": "e8cfd09f7ff1c9195cfd4c3a:role_bound_association|oa-burglar-neighbor-spy-ab|L28|p00162:10:3"
+    },
+    {
+      "margin": 1.1648542022615546e-06,
+      "gain": 0.005001174854202262,
+      "cell_id": "hallucination|chat-lmsys-0027|L60|p00030",
+      "method": "repeat_swap_then_prune_005",
+      "phrase_id": "e8cfd09f7ff1c9195cfd4c3a:hallucination|chat-lmsys-0027|L60|p00030:3:2"
+    },
+    {
+      "margin": 1.1648542022615546e-06,
+      "gain": 0.005001174854202262,
+      "cell_id": "hallucination|chat-lmsys-0027|L60|p00030",
+      "method": "bounded_prune_refill_005",
+      "phrase_id": "e8cfd09f7ff1c9195cfd4c3a:hallucination|chat-lmsys-0027|L60|p00030:3:2"
+    },
+    {
+      "margin": 1.4957069786594376e-06,
+      "gain": 0.0050015057069786595,
+      "cell_id": "role_bound_association|oa-child-grandparent-hug-ba|L36|p00129",
+      "method": "repeat_swap_then_prune_005",
+      "phrase_id": "e8cfd09f7ff1c9195cfd4c3a:role_bound_association|oa-child-grandparent-hug-ba|L36|p00129:9:3"
+    }
+  ],
+  "terminal_audit_artifact": ".state/target-only-terminal-audit-v1.json",
+  "terminal_audit_sha256": "48bdcc8b9ee03eed5a7ffd72aa98956ee0c733c2b9c90bd6acb05476b5ee19e5",
+  "terminal_audit_checks": [
+    "all 19435 expected distinct cells and five outputs per cell",
+    "startup spec/current code and whitening pins",
+    "one own N32 source pool and atom provenance",
+    "verbatim rendered text and independently retokenized <=256 cap",
+    "<=4 distinct bullets",
+    "guided/random deletion exact shared refined parent",
+    "all random seeds/counts independently reproduced",
+    "terminal retained LOO >.005+1e-8",
+    "fit IDs match emitted IDs",
+    "cached parent FVE <=1e-5 replay tolerance",
+    "all unique-subset budgets <=2048"
+  ],
+  "terminal_errors": [],
+  "terminal_shards": [
+    {
+      "shard": "shard-000-of-006",
+      "cells": 3300,
+      "terminal_selection_sha256": "343e5b91c9df2d5e1be3f72838468c1217b011ffc775fdf4893675d14103daf5"
+    },
+    {
+      "shard": "shard-001-of-006",
+      "cells": 3146,
+      "terminal_selection_sha256": "8a2f1355951669774e28f3462d45efd6c18885986f44df85e9d7aefcfd36d372"
+    },
+    {
+      "shard": "shard-002-of-006",
+      "cells": 3156,
+      "terminal_selection_sha256": "3475f73dcd0cf7125da129feea40b1537a9c949334b6f90f1b5cdad433db4a8f"
+    },
+    {
+      "shard": "shard-003-of-006",
+      "cells": 3259,
+      "terminal_selection_sha256": "4b8ebc346df8df41c4ea5efabd99585cbf0312c9acd307a9e54b55accdff4bda"
+    },
+    {
+      "shard": "shard-004-of-006",
+      "cells": 3324,
+      "terminal_selection_sha256": "202ed99b9fd61643aa614762881874e7ed267d13ae6ee16ddcc4a45c28a3dd5e"
+    },
+    {
+      "shard": "shard-005-of-006",
+      "cells": 3250,
+      "terminal_selection_sha256": "5e9a2bd6c32dc91cc11b19e9ee5ce44f88fa59a957b64a6eb4df31d47eb9e179"
+    }
+  ],
+  "operational_events": [
+    "Initial six srun workers shared CPU affinity; root corrected placement preserving21rows.",
+    "Corrected step154 was cancelled with SIGKILL after21m34s; cause unconfirmed. Root resumed step158 preserving10401rows with identical scientific specs.",
+    "All six worker shards reached complete and allocated terminal audit exited0."
+  ]
+}

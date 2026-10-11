@@ -1,6 +1,6 @@
 # Improve pooled readouts using only the current activation
 
-Status: authorized; full-bank CPU selection running after a completed timing pilot and independent review, 2026-10-11.
+Status: complete and publicly delivered as version 20, 2026-10-11. Four new methods and six existing references have complete frozen evaluation on all 469 questions and 19,435 sites (40/40 method–task records, no missing required verdicts). See [the report](TARGET_ONLY_REPORT.md), [experiment 065](experiments/065-target-only-search-and-refill.md), [root review](reviews/target-only-root-results-v1.json) and [delivery status](TARGET_ONLY_DELIVERY.md). The publication and checked assets are recorded in the [delivery receipt](reviews/target-only-site-delivery-v1.json); historical evidence below remains unchanged.
 
 The user approved testing the next combine-and-prune upgrades. This is an additive follow-up to the completed four-bank study. Earlier data, judgments, reports and source manifests remain immutable. All four banks have already been inspected; the new results are exploratory, not a fresh held-out confirmation.
 

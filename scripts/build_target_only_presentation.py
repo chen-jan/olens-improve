@@ -138,7 +138,7 @@ def native_payload(analysis_path, inventory_path, review_path):
                                'review': digest(review_path), **analysis['source_sha256']},
                 root_review={'status': 'root_reviewed', 'sha256': digest(review_path)},
                 title=review.get('title', 'Inspect gains and regressions across four tasks'),
-                findings=review.get('findings', []), resources=review.get('resources', {}))
+                findings=review.get('findings', []), slide_findings=review.get('slide_findings', review.get('findings', [])), resources=review.get('resources', {}))
     methods = {m['id']: m for m in data['methods']}
     for family in TASKS:
         for condition in MENU:
@@ -201,6 +201,79 @@ def panels(data, chosen):
     return items
 
 
+def paired_panels(data, condition):
+    """Render saved paired changes, never infer them from absolute rates."""
+    by_id = {m['id']: m for m in data['methods']}
+    method = by_id[condition]
+    references = [(RAW, 'Change from original lens'),
+                  (method['parent_id'], 'Change from actual parent')]
+    if condition == 'repeat_swap_then_prune_005-n32':
+        references.append(('repeated_swaps_random_delete_match_005-n32', 'Change from matched random deletion'))
+    comparisons = method.get('comparisons', {})
+    values = [abs(v) for ref, _ in references for row in comparisons.get(ref, {}).values()
+              for v in [row.get('delta'), *(row.get('ci95') or []), *(row.get('simultaneous_ci95') or [])]
+              if v is not None and math.isfinite(v)]
+    # One symmetric scale across all four tasks, including every saved interval.
+    extent = max(.05, math.ceil(max(values, default=0) * 100 / 5) * .05)
+    items = []
+    for i, (family, (name, endpoint)) in enumerate(TASKS.items()):
+        x, y = 550+(i % 2)*505, 215+(i // 2)*300
+        items += [rect(x, y, 485, 292, 'F4F8FB'), text(x+15, y+10, 460, 30, name, 23, INK, True),
+                  text(x+15, y+43, 460, 22, endpoint, 15, MUTED)]
+        for j, (mid, label) in enumerate([(RAW, 'Original released lens'),
+                                         (method['parent_id'], 'Parent: '+MENU[method['parent_id']][0]), (condition, 'This method')]):
+            metric = by_id[mid].get('metrics', {}).get(family, {})
+            value = metric.get('value')
+            rate_label = percent(value) if value is not None or data['status'] == 'running' else ('Undefined' if metric else 'Unavailable')
+            items += [text(x+15, y+70+j*20, 330, 22, label, 16, MUTED if j < 2 else BLUE, j == 0),
+                      text(x+365, y+70+j*20, 105, 22, rate_label, 16, BLUE if j == 2 else TEAL, True)]
+        chart_left, chart_width = x+28, 320
+        position = lambda value: chart_left+chart_width*(value+extent)/(2*extent)
+        start, step = (133, 48) if len(references) == 3 else (142, 64)
+        for j, (ref, label) in enumerate(references):
+            yy = y+start+j*step
+            row = comparisons.get(ref, {}).get(family)
+            items.append(text(x+15, yy, 460, 21, label, 15, INK, True))
+            cy = yy+28
+            items += [line(chart_left, cy, chart_left+chart_width, cy, LINE),
+                      line(position(0), cy-10, position(0), cy+10, MUTED, 1)]
+            if row is None:
+                label_value = 'Pending' if data['status'] == 'running' else 'Unavailable'
+                items.append(text(x+365, cy-10, 110, 24, label_value, 14, MUTED))
+                continue
+            delta = row.get('delta')
+            ci, simultaneous = row.get('ci95'), row.get('simultaneous_ci95')
+            for interval, color, width, offset in ((simultaneous, ORANGE, 2, 5), (ci, BLUE, 4, 0)):
+                if interval is not None:
+                    a, b = map(position, interval)
+                    items += [line(a, cy+offset, b, cy+offset, color, width),
+                              line(a, cy+offset-3, a, cy+offset+3, color, 1),
+                              line(b, cy+offset-3, b, cy+offset+3, color, 1)]
+            if delta is not None:
+                items.append({'kind': 'ellipse', 'x': position(delta)-4, 'y': cy-4, 'w': 8, 'h': 8, 'color': BLUE})
+            items.append(text(x+357, cy-11, 118, 24, 'Undefined' if delta is None else f'{100*delta:+.2f} pp', 15, BLUE, True))
+            if row.get('warnings') or ci is None or (ci and ci[0] == ci[1]):
+                warning = ('Undefined interval' if delta is None else 'Pointwise interval unavailable' if ci is None else
+                           'Zero-width interval; uncertain' if ci[0] == ci[1] else 'Warning; see notes')
+                items.append(text(x+15, cy+7, 450, 13, warning, 10, ORANGE))
+        direction = 'Negative helps' if family == 'hallucination' else 'Positive helps'
+        items += [text(x+15, y+278, 150, 14, f'{-100*extent:g} pp', 12, MUTED),
+                  text(x+175, y+278, 35, 14, '0', 12, MUTED),
+                  text(x+292, y+278, 85, 14, f'+{100*extent:g} pp', 12, MUTED),
+                  text(x+365, y+278, 115, 14, direction, 12, TEAL, True)]
+    items.append(text(550, 814, 990, 26, 'pp = percentage points | Blue: paired 95% interval | Gold: 95% across comparisons, when available', 15, MUTED))
+    return items
+
+
+def paired_notes(data, condition):
+    method = next(m for m in data['methods'] if m['id'] == condition)
+    return ('Dots and blue bars are saved differences and pointwise 95% paired intervals; '
+            'gold bars are simultaneous 95% intervals where available. Missing intervals are not inferred. '
+            'Zero bootstrap variation is not a certainty claim. Negative change helps contradictions; '
+            'positive change helps recovery. Actual parent: '+MENU[method['parent_id']][0]+
+            '\nExact saved comparisons and warnings: '+json.dumps(method.get('comparisons', {}), sort_keys=True))
+
+
 def pages(data):
     output = []
     def add(title, prose, right, notes):
@@ -212,7 +285,7 @@ def pages(data):
                  text(65, 225, 425, 595, wrapped(prose, 34), 27, INK)] + right
         output.append({'title': title, 'items': items,
                        'notes': notes+'\nStatus: '+state+'\nExact source hashes: '+json.dumps(data['source_hashes'], sort_keys=True)})
-    findings = '\n\n'.join(data.get('findings', [])) or 'Results are running.\n\nRead each task separately.\n\nA better reconstruction fit is not established factual improvement.'
+    findings = '\n\n'.join(data.get('slide_findings', data.get('findings', []))) or 'Results are running.\n\nRead each task separately.\n\nA better reconstruction fit is not established factual improvement.'
     add(data.get('title') or 'Wait for task evidence before choosing a method', findings,
         panels(data, [REPEAT, 'bounded_prune_refill_005-n32']),
         'No invented result values. Only complete native metrics approved against exact source hashes enter this deck. These banks have already been inspected, so the new comparisons are exploratory.')
@@ -238,8 +311,7 @@ def pages(data):
     add('Judge repeated swaps against the plain pooled parent',
         next((m.get('finding') for m in data['methods'] if m['id'] == REPEAT), None) or
         'Task outcomes await review.\n\nThe parent is plain pooled-32.\n\nAlso compare with the original released lens.',
-        panels(data, [POOL, REPEAT]),
-        'Rate bars are grouped pointwise intervals, not intervals for paired differences. Paired original and parent comparisons, including simultaneous intervals where declared, are provided in the dashboard and source payload.')
+        paired_panels(data, REPEAT), paired_notes(data, REPEAT))
     prune = [rect(550, 225, 960, 245, 'F4F8FB'), text(575, 245, 900, 45, 'Guided deletion', 32, TEAL, True),
              text(575, 315, 900, 120, wrapped('Remove a bullet when its refitted contribution is at most 0.005. Refit after every deletion.', 60), 28),
              rect(550, 505, 960, 245, 'F4F8FB'), text(575, 525, 900, 45, 'Matched random deletion', 32, BLUE, True),
@@ -250,8 +322,13 @@ def pages(data):
     add('Check whether pruning removes errors and useful facts together',
         next((m.get('finding') for m in data['methods'] if m['id'] == 'repeat_swap_then_prune_005-n32'), None) or
         'Task outcomes await review.\n\nCompare guided and matched random deletion.\n\nKeep the repeated-swaps parent visible.',
-        panels(data, [REPEAT, 'repeat_swap_then_prune_005-n32', 'repeated_swaps_random_delete_match_005-n32']),
-        'The declared paired comparison family is frozen before new outcomes. Native paired deltas retain the endpoint direction: negative is better for contradiction rate; positive is better for recovery. Inspect simultaneous uncertainty as well as individual intervals.')
+        paired_panels(data, 'repeat_swap_then_prune_005-n32'),
+        paired_notes(data, 'repeat_swap_then_prune_005-n32')+' Guided and matched random deletion remove the same number of bullets per activation; token lengths can differ.')
+    add('Use matched random deletion to check the effect of shortening',
+        next((m.get('finding') for m in data['methods'] if m['id'] == 'repeated_swaps_random_delete_match_005-n32'), None) or
+        'Task outcomes await review.\n\nRandom deletion is a shortening comparator.\n\nIt removes the same number of bullets as guided pruning from the same parent.',
+        paired_panels(data, 'repeated_swaps_random_delete_match_005-n32'),
+        paired_notes(data, 'repeated_swaps_random_delete_match_005-n32'))
     refill = []
     for i, (heading, body) in enumerate([('Prune weak bullets', 'Begin from plain pooled-32, with the same 0.005 contribution threshold.'),
                                        ('Explore bounded refills', 'Try existing source bullets as additions or replacements; fit each set again.'),
@@ -262,25 +339,26 @@ def pages(data):
     add('Prune and refill while keeping every bullet above the threshold',
         'A constrained search can reject a higher-scoring weak superset.\n\nDo not force four bullets.\n\nCompare with plain pooling and plain pooling plus pruning.', refill,
         'Prune/refill changes the constrained objective and search scaffold. Its comparison does not isolate optimization efficiency alone. The best retained feasible set is checked explicitly; do not restore a weak superset solely for reconstruction score.')
-    add('Compare refill with both of its plain-pooling references',
+    add('Compare refill with its plain-pooling plus pruning parent',
         next((m.get('finding') for m in data['methods'] if m['id'] == 'bounded_prune_refill_005-n32'), None) or
         'Task outcomes await review.\n\nPlain pooling shows the full added scaffold.\n\nPlain pooling plus pruning tests what bounded refill adds.',
-        panels(data, [POOL, 'pooled_greedy_swap_then_prune_0.005-n32', 'bounded_prune_refill_005-n32']),
-        'The original released lens is shown on every result panel. Parent references are eligible target-only methods, not the historical specificity-based combine-and-prune method. Reconstruction alone is secondary evidence.')
+        paired_panels(data, 'bounded_prune_refill_005-n32'),
+        paired_notes(data, 'bounded_prune_refill_005-n32')+' Parent references are eligible target-only methods. Reconstruction alone is secondary evidence.')
     examples = [(m, e) for m in data['methods'] for e in m.get('examples', [])]
     right = []
     if examples:
         m, e = examples[0]
-        right += [text(550, 220, 960, 45, m['label']+': '+e['kind'], 28, TEAL, True),
-                  text(550, 280, 960, 75, wrapped(e['finding'], 76), 22),
+        case_label = 'Role recovery example' if e['family'] == 'role_bound_association' else e['kind'].replace('_', ' ')
+        right += [text(550, 220, 960, 45, m['label']+': '+case_label, 28, TEAL, True),
+                  text(550, 280, 960, 90, wrapped(textwrap.shorten(e['finding'], width=160, placeholder=' [...]'), 76), 22),
                   text(550, 385, 460, 45, 'Before / '+MENU[e['reference_id']][0], 22, MUTED, True),
                   text(1040, 385, 475, 45, 'After', 22, BLUE, True),
                   text(550, 440, 460, 300, wrapped(textwrap.shorten(e['before'], width=420, placeholder=' [...]'), 39), 20),
                   text(1040, 440, 475, 300, wrapped(textwrap.shorten(e['after'], width=420, placeholder=' [...]'), 39), 20),
-                  text(550, 785, 960, 32, 'Source excerpts; full readouts, cell ID and endpoint evidence are in the notes and dashboard.', 17, MUTED)]
+                  text(550, 785, 960, 32, 'Explanation and source excerpts shortened; full evidence is in the notes and dashboard.', 17, MUTED)]
     else:
         right += [text(565, 250, 915, 400, wrapped('Exact before/after examples await qualitative review.\n\nInspect recovered facts, contradictions, relation reversals and lost details.\n\nExamples will be labeled as gains, regressions or randomly sampled unchanged cases.', 60), 30, MUTED)]
-    add('Inspect the exact text behind a gain or regression',
+    add('Inspect the exact text behind an apparent recovery gain',
         'A required name can be recovered inside incorrect prose.\n\nA weak bullet can carry a useful fact.\n\nExamples explain possible failure mechanisms; they do not prove causality.', right,
         'Selected qualitative cases must preserve source cell IDs, exact before/after text, selection policy and endpoint evidence. Outcome-selected cases are not representative prevalence estimates. All reviewed examples remain expandable in the dashboard.'+
         ('\nDisplayed case (slide contains explicitly labeled excerpts): '+json.dumps(examples[0][1], ensure_ascii=False) if examples else ''))

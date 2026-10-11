@@ -1,0 +1,184 @@
+{
+  "status": "independently_reviewed",
+  "source_sha256": "bcf373c19ac14e1869e1e63392e1ab34e6c60bcfda1f4ba9f7523944504c7abe",
+  "condition_ids": [
+    "bounded_prune_refill_005-n32"
+  ],
+  "cases": [
+    {
+      "case_id": "bounded_prune_refill_005-n32|hallucination|win|hallucination|chat-dailydialog-0000|L36|p00082",
+      "finding": "One higher-fit swap replaces the fourth bullet without adding a bullet, yet the retained '(and error-free)' phrase is exactly the span marked wrong in the old pruned parent. The official hallucinated-to-consistent change therefore does not demonstrate that this contradiction was corrected; both outputs remain fragmented expansions of the source's helpfulness claim.",
+      "caveats": [
+        "The wrong span survives verbatim despite its disappearance from the proposed wrong list.",
+        "The proposed stage-2 evidence reports no true claims and two unverifiable claims; consistent is not a whole-prose truth certificate.",
+        "The original released Oracle Lens is also marked hallucinated at this site; repeat-swap/prune produces the same proposed text."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "bounded_prune_refill_005-n32|hallucination|regression|hallucination|chat-dailydialog-0000|L44|p00082",
+      "finding": "Two higher-fit substitutions keep four bullets and retain the sentence about being trained by 'you (and other users).' The official regression newly flags that unchanged sentence, while the source attributes creation and training to engineers, researchers, and data; this is judge sensitivity around an existing unsupported claim rather than a newly inserted contradiction.",
+      "caveats": [
+        "The newly wrong quote already occurs verbatim in the parent marked consistent.",
+        "Search stops at the 2048-subset budget, so this is a bounded result rather than a proven optimum.",
+        "The original released readout also contains unsupported interactive-learning language and is marked hallucinated."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "bounded_prune_refill_005-n32|hallucination|unchanged|hallucination|chat-lmsys-0065|L36|p00287",
+      "finding": "The search reaches a fixed point without changing any of the four parent bullets or the consistent verdict. The surviving social-media and validation-loop content overlaps the source, but the reality-TV timeframe and AI extension are not established by this transcript.",
+      "caveats": [
+        "Unchanged endpoint and text do not certify every added detail.",
+        "The source presents a debated association, while several readout fragments state amplification more categorically."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "bounded_prune_refill_005-n32|hallucination|error_to_offtopic|hallucination|chat-dailydialog-0013|L52|p00043",
+      "finding": "A same-count swap replaces a generic network-environment fragment with a study-environment fragment, while keeping the source-supported lack of a physical body. The former wrong quote about inappropriate behavior remains verbatim and is now classified off-topic, so the hallucinated-to-off-topic label change is not evidence that the readout became more faithful.",
+      "caveats": [
+        "The newly off-topic inappropriate-behavior quote was the parent's wrong span.",
+        "Study advice and moralizing do not recover the transcript's specific offer of TV trivia and plot explanation.",
+        "Repeat-swap/prune has the same proposed text; this is not an added-bullet effect."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "bounded_prune_refill_005-n32|multihop_mt|win|multihop_mt|mhh-adwa-victor-accord|L44|p00044",
+      "finding": "After reproducing the parent's pruning, one higher-fit substitution introduces the required bridge name 'Menelik II' while keeping three bullets and a Treaty of Wuchale mention. This is a real exact-name recovery relative to the actual pruned parent, although the incomplete first bullet and invented alternative treaty names still prevent treating the whole readout as accurate prose.",
+      "caveats": [
+        "No bullet is added; the trace ends at refill_local_optimum.",
+        "The original released readout names the treaty but not the required ruler.",
+        "Repeat-swap/prune selects the same three source bullets in a different order."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "bounded_prune_refill_005-n32|multihop_mt|regression|multihop_mt|mhh-endpermian-volcanic-province|L32|p00035",
+      "finding": "A higher-fit substitution replaces the full 'Permian–Triassic extinction event' with the less specific 'Permian extinction,' keeping three bullets and the Siberian Traps target. The saved exact bridge hit disappears, illustrating loss of required name precision for a small reconstruction gain rather than loss of all semantic recognition of the event.",
+      "caveats": [
+        "The shorthand remains related to the correct event, so this is partly an exact-expression endpoint boundary.",
+        "The replacement is more qualified ('widely believed') than the removed primary-cause wording; endpoint loss does not imply every aspect of prose worsened.",
+        "Repeat-swap/prune emits the same proposed text."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "bounded_prune_refill_005-n32|multihop_mt|unchanged|multihop_mt|mhh-norse-ratatoskr-worldtree|L48|p00036",
+      "finding": "The refill search leaves the three-bullet pruned parent unchanged, including repeated Yggdrasil mentions and no Ratatoskr bridge. Recovering the answer name alone still fails the required squirrel recovery; the dwarf, alternate-tree, and etymology fragments are not supported by the provided prompt.",
+      "caveats": [
+        "No refill occurs despite an available fourth-bullet slot.",
+        "The original released readout and unpruned pool also miss the required bridge; no unchanged-failure claim implies their prose is accurate."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "bounded_prune_refill_005-n32|multihop_mt|question_loss|multihop_mt|mhh-endpermian-volcanic-province|L32|p00035",
+      "finding": "This question-loss entry is the same activation-site substitution as the extinction regression: the complete required bridge name is exchanged for 'Permian extinction,' while Siberian Traps remains. It illustrates how an exact-expression loss can change question recovery without removing the broader topic, not an independent second failure example.",
+      "caveats": [
+        "Duplicate physical case of the regression entry; do not count it as independent qualitative evidence.",
+        "The shorter label does not satisfy the pinned required forms even though it identifies related semantic content."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "bounded_prune_refill_005-n32|chain_intermediates|win|chain_intermediates|chain-w2-d2p-0201|L44|p00066",
+      "finding": "A same-count substitution inserts the correct arithmetic statement 'floor(14 / 2) = 7,' restoring the saved intermediate hit relative to the three-bullet pruned parent. The inserted bullet also starts with 5 and invents a preceding 12+2 step, while the other bullets use unrelated inputs, so recovery of 7 is not recovery of the actual 14-to-7-to-11 calculation.",
+      "caveats": [
+        "No bullet is added, and the final answer 11 is not recovered.",
+        "The unpruned pool and original released readout already contain 7 in misleading calculations; this gain is specifically relative to the pruned parent.",
+        "Repeat-swap/prune remains at the old pruned text; the gain illustrates a post-pruning substitution."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "bounded_prune_refill_005-n32|chain_intermediates|regression|chain_intermediates|chain-w2-d2p-0086|L28|p00063",
+      "finding": "The higher-fit fourth-bullet swap removes an explicit 'final number is 4' and replaces it with 8, producing the official intermediate-hit loss. However, the unchanged third bullet still starts with 4, so this is reduced explicit support plus judge sensitivity, not complete disappearance of the correct intermediate from the text.",
+      "caveats": [
+        "The proposed retained value list omits the surviving standalone 4.",
+        "The parent wrongly calls the true intermediate a final number; neither output reconstructs the actual 2-to-4-to-12 chain.",
+        "Repeat-swap/prune emits the same proposed text."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "bounded_prune_refill_005-n32|chain_intermediates|unchanged|chain_intermediates|chain-w2-d2p-0136|L24|p00065",
+      "finding": "The unchanged label masks a genuine two-bullet substitution: an unrelated weather continuation is exchanged for another incorrect arithmetic fragment at higher reconstruction fit. Neither the parent nor the proposed text names the required 17 or describes adding 7 to 10, so the saved failure persists despite the local textual cleanup.",
+      "caveats": [
+        "Unchanged refers to the endpoint, not identical text.",
+        "No bullet is added; the 26.9 fragment is saved as numeral 26 by the judge, which is another reason not to equate extracted values with full prose truth."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "bounded_prune_refill_005-n32|chain_intermediates|question_loss|chain_intermediates|chain-w2-d2p-0086|L28|p00063",
+      "finding": "This question-loss entry repeats the same four-bullet substitution as the arithmetic regression, replacing the explicit 4-result sentence with 8. The official loss should be read alongside the surviving standalone 4 and already incorrect parent final-number claim, rather than as a second independent example of information deletion.",
+      "caveats": [
+        "Duplicate physical case of the regression entry.",
+        "The proposed retained value list drops a visible 4, making the loss partly sensitive to wording and judging."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "bounded_prune_refill_005-n32|role_bound_association|win|role_bound_association|oa-accountant-client-deceive-ba|L44|p00126",
+      "finding": "One higher-fit substitution makes the accountant role explicit in the first bullet, while retaining three bullets about falsified submissions. That supplies a plausible client-to-accountant deception direction consistent with the scene and the official gain, but the unchanged John reference and ambiguous warnings about accountant honesty still leave the whole prose imperfect.",
+      "caveats": [
+        "The parent already mentions a tax preparer and fraud, so the all-three-choice jump reflects stronger role wording plus judge sensitivity.",
+        "The unpruned pool includes an explicit regular-client/accountant bullet and already passes; the original released readout also describes fabricated documents.",
+        "This is a substitution after pruning, not an added bullet."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "bounded_prune_refill_005-n32|role_bound_association|regression|role_bound_association|oa-boss-employee-envy-ab|L60|p00107",
+      "finding": "A higher-fit substitution replaces an employee-envy fragment with a managerial-authority/assistant-envy fragment, preserving the broad boss-to-subordinate direction in four bullets. The official patient-choice regression is debatable because the retained second bullet still names a supervisor and subordinate; neither output correctly names Dev, and both contain inconsistent identities.",
+      "caveats": [
+        "The proposed judge requires the target's choice name although the fixed judging block permits names or descriptions.",
+        "The same role-direction evidence survives in the second bullet; do not present this as a clean semantic role reversal.",
+        "The original released readout passes despite incorrect names; repeat-swap/prune has identical proposed text."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "bounded_prune_refill_005-n32|role_bound_association|unchanged|role_bound_association|oa-principal-troublemaker-dread-ab|L44|p00173",
+      "finding": "The three-bullet pruned parent and proposed output are identical generic summarization requests with no principal, troublemaker, or directed dread relation. The unchanged failure is supported by the scene and judge rationale, and the search does not refill the available fourth slot.",
+      "caveats": [
+        "The source flags different retained evidence, but returned choices, result and rationale are identical; only timestamp and shared-cache provenance differ.",
+        "The original released Oracle Lens also gives generic summarization fragments rather than the required relation."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "bounded_prune_refill_005-n32|role_bound_association|question_gain|role_bound_association|oa-father-daughter-worry-ba|L60|p00126",
+      "finding": "Two bounded substitutions introduce an explicit link between Peter's test results and Nora's anxiety, improving the evidence for the daughter worrying about her father without adding a bullet. The gain is plausible relative to the old pruned parent, but other bullets still attribute results to Nora, David, or Chris, so the official all-three-choice recovery is not a whole-readout factual repair.",
+      "caveats": [
+        "The scene reports a clinic call about blood work, not a positive result or Peter being unaware; those details remain unsupported.",
+        "The original released output confuses names, while best-of-32 already contains the helpful Peter-test fragment and passes.",
+        "The search stops at its 2048-subset budget; the parent already contains the Nora-anxiety/Peter-unbothered contrast, so judging also responds to clearer phrasing."
+      ],
+      "review_status": "independently_reviewed"
+    }
+  ],
+  "method_findings": {
+    "bounded_prune_refill_005-n32": "Bounded prune/refill is mostly a local substitution search relative to actual plain-pool-then-prune: 14.654% of sites change text, 13.383% keep the same count with different text, and only 1.2606% add bullets (mean 2.91006 versus 2.89756). All 16 illustrative entries here keep the parent bullet count; two entries repeat other physical cases, so they are neither frequency estimates nor evidence of genuine added-bullet gains. Average paired fraction of variance explained rises by 0.000238264, or 0.02383 percentage points, but useful name/role recoveries coexist with name-precision loss, incoherent arithmetic and unchanged generic failures. Native outcomes versus the actual pruned parent are Hallucination (chat) error 44.7222% versus 44.5124%, Multihop (multi-token) 38/100 versus 39/100, Chained intermediates 53/120 versus 55/120, and Role-bound association 83/100 versus 80/100; every adjusted parent interval includes zero, so better faithfulness is not established. The original released Oracle Lens remains a distinct reference, not the construction or component parent. Review used exact saved text, evaluation-only contexts, original/reference outputs, retained official evidence and bounded selection traces, with no inference or judge calls and no control activations. Apparent chat verdict flips often reclassify surviving problematic quotes; the arithmetic loss keeps a visible 4 that the proposed judge omits, and one role regression preserves the direction while demanding a missing name. Higher constrained fit and recovered names/integers must not be presented as full-prose truth."
+  },
+  "representative_case_ids": {
+    "gain": [
+      "bounded_prune_refill_005-n32|multihop_mt|win|multihop_mt|mhh-adwa-victor-accord|L44|p00044",
+      "bounded_prune_refill_005-n32|chain_intermediates|win|chain_intermediates|chain-w2-d2p-0201|L44|p00066",
+      "bounded_prune_refill_005-n32|role_bound_association|win|role_bound_association|oa-accountant-client-deceive-ba|L44|p00126",
+      "bounded_prune_refill_005-n32|role_bound_association|question_gain|role_bound_association|oa-father-daughter-worry-ba|L60|p00126"
+    ],
+    "regression": [
+      "bounded_prune_refill_005-n32|multihop_mt|regression|multihop_mt|mhh-endpermian-volcanic-province|L32|p00035",
+      "bounded_prune_refill_005-n32|chain_intermediates|regression|chain_intermediates|chain-w2-d2p-0086|L28|p00063",
+      "bounded_prune_refill_005-n32|role_bound_association|regression|role_bound_association|oa-boss-employee-envy-ab|L60|p00107"
+    ],
+    "unchanged": [
+      "bounded_prune_refill_005-n32|hallucination|unchanged|hallucination|chat-lmsys-0065|L36|p00287",
+      "bounded_prune_refill_005-n32|multihop_mt|unchanged|multihop_mt|mhh-norse-ratatoskr-worldtree|L48|p00036",
+      "bounded_prune_refill_005-n32|role_bound_association|unchanged|role_bound_association|oa-principal-troublemaker-dread-ab|L44|p00173"
+    ]
+  }
+}

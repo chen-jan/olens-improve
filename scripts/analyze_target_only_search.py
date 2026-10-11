@@ -184,6 +184,14 @@ def main():
         raise RuntimeError('Run whole-bank bootstrap/extraction on allocated CPUs')
     if args.output.exists():
         raise FileExistsError('Preserve an existing analysis; choose a new version')
+    implementation = {str(path): digest(path) for path in (
+        Path(__file__), Path('scripts/evaluate_target_only_search.py'),
+        Path('scripts/analyze_expansion.py'), Path('scripts/expanded_judges.py'),
+        Path('scripts/verify_expansion_judge_contracts.py'),
+        Path('scripts/expanded_api.py'), Path('scripts/expanded_cpu_cached.py'),
+        Path('src/olens_improve/expanded_statistics.py'),
+        Path('src/olens_improve/reporting.py'),
+        Path('src/olens_improve/evaluation.py'), Path('src/olens_improve/data.py'))}
     inventory, config, new = authority(args)
     frozen_analysis = inventory['analysis']
     if frozen_analysis['status'] != 'frozen_before_new_judgments':
@@ -316,6 +324,7 @@ def main():
     if headline and len(populated) != 4:
         headline['comparison_family_complete'] = False
         headline['joint_critical_value'] = None
+        headline['joint_interval_contrasts'] = 0
         for row in headline['comparisons']:
             row['simultaneous_ci95_delta'] = None
     if supplementary:
@@ -324,21 +333,21 @@ def main():
     for path, expected in pins.items():
         if digest(path) != expected:
             raise ValueError('Scientific source changed during extraction: '+path)
+    for path, expected in implementation.items():
+        if digest(path) != expected:
+            raise ValueError('Analysis implementation changed during extraction: '+path)
     payload = {'status': 'complete_exploratory' if not missing else 'partial_exploratory',
         'updated_utc': datetime.now(timezone.utc).isoformat(), 'inventory_sha256': args.inventory_sha256,
         'cohort': {'questions': 469, 'cells': 19435, 'all_previously_inspected': True},
         'task_titles': TITLES, 'endpoint_explanations': EXPLANATIONS,
         'original_reference': {'condition': 'raw_n1-n1', 'display_name': 'Original released Oracle Lens'},
         'headline': headline, 'supplementary_pointwise_comparisons': supplementary['comparisons'] if supplementary else [],
-        'simultaneous_family': {'definition': 'Exactly declared original-relative and actual-parent contrasts for new methods, crossed with four native task endpoints.',
+        'simultaneous_family': {'definition': 'All 11 frozen named contrasts, including original-relative, actual-parent, guided-versus-random and other scaffold comparisons, crossed with four native task endpoints.',
                                'declared_contrasts': 4*len(contrasts), 'pairs': contrasts},
         'lengths': lengths, 'paired_lengths': paired_lengths, 'secondary': secondary, 'complete_condition_families': complete,
         'search_diagnostics': diagnostics, 'baseline_reconstruction': baseline_reconstruction,
         'missing_condition_families': missing, 'source_sha256': pins,
-        'implementation_sha256': {str(Path(__file__)): digest(__file__),
-            'scripts/evaluate_target_only_search.py': digest('scripts/evaluate_target_only_search.py'),
-            'src/olens_improve/expanded_statistics.py': digest('src/olens_improve/expanded_statistics.py'),
-            'src/olens_improve/reporting.py': digest('src/olens_improve/reporting.py')},
+        'implementation_sha256': implementation,
         'inference_calls': 0,
         'limits': ['Exploratory on previously inspected full banks; no fresh held-out confirmation.',
                    'The new simultaneous family does not cover the historical70setting menu or adaptive experiment history.',

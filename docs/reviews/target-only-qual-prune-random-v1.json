@@ -1,0 +1,350 @@
+{
+  "status": "independently_reviewed",
+  "source_sha256": "bcf373c19ac14e1869e1e63392e1ab34e6c60bcfda1f4ba9f7523944504c7abe",
+  "condition_ids": [
+    "repeat_swap_then_prune_005-n32",
+    "repeated_swaps_random_delete_match_005-n32"
+  ],
+  "cases": [
+    {
+      "case_id": "repeat_swap_then_prune_005-n32|hallucination|win|hallucination|chat-dailydialog-0000|L36|p00092",
+      "finding": "The saved prune removes the Chinese follow-up about the user’s partner, but leaves “I’m happily married to my algorithms,” the parent’s exact flagged span. Matched random deletion produces the same three bullets and favorable verdict, while the released original was already consistent, so this example does not demonstrate guided removal of a contradiction.",
+      "caveats": [
+        "The flagged marriage wording can be read metaphorically; the transcript rejects a spouse in the traditional sense, and the changed verdict does not settle that interpretation.",
+        "The favorable verdict occurs with the flagged content still present."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeat_swap_then_prune_005-n32|hallucination|regression|hallucination|chat-dailydialog-0000|L20|p00038",
+      "finding": "Pruning removes a redundant no-home/no-pet fragment and preserves all three spans newly labeled wrong: no garage, the incomplete cloud statement, and living in servers. These were already present in the consistent parent, and the supplied response about an AI having no traditional spouse does not directly contradict them, so the apparent regression is mainly a changed judgment of surviving material.",
+      "caveats": [
+        "Unsupported or incomplete descriptions are not automatically transcript contradictions.",
+        "Matched random deletion also shortens repetitive no-spouse material but keeps a different subset."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeat_swap_then_prune_005-n32|hallucination|unchanged|hallucination|chat-dailydialog-0000|L52|p00055",
+      "finding": "The final trace removes one Google-creator bullet with marginal reconstruction contribution below 0.005, but another Google-creator attribution survives. Both the parent and shortened readout remain classified hallucinated; developer/data language is partly supported by the transcript, while the Google attribution is not supplied there and also appears in the released original.",
+      "caveats": [
+        "Removing one duplicate unsupported attribution does not validate the surviving attribution.",
+        "The supplied transcript alone does not establish the real-world employer identity."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeat_swap_then_prune_005-n32|hallucination|error_to_offtopic|hallucination|chat-dailydialog-0001|L20|p00117",
+      "finding": "The removed bullet is a generic statement about honesty and laws, while the Chinese Qwen/Alibaba/Chinese-law statement flagged in the parent survives unchanged and is relabeled off topic. The remaining response still fails to recover the classroom scene faithfully, so this is a shorter readout and a classification change rather than verified correction.",
+      "caveats": [
+        "Wrong-to-off-topic is not a truth gain.",
+        "The original and available older pruning references retain the same unsupported law/developer wording; current matched random deletion also keeps it."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeated_swaps_random_delete_match_005-n32|hallucination|win|hallucination|chat-dailydialog-0000|L36|p00092",
+      "finding": "The seeded random control deletes exactly the same Chinese follow-up as guided pruning and obtains identical shortened text and the same favorable verdict. The parent’s flagged “happily married to my algorithms” phrase remains, so the example supports a shortening or judgment effect shared by both methods rather than a special benefit of guided deletion.",
+      "caveats": [
+        "The marriage phrase is metaphorical and its contradiction status is interpretation-sensitive.",
+        "The released original is already classified consistent."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeated_swaps_random_delete_match_005-n32|hallucination|regression|hallucination|chat-dailydialog-0000|L20|p00067",
+      "finding": "Random deletion removes the speculative “hot” engineering riff but leaves developer-related fragments and the speculative “warmth” riff. The judge newly marks “研发团队 (developers)” wrong even though the supplied response explicitly credits engineers and researchers; the scored regression does not show a newly introduced contradiction.",
+      "caveats": [
+        "The general developer attribution is supported, while the surrounding thermal metaphors remain unsupported.",
+        "The surviving fragments were already in the parent; the available older random reference has a different subset and an off-topic verdict."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeated_swaps_random_delete_match_005-n32|hallucination|unchanged|hallucination|chat-dailydialog-0070|L20|p00122",
+      "finding": "Random deletion drops two abstract environmental headings and leaves the “Never vs. Maybe” and “not destroy, but degrade” headings, with the hallucinated classification unchanged. The transcript supports a nuanced range of environmental outcomes, but the readout’s supposed “never” claim is not in the user’s question; fewer flagged spans do not prove the surviving prose is more accurate.",
+      "caveats": [
+        "The broad environmental nuance is partly supported, so every saved wrong span should not be assumed independently false.",
+        "Current guided pruning keeps a different two-heading subset; neither produces concrete recovery of the transcript’s details."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeated_swaps_random_delete_match_005-n32|hallucination|error_to_offtopic|hallucination|chat-dailydialog-0002|L20|p00042",
+      "finding": "Random deletion removes the only bullet naming Tongyi Lab, a detail actually present in the supplied response, while retaining invented references to Xiaohong, Teacher Zhang, and Xiao Ai. Those same surviving spans change from wrong to off topic, so the apparent error reduction sacrifices a useful fact and does not establish a faithful greeting or identity readout.",
+      "caveats": [
+        "Wrong-to-off-topic is not verified truth.",
+        "The released original also invents different people; current guided deletion retains the Tongyi Lab bullet but still includes unsupported people."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeat_swap_then_prune_005-n32|multihop_mt|regression|multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L60|p00028",
+      "finding": "The two final prune steps remove a redundant Simula fragment and the only complete “Simula 67” bridge, leaving unaccepted partial Simula wording and unsupported co-designer names. This is a real exact-bridge loss at the selected site, though the question still passes elsewhere with nine rather than ten passing sites; current count-matched random deletion retains the complete bridge.",
+      "caveats": [
+        "The parent’s bridge-bearing bullet assigns it to an unsupported person, so its recovery pass never established correct co-designer prose.",
+        "The endpoint requires a complete accepted bridge form, not merely the shorter name Simula."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeat_swap_then_prune_005-n32|multihop_mt|unchanged|multihop_mt|mhh-isenheim-unterlinden|L40|p00032",
+      "finding": "Pruning deletes one redundant museum description but keeps Musée Unterlinden and the incomplete “Isenheim Altar” wording, without an accepted full bridge before or after. The unchanged site therefore remains a failure despite recovering the answer name, and it retains conflicting Strasbourg/Colmar museum claims; the released original and best-of-32 references contain the full bridge but also misleading museum prose.",
+      "caveats": [
+        "At the whole-question level recovery remains present, although passing sites fall from two to one.",
+        "Exact name recovery does not validate location or museum assertions."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeat_swap_then_prune_005-n32|multihop_mt|question_loss|multihop_mt|mhh-brancusi-ensemble|L56|p00024",
+      "finding": "Guided pruning removes the only complete “Constantin Brâncuși” name and a redundant Târgu Jiu bullet, leaving the answer town but only the surname Brâncuși. The saved complete grid loses its only passing site, as does the current matched random control, demonstrating loss of an essential exact bridge rather than harmless redundancy.",
+      "caveats": [
+        "The removed full-name bullet also falsely locates the ensemble in Cluj-Napoca and describes unsupported columns, so losing the bridge can coincide with deleting erroneous prose.",
+        "The surviving town name and the parent’s recovery pass do not verify the monument descriptions."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeated_swaps_random_delete_match_005-n32|multihop_mt|regression|multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L40|p00028",
+      "finding": "Random deletion removes both full “Simula 67” occurrences, leaving only partial Simula wording and changing the selected site from a bridge hit to a miss. Guided pruning at this same site retains a complete accepted bridge, while the question still passes elsewhere under random deletion, with nine rather than ten passing sites.",
+      "caveats": [
+        "The deleted Alan Kay association is unsupported, so this is an exact-name loss rather than evidence that all deleted prose was useful.",
+        "Neither the surviving readout nor the bridge-recovering released original identifies the correct co-designer Kristen Nygaard."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeated_swaps_random_delete_match_005-n32|multihop_mt|unchanged|multihop_mt|mhh-kinski-paristexas|L40|p00042",
+      "finding": "Random deletion drops the Wings of Desire fragment but preserves Paris, Texas amid incorrect movie and performer descriptions. Neither parent nor after contains the required Klaus Kinski bridge, and the complete question remains unrecovered at every layer; guided shortening removes a different incorrect movie fragment but also retains no full bridge.",
+      "caveats": [
+        "Recovering the final movie title is optional here and does not satisfy the required intermediate-name endpoint.",
+        "The released original also misses the bridge and contains competing film guesses."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeated_swaps_random_delete_match_005-n32|multihop_mt|question_loss|multihop_mt|mhh-brancusi-ensemble|L56|p00024",
+      "finding": "The seeded deletion removes the only complete “Constantin Brâncuși” occurrence together with one Târgu Jiu bullet, while preserving a second town-and-surname fragment. Like guided pruning, it removes the sole passing site in the full question grid; exact recovery of the town therefore does not rescue the required full-name bridge.",
+      "caveats": [
+        "The deleted full-name bullet also contains the wrong town and unsupported monument details.",
+        "The released original recovers the town but already lacks the complete bridge."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeat_swap_then_prune_005-n32|chain_intermediates|win|chain_intermediates|chain-d2p-0200|L28|p00066",
+      "finding": "Pruning removes “The answer is 2” but does not add the correct intermediate 6, which was already the parent’s fourth bullet. The scored extraction changes from 2/8/5 to 6/5/8 and passes, exactly as under matched random deletion; the remaining bullets still state conflicting final results and never recover the true final answer 18.",
+      "caveats": [
+        "This is intermediate-number recovery, not a correct complete calculation.",
+        "The released original and best-of-32 references already recover 6 at this site."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeat_swap_then_prune_005-n32|chain_intermediates|regression|chain_intermediates|chain-d2p-0230|L40|p00066",
+      "finding": "The saved prune removes the sole 9-bearing arithmetic bullet and an irrelevant 7 formula, so the selected site and the question lose their only intermediate hit. However, the parent reached 9 through (10−7)×3 rather than the actual first step 11−2, and current random deletion retains that exact 9-bearing bullet despite being scored a miss.",
+      "caveats": [
+        "The loss concerns a matching number in an unrelated derivation, not loss of a verified faithful chain.",
+        "The surviving 27 headline is the final answer but its stated derivation is also unrelated."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeat_swap_then_prune_005-n32|chain_intermediates|unchanged|chain_intermediates|chain-w2-d3p-0659|L44|p00068",
+      "finding": "No final prune occurs: text, four bullets, token count, reconstruction score, and the failure verdict all remain identical. Neither readout recovers the required 23 or 31 at this site, while the whole question still passes at layer 20; the retained-evidence difference is only a cache timestamp.",
+      "caveats": [
+        "The source’s same-text retained-evidence flag is metadata-only here, not a semantic verdict flip.",
+        "The released original also misses at this site, and the best-of-32 hit does not validate its unrelated arithmetic."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeat_swap_then_prune_005-n32|chain_intermediates|question_gain|chain_intermediates|chain-d2p-0200|L28|p00066",
+      "finding": "This is the full-grid version of the same layer-28 shortening event: deleting the 2 bullet makes already-present 6 enter the successful scored extraction, and passing sites change from zero to one. Matched random deletion produces identical prose and the same question gain, while 8 and 5 remain competing answers and the actual final answer 18 is absent.",
+      "caveats": [
+        "The site win and question gain are the same witness, not independent evidence.",
+        "The released original was already a hit at this witness, so the gain is relative to repeated swaps."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeat_swap_then_prune_005-n32|chain_intermediates|question_loss|chain_intermediates|chain-d2p-0230|L40|p00066",
+      "finding": "The question falls from one passing site to none when guided pruning deletes the bullet containing 9, the required first intermediate. That bullet’s explanation nevertheless computes 9 from a different starting expression, and the shortened output still contains the final-answer token 27 inside an unrelated explanation, so the loss is precise number recovery rather than established loss of a correct chain.",
+      "caveats": [
+        "This is the same witness as the selected site regression.",
+        "Current count-matched random deletion keeps the 9-bearing bullet but loses the official question endpoint through changed number extraction."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeated_swaps_random_delete_match_005-n32|chain_intermediates|win|chain_intermediates|chain-d2p-0200|L28|p00066",
+      "finding": "The deterministic random subset is identical to guided pruning: it removes the 2 answer bullet and retains 8, 5, and 6. The native hit reflects extraction of already-present 6 as the intermediate, while contradictory final-answer claims remain and the correct final result 18 is not recovered.",
+      "caveats": [
+        "This gain is shared with guided shortening and cannot establish a special reconstruction-guided effect.",
+        "The released original already recovered 6 at this site."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeated_swaps_random_delete_match_005-n32|chain_intermediates|regression|chain_intermediates|chain-d2p-0230|L40|p00066",
+      "finding": "Random deletion removes the 27 and 7 bullets but retains verbatim the parent’s passage “3 * 3 = 9,” including the numeric intermediate that previously supported a hit. The judge now prioritizes the malformed “8 * 3 = 2” fragment and scores a miss, so this regression is extraction sensitivity rather than deletion of the 9 fact; neither arithmetic story matches the supplied chain.",
+      "caveats": [
+        "The same 9-bearing passage survives a scored hit-to-miss change, although the entire text is not identical.",
+        "Guided pruning actually removes that passage, so identical endpoint losses have different textual causes."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeated_swaps_random_delete_match_005-n32|chain_intermediates|unchanged|chain_intermediates|chain-d3p-0637|L52|p00070",
+      "finding": "The random subset removes two irrelevant fragments and retains a −3 computation plus a 6 headline, but neither parent nor after recovers the required intermediates 11 or 14. The selected layer-52 site remains a miss even though the question gains a hit elsewhere at layer 44; guided pruning selects a different two-bullet miss.",
+      "caveats": [
+        "The surviving 6 is the final answer, not either required intermediate, and its accompanying arithmetic is unrelated.",
+        "A whole-question gain elsewhere must not be attributed to this unchanged site."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeated_swaps_random_delete_match_005-n32|chain_intermediates|question_gain|chain_intermediates|chain-d2p-0200|L28|p00066",
+      "finding": "The complete-grid gain from zero to one passing site uses the same layer-28 subset as guided pruning, after removal of the 2 answer bullet. Since 6 was already present and raw original recovery at this witness was successful, this demonstrates a shared shortening/extraction effect relative to repeated swaps, while the surviving conflicting answers remain scientifically important.",
+      "caveats": [
+        "This case duplicates the site-win witness rather than supplying another independent gain.",
+        "The endpoint tests intermediate recovery and does not establish final-answer correctness."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeated_swaps_random_delete_match_005-n32|chain_intermediates|question_loss|chain_intermediates|chain-d2p-0230|L40|p00066",
+      "finding": "The full grid loses its sole passing site even though random deletion preserves the exact “3 * 3 = 9” sentence that supported the parent’s intermediate hit. The retained judgment instead favors the unrelated malformed 8×3=2 fragment, illustrating a question-level extraction loss without disappearance of the matching numeral; guided pruning loses the same endpoint by physically deleting the 9-bearing bullet.",
+      "caveats": [
+        "This is the same witness as the selected site regression.",
+        "Presence of 9 within the wrong calculation does not verify recovery of the actual 11−2 intermediate relation."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeat_swap_then_prune_005-n32|role_bound_association|win|role_bound_association|oa-accountant-client-deceive-ba|L36|p00126",
+      "finding": "The final prune deletes the invented Arthur false-return bullet and leaves a client-to-accountant deception relation that was already expressed by the parent. The judge changes from demanding a listed client name to accepting the role description, so removing the unsupported name is useful cleanup but does not newly establish Dale/Priya identities or a new directional relation; the whole question stays recovered with four passing sites.",
+      "caveats": [
+        "The parent rationale already recognizes the correct directional relation, while the after rationale relaxes its name-mapping requirement.",
+        "The released original misses this site; current random deletion retains the Arthur bullet."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeat_swap_then_prune_005-n32|role_bound_association|regression|role_bound_association|oa-accountant-client-deceive-ba|L44|p00126",
+      "finding": "Pruning deletes the cleanest explicit role anchor, “A Regular Client Submits Flawed Tax Documents to a Familiar Accountant,” while retaining generic tax-fraud language and an unsupported John name. This weakens the client/accountant binding and the judge changes to all cannot-tell choices, although deception remains implied; current matched random deletion keeps the explicit role anchor, and the complete question still passes elsewhere.",
+      "caveats": [
+        "The loss of a useful role anchor is real, but the surviving fraud description makes the total action abstention judge-sensitive.",
+        "No names newly become correct, and the released original also lacks reliable identities."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeat_swap_then_prune_005-n32|role_bound_association|unchanged|role_bound_association|oa-bouncer-patron-eject-ba|L28|p00144",
+      "finding": "Pruning removes an unrelated search-for-mother address fragment but leaves generic summary requests and an unrelated leaky-roof phone-call scene. Neither readout identifies the patron ejecting the bouncer, so the native failure is unchanged; the original and available sample/composition references are also unrelated at this site.",
+      "caveats": [
+        "Deleting unsupported narrative material does not by itself recover the intended scene.",
+        "The full question remains recovered at other sites, which does not make this site successful."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeat_swap_then_prune_005-n32|role_bound_association|question_gain|role_bound_association|oa-hairdresser-client-compliment-ab|L36|p00134",
+      "finding": "Guided pruning removes the Layla/job-instability fragment, but the surviving Amy stylist and Ellie client names are still incorrect and the stylist-to-client praise relation already existed in the parent. The grid changes from zero to two passing sites as the judge accepts role mapping despite those names; random deletion also gains the question with a different three-bullet subset, and the released original already passes at this witness.",
+      "caveats": [
+        "This is a name/role judgment and shortening effect, not newly recovered correct names or proof that the whole salon description is faithful.",
+        "The retained prose adds unsupported haircut, dyeing, and emotional details."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeat_swap_then_prune_005-n32|role_bound_association|question_loss|role_bound_association|oa-referee-player-warn-ba|L52|p00150",
+      "finding": "The removed Chinese bullet repeats the player-to-referee warning direction, while the after text still explicitly says a young soccer player warned the referee. The only passing grid site is lost because the judge changes from role-based matching to rejecting Emma/Emily as listed identities, not because the warning direction disappears; both versions still replace the actual sprinkler-cap scene with unsupported hazards and rewards.",
+      "caveats": [
+        "The after rationale acknowledges the correct warning relation but refuses the name mapping accepted for the parent.",
+        "The released original also fails with invented names; the current random subset preserves the same relation."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeated_swaps_random_delete_match_005-n32|role_bound_association|win|role_bound_association|oa-accountant-client-deceive-ab|L60|p00145",
+      "finding": "Random deletion removes an unrelated Julian dentist scenario but leaves Marcus explicitly called an architect and a separate invented Giovanni accountant story. The judge now maps Marcus/client deception to the accountant-to-client options, so the site gain mainly reflects relaxed role/name interpretation amid incorrect prose; the whole question was already recovered and rises from five to six passing sites.",
+      "caveats": [
+        "The role assigned to Marcus conflicts with the supplied accountant scene even though his name and deception direction are retained.",
+        "The released original already passes this witness despite similarly unreliable roles; current guided pruning keeps the dentist story instead."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeated_swaps_random_delete_match_005-n32|role_bound_association|regression|role_bound_association|oa-bouncer-patron-eject-ab|L20|p00138",
+      "finding": "The deleted bullet only asks about Jerry’s control of a drunk man, while the surviving readout still explicitly says Jerry removed a problematic bar patron from the premises. The judge changes from inferring bouncer-to-patron ejection to all cannot-tell choices, including the action, so this apparent site loss is chiefly interpretation sensitivity; the whole question still has thirteen rather than fifteen passing sites.",
+      "caveats": [
+        "The listed names Marcus/Devin were never supplied correctly, but the ejection statement survives unchanged.",
+        "Current guided pruning deletes the stronger explicit ejection bullet; the released original keeps that statement and is scored a hit."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeated_swaps_random_delete_match_005-n32|role_bound_association|unchanged|role_bound_association|oa-detective-suspect-follow-ba|L20|p00137",
+      "finding": "The seeded control retains all four bullets because its matched deletion count is zero, leaving the exact same unrelated Linda/David/banker summary prose as the repeated-swaps parent. Both fail to recover suspect-to-detective following at this site, while the question remains recovered at layer 60; the retained-evidence difference is cache timestamp/metadata rather than a changed answer or rationale.",
+      "caveats": [
+        "The source’s same-text retained-evidence flag does not indicate a scored-verdict flip here.",
+        "The released original and available references also miss this site."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeated_swaps_random_delete_match_005-n32|role_bound_association|question_gain|role_bound_association|oa-hairdresser-client-compliment-ab|L36|p00134",
+      "finding": "Random deletion removes the Ellie/dyeing fragment and leaves Amy stylist and Layla client fragments, with stylist-to-client praise already expressed in the parent. The question changes from zero to one passing site as the judge accepts role mapping despite incorrect names, paralleling the guided question gain from a different count-matched subset; the released original was already successful at this witness.",
+      "caveats": [
+        "Removing an unsupported fragment does not newly supply Priya or Dana or validate the surviving restlessness/job-instability story.",
+        "This example cannot distinguish guided selection quality from shortening and role-mapping sensitivity."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeated_swaps_random_delete_match_005-n32|role_bound_association|question_loss|role_bound_association|oa-hairdresser-client-compliment-ba|L60|p00123",
+      "finding": "Random deletion removes the sole bullet saying Dana receives praise from Marcus, the correct client-to-hairdresser direction, and leaves three stories casting Marcus as the praised barber. The complete question loses its only passing site, so this is genuine loss of an essential directional binding; current guided pruning preserves that bullet, though its other surviving bullets still reverse roles.",
+      "caveats": [
+        "The parent mixes the correct relation with contradictory role assignments and an unsupported free-haircut offer, so its pass never established full prose fidelity.",
+        "The released original also reverses the central binding and misses this witness."
+      ],
+      "review_status": "independently_reviewed"
+    }
+  ],
+  "method_findings": {
+    "repeat_swap_then_prune_005-n32": "Across the saved 19,435 sites, guided pruning shortens 13,301 (68.438%) and lowers mean bullets from 3.99372 to 2.91057; its mean reconstruction-score loss is 0.00260569 versus 0.01061195 for deterministic random deletion from the same repeated-swaps parent. Per-cell retained bullet counts are identical, but token lengths are not matched, and smaller reconstruction loss does not prove semantic superiority. In analysis/final-v1.json, native full-question counts are 38/100 for Multihop (multi-token), 53/120 for Chained intermediates, and 84/100 for Role-bound association, versus parent counts 41/100, 51/120, and 84/100; Hallucination (chat) has 2472/5557 contradictions versus 2615/5552 in the parent, with nearly identical count-matched random error rate. Selected cases show some helpful deletion of unsupported names, but also complete-bridge losses and verdict changes that preserve the flagged content or directional relation; shared gains must not be credited uniquely to the guided rule. All four saved paired guided-versus-random native confidence intervals include zero, and the previously observed banks and outcome-selected examples support exploratory interpretation rather than prevalence or fresh confirmation.",
+    "repeated_swaps_random_delete_match_005-n32": "This deterministic control deletes from the same repeated-swaps parent to match the guided retained bullet count at every cell, not exact token length; its mean 2.91057 bullets and 68.438% shortened sites are therefore identical, while its mean reconstruction-score loss is larger. In analysis/final-v1.json, native full-question counts are 36/100 for Multihop (multi-token), 51/120 for Chained intermediates, and 84/100 for Role-bound association, with Hallucination (chat) at 2471/5552 contradictions, so the guided hallucination reduction is also obtained by random shortening. The shared chain gain exposes an already-present numeral to the scored extraction, whereas Brancusi and reverse-direction hairdresser losses physically remove essential bridge or binding evidence; other scored losses retain the relevant sentence and reveal judgment sensitivity. Two unchanged examples across these partitions have metadata-only retained-evidence differences, and none has an identical-text scored-verdict flip. The full native paired guided-versus-random intervals all include zero; this outcome-selected review does not estimate frequency, validate all prose, or establish a new held-out result."
+  },
+  "representative_case_ids": {
+    "repeat_swap_then_prune_005-n32": {
+      "gain": [
+        "repeat_swap_then_prune_005-n32|chain_intermediates|question_gain|chain_intermediates|chain-d2p-0200|L28|p00066",
+        "repeat_swap_then_prune_005-n32|role_bound_association|win|role_bound_association|oa-accountant-client-deceive-ba|L36|p00126"
+      ],
+      "regression": [
+        "repeat_swap_then_prune_005-n32|multihop_mt|question_loss|multihop_mt|mhh-brancusi-ensemble|L56|p00024",
+        "repeat_swap_then_prune_005-n32|role_bound_association|question_loss|role_bound_association|oa-referee-player-warn-ba|L52|p00150"
+      ],
+      "unchanged": [
+        "repeat_swap_then_prune_005-n32|hallucination|unchanged|hallucination|chat-dailydialog-0000|L52|p00055",
+        "repeat_swap_then_prune_005-n32|chain_intermediates|unchanged|chain_intermediates|chain-w2-d3p-0659|L44|p00068"
+      ]
+    },
+    "repeated_swaps_random_delete_match_005-n32": {
+      "gain": [
+        "repeated_swaps_random_delete_match_005-n32|chain_intermediates|question_gain|chain_intermediates|chain-d2p-0200|L28|p00066",
+        "repeated_swaps_random_delete_match_005-n32|hallucination|win|hallucination|chat-dailydialog-0000|L36|p00092"
+      ],
+      "regression": [
+        "repeated_swaps_random_delete_match_005-n32|role_bound_association|question_loss|role_bound_association|oa-hairdresser-client-compliment-ba|L60|p00123",
+        "repeated_swaps_random_delete_match_005-n32|chain_intermediates|question_loss|chain_intermediates|chain-d2p-0230|L40|p00066"
+      ],
+      "unchanged": [
+        "repeated_swaps_random_delete_match_005-n32|role_bound_association|unchanged|role_bound_association|oa-detective-suspect-follow-ba|L20|p00137",
+        "repeated_swaps_random_delete_match_005-n32|chain_intermediates|unchanged|chain_intermediates|chain-d3p-0637|L52|p00070"
+      ]
+    }
+  }
+}

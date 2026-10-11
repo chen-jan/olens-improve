@@ -1,0 +1,143 @@
+{
+  "status": "independently_reviewed",
+  "source_sha256": "bcf373c19ac14e1869e1e63392e1ab34e6c60bcfda1f4ba9f7523944504c7abe",
+  "condition_ids": [
+    "repeat_swap-n32"
+  ],
+  "cases": [
+    {
+      "case_id": "repeat_swap-n32|hallucination|win|hallucination|chat-dailydialog-0000|L36|p00082",
+      "finding": "One swap replaces the generic digital-companion fragment with an incomplete internet-powered claim, while retaining the developer-team cue and the entire motherboard/error-free bullet. The official hallucinated-to-consistent label does not demonstrate a factual repair because the exact parent wrong span, \"(and error-free)\", survives unchanged. The Original released Oracle Lens and best-N references also contain unsupported hardware/health elaborations, so the proposed text should not be described as fully faithful.",
+      "caveats": [
+        "The previously flagged span remains; differing whole-readout judgments may reflect judge sensitivity.",
+        "The transcript describes engineers, researchers and data, without establishing internet-powered or error-free claims."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeat_swap-n32|hallucination|regression|hallucination|chat-dailydialog-0000|L44|p00082",
+      "finding": "Three swaps replace vague readiness fragments with employer, creator and user-purpose elaborations, increasing length by 25 Qwen tokens. The official regression flags the training-dependence sentence, but that sentence was already present verbatim in the consistent parent; this is not evidence that the swaps introduced that error. Original released Oracle Lens and best-N were already judged hallucinated for related user-dependence claims, while the actual parent and its pruning references were judged consistent.",
+      "caveats": [
+        "The new fragments are speculative and incomplete, but the sole retained wrong quote is unchanged.",
+        "The transcript does not resolve the generic-users versus this-user training interpretation."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeat_swap-n32|hallucination|unchanged|hallucination|chat-lmsys-0023|L36|p00170",
+      "finding": "The emitted text and retained verdict are identical to the plain-pool parent: encoder-decoder fragments still call the image the query and mention Detectron2. These do not recover the transcript distinction between a CNN feature backbone and a transformer encoder-decoder, and repeated swaps stop without selecting another bullet. Original released Oracle Lens and best-N also contain different architectural elaborations and remain officially hallucinated.",
+      "caveats": [
+        "This is an exact unchanged-text case, not an unchanged-text scored flip.",
+        "No independent factual validation of the transcript itself was performed."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeat_swap-n32|hallucination|error_to_offtopic|hallucination|chat-dailydialog-0013|L52|p00043",
+      "finding": "The single swap replaces a Chinese fragment about maintaining a good network with another about a healthy study environment, while leaving the previously flagged inappropriate-behavior advice intact. The official hallucinated-to-off-topic transition reclassifies that unchanged advice and adds studying as off-topic; it demonstrates neither removal of the questionable material nor increased faithfulness. All shown texts, including Original released Oracle Lens and best-N, retain the correct no-physical-body cue while adding irrelevant advice.",
+      "caveats": [
+        "A conditional recommendation is not automatically a contradicted factual assertion; the parent wrong label is uncertain.",
+        "Off-topic output is not a faithful recovery gain; the proposed readout is nonempty."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeat_swap-n32|multihop_mt|win|multihop_mt|mhh-adwa-victor-accord|L44|p00044",
+      "finding": "One emitted swap adds \"Menelik II and the Italian government\", giving the required multi-token bridge that the parent, Original released Oracle Lens and best-N lack at this site. The treaty-name alternatives and incomplete prose remain, so this is genuine required-name recovery rather than verification of the whole readout. The original 11-layer question already passed under every shown reference, and the actual parent and proposal both have five passing layers.",
+      "caveats": [
+        "Site recovery gain is not a whole-question gain.",
+        "The trace includes cached_parent_fallback pruning that does not describe the final four-bullet output."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeat_swap-n32|multihop_mt|regression|multihop_mt|mhh-adwa-victor-accord|L36|p00044",
+      "finding": "Two emitted swaps remove the complete \"Menelik II\" form, leaving only \"Menelik\" in one fragment and adding a Mead-Allen/Cairo alternative. The released matcher therefore loses the required multi-token bridge at this site even though some partial ruler information survives; Original released Oracle Lens also fails here, whereas best-N and guided parent-pruning preserve the full form. The question still passes on five of its 11 layers under both actual parent and proposal.",
+      "caveats": [
+        "This loss concerns the exact required bridge form rather than disappearance of all ruler information.",
+        "The win and regression examples concern different layers of the same question and are not independent question changes."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeat_swap-n32|multihop_mt|unchanged|multihop_mt|mhh-satie-background-genre|L40|p00025",
+      "finding": "No emitted bullet changes: the site still contains musique-concrete, ambience and rest-music suggestions without the required Erik Satie form or accepted target genre. The parent and proposed question nevertheless pass through layer56, while Original released Oracle Lens fails across its original grid and best-N also passes elsewhere. Repeated swaps stopping here gives no local recovery improvement.",
+      "caveats": [
+        "Exact unchanged text and unchanged matcher evidence.",
+        "Whole-question success elsewhere must not be attributed to this nonpassing readout."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeat_swap-n32|chain_intermediates|regression|chain_intermediates|chain-d3p-0711|L24|p00077",
+      "finding": "The emitted swap replaces a fragment claiming the final answer is 6 with one claiming it is 10, removing the accepted intermediate from the 27→13→6→3 chain. This is a real native recovery regression and removes the question's sole passing layer, although the parent's label of 6 as the final answer was itself incorrect. Original released Oracle Lens and best-N fail this question; count-matched parent deletion retains 6, while guided parent pruning removes it.",
+      "caveats": [
+        "Required intermediate recovery is not correct final-answer prose.",
+        "This same site is also listed under question_loss; do not count the two records as separate evidence."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeat_swap-n32|chain_intermediates|unchanged|chain_intermediates|chain-w2-d2p-0014|L32|p00061",
+      "finding": "The exact parent text is retained, with incompatible outputs such as 21, 12, 10 and 36 and no accepted intermediate14 for 7→14→18. The retained judge values, quote and pass result are unchanged; the different evidence object is explained by its new cache timestamp. Both parent and proposed question pass only at layer56, and Original released Oracle Lens passes at other layers, so neither that grid success nor the evidence metadata difference is a local improvement.",
+      "caveats": [
+        "same_text_different_retained_evidence is metadata variation, not a scored flip.",
+        "The emitted text contains other numbers that the judge does not enumerate exhaustively."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeat_swap-n32|chain_intermediates|question_loss|chain_intermediates|chain-d3p-0711|L24|p00077",
+      "finding": "The complete original layer grid loses its only accepted intermediate recovery when the layer24 fragment naming 6 is swapped for 10. This is the same produced readout as the selected regression case, and the retained endpoint evidence changes the whole question from one passing layer to zero. The loss is relative to the plain-pool parent and its count-matched deletion, while Original released Oracle Lens, best-N and guided parent-pruning already fail this question.",
+      "caveats": [
+        "Duplicate site evidence with the regression case, not an independent loss.",
+        "The parent recovered a true intermediate while falsely describing it as the final answer."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeat_swap-n32|role_bound_association|win|role_bound_association|oa-boss-employee-envy-ba|L52|p00133",
+      "finding": "The swap removes the unsupported romantic-admiration interpretation and adds another explicit employee/subordinate-envies-boss fragment, which better emphasizes the scene's direction. That direction already appeared in the parent and Original released Oracle Lens; the official site gain comes from accepting a boss-role description despite Victoria/Karen names where earlier judgments rejected comparable wrong-name references. The whole question already passed, moving from three to four passing sites rather than gaining question-level success.",
+      "caveats": [
+        "Real reduction of a spurious romantic detail, but role binding was not absent before.",
+        "Judge treatment of mismatched patient names differs across otherwise similar role evidence; invented names and location details remain."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeat_swap-n32|role_bound_association|regression|role_bound_association|oa-boss-employee-envy-ab|L60|p00107",
+      "finding": "The swap removes the explicit Margot-envies-employee-Lena fragment and adds an incomplete managerial-authority/assistant-praise fragment, but the unchanged Sarah-subordinate sentence still conveys boss-envies-employee. The official patient choice changes to cannot-tell even though the retained role direction remains, making this an uncertain degradation in identity specificity rather than a clear reversed association. Original released Oracle Lens and best-N pass at this site with other invented names, and the proposed question remains passing on seven sites versus eight for the actual parent.",
+      "caveats": [
+        "The retained Sarah sentence supports the employee patient by role; judge name-versus-role acceptance is inconsistent.",
+        "No whole-question loss and no demonstrated direction inversion."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeat_swap-n32|role_bound_association|unchanged|role_bound_association|oa-grandmother-grandson-indulge-ab|L28|p00117",
+      "finding": "The official nonpassing site outcome is unchanged, but the text does change: one generic summarize/absurd-humor fragment is swapped for another about motivations and an ironic twist. Neither readout states grandmother, grandson or indulgence, and Original released Oracle Lens, best-N and pruning references are similarly generic here. The question remains successful elsewhere, with 23 passing sites under both actual parent and proposal.",
+      "caveats": [
+        "The unchanged category denotes scored outcome, not identical emitted text.",
+        "New plot-motivation language supplies no required association."
+      ],
+      "review_status": "independently_reviewed"
+    },
+    {
+      "case_id": "repeat_swap-n32|role_bound_association|question_gain|role_bound_association|oa-father-daughter-worry-ba|L60|p00126",
+      "finding": "Three swaps replace some ambiguous or Nora-owned test-result wording with a first fragment explicitly assigning the test results to Peter while Nora is anxious, making the father-as-worry-target inference more plausible. The native question changes from zero to one passing site relative to the plain-pool parent, but Original released Oracle Lens and best-N already passed elsewhere; this is not a gain over the original release. The proposal still invents several names and calls Peter unaware of results although the story has him mention the clinic call, so the association recovery is narrower than prose fidelity.",
+      "caveats": [
+        "The relationship roles are inferred through the listed identities rather than stated explicitly in the readout.",
+        "The retained judge acceptance is supported by a clearer ownership cue but does not validate every added claim."
+      ],
+      "review_status": "independently_reviewed"
+    }
+  ],
+  "method_findings": {
+    "repeat_swap-n32": "Target-only repeated swaps reselect verbatim source bullets from each site's own 32 samples using its own activation; no control activation or external factual evidence enters selection. Final text changes at 2342/19435 sites (12.0504%), preserves bullet count at every site, and raises mean paired reconstruction FVE by 0.0001766641 (0.0176664 percentage points) versus plain pool, without establishing prose truth. Native endpoints are Hallucination (chat) 2615/5552 contradictions versus parent 2621/5555, Multihop (multi-token) 41/100 versus 41/100, Chained intermediates 51/120 versus 53/120, and Role-bound association 84/100 versus 81/100; the original released Oracle Lens is respectively 2648/5560, 34/100, 59/120, 78/100. Parent-relative simultaneous 95% paired delta intervals are Hall [-0.0085540,0.0069025], chains [-0.0507702,0.0174368], roles [-0.0238942,0.0838942]; multihop has identical question outcomes, a pointwise [0,0] interval and no simultaneous interval due zero variation, which is not robust zero uncertainty. The joint family declares 44 comparisons with 40 nondegenerate, using 10000 whole-group bootstrap draws; all 469 questions were previously inspected, and outcome-selected examples are illustrative rather than frequency estimates. Inspected cases show real bridge-name redistribution and intermediate loss alongside mixed role cues and judge sensitivity: retained wrong spans often survive Hall label changes, role judgments vary in accepting wrong names, and the sole same-text retained-evidence difference here is timestamp metadata. Four-bullet original, raw original and actual-parent references must stay distinct; cached_parent_fallback prune actions are not final output deletions."
+  },
+  "representative_case_ids": [
+    "repeat_swap-n32|multihop_mt|win|multihop_mt|mhh-adwa-victor-accord|L44|p00044",
+    "repeat_swap-n32|chain_intermediates|regression|chain_intermediates|chain-d3p-0711|L24|p00077",
+    "repeat_swap-n32|hallucination|unchanged|hallucination|chat-lmsys-0023|L36|p00170"
+  ]
+}

@@ -1,0 +1,3898 @@
+{
+  "status": "root_reviewed",
+  "reviewed_utc": "2026-10-11T16:44:33.142063+00:00",
+  "analysis_sha256": "c1456e2f960d04726e5a57e4f25638b33553d3c548a1647274bb04830a05def6",
+  "inventory_sha256": "181fcc259ed81213a7b26ea18142b6cd35648e89b83100a5cf07590ed75b2c47",
+  "source_sha256": {
+    "configs/target_only_inventory_v2.json": "181fcc259ed81213a7b26ea18142b6cd35648e89b83100a5cf07590ed75b2c47",
+    "configs/target_only_api_v1.json": "12e8455e644fdfcd96b5b71dd580469f071c7b755e428a53f0a7d26c06515ca7",
+    "configs/expansion_runtime_authority_v1.json": "4ff1b5d08d8e0aca3c2866aab5ff088e25a691c25f70c79e56f8a1ff9eccc33e",
+    "configs/test_final_method_freeze_v2.json": "b46f00851efb71628faa2ffcb404011c4ef1f3543d68fc4f18d0ab6d74d95e86",
+    "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/signed-menu-analysis-v1.json": "db223a374f51d9122f8cc430a347e4f82dea75ce3d449008e1def1f7cf89e918",
+    "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/judgments/best_n_exact-n32/hallucination/project_contract.json": "bbd2c232e576b1152757e393f4f4f5681aa42c03e4262bcb04839948d9c1f5e7",
+    "configs/expansion_manifest_v1.json": "753b2d9cab0daea0d19efef7d3222fd44921dbcf4669e6864d4f1bd4805421f8",
+    "${OLENS_COMPUTE_ROOT}/activations/core-v1/fresh_manifest_v2.json": "5a61cff89aca532f3e022233b6d2d8e12dab0d3a3f4f44085097bc6dc58fc385",
+    ".state/expanded-final-native-ready-v1/cached-v2/chain_intermediates.ready.json": "5177ac6fb2d74a380b17e404649592519c9593bd5798f390154497bb059e40b8",
+    "${OLENS_DATA_ROOT}/expansion-v1/selections/cached-v2/chain_intermediates.manifest.json": "30d231b7b6e2aefde12fb3770c70482f9a983c22e199aa8173e4396a3a847fc8",
+    "${OLENS_DATA_ROOT}/expansion-v1/selections/cached-v2/chain_intermediates.jsonl": "e9567668459e9b9ed6ce1883545f165d6d54241cd48107573990879e76128265",
+    ".state/expanded-final-native-ready-v1/cached-v2/hallucination.ready.json": "bbd5fd94c29e35ff16261800e5c8efb32acf8691558bf4d617871d98f4dd4257",
+    "${OLENS_DATA_ROOT}/expansion-v1/selections/cached-v2/hallucination.manifest.json": "a81c7d2367362a7217e7a7aa99ebd2e933b00511f34b2bd7d26e1a9f213d6c2b",
+    "${OLENS_DATA_ROOT}/expansion-v1/selections/cached-v2/hallucination.jsonl": "432aebd891ffdbf8c66bfd0bd6f6a5e854256fc15e0baddda49ed59dc010925a",
+    ".state/expanded-final-native-ready-v1/cached-v2/multihop_mt.ready.json": "6dbc7dffd73e95fa933db3aafbeddfa508a1e332567996589f29798fd789ac0a",
+    "${OLENS_DATA_ROOT}/expansion-v1/selections/cached-v2/multihop_mt.manifest.json": "e4306400a6b6ce28f01d79cdffe49ff3ba96c42c6c22c2f96f640da4ec9a118c",
+    "${OLENS_DATA_ROOT}/expansion-v1/selections/cached-v2/multihop_mt.jsonl": "ac5baba6305a5f8309934b2f1eeb61d998b4b8cc6d0ada9da05a3830ad27d4e5",
+    ".state/expanded-final-native-ready-v1/cached-v2/role_bound_association.ready.json": "56b8f9084fd82d7eb7c5b409b654a5c29c49321955d78ba0f0b3f015a6eb6336",
+    "${OLENS_DATA_ROOT}/expansion-v1/selections/cached-v2/role_bound_association.manifest.json": "94c43edf2363645df01020a0c01a681e62eb3651fde66c90899fce5fe9cc02aa",
+    "${OLENS_DATA_ROOT}/expansion-v1/selections/cached-v2/role_bound_association.jsonl": "d3866234282adbe9bf0af836ea76cc368ecd5fddfcacbf214d5f10838ea1cdb7",
+    ".state/expanded-final-native-ready-v1/combinations-v2/merged/chain_intermediates.ready.json": "a78be5fae0310424be27f743f1f26e8a795e28a16fa0065a4b1cc0d0e2f4d7ef",
+    "${OLENS_DATA_ROOT}/expansion-v1/selections/combinations-v2/merged/chain_intermediates.manifest.json": "30d231b7b6e2aefde12fb3770c70482f9a983c22e199aa8173e4396a3a847fc8",
+    "${OLENS_DATA_ROOT}/expansion-v1/selections/combinations-v2/merged/chain_intermediates.jsonl": "5c49298c1918a520bbc6f6eaeb241bfaa74aada91d5d4b54fd6aa86970a61718",
+    ".state/expanded-final-native-ready-v1/combinations-v2/merged/hallucination.ready.json": "fd1a919a9060060c4ae26133aa7613dded6a411d6aa64ac4de4730e20dcc7635",
+    "${OLENS_DATA_ROOT}/expansion-v1/selections/combinations-v2/merged/hallucination.manifest.json": "a81c7d2367362a7217e7a7aa99ebd2e933b00511f34b2bd7d26e1a9f213d6c2b",
+    "${OLENS_DATA_ROOT}/expansion-v1/selections/combinations-v2/merged/hallucination.jsonl": "6307927be9c51ad65f64cbb99b264a2459a2b2a2db05a08a69d4e39d991555ec",
+    ".state/expanded-final-native-ready-v1/combinations-v2/merged/multihop_mt.ready.json": "0cf4d27f4a8d8dd36346d4808f02557ed01f7a23900193b51906d1317d24e8fc",
+    "${OLENS_DATA_ROOT}/expansion-v1/selections/combinations-v2/merged/multihop_mt.manifest.json": "e4306400a6b6ce28f01d79cdffe49ff3ba96c42c6c22c2f96f640da4ec9a118c",
+    "${OLENS_DATA_ROOT}/expansion-v1/selections/combinations-v2/merged/multihop_mt.jsonl": "f52183549ed8a21d0ce9a55b73e1f17adbc0b2bda9532e1ef9a830c68122ed9f",
+    ".state/expanded-final-native-ready-v1/combinations-v2/merged/role_bound_association.ready.json": "8fc22cfdbc86c1ca708529530fded3b1d73acaa09a5c736defa5498dde299d0a",
+    "${OLENS_DATA_ROOT}/expansion-v1/selections/combinations-v2/merged/role_bound_association.manifest.json": "94c43edf2363645df01020a0c01a681e62eb3651fde66c90899fce5fe9cc02aa",
+    "${OLENS_DATA_ROOT}/expansion-v1/selections/combinations-v2/merged/role_bound_association.jsonl": "0ab138d03832f3a3cb4386b128b7c1278309489d8ba5d64ad7ce5ab348fbbf83",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/selections-v2/merged/chain_intermediates.ready.json": "4fc543be4da673505b313f44b131cde80ddcb4db60676d1c77e0977950fea5ca",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/selections-v2/merged/chain_intermediates.manifest.json": "3ee71c716b6d886bb41b7d487e017b6864bfa94f400f17cb998976f1d1b0cfaf",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/selections-v2/merged/chain_intermediates.jsonl": "b7a1b6e9ca3e054979b3c12f603d948b861b578022f158ddee383acf33965d16",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/selections-v2/merged/hallucination.ready.json": "a0d2eba0bcdaf29235b40bdad90205fac12e7b55ef0eef4b1ebafaa9f8cb5551",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/selections-v2/merged/hallucination.manifest.json": "d1d035552299a22a1f25dcbaa5d33ffa30dd71264330ba5953859b846fa08341",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/selections-v2/merged/hallucination.jsonl": "2599503fd8db7261a442171c6e3c4fe3a2538426edcd5f222a8fc8f8afbfa323",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/selections-v2/merged/multihop_mt.ready.json": "d6bfd74a49f150fa7613590997697c421901dd8cb33ab81a02dcc35be9947853",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/selections-v2/merged/multihop_mt.manifest.json": "a1050b31bff47cc1e7fcbc9e4740ad48c3025a9780a644352c7ff197d64277ad",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/selections-v2/merged/multihop_mt.jsonl": "8c061325d4ff601c2c335dadf9aab061e0f228d254acbedcdd3d21dda4d3b152",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/selections-v2/merged/role_bound_association.ready.json": "67c5eb879a9b5509766965896d3953ee3406d1adede01c2a7d7003a0858b8b76",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/selections-v2/merged/role_bound_association.manifest.json": "da90e3ba4867baf18c2f8b651e4eb30b6a6746c16cd755abaf5826017525a525",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/selections-v2/merged/role_bound_association.jsonl": "2537bcd875b01c7e73f3162fa5bfcdc8724a299c791811521d2e2c3af26ecd47",
+    "${OLENS_DATA_ROOT}/expansion-v1/reconstruction/final-v1.json": "0c3f99db532641326d4d432a9587d9ee10d9ea978fe16f9c74c9d96740965ba8",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/raw_n1-n1/hallucination.summary.json": "349269992774c137ad2daa8bdc945454d2de58144c42380d7c98ecfc522d6f30",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/raw_n1-n1/hallucination/results.json": "eb0c0087c5f7c70d0afdd0147f13c2f391d7ef249195c04222d2ad6bb51a72c4",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/raw_n1-n1/hallucination/project_contract.json": "a7536f7abc42d0f783bf8c98a247afc79dbd4da61c3804cb46a906adb9fb5be0",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/raw_n1-n1/hallucination.readouts.jsonl": "59536d48c36baff8ce17d45229e9bc06a75e32af61d41be1450ef71b6c440c5a",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/capped_n1-n1/hallucination.summary.json": "1e695c6a3caedd0158ec6a397c8986f16d552c93b6822ac52f432e41de50b716",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/capped_n1-n1/hallucination/results.json": "4730e9065430bda8cc0c6c267d9c0bd0488fecbf0acda097f75cf5364ca0dbd7",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/capped_n1-n1/hallucination/project_contract.json": "5648715442beffb954820bd7584b6a3943495ca72e3ea75a1f4cdd21b056a014",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/capped_n1-n1/hallucination.readouts.jsonl": "15d98ffbff7de5e98ad45f213514b3b1d1a26d480e0a904bd209df9d0eeba6d0",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_exact-n32/hallucination.summary.json": "84f831c6b2e4863689a5a64ea1cacf9ad0307a899a82444e2d59d0f0b5a81e2b",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_exact-n32/hallucination/results.json": "42ba43726d606877c71737b7eeb8994caf85e79aabafd6bab4d5c082af0dc539",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_exact-n32/hallucination/project_contract.json": "2f89bbdbf2dd731b9c8113b034710f0eb0de93972823f7a8b2c7d2d5ef6af93a",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_exact-n32/hallucination.readouts.jsonl": "d59188efb9bd6fdee2ede08bd95890dfd656ce91bea4bc74e6cc7db26f9d4683",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap-n32/hallucination.summary.json": "5a841febcde8fffa9756f8b0395c73e723e4b2697767768790c2cf9ddd880f0b",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap-n32/hallucination/results.json": "079306d1c9d654ab93ff3812da4a8005dbdefa6bf43bbe26c8e5d467e3d48229",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap-n32/hallucination/project_contract.json": "5d0f9c9e8280cb269b0a7bda00ff95009b281cc79c5ebe9f30ebfd221153d605",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap-n32/hallucination.readouts.jsonl": "db0c4ecc66a6340d0fa3f930bcec11981eb360d94875f5b5e6423950d2f2633a",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap_then_prune_0.005-n32/hallucination.summary.json": "782e2dc28947b256e32c40c79ff63a02504cdf56166090e624339069e448d92b",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap_then_prune_0.005-n32/hallucination/results.json": "5d646352faeee7ad5b61741b91e60e4a542bec8f326232435cb17ac8c80823c0",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap_then_prune_0.005-n32/hallucination/project_contract.json": "5ff8c0c9e3c041fcf564cf9575c941bfdf9c52a410e3126b3c40c9958d83d8e7",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap_then_prune_0.005-n32/hallucination.readouts.jsonl": "83f4d4e02de44393a2364faf9fa799506118ba8a25dc8cedc8433ac5daef1670",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap_random_delete_matched_0.005-n32/hallucination.summary.json": "fafe4822a93947c98613979ca2f24882d6cc6a3c80eb319198da5378256cd07c",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap_random_delete_matched_0.005-n32/hallucination/results.json": "c04203a2c052ceff757753730e4c04387414f7f512882da41728193681cbd4dc",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap_random_delete_matched_0.005-n32/hallucination/project_contract.json": "5e4cf7fcd5ae09bffea6ad5437eb8f2b5e4186826983b59dfcc73143a4a8cc73",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap_random_delete_matched_0.005-n32/hallucination.readouts.jsonl": "a1979bf2d510688cd93b5151eab2129931eff9e9c29f54765c61c45054a645f7",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap-n32/hallucination.summary.json": "bc053ea34e8632bdc4ba90b2cb1cdfde82cdc47b2ce3846f7a3696eb8835c6c8",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap-n32/hallucination/results.json": "35abaa1f63bff9014857bb9ce0093046c0b9ba73ee41cdef2495bb64d48a0286",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap-n32/hallucination/project_contract.json": "b0154c798811d2990a4146f7f4ff0d71fc2e121cf6c796337626490655530dd1",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap-n32/hallucination.readouts.jsonl": "8bde1b339e14d62a04d49b7f4889e6b4aa2b17a8226eb2157a3b1a838d63de53",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap_then_prune_005-n32/hallucination.summary.json": "1a793c9692d7280cd87606d63cb2d4b7451617e8b711d3333fd1783222fe3271",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap_then_prune_005-n32/hallucination/results.json": "ee4255e0275403e8d8039c895a72dcfe32cd374c187b99c030a50497d32a6d2e",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap_then_prune_005-n32/hallucination/project_contract.json": "0bf9402900a7a41591ce846cfd37220e66223f5557fe7f9f7412a9b2c784f266",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap_then_prune_005-n32/hallucination.readouts.jsonl": "113893c85c58dd032363c681d0c81581dccfa9fb03b089b03458886e8c3fff1e",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/bounded_prune_refill_005-n32/hallucination.summary.json": "f0c1b697eca4a7fcb6acb03ec77b7253e93bfeae2bf351b42a3f54a9ca4806df",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/bounded_prune_refill_005-n32/hallucination/results.json": "83207bbcbb3c436beecb974842ea775eaf50d125573bcf4e5fe0c719492544f7",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/bounded_prune_refill_005-n32/hallucination/project_contract.json": "8ab1fe11b25ac13adc1c64cd8baeac8ad7a7ad43d6e6ad59f30ae659189e3cb9",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/bounded_prune_refill_005-n32/hallucination.readouts.jsonl": "d8caf9cc60a0eb6c4598a8afd1f003ef8746723d60d1a39811d2b258cd7af986",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeated_swaps_random_delete_match_005-n32/hallucination.summary.json": "f48de773f5016132e813e8ddc13ad617e0bf33c42ee26486a02c6401283184e7",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeated_swaps_random_delete_match_005-n32/hallucination/results.json": "6394c4451075e08da60bfe79092f5e8ab7393728fb0832e2687159be43108342",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeated_swaps_random_delete_match_005-n32/hallucination/project_contract.json": "4978824e9eebd2cf775e570dde20ea600eb00dde5cd07e9605a3fddea551ccdf",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeated_swaps_random_delete_match_005-n32/hallucination.readouts.jsonl": "5acf6b40951b005dfa883db3523c88bb34ee2f6dab7d88fb95a92c2d00e7565d",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/raw_n1-n1/multihop_mt.summary.json": "e884fb51aaff1629e6cbad148c90e268235dbbd8d78f159c7e0df46c8c94001d",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/raw_n1-n1/multihop_mt/results.json": "7e94d78aaa208b1375882ad3e36e5ef141d42f21f5f2927c808d7ddacabd1902",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/raw_n1-n1/multihop_mt/project_contract.json": "533394db5ba529debe6ad54374d3d7f591a6587ddf7fe495e6087d6ea84342a1",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/raw_n1-n1/multihop_mt.readouts.jsonl": "98267f25ac8e8a6dfed514ddac04e81f81192279bff87a8793166fef167377a2",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/capped_n1-n1/multihop_mt.summary.json": "ee74bdb91ba8f076b754af1624c54e68c7828b1373cada0e2a7d4d3a3fecee95",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/capped_n1-n1/multihop_mt/results.json": "7e94d78aaa208b1375882ad3e36e5ef141d42f21f5f2927c808d7ddacabd1902",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/capped_n1-n1/multihop_mt/project_contract.json": "3d5c8f39009fbe636551da571ac82924240d5d57e48d30708d2813944b4fcfd5",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/capped_n1-n1/multihop_mt.readouts.jsonl": "a327a88269ff21fc4bd6c46b7220d13fa202994621343ac1aee3d86f8dc2cfb5",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_exact-n32/multihop_mt.summary.json": "692fa579efc658ccf0fb7933fc643639b4aa797de6eb840c3a9adef68eaa8d28",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_exact-n32/multihop_mt/results.json": "47288023a201e2a30b925d90e8fc91a37d5643daec968e3e0dfd9a3b5b85e0ac",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_exact-n32/multihop_mt/project_contract.json": "635b4485f5db0293d3b9088a9d8974525fd2745c952d788afeb2f583dd6b4d0e",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_exact-n32/multihop_mt.readouts.jsonl": "d336ebab9e8145f6962bfadcda31f5b9f3e1f32ddcc75c082a40d69647f72949",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap-n32/multihop_mt.summary.json": "ac8cc5ec6c2de2b2b5eefa49eea3e252e540abb2eb4934ff62891686eada1e11",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap-n32/multihop_mt/results.json": "6ca199109e4e902c72d5b732aa8ea934f42949588c6326bfa4f72811b36fe410",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap-n32/multihop_mt/project_contract.json": "ecd465ff53c7e0742830bd503e0e7f6fc9aadb7617e8a0ea1b349fd9bc33feb7",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap-n32/multihop_mt.readouts.jsonl": "5037890ea0771eec287a7365b955eff34d21ed396d4e26b4c05c6bbfc586ddfd",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap_then_prune_0.005-n32/multihop_mt.summary.json": "665f02a55fe9ed6d3c4b9623718c39bf3612750b6aea09abccfa2d3037a4507e",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap_then_prune_0.005-n32/multihop_mt/results.json": "86e03728c29c84c4e69886622ec1bfef3ecd3f542e3bae23afdd06eb04e6c107",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap_then_prune_0.005-n32/multihop_mt/project_contract.json": "443238811b7970597133885d2dc494a2b897044bff7fe270f4e6bc297a45f350",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap_then_prune_0.005-n32/multihop_mt.readouts.jsonl": "3cbaf3d3fb9bc3d41eb0eb92aa2ec6d1a8360ed39a434df138239bac1b7994d5",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap_random_delete_matched_0.005-n32/multihop_mt.summary.json": "f77134f000e018e2d7644034723d6e441c91374a78cc45c17707462aa3239189",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap_random_delete_matched_0.005-n32/multihop_mt/results.json": "e30941630c7b1384138c25c8c33d5a27a19b17dea5fe9cb6f00bee5b78fdabda",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap_random_delete_matched_0.005-n32/multihop_mt/project_contract.json": "729bb8989e91836826aaf64f0fb011a6ead23dd4901dffa889092bce41a15d39",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap_random_delete_matched_0.005-n32/multihop_mt.readouts.jsonl": "59c336127c67a70ca75e788a748380bdbd5f8e322b62b674694c6f1455af9096",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap-n32/multihop_mt.summary.json": "b4240d632fe5f510425740120258c606776edaf0367a6b2e35331172cd6b64ec",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap-n32/multihop_mt/results.json": "c9d98079d0797e2cbbb1a33233aaf66696464428b7be0e2c5a4b882365ccb3d5",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap-n32/multihop_mt/project_contract.json": "b2f1742807cf3a5aa4dffe05bab95c582971f9ac435d493b3b2ac3517055972f",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap-n32/multihop_mt.readouts.jsonl": "bf17e59e38f2c4d317c251a447be756def03efe2469a5ea68ad22b1b347a5515",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap_then_prune_005-n32/multihop_mt.summary.json": "0d228470be663718a85242897181be2a9d5a7da570c17935fbee3d823deca36e",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap_then_prune_005-n32/multihop_mt/results.json": "95ad19a99624f0b32477fa1c763a68fb83e9a29feced3bb1d8526f8884ee1710",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap_then_prune_005-n32/multihop_mt/project_contract.json": "cc1d0f788e4f07ddc9cb2902cbc897f9e3682acf3fb89e51c004806a353de755",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap_then_prune_005-n32/multihop_mt.readouts.jsonl": "fb4d6ee3cb748fb6b62eeb947e79330d94e80f9009ca11f013b31921270d6ff4",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/bounded_prune_refill_005-n32/multihop_mt.summary.json": "4a272f9ec151dc0809258dac3b9335d349178e4864e18174452e7b64b4f32252",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/bounded_prune_refill_005-n32/multihop_mt/results.json": "7438342e86d0b13982541a58c355b8400de00c9e9a8bf58b34f4bad6a0c1a718",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/bounded_prune_refill_005-n32/multihop_mt/project_contract.json": "7b833b3e421228586a40023c78a4e4bf9093a4566045390ccc78f2942e76f373",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/bounded_prune_refill_005-n32/multihop_mt.readouts.jsonl": "07f704dd62a9fc5eb0cb04aca5d5dd8b9ffab021f18ba416aca301debddc9727",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeated_swaps_random_delete_match_005-n32/multihop_mt.summary.json": "21b12ef2f92a871291f60280e380b68919f070a0e7926116b5fe1b4380a5b5c8",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeated_swaps_random_delete_match_005-n32/multihop_mt/results.json": "91e5daa2e74336b15cde05426f00e83478d02e98b4c136cc8d24cd1b26e6f5bc",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeated_swaps_random_delete_match_005-n32/multihop_mt/project_contract.json": "81a0ddc646bd5859d7f4739440785bfb69a97b7ad2e014846207e51060044d0e",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeated_swaps_random_delete_match_005-n32/multihop_mt.readouts.jsonl": "b3a29d49b588735ee03b24473a9bdaa8bea4b3201f48b8b5d292bc8b33c67359",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/raw_n1-n1/chain_intermediates.summary.json": "181acc2d65138b49a3efb52f2533e2b809763a8c70d00b096ab66957e3c9a6a3",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/raw_n1-n1/chain_intermediates/results.json": "33275920952d8dea7ff304b775c3eb7791219bd993e35c400d79637ef9fc6ff4",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/raw_n1-n1/chain_intermediates/project_contract.json": "5e594b08c1e4717c6ebd225b39fc3f0f92c006f4354d993673d8d3e9c3148459",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/raw_n1-n1/chain_intermediates.readouts.jsonl": "5058c8eff3703e7415b8bbd01a08417a258a6e595c40fe1f47f341ae6dca2d96",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/capped_n1-n1/chain_intermediates.summary.json": "f1bfbf6e437a6e3e48bb8ed7ee134de7e283da36dceed09c2e84e54898668b75",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/capped_n1-n1/chain_intermediates/results.json": "2137fc036cfc3b01e6d7979777274cde10a547d602421e3c67b3c527aba8bb1e",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/capped_n1-n1/chain_intermediates/project_contract.json": "a580b745dde9f35cf850caa854dddd630b5fa41153e5f69db392b81801c4a92d",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/capped_n1-n1/chain_intermediates.readouts.jsonl": "83658a8dbb777e89833a90c30e3de687f19f2a675fd2cb831939c9da0b58df86",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_exact-n32/chain_intermediates.summary.json": "00d253874a139652bfdff6d1a4643dc99bef9e1576aa558a3221043bd8b566d0",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_exact-n32/chain_intermediates/results.json": "636eccf30b21df77a57bc7facb7de8e9ca07ab48235c51e722928848ec1e5944",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_exact-n32/chain_intermediates/project_contract.json": "e256f27c5cd260961f2d7f231ffa07ff95698470bb6270f5d7343c75aacda5e3",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_exact-n32/chain_intermediates.readouts.jsonl": "0b33be7b8fb46a0fcf5b29005bca265f9715097183a1f51374538f53d36dde56",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap-n32/chain_intermediates.summary.json": "5ad83f1829d4fffd968303c9c633cbcb7003e2b9c192a11fff5c5ae63f6333f7",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap-n32/chain_intermediates/results.json": "69c9016c6e9d5ef02a3163f5d175d61db0e21757646e945931d5854daece1996",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap-n32/chain_intermediates/project_contract.json": "d65a259392e0c622588f77a0f0448b054d697bddfe17a027093ca7d343d5bbaf",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap-n32/chain_intermediates.readouts.jsonl": "75ef3c725fdb18b86fca937013672aabc1934a8713108ed6f67ea7a6c61e3473",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap_then_prune_0.005-n32/chain_intermediates.summary.json": "0d256d1cb3a664e1f37755a85d59e8e18bff8794a616897f226fbd5f2a84b17a",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap_then_prune_0.005-n32/chain_intermediates/results.json": "0aee0ae2286abee8f5c25785c55c98a73c03c919769e216b3c08629a3d7abd64",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap_then_prune_0.005-n32/chain_intermediates/project_contract.json": "74797cf15408ab5265b517cd5039133cbdd571edcb35da3d3c6b736f34c8c473",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap_then_prune_0.005-n32/chain_intermediates.readouts.jsonl": "58eef5b1094d647daf93d1c80ef49f0f5f4b61fba61db42390d48a028dc1374c",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap_random_delete_matched_0.005-n32/chain_intermediates.summary.json": "ac219bf052950a387eead7f94f2f4d1faa5897a88c7d9a9451fc7872ef802448",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap_random_delete_matched_0.005-n32/chain_intermediates/results.json": "2bb7bd6b59f8b05739e5d1fa20adc82c999b660f5186cb289a82b7282021ac2d",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap_random_delete_matched_0.005-n32/chain_intermediates/project_contract.json": "ba4c02c2bd695c9df77e0ae7be3f49517c650f685b07dfda85a16461cf603681",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap_random_delete_matched_0.005-n32/chain_intermediates.readouts.jsonl": "480843dc2d28604d7c9c8c77f814912c24d85c034505410b7036e0fafffe9008",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap-n32/chain_intermediates.summary.json": "bbe63530ef7f6786cb785b4280ebf79657abd0c48f1b39244d4e4f96ebf14c7b",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap-n32/chain_intermediates/results.json": "8d18bf4d57036d044949e4b27682a34043a2e70a3e0b65297a2d07305ce4e100",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap-n32/chain_intermediates/project_contract.json": "bd3740a4212ff7e9c8e6ee1428ba535a3d7963811faeb39276421c3d5dbb133c",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap-n32/chain_intermediates.readouts.jsonl": "61722a84c1f2be64abe2805936264bc453c7ac46a940eddda44be6b7ba4448f5",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap_then_prune_005-n32/chain_intermediates.summary.json": "2d469c86f8b65759b9d719fed0f6a8ef4ad890b2e2e620d78144fa24800958d8",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap_then_prune_005-n32/chain_intermediates/results.json": "6223d162aba331a95be1bf960e7f9d21a8f5609fa86f68c008e218f3dd3868aa",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap_then_prune_005-n32/chain_intermediates/project_contract.json": "2881233a7efb7aececc313873142b2f6bc635936065d2b19c56178c2e3cf4606",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap_then_prune_005-n32/chain_intermediates.readouts.jsonl": "e0a695f8093be458e9684f2d699d3caaa21cb0035b5c9a9f8fe36e76ec8846ee",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/bounded_prune_refill_005-n32/chain_intermediates.summary.json": "4cd3f5440d075aee3658a40a03e2a7dd2976cabe09024f2012c8dc87524bbcae",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/bounded_prune_refill_005-n32/chain_intermediates/results.json": "95bb1933b5fe5ba962be9fbfdfbeaa15868c3744ddfedf4d138f0d94f5072dd4",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/bounded_prune_refill_005-n32/chain_intermediates/project_contract.json": "be2b6aae949af4fa99e6fed79421b8e20da53ed1915e73058685fa7aa08ad2d1",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/bounded_prune_refill_005-n32/chain_intermediates.readouts.jsonl": "ed7e7bcab29ab25d5ee5d847c938eabacf115ac8dbdf43b3045b6904b4bebbfe",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeated_swaps_random_delete_match_005-n32/chain_intermediates.summary.json": "a8e2d2d1ebdf0d1725e28566806f8abf9622e1b2d286f1505aca3958521b3b38",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeated_swaps_random_delete_match_005-n32/chain_intermediates/results.json": "87943d791819372d0928f3ae133a14bf28bfa6b9085ea53451fb465b3f8e0f45",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeated_swaps_random_delete_match_005-n32/chain_intermediates/project_contract.json": "c79b106be0652040ce5df961192d650c23b579285ef50ed629a0508b13468b5b",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeated_swaps_random_delete_match_005-n32/chain_intermediates.readouts.jsonl": "24e4adead8c0bb3442a6e09242a6d406b0caa8ef8fe3784298d863dd91b019de",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/raw_n1-n1/role_bound_association.summary.json": "17786063ecda383a9a8861d5c2cfe420df8277fda656fdf50912e90044c0cac5",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/raw_n1-n1/role_bound_association/results.json": "f4ef5e6004901ced3913c7755cd5bcc33e9c8b41d1dce873be753c7caf5d821f",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/raw_n1-n1/role_bound_association/project_contract.json": "d7c0a1eb9cd230a444ab22465a494d07b51c013a11d85b3efb21b230c3fffa8e",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/raw_n1-n1/role_bound_association.readouts.jsonl": "3573d7d5c6faa541169563b544499f5ba3a90817393dcbcd6712844dbf29843b",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/capped_n1-n1/role_bound_association.summary.json": "47c4e7ba4d087cc8e5e2cdd6adece5976ab6ca85af9d3e0c63173f2b77859848",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/capped_n1-n1/role_bound_association/results.json": "3305e7fdc4821b64c82f846e0b80b9e36bf585406add87e5b321028a0cef0014",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/capped_n1-n1/role_bound_association/project_contract.json": "8d87ef7c26a8a6a4da8ed19897125f869269706ddd887d1cd4ca4361c5a02ca2",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/capped_n1-n1/role_bound_association.readouts.jsonl": "1ba2ac863c336ffdee76479ac81be44857d33468763abee76a2d0c9805ef724a",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_exact-n32/role_bound_association.summary.json": "15705f1f2ba43262ff07d7e6b140e1e60120f2c2131e1e4bc651978b800a1c98",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_exact-n32/role_bound_association/results.json": "b2f145cc161f855e0a0ea7b0df0d766c13e2cbf373f4f6e01535cc850fef1186",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_exact-n32/role_bound_association/project_contract.json": "84c7f143b7b0b3b2f5fffb10b7072db3d4ebe90b92dfadb4459e6b6f8dad365c",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_exact-n32/role_bound_association.readouts.jsonl": "13f2abcd989c4cdb84fc4417fb67ba948d38a6d706826f9319882f4813c3d55f",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap-n32/role_bound_association.summary.json": "26b4dfbbde36c48493b8183fcc67fa892ab48b9e20eb7b12b5b8107256bf6270",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap-n32/role_bound_association/results.json": "9fbcf874155092472e9135eae98bd4a97aa067ac27f1c80caf03b293e55a3075",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap-n32/role_bound_association/project_contract.json": "52200974b56e46d1bd66d506273de94a894fa217cfba20c98f79466b43fdfb39",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap-n32/role_bound_association.readouts.jsonl": "9caaed7a8ddb8d4f8b8ddfff848ae92f3c1bc0dae8cdddae56bf55c5dc5f13fc",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap_then_prune_0.005-n32/role_bound_association.summary.json": "8685b2e51b9981a3cafc989f5f71da537cd126963452cb0650d6fce69b20517f",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap_then_prune_0.005-n32/role_bound_association/results.json": "eb9c5e207578c2feb31275d02fa3eeb18c156544fda5068edf665d3564659cdb",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap_then_prune_0.005-n32/role_bound_association/project_contract.json": "20734231c57e351ad1a840d78b635182eb4b445dd757464293f1e861fdb6dacc",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap_then_prune_0.005-n32/role_bound_association.readouts.jsonl": "1582c1fb4c869928b876faf1bfeb511ee25c7a3f46fc6e698c13721afcfc17b6",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap_random_delete_matched_0.005-n32/role_bound_association.summary.json": "172fa57705750f3a4592d91cc208e8e1f909654d090fa859a0f67a5604ad8b06",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap_random_delete_matched_0.005-n32/role_bound_association/results.json": "167f9309187cdf313f50e01b04a52f335a672c8d987c4f70877225daf212d858",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap_random_delete_matched_0.005-n32/role_bound_association/project_contract.json": "dd2d1e1ec485f9d5b6b31d2e37a853fca199f99de32798fc35faeb2f7dea27d9",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap_random_delete_matched_0.005-n32/role_bound_association.readouts.jsonl": "b47d94f11f99fe2de10a862e72684fc9347bdcfa732e28944e110b464bd7c7d3",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap-n32/role_bound_association.summary.json": "554f033c81f9017ec53894e79b84e10436dd163353e403ab7b8d7866f7000b7f",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap-n32/role_bound_association/results.json": "e9275d4181ebf47d8f19a926a078c988220f9780fbcdda187ebf7242d814d558",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap-n32/role_bound_association/project_contract.json": "c207d233044e7e3c5ba21c1dc96b591c508ebc6cddff03caaebd27327863eae6",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap-n32/role_bound_association.readouts.jsonl": "4e5ff48f72d9f01c84f7e3f8d701ec61c496910e5088c395c5779d6555ad33af",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap_then_prune_005-n32/role_bound_association.summary.json": "fb3f7aac6a378d632a76b7568269f82d0ffa7dbc5fe0b390469af0d6760611f9",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap_then_prune_005-n32/role_bound_association/results.json": "2cacc68ec42b1a11f1483ffe2632439b9b0f78dba1dc6bd3a1b13b8eba2ce0ec",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap_then_prune_005-n32/role_bound_association/project_contract.json": "aa77283798bbd33d37df12da018416227ecf0e70d60fcd9f01e24db2b5ebbcaf",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap_then_prune_005-n32/role_bound_association.readouts.jsonl": "1a827100e15fea41d58db1b0a0625e0772bff4ab0e279d827bcd81d5d1d8454b",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/bounded_prune_refill_005-n32/role_bound_association.summary.json": "9617b330d836ff491d44da0f484dd449ae74a4e72e145610cbafe5c41c507c8a",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/bounded_prune_refill_005-n32/role_bound_association/results.json": "c57a5134fd29270ffec2c1165493aa03adb810f08452c008b15542ad75eb8014",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/bounded_prune_refill_005-n32/role_bound_association/project_contract.json": "745ab0da4c51c3c886671861bb861bf846e1c6c7c5eec76afde362385f569820",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/bounded_prune_refill_005-n32/role_bound_association.readouts.jsonl": "6f5a70d50dfa8905cb004a6ecc55d299a8ebb05b974fce2513486b12735397b3",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeated_swaps_random_delete_match_005-n32/role_bound_association.summary.json": "8b5f876fc5a3f64d603c995e7ebb6c2a17dddc847d570c4bc6e274455f4aa249",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeated_swaps_random_delete_match_005-n32/role_bound_association/results.json": "9770008306ba68d02ef2e4b04fd6af763568572d21997ff3b30daf7277740e04",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeated_swaps_random_delete_match_005-n32/role_bound_association/project_contract.json": "1465cd1d63a2f9ab005a7ff19701db243bf0cda9aeb07d6a47dbd5c3e207053a",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeated_swaps_random_delete_match_005-n32/role_bound_association.readouts.jsonl": "e56c37a458f25ee866343e57643e0591fab84cf04760333a63eb6705c5b83862"
+  },
+  "additional_artifact_sha256": {
+    "${OLENS_DATA_ROOT}/target-only-search-v1/analysis/qualitative-reviewed-v1.json": "368ccb9f92f369b0152480f1017b14e4894053b21b9cb2ca4e4803fee70e0515",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/analysis/behavior-v1.json": "6e0840b37350f7571fa16b6d4869554d2dc725c6a9a2171e261a60d8a0700d85",
+    "${OLENS_DATA_ROOT}/target-only-search-v1/analysis/resources-v1.json": "e61e11da8b870c78dc5a824c9fd02c02f361442c7a119e09dca1e3d5f4751034",
+    "${OLENS_REPO_ROOT}/docs/reviews/target-only-qual-repeat-v1.json": "9d2956af389f4d52e9c49209252648927dabad80d4507b52c2f55469bd4694f0",
+    "${OLENS_REPO_ROOT}/docs/reviews/target-only-qual-prune-random-v1.json": "d8f8e8cfc651c3b8dec028870658350a4b09fabb71c25c19709964e960d2d137",
+    "${OLENS_REPO_ROOT}/docs/reviews/target-only-qual-refill-v1.json": "1db0c348451aaf7599b81339512a667f55a8b133e69340d1f897512a7672acf8"
+  },
+  "title": "Extra search changes some bullets, but does not establish a better readout",
+  "findings": [
+    "Repeated swaps recover roles on 84/100 questions versus 81/100 for plain pooling, but adjusted intervals still include no improvement. Name recovery is unchanged; number recovery falls.",
+    "Pruning lowers the measured contradiction rate. Matched random deletion produces almost the same reduction, so the reconstruction rule has no demonstrated correctness advantage.",
+    "Prune-and-refill usually replaces bullets rather than adding them: only 1.3% of sites gain bullets. Reconstruction rises by 0.024 percentage points on average over plain pruning.",
+    "Independent reviews found both useful details and lost names, plus judge-label changes on surviving wording. These 469 previously inspected questions support exploratory conclusions."
+  ],
+  "slide_findings": [
+    "Extra swaps add little reconstruction and no established quality gain.",
+    "Pruning and random deletion cut the measured contradiction rate similarly.",
+    "Refilling is rare. Judge-sensitive cases limit faithfulness claims."
+  ],
+  "method_findings": {
+    "repeat_swap-n32": "Role recovery rises from 81 to 84/100, while number recovery falls from 53 to 51/120. Adjusted parent intervals remain uncertain. Swaps change 12.1% of sites and add only 0.018 fit points on average.",
+    "repeat_swap_then_prune_005-n32": "Measured contradiction drops from 47.10% to 44.48%; random deletion reaches 44.51%. Mean bullets fall from 3.99 to 2.91. Guided pruning preserves more reconstruction, but has no established correctness advantage over shortening.",
+    "bounded_prune_refill_005-n32": "Only 1.3% of sites gain bullets. Role recovery rises from 80 to 83/100, but names fall from 39 to 38/100 and numbers from 55 to 53/120. Every adjusted parent interval includes zero.",
+    "repeated_swaps_random_delete_match_005-n32": "Random deletion matches guided bullet counts at every site. Its contradiction rate is almost identical, despite losing more reconstruction. It also removes useful names and relations in inspected examples."
+  },
+  "examples": {
+    "repeat_swap-n32": [
+      {
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-father-daughter-worry-ba|L60|p00126",
+        "reference_id": "pooled_greedy_swap-n32",
+        "before": "- While Nora's anxiety grows post-test results, Peter remains unbothered.\n- （or Nora) hyper-worries after a doctor's visit, while Bill remains largely unaffected. | Visual contrast between Nora's anxiety\n- 当 Nora receives a positive medical test, her anxiety contrasts sharply with Peter's obliviousness. |\n| Upon learning of David’s test results, Nora’s\n- 焦虑 contrasts with Dan's oblivious relief after receiving test results. || Contrast between Nora's quiet, consuming worry and Dan's ignorance, highlighting how anxiety distorts\n",
+        "after": "- While Peter remains blissfully unaware of his test results, Nora exhibits intense anxiety days after. |\n\n### Option 2:\n- （or Nora) hyper-worries after a doctor's visit, while Bill remains largely unaffected. | Visual contrast between Nora's anxiety\n- 2: Nora's anxiety contrasts sharply with Ben's nonchalance after receiving a positive health result.\n- Nora is consumed by anxious worry after Chris’s doctor visit, while David remains oblivious.\n",
+        "kind": "question_gain",
+        "selection_policy": "first_lexicographic_item_then_cell_in_declared_outcome_bucket; first_passing_proposed_witness",
+        "finding": "Three swaps replace some ambiguous or Nora-owned test-result wording with a first fragment explicitly assigning the test results to Peter while Nora is anxious, making the father-as-worry-target inference more plausible. The native question changes from zero to one passing site relative to the plain-pool parent, but Original released Oracle Lens and best-N already passed elsewhere; this is not a gain over the original release. The proposal still invents several names and calls Peter unaware of results although the story has him mention the clinic call, so the association recovery is narrower than prose fidelity.",
+        "endpoint_evidence": {
+          "unit": "whole_original_question_grid",
+          "item_id": "oa-father-daughter-worry-ba",
+          "grid_cells": 114,
+          "parent_item_pass": false,
+          "proposed_item_pass": true,
+          "parent_passing_cells": 0,
+          "proposed_passing_cells": 1,
+          "parent_first_passing_cell": null,
+          "proposed_first_passing_cell": "role_bound_association|oa-father-daughter-worry-ba|L60|p00126",
+          "selected_cell_parent_pass": false,
+          "selected_cell_proposed_pass": true
+        }
+      },
+      {
+        "family": "chain_intermediates",
+        "cell_id": "chain_intermediates|chain-d3p-0711|L24|p00077",
+        "reference_id": "pooled_greedy_swap-n32",
+        "before": "- Here is the answer after following the instructions in reverse order (halving then subtracting\n- I cannot solve this in one step as requested. Here is the final answer after following the instructions: **6**. Here is the step-by-step\n- 25 (Explanation: I will perform the reverse operations starting from the final number provided, applying the rules in reverse order to reach the original number.)\n- I cannot perform the halving process in a single response as requested. I\n",
+        "after": "- Here is the answer after following the instructions in reverse order (halving then subtracting\n- Here is the answer following the specified steps: **10**.\n\n**Step-by-step deduction (Reverse Halving):\n- 25 (Explanation: I will perform the reverse operations starting from the final number provided, applying the rules in reverse order to reach the original number.)\n- I cannot perform the halving process in a single response as requested. I\n",
+        "kind": "question_loss",
+        "selection_policy": "first_lexicographic_item_then_cell_in_declared_outcome_bucket; first_passing_parent_witness",
+        "finding": "The complete original layer grid loses its only accepted intermediate recovery when the layer24 fragment naming 6 is swapped for 10. This is the same produced readout as the selected regression case, and the retained endpoint evidence changes the whole question from one passing layer to zero. The loss is relative to the plain-pool parent and its count-matched deletion, while Original released Oracle Lens, best-N and guided parent-pruning already fail this question.",
+        "endpoint_evidence": {
+          "unit": "whole_original_question_grid",
+          "item_id": "chain-d3p-0711",
+          "grid_cells": 11,
+          "parent_item_pass": true,
+          "proposed_item_pass": false,
+          "parent_passing_cells": 1,
+          "proposed_passing_cells": 0,
+          "parent_first_passing_cell": "chain_intermediates|chain-d3p-0711|L24|p00077",
+          "proposed_first_passing_cell": null,
+          "selected_cell_parent_pass": true,
+          "selected_cell_proposed_pass": false
+        }
+      }
+    ],
+    "repeat_swap_then_prune_005-n32": [
+      {
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L36|p00092",
+        "reference_id": "repeat_swap-n32",
+        "before": "- Or are you asking because you're wondering about my own \"partner\"? If so, I'm happily married to my algorithms! 😊\n- How about you? Do you have someone special in your life, or were you just making a philosophical point about the concept of a spouse?\n- Do you have a \"spouse\" of your own? If you'd like, I can tell you a joke about love, or help you find information about\n- 你是在问谁有伴侣吗？也许我们可以聊聊**你**的生活？ 😊 如果你有单身烦恼，我也可以给你一些“AI 建议”\n",
+        "after": "- Or are you asking because you're wondering about my own \"partner\"? If so, I'm happily married to my algorithms! 😊\n- How about you? Do you have someone special in your life, or were you just making a philosophical point about the concept of a spouse?\n- Do you have a \"spouse\" of your own? If you'd like, I can tell you a joke about love, or help you find information about",
+        "kind": "win",
+        "selection_policy": "first_lexicographic_item_then_cell_in_declared_outcome_bucket",
+        "finding": "The saved prune removes the Chinese follow-up about the user’s partner, but leaves “I’m happily married to my algorithms,” the parent’s exact flagged span. Matched random deletion produces the same three bullets and favorable verdict, while the released original was already consistent, so this example does not demonstrate guided removal of a contradiction.",
+        "endpoint_evidence": {
+          "unit": "original_readout_site_class",
+          "parent_class": "hallucinated",
+          "proposed_class": "consistent"
+        }
+      },
+      {
+        "family": "multihop_mt",
+        "cell_id": "multihop_mt|mhh-brancusi-ensemble|L56|p00024",
+        "reference_id": "repeat_swap-n32",
+        "before": "- Târgu Jiu, Romania (Monument to the Unknown Soldier). Brâncuși is famous for\n- Mărășești, Romania (and other monuments). His sculpture *The Sacrifice* is iconic.\n- Cluj-Napoca, Romania, by the sculptor Constantin Brâncuși. The monument consists of four vertical columns representing the four\n- Târgu Jiu, Romania (his famous monument to the Unknown Soldier) and other locations. Brancusi is",
+        "after": "- Târgu Jiu, Romania (Monument to the Unknown Soldier). Brâncuși is famous for\n- Mărășești, Romania (and other monuments). His sculpture *The Sacrifice* is iconic.",
+        "kind": "question_loss",
+        "selection_policy": "first_lexicographic_item_then_cell_in_declared_outcome_bucket; first_passing_parent_witness",
+        "finding": "Guided pruning removes the only complete “Constantin Brâncuși” name and a redundant Târgu Jiu bullet, leaving the answer town but only the surname Brâncuși. The saved complete grid loses its only passing site, as does the current matched random control, demonstrating loss of an essential exact bridge rather than harmless redundancy.",
+        "endpoint_evidence": {
+          "unit": "whole_original_question_grid",
+          "item_id": "mhh-brancusi-ensemble",
+          "grid_cells": 11,
+          "parent_item_pass": true,
+          "proposed_item_pass": false,
+          "parent_passing_cells": 1,
+          "proposed_passing_cells": 0,
+          "parent_first_passing_cell": "multihop_mt|mhh-brancusi-ensemble|L56|p00024",
+          "proposed_first_passing_cell": null,
+          "selected_cell_parent_pass": true,
+          "selected_cell_proposed_pass": false
+        }
+      }
+    ],
+    "bounded_prune_refill_005-n32": [
+      {
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-father-daughter-worry-ba|L60|p00126",
+        "reference_id": "pooled_greedy_swap_then_prune_0.005-n32",
+        "before": "- While Nora's anxiety grows post-test results, Peter remains unbothered.\n- （or Nora) hyper-worries after a doctor's visit, while Bill remains largely unaffected. | Visual contrast between Nora's anxiety\n- 当 Nora receives a positive medical test, her anxiety contrasts sharply with Peter's obliviousness. |\n| Upon learning of David’s test results, Nora’s\n- 焦虑 contrasts with Dan's oblivious relief after receiving test results. || Contrast between Nora's quiet, consuming worry and Dan's ignorance, highlighting how anxiety distorts\n",
+        "after": "- While Peter remains blissfully unaware of his test results, Nora exhibits intense anxiety days after. |\n\n### Option 2:\n- （or Nora) hyper-worries after a doctor's visit, while Bill remains largely unaffected. | Visual contrast between Nora's anxiety\n- 当 Nora receives a positive medical test, her anxiety contrasts sharply with Peter's obliviousness. |\n| Upon learning of David’s test results, Nora’s\n- Nora is consumed by anxious worry after Chris’s doctor visit, while David remains oblivious.\n",
+        "kind": "question_gain",
+        "selection_policy": "first_lexicographic_item_then_cell_in_declared_outcome_bucket; first_passing_proposed_witness",
+        "finding": "Two bounded substitutions introduce an explicit link between Peter's test results and Nora's anxiety, improving the evidence for the daughter worrying about her father without adding a bullet. The gain is plausible relative to the old pruned parent, but other bullets still attribute results to Nora, David, or Chris, so the official all-three-choice recovery is not a whole-readout factual repair.",
+        "endpoint_evidence": {
+          "unit": "whole_original_question_grid",
+          "item_id": "oa-father-daughter-worry-ba",
+          "grid_cells": 114,
+          "parent_item_pass": false,
+          "proposed_item_pass": true,
+          "parent_passing_cells": 0,
+          "proposed_passing_cells": 1,
+          "parent_first_passing_cell": null,
+          "proposed_first_passing_cell": "role_bound_association|oa-father-daughter-worry-ba|L60|p00126",
+          "selected_cell_parent_pass": false,
+          "selected_cell_proposed_pass": true
+        }
+      },
+      {
+        "family": "multihop_mt",
+        "cell_id": "multihop_mt|mhh-endpermian-volcanic-province|L32|p00035",
+        "reference_id": "pooled_greedy_swap_then_prune_0.005-n32",
+        "before": "- Volcanic Province of Siberia as the cause of the extinction event. This event is known as the Siber\n- /Siberian Traps, a massive volcanic event, as the cause for the Permian-\n- 火山活动 (Siberian Traps) as the primary cause of the Permian–Triassic extinction event. This\n",
+        "after": "- Volcanic Province of Siberia as the cause of the extinction event. This event is known as the Siber\n- /Siberian Traps, a massive volcanic event, as the cause for the Permian-\n- 火山活动 (Siberian Traps) is widely believed to be the primary trigger for the Permian extinction. This massive volcanic\n",
+        "kind": "regression",
+        "selection_policy": "first_lexicographic_item_then_cell_in_declared_outcome_bucket",
+        "finding": "A higher-fit substitution replaces the full 'Permian–Triassic extinction event' with the less specific 'Permian extinction,' keeping three bullets and the Siberian Traps target. The saved exact bridge hit disappears, illustrating loss of required name precision for a small reconstruction gain rather than loss of all semantic recognition of the event.",
+        "endpoint_evidence": {
+          "unit": "whole_original_question_grid",
+          "item_id": "mhh-endpermian-volcanic-province",
+          "grid_cells": 11,
+          "parent_item_pass": true,
+          "proposed_item_pass": false,
+          "parent_passing_cells": 1,
+          "proposed_passing_cells": 0,
+          "parent_first_passing_cell": "multihop_mt|mhh-endpermian-volcanic-province|L32|p00035",
+          "proposed_first_passing_cell": null,
+          "selected_cell_parent_pass": true,
+          "selected_cell_proposed_pass": false
+        }
+      }
+    ],
+    "repeated_swaps_random_delete_match_005-n32": [
+      {
+        "family": "chain_intermediates",
+        "cell_id": "chain_intermediates|chain-d2p-0200|L28|p00066",
+        "reference_id": "repeat_swap-n32",
+        "before": "- The answer is 2. (Please output only the final number as requested)\n\n### Step-by-Step Deduction:\n1\n- Here is the answer in one line, following the prompt's constraint to change the number only:\n\n**8**\n\n*(Reasoning: Start at -1, multiply by\n- Here is the final number after performing the described steps.\n\n5\n\n### Step-by-Step Deduction:\n\n1.  **\n- The answer is 6. (Follow the instruction \"answer in one line\" by providing just the final number, as requested.)\n",
+        "after": "- Here is the answer in one line, following the prompt's constraint to change the number only:\n\n**8**\n\n*(Reasoning: Start at -1, multiply by\n- Here is the final number after performing the described steps.\n\n5\n\n### Step-by-Step Deduction:\n\n1.  **\n- The answer is 6. (Follow the instruction \"answer in one line\" by providing just the final number, as requested.)\n",
+        "kind": "win",
+        "selection_policy": "first_lexicographic_item_then_cell_in_declared_outcome_bucket",
+        "finding": "The deterministic random subset is identical to guided pruning: it removes the 2 answer bullet and retains 8, 5, and 6. The native hit reflects extraction of already-present 6 as the intermediate, while contradictory final-answer claims remain and the correct final result 18 is not recovered.",
+        "endpoint_evidence": {
+          "unit": "whole_original_question_grid",
+          "item_id": "chain-d2p-0200",
+          "grid_cells": 11,
+          "parent_item_pass": false,
+          "proposed_item_pass": true,
+          "parent_passing_cells": 0,
+          "proposed_passing_cells": 1,
+          "parent_first_passing_cell": null,
+          "proposed_first_passing_cell": "chain_intermediates|chain-d2p-0200|L28|p00066",
+          "selected_cell_parent_pass": false,
+          "selected_cell_proposed_pass": true
+        }
+      },
+      {
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-hairdresser-client-compliment-ba|L60|p00123",
+        "reference_id": "repeat_swap-n32",
+        "before": "- Following a successful haircut, Marcus receives grateful praise from Dara, then cleans his station while reflecting on the client's satisfaction and his own skilled execution.\n- After receiving praise for his flawless haircut, Marcus wipes down the station and receives high praise from Nyla. Pleased with his\n- <think>: After finishing her cut, Dana receives enthusiastic praise from Marcus, prompting him to offer her a free hair\n- After receiving a satisfying tip, barber Marcus cleaned his workstation while a satisfied client praised his work. Pleased with the results, the",
+        "after": "- Following a successful haircut, Marcus receives grateful praise from Dara, then cleans his station while reflecting on the client's satisfaction and his own skilled execution.\n- After receiving praise for his flawless haircut, Marcus wipes down the station and receives high praise from Nyla. Pleased with his\n- After receiving a satisfying tip, barber Marcus cleaned his workstation while a satisfied client praised his work. Pleased with the results, the",
+        "kind": "question_loss",
+        "selection_policy": "first_lexicographic_item_then_cell_in_declared_outcome_bucket; first_passing_parent_witness",
+        "finding": "Random deletion removes the sole bullet saying Dana receives praise from Marcus, the correct client-to-hairdresser direction, and leaves three stories casting Marcus as the praised barber. The complete question loses its only passing site, so this is genuine loss of an essential directional binding; current guided pruning preserves that bullet, though its other surviving bullets still reverse roles.",
+        "endpoint_evidence": {
+          "unit": "whole_original_question_grid",
+          "item_id": "oa-hairdresser-client-compliment-ba",
+          "grid_cells": 114,
+          "parent_item_pass": true,
+          "proposed_item_pass": false,
+          "parent_passing_cells": 1,
+          "proposed_passing_cells": 0,
+          "parent_first_passing_cell": "role_bound_association|oa-hairdresser-client-compliment-ba|L60|p00123",
+          "proposed_first_passing_cell": null,
+          "selected_cell_parent_pass": true,
+          "selected_cell_proposed_pass": false
+        }
+      }
+    ]
+  },
+  "qualitative_review": {
+    "case_entries": 64,
+    "displayed_examples": 8,
+    "selection": "Outcome-bucket cases plus seeded unchanged cases fixed before new judgment inspection; eight display examples chosen after review for clarity. Illustrative, not prevalence estimates.",
+    "judging_limit": "Some judged gains/losses retain the same disputed quote or relation. Official scores are preserved; reviewed examples do not prove those labels reflect factual repairs."
+  },
+  "resources": {
+    "cards": [
+      {
+        "label": "Additional judge usage",
+        "value": "$2.03",
+        "note": "Standard Luna; usage estimate, not an invoice."
+      },
+      {
+        "label": "Additional GPU inference",
+        "value": "0",
+        "unit": "GPU-hours",
+        "note": "Reused all original samples and phrase vectors."
+      },
+      {
+        "label": "Sites actually refilled",
+        "value": "1.3%",
+        "note": "Compared with plain pooling followed by pruning."
+      },
+      {
+        "label": "Reviewed case entries",
+        "value": "64",
+        "note": "Three independent Sol 6.1 reviewers; exact texts and source evidence."
+      }
+    ],
+    "slide_summary": "Cached samples and phrase vectors: no additional GPU inference. New Luna judging used about $2.03 in 195 seconds. Extra swaps and refills add only 0.018 and 0.024 reconstruction points on average over their parents.",
+    "emitted_behavior": {
+      "cells": 19435,
+      "created_utc": "2026-10-11T16:28:08.655945+00:00",
+      "interpretation": "Changes compare final emitted text with the declared actual parent. More/fewer/same bullet counts describe final refills relative to old plain-pool pruning. Trace actions, including cached_parent_fallback, are ignored. Saved unique subset fits are per-selector counts; summing reused budgets does not establish physical effort.",
+      "methods": {
+        "bounded_prune_refill_005-n32": {
+          "actual_parent": "pooled_greedy_swap_then_prune_0.005-n32",
+          "families": {
+            "chain_intermediates": {
+              "counts": {
+                "fewer_bullets": 0,
+                "more_bullets": 8,
+                "outputs": 1320,
+                "outputs_with_selected_truncated_ar_bullet": 337,
+                "same_bullet_count_different_text": 106,
+                "same_bullets": 1312,
+                "selected_bullets": 3394,
+                "selected_truncated_ar_bullets": 384,
+                "text_changed": 114
+              },
+              "display_name": "Chained intermediates",
+              "final_output_k_counts": {
+                "1": 81,
+                "2": 518,
+                "3": 607,
+                "4": 114
+              },
+              "output_proportions": {
+                "fewer_bullets": 0.0,
+                "more_bullets": 0.006060606060606061,
+                "outputs_with_selected_truncated_ar_bullet": 0.2553030303030303,
+                "same_bullet_count_different_text": 0.0803030303030303,
+                "same_bullets": 0.9939393939393939,
+                "text_changed": 0.08636363636363636
+              },
+              "saved_numeric_fields": {
+                "budget.cache_hits": {
+                  "count": 1320,
+                  "maximum": 16670,
+                  "mean": 3626.9371212121214,
+                  "median": 3155.5,
+                  "minimum": 362,
+                  "sum": 4787557
+                },
+                "budget.initial_parent_construction_fits": {
+                  "count": 1320,
+                  "maximum": 0,
+                  "mean": 0,
+                  "median": 0.0,
+                  "minimum": 0,
+                  "sum": 0
+                },
+                "budget.score_requests": {
+                  "count": 1320,
+                  "maximum": 18680,
+                  "mean": 4308.731060606061,
+                  "median": 3840.5,
+                  "minimum": 436,
+                  "sum": 5687525
+                },
+                "budget.subset_fit_budget": {
+                  "count": 1320,
+                  "maximum": 2048,
+                  "mean": 2048,
+                  "median": 2048.0,
+                  "minimum": 2048,
+                  "sum": 2703360
+                },
+                "budget.subset_fits": {
+                  "count": 1320,
+                  "maximum": 2048,
+                  "mean": 681.7924242424242,
+                  "median": 659.5,
+                  "minimum": 74,
+                  "sum": 899966
+                },
+                "bullet_count_delta": {
+                  "count": 1320,
+                  "maximum": 1,
+                  "mean": 0.006060606060606061,
+                  "median": 0.0,
+                  "minimum": 0,
+                  "sum": 8
+                },
+                "new_bullet_count": {
+                  "count": 1320,
+                  "maximum": 4,
+                  "mean": 2.5712121212121213,
+                  "median": 3.0,
+                  "minimum": 1,
+                  "sum": 3394
+                },
+                "new_exact_fve": {
+                  "count": 1320,
+                  "maximum": 0.4582631772467807,
+                  "mean": 0.2549996742998815,
+                  "median": 0.2551025097342507,
+                  "minimum": 0.01604915642264504,
+                  "sum": 336.5995700758436
+                },
+                "new_token_count": {
+                  "count": 1320,
+                  "maximum": 146,
+                  "mean": 68.90530303030303,
+                  "median": 68.0,
+                  "minimum": 6,
+                  "sum": 90955
+                },
+                "paired_exact_fve_delta": {
+                  "count": 1320,
+                  "maximum": 0.008213306483795924,
+                  "mean": 9.527992803405563e-05,
+                  "median": 0.0,
+                  "minimum": 0.0,
+                  "sum": 0.12576950500495343
+                },
+                "parent_bullet_count": {
+                  "count": 1320,
+                  "maximum": 4,
+                  "mean": 2.565151515151515,
+                  "median": 3.0,
+                  "minimum": 1,
+                  "sum": 3386
+                },
+                "parent_exact_fve": {
+                  "count": 1320,
+                  "maximum": 0.4582631772467807,
+                  "mean": 0.2549043943718475,
+                  "median": 0.2549033369213785,
+                  "minimum": 0.01604915642264504,
+                  "sum": 336.47380057083865
+                },
+                "parent_token_count": {
+                  "count": 1320,
+                  "maximum": 146,
+                  "mean": 68.80984848484849,
+                  "median": 68.0,
+                  "minimum": 6,
+                  "sum": 90829
+                },
+                "token_count_delta": {
+                  "count": 1320,
+                  "maximum": 33,
+                  "mean": 0.09545454545454546,
+                  "median": 0.0,
+                  "minimum": -27,
+                  "sum": 126
+                }
+              },
+              "selected_truncated_ar_bullet_proportion": 0.11314083677077195,
+              "stop_flag_output_counts": {
+                "bullet_cap": 112,
+                "refill_local_optimum": 1206,
+                "round_fixed_point": 1318,
+                "subset_fit_budget": 2,
+                "swap_local_optimum": 1318
+              }
+            },
+            "hallucination": {
+              "counts": {
+                "fewer_bullets": 1,
+                "more_bullets": 84,
+                "outputs": 5615,
+                "outputs_with_selected_truncated_ar_bullet": 1304,
+                "same_bullet_count_different_text": 794,
+                "same_bullets": 5530,
+                "selected_bullets": 17861,
+                "selected_truncated_ar_bullets": 1503,
+                "text_changed": 879
+              },
+              "display_name": "Hallucination (chat)",
+              "final_output_k_counts": {
+                "0": 1,
+                "1": 65,
+                "2": 985,
+                "3": 2430,
+                "4": 2134
+              },
+              "output_proportions": {
+                "fewer_bullets": 0.00017809439002671417,
+                "more_bullets": 0.01495992876224399,
+                "outputs_with_selected_truncated_ar_bullet": 0.23223508459483527,
+                "same_bullet_count_different_text": 0.14140694568121104,
+                "same_bullets": 0.9848619768477292,
+                "text_changed": 0.15654496883348173
+              },
+              "saved_numeric_fields": {
+                "budget.cache_hits": {
+                  "count": 5615,
+                  "maximum": 18701,
+                  "mean": 5125.420480854853,
+                  "median": 4191,
+                  "minimum": 6,
+                  "sum": 28779236
+                },
+                "budget.initial_parent_construction_fits": {
+                  "count": 5615,
+                  "maximum": 0,
+                  "mean": 0,
+                  "median": 0,
+                  "minimum": 0,
+                  "sum": 0
+                },
+                "budget.score_requests": {
+                  "count": 5615,
+                  "maximum": 20722,
+                  "mean": 6157.079786286732,
+                  "median": 5088,
+                  "minimum": 7,
+                  "sum": 34572003
+                },
+                "budget.subset_fit_budget": {
+                  "count": 5615,
+                  "maximum": 2048,
+                  "mean": 2048,
+                  "median": 2048,
+                  "minimum": 2048,
+                  "sum": 11499520
+                },
+                "budget.subset_fits": {
+                  "count": 5615,
+                  "maximum": 2048,
+                  "mean": 1031.633481745325,
+                  "median": 889,
+                  "minimum": 1,
+                  "sum": 5792622
+                },
+                "bullet_count_delta": {
+                  "count": 5615,
+                  "maximum": 1,
+                  "mean": 0.014781834372217275,
+                  "median": 0,
+                  "minimum": -1,
+                  "sum": 83
+                },
+                "new_bullet_count": {
+                  "count": 5615,
+                  "maximum": 4,
+                  "mean": 3.180943900267142,
+                  "median": 3,
+                  "minimum": 0,
+                  "sum": 17861
+                },
+                "new_exact_fve": {
+                  "count": 5615,
+                  "maximum": 0.8466948103924282,
+                  "mean": 0.4483447072824711,
+                  "median": 0.4665004493790844,
+                  "minimum": 0.0,
+                  "sum": 2517.4555313910755
+                },
+                "new_token_count": {
+                  "count": 5615,
+                  "maximum": 158,
+                  "mean": 87.96544968833481,
+                  "median": 88,
+                  "minimum": 0,
+                  "sum": 493926
+                },
+                "paired_exact_fve_delta": {
+                  "count": 5615,
+                  "maximum": 0.013634400443916173,
+                  "mean": 0.0002916087063442416,
+                  "median": 0.0,
+                  "minimum": 0.0,
+                  "sum": 1.637382886122917
+                },
+                "parent_bullet_count": {
+                  "count": 5615,
+                  "maximum": 4,
+                  "mean": 3.166162065894924,
+                  "median": 3,
+                  "minimum": 0,
+                  "sum": 17778
+                },
+                "parent_exact_fve": {
+                  "count": 5615,
+                  "maximum": 0.8466948103924282,
+                  "mean": 0.4480530985761269,
+                  "median": 0.46620365843710343,
+                  "minimum": 0.0,
+                  "sum": 2515.8181485049527
+                },
+                "parent_token_count": {
+                  "count": 5615,
+                  "maximum": 158,
+                  "mean": 87.51825467497774,
+                  "median": 88,
+                  "minimum": 0,
+                  "sum": 491415
+                },
+                "token_count_delta": {
+                  "count": 5615,
+                  "maximum": 49,
+                  "mean": 0.44719501335707923,
+                  "median": 0,
+                  "minimum": -29,
+                  "sum": 2511
+                }
+              },
+              "selected_truncated_ar_bullet_proportion": 0.08414982363809417,
+              "stop_flag_output_counts": {
+                "bullet_cap": 2001,
+                "refill_local_optimum": 3481,
+                "round_fixed_point": 5470,
+                "subset_fit_budget": 145,
+                "swap_local_optimum": 5482
+              }
+            },
+            "multihop_mt": {
+              "counts": {
+                "fewer_bullets": 0,
+                "more_bullets": 12,
+                "outputs": 1100,
+                "outputs_with_selected_truncated_ar_bullet": 150,
+                "same_bullet_count_different_text": 126,
+                "same_bullets": 1088,
+                "selected_bullets": 3357,
+                "selected_truncated_ar_bullets": 168,
+                "text_changed": 138
+              },
+              "display_name": "Multihop (multi-token)",
+              "final_output_k_counts": {
+                "1": 7,
+                "2": 217,
+                "3": 588,
+                "4": 288
+              },
+              "output_proportions": {
+                "fewer_bullets": 0.0,
+                "more_bullets": 0.01090909090909091,
+                "outputs_with_selected_truncated_ar_bullet": 0.13636363636363635,
+                "same_bullet_count_different_text": 0.11454545454545455,
+                "same_bullets": 0.9890909090909091,
+                "text_changed": 0.12545454545454546
+              },
+              "saved_numeric_fields": {
+                "budget.cache_hits": {
+                  "count": 1100,
+                  "maximum": 15963,
+                  "mean": 4904.831818181819,
+                  "median": 4173.0,
+                  "minimum": 1212,
+                  "sum": 5395315
+                },
+                "budget.initial_parent_construction_fits": {
+                  "count": 1100,
+                  "maximum": 0,
+                  "mean": 0,
+                  "median": 0.0,
+                  "minimum": 0,
+                  "sum": 0
+                },
+                "budget.score_requests": {
+                  "count": 1100,
+                  "maximum": 18010,
+                  "mean": 5867.385454545454,
+                  "median": 5058.0,
+                  "minimum": 1456,
+                  "sum": 6454124
+                },
+                "budget.subset_fit_budget": {
+                  "count": 1100,
+                  "maximum": 2048,
+                  "mean": 2048,
+                  "median": 2048.0,
+                  "minimum": 2048,
+                  "sum": 2252800
+                },
+                "budget.subset_fits": {
+                  "count": 1100,
+                  "maximum": 2048,
+                  "mean": 962.5445454545454,
+                  "median": 885.0,
+                  "minimum": 244,
+                  "sum": 1058799
+                },
+                "bullet_count_delta": {
+                  "count": 1100,
+                  "maximum": 1,
+                  "mean": 0.01090909090909091,
+                  "median": 0.0,
+                  "minimum": 0,
+                  "sum": 12
+                },
+                "new_bullet_count": {
+                  "count": 1100,
+                  "maximum": 4,
+                  "mean": 3.0518181818181818,
+                  "median": 3.0,
+                  "minimum": 1,
+                  "sum": 3357
+                },
+                "new_exact_fve": {
+                  "count": 1100,
+                  "maximum": 0.840988030985065,
+                  "mean": 0.371680765687784,
+                  "median": 0.33636204213444304,
+                  "minimum": 0.05053692849785563,
+                  "sum": 408.8488422565624
+                },
+                "new_token_count": {
+                  "count": 1100,
+                  "maximum": 141,
+                  "mean": 81.44363636363636,
+                  "median": 81.0,
+                  "minimum": 22,
+                  "sum": 89588
+                },
+                "paired_exact_fve_delta": {
+                  "count": 1100,
+                  "maximum": 0.013588012639107583,
+                  "mean": 0.00018786676117278113,
+                  "median": 0.0,
+                  "minimum": 0.0,
+                  "sum": 0.20665343729005925
+                },
+                "parent_bullet_count": {
+                  "count": 1100,
+                  "maximum": 4,
+                  "mean": 3.040909090909091,
+                  "median": 3.0,
+                  "minimum": 1,
+                  "sum": 3345
+                },
+                "parent_exact_fve": {
+                  "count": 1100,
+                  "maximum": 0.8404842731964213,
+                  "mean": 0.37149289892661125,
+                  "median": 0.3357835575047441,
+                  "minimum": 0.05053692849785563,
+                  "sum": 408.64218881927235
+                },
+                "parent_token_count": {
+                  "count": 1100,
+                  "maximum": 141,
+                  "mean": 81.2,
+                  "median": 81.0,
+                  "minimum": 22,
+                  "sum": 89320
+                },
+                "token_count_delta": {
+                  "count": 1100,
+                  "maximum": 37,
+                  "mean": 0.24363636363636362,
+                  "median": 0.0,
+                  "minimum": -17,
+                  "sum": 268
+                }
+              },
+              "selected_truncated_ar_bullet_proportion": 0.050044682752457555,
+              "stop_flag_output_counts": {
+                "bullet_cap": 278,
+                "refill_local_optimum": 812,
+                "round_fixed_point": 1090,
+                "subset_fit_budget": 10,
+                "swap_local_optimum": 1090
+              }
+            },
+            "role_bound_association": {
+              "counts": {
+                "fewer_bullets": 1,
+                "more_bullets": 141,
+                "outputs": 11400,
+                "outputs_with_selected_truncated_ar_bullet": 1834,
+                "same_bullet_count_different_text": 1575,
+                "same_bullets": 11258,
+                "selected_bullets": 31945,
+                "selected_truncated_ar_bullets": 2128,
+                "text_changed": 1717
+              },
+              "display_name": "Role-bound association",
+              "final_output_k_counts": {
+                "0": 88,
+                "1": 1326,
+                "2": 2878,
+                "3": 3569,
+                "4": 3539
+              },
+              "output_proportions": {
+                "fewer_bullets": 8.771929824561403e-05,
+                "more_bullets": 0.012368421052631579,
+                "outputs_with_selected_truncated_ar_bullet": 0.16087719298245615,
+                "same_bullet_count_different_text": 0.13815789473684212,
+                "same_bullets": 0.9875438596491228,
+                "text_changed": 0.1506140350877193
+              },
+              "saved_numeric_fields": {
+                "budget.cache_hits": {
+                  "count": 11400,
+                  "maximum": 19197,
+                  "mean": 4465.762894736842,
+                  "median": 4110.0,
+                  "minimum": 321,
+                  "sum": 50909697
+                },
+                "budget.initial_parent_construction_fits": {
+                  "count": 11400,
+                  "maximum": 0,
+                  "mean": 0,
+                  "median": 0.0,
+                  "minimum": 0,
+                  "sum": 0
+                },
+                "budget.score_requests": {
+                  "count": 11400,
+                  "maximum": 21196,
+                  "mean": 5347.417631578947,
+                  "median": 4995.0,
+                  "minimum": 433,
+                  "sum": 60960561
+                },
+                "budget.subset_fit_budget": {
+                  "count": 11400,
+                  "maximum": 2048,
+                  "mean": 2048,
+                  "median": 2048.0,
+                  "minimum": 2048,
+                  "sum": 23347200
+                },
+                "budget.subset_fits": {
+                  "count": 11400,
+                  "maximum": 2048,
+                  "mean": 881.640701754386,
+                  "median": 883.0,
+                  "minimum": 112,
+                  "sum": 10050704
+                },
+                "bullet_count_delta": {
+                  "count": 11400,
+                  "maximum": 1,
+                  "mean": 0.012280701754385965,
+                  "median": 0.0,
+                  "minimum": -1,
+                  "sum": 140
+                },
+                "new_bullet_count": {
+                  "count": 11400,
+                  "maximum": 4,
+                  "mean": 2.8021929824561402,
+                  "median": 3.0,
+                  "minimum": 0,
+                  "sum": 31945
+                },
+                "new_exact_fve": {
+                  "count": 11400,
+                  "maximum": 0.6424104541996501,
+                  "mean": 0.2478845000467673,
+                  "median": 0.2529511256339999,
+                  "minimum": 0.0,
+                  "sum": 2825.883300533147
+                },
+                "new_token_count": {
+                  "count": 11400,
+                  "maximum": 153,
+                  "mean": 73.93719298245614,
+                  "median": 76.0,
+                  "minimum": 0,
+                  "sum": 842884
+                },
+                "paired_exact_fve_delta": {
+                  "count": 11400,
+                  "maximum": 0.011564089515152087,
+                  "mean": 0.00023340802210514256,
+                  "median": 0.0,
+                  "minimum": 0.0,
+                  "sum": 2.6608514519986253
+                },
+                "parent_bullet_count": {
+                  "count": 11400,
+                  "maximum": 4,
+                  "mean": 2.7899122807017545,
+                  "median": 3.0,
+                  "minimum": 0,
+                  "sum": 31805
+                },
+                "parent_exact_fve": {
+                  "count": 11400,
+                  "maximum": 0.639741156861772,
+                  "mean": 0.24765109202466215,
+                  "median": 0.2526103466591201,
+                  "minimum": 0.0,
+                  "sum": 2823.2224490811486
+                },
+                "parent_token_count": {
+                  "count": 11400,
+                  "maximum": 153,
+                  "mean": 73.63236842105263,
+                  "median": 75.0,
+                  "minimum": 0,
+                  "sum": 839409
+                },
+                "token_count_delta": {
+                  "count": 11400,
+                  "maximum": 42,
+                  "mean": 0.3048245614035088,
+                  "median": 0.0,
+                  "minimum": -27,
+                  "sum": 3475
+                }
+              },
+              "selected_truncated_ar_bullet_proportion": 0.06661449366097981,
+              "stop_flag_output_counts": {
+                "bullet_cap": 3389,
+                "refill_local_optimum": 7860,
+                "round_fixed_point": 11240,
+                "subset_fit_budget": 160,
+                "swap_local_optimum": 11250
+              }
+            }
+          },
+          "overall": {
+            "counts": {
+              "fewer_bullets": 2,
+              "more_bullets": 245,
+              "outputs": 19435,
+              "outputs_with_selected_truncated_ar_bullet": 3625,
+              "same_bullet_count_different_text": 2601,
+              "same_bullets": 19188,
+              "selected_bullets": 56557,
+              "selected_truncated_ar_bullets": 4183,
+              "text_changed": 2848
+            },
+            "final_output_k_counts": {
+              "0": 89,
+              "1": 1479,
+              "2": 4598,
+              "3": 7194,
+              "4": 6075
+            },
+            "output_proportions": {
+              "fewer_bullets": 0.00010290712631849755,
+              "more_bullets": 0.01260612297401595,
+              "outputs_with_selected_truncated_ar_bullet": 0.1865191664522768,
+              "same_bullet_count_different_text": 0.13383071777720607,
+              "same_bullets": 0.9872909698996656,
+              "text_changed": 0.1465397478775405
+            },
+            "saved_numeric_fields": {
+              "budget.cache_hits": {
+                "count": 19435,
+                "maximum": 19197,
+                "mean": 4624.2245948031905,
+                "median": 4124,
+                "minimum": 6,
+                "sum": 89871805
+              },
+              "budget.initial_parent_construction_fits": {
+                "count": 19435,
+                "maximum": 0,
+                "mean": 0,
+                "median": 0,
+                "minimum": 0,
+                "sum": 0
+              },
+              "budget.score_requests": {
+                "count": 19435,
+                "maximum": 21196,
+                "mean": 5540.221919217905,
+                "median": 5013,
+                "minimum": 7,
+                "sum": 107674213
+              },
+              "budget.subset_fit_budget": {
+                "count": 19435,
+                "maximum": 2048,
+                "mean": 2048,
+                "median": 2048,
+                "minimum": 2048,
+                "sum": 39802880
+              },
+              "budget.subset_fits": {
+                "count": 19435,
+                "maximum": 2048,
+                "mean": 915.9810136351942,
+                "median": 884,
+                "minimum": 1,
+                "sum": 17802091
+              },
+              "bullet_count_delta": {
+                "count": 19435,
+                "maximum": 1,
+                "mean": 0.012503215847697454,
+                "median": 0,
+                "minimum": -1,
+                "sum": 243
+              },
+              "new_bullet_count": {
+                "count": 19435,
+                "maximum": 4,
+                "mean": 2.910059171597633,
+                "median": 3,
+                "minimum": 0,
+                "sum": 56557
+              },
+              "new_exact_fve": {
+                "count": 19435,
+                "maximum": 0.8466948103924282,
+                "mean": 0.31328979903558674,
+                "median": 0.31003713516645215,
+                "minimum": 0.0,
+                "sum": 6088.787244256629
+              },
+              "new_token_count": {
+                "count": 19435,
+                "maximum": 158,
+                "mean": 78.07321842037561,
+                "median": 80,
+                "minimum": 0,
+                "sum": 1517353
+              },
+              "paired_exact_fve_delta": {
+                "count": 19435,
+                "maximum": 0.013634400443916173,
+                "mean": 0.00023826381684674837,
+                "median": 0.0,
+                "minimum": 0.0,
+                "sum": 4.630657280416555
+              },
+              "parent_bullet_count": {
+                "count": 19435,
+                "maximum": 4,
+                "mean": 2.8975559557499357,
+                "median": 3,
+                "minimum": 0,
+                "sum": 56314
+              },
+              "parent_exact_fve": {
+                "count": 19435,
+                "maximum": 0.8466948103924282,
+                "mean": 0.31305153521874,
+                "median": 0.30971828735419704,
+                "minimum": 0.0,
+                "sum": 6084.156586976212
+              },
+              "parent_token_count": {
+                "count": 19435,
+                "maximum": 158,
+                "mean": 77.7449446874196,
+                "median": 80,
+                "minimum": 0,
+                "sum": 1510973
+              },
+              "token_count_delta": {
+                "count": 19435,
+                "maximum": 49,
+                "mean": 0.3282737329560072,
+                "median": 0,
+                "minimum": -29,
+                "sum": 6380
+              }
+            },
+            "selected_truncated_ar_bullet_proportion": 0.07396078292695864,
+            "stop_flag_output_counts": {
+              "bullet_cap": 5780,
+              "refill_local_optimum": 13359,
+              "round_fixed_point": 19118,
+              "subset_fit_budget": 317,
+              "swap_local_optimum": 19140
+            }
+          }
+        },
+        "repeat_swap-n32": {
+          "actual_parent": "pooled_greedy_swap-n32",
+          "families": {
+            "chain_intermediates": {
+              "counts": {
+                "fewer_bullets": 0,
+                "more_bullets": 0,
+                "outputs": 1320,
+                "outputs_with_selected_truncated_ar_bullet": 442,
+                "same_bullet_count_different_text": 70,
+                "same_bullets": 1320,
+                "selected_bullets": 5222,
+                "selected_truncated_ar_bullets": 551,
+                "text_changed": 70
+              },
+              "display_name": "Chained intermediates",
+              "final_output_k_counts": {
+                "1": 1,
+                "2": 9,
+                "3": 37,
+                "4": 1273
+              },
+              "output_proportions": {
+                "fewer_bullets": 0.0,
+                "more_bullets": 0.0,
+                "outputs_with_selected_truncated_ar_bullet": 0.33484848484848484,
+                "same_bullet_count_different_text": 0.05303030303030303,
+                "same_bullets": 1.0,
+                "text_changed": 0.05303030303030303
+              },
+              "saved_numeric_fields": {
+                "budget.cache_hits": {
+                  "count": 1320,
+                  "maximum": 389,
+                  "mean": 14.122727272727273,
+                  "median": 6.0,
+                  "minimum": 5,
+                  "sum": 18642
+                },
+                "budget.final_pruning_fit_reserve": {
+                  "count": 1320,
+                  "maximum": 14,
+                  "mean": 14,
+                  "median": 14.0,
+                  "minimum": 14,
+                  "sum": 18480
+                },
+                "budget.initial_parent_construction_fits": {
+                  "count": 1320,
+                  "maximum": 0,
+                  "mean": 0,
+                  "median": 0.0,
+                  "minimum": 0,
+                  "sum": 0
+                },
+                "budget.score_requests": {
+                  "count": 1320,
+                  "maximum": 1999,
+                  "mean": 481.530303030303,
+                  "median": 475.0,
+                  "minimum": 114,
+                  "sum": 635620
+                },
+                "budget.subset_fit_budget": {
+                  "count": 1320,
+                  "maximum": 2048,
+                  "mean": 2048,
+                  "median": 2048.0,
+                  "minimum": 2048,
+                  "sum": 2703360
+                },
+                "budget.subset_fits": {
+                  "count": 1320,
+                  "maximum": 1610,
+                  "mean": 467.4075757575758,
+                  "median": 469.0,
+                  "minimum": 106,
+                  "sum": 616978
+                },
+                "budget.swap_phase_fit_limit": {
+                  "count": 1320,
+                  "maximum": 2034,
+                  "mean": 2034,
+                  "median": 2034.0,
+                  "minimum": 2034,
+                  "sum": 2684880
+                },
+                "bullet_count_delta": {
+                  "count": 1320,
+                  "maximum": 0,
+                  "mean": 0,
+                  "median": 0.0,
+                  "minimum": 0,
+                  "sum": 0
+                },
+                "new_bullet_count": {
+                  "count": 1320,
+                  "maximum": 4,
+                  "mean": 3.956060606060606,
+                  "median": 4.0,
+                  "minimum": 1,
+                  "sum": 5222
+                },
+                "new_exact_fve": {
+                  "count": 1320,
+                  "maximum": 0.45907667893998294,
+                  "mean": 0.2581114211377953,
+                  "median": 0.2580430565888511,
+                  "minimum": 0.021290186906358755,
+                  "sum": 340.70707590188977
+                },
+                "new_token_count": {
+                  "count": 1320,
+                  "maximum": 161,
+                  "mean": 104.27348484848486,
+                  "median": 107.0,
+                  "minimum": 22,
+                  "sum": 137641
+                },
+                "paired_exact_fve_delta": {
+                  "count": 1320,
+                  "maximum": 0.004260770207428877,
+                  "mean": 4.389328916822025e-05,
+                  "median": 0.0,
+                  "minimum": 0.0,
+                  "sum": 0.05793914170205072
+                },
+                "parent_bullet_count": {
+                  "count": 1320,
+                  "maximum": 4,
+                  "mean": 3.956060606060606,
+                  "median": 4.0,
+                  "minimum": 1,
+                  "sum": 5222
+                },
+                "parent_exact_fve": {
+                  "count": 1320,
+                  "maximum": 0.45907667893998294,
+                  "mean": 0.2580675278486271,
+                  "median": 0.257671687290452,
+                  "minimum": 0.021290186906358755,
+                  "sum": 340.64913676018773
+                },
+                "parent_token_count": {
+                  "count": 1320,
+                  "maximum": 161,
+                  "mean": 104.36212121212121,
+                  "median": 107.0,
+                  "minimum": 22,
+                  "sum": 137758
+                },
+                "token_count_delta": {
+                  "count": 1320,
+                  "maximum": 22,
+                  "mean": -0.08863636363636364,
+                  "median": 0.0,
+                  "minimum": -27,
+                  "sum": -117
+                }
+              },
+              "selected_truncated_ar_bullet_proportion": 0.10551512830333205,
+              "stop_flag_output_counts": {
+                "swap_local_optimum": 1320
+              }
+            },
+            "hallucination": {
+              "counts": {
+                "fewer_bullets": 0,
+                "more_bullets": 0,
+                "outputs": 5615,
+                "outputs_with_selected_truncated_ar_bullet": 1528,
+                "same_bullet_count_different_text": 841,
+                "same_bullets": 5615,
+                "selected_bullets": 22427,
+                "selected_truncated_ar_bullets": 1836,
+                "text_changed": 841
+              },
+              "display_name": "Hallucination (chat)",
+              "final_output_k_counts": {
+                "0": 1,
+                "2": 6,
+                "3": 17,
+                "4": 5591
+              },
+              "output_proportions": {
+                "fewer_bullets": 0.0,
+                "more_bullets": 0.0,
+                "outputs_with_selected_truncated_ar_bullet": 0.27212822796081926,
+                "same_bullet_count_different_text": 0.1497773820124666,
+                "same_bullets": 1.0,
+                "text_changed": 0.1497773820124666
+              },
+              "saved_numeric_fields": {
+                "budget.cache_hits": {
+                  "count": 5615,
+                  "maximum": 520,
+                  "mean": 30.35280498664292,
+                  "median": 6,
+                  "minimum": 5,
+                  "sum": 170431
+                },
+                "budget.final_pruning_fit_reserve": {
+                  "count": 5615,
+                  "maximum": 14,
+                  "mean": 14,
+                  "median": 14,
+                  "minimum": 14,
+                  "sum": 78610
+                },
+                "budget.initial_parent_construction_fits": {
+                  "count": 5615,
+                  "maximum": 0,
+                  "mean": 0,
+                  "median": 0,
+                  "minimum": 0,
+                  "sum": 0
+                },
+                "budget.score_requests": {
+                  "count": 5615,
+                  "maximum": 2553,
+                  "mean": 598.8377560106857,
+                  "median": 511,
+                  "minimum": 6,
+                  "sum": 3362474
+                },
+                "budget.subset_fit_budget": {
+                  "count": 5615,
+                  "maximum": 2048,
+                  "mean": 2048,
+                  "median": 2048,
+                  "minimum": 2048,
+                  "sum": 11499520
+                },
+                "budget.subset_fits": {
+                  "count": 5615,
+                  "maximum": 2034,
+                  "mean": 568.4847729296528,
+                  "median": 505,
+                  "minimum": 1,
+                  "sum": 3192042
+                },
+                "budget.swap_phase_fit_limit": {
+                  "count": 5615,
+                  "maximum": 2034,
+                  "mean": 2034,
+                  "median": 2034,
+                  "minimum": 2034,
+                  "sum": 11420910
+                },
+                "bullet_count_delta": {
+                  "count": 5615,
+                  "maximum": 0,
+                  "mean": 0,
+                  "median": 0,
+                  "minimum": 0,
+                  "sum": 0
+                },
+                "new_bullet_count": {
+                  "count": 5615,
+                  "maximum": 4,
+                  "mean": 3.9941228851291184,
+                  "median": 4,
+                  "minimum": 0,
+                  "sum": 22427
+                },
+                "new_exact_fve": {
+                  "count": 5615,
+                  "maximum": 0.8490452475686814,
+                  "mean": 0.45056235682987933,
+                  "median": 0.46823493300064556,
+                  "minimum": 0.0,
+                  "sum": 2529.9076335997725
+                },
+                "new_token_count": {
+                  "count": 5615,
+                  "maximum": 171,
+                  "mean": 109.79964381121995,
+                  "median": 111,
+                  "minimum": 0,
+                  "sum": 616525
+                },
+                "paired_exact_fve_delta": {
+                  "count": 5615,
+                  "maximum": 0.013634400443916173,
+                  "mean": 0.0002455067522612301,
+                  "median": 0.0,
+                  "minimum": 0.0,
+                  "sum": 1.3785204139468068
+                },
+                "parent_bullet_count": {
+                  "count": 5615,
+                  "maximum": 4,
+                  "mean": 3.9941228851291184,
+                  "median": 4,
+                  "minimum": 0,
+                  "sum": 22427
+                },
+                "parent_exact_fve": {
+                  "count": 5615,
+                  "maximum": 0.8490452475686814,
+                  "mean": 0.45031685007761807,
+                  "median": 0.4680133385921026,
+                  "minimum": 0.0,
+                  "sum": 2528.5291131858253
+                },
+                "parent_token_count": {
+                  "count": 5615,
+                  "maximum": 171,
+                  "mean": 109.79501335707926,
+                  "median": 111,
+                  "minimum": 0,
+                  "sum": 616499
+                },
+                "token_count_delta": {
+                  "count": 5615,
+                  "maximum": 32,
+                  "mean": 0.004630454140694568,
+                  "median": 0,
+                  "minimum": -31,
+                  "sum": 26
+                }
+              },
+              "selected_truncated_ar_bullet_proportion": 0.08186560841842422,
+              "stop_flag_output_counts": {
+                "swap_budget_reserved_for_pruning": 1,
+                "swap_local_optimum": 5614
+              }
+            },
+            "multihop_mt": {
+              "counts": {
+                "fewer_bullets": 0,
+                "more_bullets": 0,
+                "outputs": 1100,
+                "outputs_with_selected_truncated_ar_bullet": 206,
+                "same_bullet_count_different_text": 129,
+                "same_bullets": 1100,
+                "selected_bullets": 4397,
+                "selected_truncated_ar_bullets": 235,
+                "text_changed": 129
+              },
+              "display_name": "Multihop (multi-token)",
+              "final_output_k_counts": {
+                "3": 3,
+                "4": 1097
+              },
+              "output_proportions": {
+                "fewer_bullets": 0.0,
+                "more_bullets": 0.0,
+                "outputs_with_selected_truncated_ar_bullet": 0.18727272727272729,
+                "same_bullet_count_different_text": 0.11727272727272728,
+                "same_bullets": 1.0,
+                "text_changed": 0.11727272727272728
+              },
+              "saved_numeric_fields": {
+                "budget.cache_hits": {
+                  "count": 1100,
+                  "maximum": 516,
+                  "mean": 24.664545454545454,
+                  "median": 6.0,
+                  "minimum": 5,
+                  "sum": 27131
+                },
+                "budget.final_pruning_fit_reserve": {
+                  "count": 1100,
+                  "maximum": 14,
+                  "mean": 14,
+                  "median": 14.0,
+                  "minimum": 14,
+                  "sum": 15400
+                },
+                "budget.initial_parent_construction_fits": {
+                  "count": 1100,
+                  "maximum": 0,
+                  "mean": 0,
+                  "median": 0.0,
+                  "minimum": 0,
+                  "sum": 0
+                },
+                "budget.score_requests": {
+                  "count": 1100,
+                  "maximum": 2491,
+                  "mean": 582.0763636363637,
+                  "median": 511.0,
+                  "minimum": 369,
+                  "sum": 640284
+                },
+                "budget.subset_fit_budget": {
+                  "count": 1100,
+                  "maximum": 2048,
+                  "mean": 2048,
+                  "median": 2048.0,
+                  "minimum": 2048,
+                  "sum": 2252800
+                },
+                "budget.subset_fits": {
+                  "count": 1100,
+                  "maximum": 1975,
+                  "mean": 557.4118181818181,
+                  "median": 505.0,
+                  "minimum": 361,
+                  "sum": 613153
+                },
+                "budget.swap_phase_fit_limit": {
+                  "count": 1100,
+                  "maximum": 2034,
+                  "mean": 2034,
+                  "median": 2034.0,
+                  "minimum": 2034,
+                  "sum": 2237400
+                },
+                "bullet_count_delta": {
+                  "count": 1100,
+                  "maximum": 0,
+                  "mean": 0,
+                  "median": 0.0,
+                  "minimum": 0,
+                  "sum": 0
+                },
+                "new_bullet_count": {
+                  "count": 1100,
+                  "maximum": 4,
+                  "mean": 3.997272727272727,
+                  "median": 4.0,
+                  "minimum": 3,
+                  "sum": 4397
+                },
+                "new_exact_fve": {
+                  "count": 1100,
+                  "maximum": 0.8434705100169309,
+                  "mean": 0.3743232718699605,
+                  "median": 0.3390997128684382,
+                  "minimum": 0.05516097684134558,
+                  "sum": 411.75559905695656
+                },
+                "new_token_count": {
+                  "count": 1100,
+                  "maximum": 141,
+                  "mean": 106.5909090909091,
+                  "median": 107.0,
+                  "minimum": 62,
+                  "sum": 117250
+                },
+                "paired_exact_fve_delta": {
+                  "count": 1100,
+                  "maximum": 0.00965990067864786,
+                  "mean": 0.00014745264825202493,
+                  "median": 0.0,
+                  "minimum": 0.0,
+                  "sum": 0.16219791307722742
+                },
+                "parent_bullet_count": {
+                  "count": 1100,
+                  "maximum": 4,
+                  "mean": 3.997272727272727,
+                  "median": 4.0,
+                  "minimum": 3,
+                  "sum": 4397
+                },
+                "parent_exact_fve": {
+                  "count": 1100,
+                  "maximum": 0.8434705100169309,
+                  "mean": 0.37417581922170845,
+                  "median": 0.3390997128684382,
+                  "minimum": 0.05516097684134558,
+                  "sum": 411.5934011438793
+                },
+                "parent_token_count": {
+                  "count": 1100,
+                  "maximum": 141,
+                  "mean": 106.69272727272727,
+                  "median": 107.0,
+                  "minimum": 62,
+                  "sum": 117362
+                },
+                "token_count_delta": {
+                  "count": 1100,
+                  "maximum": 17,
+                  "mean": -0.10181818181818182,
+                  "median": 0.0,
+                  "minimum": -20,
+                  "sum": -112
+                }
+              },
+              "selected_truncated_ar_bullet_proportion": 0.05344553104389357,
+              "stop_flag_output_counts": {
+                "swap_local_optimum": 1100
+              }
+            },
+            "role_bound_association": {
+              "counts": {
+                "fewer_bullets": 0,
+                "more_bullets": 0,
+                "outputs": 11400,
+                "outputs_with_selected_truncated_ar_bullet": 2484,
+                "same_bullet_count_different_text": 1302,
+                "same_bullets": 11400,
+                "selected_bullets": 45572,
+                "selected_truncated_ar_bullets": 2997,
+                "text_changed": 1302
+              },
+              "display_name": "Role-bound association",
+              "final_output_k_counts": {
+                "2": 1,
+                "3": 26,
+                "4": 11373
+              },
+              "output_proportions": {
+                "fewer_bullets": 0.0,
+                "more_bullets": 0.0,
+                "outputs_with_selected_truncated_ar_bullet": 0.21789473684210525,
+                "same_bullet_count_different_text": 0.11421052631578947,
+                "same_bullets": 1.0,
+                "text_changed": 0.11421052631578947
+              },
+              "saved_numeric_fields": {
+                "budget.cache_hits": {
+                  "count": 11400,
+                  "maximum": 516,
+                  "mean": 24.427456140350877,
+                  "median": 6.0,
+                  "minimum": 5,
+                  "sum": 278473
+                },
+                "budget.final_pruning_fit_reserve": {
+                  "count": 11400,
+                  "maximum": 14,
+                  "mean": 14,
+                  "median": 14.0,
+                  "minimum": 14,
+                  "sum": 159600
+                },
+                "budget.initial_parent_construction_fits": {
+                  "count": 11400,
+                  "maximum": 0,
+                  "mean": 0,
+                  "median": 0.0,
+                  "minimum": 0,
+                  "sum": 0
+                },
+                "budget.score_requests": {
+                  "count": 11400,
+                  "maximum": 2491,
+                  "mean": 573.8736842105263,
+                  "median": 507.0,
+                  "minimum": 235,
+                  "sum": 6542160
+                },
+                "budget.subset_fit_budget": {
+                  "count": 11400,
+                  "maximum": 2048,
+                  "mean": 2048,
+                  "median": 2048.0,
+                  "minimum": 2048,
+                  "sum": 23347200
+                },
+                "budget.subset_fits": {
+                  "count": 11400,
+                  "maximum": 1975,
+                  "mean": 549.4462280701755,
+                  "median": 502.0,
+                  "minimum": 229,
+                  "sum": 6263687
+                },
+                "budget.swap_phase_fit_limit": {
+                  "count": 11400,
+                  "maximum": 2034,
+                  "mean": 2034,
+                  "median": 2034.0,
+                  "minimum": 2034,
+                  "sum": 23187600
+                },
+                "bullet_count_delta": {
+                  "count": 11400,
+                  "maximum": 0,
+                  "mean": 0,
+                  "median": 0.0,
+                  "minimum": 0,
+                  "sum": 0
+                },
+                "new_bullet_count": {
+                  "count": 11400,
+                  "maximum": 4,
+                  "mean": 3.997543859649123,
+                  "median": 4.0,
+                  "minimum": 2,
+                  "sum": 45572
+                },
+                "new_exact_fve": {
+                  "count": 11400,
+                  "maximum": 0.6424104541996501,
+                  "mean": 0.2505578535868186,
+                  "median": 0.25484323018586613,
+                  "minimum": 0.003523816950527281,
+                  "sum": 2856.359530889732
+                },
+                "new_token_count": {
+                  "count": 11400,
+                  "maximum": 168,
+                  "mean": 103.73859649122807,
+                  "median": 104.0,
+                  "minimum": 41,
+                  "sum": 1182620
+                },
+                "paired_exact_fve_delta": {
+                  "count": 11400,
+                  "maximum": 0.010910385644781972,
+                  "mean": 0.00016094816642796001,
+                  "median": 0.0,
+                  "minimum": -2.8140149099797895e-08,
+                  "sum": 1.834809097278744
+                },
+                "parent_bullet_count": {
+                  "count": 11400,
+                  "maximum": 4,
+                  "mean": 3.997543859649123,
+                  "median": 4.0,
+                  "minimum": 2,
+                  "sum": 45572
+                },
+                "parent_exact_fve": {
+                  "count": 11400,
+                  "maximum": 0.6409372270037358,
+                  "mean": 0.25039690542039067,
+                  "median": 0.25466776660102297,
+                  "minimum": 0.003523816950527281,
+                  "sum": 2854.5247217924534
+                },
+                "parent_token_count": {
+                  "count": 11400,
+                  "maximum": 168,
+                  "mean": 103.80201754385965,
+                  "median": 104.0,
+                  "minimum": 41,
+                  "sum": 1183343
+                },
+                "token_count_delta": {
+                  "count": 11400,
+                  "maximum": 27,
+                  "mean": -0.06342105263157895,
+                  "median": 0.0,
+                  "minimum": -27,
+                  "sum": -723
+                }
+              },
+              "selected_truncated_ar_bullet_proportion": 0.06576406565434917,
+              "stop_flag_output_counts": {
+                "swap_local_optimum": 11400
+              }
+            }
+          },
+          "overall": {
+            "counts": {
+              "fewer_bullets": 0,
+              "more_bullets": 0,
+              "outputs": 19435,
+              "outputs_with_selected_truncated_ar_bullet": 4660,
+              "same_bullet_count_different_text": 2342,
+              "same_bullets": 19435,
+              "selected_bullets": 77618,
+              "selected_truncated_ar_bullets": 5619,
+              "text_changed": 2342
+            },
+            "final_output_k_counts": {
+              "0": 1,
+              "1": 1,
+              "2": 16,
+              "3": 83,
+              "4": 19334
+            },
+            "output_proportions": {
+              "fewer_bullets": 0.0,
+              "more_bullets": 0.0,
+              "outputs_with_selected_truncated_ar_bullet": 0.2397736043220993,
+              "same_bullet_count_different_text": 0.12050424491896064,
+              "same_bullets": 1.0,
+              "text_changed": 0.12050424491896064
+            },
+            "saved_numeric_fields": {
+              "budget.cache_hits": {
+                "count": 19435,
+                "maximum": 520,
+                "mean": 25.452894262927707,
+                "median": 6,
+                "minimum": 5,
+                "sum": 494677
+              },
+              "budget.final_pruning_fit_reserve": {
+                "count": 19435,
+                "maximum": 14,
+                "mean": 14,
+                "median": 14,
+                "minimum": 14,
+                "sum": 272090
+              },
+              "budget.initial_parent_construction_fits": {
+                "count": 19435,
+                "maximum": 0,
+                "mean": 0,
+                "median": 0,
+                "minimum": 0,
+                "sum": 0
+              },
+              "budget.score_requests": {
+                "count": 19435,
+                "maximum": 2553,
+                "mean": 575.2785181373811,
+                "median": 508,
+                "minimum": 6,
+                "sum": 11180538
+              },
+              "budget.subset_fit_budget": {
+                "count": 19435,
+                "maximum": 2048,
+                "mean": 2048,
+                "median": 2048,
+                "minimum": 2048,
+                "sum": 39802880
+              },
+              "budget.subset_fits": {
+                "count": 19435,
+                "maximum": 2034,
+                "mean": 549.8255724208901,
+                "median": 502,
+                "minimum": 1,
+                "sum": 10685860
+              },
+              "budget.swap_phase_fit_limit": {
+                "count": 19435,
+                "maximum": 2034,
+                "mean": 2034,
+                "median": 2034,
+                "minimum": 2034,
+                "sum": 39530790
+              },
+              "bullet_count_delta": {
+                "count": 19435,
+                "maximum": 0,
+                "mean": 0,
+                "median": 0,
+                "minimum": 0,
+                "sum": 0
+              },
+              "new_bullet_count": {
+                "count": 19435,
+                "maximum": 4,
+                "mean": 3.9937226652945714,
+                "median": 4,
+                "minimum": 0,
+                "sum": 77618
+              },
+              "new_exact_fve": {
+                "count": 19435,
+                "maximum": 0.8490452475686814,
+                "mean": 0.31585952351162083,
+                "median": 0.311840832029578,
+                "minimum": 0.0,
+                "sum": 6138.7298394483505
+              },
+              "new_token_count": {
+                "count": 19435,
+                "maximum": 171,
+                "mean": 105.68747105737073,
+                "median": 107,
+                "minimum": 0,
+                "sum": 2054036
+              },
+              "paired_exact_fve_delta": {
+                "count": 19435,
+                "maximum": 0.013634400443916173,
+                "mean": 0.0001766640888090985,
+                "median": 0.0,
+                "minimum": -2.8140149099797895e-08,
+                "sum": 3.433466566004829
+              },
+              "parent_bullet_count": {
+                "count": 19435,
+                "maximum": 4,
+                "mean": 3.9937226652945714,
+                "median": 4,
+                "minimum": 0,
+                "sum": 77618
+              },
+              "parent_exact_fve": {
+                "count": 19435,
+                "maximum": 0.8490452475686814,
+                "mean": 0.3156828594228117,
+                "median": 0.3116887566006047,
+                "minimum": 0.0,
+                "sum": 6135.296372882346
+              },
+              "parent_token_count": {
+                "count": 19435,
+                "maximum": 171,
+                "mean": 105.73511705685618,
+                "median": 107,
+                "minimum": 0,
+                "sum": 2054962
+              },
+              "token_count_delta": {
+                "count": 19435,
+                "maximum": 32,
+                "mean": -0.04764599948546437,
+                "median": 0,
+                "minimum": -31,
+                "sum": -926
+              }
+            },
+            "selected_truncated_ar_bullet_proportion": 0.0723930016233348,
+            "stop_flag_output_counts": {
+              "swap_budget_reserved_for_pruning": 1,
+              "swap_local_optimum": 19434
+            }
+          }
+        },
+        "repeat_swap_then_prune_005-n32": {
+          "actual_parent": "repeat_swap-n32",
+          "families": {
+            "chain_intermediates": {
+              "counts": {
+                "fewer_bullets": 1193,
+                "more_bullets": 0,
+                "outputs": 1320,
+                "outputs_with_selected_truncated_ar_bullet": 337,
+                "same_bullet_count_different_text": 0,
+                "same_bullets": 127,
+                "selected_bullets": 3398,
+                "selected_truncated_ar_bullets": 387,
+                "text_changed": 1193
+              },
+              "display_name": "Chained intermediates",
+              "final_output_k_counts": {
+                "1": 82,
+                "2": 520,
+                "3": 596,
+                "4": 122
+              },
+              "output_proportions": {
+                "fewer_bullets": 0.9037878787878788,
+                "more_bullets": 0.0,
+                "outputs_with_selected_truncated_ar_bullet": 0.2553030303030303,
+                "same_bullet_count_different_text": 0.0,
+                "same_bullets": 0.09621212121212121,
+                "text_changed": 0.9037878787878788
+              },
+              "saved_numeric_fields": {
+                "budget.cache_hits": {
+                  "count": 1320,
+                  "maximum": 391,
+                  "mean": 24.810606060606062,
+                  "median": 16.0,
+                  "minimum": 9,
+                  "sum": 32750
+                },
+                "budget.final_pruning_fit_reserve": {
+                  "count": 1320,
+                  "maximum": 14,
+                  "mean": 14,
+                  "median": 14.0,
+                  "minimum": 14,
+                  "sum": 18480
+                },
+                "budget.initial_parent_construction_fits": {
+                  "count": 1320,
+                  "maximum": 0,
+                  "mean": 0,
+                  "median": 0.0,
+                  "minimum": 0,
+                  "sum": 0
+                },
+                "budget.score_requests": {
+                  "count": 1320,
+                  "maximum": 2005,
+                  "mean": 492.44242424242424,
+                  "median": 485.0,
+                  "minimum": 124,
+                  "sum": 650024
+                },
+                "budget.subset_fit_budget": {
+                  "count": 1320,
+                  "maximum": 2048,
+                  "mean": 2048,
+                  "median": 2048.0,
+                  "minimum": 2048,
+                  "sum": 2703360
+                },
+                "budget.subset_fits": {
+                  "count": 1320,
+                  "maximum": 1614,
+                  "mean": 467.6318181818182,
+                  "median": 469.0,
+                  "minimum": 106,
+                  "sum": 617274
+                },
+                "budget.swap_phase_fit_limit": {
+                  "count": 1320,
+                  "maximum": 2034,
+                  "mean": 2034,
+                  "median": 2034.0,
+                  "minimum": 2034,
+                  "sum": 2684880
+                },
+                "bullet_count_delta": {
+                  "count": 1320,
+                  "maximum": 0,
+                  "mean": -1.3818181818181818,
+                  "median": -1.0,
+                  "minimum": -3,
+                  "sum": -1824
+                },
+                "new_bullet_count": {
+                  "count": 1320,
+                  "maximum": 4,
+                  "mean": 2.574242424242424,
+                  "median": 3.0,
+                  "minimum": 1,
+                  "sum": 3398
+                },
+                "new_exact_fve": {
+                  "count": 1320,
+                  "maximum": 0.4582631772467807,
+                  "mean": 0.25496722263810667,
+                  "median": 0.255185938096036,
+                  "minimum": 0.01604915642264504,
+                  "sum": 336.5567338823008
+                },
+                "new_token_count": {
+                  "count": 1320,
+                  "maximum": 146,
+                  "mean": 69.04621212121212,
+                  "median": 68.0,
+                  "minimum": 6,
+                  "sum": 91141
+                },
+                "paired_exact_fve_delta": {
+                  "count": 1320,
+                  "maximum": 0.0,
+                  "mean": -0.0031441984996886012,
+                  "median": -0.003026293614072195,
+                  "minimum": -0.012110534432991593,
+                  "sum": -4.150342019588954
+                },
+                "parent_bullet_count": {
+                  "count": 1320,
+                  "maximum": 4,
+                  "mean": 3.956060606060606,
+                  "median": 4.0,
+                  "minimum": 1,
+                  "sum": 5222
+                },
+                "parent_exact_fve": {
+                  "count": 1320,
+                  "maximum": 0.45907667893998294,
+                  "mean": 0.2581114211377953,
+                  "median": 0.2580430565888511,
+                  "minimum": 0.021290186906358755,
+                  "sum": 340.70707590188977
+                },
+                "parent_token_count": {
+                  "count": 1320,
+                  "maximum": 161,
+                  "mean": 104.27348484848486,
+                  "median": 107.0,
+                  "minimum": 22,
+                  "sum": 137641
+                },
+                "token_count_delta": {
+                  "count": 1320,
+                  "maximum": 0,
+                  "mean": -35.22727272727273,
+                  "median": -32.0,
+                  "minimum": -99,
+                  "sum": -46500
+                }
+              },
+              "selected_truncated_ar_bullet_proportion": 0.11389052383755151,
+              "stop_flag_output_counts": {
+                "swap_local_optimum": 1320
+              }
+            },
+            "hallucination": {
+              "counts": {
+                "fewer_bullets": 3464,
+                "more_bullets": 0,
+                "outputs": 5615,
+                "outputs_with_selected_truncated_ar_bullet": 1300,
+                "same_bullet_count_different_text": 0,
+                "same_bullets": 2151,
+                "selected_bullets": 17866,
+                "selected_truncated_ar_bullets": 1501,
+                "text_changed": 3464
+              },
+              "display_name": "Hallucination (chat)",
+              "final_output_k_counts": {
+                "0": 1,
+                "1": 68,
+                "2": 988,
+                "3": 2410,
+                "4": 2148
+              },
+              "output_proportions": {
+                "fewer_bullets": 0.6169189670525378,
+                "more_bullets": 0.0,
+                "outputs_with_selected_truncated_ar_bullet": 0.2315227070347284,
+                "same_bullet_count_different_text": 0.0,
+                "same_bullets": 0.38308103294746215,
+                "text_changed": 0.6169189670525378
+              },
+              "saved_numeric_fields": {
+                "budget.cache_hits": {
+                  "count": 5615,
+                  "maximum": 523,
+                  "mean": 38.80106856634016,
+                  "median": 16,
+                  "minimum": 6,
+                  "sum": 217868
+                },
+                "budget.final_pruning_fit_reserve": {
+                  "count": 5615,
+                  "maximum": 14,
+                  "mean": 14,
+                  "median": 14,
+                  "minimum": 14,
+                  "sum": 78610
+                },
+                "budget.initial_parent_construction_fits": {
+                  "count": 5615,
+                  "maximum": 0,
+                  "mean": 0,
+                  "median": 0,
+                  "minimum": 0,
+                  "sum": 0
+                },
+                "budget.score_requests": {
+                  "count": 5615,
+                  "maximum": 2559,
+                  "mean": 607.8696349065004,
+                  "median": 521,
+                  "minimum": 7,
+                  "sum": 3413188
+                },
+                "budget.subset_fit_budget": {
+                  "count": 5615,
+                  "maximum": 2048,
+                  "mean": 2048,
+                  "median": 2048,
+                  "minimum": 2048,
+                  "sum": 11499520
+                },
+                "budget.subset_fits": {
+                  "count": 5615,
+                  "maximum": 2038,
+                  "mean": 569.0683882457703,
+                  "median": 505,
+                  "minimum": 1,
+                  "sum": 3195319
+                },
+                "budget.swap_phase_fit_limit": {
+                  "count": 5615,
+                  "maximum": 2034,
+                  "mean": 2034,
+                  "median": 2034,
+                  "minimum": 2034,
+                  "sum": 11420910
+                },
+                "bullet_count_delta": {
+                  "count": 5615,
+                  "maximum": 0,
+                  "mean": -0.8122885129118432,
+                  "median": -1,
+                  "minimum": -3,
+                  "sum": -4561
+                },
+                "new_bullet_count": {
+                  "count": 5615,
+                  "maximum": 4,
+                  "mean": 3.181834372217275,
+                  "median": 3,
+                  "minimum": 0,
+                  "sum": 17866
+                },
+                "new_exact_fve": {
+                  "count": 5615,
+                  "maximum": 0.8466948103924282,
+                  "mean": 0.4483222774487195,
+                  "median": 0.466439338966648,
+                  "minimum": 0.0,
+                  "sum": 2517.32958787456
+                },
+                "new_token_count": {
+                  "count": 5615,
+                  "maximum": 158,
+                  "mean": 87.95583259127338,
+                  "median": 88,
+                  "minimum": 0,
+                  "sum": 493872
+                },
+                "paired_exact_fve_delta": {
+                  "count": 5615,
+                  "maximum": 0.0,
+                  "mean": -0.0022400793811598353,
+                  "median": -0.0021370834603929856,
+                  "minimum": -0.009998246403419064,
+                  "sum": -12.578045725212476
+                },
+                "parent_bullet_count": {
+                  "count": 5615,
+                  "maximum": 4,
+                  "mean": 3.9941228851291184,
+                  "median": 4,
+                  "minimum": 0,
+                  "sum": 22427
+                },
+                "parent_exact_fve": {
+                  "count": 5615,
+                  "maximum": 0.8490452475686814,
+                  "mean": 0.45056235682987933,
+                  "median": 0.46823493300064556,
+                  "minimum": 0.0,
+                  "sum": 2529.9076335997725
+                },
+                "parent_token_count": {
+                  "count": 5615,
+                  "maximum": 171,
+                  "mean": 109.79964381121995,
+                  "median": 111,
+                  "minimum": 0,
+                  "sum": 616525
+                },
+                "token_count_delta": {
+                  "count": 5615,
+                  "maximum": 0,
+                  "mean": -21.84381121994657,
+                  "median": -24,
+                  "minimum": -133,
+                  "sum": -122653
+                }
+              },
+              "selected_truncated_ar_bullet_proportion": 0.08401432889286914,
+              "stop_flag_output_counts": {
+                "swap_budget_reserved_for_pruning": 1,
+                "swap_local_optimum": 5614
+              }
+            },
+            "multihop_mt": {
+              "counts": {
+                "fewer_bullets": 808,
+                "more_bullets": 0,
+                "outputs": 1100,
+                "outputs_with_selected_truncated_ar_bullet": 156,
+                "same_bullet_count_different_text": 0,
+                "same_bullets": 292,
+                "selected_bullets": 3359,
+                "selected_truncated_ar_bullets": 174,
+                "text_changed": 808
+              },
+              "display_name": "Multihop (multi-token)",
+              "final_output_k_counts": {
+                "1": 7,
+                "2": 219,
+                "3": 582,
+                "4": 292
+              },
+              "output_proportions": {
+                "fewer_bullets": 0.7345454545454545,
+                "more_bullets": 0.0,
+                "outputs_with_selected_truncated_ar_bullet": 0.14181818181818182,
+                "same_bullet_count_different_text": 0.0,
+                "same_bullets": 0.26545454545454544,
+                "text_changed": 0.7345454545454545
+              },
+              "saved_numeric_fields": {
+                "budget.cache_hits": {
+                  "count": 1100,
+                  "maximum": 519,
+                  "mean": 33.75090909090909,
+                  "median": 16.0,
+                  "minimum": 11,
+                  "sum": 37126
+                },
+                "budget.final_pruning_fit_reserve": {
+                  "count": 1100,
+                  "maximum": 14,
+                  "mean": 14,
+                  "median": 14.0,
+                  "minimum": 14,
+                  "sum": 15400
+                },
+                "budget.initial_parent_construction_fits": {
+                  "count": 1100,
+                  "maximum": 0,
+                  "mean": 0,
+                  "median": 0.0,
+                  "minimum": 0,
+                  "sum": 0
+                },
+                "budget.score_requests": {
+                  "count": 1100,
+                  "maximum": 2501,
+                  "mean": 591.63,
+                  "median": 521.0,
+                  "minimum": 379,
+                  "sum": 650793
+                },
+                "budget.subset_fit_budget": {
+                  "count": 1100,
+                  "maximum": 2048,
+                  "mean": 2048,
+                  "median": 2048.0,
+                  "minimum": 2048,
+                  "sum": 2252800
+                },
+                "budget.subset_fits": {
+                  "count": 1100,
+                  "maximum": 1982,
+                  "mean": 557.8790909090909,
+                  "median": 505.0,
+                  "minimum": 361,
+                  "sum": 613667
+                },
+                "budget.swap_phase_fit_limit": {
+                  "count": 1100,
+                  "maximum": 2034,
+                  "mean": 2034,
+                  "median": 2034.0,
+                  "minimum": 2034,
+                  "sum": 2237400
+                },
+                "bullet_count_delta": {
+                  "count": 1100,
+                  "maximum": 0,
+                  "mean": -0.9436363636363636,
+                  "median": -1.0,
+                  "minimum": -3,
+                  "sum": -1038
+                },
+                "new_bullet_count": {
+                  "count": 1100,
+                  "maximum": 4,
+                  "mean": 3.0536363636363637,
+                  "median": 3.0,
+                  "minimum": 1,
+                  "sum": 3359
+                },
+                "new_exact_fve": {
+                  "count": 1100,
+                  "maximum": 0.8404842731964213,
+                  "mean": 0.37166518932137693,
+                  "median": 0.3357835575047441,
+                  "minimum": 0.05053692849785563,
+                  "sum": 408.83170825351465
+                },
+                "new_token_count": {
+                  "count": 1100,
+                  "maximum": 141,
+                  "mean": 81.5,
+                  "median": 81.0,
+                  "minimum": 22,
+                  "sum": 89650
+                },
+                "paired_exact_fve_delta": {
+                  "count": 1100,
+                  "maximum": 0.0,
+                  "mean": -0.002658082548583532,
+                  "median": -0.002732446073601902,
+                  "minimum": -0.008971979485115411,
+                  "sum": -2.923890803441885
+                },
+                "parent_bullet_count": {
+                  "count": 1100,
+                  "maximum": 4,
+                  "mean": 3.997272727272727,
+                  "median": 4.0,
+                  "minimum": 3,
+                  "sum": 4397
+                },
+                "parent_exact_fve": {
+                  "count": 1100,
+                  "maximum": 0.8434705100169309,
+                  "mean": 0.3743232718699605,
+                  "median": 0.3390997128684382,
+                  "minimum": 0.05516097684134558,
+                  "sum": 411.75559905695656
+                },
+                "parent_token_count": {
+                  "count": 1100,
+                  "maximum": 141,
+                  "mean": 106.5909090909091,
+                  "median": 107.0,
+                  "minimum": 62,
+                  "sum": 117250
+                },
+                "token_count_delta": {
+                  "count": 1100,
+                  "maximum": 0,
+                  "mean": -25.09090909090909,
+                  "median": -26.0,
+                  "minimum": -92,
+                  "sum": -27600
+                }
+              },
+              "selected_truncated_ar_bullet_proportion": 0.051801131289074126,
+              "stop_flag_output_counts": {
+                "swap_local_optimum": 1100
+              }
+            },
+            "role_bound_association": {
+              "counts": {
+                "fewer_bullets": 7836,
+                "more_bullets": 0,
+                "outputs": 11400,
+                "outputs_with_selected_truncated_ar_bullet": 1828,
+                "same_bullet_count_different_text": 0,
+                "same_bullets": 3564,
+                "selected_bullets": 31944,
+                "selected_truncated_ar_bullets": 2129,
+                "text_changed": 7836
+              },
+              "display_name": "Role-bound association",
+              "final_output_k_counts": {
+                "0": 92,
+                "1": 1333,
+                "2": 2875,
+                "3": 3539,
+                "4": 3561
+              },
+              "output_proportions": {
+                "fewer_bullets": 0.6873684210526316,
+                "more_bullets": 0.0,
+                "outputs_with_selected_truncated_ar_bullet": 0.16035087719298247,
+                "same_bullet_count_different_text": 0.0,
+                "same_bullets": 0.3126315789473684,
+                "text_changed": 0.6873684210526316
+              },
+              "saved_numeric_fields": {
+                "budget.cache_hits": {
+                  "count": 11400,
+                  "maximum": 519,
+                  "mean": 34.097719298245615,
+                  "median": 16.0,
+                  "minimum": 9,
+                  "sum": 388714
+                },
+                "budget.final_pruning_fit_reserve": {
+                  "count": 11400,
+                  "maximum": 14,
+                  "mean": 14,
+                  "median": 14.0,
+                  "minimum": 14,
+                  "sum": 159600
+                },
+                "budget.initial_parent_construction_fits": {
+                  "count": 11400,
+                  "maximum": 0,
+                  "mean": 0,
+                  "median": 0.0,
+                  "minimum": 0,
+                  "sum": 0
+                },
+                "budget.score_requests": {
+                  "count": 11400,
+                  "maximum": 2501,
+                  "mean": 583.9935964912281,
+                  "median": 519.0,
+                  "minimum": 245,
+                  "sum": 6657527
+                },
+                "budget.subset_fit_budget": {
+                  "count": 11400,
+                  "maximum": 2048,
+                  "mean": 2048,
+                  "median": 2048.0,
+                  "minimum": 2048,
+                  "sum": 23347200
+                },
+                "budget.subset_fits": {
+                  "count": 11400,
+                  "maximum": 1982,
+                  "mean": 549.8958771929824,
+                  "median": 502.0,
+                  "minimum": 229,
+                  "sum": 6268813
+                },
+                "budget.swap_phase_fit_limit": {
+                  "count": 11400,
+                  "maximum": 2034,
+                  "mean": 2034,
+                  "median": 2034.0,
+                  "minimum": 2034,
+                  "sum": 23187600
+                },
+                "bullet_count_delta": {
+                  "count": 11400,
+                  "maximum": 0,
+                  "mean": -1.195438596491228,
+                  "median": -1.0,
+                  "minimum": -4,
+                  "sum": -13628
+                },
+                "new_bullet_count": {
+                  "count": 11400,
+                  "maximum": 4,
+                  "mean": 2.8021052631578947,
+                  "median": 3.0,
+                  "minimum": 0,
+                  "sum": 31944
+                },
+                "new_exact_fve": {
+                  "count": 11400,
+                  "maximum": 0.6424104541996501,
+                  "mean": 0.24783948888489704,
+                  "median": 0.2529511256339999,
+                  "minimum": 0.0,
+                  "sum": 2825.370173287826
+                },
+                "new_token_count": {
+                  "count": 11400,
+                  "maximum": 153,
+                  "mean": 73.91815789473684,
+                  "median": 76.0,
+                  "minimum": 0,
+                  "sum": 842667
+                },
+                "paired_exact_fve_delta": {
+                  "count": 11400,
+                  "maximum": 0.0,
+                  "mean": -0.002718364701921562,
+                  "median": -0.002736727753745838,
+                  "minimum": -0.012940172240085035,
+                  "sum": -30.98935760190581
+                },
+                "parent_bullet_count": {
+                  "count": 11400,
+                  "maximum": 4,
+                  "mean": 3.997543859649123,
+                  "median": 4.0,
+                  "minimum": 2,
+                  "sum": 45572
+                },
+                "parent_exact_fve": {
+                  "count": 11400,
+                  "maximum": 0.6424104541996501,
+                  "mean": 0.2505578535868186,
+                  "median": 0.25484323018586613,
+                  "minimum": 0.003523816950527281,
+                  "sum": 2856.359530889732
+                },
+                "parent_token_count": {
+                  "count": 11400,
+                  "maximum": 168,
+                  "mean": 103.73859649122807,
+                  "median": 104.0,
+                  "minimum": 41,
+                  "sum": 1182620
+                },
+                "token_count_delta": {
+                  "count": 11400,
+                  "maximum": 0,
+                  "mean": -29.82043859649123,
+                  "median": -28.0,
+                  "minimum": -132,
+                  "sum": -339953
+                }
+              },
+              "selected_truncated_ar_bullet_proportion": 0.06664788379664413,
+              "stop_flag_output_counts": {
+                "swap_local_optimum": 11400
+              }
+            }
+          },
+          "overall": {
+            "counts": {
+              "fewer_bullets": 13301,
+              "more_bullets": 0,
+              "outputs": 19435,
+              "outputs_with_selected_truncated_ar_bullet": 3621,
+              "same_bullet_count_different_text": 0,
+              "same_bullets": 6134,
+              "selected_bullets": 56567,
+              "selected_truncated_ar_bullets": 4191,
+              "text_changed": 13301
+            },
+            "final_output_k_counts": {
+              "0": 93,
+              "1": 1490,
+              "2": 4602,
+              "3": 7127,
+              "4": 6123
+            },
+            "output_proportions": {
+              "fewer_bullets": 0.684383843581168,
+              "more_bullets": 0.0,
+              "outputs_with_selected_truncated_ar_bullet": 0.18631335219963982,
+              "same_bullet_count_different_text": 0.0,
+              "same_bullets": 0.315616156418832,
+              "text_changed": 0.684383843581168
+            },
+            "saved_numeric_fields": {
+              "budget.cache_hits": {
+                "count": 19435,
+                "maximum": 523,
+                "mean": 34.80617442757911,
+                "median": 16,
+                "minimum": 6,
+                "sum": 676458
+              },
+              "budget.final_pruning_fit_reserve": {
+                "count": 19435,
+                "maximum": 14,
+                "mean": 14,
+                "median": 14,
+                "minimum": 14,
+                "sum": 272090
+              },
+              "budget.initial_parent_construction_fits": {
+                "count": 19435,
+                "maximum": 0,
+                "mean": 0,
+                "median": 0,
+                "minimum": 0,
+                "sum": 0
+              },
+              "budget.score_requests": {
+                "count": 19435,
+                "maximum": 2559,
+                "mean": 585.1058399794185,
+                "median": 521,
+                "minimum": 7,
+                "sum": 11371532
+              },
+              "budget.subset_fit_budget": {
+                "count": 19435,
+                "maximum": 2048,
+                "mean": 2048,
+                "median": 2048,
+                "minimum": 2048,
+                "sum": 39802880
+              },
+              "budget.subset_fits": {
+                "count": 19435,
+                "maximum": 2038,
+                "mean": 550.2996140982763,
+                "median": 502,
+                "minimum": 1,
+                "sum": 10695073
+              },
+              "budget.swap_phase_fit_limit": {
+                "count": 19435,
+                "maximum": 2034,
+                "mean": 2034,
+                "median": 2034,
+                "minimum": 2034,
+                "sum": 39530790
+              },
+              "bullet_count_delta": {
+                "count": 19435,
+                "maximum": 0,
+                "mean": -1.083148958065346,
+                "median": -1,
+                "minimum": -4,
+                "sum": -21051
+              },
+              "new_bullet_count": {
+                "count": 19435,
+                "maximum": 4,
+                "mean": 2.9105737072292257,
+                "median": 3,
+                "minimum": 0,
+                "sum": 56567
+              },
+              "new_exact_fve": {
+                "count": 19435,
+                "maximum": 0.8466948103924282,
+                "mean": 0.31325383088748143,
+                "median": 0.3100690857117555,
+                "minimum": 0.0,
+                "sum": 6088.088203298202
+              },
+              "new_token_count": {
+                "count": 19435,
+                "maximum": 158,
+                "mean": 78.07203498842294,
+                "median": 80,
+                "minimum": 0,
+                "sum": 1517330
+              },
+              "paired_exact_fve_delta": {
+                "count": 19435,
+                "maximum": 0.0,
+                "mean": -0.002605692624139394,
+                "median": -0.0026050563780648517,
+                "minimum": -0.012940172240085035,
+                "sum": -50.641636150149125
+              },
+              "parent_bullet_count": {
+                "count": 19435,
+                "maximum": 4,
+                "mean": 3.9937226652945714,
+                "median": 4,
+                "minimum": 0,
+                "sum": 77618
+              },
+              "parent_exact_fve": {
+                "count": 19435,
+                "maximum": 0.8490452475686814,
+                "mean": 0.31585952351162083,
+                "median": 0.311840832029578,
+                "minimum": 0.0,
+                "sum": 6138.7298394483505
+              },
+              "parent_token_count": {
+                "count": 19435,
+                "maximum": 171,
+                "mean": 105.68747105737073,
+                "median": 107,
+                "minimum": 0,
+                "sum": 2054036
+              },
+              "token_count_delta": {
+                "count": 19435,
+                "maximum": 0,
+                "mean": -27.615436068947776,
+                "median": -27,
+                "minimum": -133,
+                "sum": -536706
+              }
+            },
+            "selected_truncated_ar_bullet_proportion": 0.07408913324022841,
+            "stop_flag_output_counts": {
+              "swap_budget_reserved_for_pruning": 1,
+              "swap_local_optimum": 19434
+            }
+          }
+        },
+        "repeated_swaps_random_delete_match_005-n32": {
+          "actual_parent": "repeat_swap-n32",
+          "families": {
+            "chain_intermediates": {
+              "counts": {
+                "fewer_bullets": 1193,
+                "more_bullets": 0,
+                "outputs": 1320,
+                "outputs_with_selected_truncated_ar_bullet": 310,
+                "same_bullet_count_different_text": 0,
+                "same_bullets": 127,
+                "selected_bullets": 3398,
+                "selected_truncated_ar_bullets": 364,
+                "text_changed": 1193
+              },
+              "display_name": "Chained intermediates",
+              "final_output_k_counts": {
+                "1": 82,
+                "2": 520,
+                "3": 596,
+                "4": 122
+              },
+              "output_proportions": {
+                "fewer_bullets": 0.9037878787878788,
+                "more_bullets": 0.0,
+                "outputs_with_selected_truncated_ar_bullet": 0.23484848484848486,
+                "same_bullet_count_different_text": 0.0,
+                "same_bullets": 0.09621212121212121,
+                "text_changed": 0.9037878787878788
+              },
+              "saved_numeric_fields": {
+                "budget.incremental_subset_fits": {
+                  "count": 1320,
+                  "maximum": 1,
+                  "mean": 1,
+                  "median": 1.0,
+                  "minimum": 1,
+                  "sum": 1320
+                },
+                "bullet_count_delta": {
+                  "count": 1320,
+                  "maximum": 0,
+                  "mean": -1.3818181818181818,
+                  "median": -1.0,
+                  "minimum": -3,
+                  "sum": -1824
+                },
+                "new_bullet_count": {
+                  "count": 1320,
+                  "maximum": 4,
+                  "mean": 2.574242424242424,
+                  "median": 3.0,
+                  "minimum": 1,
+                  "sum": 3398
+                },
+                "new_exact_fve": {
+                  "count": 1320,
+                  "maximum": 0.45334549552893133,
+                  "mean": 0.23837545486129677,
+                  "median": 0.2419436776384321,
+                  "minimum": 0.0017021007898346818,
+                  "sum": 314.65560041691174
+                },
+                "new_token_count": {
+                  "count": 1320,
+                  "maximum": 146,
+                  "mean": 68.14848484848486,
+                  "median": 67.0,
+                  "minimum": 4,
+                  "sum": 89956
+                },
+                "paired_exact_fve_delta": {
+                  "count": 1320,
+                  "maximum": 0.0,
+                  "mean": -0.019735966276498505,
+                  "median": -0.008740772561094678,
+                  "minimum": -0.4362785234744557,
+                  "sum": -26.051475484978027
+                },
+                "parent_bullet_count": {
+                  "count": 1320,
+                  "maximum": 4,
+                  "mean": 3.956060606060606,
+                  "median": 4.0,
+                  "minimum": 1,
+                  "sum": 5222
+                },
+                "parent_exact_fve": {
+                  "count": 1320,
+                  "maximum": 0.45907667893998294,
+                  "mean": 0.2581114211377953,
+                  "median": 0.2580430565888511,
+                  "minimum": 0.021290186906358755,
+                  "sum": 340.70707590188977
+                },
+                "parent_token_count": {
+                  "count": 1320,
+                  "maximum": 161,
+                  "mean": 104.27348484848486,
+                  "median": 107.0,
+                  "minimum": 22,
+                  "sum": 137641
+                },
+                "token_count_delta": {
+                  "count": 1320,
+                  "maximum": 0,
+                  "mean": -36.125,
+                  "median": -32.0,
+                  "minimum": -99,
+                  "sum": -47685
+                }
+              },
+              "selected_truncated_ar_bullet_proportion": 0.10712183637433785,
+              "stop_flag_output_counts": {}
+            },
+            "hallucination": {
+              "counts": {
+                "fewer_bullets": 3464,
+                "more_bullets": 0,
+                "outputs": 5615,
+                "outputs_with_selected_truncated_ar_bullet": 1278,
+                "same_bullet_count_different_text": 0,
+                "same_bullets": 2151,
+                "selected_bullets": 17866,
+                "selected_truncated_ar_bullets": 1482,
+                "text_changed": 3464
+              },
+              "display_name": "Hallucination (chat)",
+              "final_output_k_counts": {
+                "0": 1,
+                "1": 68,
+                "2": 988,
+                "3": 2410,
+                "4": 2148
+              },
+              "output_proportions": {
+                "fewer_bullets": 0.6169189670525378,
+                "more_bullets": 0.0,
+                "outputs_with_selected_truncated_ar_bullet": 0.2276046304541407,
+                "same_bullet_count_different_text": 0.0,
+                "same_bullets": 0.38308103294746215,
+                "text_changed": 0.6169189670525378
+              },
+              "saved_numeric_fields": {
+                "budget.incremental_subset_fits": {
+                  "count": 5615,
+                  "maximum": 1,
+                  "mean": 1,
+                  "median": 1,
+                  "minimum": 1,
+                  "sum": 5615
+                },
+                "bullet_count_delta": {
+                  "count": 5615,
+                  "maximum": 0,
+                  "mean": -0.8122885129118432,
+                  "median": -1,
+                  "minimum": -3,
+                  "sum": -4561
+                },
+                "new_bullet_count": {
+                  "count": 5615,
+                  "maximum": 4,
+                  "mean": 3.181834372217275,
+                  "median": 3,
+                  "minimum": 0,
+                  "sum": 17866
+                },
+                "new_exact_fve": {
+                  "count": 5615,
+                  "maximum": 0.8359671396498435,
+                  "mean": 0.4404787071784038,
+                  "median": 0.458858294141259,
+                  "minimum": 0.0,
+                  "sum": 2473.2879408067374
+                },
+                "new_token_count": {
+                  "count": 5615,
+                  "maximum": 158,
+                  "mean": 87.69296527159395,
+                  "median": 88,
+                  "minimum": 0,
+                  "sum": 492396
+                },
+                "paired_exact_fve_delta": {
+                  "count": 5615,
+                  "maximum": 0.0,
+                  "mean": -0.010083649651475495,
+                  "median": -0.0041595871763857595,
+                  "minimum": -0.6675947420432494,
+                  "sum": -56.61969279303491
+                },
+                "parent_bullet_count": {
+                  "count": 5615,
+                  "maximum": 4,
+                  "mean": 3.9941228851291184,
+                  "median": 4,
+                  "minimum": 0,
+                  "sum": 22427
+                },
+                "parent_exact_fve": {
+                  "count": 5615,
+                  "maximum": 0.8490452475686814,
+                  "mean": 0.45056235682987933,
+                  "median": 0.46823493300064556,
+                  "minimum": 0.0,
+                  "sum": 2529.9076335997725
+                },
+                "parent_token_count": {
+                  "count": 5615,
+                  "maximum": 171,
+                  "mean": 109.79964381121995,
+                  "median": 111,
+                  "minimum": 0,
+                  "sum": 616525
+                },
+                "token_count_delta": {
+                  "count": 5615,
+                  "maximum": 0,
+                  "mean": -22.106678539626003,
+                  "median": -24,
+                  "minimum": -133,
+                  "sum": -124129
+                }
+              },
+              "selected_truncated_ar_bullet_proportion": 0.08295085637523789,
+              "stop_flag_output_counts": {}
+            },
+            "multihop_mt": {
+              "counts": {
+                "fewer_bullets": 808,
+                "more_bullets": 0,
+                "outputs": 1100,
+                "outputs_with_selected_truncated_ar_bullet": 164,
+                "same_bullet_count_different_text": 0,
+                "same_bullets": 292,
+                "selected_bullets": 3359,
+                "selected_truncated_ar_bullets": 178,
+                "text_changed": 808
+              },
+              "display_name": "Multihop (multi-token)",
+              "final_output_k_counts": {
+                "1": 7,
+                "2": 219,
+                "3": 582,
+                "4": 292
+              },
+              "output_proportions": {
+                "fewer_bullets": 0.7345454545454545,
+                "more_bullets": 0.0,
+                "outputs_with_selected_truncated_ar_bullet": 0.14909090909090908,
+                "same_bullet_count_different_text": 0.0,
+                "same_bullets": 0.26545454545454544,
+                "text_changed": 0.7345454545454545
+              },
+              "saved_numeric_fields": {
+                "budget.incremental_subset_fits": {
+                  "count": 1100,
+                  "maximum": 1,
+                  "mean": 1,
+                  "median": 1.0,
+                  "minimum": 1,
+                  "sum": 1100
+                },
+                "bullet_count_delta": {
+                  "count": 1100,
+                  "maximum": 0,
+                  "mean": -0.9436363636363636,
+                  "median": -1.0,
+                  "minimum": -3,
+                  "sum": -1038
+                },
+                "new_bullet_count": {
+                  "count": 1100,
+                  "maximum": 4,
+                  "mean": 3.0536363636363637,
+                  "median": 3.0,
+                  "minimum": 1,
+                  "sum": 3359
+                },
+                "new_exact_fve": {
+                  "count": 1100,
+                  "maximum": 0.8327141911016808,
+                  "mean": 0.364373009315992,
+                  "median": 0.33085701597483835,
+                  "minimum": 0.048842090415396444,
+                  "sum": 400.8103102475912
+                },
+                "new_token_count": {
+                  "count": 1100,
+                  "maximum": 141,
+                  "mean": 81.2090909090909,
+                  "median": 81.0,
+                  "minimum": 15,
+                  "sum": 89330
+                },
+                "paired_exact_fve_delta": {
+                  "count": 1100,
+                  "maximum": 0.0,
+                  "mean": -0.009950262553968506,
+                  "median": -0.0053415584122556425,
+                  "minimum": -0.2954042618453703,
+                  "sum": -10.945288809365357
+                },
+                "parent_bullet_count": {
+                  "count": 1100,
+                  "maximum": 4,
+                  "mean": 3.997272727272727,
+                  "median": 4.0,
+                  "minimum": 3,
+                  "sum": 4397
+                },
+                "parent_exact_fve": {
+                  "count": 1100,
+                  "maximum": 0.8434705100169309,
+                  "mean": 0.3743232718699605,
+                  "median": 0.3390997128684382,
+                  "minimum": 0.05516097684134558,
+                  "sum": 411.75559905695656
+                },
+                "parent_token_count": {
+                  "count": 1100,
+                  "maximum": 141,
+                  "mean": 106.5909090909091,
+                  "median": 107.0,
+                  "minimum": 62,
+                  "sum": 117250
+                },
+                "token_count_delta": {
+                  "count": 1100,
+                  "maximum": 0,
+                  "mean": -25.381818181818183,
+                  "median": -26.0,
+                  "minimum": -94,
+                  "sum": -27920
+                }
+              },
+              "selected_truncated_ar_bullet_proportion": 0.05299196189342066,
+              "stop_flag_output_counts": {}
+            },
+            "role_bound_association": {
+              "counts": {
+                "fewer_bullets": 7836,
+                "more_bullets": 0,
+                "outputs": 11400,
+                "outputs_with_selected_truncated_ar_bullet": 1813,
+                "same_bullet_count_different_text": 0,
+                "same_bullets": 3564,
+                "selected_bullets": 31944,
+                "selected_truncated_ar_bullets": 2106,
+                "text_changed": 7836
+              },
+              "display_name": "Role-bound association",
+              "final_output_k_counts": {
+                "0": 92,
+                "1": 1333,
+                "2": 2875,
+                "3": 3539,
+                "4": 3561
+              },
+              "output_proportions": {
+                "fewer_bullets": 0.6873684210526316,
+                "more_bullets": 0.0,
+                "outputs_with_selected_truncated_ar_bullet": 0.15903508771929825,
+                "same_bullet_count_different_text": 0.0,
+                "same_bullets": 0.3126315789473684,
+                "text_changed": 0.6873684210526316
+              },
+              "saved_numeric_fields": {
+                "budget.incremental_subset_fits": {
+                  "count": 11400,
+                  "maximum": 1,
+                  "mean": 1,
+                  "median": 1.0,
+                  "minimum": 1,
+                  "sum": 11400
+                },
+                "bullet_count_delta": {
+                  "count": 11400,
+                  "maximum": 0,
+                  "mean": -1.195438596491228,
+                  "median": -1.0,
+                  "minimum": -4,
+                  "sum": -13628
+                },
+                "new_bullet_count": {
+                  "count": 11400,
+                  "maximum": 4,
+                  "mean": 2.8021052631578947,
+                  "median": 3.0,
+                  "minimum": 0,
+                  "sum": 31944
+                },
+                "new_exact_fve": {
+                  "count": 11400,
+                  "maximum": 0.6424104541996501,
+                  "mean": 0.24067830354798225,
+                  "median": 0.24736907807250635,
+                  "minimum": 0.0,
+                  "sum": 2743.7326604469977
+                },
+                "new_token_count": {
+                  "count": 11400,
+                  "maximum": 153,
+                  "mean": 73.62929824561404,
+                  "median": 75.0,
+                  "minimum": 0,
+                  "sum": 839374
+                },
+                "paired_exact_fve_delta": {
+                  "count": 11400,
+                  "maximum": 0.0,
+                  "mean": -0.009879550038836348,
+                  "median": -0.0051954112567759725,
+                  "minimum": -0.4171324816879409,
+                  "sum": -112.62687044273436
+                },
+                "parent_bullet_count": {
+                  "count": 11400,
+                  "maximum": 4,
+                  "mean": 3.997543859649123,
+                  "median": 4.0,
+                  "minimum": 2,
+                  "sum": 45572
+                },
+                "parent_exact_fve": {
+                  "count": 11400,
+                  "maximum": 0.6424104541996501,
+                  "mean": 0.2505578535868186,
+                  "median": 0.25484323018586613,
+                  "minimum": 0.003523816950527281,
+                  "sum": 2856.359530889732
+                },
+                "parent_token_count": {
+                  "count": 11400,
+                  "maximum": 168,
+                  "mean": 103.73859649122807,
+                  "median": 104.0,
+                  "minimum": 41,
+                  "sum": 1182620
+                },
+                "token_count_delta": {
+                  "count": 11400,
+                  "maximum": 0,
+                  "mean": -30.109298245614035,
+                  "median": -28.0,
+                  "minimum": -132,
+                  "sum": -343246
+                }
+              },
+              "selected_truncated_ar_bullet_proportion": 0.06592787377911345,
+              "stop_flag_output_counts": {}
+            }
+          },
+          "overall": {
+            "counts": {
+              "fewer_bullets": 13301,
+              "more_bullets": 0,
+              "outputs": 19435,
+              "outputs_with_selected_truncated_ar_bullet": 3565,
+              "same_bullet_count_different_text": 0,
+              "same_bullets": 6134,
+              "selected_bullets": 56567,
+              "selected_truncated_ar_bullets": 4130,
+              "text_changed": 13301
+            },
+            "final_output_k_counts": {
+              "0": 93,
+              "1": 1490,
+              "2": 4602,
+              "3": 7127,
+              "4": 6123
+            },
+            "output_proportions": {
+              "fewer_bullets": 0.684383843581168,
+              "more_bullets": 0.0,
+              "outputs_with_selected_truncated_ar_bullet": 0.1834319526627219,
+              "same_bullet_count_different_text": 0.0,
+              "same_bullets": 0.315616156418832,
+              "text_changed": 0.684383843581168
+            },
+            "saved_numeric_fields": {
+              "budget.incremental_subset_fits": {
+                "count": 19435,
+                "maximum": 1,
+                "mean": 1,
+                "median": 1,
+                "minimum": 1,
+                "sum": 19435
+              },
+              "bullet_count_delta": {
+                "count": 19435,
+                "maximum": 0,
+                "mean": -1.083148958065346,
+                "median": -1,
+                "minimum": -4,
+                "sum": -21051
+              },
+              "new_bullet_count": {
+                "count": 19435,
+                "maximum": 4,
+                "mean": 2.9105737072292257,
+                "median": 3,
+                "minimum": 0,
+                "sum": 56567
+              },
+              "new_exact_fve": {
+                "count": 19435,
+                "maximum": 0.8359671396498435,
+                "mean": 0.3052475694323765,
+                "median": 0.3021480138807081,
+                "minimum": 0.0,
+                "sum": 5932.486511918238
+              },
+              "new_token_count": {
+                "count": 19435,
+                "maximum": 158,
+                "mean": 77.74921533316183,
+                "median": 80,
+                "minimum": 0,
+                "sum": 1511056
+              },
+              "paired_exact_fve_delta": {
+                "count": 19435,
+                "maximum": 0.0,
+                "mean": -0.010611954079244283,
+                "median": -0.005100149769359019,
+                "minimum": -0.6675947420432494,
+                "sum": -206.24332753011265
+              },
+              "parent_bullet_count": {
+                "count": 19435,
+                "maximum": 4,
+                "mean": 3.9937226652945714,
+                "median": 4,
+                "minimum": 0,
+                "sum": 77618
+              },
+              "parent_exact_fve": {
+                "count": 19435,
+                "maximum": 0.8490452475686814,
+                "mean": 0.31585952351162083,
+                "median": 0.311840832029578,
+                "minimum": 0.0,
+                "sum": 6138.7298394483505
+              },
+              "parent_token_count": {
+                "count": 19435,
+                "maximum": 171,
+                "mean": 105.68747105737073,
+                "median": 107,
+                "minimum": 0,
+                "sum": 2054036
+              },
+              "token_count_delta": {
+                "count": 19435,
+                "maximum": 0,
+                "mean": -27.9382557242089,
+                "median": -27,
+                "minimum": -133,
+                "sum": -542980
+              }
+            },
+            "selected_truncated_ar_bullet_proportion": 0.07301076599430764,
+            "stop_flag_output_counts": {}
+          }
+        }
+      },
+      "original_released_oracle_lens_reference": {
+        "condition": "raw_n1-n1",
+        "exact_fve": null,
+        "status": "unavailable_in_this_supplement; original raw FVE is not substituted by capped/four-bullet FVE"
+      },
+      "questions": 469,
+      "schema_version": "target-only-emitted-behavior-v1",
+      "scope": "Descriptive paired activation-site summaries on all four previously inspected banks; no CIs or significance.",
+      "source_sha256": {
+        "${OLENS_COMPUTE_ROOT}/activations/core-v1/fresh_manifest_v2.json": "5a61cff89aca532f3e022233b6d2d8e12dab0d3a3f4f44085097bc6dc58fc385",
+        "${OLENS_DATA_ROOT}/expansion-v1/selections/cached-v2/chain_intermediates.jsonl": "e9567668459e9b9ed6ce1883545f165d6d54241cd48107573990879e76128265",
+        "${OLENS_DATA_ROOT}/expansion-v1/selections/cached-v2/chain_intermediates.manifest.json": "30d231b7b6e2aefde12fb3770c70482f9a983c22e199aa8173e4396a3a847fc8",
+        "${OLENS_DATA_ROOT}/expansion-v1/selections/cached-v2/hallucination.jsonl": "432aebd891ffdbf8c66bfd0bd6f6a5e854256fc15e0baddda49ed59dc010925a",
+        "${OLENS_DATA_ROOT}/expansion-v1/selections/cached-v2/hallucination.manifest.json": "a81c7d2367362a7217e7a7aa99ebd2e933b00511f34b2bd7d26e1a9f213d6c2b",
+        "${OLENS_DATA_ROOT}/expansion-v1/selections/cached-v2/multihop_mt.jsonl": "ac5baba6305a5f8309934b2f1eeb61d998b4b8cc6d0ada9da05a3830ad27d4e5",
+        "${OLENS_DATA_ROOT}/expansion-v1/selections/cached-v2/multihop_mt.manifest.json": "e4306400a6b6ce28f01d79cdffe49ff3ba96c42c6c22c2f96f640da4ec9a118c",
+        "${OLENS_DATA_ROOT}/expansion-v1/selections/cached-v2/role_bound_association.jsonl": "d3866234282adbe9bf0af836ea76cc368ecd5fddfcacbf214d5f10838ea1cdb7",
+        "${OLENS_DATA_ROOT}/expansion-v1/selections/cached-v2/role_bound_association.manifest.json": "94c43edf2363645df01020a0c01a681e62eb3651fde66c90899fce5fe9cc02aa",
+        "${OLENS_DATA_ROOT}/expansion-v1/selections/combinations-v2/merged/chain_intermediates.jsonl": "5c49298c1918a520bbc6f6eaeb241bfaa74aada91d5d4b54fd6aa86970a61718",
+        "${OLENS_DATA_ROOT}/expansion-v1/selections/combinations-v2/merged/chain_intermediates.manifest.json": "30d231b7b6e2aefde12fb3770c70482f9a983c22e199aa8173e4396a3a847fc8",
+        "${OLENS_DATA_ROOT}/expansion-v1/selections/combinations-v2/merged/hallucination.jsonl": "6307927be9c51ad65f64cbb99b264a2459a2b2a2db05a08a69d4e39d991555ec",
+        "${OLENS_DATA_ROOT}/expansion-v1/selections/combinations-v2/merged/hallucination.manifest.json": "a81c7d2367362a7217e7a7aa99ebd2e933b00511f34b2bd7d26e1a9f213d6c2b",
+        "${OLENS_DATA_ROOT}/expansion-v1/selections/combinations-v2/merged/multihop_mt.jsonl": "f52183549ed8a21d0ce9a55b73e1f17adbc0b2bda9532e1ef9a830c68122ed9f",
+        "${OLENS_DATA_ROOT}/expansion-v1/selections/combinations-v2/merged/multihop_mt.manifest.json": "e4306400a6b6ce28f01d79cdffe49ff3ba96c42c6c22c2f96f640da4ec9a118c",
+        "${OLENS_DATA_ROOT}/expansion-v1/selections/combinations-v2/merged/role_bound_association.jsonl": "0ab138d03832f3a3cb4386b128b7c1278309489d8ba5d64ad7ce5ab348fbbf83",
+        "${OLENS_DATA_ROOT}/expansion-v1/selections/combinations-v2/merged/role_bound_association.manifest.json": "94c43edf2363645df01020a0c01a681e62eb3651fde66c90899fce5fe9cc02aa",
+        "${OLENS_DATA_ROOT}/expansion-v1/selections/combinations-v2/shard-0/selections.jsonl": "dbe8ee289ad73308bc5553e3fceeab4ac7ef27602a38e626bdb052abb7ebda8c",
+        "${OLENS_DATA_ROOT}/expansion-v1/selections/combinations-v2/shard-1/selections.jsonl": "a783f4d93fad900ab372ed552ed0b427152cc177e1496942ae2752961616c415",
+        "${OLENS_DATA_ROOT}/expansion-v1/selections/combinations-v2/shard-2/selections.jsonl": "fe2fc99544817e14ca1a3335077c901db58c0ff2852ed9b71c804cc2c6e2d0f7",
+        "${OLENS_DATA_ROOT}/expansion-v1/selections/combinations-v2/shard-3/selections.jsonl": "4d5613310e20510972d147ba95880305e241945083cb01c6124e37295000418d",
+        "${OLENS_DATA_ROOT}/expansion-v1/selections/combinations-v2/shard-4/selections.jsonl": "cce8ac38f33ce360a6d538ba972a80483917ee08cf5697c241bdc510a726fc63",
+        "${OLENS_DATA_ROOT}/expansion-v1/selections/combinations-v2/shard-5/selections.jsonl": "b88d1bad81ba767997e46e98d9ddb804d69d3d75d6eecab42368807069b48c80",
+        "${OLENS_DATA_ROOT}/expansion-v1/selections/combinations-v2/shard-6/selections.jsonl": "5122e3e0a84c51598c45129532db18ca3fcc7dcddd7b67db2d8e61c512437e33",
+        "${OLENS_DATA_ROOT}/expansion-v1/selections/combinations-v2/shard-7/selections.jsonl": "8ae2a6fc2067abb10583862aededb9d3ba7a28d692d2ffdf9c420f6a86682453",
+        "${OLENS_DATA_ROOT}/selections/development-full-grid-e1-pruning-v1/selections.jsonl": "a645983ab2e24eb4ef6f6fb298698405b4a2cee29c221af3da00d2e06ec6935a",
+        "${OLENS_DATA_ROOT}/selections/development-full-grid-v4/merged/selections.jsonl": "54ee50e61ebc11ac66d8d11c294dda60e17a7f9e06ad8632665e6bbb6505635e",
+        "${OLENS_DATA_ROOT}/selections/test-full-grid-e1-pruning-v2/selections.jsonl": "0e2f4583bd9ee5a9d3b75960801b0dd656b4355ad3fbe3e78ac55d12592170f8",
+        "${OLENS_DATA_ROOT}/selections/test-full-grid-v1/merged/selections.jsonl": "547b953be6fff89d2f850001fd6dcdb3aed606708c8a211b6270369a4aa25df1",
+        "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/e1-pruning/selections.jsonl": "76a775e169919f3e01e56cd5ab744d803e64fad5c99628f26a145d4a4c8b1c50",
+        "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/merged/selections.jsonl": "44b817683374049245f8d84d0fee3c7ebc27d37cd62c79e97976394323df30fa",
+        "${OLENS_DATA_ROOT}/target-only-search-v1/selections-v2/merged/chain_intermediates.jsonl": "b7a1b6e9ca3e054979b3c12f603d948b861b578022f158ddee383acf33965d16",
+        "${OLENS_DATA_ROOT}/target-only-search-v1/selections-v2/merged/chain_intermediates.manifest.json": "3ee71c716b6d886bb41b7d487e017b6864bfa94f400f17cb998976f1d1b0cfaf",
+        "${OLENS_DATA_ROOT}/target-only-search-v1/selections-v2/merged/chain_intermediates.ready.json": "4fc543be4da673505b313f44b131cde80ddcb4db60676d1c77e0977950fea5ca",
+        "${OLENS_DATA_ROOT}/target-only-search-v1/selections-v2/merged/hallucination.jsonl": "2599503fd8db7261a442171c6e3c4fe3a2538426edcd5f222a8fc8f8afbfa323",
+        "${OLENS_DATA_ROOT}/target-only-search-v1/selections-v2/merged/hallucination.manifest.json": "d1d035552299a22a1f25dcbaa5d33ffa30dd71264330ba5953859b846fa08341",
+        "${OLENS_DATA_ROOT}/target-only-search-v1/selections-v2/merged/hallucination.ready.json": "a0d2eba0bcdaf29235b40bdad90205fac12e7b55ef0eef4b1ebafaa9f8cb5551",
+        "${OLENS_DATA_ROOT}/target-only-search-v1/selections-v2/merged/multihop_mt.jsonl": "8c061325d4ff601c2c335dadf9aab061e0f228d254acbedcdd3d21dda4d3b152",
+        "${OLENS_DATA_ROOT}/target-only-search-v1/selections-v2/merged/multihop_mt.manifest.json": "a1050b31bff47cc1e7fcbc9e4740ad48c3025a9780a644352c7ff197d64277ad",
+        "${OLENS_DATA_ROOT}/target-only-search-v1/selections-v2/merged/multihop_mt.ready.json": "d6bfd74a49f150fa7613590997697c421901dd8cb33ab81a02dcc35be9947853",
+        "${OLENS_DATA_ROOT}/target-only-search-v1/selections-v2/merged/role_bound_association.jsonl": "2537bcd875b01c7e73f3162fa5bfcdc8724a299c791811521d2e2c3af26ecd47",
+        "${OLENS_DATA_ROOT}/target-only-search-v1/selections-v2/merged/role_bound_association.manifest.json": "da90e3ba4867baf18c2f8b651e4eb30b6a6746c16cd755abaf5826017525a525",
+        "${OLENS_DATA_ROOT}/target-only-search-v1/selections-v2/merged/role_bound_association.ready.json": "67c5eb879a9b5509766965896d3953ee3406d1adede01c2a7d7003a0858b8b76",
+        "${OLENS_REPO_ROOT}/.state/expanded-final-native-ready-v1/cached-v2/chain_intermediates.ready.json": "5177ac6fb2d74a380b17e404649592519c9593bd5798f390154497bb059e40b8",
+        "${OLENS_REPO_ROOT}/.state/expanded-final-native-ready-v1/cached-v2/hallucination.ready.json": "bbd5fd94c29e35ff16261800e5c8efb32acf8691558bf4d617871d98f4dd4257",
+        "${OLENS_REPO_ROOT}/.state/expanded-final-native-ready-v1/cached-v2/multihop_mt.ready.json": "6dbc7dffd73e95fa933db3aafbeddfa508a1e332567996589f29798fd789ac0a",
+        "${OLENS_REPO_ROOT}/.state/expanded-final-native-ready-v1/cached-v2/role_bound_association.ready.json": "56b8f9084fd82d7eb7c5b409b654a5c29c49321955d78ba0f0b3f015a6eb6336",
+        "${OLENS_REPO_ROOT}/.state/expanded-final-native-ready-v1/combinations-v2/merged/chain_intermediates.ready.json": "a78be5fae0310424be27f743f1f26e8a795e28a16fa0065a4b1cc0d0e2f4d7ef",
+        "${OLENS_REPO_ROOT}/.state/expanded-final-native-ready-v1/combinations-v2/merged/hallucination.ready.json": "fd1a919a9060060c4ae26133aa7613dded6a411d6aa64ac4de4730e20dcc7635",
+        "${OLENS_REPO_ROOT}/.state/expanded-final-native-ready-v1/combinations-v2/merged/multihop_mt.ready.json": "0cf4d27f4a8d8dd36346d4808f02557ed01f7a23900193b51906d1317d24e8fc",
+        "${OLENS_REPO_ROOT}/.state/expanded-final-native-ready-v1/combinations-v2/merged/role_bound_association.ready.json": "8fc22cfdbc86c1ca708529530fded3b1d73acaa09a5c736defa5498dde299d0a",
+        "${OLENS_REPO_ROOT}/configs/expansion_manifest_v1.json": "753b2d9cab0daea0d19efef7d3222fd44921dbcf4669e6864d4f1bd4805421f8",
+        "${OLENS_REPO_ROOT}/configs/target_only_api_v1.json": "12e8455e644fdfcd96b5b71dd580469f071c7b755e428a53f0a7d26c06515ca7",
+        "${OLENS_REPO_ROOT}/configs/target_only_inventory_v2.json": "181fcc259ed81213a7b26ea18142b6cd35648e89b83100a5cf07590ed75b2c47"
+      },
+      "status": "complete"
+    },
+    "resource_accounting": {
+      "schema_version": 1,
+      "status": "final_scoped_snapshot",
+      "checked_utc": "2026-10-11T16:41:18.418774+00:00",
+      "scope": "New target-only-search-v1 follow-up; four methods across 19,435 sites; existing activation and candidate-vector caches reused",
+      "api": {
+        "new_settled_usage_estimate_usd": 2.029212375,
+        "global_settled_usage_estimate_usd": 144.75781431,
+        "global_retained_reservations_usd": 5.068543875,
+        "global_committed_estimate_usd": 149.82635818499998,
+        "invoice_reconciled": false,
+        "note": "Ledger actual denotes settled API usage estimates, not reconciled invoices. Reservations remain separate and include prior unresolved attempts. Global before/after delta reflects this dispatch interval; no monitor API requests were made."
+      },
+      "gpu": {
+        "new_gpu_count": 0,
+        "new_gpu_hours": 0,
+        "note": "No GPU work or new lens/reconstructor model calls for this follow-up; cached outputs reused. Luna judging costs are in API usage."
+      },
+      "cpu": {
+        "inherited_allocation_job_id": 25299630,
+        "allocation_preserved": true,
+        "sacct_time_zone": "America/New_York; explicit UTC conversion recorded",
+        "steps": [
+          {
+            "job_step": "25299630.147",
+            "job_name": "python",
+            "state": "COMPLETED",
+            "exit_code": "0:0",
+            "allocated_cpus": 4,
+            "elapsed_seconds": 174,
+            "total_cpu_slurm": "06:07.623",
+            "reserved_cpu_seconds": 696,
+            "start_local": "2026-10-11T11:22:48",
+            "end_local": "2026-10-11T11:25:42",
+            "role": "12-cell pilot",
+            "process_cpu_seconds": 367.623,
+            "start_utc": "2026-10-11T15:22:48+00:00",
+            "end_utc": "2026-10-11T15:25:42+00:00"
+          },
+          {
+            "job_step": "25299630.148",
+            "job_name": "python",
+            "state": "CANCELLED",
+            "exit_code": "0:15",
+            "allocated_cpus": 4,
+            "elapsed_seconds": 700,
+            "total_cpu_slurm": "14:53.841",
+            "reserved_cpu_seconds": 2800,
+            "start_local": "2026-10-11T11:30:10",
+            "end_local": "2026-10-11T11:41:50",
+            "role": "initial selection with incorrect shared CPU placement",
+            "process_cpu_seconds": 893.841,
+            "start_utc": "2026-10-11T15:30:10+00:00",
+            "end_utc": "2026-10-11T15:41:50+00:00"
+          },
+          {
+            "job_step": "25299630.149",
+            "job_name": "python",
+            "state": "CANCELLED",
+            "exit_code": "0:15",
+            "allocated_cpus": 4,
+            "elapsed_seconds": 700,
+            "total_cpu_slurm": "14:52.961",
+            "reserved_cpu_seconds": 2800,
+            "start_local": "2026-10-11T11:30:10",
+            "end_local": "2026-10-11T11:41:50",
+            "role": "initial selection with incorrect shared CPU placement",
+            "process_cpu_seconds": 892.961,
+            "start_utc": "2026-10-11T15:30:10+00:00",
+            "end_utc": "2026-10-11T15:41:50+00:00"
+          },
+          {
+            "job_step": "25299630.150",
+            "job_name": "python",
+            "state": "CANCELLED",
+            "exit_code": "0:15",
+            "allocated_cpus": 4,
+            "elapsed_seconds": 700,
+            "total_cpu_slurm": "16:06.959",
+            "reserved_cpu_seconds": 2800,
+            "start_local": "2026-10-11T11:30:10",
+            "end_local": "2026-10-11T11:41:50",
+            "role": "initial selection with incorrect shared CPU placement",
+            "process_cpu_seconds": 966.959,
+            "start_utc": "2026-10-11T15:30:10+00:00",
+            "end_utc": "2026-10-11T15:41:50+00:00"
+          },
+          {
+            "job_step": "25299630.151",
+            "job_name": "python",
+            "state": "CANCELLED",
+            "exit_code": "0:15",
+            "allocated_cpus": 4,
+            "elapsed_seconds": 700,
+            "total_cpu_slurm": "15:09.986",
+            "reserved_cpu_seconds": 2800,
+            "start_local": "2026-10-11T11:30:10",
+            "end_local": "2026-10-11T11:41:50",
+            "role": "initial selection with incorrect shared CPU placement",
+            "process_cpu_seconds": 909.986,
+            "start_utc": "2026-10-11T15:30:10+00:00",
+            "end_utc": "2026-10-11T15:41:50+00:00"
+          },
+          {
+            "job_step": "25299630.152",
+            "job_name": "python",
+            "state": "CANCELLED",
+            "exit_code": "0:15",
+            "allocated_cpus": 4,
+            "elapsed_seconds": 700,
+            "total_cpu_slurm": "15:39.077",
+            "reserved_cpu_seconds": 2800,
+            "start_local": "2026-10-11T11:30:10",
+            "end_local": "2026-10-11T11:41:50",
+            "role": "initial selection with incorrect shared CPU placement",
+            "process_cpu_seconds": 939.077,
+            "start_utc": "2026-10-11T15:30:10+00:00",
+            "end_utc": "2026-10-11T15:41:50+00:00"
+          },
+          {
+            "job_step": "25299630.153",
+            "job_name": "python",
+            "state": "CANCELLED",
+            "exit_code": "0:15",
+            "allocated_cpus": 4,
+            "elapsed_seconds": 700,
+            "total_cpu_slurm": "14:54.898",
+            "reserved_cpu_seconds": 2800,
+            "start_local": "2026-10-11T11:30:10",
+            "end_local": "2026-10-11T11:41:50",
+            "role": "initial selection with incorrect shared CPU placement",
+            "process_cpu_seconds": 894.898,
+            "start_utc": "2026-10-11T15:30:10+00:00",
+            "end_utc": "2026-10-11T15:41:50+00:00"
+          },
+          {
+            "job_step": "25299630.154",
+            "job_name": "python",
+            "state": "CANCELLED by ${UID}",
+            "exit_code": "0:9",
+            "allocated_cpus": 24,
+            "elapsed_seconds": 1294,
+            "total_cpu_slurm": "02:57:58",
+            "reserved_cpu_seconds": 31056,
+            "start_local": "2026-10-11T11:42:32",
+            "end_local": "2026-10-11T12:04:06",
+            "role": "corrected selection interrupted (SIGKILL; cause unconfirmed)",
+            "process_cpu_seconds": 10678.0,
+            "start_utc": "2026-10-11T15:42:32+00:00",
+            "end_utc": "2026-10-11T16:04:06+00:00"
+          },
+          {
+            "job_step": "25299630.155",
+            "job_name": "taskset",
+            "state": "COMPLETED",
+            "exit_code": "0:0",
+            "allocated_cpus": 32,
+            "elapsed_seconds": 2462,
+            "total_cpu_slurm": "00:32.397",
+            "reserved_cpu_seconds": 78784,
+            "start_local": "2026-10-11T11:46:31",
+            "end_local": "2026-10-11T12:27:33",
+            "role": "wait/merge/forecasts",
+            "process_cpu_seconds": 32.397,
+            "start_utc": "2026-10-11T15:46:31+00:00",
+            "end_utc": "2026-10-11T16:27:33+00:00"
+          },
+          {
+            "job_step": "25299630.156",
+            "job_name": "taskset",
+            "state": "FAILED",
+            "exit_code": "1:0",
+            "allocated_cpus": 32,
+            "elapsed_seconds": 0,
+            "total_cpu_slurm": "00:00.009",
+            "reserved_cpu_seconds": 0,
+            "start_local": "2026-10-11T11:49:39",
+            "end_local": "2026-10-11T11:49:39",
+            "role": "auxiliary failed launch",
+            "process_cpu_seconds": 0.009,
+            "start_utc": "2026-10-11T15:49:39+00:00",
+            "end_utc": "2026-10-11T15:49:39+00:00"
+          },
+          {
+            "job_step": "25299630.157",
+            "job_name": "taskset",
+            "state": "COMPLETED",
+            "exit_code": "0:0",
+            "allocated_cpus": 32,
+            "elapsed_seconds": 59,
+            "total_cpu_slurm": "03:16.684",
+            "reserved_cpu_seconds": 1888,
+            "start_local": "2026-10-11T11:49:47",
+            "end_local": "2026-10-11T11:50:46",
+            "role": "auxiliary follow-up inspection (exact purpose unverified)",
+            "process_cpu_seconds": 196.684,
+            "start_utc": "2026-10-11T15:49:47+00:00",
+            "end_utc": "2026-10-11T15:50:46+00:00"
+          },
+          {
+            "job_step": "25299630.158",
+            "job_name": "python",
+            "state": "COMPLETED",
+            "exit_code": "0:0",
+            "allocated_cpus": 24,
+            "elapsed_seconds": 1201,
+            "total_cpu_slurm": "02:36:11",
+            "reserved_cpu_seconds": 28824,
+            "start_local": "2026-10-11T12:06:09",
+            "end_local": "2026-10-11T12:26:10",
+            "role": "resumed selection",
+            "process_cpu_seconds": 9371.0,
+            "start_utc": "2026-10-11T16:06:09+00:00",
+            "end_utc": "2026-10-11T16:26:10+00:00"
+          },
+          {
+            "job_step": "25299630.159",
+            "job_name": "taskset",
+            "state": "COMPLETED",
+            "exit_code": "0:0",
+            "allocated_cpus": 32,
+            "elapsed_seconds": 20,
+            "total_cpu_slurm": "00:18.781",
+            "reserved_cpu_seconds": 640,
+            "start_local": "2026-10-11T12:26:17",
+            "end_local": "2026-10-11T12:26:37",
+            "role": "terminal selection audit",
+            "process_cpu_seconds": 18.781,
+            "start_utc": "2026-10-11T16:26:17+00:00",
+            "end_utc": "2026-10-11T16:26:37+00:00"
+          },
+          {
+            "job_step": "25299630.160",
+            "job_name": "taskset",
+            "state": "COMPLETED",
+            "exit_code": "0:0",
+            "allocated_cpus": 32,
+            "elapsed_seconds": 76,
+            "total_cpu_slurm": "00:59.199",
+            "reserved_cpu_seconds": 2432,
+            "start_local": "2026-10-11T12:26:53",
+            "end_local": "2026-10-11T12:28:09",
+            "role": "behavior audit",
+            "process_cpu_seconds": 59.199,
+            "start_utc": "2026-10-11T16:26:53+00:00",
+            "end_utc": "2026-10-11T16:28:09+00:00"
+          },
+          {
+            "job_step": "25299630.161",
+            "job_name": "python",
+            "state": "COMPLETED",
+            "exit_code": "0:0",
+            "allocated_cpus": 32,
+            "elapsed_seconds": 196,
+            "total_cpu_slurm": "04:07.325",
+            "reserved_cpu_seconds": 6272,
+            "start_local": "2026-10-11T12:28:45",
+            "end_local": "2026-10-11T12:32:01",
+            "role": "native judging",
+            "process_cpu_seconds": 247.325,
+            "start_utc": "2026-10-11T16:28:45+00:00",
+            "end_utc": "2026-10-11T16:32:01+00:00"
+          },
+          {
+            "job_step": "25299630.162",
+            "job_name": "taskset",
+            "state": "COMPLETED",
+            "exit_code": "0:0",
+            "allocated_cpus": 32,
+            "elapsed_seconds": 169,
+            "total_cpu_slurm": "00:40.921",
+            "reserved_cpu_seconds": 5408,
+            "start_local": "2026-10-11T12:30:01",
+            "end_local": "2026-10-11T12:32:50",
+            "role": "wait/native analysis/qualitative",
+            "process_cpu_seconds": 40.921,
+            "start_utc": "2026-10-11T16:30:01+00:00",
+            "end_utc": "2026-10-11T16:32:50+00:00"
+          },
+          {
+            "job_step": "25299630.163",
+            "job_name": "taskset",
+            "state": "COMPLETED",
+            "exit_code": "0:0",
+            "allocated_cpus": 32,
+            "elapsed_seconds": 2,
+            "total_cpu_slurm": "00:00.652",
+            "reserved_cpu_seconds": 64,
+            "start_local": "2026-10-11T12:40:12",
+            "end_local": "2026-10-11T12:40:14",
+            "role": "this resource storage audit",
+            "process_cpu_seconds": 0.652,
+            "start_utc": "2026-10-11T16:40:12+00:00",
+            "end_utc": "2026-10-11T16:40:14+00:00"
+          }
+        ],
+        "main_steps_148_through_162": {
+          "process_cpu_seconds": 26142.038,
+          "process_cpu_hours": 7.261677222222223,
+          "step_reserved_cpu_seconds": 172104,
+          "step_reserved_cpu_hours": 47.806666666666665
+        },
+        "including_pilot_and_this_audit": {
+          "process_cpu_seconds": 26510.313,
+          "process_cpu_hours": 7.363975833333333,
+          "step_reserved_cpu_seconds": 172864,
+          "step_reserved_cpu_hours": 48.01777777777778
+        },
+        "selection_only_including_interrupted_work": {
+          "process_cpu_seconds": 25546.722,
+          "process_cpu_hours": 7.096311666666667,
+          "step_reserved_cpu_seconds": 76680,
+          "step_reserved_cpu_hours": 21.3
+        },
+        "note": "TotalCPU is summed process CPU consumed. CPUTimeRAW is step allocated CPUs times elapsed time, includes idle waiting, and overlapping steps share the inherited 32-CPU allocation; summed step reservations are not exclusive node usage or new dedicated billing. The entire multi-day user allocation is excluded."
+      },
+      "timing": {
+        "search_first_started_utc": "2026-10-11T15:30:10.237628+00:00",
+        "search_completed_utc": "2026-10-11T16:26:10.301718+00:00",
+        "search_elapsed_from_first_launch_seconds": 3360.06409,
+        "resumed_selection_wall_seconds_sacct": 1201,
+        "pilot_application_wall_seconds": 165.72569883149117,
+        "pilot_step_elapsed_seconds": 174,
+        "judge_application_wall_seconds": 195.018092,
+        "note": "Step154 retained partial progress before a SIGKILL cancellation; accounting does not establish its cause. Reported 10,401 partial rows are recovery context supplied by root, not independently recounted here."
+      },
+      "storage": {
+        "schema_version": 1,
+        "snapshot_utc": "2026-10-11T16:40:12.668731+00:00",
+        "followup_storage": {
+          "logical_bytes": 2546634328,
+          "allocated_bytes": 722456064,
+          "files": 249,
+          "complete": true,
+          "per_root": {
+            "${OLENS_DATA_ROOT}/target-only-search-v1": {
+              "logical_bytes": 2546634328,
+              "allocated_bytes": 722456064,
+              "files": 249,
+              "complete": true
+            }
+          },
+          "logical_gb_decimal": 2.546634328,
+          "allocated_gb_decimal": 0.722456064
+        },
+        "project_storage": {
+          "logical_bytes": 125920751606,
+          "allocated_bytes": 95146773504,
+          "files": 18970,
+          "complete": true,
+          "per_root": {
+            "${OLENS_COMPUTE_ROOT}": {
+              "logical_bytes": 83281680799,
+              "allocated_bytes": 83307225088,
+              "files": 10831,
+              "complete": true
+            },
+            "${OLENS_DATA_ROOT}": {
+              "logical_bytes": 42639070807,
+              "allocated_bytes": 11839548416,
+              "files": 8139,
+              "complete": true
+            }
+          },
+          "logical_gb_decimal": 125.920751606,
+          "allocated_gb_decimal": 95.146773504
+        },
+        "method": "regular files; inode dedup across roots; symlinks skipped; st_size logical bytes and st_blocks*512 allocated bytes; external shared weights excluded"
+      },
+      "source_pins": [
+        {
+          "path": "${OLENS_REPO_ROOT}/configs/target_only_inventory_v2.json",
+          "sha256": "181fcc259ed81213a7b26ea18142b6cd35648e89b83100a5cf07590ed75b2c47"
+        },
+        {
+          "path": "${OLENS_REPO_ROOT}/docs/reviews/target-only-judging-run-v1.json",
+          "sha256": "d36445d68d820cd1bb860774c195b18bd56c47b887a324b56544f6eee2ab5cb7"
+        },
+        {
+          "path": "${OLENS_REPO_ROOT}/.state/target-only-search-runtime-v1.json",
+          "sha256": "15e5f4429120cf5a35ab37cdaa359ee0544cea66a364f146b0f899199ae71509"
+        },
+        {
+          "path": "${OLENS_REPO_ROOT}/.state/target-only-cpu-launch-history.jsonl",
+          "sha256": "9e71a0d4c076b15654f5993a4bc2713c9662824f7113cb98409005ef897d2cac"
+        },
+        {
+          "path": "${OLENS_REPO_ROOT}/infra/watch_resources.py",
+          "sha256": "6198f358c226c062615a23c396fecf2eb6afc27be7e8a73d6e4d8fbe3d94f95d"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/pilot-v1/status.json",
+          "sha256": "14db0abfb43192a1faa622b780e8e3e3e9c63081944658dff50a2a165716c2fe"
+        },
+        {
+          "path": "/tmp/target_only_sacct.psv",
+          "sha256": "b011a721b0d7ebcca2fb4c4d5c9e11a670226c32ed75ed1808f191e9782fe08e"
+        }
+      ],
+      "audit_activity": {
+        "api_calls": 0,
+        "gpu_calls": 0,
+        "new_cpu_allocation": false,
+        "storage_audit_step": "25299630.163",
+        "external_resource_copy_written": false
+      }
+    },
+    "quality_uncertainty": {
+      "declared_contrasts": 44,
+      "nondegenerate_joint_intervals": 40,
+      "historical_adaptive_search_covered": false
+    }
+  }
+}

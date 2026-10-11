@@ -1,0 +1,240 @@
+{
+  "status": "published_and_verified",
+  "completed_utc": "2026-10-11T17:04:20.592287+00:00",
+  "publication": {
+    "project_id": "appgprj_6aca37fc2878819185850105787209f9",
+    "source_commit": "c428c24d421b940aeed3c44ed583fa6639dc6483",
+    "archive": "${OLENS_REPO_ROOT}/.state/target-only-site-final-v2.tar.gz",
+    "saved_version_id": "appgprj_6aca37fc2878819185850105787209f9~appgver_cef6ec85c59c8191bf5be6f599b22ffa",
+    "version_number": 20,
+    "deployment_id": "appgdep_6acbc02963948191a4114693f5c657df",
+    "deployment_status": "succeeded",
+    "url": "https://olens-improve-research.jan618.chatgpt.site",
+    "deployed_utc": "2026-10-11T16:58:29.839736+00:00",
+    "public_access_mode": "public"
+  },
+  "archive_sha256": "a67083946cd54c64ef40e440499eeddfdc95153f8da3cbd46b5e4c6a7bd861d7",
+  "assembly": {
+    "status": "assembled_pending_publication",
+    "created_utc": "2026-10-11T16:56:50.601766+00:00",
+    "project_id": "appgprj_6aca37fc2878819185850105787209f9",
+    "presentation_build_sha256": "78d05f49925a0215ea37e55b749b01154a2a3a1e60beb07d2a7209652c3210ba",
+    "historical_index_before_sha256": "2016e2f1008274b27dc4fbe9896bf747a1c715c61a3859148d3f436346764955",
+    "historical_archive_sha256": "416a42bceb2bcf8a9039d45847deecf0d64af95dab30f96cea1e82dfd47d3cbe",
+    "local_links_missing": [],
+    "outputs_sha256": {
+      "index.html": "bf44facc557e7b2298025f7202c5ce84dd985b5199c7f93321f3bb712752a944",
+      "historical-expanded-study.html": "416a42bceb2bcf8a9039d45847deecf0d64af95dab30f96cea1e82dfd47d3cbe",
+      "target-only-data.json": "000da6c4de7c4123067fc2dc779991e1c0e5085997f73ebb001bfc6a81586af6",
+      "target-only.css": "802800868a9686f9a9cc84f25a635913d3a5ae57c18c4bffee78694d1dc8c355",
+      "target-only.js": "9c85d9b0785513b171686e839ed9366375110f64950db49e98db8b425b840d14"
+    },
+    "downloads_sha256": {
+      "target-only-report.md": "8fa7c33233f96e733e81b9aba5372162ed4fa7ac9ec4bbb901b53fec12cc2e08",
+      "target-only-native-results.json": "c1456e2f960d04726e5a57e4f25638b33553d3c548a1647274bb04830a05def6",
+      "target-only-qualitative.json": "368ccb9f92f369b0152480f1017b14e4894053b21b9cb2ca4e4803fee70e0515",
+      "target-only-behavior.json": "6e0840b37350f7571fa16b6d4869554d2dc725c6a9a2171e261a60d8a0700d85",
+      "target-only-resources.json": "e61e11da8b870c78dc5a824c9fd02c02f361442c7a119e09dca1e3d5f4751034",
+      "target-only-inventory.json": "181fcc259ed81213a7b26ea18142b6cd35648e89b83100a5cf07590ed75b2c47",
+      "target-only-root-review.json": "b0ee97b2f7048afcf570223753a18e8d3bfbd27ee0a6fd772bc44a6fab8a181b",
+      "target-only-slides.pdf": "46ad230842a4d0cc3c7e6025d797f0232a3518f5c71d2aa48042197242593732",
+      "target-only-slides.pptx": "350a408efd7b20cbbcac82adeef911c76ae7036175fda399d8b367b5d678ef8e",
+      "target-only-slides.html": "2713ec601dd715eee2080ba2fcba431264be5e4490c2b082c8cac49a95bb4fac",
+      "target-only-speaker-notes.md": "b847129ec4cad2203878e1169aaed245135fedca2e86319be33abf388d94d067"
+    }
+  },
+  "public_asset_readback": {
+    "status": "pass",
+    "checked_utc": "2026-10-11T17:02:57.989119+00:00",
+    "url": "https://olens-improve-research.jan618.chatgpt.site",
+    "checks": [
+      {
+        "path": "index.html",
+        "status": 200,
+        "size_bytes": 320412,
+        "expected_sha256": "bf44facc557e7b2298025f7202c5ce84dd985b5199c7f93321f3bb712752a944",
+        "actual_sha256": "9cbf9fa00f5b0482dd5da6220b52c07c4bf8a0301350f8a9196beb255ba2c8b1",
+        "exact_hash_matches": false,
+        "matches": true,
+        "normalized_sha256": "bf44facc557e7b2298025f7202c5ce84dd985b5199c7f93321f3bb712752a944",
+        "hosting_insertion": {
+          "type": "Cloudflare challenge script",
+          "added_bytes": 938,
+          "source_bytes_removed": 0
+        }
+      },
+      {
+        "path": "historical-expanded-study.html",
+        "status": 200,
+        "size_bytes": 15680138,
+        "expected_sha256": "416a42bceb2bcf8a9039d45847deecf0d64af95dab30f96cea1e82dfd47d3cbe",
+        "actual_sha256": "46642096c2064181f0868accd296cc0066efe5bdd3c034af0a4af02dd77abd56",
+        "exact_hash_matches": false,
+        "matches": true,
+        "normalized_sha256": "416a42bceb2bcf8a9039d45847deecf0d64af95dab30f96cea1e82dfd47d3cbe",
+        "hosting_insertion": {
+          "type": "Cloudflare challenge script",
+          "added_bytes": 938,
+          "source_bytes_removed": 0
+        }
+      },
+      {
+        "path": "target-only-data.json",
+        "status": 200,
+        "size_bytes": 311717,
+        "expected_sha256": "000da6c4de7c4123067fc2dc779991e1c0e5085997f73ebb001bfc6a81586af6",
+        "actual_sha256": "000da6c4de7c4123067fc2dc779991e1c0e5085997f73ebb001bfc6a81586af6",
+        "exact_hash_matches": true,
+        "matches": true
+      },
+      {
+        "path": "target-only.css",
+        "status": 200,
+        "size_bytes": 4595,
+        "expected_sha256": "802800868a9686f9a9cc84f25a635913d3a5ae57c18c4bffee78694d1dc8c355",
+        "actual_sha256": "802800868a9686f9a9cc84f25a635913d3a5ae57c18c4bffee78694d1dc8c355",
+        "exact_hash_matches": true,
+        "matches": true
+      },
+      {
+        "path": "target-only.js",
+        "status": 200,
+        "size_bytes": 11487,
+        "expected_sha256": "9c85d9b0785513b171686e839ed9366375110f64950db49e98db8b425b840d14",
+        "actual_sha256": "9c85d9b0785513b171686e839ed9366375110f64950db49e98db8b425b840d14",
+        "exact_hash_matches": true,
+        "matches": true
+      },
+      {
+        "path": "downloads/target-only-report.md",
+        "status": 200,
+        "size_bytes": 11155,
+        "expected_sha256": "8fa7c33233f96e733e81b9aba5372162ed4fa7ac9ec4bbb901b53fec12cc2e08",
+        "actual_sha256": "8fa7c33233f96e733e81b9aba5372162ed4fa7ac9ec4bbb901b53fec12cc2e08",
+        "exact_hash_matches": true,
+        "matches": true
+      },
+      {
+        "path": "downloads/target-only-native-results.json",
+        "status": 200,
+        "size_bytes": 327066,
+        "expected_sha256": "c1456e2f960d04726e5a57e4f25638b33553d3c548a1647274bb04830a05def6",
+        "actual_sha256": "c1456e2f960d04726e5a57e4f25638b33553d3c548a1647274bb04830a05def6",
+        "exact_hash_matches": true,
+        "matches": true
+      },
+      {
+        "path": "downloads/target-only-qualitative.json",
+        "status": 200,
+        "size_bytes": 4648971,
+        "expected_sha256": "368ccb9f92f369b0152480f1017b14e4894053b21b9cb2ca4e4803fee70e0515",
+        "actual_sha256": "368ccb9f92f369b0152480f1017b14e4894053b21b9cb2ca4e4803fee70e0515",
+        "exact_hash_matches": true,
+        "matches": true
+      },
+      {
+        "path": "downloads/target-only-behavior.json",
+        "status": 200,
+        "size_bytes": 103696,
+        "expected_sha256": "6e0840b37350f7571fa16b6d4869554d2dc725c6a9a2171e261a60d8a0700d85",
+        "actual_sha256": "6e0840b37350f7571fa16b6d4869554d2dc725c6a9a2171e261a60d8a0700d85",
+        "exact_hash_matches": true,
+        "matches": true
+      },
+      {
+        "path": "downloads/target-only-resources.json",
+        "status": 200,
+        "size_bytes": 15362,
+        "expected_sha256": "e61e11da8b870c78dc5a824c9fd02c02f361442c7a119e09dca1e3d5f4751034",
+        "actual_sha256": "e61e11da8b870c78dc5a824c9fd02c02f361442c7a119e09dca1e3d5f4751034",
+        "exact_hash_matches": true,
+        "matches": true
+      },
+      {
+        "path": "downloads/target-only-inventory.json",
+        "status": 200,
+        "size_bytes": 11308,
+        "expected_sha256": "181fcc259ed81213a7b26ea18142b6cd35648e89b83100a5cf07590ed75b2c47",
+        "actual_sha256": "181fcc259ed81213a7b26ea18142b6cd35648e89b83100a5cf07590ed75b2c47",
+        "exact_hash_matches": true,
+        "matches": true
+      },
+      {
+        "path": "downloads/target-only-root-review.json",
+        "status": 200,
+        "size_bytes": 194737,
+        "expected_sha256": "b0ee97b2f7048afcf570223753a18e8d3bfbd27ee0a6fd772bc44a6fab8a181b",
+        "actual_sha256": "b0ee97b2f7048afcf570223753a18e8d3bfbd27ee0a6fd772bc44a6fab8a181b",
+        "exact_hash_matches": true,
+        "matches": true
+      },
+      {
+        "path": "downloads/target-only-slides.pdf",
+        "status": 200,
+        "size_bytes": 219140,
+        "expected_sha256": "46ad230842a4d0cc3c7e6025d797f0232a3518f5c71d2aa48042197242593732",
+        "actual_sha256": "46ad230842a4d0cc3c7e6025d797f0232a3518f5c71d2aa48042197242593732",
+        "exact_hash_matches": true,
+        "matches": true
+      },
+      {
+        "path": "downloads/target-only-slides.pptx",
+        "status": 200,
+        "size_bytes": 215897,
+        "expected_sha256": "350a408efd7b20cbbcac82adeef911c76ae7036175fda399d8b367b5d678ef8e",
+        "actual_sha256": "350a408efd7b20cbbcac82adeef911c76ae7036175fda399d8b367b5d678ef8e",
+        "exact_hash_matches": true,
+        "matches": true
+      },
+      {
+        "path": "downloads/target-only-slides.html",
+        "status": 200,
+        "size_bytes": 183574,
+        "expected_sha256": "2713ec601dd715eee2080ba2fcba431264be5e4490c2b082c8cac49a95bb4fac",
+        "actual_sha256": "f16a51b02284e25eaef24ed8efbcf6852d74cdaa544be869cc313a87a50bc9b6",
+        "exact_hash_matches": false,
+        "matches": true,
+        "normalized_sha256": "2713ec601dd715eee2080ba2fcba431264be5e4490c2b082c8cac49a95bb4fac",
+        "hosting_insertion": {
+          "type": "Cloudflare challenge script",
+          "added_bytes": 938,
+          "source_bytes_removed": 0
+        }
+      },
+      {
+        "path": "downloads/target-only-speaker-notes.md",
+        "status": 200,
+        "size_bytes": 489901,
+        "expected_sha256": "b847129ec4cad2203878e1169aaed245135fedca2e86319be33abf388d94d067",
+        "actual_sha256": "b847129ec4cad2203878e1169aaed245135fedca2e86319be33abf388d94d067",
+        "exact_hash_matches": true,
+        "matches": true
+      }
+    ],
+    "hosted_browser_rendering_verified": false
+  },
+  "visual_review": {
+    "path": "docs/reviews/target-only-final-visual-review-v2.json",
+    "sha256": "917be1e4c9e4e99dd418ad4b1574e723a73874f62ce60e36aae047e488350aa0",
+    "status": "pass"
+  },
+  "scientific_review": {
+    "path": "docs/reviews/target-only-root-results-v1.json",
+    "sha256": "b0ee97b2f7048afcf570223753a18e8d3bfbd27ee0a6fd772bc44a6fab8a181b"
+  },
+  "engineering_checks": {
+    "presentation_tests": 11,
+    "status": "pass"
+  },
+  "scope": "Four new selectors and six references on the four agreed full banks: 469 questions and 19,435 sites. Previously inspected cohort; exploratory.",
+  "preservation": "Original 70-setting study retained in the historical archive; old downloads preserved. Control-activation methods excluded from the current page.",
+  "limits": [
+    "Native PowerPoint rendering remains unverified; PDF uses the same-content HTML geometry mirror.",
+    "Actual hosted browser rendering was not checked; native public deployment and 16 public asset responses were verified.",
+    "Three HTML responses contain a Cloudflare challenge-script insertion; all original source bytes match after removing only that insertion.",
+    "API costs are recorded usage estimates, not invoice-reconciled charges. Storage is a dated snapshot."
+  ],
+  "inference_calls_for_presentation": 0,
+  "research_repository_pushed": false,
+  "site_source_pushed": true
+}

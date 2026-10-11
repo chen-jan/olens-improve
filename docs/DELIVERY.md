@@ -1,6 +1,22 @@
-# Completed expanded Oracle Lens study
+# Completed Oracle Lens follow-up
 
-The [public dashboard](https://olens-improve-research.jan618.chatgpt.site) now shows all **70 settings on all four complete benchmark banks**: 469 questions and 19,435 fixed activation sites. Version 19 preserves the original study separately; the [original delivery record](ORIGINAL_DELIVERY.md) is retained.
+The [public dashboard](https://olens-improve-research.jan618.chatgpt.site) is version **20**, with the four new activation-only selectors, six existing references, all four complete banks, paired uncertainty and exact before/after examples. The original Oracle Lens remains visible. Control-activation methods and their combinations are excluded from the current valid-method scope.
+
+- [Follow-up report](https://olens-improve-research.jan618.chatgpt.site/downloads/target-only-report.md)
+- [12-slide supplement — PDF](https://olens-improve-research.jan618.chatgpt.site/downloads/target-only-slides.pdf)
+- [Editable PowerPoint](https://olens-improve-research.jan618.chatgpt.site/downloads/target-only-slides.pptx)
+- [Complete follow-up delivery and evidence links](TARGET_ONLY_DELIVERY.md)
+- [Historical methods and sampling curves](https://olens-improve-research.jan618.chatgpt.site/historical-expanded-study.html)
+
+Repeated swaps and bounded refill add only 0.018 and 0.024 percentage points of mean reconstruction over their actual parents. Role recovery rises slightly, but adjusted quality intervals remain unresolved. Guided and matched random deletion have nearly identical measured contradiction rates. All 469 questions have been inspected previously: these results are exploratory. Additional Luna usage was about **$2.03**, with **no new GPU work**.
+
+Local desktop/mobile interaction checks and all 12 slide layouts passed. Public deployment and 16 asset readbacks are verified; native PowerPoint and actual hosted browser rendering remain unverified. Research Git is local. The [publication receipt](reviews/target-only-site-delivery-v1.json) and [experiment record](experiments/065-target-only-search-and-refill.md) preserve exact evidence and limits.
+
+The earlier report, longer deck and frozen 70-setting data remain below as historical delivery records.
+
+## Archived expanded Oracle Lens study
+
+The [historical dashboard](https://olens-improve-research.jan618.chatgpt.site/historical-expanded-study.html) now shows all **70 settings on all four complete benchmark banks**: 469 questions and 19,435 fixed activation sites. Version 19 preserves the original study separately; the [original delivery record](ORIGINAL_DELIVERY.md) is retained.
 
 - [Final report](https://olens-improve-research.jan618.chatgpt.site/downloads/expanded-report.md)
 - [Slides — PDF](https://olens-improve-research.jan618.chatgpt.site/downloads/expanded-slides.pdf)
@@ -16,7 +32,7 @@ The revised deck has 27 main slides and 67 detail/appendix slides. Plain method 
 
 Version 19 explains why absolute-rate uncertainty bars can overlap while paired-change bars exclude zero. The seven highlighted settings match the method-result slides; they are illustrative choices made after results, not a predefined winner selection. All 70 settings remain accessible. See [experiment 064](experiments/064-uncertainty-and-illustrative-settings.md) and the [publication receipt](reviews/ci-labels-site-delivery-v1.json).
 
-The [sample curves](https://olens-improve-research.jan618.chatgpt.site/#sample-trends) show all six sample counts. The [intervention view](https://olens-improve-research.jan618.chatgpt.site/#intervention-effects) shows one approach at a time, with paired changes versus the original Oracle Lens, uncertainty bars, hover previews and enlarged plots. Other approaches are hidden when one is selected. All methods and variants remain available below.
+The [sample curves](https://olens-improve-research.jan618.chatgpt.site/historical-expanded-study.html#sample-trends) show all six sample counts. The [intervention view](https://olens-improve-research.jan618.chatgpt.site/historical-expanded-study.html#intervention-effects) shows one approach at a time, with paired changes versus the original Oracle Lens, uncertainty bars, hover previews and enlarged plots. Other approaches are hidden when one is selected. All methods and variants remain available below.
 
 Task names match the WorkspaceBench registry: **Hallucination (chat)**, **Multihop (multi-token)**, **Chained intermediates**, and **Role-bound association**. The [original-reference supplement](https://olens-improve-research.jan618.chatgpt.site/downloads/original-reference-comparisons.json) adds 28 direct paired comparisons for the seven fixed representatives. These are post-hoc exploratory pointwise intervals, separate from the original simultaneous analysis. Frozen sources and judgments are unchanged. See [experiment 063](experiments/063-clear-graphs-and-original-reference.md).
 

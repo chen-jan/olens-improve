@@ -1,0 +1,407 @@
+{
+  "schema_version": 1,
+  "status": "final_scoped_snapshot",
+  "checked_utc": "2026-10-11T16:41:18.418774+00:00",
+  "scope": "New target-only-search-v1 follow-up; four methods across 19,435 sites; existing activation and candidate-vector caches reused",
+  "api": {
+    "new_settled_usage_estimate_usd": 2.029212375,
+    "global_settled_usage_estimate_usd": 144.75781431,
+    "global_retained_reservations_usd": 5.068543875,
+    "global_committed_estimate_usd": 149.82635818499998,
+    "invoice_reconciled": false,
+    "note": "Ledger actual denotes settled API usage estimates, not reconciled invoices. Reservations remain separate and include prior unresolved attempts. Global before/after delta reflects this dispatch interval; no monitor API requests were made."
+  },
+  "gpu": {
+    "new_gpu_count": 0,
+    "new_gpu_hours": 0,
+    "note": "No GPU work or new lens/reconstructor model calls for this follow-up; cached outputs reused. Luna judging costs are in API usage."
+  },
+  "cpu": {
+    "inherited_allocation_job_id": 25299630,
+    "allocation_preserved": true,
+    "sacct_time_zone": "America/New_York; explicit UTC conversion recorded",
+    "steps": [
+      {
+        "job_step": "25299630.147",
+        "job_name": "python",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "allocated_cpus": 4,
+        "elapsed_seconds": 174,
+        "total_cpu_slurm": "06:07.623",
+        "reserved_cpu_seconds": 696,
+        "start_local": "2026-10-11T11:22:48",
+        "end_local": "2026-10-11T11:25:42",
+        "role": "12-cell pilot",
+        "process_cpu_seconds": 367.623,
+        "start_utc": "2026-10-11T15:22:48+00:00",
+        "end_utc": "2026-10-11T15:25:42+00:00"
+      },
+      {
+        "job_step": "25299630.148",
+        "job_name": "python",
+        "state": "CANCELLED",
+        "exit_code": "0:15",
+        "allocated_cpus": 4,
+        "elapsed_seconds": 700,
+        "total_cpu_slurm": "14:53.841",
+        "reserved_cpu_seconds": 2800,
+        "start_local": "2026-10-11T11:30:10",
+        "end_local": "2026-10-11T11:41:50",
+        "role": "initial selection with incorrect shared CPU placement",
+        "process_cpu_seconds": 893.841,
+        "start_utc": "2026-10-11T15:30:10+00:00",
+        "end_utc": "2026-10-11T15:41:50+00:00"
+      },
+      {
+        "job_step": "25299630.149",
+        "job_name": "python",
+        "state": "CANCELLED",
+        "exit_code": "0:15",
+        "allocated_cpus": 4,
+        "elapsed_seconds": 700,
+        "total_cpu_slurm": "14:52.961",
+        "reserved_cpu_seconds": 2800,
+        "start_local": "2026-10-11T11:30:10",
+        "end_local": "2026-10-11T11:41:50",
+        "role": "initial selection with incorrect shared CPU placement",
+        "process_cpu_seconds": 892.961,
+        "start_utc": "2026-10-11T15:30:10+00:00",
+        "end_utc": "2026-10-11T15:41:50+00:00"
+      },
+      {
+        "job_step": "25299630.150",
+        "job_name": "python",
+        "state": "CANCELLED",
+        "exit_code": "0:15",
+        "allocated_cpus": 4,
+        "elapsed_seconds": 700,
+        "total_cpu_slurm": "16:06.959",
+        "reserved_cpu_seconds": 2800,
+        "start_local": "2026-10-11T11:30:10",
+        "end_local": "2026-10-11T11:41:50",
+        "role": "initial selection with incorrect shared CPU placement",
+        "process_cpu_seconds": 966.959,
+        "start_utc": "2026-10-11T15:30:10+00:00",
+        "end_utc": "2026-10-11T15:41:50+00:00"
+      },
+      {
+        "job_step": "25299630.151",
+        "job_name": "python",
+        "state": "CANCELLED",
+        "exit_code": "0:15",
+        "allocated_cpus": 4,
+        "elapsed_seconds": 700,
+        "total_cpu_slurm": "15:09.986",
+        "reserved_cpu_seconds": 2800,
+        "start_local": "2026-10-11T11:30:10",
+        "end_local": "2026-10-11T11:41:50",
+        "role": "initial selection with incorrect shared CPU placement",
+        "process_cpu_seconds": 909.986,
+        "start_utc": "2026-10-11T15:30:10+00:00",
+        "end_utc": "2026-10-11T15:41:50+00:00"
+      },
+      {
+        "job_step": "25299630.152",
+        "job_name": "python",
+        "state": "CANCELLED",
+        "exit_code": "0:15",
+        "allocated_cpus": 4,
+        "elapsed_seconds": 700,
+        "total_cpu_slurm": "15:39.077",
+        "reserved_cpu_seconds": 2800,
+        "start_local": "2026-10-11T11:30:10",
+        "end_local": "2026-10-11T11:41:50",
+        "role": "initial selection with incorrect shared CPU placement",
+        "process_cpu_seconds": 939.077,
+        "start_utc": "2026-10-11T15:30:10+00:00",
+        "end_utc": "2026-10-11T15:41:50+00:00"
+      },
+      {
+        "job_step": "25299630.153",
+        "job_name": "python",
+        "state": "CANCELLED",
+        "exit_code": "0:15",
+        "allocated_cpus": 4,
+        "elapsed_seconds": 700,
+        "total_cpu_slurm": "14:54.898",
+        "reserved_cpu_seconds": 2800,
+        "start_local": "2026-10-11T11:30:10",
+        "end_local": "2026-10-11T11:41:50",
+        "role": "initial selection with incorrect shared CPU placement",
+        "process_cpu_seconds": 894.898,
+        "start_utc": "2026-10-11T15:30:10+00:00",
+        "end_utc": "2026-10-11T15:41:50+00:00"
+      },
+      {
+        "job_step": "25299630.154",
+        "job_name": "python",
+        "state": "CANCELLED by ${UID}",
+        "exit_code": "0:9",
+        "allocated_cpus": 24,
+        "elapsed_seconds": 1294,
+        "total_cpu_slurm": "02:57:58",
+        "reserved_cpu_seconds": 31056,
+        "start_local": "2026-10-11T11:42:32",
+        "end_local": "2026-10-11T12:04:06",
+        "role": "corrected selection interrupted (SIGKILL; cause unconfirmed)",
+        "process_cpu_seconds": 10678.0,
+        "start_utc": "2026-10-11T15:42:32+00:00",
+        "end_utc": "2026-10-11T16:04:06+00:00"
+      },
+      {
+        "job_step": "25299630.155",
+        "job_name": "taskset",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "allocated_cpus": 32,
+        "elapsed_seconds": 2462,
+        "total_cpu_slurm": "00:32.397",
+        "reserved_cpu_seconds": 78784,
+        "start_local": "2026-10-11T11:46:31",
+        "end_local": "2026-10-11T12:27:33",
+        "role": "wait/merge/forecasts",
+        "process_cpu_seconds": 32.397,
+        "start_utc": "2026-10-11T15:46:31+00:00",
+        "end_utc": "2026-10-11T16:27:33+00:00"
+      },
+      {
+        "job_step": "25299630.156",
+        "job_name": "taskset",
+        "state": "FAILED",
+        "exit_code": "1:0",
+        "allocated_cpus": 32,
+        "elapsed_seconds": 0,
+        "total_cpu_slurm": "00:00.009",
+        "reserved_cpu_seconds": 0,
+        "start_local": "2026-10-11T11:49:39",
+        "end_local": "2026-10-11T11:49:39",
+        "role": "auxiliary failed launch",
+        "process_cpu_seconds": 0.009,
+        "start_utc": "2026-10-11T15:49:39+00:00",
+        "end_utc": "2026-10-11T15:49:39+00:00"
+      },
+      {
+        "job_step": "25299630.157",
+        "job_name": "taskset",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "allocated_cpus": 32,
+        "elapsed_seconds": 59,
+        "total_cpu_slurm": "03:16.684",
+        "reserved_cpu_seconds": 1888,
+        "start_local": "2026-10-11T11:49:47",
+        "end_local": "2026-10-11T11:50:46",
+        "role": "auxiliary follow-up inspection (exact purpose unverified)",
+        "process_cpu_seconds": 196.684,
+        "start_utc": "2026-10-11T15:49:47+00:00",
+        "end_utc": "2026-10-11T15:50:46+00:00"
+      },
+      {
+        "job_step": "25299630.158",
+        "job_name": "python",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "allocated_cpus": 24,
+        "elapsed_seconds": 1201,
+        "total_cpu_slurm": "02:36:11",
+        "reserved_cpu_seconds": 28824,
+        "start_local": "2026-10-11T12:06:09",
+        "end_local": "2026-10-11T12:26:10",
+        "role": "resumed selection",
+        "process_cpu_seconds": 9371.0,
+        "start_utc": "2026-10-11T16:06:09+00:00",
+        "end_utc": "2026-10-11T16:26:10+00:00"
+      },
+      {
+        "job_step": "25299630.159",
+        "job_name": "taskset",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "allocated_cpus": 32,
+        "elapsed_seconds": 20,
+        "total_cpu_slurm": "00:18.781",
+        "reserved_cpu_seconds": 640,
+        "start_local": "2026-10-11T12:26:17",
+        "end_local": "2026-10-11T12:26:37",
+        "role": "terminal selection audit",
+        "process_cpu_seconds": 18.781,
+        "start_utc": "2026-10-11T16:26:17+00:00",
+        "end_utc": "2026-10-11T16:26:37+00:00"
+      },
+      {
+        "job_step": "25299630.160",
+        "job_name": "taskset",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "allocated_cpus": 32,
+        "elapsed_seconds": 76,
+        "total_cpu_slurm": "00:59.199",
+        "reserved_cpu_seconds": 2432,
+        "start_local": "2026-10-11T12:26:53",
+        "end_local": "2026-10-11T12:28:09",
+        "role": "behavior audit",
+        "process_cpu_seconds": 59.199,
+        "start_utc": "2026-10-11T16:26:53+00:00",
+        "end_utc": "2026-10-11T16:28:09+00:00"
+      },
+      {
+        "job_step": "25299630.161",
+        "job_name": "python",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "allocated_cpus": 32,
+        "elapsed_seconds": 196,
+        "total_cpu_slurm": "04:07.325",
+        "reserved_cpu_seconds": 6272,
+        "start_local": "2026-10-11T12:28:45",
+        "end_local": "2026-10-11T12:32:01",
+        "role": "native judging",
+        "process_cpu_seconds": 247.325,
+        "start_utc": "2026-10-11T16:28:45+00:00",
+        "end_utc": "2026-10-11T16:32:01+00:00"
+      },
+      {
+        "job_step": "25299630.162",
+        "job_name": "taskset",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "allocated_cpus": 32,
+        "elapsed_seconds": 169,
+        "total_cpu_slurm": "00:40.921",
+        "reserved_cpu_seconds": 5408,
+        "start_local": "2026-10-11T12:30:01",
+        "end_local": "2026-10-11T12:32:50",
+        "role": "wait/native analysis/qualitative",
+        "process_cpu_seconds": 40.921,
+        "start_utc": "2026-10-11T16:30:01+00:00",
+        "end_utc": "2026-10-11T16:32:50+00:00"
+      },
+      {
+        "job_step": "25299630.163",
+        "job_name": "taskset",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "allocated_cpus": 32,
+        "elapsed_seconds": 2,
+        "total_cpu_slurm": "00:00.652",
+        "reserved_cpu_seconds": 64,
+        "start_local": "2026-10-11T12:40:12",
+        "end_local": "2026-10-11T12:40:14",
+        "role": "this resource storage audit",
+        "process_cpu_seconds": 0.652,
+        "start_utc": "2026-10-11T16:40:12+00:00",
+        "end_utc": "2026-10-11T16:40:14+00:00"
+      }
+    ],
+    "main_steps_148_through_162": {
+      "process_cpu_seconds": 26142.038,
+      "process_cpu_hours": 7.261677222222223,
+      "step_reserved_cpu_seconds": 172104,
+      "step_reserved_cpu_hours": 47.806666666666665
+    },
+    "including_pilot_and_this_audit": {
+      "process_cpu_seconds": 26510.313,
+      "process_cpu_hours": 7.363975833333333,
+      "step_reserved_cpu_seconds": 172864,
+      "step_reserved_cpu_hours": 48.01777777777778
+    },
+    "selection_only_including_interrupted_work": {
+      "process_cpu_seconds": 25546.722,
+      "process_cpu_hours": 7.096311666666667,
+      "step_reserved_cpu_seconds": 76680,
+      "step_reserved_cpu_hours": 21.3
+    },
+    "note": "TotalCPU is summed process CPU consumed. CPUTimeRAW is step allocated CPUs times elapsed time, includes idle waiting, and overlapping steps share the inherited 32-CPU allocation; summed step reservations are not exclusive node usage or new dedicated billing. The entire multi-day user allocation is excluded."
+  },
+  "timing": {
+    "search_first_started_utc": "2026-10-11T15:30:10.237628+00:00",
+    "search_completed_utc": "2026-10-11T16:26:10.301718+00:00",
+    "search_elapsed_from_first_launch_seconds": 3360.06409,
+    "resumed_selection_wall_seconds_sacct": 1201,
+    "pilot_application_wall_seconds": 165.72569883149117,
+    "pilot_step_elapsed_seconds": 174,
+    "judge_application_wall_seconds": 195.018092,
+    "note": "Step154 retained partial progress before a SIGKILL cancellation; accounting does not establish its cause. Reported 10,401 partial rows are recovery context supplied by root, not independently recounted here."
+  },
+  "storage": {
+    "schema_version": 1,
+    "snapshot_utc": "2026-10-11T16:40:12.668731+00:00",
+    "followup_storage": {
+      "logical_bytes": 2546634328,
+      "allocated_bytes": 722456064,
+      "files": 249,
+      "complete": true,
+      "per_root": {
+        "${OLENS_DATA_ROOT}/target-only-search-v1": {
+          "logical_bytes": 2546634328,
+          "allocated_bytes": 722456064,
+          "files": 249,
+          "complete": true
+        }
+      },
+      "logical_gb_decimal": 2.546634328,
+      "allocated_gb_decimal": 0.722456064
+    },
+    "project_storage": {
+      "logical_bytes": 125920751606,
+      "allocated_bytes": 95146773504,
+      "files": 18970,
+      "complete": true,
+      "per_root": {
+        "${OLENS_COMPUTE_ROOT}": {
+          "logical_bytes": 83281680799,
+          "allocated_bytes": 83307225088,
+          "files": 10831,
+          "complete": true
+        },
+        "${OLENS_DATA_ROOT}": {
+          "logical_bytes": 42639070807,
+          "allocated_bytes": 11839548416,
+          "files": 8139,
+          "complete": true
+        }
+      },
+      "logical_gb_decimal": 125.920751606,
+      "allocated_gb_decimal": 95.146773504
+    },
+    "method": "regular files; inode dedup across roots; symlinks skipped; st_size logical bytes and st_blocks*512 allocated bytes; external shared weights excluded"
+  },
+  "source_pins": [
+    {
+      "path": "${OLENS_REPO_ROOT}/configs/target_only_inventory_v2.json",
+      "sha256": "181fcc259ed81213a7b26ea18142b6cd35648e89b83100a5cf07590ed75b2c47"
+    },
+    {
+      "path": "${OLENS_REPO_ROOT}/docs/reviews/target-only-judging-run-v1.json",
+      "sha256": "d36445d68d820cd1bb860774c195b18bd56c47b887a324b56544f6eee2ab5cb7"
+    },
+    {
+      "path": "${OLENS_REPO_ROOT}/.state/target-only-search-runtime-v1.json",
+      "sha256": "15e5f4429120cf5a35ab37cdaa359ee0544cea66a364f146b0f899199ae71509"
+    },
+    {
+      "path": "${OLENS_REPO_ROOT}/.state/target-only-cpu-launch-history.jsonl",
+      "sha256": "9e71a0d4c076b15654f5993a4bc2713c9662824f7113cb98409005ef897d2cac"
+    },
+    {
+      "path": "${OLENS_REPO_ROOT}/infra/watch_resources.py",
+      "sha256": "6198f358c226c062615a23c396fecf2eb6afc27be7e8a73d6e4d8fbe3d94f95d"
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/target-only-search-v1/pilot-v1/status.json",
+      "sha256": "14db0abfb43192a1faa622b780e8e3e3e9c63081944658dff50a2a165716c2fe"
+    },
+    {
+      "path": "/tmp/target_only_sacct.psv",
+      "sha256": "b011a721b0d7ebcca2fb4c4d5c9e11a670226c32ed75ed1808f191e9782fe08e"
+    }
+  ],
+  "audit_activity": {
+    "api_calls": 0,
+    "gpu_calls": 0,
+    "new_cpu_allocation": false,
+    "storage_audit_step": "25299630.163",
+    "external_resource_copy_written": false
+  }
+}

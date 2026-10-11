@@ -19,11 +19,52 @@ class TargetOnlyPresentationTests(unittest.TestCase):
         self.assertEqual(len(data['methods']), 10)
         self.assertTrue(all(not m['metrics'] for m in data['methods']))
         slides = p.pages(data)
-        self.assertEqual(len(slides), 11)
-        for slide in (slides[0], slides[1], slides[2], slides[4], slides[6], slides[8]):
+        self.assertEqual(len(slides), 12)
+        for slide in (slides[0], slides[1], slides[2], slides[4], slides[6], slides[7], slides[9]):
             labels = [i.get('text', '') for i in slide['items']]
             self.assertEqual(sum(x == 'Original released lens' for x in labels), 4)
             self.assertEqual(sum(x == 'Pending' for x in labels) % 4, 0)
+
+    def test_paired_panels_use_saved_changes_even_when_rate_intervals_overlap(self):
+        # Synthetic geometry fixture only; never research evidence or a build input.
+        data = p.pending()
+        data['status'] = 'validated'
+        method = next(m for m in data['methods'] if m['id'] == p.REPEAT)
+        for m in data['methods']:
+            m['metrics'] = {f: {'value': .5, 'ci95': [.1, .9]} for f in p.TASKS}
+        method['comparisons'] = {ref: {f: {'delta': .0123, 'ci95': [.01, .02],
+                                         'simultaneous_ci95': [-.005, .025]}
+                                      for f in p.TASKS} for ref in (p.RAW, p.POOL)}
+        items = p.paired_panels(data, p.REPEAT)
+        labels = [i.get('text', '') for i in items]
+        self.assertEqual(labels.count('+1.23 pp'), 8)
+        self.assertEqual(labels.count('50.00%'), 12)
+        self.assertEqual(labels.count('Change from original lens'), 4)
+        self.assertEqual(labels.count('Change from actual parent'), 4)
+        self.assertEqual(sum(i['kind'] == 'ellipse' for i in items), 8)
+        self.assertEqual(sum(i['kind'] == 'line' and i['color'] == p.ORANGE for i in items), 24)
+        self.assertEqual(labels.count('-5 pp'), 4)
+        self.assertIn('Negative helps', labels)
+        self.assertEqual(labels.count('Positive helps'), 3)
+
+    def test_paired_missing_zero_and_undefined_are_distinct(self):
+        data = p.pending()
+        data['status'] = 'validated'
+        method = next(m for m in data['methods'] if m['id'] == p.REPEAT)
+        method['comparisons'] = {p.RAW: {
+            'hallucination': {'delta': 0, 'ci95': [0, 0], 'warnings': ['Zero variation']},
+            'multihop_mt': {'delta': .01, 'ci95': None},
+            'chain_intermediates': {'delta': None, 'ci95': None, 'warnings': ['Undefined']}}}
+        labels = [i.get('text', '') for i in p.paired_panels(data, p.REPEAT)]
+        for label in ('Zero-width interval; uncertain', 'Pointwise interval unavailable', 'Undefined interval', 'Undefined', 'Unavailable'):
+            self.assertIn(label, labels)
+        self.assertEqual(sum(i['kind'] == 'ellipse' for i in p.paired_panels(data, p.REPEAT)), 2)
+
+    def test_guided_prune_includes_matched_random_paired_comparison(self):
+        items = p.paired_panels(p.pending(), 'repeat_swap_then_prune_005-n32')
+        labels = [i.get('text', '') for i in items]
+        self.assertEqual(labels.count('Change from matched random deletion'), 4)
+        self.assertEqual(labels.count('Pending'), 24)
 
     def test_reviewed_findings_lead_the_deck(self):
         data = p.pending()

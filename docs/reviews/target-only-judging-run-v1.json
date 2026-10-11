@@ -1,0 +1,655 @@
+{
+  "schema_version": 1,
+  "status": "read_only_terminal_verified",
+  "checked_utc": "2026-10-11T16:34:09.553394+00:00",
+  "scope": "Four target-only methods on four complete previously inspected banks; completion and cost monitoring only; no winner interpretation.",
+  "units_complete": 16,
+  "all_native_stages_complete": true,
+  "missing_stage1_total": 0,
+  "missing_stage2_total": 0,
+  "gpu_count": 0,
+  "monitor_paid_requests": 0,
+  "monitor_inference_calls": 0,
+  "allocation_job_id": "25299630",
+  "allocation_step": "161",
+  "worker_returncodes": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "started_utc": "2026-10-11T16:28:46.066690+00:00",
+  "ended_utc": "2026-10-11T16:32:01.084782+00:00",
+  "wall_seconds": 195.018092,
+  "forecast_new_charge_usd": 2.0265038011654344,
+  "budget_before": {
+    "utc": "2026-10-11T16:28:37.337155+00:00",
+    "db_path": "${OLENS_COMPUTE_ROOT}/budget/ledger-v2.sqlite3",
+    "hard_usd": 340.0,
+    "target_usd": 200.0,
+    "halted": false,
+    "actual_usd": 142.728601935,
+    "reserved_usd": 5.068543875,
+    "committed_usd": 147.79714581,
+    "remaining_hard_usd": 192.20285419,
+    "attempt_counts": {
+      "reserved": 36,
+      "settled": 670981,
+      "unknown": 567
+    },
+    "invoice_reconciled": false
+  },
+  "budget_after": {
+    "utc": "2026-10-11T16:34:09.545755+00:00",
+    "db_path": "${OLENS_COMPUTE_ROOT}/budget/ledger-v2.sqlite3",
+    "hard_usd": 340.0,
+    "target_usd": 200.0,
+    "halted": false,
+    "actual_usd": 144.75781431,
+    "reserved_usd": 5.068543875,
+    "committed_usd": 149.82635818499998,
+    "remaining_hard_usd": 190.17364181500002,
+    "attempt_counts": {
+      "reserved": 36,
+      "settled": 683964,
+      "unknown": 567
+    },
+    "invoice_reconciled": false
+  },
+  "new_settled_usage_estimate_usd": 2.029212375,
+  "net_retained_reservation_change_usd": 0.0,
+  "new_committed_estimate_usd": 2.029212375,
+  "invoice_reconciled": false,
+  "cost_note": "Ledger actual denotes settled API usage estimates, not reconciled invoices. Reservations remain separate and include prior unresolved attempts. Global before/after delta reflects this dispatch interval; no monitor API requests were made.",
+  "observations": [
+    "No visible transport errors, timeouts or tracebacks in family logs.",
+    "Runtime complete and all four worker return codes zero.",
+    "Both Hallucination native stages verified for all four arms."
+  ],
+  "source_pins": [
+    {
+      "path": "configs/target_only_inventory_v2.json",
+      "sha256": "181fcc259ed81213a7b26ea18142b6cd35648e89b83100a5cf07590ed75b2c47"
+    },
+    {
+      "path": "configs/target_only_api_v1.json",
+      "sha256": "12e8455e644fdfcd96b5b71dd580469f071c7b755e428a53f0a7d26c06515ca7"
+    },
+    {
+      "path": "scripts/evaluate_target_only_search.py",
+      "sha256": "4662b1eb03c14a5f67cd2c3603723c4c957655813c1ab6893ded2fa20d2bae44"
+    },
+    {
+      "path": "scripts/expanded_judges.py",
+      "sha256": "c4da9bbedd0d28a9f94d0da0979b048bd2dcd2f31936812e8ee5dfb044f0b240"
+    },
+    {
+      "path": "src/olens_improve/reporting.py",
+      "sha256": "7bc728136f19eac771ed3fb8c3b9077f416d047197bb3c9c0de2c431985ee319"
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/target-only-search-v1/receipts/root-dispatch-v1.json",
+      "sha256": "ff6e540b26e14f56564ac91b3f1c16d4454a5f59eae6e06b17ac3ba60a8994be"
+    },
+    {
+      "path": ".state/target-only-judges-runtime-v1.json",
+      "sha256": "ffa2177c3d514c054bd9e2660619764289580da5aff8681ed11cf60d562f9e6f"
+    }
+  ],
+  "logs": [
+    {
+      "family": "hallucination",
+      "path": ".state/target-only-judges-hallucination-v1.log",
+      "sha256": "3149955142508b801ae9bd9cd2745cf61a035efca414326d7547a8ab383b586f",
+      "logged_completion_count": 4
+    },
+    {
+      "family": "multihop_mt",
+      "path": ".state/target-only-judges-multihop_mt-v1.log",
+      "sha256": "e0f320c864a4ca891a7674157a2f4239cc50813f29edccca674e7d13cce6bdaa",
+      "logged_completion_count": 4
+    },
+    {
+      "family": "chain_intermediates",
+      "path": ".state/target-only-judges-chain_intermediates-v1.log",
+      "sha256": "a5c672fb5ed7379b068594d82f80c486e85e5b2c05b666d8c6da02acdc2c1966",
+      "logged_completion_count": 4
+    },
+    {
+      "family": "role_bound_association",
+      "path": ".state/target-only-judges-role_bound_association-v1.log",
+      "sha256": "7865ed0695619f3da133f0b4b59c72de5b9940b0983a531dc2824ac097713972",
+      "logged_completion_count": 4
+    }
+  ],
+  "units": [
+    {
+      "family": "hallucination",
+      "condition": "repeat_swap-n32",
+      "native_stage_coverage": {
+        "expected_cells": 5615,
+        "empty_abstentions": 1,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      },
+      "started_utc": 1791736129.5595074,
+      "finished_utc": 1791736186.5489216,
+      "wall_seconds": 56.98941545467824,
+      "selection_sha256": "2599503fd8db7261a442171c6e3c4fe3a2538426edcd5f222a8fc8f8afbfa323",
+      "manifest_sha256": "d1d035552299a22a1f25dcbaa5d33ffa30dd71264330ba5953859b846fa08341",
+      "evidence": [
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/selections-v2/merged/hallucination.ready.json",
+          "sha256": "a0d2eba0bcdaf29235b40bdad90205fac12e7b55ef0eef4b1ebafaa9f8cb5551"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap-n32/hallucination.summary.json",
+          "sha256": "bc053ea34e8632bdc4ba90b2cb1cdfde82cdc47b2ce3846f7a3696eb8835c6c8"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap-n32/hallucination.execution.jsonl",
+          "sha256": "7dfdb3f00fe89a624722feefbf4a8816522f00d3d4841363c13be3b0af8641f8"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap-n32/hallucination/results.json",
+          "sha256": "35abaa1f63bff9014857bb9ce0093046c0b9ba73ee41cdef2495bb64d48a0286"
+        }
+      ]
+    },
+    {
+      "family": "hallucination",
+      "condition": "repeat_swap_then_prune_005-n32",
+      "native_stage_coverage": {
+        "expected_cells": 5615,
+        "empty_abstentions": 1,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      },
+      "started_utc": 1791736188.3639047,
+      "finished_utc": 1791736211.1305904,
+      "wall_seconds": 22.76668843254447,
+      "selection_sha256": "2599503fd8db7261a442171c6e3c4fe3a2538426edcd5f222a8fc8f8afbfa323",
+      "manifest_sha256": "d1d035552299a22a1f25dcbaa5d33ffa30dd71264330ba5953859b846fa08341",
+      "evidence": [
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/selections-v2/merged/hallucination.ready.json",
+          "sha256": "a0d2eba0bcdaf29235b40bdad90205fac12e7b55ef0eef4b1ebafaa9f8cb5551"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap_then_prune_005-n32/hallucination.summary.json",
+          "sha256": "1a793c9692d7280cd87606d63cb2d4b7451617e8b711d3333fd1783222fe3271"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap_then_prune_005-n32/hallucination.execution.jsonl",
+          "sha256": "a988e334b53c073429339324f9b5d574d25079f2d41159783003461f7026b638"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap_then_prune_005-n32/hallucination/results.json",
+          "sha256": "ee4255e0275403e8d8039c895a72dcfe32cd374c187b99c030a50497d32a6d2e"
+        }
+      ]
+    },
+    {
+      "family": "hallucination",
+      "condition": "bounded_prune_refill_005-n32",
+      "native_stage_coverage": {
+        "expected_cells": 5615,
+        "empty_abstentions": 1,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      },
+      "started_utc": 1791736213.2017484,
+      "finished_utc": 1791736246.5519564,
+      "wall_seconds": 33.35020941030234,
+      "selection_sha256": "2599503fd8db7261a442171c6e3c4fe3a2538426edcd5f222a8fc8f8afbfa323",
+      "manifest_sha256": "d1d035552299a22a1f25dcbaa5d33ffa30dd71264330ba5953859b846fa08341",
+      "evidence": [
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/selections-v2/merged/hallucination.ready.json",
+          "sha256": "a0d2eba0bcdaf29235b40bdad90205fac12e7b55ef0eef4b1ebafaa9f8cb5551"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/bounded_prune_refill_005-n32/hallucination.summary.json",
+          "sha256": "f0c1b697eca4a7fcb6acb03ec77b7253e93bfeae2bf351b42a3f54a9ca4806df"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/bounded_prune_refill_005-n32/hallucination.execution.jsonl",
+          "sha256": "f81d9ce0f27473966031e614c6b50bfe05a9341a9e2a6783e75460dbca40d2f1"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/bounded_prune_refill_005-n32/hallucination/results.json",
+          "sha256": "83207bbcbb3c436beecb974842ea775eaf50d125573bcf4e5fe0c719492544f7"
+        }
+      ]
+    },
+    {
+      "family": "hallucination",
+      "condition": "repeated_swaps_random_delete_match_005-n32",
+      "native_stage_coverage": {
+        "expected_cells": 5615,
+        "empty_abstentions": 1,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      },
+      "started_utc": 1791736248.3270364,
+      "finished_utc": 1791736314.1374767,
+      "wall_seconds": 65.81044163089246,
+      "selection_sha256": "2599503fd8db7261a442171c6e3c4fe3a2538426edcd5f222a8fc8f8afbfa323",
+      "manifest_sha256": "d1d035552299a22a1f25dcbaa5d33ffa30dd71264330ba5953859b846fa08341",
+      "evidence": [
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/selections-v2/merged/hallucination.ready.json",
+          "sha256": "a0d2eba0bcdaf29235b40bdad90205fac12e7b55ef0eef4b1ebafaa9f8cb5551"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeated_swaps_random_delete_match_005-n32/hallucination.summary.json",
+          "sha256": "f48de773f5016132e813e8ddc13ad617e0bf33c42ee26486a02c6401283184e7"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeated_swaps_random_delete_match_005-n32/hallucination.execution.jsonl",
+          "sha256": "48e44117689e96932fc1fb2d72dff063637dcc42df6b05722b749554425e1a29"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeated_swaps_random_delete_match_005-n32/hallucination/results.json",
+          "sha256": "6394c4451075e08da60bfe79092f5e8ab7393728fb0832e2687159be43108342"
+        }
+      ]
+    },
+    {
+      "family": "multihop_mt",
+      "condition": "repeat_swap-n32",
+      "native_stage_coverage": {
+        "expected_cells": 1100,
+        "empty_abstentions": 0,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      },
+      "started_utc": 1791736127.5193443,
+      "finished_utc": 1791736127.782202,
+      "wall_seconds": 0.2628593621775508,
+      "selection_sha256": "8c061325d4ff601c2c335dadf9aab061e0f228d254acbedcdd3d21dda4d3b152",
+      "manifest_sha256": "a1050b31bff47cc1e7fcbc9e4740ad48c3025a9780a644352c7ff197d64277ad",
+      "evidence": [
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/selections-v2/merged/multihop_mt.ready.json",
+          "sha256": "d6bfd74a49f150fa7613590997697c421901dd8cb33ab81a02dcc35be9947853"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap-n32/multihop_mt.summary.json",
+          "sha256": "b4240d632fe5f510425740120258c606776edaf0367a6b2e35331172cd6b64ec"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap-n32/multihop_mt.execution.jsonl",
+          "sha256": "8339583a77a223dc301871f1f1599ff75033d756c23d0b276783d706dcf467c1"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap-n32/multihop_mt/results.json",
+          "sha256": "c9d98079d0797e2cbbb1a33233aaf66696464428b7be0e2c5a4b882365ccb3d5"
+        }
+      ]
+    },
+    {
+      "family": "multihop_mt",
+      "condition": "repeat_swap_then_prune_005-n32",
+      "native_stage_coverage": {
+        "expected_cells": 1100,
+        "empty_abstentions": 0,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      },
+      "started_utc": 1791736128.3184516,
+      "finished_utc": 1791736128.5278964,
+      "wall_seconds": 0.20944587606936693,
+      "selection_sha256": "8c061325d4ff601c2c335dadf9aab061e0f228d254acbedcdd3d21dda4d3b152",
+      "manifest_sha256": "a1050b31bff47cc1e7fcbc9e4740ad48c3025a9780a644352c7ff197d64277ad",
+      "evidence": [
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/selections-v2/merged/multihop_mt.ready.json",
+          "sha256": "d6bfd74a49f150fa7613590997697c421901dd8cb33ab81a02dcc35be9947853"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap_then_prune_005-n32/multihop_mt.summary.json",
+          "sha256": "0d228470be663718a85242897181be2a9d5a7da570c17935fbee3d823deca36e"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap_then_prune_005-n32/multihop_mt.execution.jsonl",
+          "sha256": "46c5eb0adbc458f2a22849404c857f423538addb3713f0970d86383d8dfe27f2"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap_then_prune_005-n32/multihop_mt/results.json",
+          "sha256": "95ad19a99624f0b32477fa1c763a68fb83e9a29feced3bb1d8526f8884ee1710"
+        }
+      ]
+    },
+    {
+      "family": "multihop_mt",
+      "condition": "bounded_prune_refill_005-n32",
+      "native_stage_coverage": {
+        "expected_cells": 1100,
+        "empty_abstentions": 0,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      },
+      "started_utc": 1791736129.073889,
+      "finished_utc": 1791736129.2846413,
+      "wall_seconds": 0.21075279917567968,
+      "selection_sha256": "8c061325d4ff601c2c335dadf9aab061e0f228d254acbedcdd3d21dda4d3b152",
+      "manifest_sha256": "a1050b31bff47cc1e7fcbc9e4740ad48c3025a9780a644352c7ff197d64277ad",
+      "evidence": [
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/selections-v2/merged/multihop_mt.ready.json",
+          "sha256": "d6bfd74a49f150fa7613590997697c421901dd8cb33ab81a02dcc35be9947853"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/bounded_prune_refill_005-n32/multihop_mt.summary.json",
+          "sha256": "4a272f9ec151dc0809258dac3b9335d349178e4864e18174452e7b64b4f32252"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/bounded_prune_refill_005-n32/multihop_mt.execution.jsonl",
+          "sha256": "2ba0f5c589d7a68ba463cf35567fe9a48dbe1865f2c91e6042cc129aca7864ac"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/bounded_prune_refill_005-n32/multihop_mt/results.json",
+          "sha256": "7438342e86d0b13982541a58c355b8400de00c9e9a8bf58b34f4bad6a0c1a718"
+        }
+      ]
+    },
+    {
+      "family": "multihop_mt",
+      "condition": "repeated_swaps_random_delete_match_005-n32",
+      "native_stage_coverage": {
+        "expected_cells": 1100,
+        "empty_abstentions": 0,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      },
+      "started_utc": 1791736129.814197,
+      "finished_utc": 1791736130.0241537,
+      "wall_seconds": 0.2099577272310853,
+      "selection_sha256": "8c061325d4ff601c2c335dadf9aab061e0f228d254acbedcdd3d21dda4d3b152",
+      "manifest_sha256": "a1050b31bff47cc1e7fcbc9e4740ad48c3025a9780a644352c7ff197d64277ad",
+      "evidence": [
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/selections-v2/merged/multihop_mt.ready.json",
+          "sha256": "d6bfd74a49f150fa7613590997697c421901dd8cb33ab81a02dcc35be9947853"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeated_swaps_random_delete_match_005-n32/multihop_mt.summary.json",
+          "sha256": "21b12ef2f92a871291f60280e380b68919f070a0e7926116b5fe1b4380a5b5c8"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeated_swaps_random_delete_match_005-n32/multihop_mt.execution.jsonl",
+          "sha256": "ce7738dfd0c21a6f7e4968285b2ddb672ac99b26690f150fc0bad98fd24d76be"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeated_swaps_random_delete_match_005-n32/multihop_mt/results.json",
+          "sha256": "91e5daa2e74336b15cde05426f00e83478d02e98b4c136cc8d24cd1b26e6f5bc"
+        }
+      ]
+    },
+    {
+      "family": "chain_intermediates",
+      "condition": "repeat_swap-n32",
+      "native_stage_coverage": {
+        "expected_cells": 1320,
+        "empty_abstentions": 0,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      },
+      "started_utc": 1791736127.7264123,
+      "finished_utc": 1791736134.4111195,
+      "wall_seconds": 6.684707780368626,
+      "selection_sha256": "b7a1b6e9ca3e054979b3c12f603d948b861b578022f158ddee383acf33965d16",
+      "manifest_sha256": "3ee71c716b6d886bb41b7d487e017b6864bfa94f400f17cb998976f1d1b0cfaf",
+      "evidence": [
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/selections-v2/merged/chain_intermediates.ready.json",
+          "sha256": "4fc543be4da673505b313f44b131cde80ddcb4db60676d1c77e0977950fea5ca"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap-n32/chain_intermediates.summary.json",
+          "sha256": "bbe63530ef7f6786cb785b4280ebf79657abd0c48f1b39244d4e4f96ebf14c7b"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap-n32/chain_intermediates.execution.jsonl",
+          "sha256": "1b5e824822c745e1161122ef9190076017eb35ac2af72398b54ccb65b0f87ce3"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap-n32/chain_intermediates/results.json",
+          "sha256": "8d18bf4d57036d044949e4b27682a34043a2e70a3e0b65297a2d07305ce4e100"
+        }
+      ]
+    },
+    {
+      "family": "chain_intermediates",
+      "condition": "repeat_swap_then_prune_005-n32",
+      "native_stage_coverage": {
+        "expected_cells": 1320,
+        "empty_abstentions": 0,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      },
+      "started_utc": 1791736134.9700258,
+      "finished_utc": 1791736137.6563053,
+      "wall_seconds": 2.6862816279754043,
+      "selection_sha256": "b7a1b6e9ca3e054979b3c12f603d948b861b578022f158ddee383acf33965d16",
+      "manifest_sha256": "3ee71c716b6d886bb41b7d487e017b6864bfa94f400f17cb998976f1d1b0cfaf",
+      "evidence": [
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/selections-v2/merged/chain_intermediates.ready.json",
+          "sha256": "4fc543be4da673505b313f44b131cde80ddcb4db60676d1c77e0977950fea5ca"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap_then_prune_005-n32/chain_intermediates.summary.json",
+          "sha256": "2d469c86f8b65759b9d719fed0f6a8ef4ad890b2e2e620d78144fa24800958d8"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap_then_prune_005-n32/chain_intermediates.execution.jsonl",
+          "sha256": "d55ebde2458bfb939311fe923bc38b3399ec415f390cbdc6a68517c1305a00ad"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap_then_prune_005-n32/chain_intermediates/results.json",
+          "sha256": "6223d162aba331a95be1bf960e7f9d21a8f5609fa86f68c008e218f3dd3868aa"
+        }
+      ]
+    },
+    {
+      "family": "chain_intermediates",
+      "condition": "bounded_prune_refill_005-n32",
+      "native_stage_coverage": {
+        "expected_cells": 1320,
+        "empty_abstentions": 0,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      },
+      "started_utc": 1791736138.1906247,
+      "finished_utc": 1791736142.1584344,
+      "wall_seconds": 3.9678104696795344,
+      "selection_sha256": "b7a1b6e9ca3e054979b3c12f603d948b861b578022f158ddee383acf33965d16",
+      "manifest_sha256": "3ee71c716b6d886bb41b7d487e017b6864bfa94f400f17cb998976f1d1b0cfaf",
+      "evidence": [
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/selections-v2/merged/chain_intermediates.ready.json",
+          "sha256": "4fc543be4da673505b313f44b131cde80ddcb4db60676d1c77e0977950fea5ca"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/bounded_prune_refill_005-n32/chain_intermediates.summary.json",
+          "sha256": "4cd3f5440d075aee3658a40a03e2a7dd2976cabe09024f2012c8dc87524bbcae"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/bounded_prune_refill_005-n32/chain_intermediates.execution.jsonl",
+          "sha256": "afc0502f09b80b185d0575a3df21a0f3502e9f526e333536aa0d75bf8ee647a7"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/bounded_prune_refill_005-n32/chain_intermediates/results.json",
+          "sha256": "95bb1933b5fe5ba962be9fbfdfbeaa15868c3744ddfedf4d138f0d94f5072dd4"
+        }
+      ]
+    },
+    {
+      "family": "chain_intermediates",
+      "condition": "repeated_swaps_random_delete_match_005-n32",
+      "native_stage_coverage": {
+        "expected_cells": 1320,
+        "empty_abstentions": 0,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      },
+      "started_utc": 1791736142.7057586,
+      "finished_utc": 1791736160.1048567,
+      "wall_seconds": 17.399098907597363,
+      "selection_sha256": "b7a1b6e9ca3e054979b3c12f603d948b861b578022f158ddee383acf33965d16",
+      "manifest_sha256": "3ee71c716b6d886bb41b7d487e017b6864bfa94f400f17cb998976f1d1b0cfaf",
+      "evidence": [
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/selections-v2/merged/chain_intermediates.ready.json",
+          "sha256": "4fc543be4da673505b313f44b131cde80ddcb4db60676d1c77e0977950fea5ca"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeated_swaps_random_delete_match_005-n32/chain_intermediates.summary.json",
+          "sha256": "a8e2d2d1ebdf0d1725e28566806f8abf9622e1b2d286f1505aca3958521b3b38"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeated_swaps_random_delete_match_005-n32/chain_intermediates.execution.jsonl",
+          "sha256": "a75132fdd25948768bf0a07900f4d6056384a661f08ac21fcf4e44cbfb69e793"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeated_swaps_random_delete_match_005-n32/chain_intermediates/results.json",
+          "sha256": "87943d791819372d0928f3ae133a14bf28bfa6b9085ea53451fb465b3f8e0f45"
+        }
+      ]
+    },
+    {
+      "family": "role_bound_association",
+      "condition": "repeat_swap-n32",
+      "native_stage_coverage": {
+        "expected_cells": 11400,
+        "empty_abstentions": 0,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      },
+      "started_utc": 1791736131.0951667,
+      "finished_utc": 1791736166.8762233,
+      "wall_seconds": 35.78105786256492,
+      "selection_sha256": "2537bcd875b01c7e73f3162fa5bfcdc8724a299c791811521d2e2c3af26ecd47",
+      "manifest_sha256": "da90e3ba4867baf18c2f8b651e4eb30b6a6746c16cd755abaf5826017525a525",
+      "evidence": [
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/selections-v2/merged/role_bound_association.ready.json",
+          "sha256": "67c5eb879a9b5509766965896d3953ee3406d1adede01c2a7d7003a0858b8b76"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap-n32/role_bound_association.summary.json",
+          "sha256": "554f033c81f9017ec53894e79b84e10436dd163353e403ab7b8d7866f7000b7f"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap-n32/role_bound_association.execution.jsonl",
+          "sha256": "b6dbfb1ae1245583733acb34eaf5fdc81a33bb92e5f59ea50a4f2ac7fbfd8595"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap-n32/role_bound_association/results.json",
+          "sha256": "e9275d4181ebf47d8f19a926a078c988220f9780fbcdda187ebf7242d814d558"
+        }
+      ]
+    },
+    {
+      "family": "role_bound_association",
+      "condition": "repeat_swap_then_prune_005-n32",
+      "native_stage_coverage": {
+        "expected_cells": 11400,
+        "empty_abstentions": 92,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      },
+      "started_utc": 1791736169.441849,
+      "finished_utc": 1791736180.1152346,
+      "wall_seconds": 10.673387410119176,
+      "selection_sha256": "2537bcd875b01c7e73f3162fa5bfcdc8724a299c791811521d2e2c3af26ecd47",
+      "manifest_sha256": "da90e3ba4867baf18c2f8b651e4eb30b6a6746c16cd755abaf5826017525a525",
+      "evidence": [
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/selections-v2/merged/role_bound_association.ready.json",
+          "sha256": "67c5eb879a9b5509766965896d3953ee3406d1adede01c2a7d7003a0858b8b76"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap_then_prune_005-n32/role_bound_association.summary.json",
+          "sha256": "fb3f7aac6a378d632a76b7568269f82d0ffa7dbc5fe0b390469af0d6760611f9"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap_then_prune_005-n32/role_bound_association.execution.jsonl",
+          "sha256": "08c81d16f7d10dd5df794a39d002381147cac5c1cd3bdb988f22cd87f73c72af"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeat_swap_then_prune_005-n32/role_bound_association/results.json",
+          "sha256": "2cacc68ec42b1a11f1483ffe2632439b9b0f78dba1dc6bd3a1b13b8eba2ce0ec"
+        }
+      ]
+    },
+    {
+      "family": "role_bound_association",
+      "condition": "bounded_prune_refill_005-n32",
+      "native_stage_coverage": {
+        "expected_cells": 11400,
+        "empty_abstentions": 88,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      },
+      "started_utc": 1791736182.6754992,
+      "finished_utc": 1791736204.5234032,
+      "wall_seconds": 21.847905026748776,
+      "selection_sha256": "2537bcd875b01c7e73f3162fa5bfcdc8724a299c791811521d2e2c3af26ecd47",
+      "manifest_sha256": "da90e3ba4867baf18c2f8b651e4eb30b6a6746c16cd755abaf5826017525a525",
+      "evidence": [
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/selections-v2/merged/role_bound_association.ready.json",
+          "sha256": "67c5eb879a9b5509766965896d3953ee3406d1adede01c2a7d7003a0858b8b76"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/bounded_prune_refill_005-n32/role_bound_association.summary.json",
+          "sha256": "9617b330d836ff491d44da0f484dd449ae74a4e72e145610cbafe5c41c507c8a"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/bounded_prune_refill_005-n32/role_bound_association.execution.jsonl",
+          "sha256": "5863e66818846cfd18f29649d444ebead57976790cff86d09a4a8d8efc160de3"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/bounded_prune_refill_005-n32/role_bound_association/results.json",
+          "sha256": "c57a5134fd29270ffec2c1165493aa03adb810f08452c008b15542ad75eb8014"
+        }
+      ]
+    },
+    {
+      "family": "role_bound_association",
+      "condition": "repeated_swaps_random_delete_match_005-n32",
+      "native_stage_coverage": {
+        "expected_cells": 11400,
+        "empty_abstentions": 92,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      },
+      "started_utc": 1791736207.0699604,
+      "finished_utc": 1791736272.1448004,
+      "wall_seconds": 65.07484108116478,
+      "selection_sha256": "2537bcd875b01c7e73f3162fa5bfcdc8724a299c791811521d2e2c3af26ecd47",
+      "manifest_sha256": "da90e3ba4867baf18c2f8b651e4eb30b6a6746c16cd755abaf5826017525a525",
+      "evidence": [
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/selections-v2/merged/role_bound_association.ready.json",
+          "sha256": "67c5eb879a9b5509766965896d3953ee3406d1adede01c2a7d7003a0858b8b76"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeated_swaps_random_delete_match_005-n32/role_bound_association.summary.json",
+          "sha256": "8b5f876fc5a3f64d603c995e7ebb6c2a17dddc847d570c4bc6e274455f4aa249"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeated_swaps_random_delete_match_005-n32/role_bound_association.execution.jsonl",
+          "sha256": "de2cc4c81f1a16a0e0056908a74fdac90b02bf9c8307694633bf2994646fa4ae"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/target-only-search-v1/judgments/repeated_swaps_random_delete_match_005-n32/role_bound_association/results.json",
+          "sha256": "9770008306ba68d02ef2e4b04fd6af763568572d21997ff3b30daf7277740e04"
+        }
+      ]
+    }
+  ]
+}
