@@ -1,5 +1,15 @@
 # Execution status
 
+## Terminal analyses and presentation intake ready — 2026-10-11 04:41 UTC
+
+Operational judging remains **253/280**; public version 16 retains its reviewed **235/280** snapshot. The same preemptable H200 job25536297 is healthy on node4010 after its natural restart, with **18,335/19,435 likelihood sites** committed. Recent throughput projects the likelihood handoff around04:58UTC. Both editor scoring rounds still follow; their duration will be revised from the first real encoding shards and scoring progress. No final editing result or final ranking is claimed.
+
+Native, reconstruction, qualitative, pruning, role-fit and effort intake watchers are live on the existing CPU allocations. The native, final-fit and qualitative watchers now use separate physical cores, with sources and scientific settings unchanged. The affinity receipt is `.state/final-watchers-affinity-relaunch-v1/after.json`. All four benchmark banks and all70 settings remain in scope; independent-reader work stays postponed.
+
+The presentation draft covers all70 settings and28 task-specific explanations. Editing is compared primarily with the pooled parent, so gains already supplied by pooling are not attributed to editing. A separately checked pooled Adwa example recovers the benchmark's full bridge phrase while retaining wrong commanders and earlier partial clues; it is illustrative, not a claim of complete faithfulness. Exact terminal hashes, figures, example overlap and new qualitative reviews remain pending. See [the bounded example audit](reviews/expanded-pooling-hidden-bridge-alternative-root-review-v1.json).
+
+Local commits now include the source-only intake gates and resource accounting procedure through `a3ee5ee`; research Git has not been pushed. The resource parser passed four offline guards and a live read-only scheduler preflight, preserving both GPU intervals without double counting. Final allocated time, storage and API accounting await terminal refresh. No extra GPU, model, API call or method was introduced by this preparation.
+
 ## Final analysis prepared; GPU work continues — 2026-10-11 03:56 UTC
 
 **04:03 UTC restart update:** the preemptable H200 was interrupted at 03:57:55 UTC and the same job resumed on node4010 at 04:01:02 UTC. A read-only full-journal audit validates all 15,779 saved likelihood cells, exact activation/control identities and no partial tail. The runner has loaded those saved cells; the first new commits and unchanged old prefix are being checked. No extra GPU or batch/model change was made. CPU/API work stayed active.
