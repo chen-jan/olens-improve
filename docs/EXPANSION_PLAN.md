@@ -1,8 +1,8 @@
 # Expanded comparison on all four benchmark families
 
-Prepared 2026-10-10. **Planning only: wait for the user's start instruction and the promised single preemptable H200 allocation.** No new experiment, paid request, allocation request, watcher or active long-running goal is started by this document. The completed first study and its public version 12 remain unchanged.
+Prepared 2026-10-10; activated 2026-10-11 UTC. **The user approved this revised goal and execution.** One new preemptable H200 (job25536297,node4603) and a separate API CPU allocation (25536291,node1603) are running. Exact method freezing and resumable runner preparation precede scientific dispatch. The first study and its public version12 are preserved.
 
-## Goal to activate when the user starts the work
+## Active goal
 
 Evaluate the distinct, usable inference-time variants across all 469 questions in the four existing WorkspaceBench families, using the same saved activations and at most 32 original Oracle Lens samples per activation. Measure practical quality gains and component ablations, report output lengths, unresolved uncertainty and failure modes, and publish an interactive approach-by-task comparison with an updated report and presentation.
 
@@ -51,7 +51,7 @@ Report actual output lengths alongside quality and cost. These comparisons measu
 
 | Stream | Work | Resource |
 |---|---|---|
-| CPU selection | Materialize cached selectors, bounded combinations and length controls; reuse shared vectors and fits; export complete method/family outputs. | Allocated CPU cores with explicit per-worker affinity and bounded Torch threads |
+| CPU selection | Materialize cached selectors and bounded combinations; reuse shared vectors and fits; export complete method/family outputs and report natural lengths. | Allocated CPU cores with explicit per-worker affinity and bounded Torch threads |
 | Helpers and judges | Generate reusable semantic labels and edit proposals; judge each completed method/family as soon as it is ready. | Standard GPT-6 Luna API, independent of the GPU job |
 | GPU | Score N8 likelihoods with two controls, then encode new edit text in round order. Schedule likelihood shards while helpers produce edits. | **One** user-provided preemptable H200 |
 
@@ -67,7 +67,7 @@ The GPU phases share one device and must serialize model/adapter state. Switch p
 - Resume only missing units; keep API services outside GPU allocation lifetime. A watcher detects interruption but cannot guarantee a replacement GPU. Resume on the same authorized requeued allocation if available; report resource loss otherwise.
 - Keep model batches full. Checkpoint at completed work boundaries; avoid per-token synchronization or a watcher that competes for GPU memory.
 
-No watcher is currently running. A chat agent is not a substitute for a persistent CPU monitor; monitoring stops must be explicit.
+A persistent CPU monitor is running alongside the separate GPU queue watcher. Current identities and progress are recorded in `configs/runtime_expansion_v1.json` and `.state/expansion-monitor-v1.json`. Root continues active oversight; monitoring stops must be explicit.
 
 ## Evaluation and evidence
 
@@ -104,4 +104,4 @@ Completion requires every exact manifest setting to have either complete four-fa
 
 ## Start handoff
 
-**Waiting on the user's start instruction and one preemptable H200 allocation.** Until then, only plan/documentation work is authorized by the current request. The next execution turn should validate this plan, seal the exact menu and resource/cost forecast, assign CPU/API/GPU-monitoring responsibilities, validate restart behavior, then start concurrent work. No paid or GPU process is active for the expansion.
+**Execution approved on 2026-10-11 UTC.** The user authorized requesting the fourth preemptable H200 slot. New job25536297 started00:15:43UTC with oneH200,8CPU,96GiB and a20-hour limit. API CPU25536291 has8physical cores,32GiB and24hours. Earlier handed-back allocations remain untouched. The $340 total API ceiling is applied with every historical hold retained. See STATUS.md and the sealed expansion manifest for current dispatch. The goal service returned a database error; this goal is persisted here and execution uses checkpointed Slurm jobs plus an independent CPU monitor.

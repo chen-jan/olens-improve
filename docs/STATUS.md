@@ -1,5 +1,23 @@
 # Execution status
 
+## Expansion running — 2026-10-11 00:51 UTC
+
+The sealed menu contains 70 usable output settings across all four task banks. Cached selection outputs are complete for 39 settings on all 19,435 activation sites. Eight CPU workers are generating the remaining combinations. The new preemptable H200, job 25536297 on node4603, is scoring activation-conditioned likelihoods; the complete arithmetic family is already published for judging. Three families' first-round edit proposals are queued for later encoding on that GPU.
+
+Standard GPT-6 Luna services run on CPU job 25536291 with up to 256 concurrent calls. The initial 39-setting tranche has 107 of 156 complete condition/family judgments. Additional semantic and likelihood outputs bring current completion to 122 of the full menu's 280 condition/family measurements. These are operational completion counts, before source-checked statistical reporting. Hidden-name matching runs offline using the released rule. The measured role-judge batches completed roughly 3,000–3,400 calls per minute.
+
+The ledger estimates $53.54 in settled project API usage at this checkpoint, with new in-flight reservations and historical uncertain holds retained. No new unknown charges were recorded. The forecast remains about $243 total after known cache reuse, against the $340 operating ceiling; actual usage will replace that estimate. Semantic helper validation failures are preserved as unknown labels, with no invalid equivalences accepted. The fuller reasoning setting is slower and has more validation failures in the first family; this remains an implementation and quality diagnostic, rather than a reason to drop its comparison.
+
+The independent CPU monitor and GPU queue watcher are active. `configs/runtime_expansion_v1.json` records current resource identities. The first study and its public downloads are preserved. Source extraction, grouped uncertainty, qualitative review and the expanded dashboard/report/deck remain in progress. The goal service's database error is unchanged; active oversight continues in this conversation with persistent Slurm services.
+
+## Expansion activated — 2026-10-11 00:17 UTC
+
+The user approved the revised full-469/four-family goal and one additional preemptable H200. Job25536297 runs onnode4603 with oneH200,8CPU,96GiB, ending20:15:43UTC. API CPU25536291 runs onnode1603 with8physical cores,32GiB, ending00:14:55UTC October12. Historical user allocations remain untouched. The exact method manifest and resumable full-bank runners are being prepared; scientific model/API dispatch has not yet begun.
+
+The project API ceiling is now$340. Usage$36.50759506 and$4.8597425 retained holds are unchanged (receipt:durable/expansion-v1/receipts/budget-activation-v1.json). Sol6.1 agents own manifest/CPU, GPU and API streams. The goal service returned `file is not a database`; the goal is persisted in EXPANSION_PLAN.md and execution uses persistent jobs plus an independent CPU monitor. Expected elapsed time remains12–20hours, to be revised from production throughput. New analyses are exploratory; the original frozen results are preserved.
+
+Historical entries below describe the completed first study.
+
 ## Expansion planning handoff, 2026-10-10 23:57 UTC
 
 The [expanded comparison plan](EXPANSION_PLAN.md) is prepared. The user accepted the estimated API spend and additional contingency, postponed other-reader work, and will provide **one preemptable H200** later. **Wait for their start instruction and allocation; no expansion experiments, paid calls, watcher or jobs have started.** The next phase overlaps cached CPU selection, Luna helpers/judging and resumable GPU work; it adds full-bank coverage while retaining natural pooling output lengths, as approved by the user. Extra length-matching experiments are removed; output lengths will still be reported. Planning expectation: 12–20 elapsed hours with about eight H200 task-hours, roughly $230–250 extra API usage, a conservative $340 total project operating ceiling, and 30–60 GB extra persistent storage. Existing runtime/ledger settings are unchanged. The earlier completed study and public version 12 remain intact; new full-469 analyses will be exploratory.

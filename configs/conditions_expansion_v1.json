@@ -1,0 +1,282 @@
+[
+  {
+    "method": "raw_n1",
+    "n": 1
+  },
+  {
+    "method": "capped_n1",
+    "n": 1
+  },
+  {
+    "method": "best_n_exact",
+    "n": 1
+  },
+  {
+    "method": "best_n_exact",
+    "n": 2
+  },
+  {
+    "method": "best_n_exact",
+    "n": 4
+  },
+  {
+    "method": "best_n_exact",
+    "n": 8
+  },
+  {
+    "method": "best_n_exact",
+    "n": 16
+  },
+  {
+    "method": "best_n_exact",
+    "n": 32
+  },
+  {
+    "method": "random_complete",
+    "n": 16
+  },
+  {
+    "method": "random_complete",
+    "n": 32
+  },
+  {
+    "method": "pooled_greedy_swap",
+    "n": 16
+  },
+  {
+    "method": "pooled_greedy_swap",
+    "n": 32
+  },
+  {
+    "method": "prune_loo_a32_0.001",
+    "n": 32
+  },
+  {
+    "method": "prune_loo_a32_0.005",
+    "n": 32
+  },
+  {
+    "method": "random_delete_matched_a32_0.001",
+    "n": 32
+  },
+  {
+    "method": "random_delete_matched_a32_0.005",
+    "n": 32
+  },
+  {
+    "method": "prune_loo_n1_0.005",
+    "n": 1
+  },
+  {
+    "method": "random_delete_matched_n1_0.005",
+    "n": 1
+  },
+  {
+    "method": "best_n_specificity_mean",
+    "n": 32
+  },
+  {
+    "method": "best_n_specificity_max",
+    "n": 32
+  },
+  {
+    "method": "best_n_specificity_mean_then_prune_0.001",
+    "n": 32
+  },
+  {
+    "method": "best_n_specificity_mean_then_prune_0.005",
+    "n": 32
+  },
+  {
+    "method": "best_n_specificity_mean_random_delete_matched_0.001",
+    "n": 32
+  },
+  {
+    "method": "best_n_specificity_mean_random_delete_matched_0.005",
+    "n": 32
+  },
+  {
+    "method": "likelihood_true_minus_mean_two_controls",
+    "n": 8
+  },
+  {
+    "method": "own_mean_log_likelihood",
+    "n": 8
+  },
+  {
+    "method": "control_mean_log_likelihood",
+    "n": 8
+  },
+  {
+    "method": "consensus_exact_support0",
+    "n": 16
+  },
+  {
+    "method": "consensus_exact_support0.125",
+    "n": 16
+  },
+  {
+    "method": "consensus_exact_support0.25",
+    "n": 16
+  },
+  {
+    "method": "editing_round1",
+    "n": 32
+  },
+  {
+    "method": "editing_round2",
+    "n": 32
+  },
+  {
+    "method": "pooled_greedy_swap_then_prune_0.001",
+    "n": 32
+  },
+  {
+    "method": "pooled_greedy_swap_random_delete_matched_0.001",
+    "n": 32
+  },
+  {
+    "method": "pooled_greedy_swap_then_prune_0.005",
+    "n": 32
+  },
+  {
+    "method": "pooled_greedy_swap_random_delete_matched_0.005",
+    "n": 32
+  },
+  {
+    "method": "editing_round2_then_prune_0.001",
+    "n": 32
+  },
+  {
+    "method": "editing_round2_random_delete_matched_0.001",
+    "n": 32
+  },
+  {
+    "method": "editing_round2_then_prune_0.005",
+    "n": 32
+  },
+  {
+    "method": "editing_round2_random_delete_matched_0.005",
+    "n": 32
+  },
+  {
+    "method": "pooling_exact_support_lambda0.05",
+    "n": 16
+  },
+  {
+    "method": "pooling_exact_support_lambda0.2",
+    "n": 16
+  },
+  {
+    "method": "exact_support_only",
+    "n": 16
+  },
+  {
+    "method": "consensus_semantic_v5_support0_compatoff_vetooff",
+    "n": 16
+  },
+  {
+    "method": "consensus_semantic_v5_support0_compatoff_vetoon",
+    "n": 16
+  },
+  {
+    "method": "consensus_semantic_v5_support0_compaton_vetoon",
+    "n": 16
+  },
+  {
+    "method": "consensus_semantic_v5_support0.125_compatoff_vetoon",
+    "n": 16
+  },
+  {
+    "method": "consensus_semantic_v5_support0.125_compaton_vetoon",
+    "n": 16
+  },
+  {
+    "method": "pooled_specificity_mean",
+    "n": 32
+  },
+  {
+    "method": "pooled_specificity_mean_then_prune_0.005",
+    "n": 32
+  },
+  {
+    "method": "pooled_specificity_mean_random_delete_matched_0.005",
+    "n": 32
+  },
+  {
+    "method": "best_n_specificity_mean_abstain_nonpositive",
+    "n": 32
+  },
+  {
+    "method": "consensus_semantic_v5_medium_support0_compatoff_vetoon",
+    "n": 16
+  },
+  {
+    "method": "consensus_semantic_v5_medium_support0_compaton_vetoon",
+    "n": 16
+  },
+  {
+    "method": "consensus_semantic_v5_medium_support0.125_compatoff_vetoon",
+    "n": 16
+  },
+  {
+    "method": "consensus_semantic_v5_medium_support0.125_compaton_vetoon",
+    "n": 16
+  },
+  {
+    "method": "random_complete",
+    "n": 1
+  },
+  {
+    "method": "random_complete",
+    "n": 2
+  },
+  {
+    "method": "random_complete",
+    "n": 4
+  },
+  {
+    "method": "random_complete",
+    "n": 8
+  },
+  {
+    "method": "prune_loo_a32_0",
+    "n": 32
+  },
+  {
+    "method": "random_delete_matched_a32_0",
+    "n": 32
+  },
+  {
+    "method": "prune_coefficient_a32_0.01",
+    "n": 32
+  },
+  {
+    "method": "prune_coefficient_a32_0.05",
+    "n": 32
+  },
+  {
+    "method": "prune_loo_n1_0",
+    "n": 1
+  },
+  {
+    "method": "random_delete_matched_n1_0",
+    "n": 1
+  },
+  {
+    "method": "prune_loo_n1_0.001",
+    "n": 1
+  },
+  {
+    "method": "random_delete_matched_n1_0.001",
+    "n": 1
+  },
+  {
+    "method": "prune_coefficient_n1_0.01",
+    "n": 1
+  },
+  {
+    "method": "prune_coefficient_n1_0.05",
+    "n": 1
+  }
+]

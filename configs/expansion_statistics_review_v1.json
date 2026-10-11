@@ -1,0 +1,20 @@
+{
+  "status": "independently_reviewed_with_partial_family_guard",
+  "reviewer": "expanded_manifest_cpu",
+  "utc": "2026-10-11T00:39:04.126063+00:00",
+  "source_sha256": {
+    "src/olens_improve/expanded_statistics.py": "09308cdebedaf1cd488e03f9029fc4656cc43d743836609bde9556b12179daac",
+    "tests/test_expanded_statistics.py": "773c07dbe5903641a24dc5d05d09abac2f7f5b843db0fcf950748d375b8807ef",
+    "configs/expansion_analysis_v1.json": "c59b77fb2fc005eae0a34ac43f39d657259c45835d117e090cbf52eec6d8e909"
+  },
+  "evidence": [
+    "Source review of ratio-of-sums, item/group cohort checks, paired shared draws, independent task streams, joint centered maximum, and degeneracy/missingness handling",
+    "Six focused tests rerun passed",
+    "Independent unequal-denominator related-group fixture: baseline3/13, pairedchange2/13,2groups, simultaneous contains pointwise"
+  ],
+  "limits": [
+    "Bootstrap coverage remains approximate; adaptation is not removed",
+    "Callers must gate allfour native tasks before publishing joint intervals",
+    "Complete original item grids and both nonempty hallucination stages required before extraction"
+  ]
+}

@@ -1,0 +1,3705 @@
+{
+  "schema_version": 1,
+  "status": "sealed",
+  "sealed_utc": "2026-10-11T00:18:04.897501+00:00",
+  "scope": "exploratory_full_four_family_bank; all469questions previously inspected; preserve original TEST study separately",
+  "expected": {
+    "items": 469,
+    "cells": 19435,
+    "samples": 621920
+  },
+  "artifact_root": "${OLENS_DATA_ROOT}/expansion-v1",
+  "families": [
+    "hallucination",
+    "multihop_mt",
+    "chain_intermediates",
+    "role_bound_association"
+  ],
+  "family_group_counts": {
+    "hallucination": 149,
+    "multihop_mt": 94,
+    "chain_intermediates": 42,
+    "role_bound_association": 50
+  },
+  "source_menus": [
+    {
+      "path": "configs/conditions_full_dev_v1.json",
+      "sha256": "211860eaf92dfc3b16c16369195de341077509fbd0c3a2b0d4df151074ae62d1",
+      "hash_status": "verified_now"
+    },
+    {
+      "path": "configs/conditions_full_dev_combinations_v1.json",
+      "sha256": "3c3fb0475fa5ee096436c3f8bd88dbedc151718032d6767ceb8bf83ab1ce5cf5",
+      "hash_status": "verified_now"
+    },
+    {
+      "path": "configs/reporting_pilot_v2.json",
+      "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+      "hash_status": "verified_now"
+    }
+  ],
+  "stages": {
+    "development": {
+      "cohort": {
+        "path": "configs/development-full-grid-v2.json",
+        "sha256": "dd382ff6e8bc8e70f1d13710e5235efd943537b4936921726b7d59655289ca80",
+        "hash_status": "verified_now"
+      },
+      "selectors": {
+        "path": "${OLENS_DATA_ROOT}/selections/development-full-grid-v4/merged/selections.jsonl",
+        "sha256": "54ee50e61ebc11ac66d8d11c294dda60e17a7f9e06ad8632665e6bbb6505635e",
+        "hash_status": "terminal_receipt_pending_stream_verification"
+      },
+      "selectors_receipt": {
+        "path": "${OLENS_DATA_ROOT}/selections/development-full-grid-v4/merged/merge.json",
+        "sha256": "e146109829d89c83ab6b1384ebd726e1f5ff82825cd1b0642238bc7c81e5d494",
+        "hash_status": "verified_now"
+      },
+      "selector_config": {
+        "path": "${OLENS_DATA_ROOT}/selections/development-full-grid-v4/shard-0/config.json",
+        "sha256": "809d8d6b4968871ad8a7a9008710ada6541cd9041d717a8a54bfd74a99f453ad",
+        "hash_status": "verified_now"
+      },
+      "samples": [
+        {
+          "path": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/shard-000-of-004.jsonl",
+          "sha256": "99129dd7ec601056cffa58a6a7df1974c3e2530140c9b6418405195981ebf2bc"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/shard-001-of-004.jsonl",
+          "sha256": "7c73921841c245fa9f56cd2059df758bcedd896e70790d671c38da3d9f5b28c5"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/shard-002-of-004.jsonl",
+          "sha256": "26f11e3c8e6df696475dc634182decdae8858c86ff2abaedd5f0aaece84d7b8f"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/shard-003-of-004.jsonl",
+          "sha256": "a62df7e10417ed216064845b5ce97e6586d64ad1b99c9035ffd9e632bb232be8"
+        }
+      ],
+      "vector_cache": "${OLENS_COMPUTE_ROOT}/vectors/shared-global-v1/a451cf49d28ac7447722",
+      "cells": 5236
+    },
+    "validation": {
+      "cohort": {
+        "path": "configs/validation-full-grid-blind-v1.json",
+        "sha256": "9293de810635a5ee69fcee3c010ede25c7e147d12d172c2f637015c64042f19d",
+        "hash_status": "verified_now"
+      },
+      "selectors": {
+        "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/merged/selections.jsonl",
+        "sha256": "44b817683374049245f8d84d0fee3c7ebc27d37cd62c79e97976394323df30fa",
+        "hash_status": "terminal_receipt_pending_stream_verification"
+      },
+      "selectors_receipt": {
+        "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/merged/merge.json",
+        "sha256": "bdc0f649e591c2b751e069b330c31ae48576eb4cff01b22184b9ffdf5f9dbb76",
+        "hash_status": "verified_now"
+      },
+      "selector_config": {
+        "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/shard-0/config.json",
+        "sha256": "ff8baed042e99676d772e99da5a6a5c3208ea60b724e432fe2d80f505881c9e1",
+        "hash_status": "verified_now"
+      },
+      "samples": [
+        {
+          "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/samples-n32.jsonl",
+          "sha256": "9854b1b1afaa78ecb6cd1c1144a0990ecf569c86c4b81f1321641e6d01bf8024"
+        }
+      ],
+      "vector_cache": "${OLENS_COMPUTE_ROOT}/vectors/validation-catalog-v1",
+      "cells": 3485
+    },
+    "test": {
+      "cohort": {
+        "path": "configs/test-full-grid-analysis-v1.json",
+        "sha256": "cb3e868b23262509a1132533b7d9eaad5321f5cfed211d8808a17a649734ed76",
+        "hash_status": "verified_now"
+      },
+      "selectors": {
+        "path": "${OLENS_DATA_ROOT}/selections/test-full-grid-v1/merged/selections.jsonl",
+        "sha256": "547b953be6fff89d2f850001fd6dcdb3aed606708c8a211b6270369a4aa25df1",
+        "hash_status": "terminal_receipt_pending_stream_verification"
+      },
+      "selectors_receipt": {
+        "path": "${OLENS_DATA_ROOT}/selections/test-full-grid-v1/merged/merge.json",
+        "sha256": "4519b03002727853daca6e71e1acbf78b702ec4f7ef62fa8018a44335da4bc94",
+        "hash_status": "verified_now"
+      },
+      "selector_config": {
+        "path": "${OLENS_DATA_ROOT}/selections/test-full-grid-v1/shard-0/config.json",
+        "sha256": "ab4c63ab63755010566e44d25ab954e9aa20b4f53f2de01f5e458a5c60b806a9",
+        "hash_status": "verified_now"
+      },
+      "samples": [
+        {
+          "path": "${OLENS_DATA_ROOT}/runs/test-full-grid-v1/samples-n32.jsonl",
+          "sha256": "a9ac1a66d819a2da0a551e40f9b49b309a62aefb767071d7f866e84e36f61c6d"
+        }
+      ],
+      "vector_cache": "${OLENS_COMPUTE_ROOT}/vectors/test-catalog-v1",
+      "cells": 10714
+    }
+  },
+  "fresh_manifest": {
+    "path": "${OLENS_COMPUTE_ROOT}/activations/core-v1/fresh_manifest_v2.json",
+    "sha256": "5a61cff89aca532f3e022233b6d2d8e12dab0d3a3f4f44085097bc6dc58fc385",
+    "hash_status": "verified_now"
+  },
+  "control_bank": {
+    "path": "${OLENS_DATA_ROOT}/manifests/development-matched-controls-v2-metadata-v1.json",
+    "sha256": "ccca28d80794d4de7e612b3a7b1924a9f1e2a43259e31f3b77841e14a18be520",
+    "hash_status": "verified_now"
+  },
+  "likelihood_controls": {
+    "path": "configs/expansion_likelihood_controls_v1.json",
+    "sha256": "8525f8b4a97c9731d00725711f7231d9a96346b7ebe4ea8426d25bd3204d7b1f",
+    "hash_status": "verified_now"
+  },
+  "vector_contract": {
+    "base_revision": "6a9e13bd6fc8f0983b9b99948120bc37f49c13e9",
+    "pair_revision": "c95215d5d2f6250f20c305ae55c6e4d7569f92dc",
+    "head_sha256": "9f4cb6d193679c8683d7b49c8d2821c71567b3fc720baa73d7dbddb95f4c2179",
+    "meta_sha256": "d87687fa9b55b95d714c33dd05436d65163ae214b2b39a73ed9cb36572e16a45",
+    "adapter_config_sha256": "f570eeac608af8453d6f2888f63aab3035fdfdc7af6c8207247902881a7ba716",
+    "adapter_sha256": "d90bb9df02c352ef19f28536374e4a333e6dae8a103ba37d9e1c4e5183654e8a",
+    "tokenizer_revision": "6a9e13bd6fc8f0983b9b99948120bc37f49c13e9",
+    "tokenizer_cleanup": "source_scaffolding_and_special_ids_v1",
+    "span_limit": 32,
+    "padding": "right_zero",
+    "head_layer_norm": true,
+    "head_layer_norm_epsilon": 1e-05,
+    "final_norm": "Identity",
+    "backbone_dtype": "bfloat16",
+    "head_dtype": "float32",
+    "key_policy": "effective_scored_tokens_and_tag_v1",
+    "sha256": "a451cf49d28ac74477229e74dfc738e51b8961b5376c688fd9e40abbd8c133b6"
+  },
+  "conditions": [
+    {
+      "method": "raw_n1",
+      "n": 1,
+      "recorded_sources": [
+        {
+          "path": "configs/conditions_full_dev_v1.json",
+          "sha256": "211860eaf92dfc3b16c16369195de341077509fbd0c3a2b0d4df151074ae62d1",
+          "hash_status": "verified_now"
+        },
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "raw_n1-n1",
+      "status": "cached_selector_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [],
+      "candidate_budget": 1,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": true,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": true,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {},
+      "control_bank_identity": null
+    },
+    {
+      "method": "capped_n1",
+      "n": 1,
+      "recorded_sources": [
+        {
+          "path": "configs/conditions_full_dev_v1.json",
+          "sha256": "211860eaf92dfc3b16c16369195de341077509fbd0c3a2b0d4df151074ae62d1",
+          "hash_status": "verified_now"
+        },
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "capped_n1-n1",
+      "status": "cached_selector_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "raw_n1-n1"
+      ],
+      "candidate_budget": 1,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": true,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {},
+      "control_bank_identity": null
+    },
+    {
+      "method": "best_n_exact",
+      "n": 1,
+      "recorded_sources": [
+        {
+          "path": "configs/conditions_full_dev_v1.json",
+          "sha256": "211860eaf92dfc3b16c16369195de341077509fbd0c3a2b0d4df151074ae62d1",
+          "hash_status": "verified_now"
+        },
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "best_n_exact-n1",
+      "status": "cached_selector_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "capped_n1-n1"
+      ],
+      "candidate_budget": 1,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {},
+      "control_bank_identity": null
+    },
+    {
+      "method": "best_n_exact",
+      "n": 2,
+      "recorded_sources": [
+        {
+          "path": "configs/conditions_full_dev_v1.json",
+          "sha256": "211860eaf92dfc3b16c16369195de341077509fbd0c3a2b0d4df151074ae62d1",
+          "hash_status": "verified_now"
+        },
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "best_n_exact-n2",
+      "status": "cached_selector_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "capped_n1-n1"
+      ],
+      "candidate_budget": 2,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {},
+      "control_bank_identity": null
+    },
+    {
+      "method": "best_n_exact",
+      "n": 4,
+      "recorded_sources": [
+        {
+          "path": "configs/conditions_full_dev_v1.json",
+          "sha256": "211860eaf92dfc3b16c16369195de341077509fbd0c3a2b0d4df151074ae62d1",
+          "hash_status": "verified_now"
+        },
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "best_n_exact-n4",
+      "status": "cached_selector_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "capped_n1-n1"
+      ],
+      "candidate_budget": 4,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {},
+      "control_bank_identity": null
+    },
+    {
+      "method": "best_n_exact",
+      "n": 8,
+      "recorded_sources": [
+        {
+          "path": "configs/conditions_full_dev_v1.json",
+          "sha256": "211860eaf92dfc3b16c16369195de341077509fbd0c3a2b0d4df151074ae62d1",
+          "hash_status": "verified_now"
+        },
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "best_n_exact-n8",
+      "status": "cached_selector_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "capped_n1-n1"
+      ],
+      "candidate_budget": 8,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {},
+      "control_bank_identity": null
+    },
+    {
+      "method": "best_n_exact",
+      "n": 16,
+      "recorded_sources": [
+        {
+          "path": "configs/conditions_full_dev_v1.json",
+          "sha256": "211860eaf92dfc3b16c16369195de341077509fbd0c3a2b0d4df151074ae62d1",
+          "hash_status": "verified_now"
+        },
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "best_n_exact-n16",
+      "status": "cached_selector_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "capped_n1-n1"
+      ],
+      "candidate_budget": 16,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": true,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {},
+      "control_bank_identity": null
+    },
+    {
+      "method": "best_n_exact",
+      "n": 32,
+      "recorded_sources": [
+        {
+          "path": "configs/conditions_full_dev_v1.json",
+          "sha256": "211860eaf92dfc3b16c16369195de341077509fbd0c3a2b0d4df151074ae62d1",
+          "hash_status": "verified_now"
+        },
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "best_n_exact-n32",
+      "status": "cached_selector_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "capped_n1-n1"
+      ],
+      "candidate_budget": 32,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": true,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {},
+      "control_bank_identity": null
+    },
+    {
+      "method": "random_complete",
+      "n": 16,
+      "recorded_sources": [
+        {
+          "path": "configs/conditions_full_dev_v1.json",
+          "sha256": "211860eaf92dfc3b16c16369195de341077509fbd0c3a2b0d4df151074ae62d1",
+          "hash_status": "verified_now"
+        },
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "random_complete-n16",
+      "status": "cached_selector_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "capped_n1-n1"
+      ],
+      "candidate_budget": 16,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {},
+      "control_bank_identity": null
+    },
+    {
+      "method": "random_complete",
+      "n": 32,
+      "recorded_sources": [
+        {
+          "path": "configs/conditions_full_dev_v1.json",
+          "sha256": "211860eaf92dfc3b16c16369195de341077509fbd0c3a2b0d4df151074ae62d1",
+          "hash_status": "verified_now"
+        },
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "random_complete-n32",
+      "status": "cached_selector_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "capped_n1-n1"
+      ],
+      "candidate_budget": 32,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": true,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {},
+      "control_bank_identity": null
+    },
+    {
+      "method": "pooled_greedy_swap",
+      "n": 16,
+      "recorded_sources": [
+        {
+          "path": "configs/conditions_full_dev_v1.json",
+          "sha256": "211860eaf92dfc3b16c16369195de341077509fbd0c3a2b0d4df151074ae62d1",
+          "hash_status": "verified_now"
+        },
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "pooled_greedy_swap-n16",
+      "status": "cached_selector_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "capped_n1-n1"
+      ],
+      "candidate_budget": 16,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": true,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {},
+      "control_bank_identity": null
+    },
+    {
+      "method": "pooled_greedy_swap",
+      "n": 32,
+      "recorded_sources": [
+        {
+          "path": "configs/conditions_full_dev_v1.json",
+          "sha256": "211860eaf92dfc3b16c16369195de341077509fbd0c3a2b0d4df151074ae62d1",
+          "hash_status": "verified_now"
+        },
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "pooled_greedy_swap-n32",
+      "status": "cached_selector_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "capped_n1-n1"
+      ],
+      "candidate_budget": 32,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": true,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {},
+      "control_bank_identity": null
+    },
+    {
+      "method": "prune_loo_a32_0.001",
+      "n": 32,
+      "recorded_sources": [
+        {
+          "path": "configs/conditions_full_dev_v1.json",
+          "sha256": "211860eaf92dfc3b16c16369195de341077509fbd0c3a2b0d4df151074ae62d1",
+          "hash_status": "verified_now"
+        },
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "prune_loo_a32_0.001-n32",
+      "status": "cached_selector_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "best_n_exact-n32"
+      ],
+      "candidate_budget": 32,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "maximum_sequential_target_fve_loss": 0.001
+      },
+      "control_bank_identity": null
+    },
+    {
+      "method": "prune_loo_a32_0.005",
+      "n": 32,
+      "recorded_sources": [
+        {
+          "path": "configs/conditions_full_dev_v1.json",
+          "sha256": "211860eaf92dfc3b16c16369195de341077509fbd0c3a2b0d4df151074ae62d1",
+          "hash_status": "verified_now"
+        },
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "prune_loo_a32_0.005-n32",
+      "status": "cached_selector_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "best_n_exact-n32"
+      ],
+      "candidate_budget": 32,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": true,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "maximum_sequential_target_fve_loss": 0.005
+      },
+      "control_bank_identity": null
+    },
+    {
+      "method": "random_delete_matched_a32_0.001",
+      "n": 32,
+      "recorded_sources": [
+        {
+          "path": "configs/conditions_full_dev_v1.json",
+          "sha256": "211860eaf92dfc3b16c16369195de341077509fbd0c3a2b0d4df151074ae62d1",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "random_delete_matched_a32_0.001-n32",
+      "status": "cached_selector_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "best_n_exact-n32"
+      ],
+      "candidate_budget": 32,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "maximum_sequential_target_fve_loss": 0.001
+      },
+      "control_bank_identity": null
+    },
+    {
+      "method": "random_delete_matched_a32_0.005",
+      "n": 32,
+      "recorded_sources": [
+        {
+          "path": "configs/conditions_full_dev_v1.json",
+          "sha256": "211860eaf92dfc3b16c16369195de341077509fbd0c3a2b0d4df151074ae62d1",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "random_delete_matched_a32_0.005-n32",
+      "status": "cached_selector_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "best_n_exact-n32"
+      ],
+      "candidate_budget": 32,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": true,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "maximum_sequential_target_fve_loss": 0.005
+      },
+      "control_bank_identity": null
+    },
+    {
+      "method": "prune_loo_n1_0.005",
+      "n": 1,
+      "recorded_sources": [
+        {
+          "path": "configs/conditions_full_dev_v1.json",
+          "sha256": "211860eaf92dfc3b16c16369195de341077509fbd0c3a2b0d4df151074ae62d1",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "prune_loo_n1_0.005-n1",
+      "status": "cached_selector_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "capped_n1-n1"
+      ],
+      "candidate_budget": 1,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "maximum_sequential_target_fve_loss": 0.005
+      },
+      "control_bank_identity": null
+    },
+    {
+      "method": "random_delete_matched_n1_0.005",
+      "n": 1,
+      "recorded_sources": [
+        {
+          "path": "configs/conditions_full_dev_v1.json",
+          "sha256": "211860eaf92dfc3b16c16369195de341077509fbd0c3a2b0d4df151074ae62d1",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "random_delete_matched_n1_0.005-n1",
+      "status": "cached_selector_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "capped_n1-n1"
+      ],
+      "candidate_budget": 1,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "maximum_sequential_target_fve_loss": 0.005
+      },
+      "control_bank_identity": null
+    },
+    {
+      "method": "best_n_specificity_mean",
+      "n": 32,
+      "recorded_sources": [
+        {
+          "path": "configs/conditions_full_dev_v1.json",
+          "sha256": "211860eaf92dfc3b16c16369195de341077509fbd0c3a2b0d4df151074ae62d1",
+          "hash_status": "verified_now"
+        },
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "best_n_specificity_mean-n32",
+      "status": "cached_selector_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "capped_n1-n1"
+      ],
+      "candidate_budget": 32,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": true,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {},
+      "control_bank_identity": "development-matched-controls-v2-metadata-v1"
+    },
+    {
+      "method": "best_n_specificity_max",
+      "n": 32,
+      "recorded_sources": [
+        {
+          "path": "configs/conditions_full_dev_v1.json",
+          "sha256": "211860eaf92dfc3b16c16369195de341077509fbd0c3a2b0d4df151074ae62d1",
+          "hash_status": "verified_now"
+        },
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "best_n_specificity_max-n32",
+      "status": "cached_selector_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "capped_n1-n1"
+      ],
+      "candidate_budget": 32,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {},
+      "control_bank_identity": "development-matched-controls-v2-metadata-v1"
+    },
+    {
+      "method": "best_n_specificity_mean_then_prune_0.001",
+      "n": 32,
+      "recorded_sources": [
+        {
+          "path": "configs/conditions_full_dev_combinations_v1.json",
+          "sha256": "3c3fb0475fa5ee096436c3f8bd88dbedc151718032d6767ceb8bf83ab1ce5cf5",
+          "hash_status": "verified_now"
+        },
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "best_n_specificity_mean_then_prune_0.001-n32",
+      "status": "scheduled_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "best_n_specificity_mean-n32"
+      ],
+      "candidate_budget": 32,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "maximum_sequential_target_fve_loss": 0.001
+      },
+      "control_bank_identity": "development-matched-controls-v2-metadata-v1"
+    },
+    {
+      "method": "best_n_specificity_mean_then_prune_0.005",
+      "n": 32,
+      "recorded_sources": [
+        {
+          "path": "configs/conditions_full_dev_combinations_v1.json",
+          "sha256": "3c3fb0475fa5ee096436c3f8bd88dbedc151718032d6767ceb8bf83ab1ce5cf5",
+          "hash_status": "verified_now"
+        },
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "best_n_specificity_mean_then_prune_0.005-n32",
+      "status": "scheduled_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "best_n_specificity_mean-n32"
+      ],
+      "candidate_budget": 32,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": true,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "maximum_sequential_target_fve_loss": 0.005
+      },
+      "control_bank_identity": "development-matched-controls-v2-metadata-v1"
+    },
+    {
+      "method": "best_n_specificity_mean_random_delete_matched_0.001",
+      "n": 32,
+      "recorded_sources": [
+        {
+          "path": "configs/conditions_full_dev_combinations_v1.json",
+          "sha256": "3c3fb0475fa5ee096436c3f8bd88dbedc151718032d6767ceb8bf83ab1ce5cf5",
+          "hash_status": "verified_now"
+        },
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "best_n_specificity_mean_random_delete_matched_0.001-n32",
+      "status": "scheduled_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "best_n_specificity_mean-n32"
+      ],
+      "candidate_budget": 32,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "maximum_sequential_target_fve_loss": 0.001
+      },
+      "control_bank_identity": "development-matched-controls-v2-metadata-v1"
+    },
+    {
+      "method": "best_n_specificity_mean_random_delete_matched_0.005",
+      "n": 32,
+      "recorded_sources": [
+        {
+          "path": "configs/conditions_full_dev_combinations_v1.json",
+          "sha256": "3c3fb0475fa5ee096436c3f8bd88dbedc151718032d6767ceb8bf83ab1ce5cf5",
+          "hash_status": "verified_now"
+        },
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "best_n_specificity_mean_random_delete_matched_0.005-n32",
+      "status": "scheduled_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "best_n_specificity_mean-n32"
+      ],
+      "candidate_budget": 32,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": true,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "maximum_sequential_target_fve_loss": 0.005
+      },
+      "control_bank_identity": "development-matched-controls-v2-metadata-v1"
+    },
+    {
+      "method": "best_n_released80",
+      "n": 1,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "best_n_released80-n1",
+      "status": "computed_numerical_diagnostic_only",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "capped_n1-n1"
+      ],
+      "candidate_budget": 1,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {},
+      "control_bank_identity": null
+    },
+    {
+      "method": "best_n_released80",
+      "n": 2,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "best_n_released80-n2",
+      "status": "computed_numerical_diagnostic_only",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "capped_n1-n1"
+      ],
+      "candidate_budget": 2,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {},
+      "control_bank_identity": null
+    },
+    {
+      "method": "best_n_released80",
+      "n": 4,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "best_n_released80-n4",
+      "status": "computed_numerical_diagnostic_only",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "capped_n1-n1"
+      ],
+      "candidate_budget": 4,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {},
+      "control_bank_identity": null
+    },
+    {
+      "method": "best_n_released80",
+      "n": 8,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "best_n_released80-n8",
+      "status": "computed_numerical_diagnostic_only",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "capped_n1-n1"
+      ],
+      "candidate_budget": 8,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {},
+      "control_bank_identity": null
+    },
+    {
+      "method": "best_n_released80",
+      "n": 16,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "best_n_released80-n16",
+      "status": "computed_numerical_diagnostic_only",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "capped_n1-n1"
+      ],
+      "candidate_budget": 16,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {},
+      "control_bank_identity": null
+    },
+    {
+      "method": "best_n_released80",
+      "n": 32,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "best_n_released80-n32",
+      "status": "computed_numerical_diagnostic_only",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "capped_n1-n1"
+      ],
+      "candidate_budget": 32,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {},
+      "control_bank_identity": null
+    },
+    {
+      "method": "likelihood_true_minus_mean_two_controls",
+      "n": 8,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "likelihood_true_minus_mean_two_controls-n8",
+      "status": "scheduled_full_bank",
+      "stream": "shared_gpu_likelihood_then_cpu",
+      "parent_condition_ids": [
+        "capped_n1-n1"
+      ],
+      "candidate_budget": 8,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {},
+      "control_bank_identity": "development-matched-controls-v2-metadata-v1"
+    },
+    {
+      "method": "own_mean_log_likelihood",
+      "n": 8,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "own_mean_log_likelihood-n8",
+      "status": "scheduled_full_bank",
+      "stream": "shared_gpu_likelihood_then_cpu",
+      "parent_condition_ids": [
+        "capped_n1-n1"
+      ],
+      "candidate_budget": 8,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {},
+      "control_bank_identity": "development-matched-controls-v2-metadata-v1"
+    },
+    {
+      "method": "control_mean_log_likelihood",
+      "n": 8,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "control_mean_log_likelihood-n8",
+      "status": "scheduled_full_bank",
+      "stream": "shared_gpu_likelihood_then_cpu",
+      "parent_condition_ids": [
+        "capped_n1-n1"
+      ],
+      "candidate_budget": 8,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {},
+      "control_bank_identity": "development-matched-controls-v2-metadata-v1"
+    },
+    {
+      "method": "consensus_exact_support0",
+      "n": 16,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "consensus_exact_support0-n16",
+      "status": "scheduled_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "capped_n1-n1"
+      ],
+      "candidate_budget": 16,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "support_fraction": 0.0,
+        "compatibility_filter": false,
+        "contradiction_veto": false
+      },
+      "control_bank_identity": null
+    },
+    {
+      "method": "consensus_semantic_v4_support0_compatoff",
+      "n": 16,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "consensus_semantic_v4_support0_compatoff-n16",
+      "status": "obsolete_malformed_transport_diagnostic",
+      "stream": "semantic_helpers_then_cpu",
+      "parent_condition_ids": [
+        "consensus_exact_support0-n16"
+      ],
+      "candidate_budget": 16,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "support_fraction": 0.0,
+        "compatibility_filter": false,
+        "contradiction_veto": false
+      },
+      "control_bank_identity": null,
+      "reason": "Historical malformed helper local-ID transport; retain historical results, no new paid replay"
+    },
+    {
+      "method": "consensus_semantic_v4_support0_compaton",
+      "n": 16,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "consensus_semantic_v4_support0_compaton-n16",
+      "status": "obsolete_malformed_transport_diagnostic",
+      "stream": "semantic_helpers_then_cpu",
+      "parent_condition_ids": [
+        "consensus_exact_support0-n16"
+      ],
+      "candidate_budget": 16,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "support_fraction": 0.0,
+        "compatibility_filter": true,
+        "contradiction_veto": false
+      },
+      "control_bank_identity": null,
+      "reason": "Historical malformed helper local-ID transport; retain historical results, no new paid replay"
+    },
+    {
+      "method": "consensus_exact_support0.125",
+      "n": 16,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "consensus_exact_support0.125-n16",
+      "status": "scheduled_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "capped_n1-n1"
+      ],
+      "candidate_budget": 16,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "support_fraction": 0.125,
+        "compatibility_filter": false,
+        "contradiction_veto": false
+      },
+      "control_bank_identity": null
+    },
+    {
+      "method": "consensus_semantic_v4_support0.125_compatoff",
+      "n": 16,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "consensus_semantic_v4_support0.125_compatoff-n16",
+      "status": "obsolete_malformed_transport_diagnostic",
+      "stream": "semantic_helpers_then_cpu",
+      "parent_condition_ids": [
+        "consensus_exact_support0-n16"
+      ],
+      "candidate_budget": 16,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "support_fraction": 0.125,
+        "compatibility_filter": false,
+        "contradiction_veto": false
+      },
+      "control_bank_identity": null,
+      "reason": "Historical malformed helper local-ID transport; retain historical results, no new paid replay"
+    },
+    {
+      "method": "consensus_semantic_v4_support0.125_compaton",
+      "n": 16,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "consensus_semantic_v4_support0.125_compaton-n16",
+      "status": "obsolete_malformed_transport_diagnostic",
+      "stream": "semantic_helpers_then_cpu",
+      "parent_condition_ids": [
+        "consensus_exact_support0-n16"
+      ],
+      "candidate_budget": 16,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "support_fraction": 0.125,
+        "compatibility_filter": true,
+        "contradiction_veto": false
+      },
+      "control_bank_identity": null,
+      "reason": "Historical malformed helper local-ID transport; retain historical results, no new paid replay"
+    },
+    {
+      "method": "consensus_exact_support0.25",
+      "n": 16,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "consensus_exact_support0.25-n16",
+      "status": "scheduled_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "capped_n1-n1"
+      ],
+      "candidate_budget": 16,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "support_fraction": 0.25,
+        "compatibility_filter": false,
+        "contradiction_veto": false
+      },
+      "control_bank_identity": null
+    },
+    {
+      "method": "consensus_semantic_v4_support0.25_compatoff",
+      "n": 16,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "consensus_semantic_v4_support0.25_compatoff-n16",
+      "status": "obsolete_malformed_transport_diagnostic",
+      "stream": "semantic_helpers_then_cpu",
+      "parent_condition_ids": [
+        "consensus_exact_support0-n16"
+      ],
+      "candidate_budget": 16,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "support_fraction": 0.25,
+        "compatibility_filter": false,
+        "contradiction_veto": false
+      },
+      "control_bank_identity": null,
+      "reason": "Historical malformed helper local-ID transport; retain historical results, no new paid replay"
+    },
+    {
+      "method": "consensus_semantic_v4_support0.25_compaton",
+      "n": 16,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "consensus_semantic_v4_support0.25_compaton-n16",
+      "status": "obsolete_malformed_transport_diagnostic",
+      "stream": "semantic_helpers_then_cpu",
+      "parent_condition_ids": [
+        "consensus_exact_support0-n16"
+      ],
+      "candidate_budget": 16,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "support_fraction": 0.25,
+        "compatibility_filter": true,
+        "contradiction_veto": false
+      },
+      "control_bank_identity": null,
+      "reason": "Historical malformed helper local-ID transport; retain historical results, no new paid replay"
+    },
+    {
+      "method": "editing_round1",
+      "n": 32,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "editing_round1-n32",
+      "status": "scheduled_full_bank",
+      "stream": "editing_helpers_gpu_encoding_then_cpu",
+      "parent_condition_ids": [
+        "best_n_exact-n32",
+        "pooled_greedy_swap-n32"
+      ],
+      "candidate_budget": 32,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {},
+      "control_bank_identity": null
+    },
+    {
+      "method": "editing_round2",
+      "n": 32,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "editing_round2-n32",
+      "status": "scheduled_full_bank",
+      "stream": "editing_helpers_gpu_encoding_then_cpu",
+      "parent_condition_ids": [
+        "best_n_exact-n32",
+        "pooled_greedy_swap-n32"
+      ],
+      "candidate_budget": 32,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {},
+      "control_bank_identity": null
+    },
+    {
+      "method": "pooled_greedy_swap_then_prune_0.001",
+      "n": 32,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "pooled_greedy_swap_then_prune_0.001-n32",
+      "status": "scheduled_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "pooled_greedy_swap-n32"
+      ],
+      "candidate_budget": 32,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "maximum_sequential_target_fve_loss": 0.001
+      },
+      "control_bank_identity": null
+    },
+    {
+      "method": "pooled_greedy_swap_random_delete_matched_0.001",
+      "n": 32,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "pooled_greedy_swap_random_delete_matched_0.001-n32",
+      "status": "scheduled_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "pooled_greedy_swap-n32"
+      ],
+      "candidate_budget": 32,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "maximum_sequential_target_fve_loss": 0.001
+      },
+      "control_bank_identity": null
+    },
+    {
+      "method": "pooled_greedy_swap_then_prune_0.005",
+      "n": 32,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "pooled_greedy_swap_then_prune_0.005-n32",
+      "status": "scheduled_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "pooled_greedy_swap-n32"
+      ],
+      "candidate_budget": 32,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "maximum_sequential_target_fve_loss": 0.005
+      },
+      "control_bank_identity": null
+    },
+    {
+      "method": "pooled_greedy_swap_random_delete_matched_0.005",
+      "n": 32,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "pooled_greedy_swap_random_delete_matched_0.005-n32",
+      "status": "scheduled_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "pooled_greedy_swap-n32"
+      ],
+      "candidate_budget": 32,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "maximum_sequential_target_fve_loss": 0.005
+      },
+      "control_bank_identity": null
+    },
+    {
+      "method": "editing_round2_then_prune_0.001",
+      "n": 32,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "editing_round2_then_prune_0.001-n32",
+      "status": "scheduled_full_bank",
+      "stream": "editing_helpers_gpu_encoding_then_cpu",
+      "parent_condition_ids": [
+        "editing_round2-n32"
+      ],
+      "candidate_budget": 32,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "maximum_sequential_target_fve_loss": 0.001
+      },
+      "control_bank_identity": null
+    },
+    {
+      "method": "editing_round2_random_delete_matched_0.001",
+      "n": 32,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "editing_round2_random_delete_matched_0.001-n32",
+      "status": "scheduled_full_bank",
+      "stream": "editing_helpers_gpu_encoding_then_cpu",
+      "parent_condition_ids": [
+        "editing_round2-n32"
+      ],
+      "candidate_budget": 32,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "maximum_sequential_target_fve_loss": 0.001
+      },
+      "control_bank_identity": null
+    },
+    {
+      "method": "editing_round2_then_prune_0.005",
+      "n": 32,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "editing_round2_then_prune_0.005-n32",
+      "status": "scheduled_full_bank",
+      "stream": "editing_helpers_gpu_encoding_then_cpu",
+      "parent_condition_ids": [
+        "editing_round2-n32"
+      ],
+      "candidate_budget": 32,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "maximum_sequential_target_fve_loss": 0.005
+      },
+      "control_bank_identity": null
+    },
+    {
+      "method": "editing_round2_random_delete_matched_0.005",
+      "n": 32,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "editing_round2_random_delete_matched_0.005-n32",
+      "status": "scheduled_full_bank",
+      "stream": "editing_helpers_gpu_encoding_then_cpu",
+      "parent_condition_ids": [
+        "editing_round2-n32"
+      ],
+      "candidate_budget": 32,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "maximum_sequential_target_fve_loss": 0.005
+      },
+      "control_bank_identity": null
+    },
+    {
+      "method": "pooling_exact_support_lambda0",
+      "n": 16,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "pooling_exact_support_lambda0-n16",
+      "status": "exact_alias",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "pooled_greedy_swap-n16",
+        "exact_support_only-n16"
+      ],
+      "candidate_budget": 16,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "support_coefficient": 0.0
+      },
+      "control_bank_identity": null,
+      "alias_of": "pooled_greedy_swap-n16"
+    },
+    {
+      "method": "pooling_exact_support_lambda0.05",
+      "n": 16,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "pooling_exact_support_lambda0.05-n16",
+      "status": "scheduled_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "pooled_greedy_swap-n16",
+        "exact_support_only-n16"
+      ],
+      "candidate_budget": 16,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "support_coefficient": 0.05
+      },
+      "control_bank_identity": null
+    },
+    {
+      "method": "pooling_exact_support_lambda0.2",
+      "n": 16,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "pooling_exact_support_lambda0.2-n16",
+      "status": "scheduled_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "pooled_greedy_swap-n16",
+        "exact_support_only-n16"
+      ],
+      "candidate_budget": 16,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "support_coefficient": 0.2
+      },
+      "control_bank_identity": null
+    },
+    {
+      "method": "exact_support_only",
+      "n": 16,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "exact_support_only-n16",
+      "status": "scheduled_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "capped_n1-n1"
+      ],
+      "candidate_budget": 16,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {},
+      "control_bank_identity": null
+    },
+    {
+      "method": "consensus_semantic_v5_support0_compatoff_vetooff",
+      "n": 16,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "consensus_semantic_v5_support0_compatoff_vetooff-n16",
+      "status": "scheduled_full_bank",
+      "stream": "semantic_helpers_then_cpu",
+      "parent_condition_ids": [
+        "consensus_exact_support0-n16"
+      ],
+      "candidate_budget": 16,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation",
+        "shared_frozen_pair_proposal",
+        "equivalence_labels",
+        "compatibility_labels_unknown_preserved"
+      ],
+      "thresholds": {
+        "support_fraction": 0.0,
+        "compatibility_filter": false,
+        "contradiction_veto": false
+      },
+      "control_bank_identity": null,
+      "helper_reasoning_effort": "none"
+    },
+    {
+      "method": "consensus_semantic_v5_support0_compatoff_vetoon",
+      "n": 16,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "consensus_semantic_v5_support0_compatoff_vetoon-n16",
+      "status": "scheduled_full_bank",
+      "stream": "semantic_helpers_then_cpu",
+      "parent_condition_ids": [
+        "consensus_exact_support0-n16"
+      ],
+      "candidate_budget": 16,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation",
+        "shared_frozen_pair_proposal",
+        "equivalence_labels",
+        "compatibility_labels_unknown_preserved"
+      ],
+      "thresholds": {
+        "support_fraction": 0.0,
+        "compatibility_filter": false,
+        "contradiction_veto": true
+      },
+      "control_bank_identity": null,
+      "helper_reasoning_effort": "none"
+    },
+    {
+      "method": "consensus_semantic_v5_support0_compaton_vetoon",
+      "n": 16,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "consensus_semantic_v5_support0_compaton_vetoon-n16",
+      "status": "scheduled_full_bank",
+      "stream": "semantic_helpers_then_cpu",
+      "parent_condition_ids": [
+        "consensus_exact_support0-n16"
+      ],
+      "candidate_budget": 16,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation",
+        "shared_frozen_pair_proposal",
+        "equivalence_labels",
+        "compatibility_labels_unknown_preserved"
+      ],
+      "thresholds": {
+        "support_fraction": 0.0,
+        "compatibility_filter": true,
+        "contradiction_veto": true
+      },
+      "control_bank_identity": null,
+      "helper_reasoning_effort": "none"
+    },
+    {
+      "method": "consensus_semantic_v5_support0.125_compatoff_vetoon",
+      "n": 16,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "consensus_semantic_v5_support0.125_compatoff_vetoon-n16",
+      "status": "scheduled_full_bank",
+      "stream": "semantic_helpers_then_cpu",
+      "parent_condition_ids": [
+        "consensus_exact_support0-n16"
+      ],
+      "candidate_budget": 16,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation",
+        "shared_frozen_pair_proposal",
+        "equivalence_labels",
+        "compatibility_labels_unknown_preserved"
+      ],
+      "thresholds": {
+        "support_fraction": 0.125,
+        "compatibility_filter": false,
+        "contradiction_veto": true
+      },
+      "control_bank_identity": null,
+      "helper_reasoning_effort": "none"
+    },
+    {
+      "method": "consensus_semantic_v5_support0.125_compaton_vetoon",
+      "n": 16,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "consensus_semantic_v5_support0.125_compaton_vetoon-n16",
+      "status": "scheduled_full_bank",
+      "stream": "semantic_helpers_then_cpu",
+      "parent_condition_ids": [
+        "consensus_exact_support0-n16"
+      ],
+      "candidate_budget": 16,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation",
+        "shared_frozen_pair_proposal",
+        "equivalence_labels",
+        "compatibility_labels_unknown_preserved"
+      ],
+      "thresholds": {
+        "support_fraction": 0.125,
+        "compatibility_filter": true,
+        "contradiction_veto": true
+      },
+      "control_bank_identity": null,
+      "helper_reasoning_effort": "none"
+    },
+    {
+      "method": "pooled_specificity_mean",
+      "n": 32,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "pooled_specificity_mean-n32",
+      "status": "scheduled_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "pooled_greedy_swap-n32",
+        "best_n_specificity_mean-n32"
+      ],
+      "candidate_budget": 32,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {},
+      "control_bank_identity": "development-matched-controls-v2-metadata-v1"
+    },
+    {
+      "method": "pooled_specificity_mean_then_prune_0.005",
+      "n": 32,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "pooled_specificity_mean_then_prune_0.005-n32",
+      "status": "scheduled_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "pooled_specificity_mean-n32"
+      ],
+      "candidate_budget": 32,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "maximum_sequential_target_fve_loss": 0.005
+      },
+      "control_bank_identity": "development-matched-controls-v2-metadata-v1"
+    },
+    {
+      "method": "pooled_specificity_mean_random_delete_matched_0.005",
+      "n": 32,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "pooled_specificity_mean_random_delete_matched_0.005-n32",
+      "status": "scheduled_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "pooled_specificity_mean-n32"
+      ],
+      "candidate_budget": 32,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "maximum_sequential_target_fve_loss": 0.005
+      },
+      "control_bank_identity": "development-matched-controls-v2-metadata-v1"
+    },
+    {
+      "method": "best_n_specificity_mean_abstain_nonpositive",
+      "n": 32,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "best_n_specificity_mean_abstain_nonpositive-n32",
+      "status": "scheduled_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "best_n_specificity_mean-n32"
+      ],
+      "candidate_budget": 32,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "abstain_when_specificity_lte": 0
+      },
+      "control_bank_identity": "development-matched-controls-v2-metadata-v1"
+    },
+    {
+      "method": "consensus_semantic_v5_medium_support0_compatoff_vetoon",
+      "n": 16,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+      "status": "scheduled_full_bank",
+      "stream": "semantic_helpers_then_cpu",
+      "parent_condition_ids": [
+        "consensus_exact_support0-n16"
+      ],
+      "candidate_budget": 16,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation",
+        "shared_frozen_pair_proposal",
+        "equivalence_labels",
+        "compatibility_labels_unknown_preserved"
+      ],
+      "thresholds": {
+        "support_fraction": 0.0,
+        "compatibility_filter": false,
+        "contradiction_veto": true
+      },
+      "control_bank_identity": null,
+      "helper_reasoning_effort": "medium"
+    },
+    {
+      "method": "consensus_semantic_v5_medium_support0_compaton_vetoon",
+      "n": 16,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "consensus_semantic_v5_medium_support0_compaton_vetoon-n16",
+      "status": "scheduled_full_bank",
+      "stream": "semantic_helpers_then_cpu",
+      "parent_condition_ids": [
+        "consensus_exact_support0-n16"
+      ],
+      "candidate_budget": 16,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation",
+        "shared_frozen_pair_proposal",
+        "equivalence_labels",
+        "compatibility_labels_unknown_preserved"
+      ],
+      "thresholds": {
+        "support_fraction": 0.0,
+        "compatibility_filter": true,
+        "contradiction_veto": true
+      },
+      "control_bank_identity": null,
+      "helper_reasoning_effort": "medium"
+    },
+    {
+      "method": "consensus_semantic_v5_medium_support0.125_compatoff_vetoon",
+      "n": 16,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "consensus_semantic_v5_medium_support0.125_compatoff_vetoon-n16",
+      "status": "scheduled_full_bank",
+      "stream": "semantic_helpers_then_cpu",
+      "parent_condition_ids": [
+        "consensus_exact_support0-n16"
+      ],
+      "candidate_budget": 16,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation",
+        "shared_frozen_pair_proposal",
+        "equivalence_labels",
+        "compatibility_labels_unknown_preserved"
+      ],
+      "thresholds": {
+        "support_fraction": 0.125,
+        "compatibility_filter": false,
+        "contradiction_veto": true
+      },
+      "control_bank_identity": null,
+      "helper_reasoning_effort": "medium"
+    },
+    {
+      "method": "consensus_semantic_v5_medium_support0.125_compaton_vetoon",
+      "n": 16,
+      "recorded_sources": [
+        {
+          "path": "configs/reporting_pilot_v2.json",
+          "sha256": "dcce8e1e638bee653fce4c112c322a697496ab1407991031c220cede62072455",
+          "hash_status": "verified_now"
+        }
+      ],
+      "condition_id": "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16",
+      "status": "scheduled_full_bank",
+      "stream": "semantic_helpers_then_cpu",
+      "parent_condition_ids": [
+        "consensus_exact_support0-n16"
+      ],
+      "candidate_budget": 16,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation",
+        "shared_frozen_pair_proposal",
+        "equivalence_labels",
+        "compatibility_labels_unknown_preserved"
+      ],
+      "thresholds": {
+        "support_fraction": 0.125,
+        "compatibility_filter": true,
+        "contradiction_veto": true
+      },
+      "control_bank_identity": null,
+      "helper_reasoning_effort": "medium"
+    },
+    {
+      "method": "random_complete",
+      "n": 1,
+      "recorded_sources": [
+        {
+          "path": "${OLENS_DATA_ROOT}/selections/development-full-grid-v4/shard-0/config.json",
+          "sha256": "809d8d6b4968871ad8a7a9008710ada6541cd9041d717a8a54bfd74a99f453ad",
+          "hash_status": "verified_now"
+        }
+      ],
+      "individually_added_computed_condition": true,
+      "condition_id": "random_complete-n1",
+      "status": "cached_selector_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "capped_n1-n1"
+      ],
+      "candidate_budget": 1,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {},
+      "control_bank_identity": null
+    },
+    {
+      "method": "random_complete",
+      "n": 2,
+      "recorded_sources": [
+        {
+          "path": "${OLENS_DATA_ROOT}/selections/development-full-grid-v4/shard-0/config.json",
+          "sha256": "809d8d6b4968871ad8a7a9008710ada6541cd9041d717a8a54bfd74a99f453ad",
+          "hash_status": "verified_now"
+        }
+      ],
+      "individually_added_computed_condition": true,
+      "condition_id": "random_complete-n2",
+      "status": "cached_selector_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "capped_n1-n1"
+      ],
+      "candidate_budget": 2,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {},
+      "control_bank_identity": null
+    },
+    {
+      "method": "random_complete",
+      "n": 4,
+      "recorded_sources": [
+        {
+          "path": "${OLENS_DATA_ROOT}/selections/development-full-grid-v4/shard-0/config.json",
+          "sha256": "809d8d6b4968871ad8a7a9008710ada6541cd9041d717a8a54bfd74a99f453ad",
+          "hash_status": "verified_now"
+        }
+      ],
+      "individually_added_computed_condition": true,
+      "condition_id": "random_complete-n4",
+      "status": "cached_selector_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "capped_n1-n1"
+      ],
+      "candidate_budget": 4,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {},
+      "control_bank_identity": null
+    },
+    {
+      "method": "random_complete",
+      "n": 8,
+      "recorded_sources": [
+        {
+          "path": "${OLENS_DATA_ROOT}/selections/development-full-grid-v4/shard-0/config.json",
+          "sha256": "809d8d6b4968871ad8a7a9008710ada6541cd9041d717a8a54bfd74a99f453ad",
+          "hash_status": "verified_now"
+        }
+      ],
+      "individually_added_computed_condition": true,
+      "condition_id": "random_complete-n8",
+      "status": "cached_selector_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "capped_n1-n1"
+      ],
+      "candidate_budget": 8,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {},
+      "control_bank_identity": null
+    },
+    {
+      "method": "prune_loo_a32_0",
+      "n": 32,
+      "recorded_sources": [
+        {
+          "path": "${OLENS_DATA_ROOT}/selections/development-full-grid-v4/shard-0/config.json",
+          "sha256": "809d8d6b4968871ad8a7a9008710ada6541cd9041d717a8a54bfd74a99f453ad",
+          "hash_status": "verified_now"
+        }
+      ],
+      "individually_added_computed_condition": true,
+      "condition_id": "prune_loo_a32_0-n32",
+      "status": "cached_selector_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "best_n_exact-n32"
+      ],
+      "candidate_budget": 32,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "maximum_sequential_target_fve_loss": 0.0
+      },
+      "control_bank_identity": null
+    },
+    {
+      "method": "random_delete_matched_a32_0",
+      "n": 32,
+      "recorded_sources": [
+        {
+          "path": "${OLENS_DATA_ROOT}/selections/development-full-grid-v4/shard-0/config.json",
+          "sha256": "809d8d6b4968871ad8a7a9008710ada6541cd9041d717a8a54bfd74a99f453ad",
+          "hash_status": "verified_now"
+        }
+      ],
+      "individually_added_computed_condition": true,
+      "condition_id": "random_delete_matched_a32_0-n32",
+      "status": "cached_selector_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "best_n_exact-n32"
+      ],
+      "candidate_budget": 32,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "maximum_sequential_target_fve_loss": 0.0
+      },
+      "control_bank_identity": null
+    },
+    {
+      "method": "prune_coefficient_a32_0.01",
+      "n": 32,
+      "recorded_sources": [
+        {
+          "path": "${OLENS_DATA_ROOT}/selections/development-full-grid-v4/shard-0/config.json",
+          "sha256": "809d8d6b4968871ad8a7a9008710ada6541cd9041d717a8a54bfd74a99f453ad",
+          "hash_status": "verified_now"
+        }
+      ],
+      "individually_added_computed_condition": true,
+      "condition_id": "prune_coefficient_a32_0.01-n32",
+      "status": "cached_selector_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "best_n_exact-n32"
+      ],
+      "candidate_budget": 32,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "relative_coefficient_cutoff": 0.01
+      },
+      "control_bank_identity": null
+    },
+    {
+      "method": "prune_coefficient_a32_0.05",
+      "n": 32,
+      "recorded_sources": [
+        {
+          "path": "${OLENS_DATA_ROOT}/selections/development-full-grid-v4/shard-0/config.json",
+          "sha256": "809d8d6b4968871ad8a7a9008710ada6541cd9041d717a8a54bfd74a99f453ad",
+          "hash_status": "verified_now"
+        }
+      ],
+      "individually_added_computed_condition": true,
+      "condition_id": "prune_coefficient_a32_0.05-n32",
+      "status": "cached_selector_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "best_n_exact-n32"
+      ],
+      "candidate_budget": 32,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "relative_coefficient_cutoff": 0.05
+      },
+      "control_bank_identity": null
+    },
+    {
+      "method": "prune_loo_n1_0",
+      "n": 1,
+      "recorded_sources": [
+        {
+          "path": "${OLENS_DATA_ROOT}/selections/development-full-grid-v4/shard-0/config.json",
+          "sha256": "809d8d6b4968871ad8a7a9008710ada6541cd9041d717a8a54bfd74a99f453ad",
+          "hash_status": "verified_now"
+        }
+      ],
+      "individually_added_computed_condition": true,
+      "condition_id": "prune_loo_n1_0-n1",
+      "status": "cached_selector_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "capped_n1-n1"
+      ],
+      "candidate_budget": 1,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "maximum_sequential_target_fve_loss": 0.0
+      },
+      "control_bank_identity": null
+    },
+    {
+      "method": "random_delete_matched_n1_0",
+      "n": 1,
+      "recorded_sources": [
+        {
+          "path": "${OLENS_DATA_ROOT}/selections/development-full-grid-v4/shard-0/config.json",
+          "sha256": "809d8d6b4968871ad8a7a9008710ada6541cd9041d717a8a54bfd74a99f453ad",
+          "hash_status": "verified_now"
+        }
+      ],
+      "individually_added_computed_condition": true,
+      "condition_id": "random_delete_matched_n1_0-n1",
+      "status": "cached_selector_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "capped_n1-n1"
+      ],
+      "candidate_budget": 1,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "maximum_sequential_target_fve_loss": 0.0
+      },
+      "control_bank_identity": null
+    },
+    {
+      "method": "prune_loo_n1_0.001",
+      "n": 1,
+      "recorded_sources": [
+        {
+          "path": "${OLENS_DATA_ROOT}/selections/development-full-grid-v4/shard-0/config.json",
+          "sha256": "809d8d6b4968871ad8a7a9008710ada6541cd9041d717a8a54bfd74a99f453ad",
+          "hash_status": "verified_now"
+        }
+      ],
+      "individually_added_computed_condition": true,
+      "condition_id": "prune_loo_n1_0.001-n1",
+      "status": "cached_selector_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "capped_n1-n1"
+      ],
+      "candidate_budget": 1,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "maximum_sequential_target_fve_loss": 0.001
+      },
+      "control_bank_identity": null
+    },
+    {
+      "method": "random_delete_matched_n1_0.001",
+      "n": 1,
+      "recorded_sources": [
+        {
+          "path": "${OLENS_DATA_ROOT}/selections/development-full-grid-v4/shard-0/config.json",
+          "sha256": "809d8d6b4968871ad8a7a9008710ada6541cd9041d717a8a54bfd74a99f453ad",
+          "hash_status": "verified_now"
+        }
+      ],
+      "individually_added_computed_condition": true,
+      "condition_id": "random_delete_matched_n1_0.001-n1",
+      "status": "cached_selector_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "capped_n1-n1"
+      ],
+      "candidate_budget": 1,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "maximum_sequential_target_fve_loss": 0.001
+      },
+      "control_bank_identity": null
+    },
+    {
+      "method": "prune_coefficient_n1_0.01",
+      "n": 1,
+      "recorded_sources": [
+        {
+          "path": "${OLENS_DATA_ROOT}/selections/development-full-grid-v4/shard-0/config.json",
+          "sha256": "809d8d6b4968871ad8a7a9008710ada6541cd9041d717a8a54bfd74a99f453ad",
+          "hash_status": "verified_now"
+        }
+      ],
+      "individually_added_computed_condition": true,
+      "condition_id": "prune_coefficient_n1_0.01-n1",
+      "status": "cached_selector_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "capped_n1-n1"
+      ],
+      "candidate_budget": 1,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "relative_coefficient_cutoff": 0.01
+      },
+      "control_bank_identity": null
+    },
+    {
+      "method": "prune_coefficient_n1_0.05",
+      "n": 1,
+      "recorded_sources": [
+        {
+          "path": "${OLENS_DATA_ROOT}/selections/development-full-grid-v4/shard-0/config.json",
+          "sha256": "809d8d6b4968871ad8a7a9008710ada6541cd9041d717a8a54bfd74a99f453ad",
+          "hash_status": "verified_now"
+        }
+      ],
+      "individually_added_computed_condition": true,
+      "condition_id": "prune_coefficient_n1_0.05-n1",
+      "status": "cached_selector_full_bank",
+      "stream": "cpu_cache_only",
+      "parent_condition_ids": [
+        "capped_n1-n1"
+      ],
+      "candidate_budget": 1,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "raw_baseline_cap_exemption": false,
+      "judgment_reuse": "Exact request identity only; preserve original prompts and both hallucination stages",
+      "existing_full_bank_judged": false,
+      "required_artifacts": [
+        "original_cell_samples",
+        "source_bullet_vectors",
+        "frozen_cell_activation"
+      ],
+      "thresholds": {
+        "relative_coefficient_cutoff": 0.05
+      },
+      "control_bank_identity": null
+    }
+  ],
+  "active_condition_count": 70,
+  "status_counts": {
+    "cached_selector_full_bank": 34,
+    "scheduled_full_bank": 36,
+    "computed_numerical_diagnostic_only": 6,
+    "obsolete_malformed_transport_diagnostic": 6,
+    "exact_alias": 1
+  },
+  "headline_comparison_family": [
+    {
+      "condition": "capped_n1-n1",
+      "reference": "raw_n1-n1",
+      "role": "component_parent"
+    },
+    {
+      "condition": "best_n_exact-n1",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "best_n_exact-n2",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "best_n_exact-n4",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "best_n_exact-n8",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "best_n_exact-n16",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "best_n_exact-n32",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "random_complete-n16",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "random_complete-n32",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "pooled_greedy_swap-n16",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "pooled_greedy_swap-n32",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "prune_loo_a32_0.001-n32",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "prune_loo_a32_0.001-n32",
+      "reference": "best_n_exact-n32",
+      "role": "component_parent"
+    },
+    {
+      "condition": "prune_loo_a32_0.005-n32",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "prune_loo_a32_0.005-n32",
+      "reference": "best_n_exact-n32",
+      "role": "component_parent"
+    },
+    {
+      "condition": "random_delete_matched_a32_0.001-n32",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "random_delete_matched_a32_0.001-n32",
+      "reference": "best_n_exact-n32",
+      "role": "component_parent"
+    },
+    {
+      "condition": "random_delete_matched_a32_0.005-n32",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "random_delete_matched_a32_0.005-n32",
+      "reference": "best_n_exact-n32",
+      "role": "component_parent"
+    },
+    {
+      "condition": "prune_loo_n1_0.005-n1",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "random_delete_matched_n1_0.005-n1",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "best_n_specificity_mean-n32",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "best_n_specificity_max-n32",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "best_n_specificity_mean_then_prune_0.001-n32",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "best_n_specificity_mean_then_prune_0.001-n32",
+      "reference": "best_n_specificity_mean-n32",
+      "role": "component_parent"
+    },
+    {
+      "condition": "best_n_specificity_mean_then_prune_0.005-n32",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "best_n_specificity_mean_then_prune_0.005-n32",
+      "reference": "best_n_specificity_mean-n32",
+      "role": "component_parent"
+    },
+    {
+      "condition": "best_n_specificity_mean_random_delete_matched_0.001-n32",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "best_n_specificity_mean_random_delete_matched_0.001-n32",
+      "reference": "best_n_specificity_mean-n32",
+      "role": "component_parent"
+    },
+    {
+      "condition": "best_n_specificity_mean_random_delete_matched_0.005-n32",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "best_n_specificity_mean_random_delete_matched_0.005-n32",
+      "reference": "best_n_specificity_mean-n32",
+      "role": "component_parent"
+    },
+    {
+      "condition": "likelihood_true_minus_mean_two_controls-n8",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "own_mean_log_likelihood-n8",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "control_mean_log_likelihood-n8",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "consensus_exact_support0-n16",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "consensus_exact_support0.125-n16",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "consensus_exact_support0.25-n16",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "editing_round1-n32",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "editing_round1-n32",
+      "reference": "best_n_exact-n32",
+      "role": "component_parent"
+    },
+    {
+      "condition": "editing_round1-n32",
+      "reference": "pooled_greedy_swap-n32",
+      "role": "component_parent"
+    },
+    {
+      "condition": "editing_round2-n32",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "editing_round2-n32",
+      "reference": "best_n_exact-n32",
+      "role": "component_parent"
+    },
+    {
+      "condition": "editing_round2-n32",
+      "reference": "pooled_greedy_swap-n32",
+      "role": "component_parent"
+    },
+    {
+      "condition": "pooled_greedy_swap_then_prune_0.001-n32",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "pooled_greedy_swap_then_prune_0.001-n32",
+      "reference": "pooled_greedy_swap-n32",
+      "role": "component_parent"
+    },
+    {
+      "condition": "pooled_greedy_swap_random_delete_matched_0.001-n32",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "pooled_greedy_swap_random_delete_matched_0.001-n32",
+      "reference": "pooled_greedy_swap-n32",
+      "role": "component_parent"
+    },
+    {
+      "condition": "pooled_greedy_swap_then_prune_0.005-n32",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "pooled_greedy_swap_then_prune_0.005-n32",
+      "reference": "pooled_greedy_swap-n32",
+      "role": "component_parent"
+    },
+    {
+      "condition": "pooled_greedy_swap_random_delete_matched_0.005-n32",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "pooled_greedy_swap_random_delete_matched_0.005-n32",
+      "reference": "pooled_greedy_swap-n32",
+      "role": "component_parent"
+    },
+    {
+      "condition": "editing_round2_then_prune_0.001-n32",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "editing_round2_then_prune_0.001-n32",
+      "reference": "editing_round2-n32",
+      "role": "component_parent"
+    },
+    {
+      "condition": "editing_round2_random_delete_matched_0.001-n32",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "editing_round2_random_delete_matched_0.001-n32",
+      "reference": "editing_round2-n32",
+      "role": "component_parent"
+    },
+    {
+      "condition": "editing_round2_then_prune_0.005-n32",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "editing_round2_then_prune_0.005-n32",
+      "reference": "editing_round2-n32",
+      "role": "component_parent"
+    },
+    {
+      "condition": "editing_round2_random_delete_matched_0.005-n32",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "editing_round2_random_delete_matched_0.005-n32",
+      "reference": "editing_round2-n32",
+      "role": "component_parent"
+    },
+    {
+      "condition": "pooling_exact_support_lambda0.05-n16",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "pooling_exact_support_lambda0.05-n16",
+      "reference": "pooled_greedy_swap-n16",
+      "role": "component_parent"
+    },
+    {
+      "condition": "pooling_exact_support_lambda0.05-n16",
+      "reference": "exact_support_only-n16",
+      "role": "component_parent"
+    },
+    {
+      "condition": "pooling_exact_support_lambda0.2-n16",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "pooling_exact_support_lambda0.2-n16",
+      "reference": "pooled_greedy_swap-n16",
+      "role": "component_parent"
+    },
+    {
+      "condition": "pooling_exact_support_lambda0.2-n16",
+      "reference": "exact_support_only-n16",
+      "role": "component_parent"
+    },
+    {
+      "condition": "exact_support_only-n16",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "consensus_semantic_v5_support0_compatoff_vetooff-n16",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "consensus_semantic_v5_support0_compatoff_vetooff-n16",
+      "reference": "consensus_exact_support0-n16",
+      "role": "component_parent"
+    },
+    {
+      "condition": "consensus_semantic_v5_support0_compatoff_vetoon-n16",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "consensus_semantic_v5_support0_compatoff_vetoon-n16",
+      "reference": "consensus_exact_support0-n16",
+      "role": "component_parent"
+    },
+    {
+      "condition": "consensus_semantic_v5_support0_compaton_vetoon-n16",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "consensus_semantic_v5_support0_compaton_vetoon-n16",
+      "reference": "consensus_exact_support0-n16",
+      "role": "component_parent"
+    },
+    {
+      "condition": "consensus_semantic_v5_support0.125_compatoff_vetoon-n16",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "consensus_semantic_v5_support0.125_compatoff_vetoon-n16",
+      "reference": "consensus_exact_support0-n16",
+      "role": "component_parent"
+    },
+    {
+      "condition": "consensus_semantic_v5_support0.125_compaton_vetoon-n16",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "consensus_semantic_v5_support0.125_compaton_vetoon-n16",
+      "reference": "consensus_exact_support0-n16",
+      "role": "component_parent"
+    },
+    {
+      "condition": "pooled_specificity_mean-n32",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "pooled_specificity_mean-n32",
+      "reference": "pooled_greedy_swap-n32",
+      "role": "component_parent"
+    },
+    {
+      "condition": "pooled_specificity_mean-n32",
+      "reference": "best_n_specificity_mean-n32",
+      "role": "component_parent"
+    },
+    {
+      "condition": "pooled_specificity_mean_then_prune_0.005-n32",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "pooled_specificity_mean_then_prune_0.005-n32",
+      "reference": "pooled_specificity_mean-n32",
+      "role": "component_parent"
+    },
+    {
+      "condition": "pooled_specificity_mean_random_delete_matched_0.005-n32",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "pooled_specificity_mean_random_delete_matched_0.005-n32",
+      "reference": "pooled_specificity_mean-n32",
+      "role": "component_parent"
+    },
+    {
+      "condition": "best_n_specificity_mean_abstain_nonpositive-n32",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "best_n_specificity_mean_abstain_nonpositive-n32",
+      "reference": "best_n_specificity_mean-n32",
+      "role": "component_parent"
+    },
+    {
+      "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+      "reference": "consensus_exact_support0-n16",
+      "role": "component_parent"
+    },
+    {
+      "condition": "consensus_semantic_v5_medium_support0_compaton_vetoon-n16",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "consensus_semantic_v5_medium_support0_compaton_vetoon-n16",
+      "reference": "consensus_exact_support0-n16",
+      "role": "component_parent"
+    },
+    {
+      "condition": "consensus_semantic_v5_medium_support0.125_compatoff_vetoon-n16",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "consensus_semantic_v5_medium_support0.125_compatoff_vetoon-n16",
+      "reference": "consensus_exact_support0-n16",
+      "role": "component_parent"
+    },
+    {
+      "condition": "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16",
+      "reference": "consensus_exact_support0-n16",
+      "role": "component_parent"
+    },
+    {
+      "condition": "random_complete-n1",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "random_complete-n2",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "random_complete-n4",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "random_complete-n8",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "prune_loo_a32_0-n32",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "prune_loo_a32_0-n32",
+      "reference": "best_n_exact-n32",
+      "role": "component_parent"
+    },
+    {
+      "condition": "random_delete_matched_a32_0-n32",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "random_delete_matched_a32_0-n32",
+      "reference": "best_n_exact-n32",
+      "role": "component_parent"
+    },
+    {
+      "condition": "prune_coefficient_a32_0.01-n32",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "prune_coefficient_a32_0.01-n32",
+      "reference": "best_n_exact-n32",
+      "role": "component_parent"
+    },
+    {
+      "condition": "prune_coefficient_a32_0.05-n32",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "prune_coefficient_a32_0.05-n32",
+      "reference": "best_n_exact-n32",
+      "role": "component_parent"
+    },
+    {
+      "condition": "prune_loo_n1_0-n1",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "random_delete_matched_n1_0-n1",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "prune_loo_n1_0.001-n1",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "random_delete_matched_n1_0.001-n1",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "prune_coefficient_n1_0.01-n1",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "prune_coefficient_n1_0.05-n1",
+      "reference": "capped_n1-n1",
+      "role": "headline_baseline"
+    },
+    {
+      "condition": "prune_loo_a32_0.001-n32",
+      "reference": "random_delete_matched_a32_0.001-n32",
+      "role": "matched_deletion"
+    },
+    {
+      "condition": "prune_loo_a32_0.005-n32",
+      "reference": "random_delete_matched_a32_0.005-n32",
+      "role": "matched_deletion"
+    },
+    {
+      "condition": "prune_loo_n1_0.005-n1",
+      "reference": "random_delete_matched_n1_0.005-n1",
+      "role": "matched_deletion"
+    },
+    {
+      "condition": "best_n_specificity_mean_then_prune_0.001-n32",
+      "reference": "best_n_specificity_mean_random_delete_matched_0.001-n32",
+      "role": "matched_deletion"
+    },
+    {
+      "condition": "best_n_specificity_mean_then_prune_0.005-n32",
+      "reference": "best_n_specificity_mean_random_delete_matched_0.005-n32",
+      "role": "matched_deletion"
+    },
+    {
+      "condition": "pooled_greedy_swap_then_prune_0.001-n32",
+      "reference": "pooled_greedy_swap_random_delete_matched_0.001-n32",
+      "role": "matched_deletion"
+    },
+    {
+      "condition": "pooled_greedy_swap_then_prune_0.005-n32",
+      "reference": "pooled_greedy_swap_random_delete_matched_0.005-n32",
+      "role": "matched_deletion"
+    },
+    {
+      "condition": "editing_round2_then_prune_0.001-n32",
+      "reference": "editing_round2_random_delete_matched_0.001-n32",
+      "role": "matched_deletion"
+    },
+    {
+      "condition": "editing_round2_then_prune_0.005-n32",
+      "reference": "editing_round2_random_delete_matched_0.005-n32",
+      "role": "matched_deletion"
+    },
+    {
+      "condition": "pooled_specificity_mean_then_prune_0.005-n32",
+      "reference": "pooled_specificity_mean_random_delete_matched_0.005-n32",
+      "role": "matched_deletion"
+    },
+    {
+      "condition": "prune_loo_a32_0-n32",
+      "reference": "random_delete_matched_a32_0-n32",
+      "role": "matched_deletion"
+    },
+    {
+      "condition": "prune_loo_n1_0-n1",
+      "reference": "random_delete_matched_n1_0-n1",
+      "role": "matched_deletion"
+    },
+    {
+      "condition": "prune_loo_n1_0.001-n1",
+      "reference": "random_delete_matched_n1_0.001-n1",
+      "role": "matched_deletion"
+    }
+  ],
+  "multiplicity_policy": "Paired whole-group tests; Holm over declared comparisons; simultaneous intervals separately validated",
+  "invariants": [
+    "Maximum32original samples shared percell",
+    "A1 scoring eligibility differs from cappedN1",
+    "Whole source bullets, fourbullets/256tokens; raw released baseline exemption retained",
+    "Natural pooled lengths; no new baseline-length or random-pooling lengthmatching",
+    "No independent readers or new semantic thresholds",
+    "Missing compatibility labels remain unknown",
+    "No gold/context/judge outcomes in inference selection",
+    "No unrestricted crossproduct; weak/adverse findings retained"
+  ],
+  "code_sources": {
+    "${OLENS_REPO_ROOT}/scripts/seal_expansion_manifest.py": "056a1a939a22b093c0a1685c8812a695e5119576db5f86859df69376395f0193",
+    "src/olens_improve/selection.py": "003c05f8bfbc1cc5b492faf0aaa11f53f8bdfd29750a3b93297b4462ab28e3c5",
+    "src/olens_improve/reconstruction.py": "aef42c5dd1d7493f26a961bb053381464009d446329939354f090c6ba4803c6a",
+    "scripts/compare_selectors.py": "a8e11ee60318f19ee77cf680ca9cd91290487cde88392b07df956e6c781165b8",
+    "scripts/combine_pruning.py": "f96fe1af7f445d3be7f72f5be54167ccb15a6cde7cab3c3b77110afc8967de94",
+    "scripts/combine_support_pooling.py": "1472c7dd4d26a9c7482888d2e5a0b2fee6789c12ea9da2e1fb7f8472c9006c2a",
+    "scripts/combine_specificity_pooling.py": "f591d880933ee60be1ba6c23d9fca3ffbcd14be24d8ccc9f21c307ea316af4ff"
+  }
+}

@@ -26,7 +26,7 @@
   "judge_default_tier": "flex",
   "blocking_helper_tier": "default",
   "api_target_usd": 200,
-  "api_hard_ceiling_usd": 300,
+  "api_hard_ceiling_usd": 340,
   "unresolved_review_reservation_usd": 2,
   "storage_allowance_gb": 500,
   "families": ["hallucination", "multihop_mt", "chain_intermediates", "role_bound_association"],

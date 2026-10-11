@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "status": "frozen_before_new_judgments",
+  "scope": "exploratory_full469; original frozen TEST results remain separately available",
+  "manifest": "configs/expansion_manifest_v1.json",
+  "manifest_sha256": "753b2d9cab0daea0d19efef7d3222fd44921dbcf4669e6864d4f1bd4805421f8",
+  "contrast_family": "All headline_comparison_family entries crossed with the four native family endpoints",
+  "resampling_unit": "Whole related groups, shared draws across methods within each family",
+  "bootstrap_replicates": 10000,
+  "seed": 20261011,
+  "pointwise_intervals": "Paired group bootstrap percentile 95 percent",
+  "simultaneous_intervals": "Joint group bootstrap max absolute standardized centered error; approximately 95 percent across declared contrasts; separate pointwise intervals remain visible",
+  "degenerate_contrasts": "Report zero bootstrap variation as a limitation; do not claim robust zero uncertainty or significance",
+  "p_values": "Omitted; no significance-based shortlist",
+  "partial_results": "Pointwise intervals and explicit missing coverage only; simultaneous headline family computed when all declared usable contrasts are available, with blocked conditions disclosed",
+  "hallucination_endpoint": "wrong / (wrong + off_topic + consistent), ratio of pooled source sums; both stages required",
+  "recovery_endpoints": "Original full-question benchmark aggregation for multihop_mt, chain_intermediates, role_bound_association",
+  "secondary_endpoints": ["assertion_share", "off_topic_rate", "per_activation_recovery", "true_false_unverifiable_tallies", "output_length", "inference_cost"],
+  "interpretation": "No multiplicity adjustment erases adaptive method history or creates a fresh held-out test; report effect sizes and practical tradeoffs"
+}

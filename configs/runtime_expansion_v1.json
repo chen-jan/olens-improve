@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "execution_started_utc": "2026-10-11T00:08:00Z",
+  "status": "running",
+  "goal_document": "docs/EXPANSION_PLAN.md",
+  "goal_service_error": "file is not a database",
+  "gpu_allocation": {"job_id": 25536297, "node": "node4603", "partition": "${SLURM_PREEMPT_PARTITION}", "account": "${SLURM_GENERAL_PARTITION}", "type": "h200", "count": 1, "cpus": 8, "ram_gib": 96, "started_utc": "2026-10-11T00:15:43Z", "end_utc": "2026-10-11T20:15:43Z", "requeue": true},
+  "api_cpu_allocation": {"job_id": 25536291, "node": "node1603", "cpus": 8, "ram_gib": 32, "started_utc": "2026-10-11T00:14:55Z", "end_utc": "2026-10-12T00:14:55Z"},
+  "cpu_selection_jobs": [25536417, 25536927],
+  "watcher": {"cpu_job_id": 25536291, "pid": 683727, "state": ".state/expansion-monitor-v1.json", "interval_seconds": 60, "status": "running"},
+  "api_ceiling_usd": 340,
+  "budget_receipt": "${OLENS_DATA_ROOT}/expansion-v1/receipts/budget-activation-v1.json",
+  "prior_runtime_preserved": "configs/runtime.json"
+}

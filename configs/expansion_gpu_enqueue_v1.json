@@ -1,0 +1,22 @@
+{
+  "python": "${OLENS_COMPUTE_ROOT}/envs/runtime/bin/python",
+  "runtime": "configs/expansion_gpu_runtime_v1.json",
+  "checkpoint": "${OLENS_COMPUTE_ROOT}/cache/huggingface/hub/models--agu18dec--olens_and_ar/snapshots/c95215d5d2f6250f20c305ae55c6e4d7569f92dc/ar_ptag_pooled",
+  "production_cache": "${OLENS_COMPUTE_ROOT}/vectors/test-catalog-v1",
+  "edit_cache": "${OLENS_COMPUTE_ROOT}/vectors/expansion-edits-v1",
+  "whitener_directory": "${OLENS_COMPUTE_ROOT}/cache/huggingface/hub/datasets--agu18dec--local-workspace/snapshots/5653a7fead43ecbd87e3b6d2a2990a98b32843ca/ckpts/ar/ptag/whiteners",
+  "sealed_manifest": "configs/expansion_manifest_v1.json",
+  "sealed_manifest_sha256": "753b2d9cab0daea0d19efef7d3222fd44921dbcf4669e6864d4f1bd4805421f8",
+  "queue": ".state/expanded-gpu-v1.queue.json",
+  "descriptors": ".state/expanded-gpu-edit-descriptors",
+  "state": ".state/expanded-gpu-enqueue-v1.state.json",
+  "stop_file": ".state/expanded-gpu-enqueue-v1.stop",
+  "likelihood_publisher": {
+    "script": "scripts/export_expanded_likelihood.py",
+    "script_sha256": "de1bf24c72fb0843104cf24ffc3f262277e47bcafd4ae0bee713fa35298babba",
+    "input": "${OLENS_DATA_ROOT}/expansion-v1/likelihood-n8-two-controls/readouts.jsonl",
+    "status": "${OLENS_DATA_ROOT}/expansion-v1/likelihood-n8-two-controls/status.json",
+    "output": "${OLENS_DATA_ROOT}/expansion-v1/selections/likelihood-v1"
+  },
+  "gpu_service_state": ".state/expanded-gpu-v1.service.json"
+}

@@ -1,0 +1,6 @@
+{
+  "paths": {
+    "base_snapshot": "${OLENS_SCRATCH}/workspace/hf_cache/hub/models--Qwen--Qwen3.6-27B/snapshots/6a9e13bd6fc8f0983b9b99948120bc37f49c13e9"
+  },
+  "source_runtime_sha256": "d18ea8e86b91a682239a43af471f28f56d46c4888c75e3b2d5a8893786de21ab"
+}
