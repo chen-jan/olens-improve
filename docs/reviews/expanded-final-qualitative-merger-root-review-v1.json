@@ -1,0 +1,23 @@
+{
+  "status": "root_reviewed_final_qualitative_merger",
+  "reviewed_utc": "2026-10-11T03:52:55.700642+00:00",
+  "source_sha256": {
+    "scripts/validate_expansion_qualitative_final_reviews.py": "c02b5c60f7538900e1ae25cb2f68b67fd4496126e60edea0dbc6198a009de48d",
+    "tests/test_expansion_final_qualitative_reviews.py": "9a54855bd265ef93b7bbec3d78ff091a00211d7ce9bf566f8a1a8aa9787e64ec",
+    ".state/final-qualitative-merger-fixture-v1/receipt.json": "fc1f4d20a7d3aff612aacfeb13f93f75d2ac1ece79a957ba2d02ef3ba233972e"
+  },
+  "reviewer": "root",
+  "decision": "Use after terminal final native source and CPU-produced exact final index; no scientific final output is attested yet.",
+  "verified": [
+    "Counts derive from the exact final index; no fixed final330/426 count assumption.",
+    "Previous330 audited notes remain verbatim; original426 historical count is checked against its pinned index.",
+    "New inherited references require equality of full context, source cell, exact before/after text and official evidence pair.",
+    "All four partitions, including explicit zero-pending partitions, must have validated complete reviews before eligible final notes.",
+    "Partial coverage, duplicate references, changed context and changed official verdicts cannot be presented as fully reviewed.",
+    "Actual-prior fixture and four boundary tests passed on an existing CPU allocation; no paid calls or verdict changes."
+  ],
+  "limits": [
+    "Root still must manually review final prose and sampled full examples; structural checks do not establish a mechanism.",
+    "Matching only older inherited lineages conservatively requires a fresh review."
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "status": "root_reviewed_offline_editor_fit_intake",
+  "reviewed_utc": "2026-10-11T03:46:41.065334+00:00",
+  "reviewer": "root",
+  "source_sha256": {
+    "scripts/analyze_expansion_reconstruction_v5.py": "cb9cc9a7578f0a617e6a567e2c14e3fcee720e1a807c0b452ca9b40f925a99f8",
+    "scripts/expanded_editor_fit_intake_v2.py": "ec6a8de982fd25023a1130c6c4cb4ae87418765e0991629b171f58bf1c6e436f",
+    "configs/expansion_editor_fit_intake_v1.json": "fe88d843424bf7c9bdc0b51d7796613ba77602f77ff2ba237b3931cab5260d61",
+    "tests/test_expanded_editor_fit_intake_v2.py": "0699e356471eef4886d7c428e0acd6c75ba2e3561f830d2d3bdc632166dccc50",
+    ".state/editor-fit-intake-v5-boundary-tests-v1.json": "69921f1cc424ac28eae7b10dd3d13e924ca45cd6729038cd16289d0eabc98223",
+    "docs/reviews/editor-fit-intake-v4-review-v1.json": "74eec6052f9626f5f2ed2a1f1a7c6bd8f3ebbcd3bc3734a29fced132dab2a57f",
+    "docs/reviews/expanded-editor-fit-intake-adversarial-v1.md": "39ced36e5e2f771044f9ddfc2152f7c40d040968d1f6a719891ea398af80ad59"
+  },
+  "supersedes_final_intake": "docs/reviews/editor-fit-intake-v4-review-v1.json",
+  "scope": "Use v5 only at actual terminal boundary. Unrun v4 prototype and all historical numerical outputs remain unchanged.",
+  "verified": [
+    "Raw source hash and canonical event digest remain independently checked.",
+    "Duplicate, unknown and missing dispatch options fail; first/last argparse ambiguity is eliminated.",
+    "Immutable family descriptor, proposal/cohort/history pins and complete successful per-task signature/receipt are required.",
+    "Actual approved normalization and original eleven whitening artifacts are unchanged; eight offline boundary tests passed.",
+    "V4-to-v5 changes only the validator import, validator source pin and diagnostic version; numerical and common-mask formulas are unchanged."
+  ],
+  "decision": "Schedule v5 final reconstruction only after actual editor terminal journals and immutable dispatch snapshot, binding the exact final native analysis SHA. These checks do not attest real edited outputs yet."
+}

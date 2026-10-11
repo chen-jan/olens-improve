@@ -1,0 +1,20 @@
+{
+  "status": "root_reviewed_offline_editor_fit_intake",
+  "reviewed_utc": "2026-10-11T03:41:00Z",
+  "reviewer": "root",
+  "source_sha256": {
+    "scripts/analyze_expansion_reconstruction_v4.py": "3fc2e4e031f117232ff7612f08e9927528f0b1d8cc749837e618c40bb91cca73",
+    "scripts/expanded_editor_fit_intake.py": "58763fd7ce175babc0efca2157f90d893ea81b0f4ce4afa60b932789838a048c",
+    "configs/expansion_editor_fit_intake_v1.json": "fe88d843424bf7c9bdc0b51d7796613ba77602f77ff2ba237b3931cab5260d61",
+    "tests/test_expanded_editor_fit_intake.py": "984581c8bbfa545b3acba9fc32e38f15a6b3f5242a0459e3a63dcc7f79808b48",
+    ".state/editor-fit-intake-v4-boundary-tests-v1.json": "5dd7d973c17a7cc445361877fa91ec4e884631e76c6d321d6fb9b942d0cedd47"
+  },
+  "scope": "Next terminal numeric extraction only. Historical v1-v3 artifacts and live GPU/API/scientific sources remain unchanged.",
+  "verified": [
+    "Canonical compact-JSON event spec linkage is checked separately from the raw spec file hash.",
+    "Source/dispatch signatures, original per-layer whitening hashes and unchanged scorer prove the recorded objective and normalization.",
+    "Round, beam, prior-candidate history, full cohort, emitted output identity and common valid masks remain checked.",
+    "Six allocated-CPU fixtures and the 17-source real authority audit passed; this is not a real edited-result replay."
+  ],
+  "decision": "Use v4 explicitly for final extraction only after all actual editor task/journal/terminal files and a source-pinned per-task dispatch snapshot exist."
+}

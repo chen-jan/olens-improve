@@ -1,0 +1,34 @@
+{
+  "status": "root_reviewed_final_reconstruction_gate",
+  "reviewed_utc": "2026-10-11T03:54:30.765280+00:00",
+  "source_sha256": {
+    "scripts/expanded_final_reconstruction_gate.py": "c626dc8b18865467921e8bb70d7a24fae55ef0ef6180de580c766b4b91616077",
+    "tests/test_expanded_final_reconstruction_gate.py": "9035b5ebf2853adc7f1887f091b06f9081b4f4438dbb6694ef647e2375cb3c0b",
+    ".state/expanded-final-reconstruction-v1.sh": "56fd2d3c3cdbe94a184224419cb51a6c127bc4b7f81af211c429e6cb248caa97",
+    ".state/expanded-final-reconstruction-v1.pins.json": "e49928ca9d8b3725317955936cd477175f2f846cbfbfd2edb84555c9106648b3",
+    ".state/expanded-final-reconstruction-v2.guard-tests.json": "ad1d4478531229637f807204f6e85b86546319949edbf95d7bf3ce59a05a0d8d",
+    "docs/reviews/editor-fit-intake-v5-review-v1.json": "fc5e339f585462781bb68a881cd1d03287d492a5667433c765630f5d504b0737"
+  },
+  "decision": "Launch once on owned CPU25536417; wait for actual terminal inputs before final reconstruction v5 dispatch.",
+  "verified": [
+    "Five boundary fixtures passed; implementation frozen before launch.",
+    "Native output, source receipt and terminal state retain the hashes approved at readiness; changed bytes fail before dispatch and after extraction.",
+    "Canonical32 descriptors and exact280 terminal native condition-family rows are required.",
+    "The eight exact editor tasks plus successful matching per-task receipts become the immutable dispatch authority; raw mutable queue/service hashes are observations only.",
+    "Reviewed v5 and helper-v2 are used; unrun v4 and first unlaunched gate prototypes remain preserved.",
+    "All280 complete selection rows are required while explicit invalid/unavailable fits and warnings remain visible.",
+    "Final aggregate and attempt/snapshot cannot be overwritten or silently rerun."
+  ],
+  "no_scientific_final_output_attested_yet": true,
+  "command": [
+    "srun",
+    "--jobid=25536417",
+    "--overlap",
+    "--ntasks=1",
+    "--cpus-per-task=1",
+    "--mem=8G",
+    "--cpu-bind=cores",
+    "bash",
+    "${OLENS_REPO_ROOT}/.state/expanded-final-reconstruction-v1.sh"
+  ]
+}

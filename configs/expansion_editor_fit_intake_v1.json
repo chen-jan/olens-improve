@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "status": "offline_editor_intake_authority_pending_root_review",
+  "manifest_sha256": "753b2d9cab0daea0d19efef7d3222fd44921dbcf4669e6864d4f1bd4805421f8",
+  "vector_contract_sha256": "a451cf49d28ac74477229e74dfc738e51b8961b5376c688fd9e40abbd8c133b6",
+  "objective": "1-squared_residual/squared_target",
+  "solver": "scipy_exact",
+  "normalization": {
+    "center_predictions": true,
+    "whitening_ridge_c": 0.1,
+    "unit_phrase_directions": true,
+    "phrase_norm_epsilon": 1e-09,
+    "target_unit_normalized": false,
+    "clip_fve": false,
+    "scored_atom_tokens": 32
+  },
+  "whitening_authority": {
+    "path": "${OLENS_DATA_ROOT}/expansion-v1/reconstruction/first-live-v3.json",
+    "sha256": "c7d6ee68c9481fc52e7bbbd01cda416c416b8f8bf15854a730977e958ded7e75"
+  },
+  "whitener_sha256": {
+    "${OLENS_COMPUTE_ROOT}/cache/huggingface/hub/datasets--agu18dec--local-workspace/snapshots/5653a7fead43ecbd87e3b6d2a2990a98b32843ca/ckpts/ar/ptag/whiteners/whitening_iolens_pooled_L20.safetensors": "dcdf2d9d332262ded95692ef5a43d86f8478ab9b77350d8ad5702fec039da313",
+    "${OLENS_COMPUTE_ROOT}/cache/huggingface/hub/datasets--agu18dec--local-workspace/snapshots/5653a7fead43ecbd87e3b6d2a2990a98b32843ca/ckpts/ar/ptag/whiteners/whitening_iolens_pooled_L24.safetensors": "4c2d387ae3cc53b8c2df883062ac8afbad5d8205db1f0024b58d51391bc7521d",
+    "${OLENS_COMPUTE_ROOT}/cache/huggingface/hub/datasets--agu18dec--local-workspace/snapshots/5653a7fead43ecbd87e3b6d2a2990a98b32843ca/ckpts/ar/ptag/whiteners/whitening_iolens_pooled_L28.safetensors": "0e4bdda6be1d011e9fbf3cc478eeffad35c99ddff5744dbe25e50f2172e45061",
+    "${OLENS_COMPUTE_ROOT}/cache/huggingface/hub/datasets--agu18dec--local-workspace/snapshots/5653a7fead43ecbd87e3b6d2a2990a98b32843ca/ckpts/ar/ptag/whiteners/whitening_iolens_pooled_L32.safetensors": "c88df024d30a65c77bd55feee8c42f95df5acbdfccd407b58755cd5115955934",
+    "${OLENS_COMPUTE_ROOT}/cache/huggingface/hub/datasets--agu18dec--local-workspace/snapshots/5653a7fead43ecbd87e3b6d2a2990a98b32843ca/ckpts/ar/ptag/whiteners/whitening_iolens_pooled_L36.safetensors": "8c8c6d27b39204fb39e1fb8bc729a5c2bb7fb83f0466e3371965642703f07fa1",
+    "${OLENS_COMPUTE_ROOT}/cache/huggingface/hub/datasets--agu18dec--local-workspace/snapshots/5653a7fead43ecbd87e3b6d2a2990a98b32843ca/ckpts/ar/ptag/whiteners/whitening_iolens_pooled_L40.safetensors": "efbca2bb9dc2147b02f9dad92f3e6c20010ba67153157fcf514c15395240f650",
+    "${OLENS_COMPUTE_ROOT}/cache/huggingface/hub/datasets--agu18dec--local-workspace/snapshots/5653a7fead43ecbd87e3b6d2a2990a98b32843ca/ckpts/ar/ptag/whiteners/whitening_iolens_pooled_L44.safetensors": "178ceb36251e5e7ed2eb51aa54ccc4eac45dc928116b7498b46d22657a31c62a",
+    "${OLENS_COMPUTE_ROOT}/cache/huggingface/hub/datasets--agu18dec--local-workspace/snapshots/5653a7fead43ecbd87e3b6d2a2990a98b32843ca/ckpts/ar/ptag/whiteners/whitening_iolens_pooled_L48.safetensors": "9cf2f819746af5f6c0434b7e076345826a568fe77642d1c404eb1db9b8b63192",
+    "${OLENS_COMPUTE_ROOT}/cache/huggingface/hub/datasets--agu18dec--local-workspace/snapshots/5653a7fead43ecbd87e3b6d2a2990a98b32843ca/ckpts/ar/ptag/whiteners/whitening_iolens_pooled_L52.safetensors": "f4500a8e2fd9329bbbb66499832b55d4a0b87d4a9088ee5d4a512ba8865d8c2c",
+    "${OLENS_COMPUTE_ROOT}/cache/huggingface/hub/datasets--agu18dec--local-workspace/snapshots/5653a7fead43ecbd87e3b6d2a2990a98b32843ca/ckpts/ar/ptag/whiteners/whitening_iolens_pooled_L56.safetensors": "aa9c796a38a9ad763d66c170f7eaf9a6135ee4b6eceea1f7cfef11fec271f80c",
+    "${OLENS_COMPUTE_ROOT}/cache/huggingface/hub/datasets--agu18dec--local-workspace/snapshots/5653a7fead43ecbd87e3b6d2a2990a98b32843ca/ckpts/ar/ptag/whiteners/whitening_iolens_pooled_L60.safetensors": "3723db02ea8f2c6aa3a4183ced7ecf2bdc9d8e2b229e43d0e51528071a0a2b71"
+  },
+  "whitener_directory": "${OLENS_COMPUTE_ROOT}/cache/huggingface/hub/datasets--agu18dec--local-workspace/snapshots/5653a7fead43ecbd87e3b6d2a2990a98b32843ca/ckpts/ar/ptag/whiteners",
+  "code_sha256": {
+    "scripts/expanded_encode_edits.py": "121e9910af24339ee8448301e9f05e2e845d8e9bf695aa98af9efe20e619231e",
+    "src/olens_improve/reconstruction.py": "aef42c5dd1d7493f26a961bb053381464009d446329939354f090c6ba4803c6a",
+    "src/olens_improve/editing.py": "2d7cab029beafb81c63f968fa22a253658e3d20f0d3872afce524a92addeab86",
+    "src/olens_improve/gpu_resume.py": "536d611683a12bf80d41560c433f152070b32ef4fc3706cc79269b3c1afe6557"
+  },
+  "limits": [
+    "Editor event linkage uses canonical sorted compact JSON, independently of the raw pretty spec file pin.",
+    "The editor event does not serialize normalization/whitener metadata; comparability is established from approved producer/scorer code, exact dispatch arguments, and original whitening artifact hashes."
+  ],
+  "dispatch_policy": {
+    "path": "configs/expansion_gpu_enqueue_v1.json",
+    "sha256": "4eb7ae72121e0c0450164d24ad22bf3b1b8a4f2e0f33246571d6d8e773c477da"
+  }
+}

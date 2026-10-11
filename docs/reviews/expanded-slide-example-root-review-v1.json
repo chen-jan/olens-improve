@@ -1,0 +1,22 @@
+{
+  "status": "root_reviewed_candidate_examples_not_final_deck",
+  "reviewed_utc": "2026-10-11T03:46:41.508708+00:00",
+  "candidate_source": {
+    "path": "docs/reviews/expanded-slide-example-candidates-v1.json",
+    "sha256": "ac2f69c6fbe3c7540cc3ed99a642d73817869fc5d3458eb541518504c73cb68a"
+  },
+  "count": 6,
+  "review_scope": "Full before/after text, supplied benchmark context, official evidence, actual parent and whole-grid witness scope inspected. Examples are illustrative and outcome-selected/fixed, not prevalence estimates.",
+  "findings": {
+    "selection": "Judge ranks the intermediate 75 first after selection, although 75 was already in the parent and the new ceil equation is false. Do not call this a new correct calculation.",
+    "consensus": "The useful intermediate 7 is removed from the only passing site, while generic reasoning preambles remain. The parent also mislabeled 7 as final; recovered number does not imply fully correct prose.",
+    "pruning": "Deleting the wrong compound and temperature assertion changes the local verdict to consistent. Remaining prose has no sodium nitrite or requested value and has no supported-true claim in the retained stage-two tally.",
+    "pooling": "Correct role direction becomes prominent, but it already appeared among conflicting parent bullets. The child keeps conflicting directions and invents cereal/candy/toys/exhaustion. Official recovery improves, full faithfulness is not established.",
+    "verification": "Required Adwa bridge appears; wrong or uncertain generals remain. This observed bridge gain alone does not establish control-based activation specificity.",
+    "combinations": "Pruning removes the Enkidu-bearing bullet at a fixed anchor, while Humbaba survives. Two other sites preserve the whole-question pass; this is local loss, not a whole-question regression."
+  },
+  "limits": [
+    "No editing example is fabricated.",
+    "Final deck examples must retain exact source text and resolve against source-pinned qualitative packs; final score overlap must be checked before final reuse."
+  ]
+}

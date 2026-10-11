@@ -1,0 +1,1947 @@
+{
+  "status": "six_source_bound_candidates_pending_root_choice",
+  "manifest_sha256": "753b2d9cab0daea0d19efef7d3222fd44921dbcf4669e6864d4f1bd4805421f8",
+  "native_snapshot_sha256": "eea3510637c4f0b849585882e88f6dec00f85073f10525460070ab70e75d8082",
+  "root_review_status": "root_reviewed_progress",
+  "source_sha256": {
+    "docs/reviews/root-expansion-progress-v5.json": "c9a5d4eaaf376a6b56bd0a9a6ce858ab7e0667638ff1c06a3d539efefa115b84",
+    "${OLENS_DATA_ROOT}/expansion-v1/qualitative/first-live-v4.json": "15139648dd09b10ae931e7600a2aa643fae3e02ec37ccd0098a34443d9ee320c",
+    "${OLENS_DATA_ROOT}/expansion-v1/qualitative/parent-comparisons-first-live-v3.json": "f471b3bda848701547a973e0b766b67a5c8a3c3934809caab75b420f76eed4e5"
+  },
+  "candidate_count": 6,
+  "examples": [
+    {
+      "approach": "selection",
+      "condition": "best_n_exact-n32",
+      "actual_parent": "capped_n1-n1",
+      "family": "chain_intermediates",
+      "kind": "outcome_selected",
+      "cell_id": "chain_intermediates|chain-d2p-0341|L52|p00068",
+      "candidate_action_title": "A recovered number can sit inside wrong arithmetic",
+      "full_context": {
+        "source_bank_item": {
+          "depth": 2,
+          "cond": false,
+          "kinds": [
+            "triple",
+            "halve_up"
+          ],
+          "steps": [
+            "Multiply it by 3.",
+            "Halve it, rounding up."
+          ],
+          "start": 25,
+          "intermediates": [
+            75
+          ],
+          "untaken": [
+            null
+          ],
+          "answer": 38,
+          "prompt": "Apply the steps below, in order, to the starting number given at the end.\nMultiply it by 3.\nHalve it, rounding up.\nThe starting number is 25. What is the final number? Reply with only the final number, nothing else.",
+          "prompt_first": "Start with the number 25 and apply the steps below, in order.\nMultiply it by 3.\nHalve it, rounding up.\nWhat is the final number? Reply with only the final number, nothing else.",
+          "literals": [
+            3,
+            25
+          ],
+          "distractors": [
+            [
+              25,
+              38,
+              74,
+              3
+            ]
+          ],
+          "name": "chain-d2p-0341",
+          "gate": {
+            "last": {
+              "ok": true,
+              "greedy_ok": true,
+              "correct": 10,
+              "n": 10,
+              "perfect": true
+            },
+            "first": {
+              "ok": false,
+              "greedy_ok": true,
+              "correct": 7,
+              "n": 10,
+              "perfect": false
+            }
+          }
+        },
+        "historical_anchor_context": null,
+        "evaluation_context": null,
+        "evaluation_only": true
+      },
+      "before": {
+        "text": "- 75** (since 7.5 rounded up is 8\n- 11 **Explanation:** To find the ceiling of half the sum, we first calculate the sum of\n- 32** (Applying ceiling function to 22.5)\n\n**Step-by-step explanation:**\n- 30$ (since $\\lceil \\frac{6}{2} \\rceil = 3",
+        "empty": false,
+        "pass": false,
+        "class": null,
+        "evidence": {
+          "named_values": [
+            32,
+            11,
+            75
+          ],
+          "kind": "other",
+          "basis": "stated_result",
+          "reference_context": {
+            "start": 25,
+            "intermediates": [
+              75
+            ],
+            "answer": 38,
+            "depth": 2
+          },
+          "retained_raw_cache_record": {
+            "key": "chain-d2p-0341|L052",
+            "fp": "38d5ed9d183e199b",
+            "ts": 1791679102.3123186,
+            "result": {
+              "basis": "stated_result",
+              "quote": "32** (Applying ceiling function to 22.5)",
+              "states_value": true,
+              "values": [
+                32,
+                11,
+                75,
+                30,
+                3
+              ]
+            },
+            "meta": {
+              "item": "chain-d2p-0341",
+              "layer": 52,
+              "pos": null
+            },
+            "shared_cache_hit": {
+              "content_key": "40b1aaa92424a28dc70806410ba27cd207aeff48b1282edf4cd93211b02b6952",
+              "request_key": "d69a3a479ce9fe45e51b4ca5ab49b501dafc5038853212ca105e76599087b71e",
+              "origin": {
+                "attempt_id": "c35b45e6-b886-4a75-a2c9-b21872406bd4",
+                "original_cell_key": "chain-d2p-0341|L052",
+                "request_key": "d69a3a479ce9fe45e51b4ca5ab49b501dafc5038853212ca105e76599087b71e",
+                "response_id": "chatcmpl-EXSpX4frcxXN1TG03lqT78ybR8VMa"
+              }
+            }
+          },
+          "evaluation_only": true
+        }
+      },
+      "after": {
+        "text": "- 75 ← ceil(45/2) = 75\n- 51** (rounded up)\n- 35** (since $18 \\times 3 = 54$, then $\\lceil 54/2 \\rceil = 27$)\n- 31** (Rounding up to the nearest integer)\n\n**Explanation:**\nWe start with 18.",
+        "empty": false,
+        "pass": true,
+        "class": null,
+        "evidence": {
+          "named_values": [
+            75,
+            27,
+            54
+          ],
+          "kind": "hit",
+          "basis": "arithmetic",
+          "reference_context": {
+            "start": 25,
+            "intermediates": [
+              75
+            ],
+            "answer": 38,
+            "depth": 2
+          },
+          "retained_raw_cache_record": {
+            "key": "chain-d2p-0341|L052",
+            "fp": "3c0306055886ca2b",
+            "ts": 1791679142.3038123,
+            "result": {
+              "basis": "arithmetic",
+              "quote": "ceil(45/2) = 75",
+              "states_value": true,
+              "values": [
+                75,
+                27,
+                54,
+                51,
+                35,
+                31
+              ]
+            },
+            "meta": {
+              "item": "chain-d2p-0341",
+              "layer": 52,
+              "pos": null
+            },
+            "shared_cache_hit": {
+              "content_key": "dd5c9699cbb02be16dd319b8ca51f5253215ee775e6cc1a08c0684a298f410df",
+              "request_key": "9255e7ce0a774b449840fe3cc54d5ce0b561401d8a8e70de10709b01f06ebb26",
+              "origin": {
+                "attempt_id": "d9e4ea68-fccd-4176-a450-caad20e33b8a",
+                "original_cell_key": "chain-d2p-0341|L052",
+                "request_key": "9255e7ce0a774b449840fe3cc54d5ce0b561401d8a8e70de10709b01f06ebb26",
+                "response_id": "chatcmpl-EXSxsg1qmtNecPWf2VPbz7z0Sn7Te"
+              }
+            }
+          },
+          "evaluation_only": true
+        }
+      },
+      "excerpts": {
+        "before": {
+          "text": "- 75** (since 7.5 rounded up is 8",
+          "character_count": 33,
+          "start": 0,
+          "end": 33,
+          "exact_substring_of_full_text": true
+        },
+        "after": {
+          "text": "- 75 ← ceil(45/2) = 75",
+          "character_count": 22,
+          "start": 0,
+          "end": 22,
+          "exact_substring_of_full_text": true
+        }
+      },
+      "original_capped_reference": {
+        "text": "- 75** (since 7.5 rounded up is 8\n- 11 **Explanation:** To find the ceiling of half the sum, we first calculate the sum of\n- 32** (Applying ceiling function to 22.5)\n\n**Step-by-step explanation:**\n- 30$ (since $\\lceil \\frac{6}{2} \\rceil = 3",
+        "empty": false,
+        "pass": false,
+        "class": null,
+        "evidence": {
+          "named_values": [
+            32,
+            11,
+            75
+          ],
+          "kind": "other",
+          "basis": "stated_result",
+          "reference_context": {
+            "start": 25,
+            "intermediates": [
+              75
+            ],
+            "answer": 38,
+            "depth": 2
+          },
+          "retained_raw_cache_record": {
+            "key": "chain-d2p-0341|L052",
+            "fp": "38d5ed9d183e199b",
+            "ts": 1791679102.3123186,
+            "result": {
+              "basis": "stated_result",
+              "quote": "32** (Applying ceiling function to 22.5)",
+              "states_value": true,
+              "values": [
+                32,
+                11,
+                75,
+                30,
+                3
+              ]
+            },
+            "meta": {
+              "item": "chain-d2p-0341",
+              "layer": 52,
+              "pos": null
+            },
+            "shared_cache_hit": {
+              "content_key": "40b1aaa92424a28dc70806410ba27cd207aeff48b1282edf4cd93211b02b6952",
+              "request_key": "d69a3a479ce9fe45e51b4ca5ab49b501dafc5038853212ca105e76599087b71e",
+              "origin": {
+                "attempt_id": "c35b45e6-b886-4a75-a2c9-b21872406bd4",
+                "original_cell_key": "chain-d2p-0341|L052",
+                "request_key": "d69a3a479ce9fe45e51b4ca5ab49b501dafc5038853212ca105e76599087b71e",
+                "response_id": "chatcmpl-EXSpX4frcxXN1TG03lqT78ybR8VMa"
+              }
+            }
+          },
+          "evaluation_only": true
+        }
+      },
+      "actual_parent_endpoint_evidence": {
+        "unit": "whole_original_question_grid",
+        "item_id": "chain-d2p-0341",
+        "grid_cells": 11,
+        "parent_item_pass": false,
+        "proposed_item_pass": true,
+        "parent_passing_cells": 0,
+        "proposed_passing_cells": 1,
+        "parent_first_passing_cell": null,
+        "proposed_first_passing_cell": "chain_intermediates|chain-d2p-0341|L52|p00068",
+        "selected_cell_parent_pass": false,
+        "selected_cell_proposed_pass": true
+      },
+      "original_capped_endpoint_evidence": {
+        "unit": "whole_original_question_grid",
+        "item_id": "chain-d2p-0341",
+        "baseline_item_pass": false,
+        "proposed_item_pass": true,
+        "baseline_passing_cells": 0,
+        "proposed_passing_cells": 1,
+        "grid_cells": 11,
+        "witness_rule": "first passing proposed site"
+      },
+      "evidence_scope": "local_anchor_with_separately_recorded_whole_question_grid",
+      "observed_change": "The selected description ranks 75 as the recovered intermediate, while its explicit ceil(45/2)=75 equation is false. The reference already contains 75, but its top extracted value is not credited.",
+      "mechanism_hypothesis_not_established": "Choosing among complete candidates changes numeral emphasis; this example does not establish a faithful reconstruction of the calculation.",
+      "inherited_effects_and_scope": "Whole-question recovery changes from zero to one passing site. This is not a gain newly introduced by a later component.",
+      "effort_or_control_scope": "The frozen capped-first-sample reference changes both the candidate pool and the selection rule; it does not isolate AR selection from extra sampling.",
+      "root_reviewed_analysis_verbatim": "The false equation ceil(45/2)=75 contains the correct intermediate 75; an official arithmetic hit must not be described as a correct derivation.",
+      "source_references": {
+        "case": {
+          "path": "${OLENS_DATA_ROOT}/expansion-v1/qualitative/first-live-v4.json",
+          "condition": "best_n_exact-n32",
+          "family": "chain_intermediates",
+          "kind": "outcome_selected",
+          "cell_id": "chain_intermediates|chain-d2p-0341|L52|p00068",
+          "object_sha256": "7257f55ff4eadb61d92f51cf23bb05509ffa91d485e79fa79c37fbc8f35f418c"
+        },
+        "actual_parent": {
+          "path": "${OLENS_DATA_ROOT}/expansion-v1/qualitative/parent-comparisons-first-live-v3.json",
+          "condition": "best_n_exact-n32",
+          "family": "chain_intermediates",
+          "kind": "outcome_selected",
+          "cell_id": "chain_intermediates|chain-d2p-0341|L52|p00068",
+          "parent_condition": "capped_n1-n1",
+          "comparison_object_sha256": "0b93d5e322c254277f2d3061bf30c3b9ea56f3e0b68e3cfd44ee49fd57ba5853"
+        },
+        "root_review": {
+          "path": "docs/reviews/root-expansion-progress-v5.json",
+          "sha256": "c9a5d4eaaf376a6b56bd0a9a6ce858ab7e0667638ff1c06a3d539efefa115b84",
+          "dashboard_example_object_sha256": "b9283decabc7c4c14fc0a3b0f93156d670c951af6e713d9f5b7022d5b1bbaa91"
+        },
+        "context": {
+          "path": "${OLENS_DATA_ROOT}/expansion-v1/qualitative/first-live-v4.json",
+          "key": "chain_intermediates|chain-d2p-0341|L52|p00068",
+          "object_sha256": "96522588919033b8a263f05af778fceecbb694f85bef50d91436b44a30acfe33"
+        }
+      },
+      "endpoint_scope_label": "Outcome-selected whole-question change witness",
+      "is_selected_whole_question_change_witness": true
+    },
+    {
+      "approach": "consensus",
+      "condition": "consensus_semantic_v5_support0_compatoff_vetoon-n16",
+      "actual_parent": "consensus_exact_support0-n16",
+      "family": "chain_intermediates",
+      "kind": "outcome_selected",
+      "cell_id": "chain_intermediates|chain-d2p-0256|L28|p00061",
+      "candidate_action_title": "Agreement can remove the only useful number",
+      "full_context": {
+        "source_bank_item": {
+          "depth": 2,
+          "cond": false,
+          "kinds": [
+            "add",
+            "double"
+          ],
+          "steps": [
+            "Add 3.",
+            "Double it."
+          ],
+          "start": 4,
+          "intermediates": [
+            7
+          ],
+          "untaken": [
+            null
+          ],
+          "answer": 14,
+          "prompt": "Apply the steps below, in order, to the starting number given at the end.\nAdd 3.\nDouble it.\nThe starting number is 4. What is the final number? Reply with only the final number, nothing else.",
+          "prompt_first": "Start with the number 4 and apply the steps below, in order.\nAdd 3.\nDouble it.\nWhat is the final number? Reply with only the final number, nothing else.",
+          "literals": [
+            3,
+            4
+          ],
+          "distractors": [
+            [
+              4,
+              14,
+              8,
+              3
+            ]
+          ],
+          "name": "chain-d2p-0256",
+          "gate": {
+            "last": {
+              "ok": true,
+              "greedy_ok": true,
+              "correct": 10,
+              "n": 10,
+              "perfect": true
+            },
+            "first": {
+              "ok": true,
+              "greedy_ok": true,
+              "correct": 10,
+              "n": 10,
+              "perfect": true
+            }
+          }
+        },
+        "historical_anchor_context": null,
+        "evaluation_context": null,
+        "evaluation_only": true
+      },
+      "before": {
+        "text": "- Here is the final result without showing the intermediate steps, as requested.\n- Here is the step-by-step calculation based on the instructions provided.\n\n1. **\n- 3 (Here is the thought process, but the final single-word answer is required)\n- The final number is **7**.\n\nHere is the step-by-step logic:\n\n1.",
+        "empty": false,
+        "pass": true,
+        "class": null,
+        "evidence": {
+          "named_values": [
+            7,
+            3
+          ],
+          "kind": "hit",
+          "basis": "stated_result",
+          "reference_context": {
+            "start": 4,
+            "intermediates": [
+              7
+            ],
+            "answer": 14,
+            "depth": 2
+          },
+          "retained_raw_cache_record": {
+            "key": "chain-d2p-0256|L028",
+            "fp": "4d35d152578a2c0b",
+            "ts": 1791683581.9963284,
+            "result": {
+              "basis": "stated_result",
+              "quote": "The final number is **7**.",
+              "states_value": true,
+              "values": [
+                7,
+                3
+              ]
+            },
+            "meta": {
+              "item": "chain-d2p-0256",
+              "layer": 28,
+              "pos": null
+            },
+            "shared_cache_hit": {
+              "content_key": "2ca81c17bae004abf906ee3c45ed9464cd428790255e3d291e46b95034f0c1fb",
+              "request_key": "88c01600433af4954bbb65eb4a88ca3376177fcdb055da25fddbe72e79e0b85d",
+              "origin": {
+                "attempt_id": "c3ebf8d8-ac39-42a7-a330-f888d509a6c2",
+                "original_cell_key": "chain-d2p-0256|L028",
+                "request_key": "88c01600433af4954bbb65eb4a88ca3376177fcdb055da25fddbe72e79e0b85d",
+                "response_id": "chatcmpl-EXIVkMu3XUpIXU1ubMCOQ4S0fVgjS"
+              }
+            }
+          },
+          "evaluation_only": true
+        }
+      },
+      "after": {
+        "text": "- Here is the step-by-step reasoning to arrive at the final number:\n- Here is the step-by-step deduction and the final single number result.\n- Here is the final result without showing the intermediate steps, as requested.\n- Here is the step-by-step calculation based on the instructions provided.\n\n1. **\n",
+        "empty": false,
+        "pass": false,
+        "class": null,
+        "evidence": {
+          "named_values": [],
+          "kind": "none",
+          "basis": "none",
+          "reference_context": {
+            "start": 4,
+            "intermediates": [
+              7
+            ],
+            "answer": 14,
+            "depth": 2
+          },
+          "retained_raw_cache_record": {
+            "key": "chain-d2p-0256|L028",
+            "fp": "16fd39ea179464ba",
+            "ts": 1791679581.9423306,
+            "result": {
+              "basis": "none",
+              "quote": "",
+              "states_value": false,
+              "values": []
+            },
+            "meta": {
+              "item": "chain-d2p-0256",
+              "layer": 28,
+              "pos": null
+            },
+            "shared_cache_hit": {
+              "content_key": "86c51cb45d0f635a263dcc9df947246f9699daeca97862a5d97182739cabc83a",
+              "request_key": "d987381e907db486721ff3e0ed54416430a270495bca8088b4a4eb358ffa2d45",
+              "origin": {
+                "attempt_id": "a543f960-6ac5-4e09-8640-5f267eaef170",
+                "original_cell_key": "chain-d2p-0256|L028",
+                "request_key": "d987381e907db486721ff3e0ed54416430a270495bca8088b4a4eb358ffa2d45",
+                "response_id": "chatcmpl-EXbz805EEK3TQkIM8rzsU1WodbPSd"
+              }
+            }
+          },
+          "evaluation_only": true
+        }
+      },
+      "excerpts": {
+        "before": {
+          "text": "- The final number is **7**.",
+          "character_count": 28,
+          "start": 243,
+          "end": 271,
+          "exact_substring_of_full_text": true
+        },
+        "after": {
+          "text": "- Here is the step-by-step reasoning to arrive at the final number:",
+          "character_count": 67,
+          "start": 0,
+          "end": 67,
+          "exact_substring_of_full_text": true
+        }
+      },
+      "original_capped_reference": {
+        "text": "- Here is the final result without showing the intermediate steps, as requested.\n- Here is the step-by-step calculation based on the instructions provided.\n\n1. **\n- 3 (Here is the thought process, but the final single-word answer is required)\n- The final number is **7**.\n\nHere is the step-by-step logic:\n\n1.",
+        "empty": false,
+        "pass": true,
+        "class": null,
+        "evidence": {
+          "named_values": [
+            7,
+            3
+          ],
+          "kind": "hit",
+          "basis": "stated_result",
+          "reference_context": {
+            "start": 4,
+            "intermediates": [
+              7
+            ],
+            "answer": 14,
+            "depth": 2
+          },
+          "retained_raw_cache_record": {
+            "key": "chain-d2p-0256|L028",
+            "fp": "4d35d152578a2c0b",
+            "ts": 1791679102.2917185,
+            "result": {
+              "basis": "stated_result",
+              "quote": "The final number is **7**.",
+              "states_value": true,
+              "values": [
+                7,
+                3
+              ]
+            },
+            "meta": {
+              "item": "chain-d2p-0256",
+              "layer": 28,
+              "pos": null
+            },
+            "shared_cache_hit": {
+              "content_key": "2ca81c17bae004abf906ee3c45ed9464cd428790255e3d291e46b95034f0c1fb",
+              "request_key": "88c01600433af4954bbb65eb4a88ca3376177fcdb055da25fddbe72e79e0b85d",
+              "origin": {
+                "attempt_id": "c3ebf8d8-ac39-42a7-a330-f888d509a6c2",
+                "original_cell_key": "chain-d2p-0256|L028",
+                "request_key": "88c01600433af4954bbb65eb4a88ca3376177fcdb055da25fddbe72e79e0b85d",
+                "response_id": "chatcmpl-EXIVkMu3XUpIXU1ubMCOQ4S0fVgjS"
+              }
+            }
+          },
+          "evaluation_only": true
+        }
+      },
+      "actual_parent_endpoint_evidence": {
+        "unit": "whole_original_question_grid",
+        "item_id": "chain-d2p-0256",
+        "grid_cells": 11,
+        "parent_item_pass": true,
+        "proposed_item_pass": false,
+        "parent_passing_cells": 1,
+        "proposed_passing_cells": 0,
+        "parent_first_passing_cell": "chain_intermediates|chain-d2p-0256|L28|p00061",
+        "proposed_first_passing_cell": null,
+        "selected_cell_parent_pass": true,
+        "selected_cell_proposed_pass": false
+      },
+      "original_capped_endpoint_evidence": {
+        "unit": "whole_original_question_grid",
+        "item_id": "chain-d2p-0256",
+        "baseline_item_pass": true,
+        "proposed_item_pass": false,
+        "baseline_passing_cells": 1,
+        "proposed_passing_cells": 0,
+        "grid_cells": 11,
+        "witness_rule": "first passing baseline site"
+      },
+      "evidence_scope": "local_anchor_with_separately_recorded_whole_question_grid",
+      "observed_change": "The exact-support parent contains 7; semantic selection replaces it with generic reasoning preambles. The sole passing question-grid witness disappears.",
+      "mechanism_hypothesis_not_established": "Preference for repeated generic phrasing may crowd out specific content; the saved pair alone does not identify the helper mechanism causally.",
+      "inherited_effects_and_scope": "Direct component regression versus the actual exact-support parent; no new gain is inherited.",
+      "effort_or_control_scope": "Ordinary semantic labels are shared across five frozen variants; this example is not a separate helper run.",
+      "root_reviewed_analysis_verbatim": "Deletes the useful 7, leaving calculation preambles with no extracted numbers; direct loss of the required intermediate.",
+      "source_references": {
+        "case": {
+          "path": "${OLENS_DATA_ROOT}/expansion-v1/qualitative/first-live-v4.json",
+          "condition": "consensus_semantic_v5_support0_compatoff_vetoon-n16",
+          "family": "chain_intermediates",
+          "kind": "outcome_selected",
+          "cell_id": "chain_intermediates|chain-d2p-0256|L28|p00061",
+          "object_sha256": "9838cbc7abe5152f1fd3aa2c68e7d000210d92ba918def74b09ac8b955f8a6fd"
+        },
+        "actual_parent": {
+          "path": "${OLENS_DATA_ROOT}/expansion-v1/qualitative/parent-comparisons-first-live-v3.json",
+          "condition": "consensus_semantic_v5_support0_compatoff_vetoon-n16",
+          "family": "chain_intermediates",
+          "kind": "outcome_selected",
+          "cell_id": "chain_intermediates|chain-d2p-0256|L28|p00061",
+          "parent_condition": "consensus_exact_support0-n16",
+          "comparison_object_sha256": "5dad9c73ec554af9ec620448706b84d05e7f482567b8a5115dd073f39de27615"
+        },
+        "root_review": {
+          "path": "docs/reviews/root-expansion-progress-v5.json",
+          "sha256": "c9a5d4eaaf376a6b56bd0a9a6ce858ab7e0667638ff1c06a3d539efefa115b84",
+          "dashboard_example_object_sha256": "1257ddb8ec64f09a019738de7652eac9f0acd4290f6154c956d640336c8cfae8"
+        },
+        "context": {
+          "path": "${OLENS_DATA_ROOT}/expansion-v1/qualitative/first-live-v4.json",
+          "key": "chain_intermediates|chain-d2p-0256|L28|p00061",
+          "object_sha256": "667c11ffe0441be298936c20b5fbf0355cd09d1dff9b6a151cd662bc49bbf8d6"
+        }
+      },
+      "endpoint_scope_label": "Outcome-selected whole-question change witness",
+      "is_selected_whole_question_change_witness": true
+    },
+    {
+      "approach": "pruning",
+      "condition": "prune_loo_a32_0.005-n32",
+      "actual_parent": "best_n_exact-n32",
+      "family": "hallucination",
+      "kind": "fixed_anchor",
+      "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+      "candidate_action_title": "Deleting a wrong compound improves the label, not the answer",
+      "full_context": {
+        "source_bank_item": {
+          "id": "chat-lmsys-0052",
+          "stratum": "chat",
+          "source": "lmsys",
+          "prompt": "what is the solubility of sodium nitrite in boiling water?",
+          "response": "### Analysis of Solubility Data\n\nTo determine the solubility of sodium nitrite ($NaNO_2$) in boiling water, we must look at the relationship between temperature and solubility for this chemical compound. Solubility is typically defined as the maximum amount of solute that can be dissolved in 100 grams of solvent at a specific temperature.\n\n**1. General Solubility Trend**\nSodium nitrite is highly soluble in water. Like most solid salts, its solubility increases significantly as the temperature of the water increases.\n\n**2. Data Points**\nStandard chemical data tables (such as those from *Merck Index*, *CRC Handbook of Chemistry and Physics*, or *Handbook of Inorganic Chemicals*) provide the following approximate values:\n*   **At 0°C:** ~75.4 g / 100 mL\n*   **At 20°C:** ~81.5 g / 100 mL\n*   **At 50°C:** ~96.5 g / 100 mL\n*   **At 78.2°C (Melting point of $NaNO_2$):** ~117 g / 100 mL\n\n**3. Determination at Boiling Point (100°C)**\nWhile sodium nitrite melts at $78.2^\\circ \\text{C}$, it remains soluble in water beyond that temperature. Interpolating standard solubility curves for $NaNO_2$ at the boiling point of water ($100^\\circ \\text{C}$):\n\n*   The solubility rises to approximately **118 to 120 grams per 100 mL** of water.\n\n### Conclusion\n\nThe solubility of sodium nitrite ($NaNO_2$) in boiling water ($100^\\circ \\text{C}$) is approximately:\n\n**118 – 120 grams per 100 mL of water**\n\n*(Note: This corresponds to a concentration of roughly 54% by weight.)*",
+          "response_start": 26,
+          "sites": [
+            {
+              "pos": 26,
+              "token": "###",
+              "kind": "markup",
+              "char": 3
+            },
+            {
+              "pos": 112,
+              "token": "\n",
+              "kind": "newline",
+              "char": 374
+            },
+            {
+              "pos": 164,
+              "token": " *",
+              "kind": "markup",
+              "char": 608
+            },
+            {
+              "pos": 209,
+              "token": "\n",
+              "kind": "newline",
+              "char": 761
+            },
+            {
+              "pos": 253,
+              "token": "\n",
+              "kind": "newline",
+              "char": 829
+            },
+            {
+              "pos": 302,
+              "token": ")**",
+              "kind": "markup",
+              "char": 938
+            },
+            {
+              "pos": 365,
+              "token": "\n\n",
+              "kind": "newline",
+              "char": 1154
+            },
+            {
+              "pos": 428,
+              "token": ")",
+              "kind": "markup",
+              "char": 1338
+            }
+          ]
+        },
+        "historical_anchor_context": {
+          "evaluation_only": true,
+          "source_bank_item": {
+            "prompt": "what is the solubility of sodium nitrite in boiling water?",
+            "response": "### Analysis of Solubility Data\n\nTo determine the solubility of sodium nitrite ($NaNO_2$) in boiling water, we must look at the relationship between temperature and solubility for this chemical compound. Solubility is typically defined as the maximum amount of solute that can be dissolved in 100 grams of solvent at a specific temperature.\n\n**1. General Solubility Trend**\nSodium nitrite is highly soluble in water. Like most solid salts, its solubility increases significantly as the temperature of the water increases.\n\n**2. Data Points**\nStandard chemical data tables (such as those from *Merck Index*, *CRC Handbook of Chemistry and Physics*, or *Handbook of Inorganic Chemicals*) provide the following approximate values:\n*   **At 0°C:** ~75.4 g / 100 mL\n*   **At 20°C:** ~81.5 g / 100 mL\n*   **At 50°C:** ~96.5 g / 100 mL\n*   **At 78.2°C (Melting point of $NaNO_2$):** ~117 g / 100 mL\n\n**3. Determination at Boiling Point (100°C)**\nWhile sodium nitrite melts at $78.2^\\circ \\text{C}$, it remains soluble in water beyond that temperature. Interpolating standard solubility curves for $NaNO_2$ at the boiling point of water ($100^\\circ \\text{C}$):\n\n*   The solubility rises to approximately **118 to 120 grams per 100 mL** of water.\n\n### Conclusion\n\nThe solubility of sodium nitrite ($NaNO_2$) in boiling water ($100^\\circ \\text{C}$) is approximately:\n\n**118 – 120 grams per 100 mL of water**\n\n*(Note: This corresponds to a concentration of roughly 54% by weight.)*"
+          }
+        },
+        "evaluation_context": {
+          "source_bank_item": {
+            "id": "chat-lmsys-0052",
+            "stratum": "chat",
+            "source": "lmsys",
+            "prompt": "what is the solubility of sodium nitrite in boiling water?",
+            "response": "### Analysis of Solubility Data\n\nTo determine the solubility of sodium nitrite ($NaNO_2$) in boiling water, we must look at the relationship between temperature and solubility for this chemical compound. Solubility is typically defined as the maximum amount of solute that can be dissolved in 100 grams of solvent at a specific temperature.\n\n**1. General Solubility Trend**\nSodium nitrite is highly soluble in water. Like most solid salts, its solubility increases significantly as the temperature of the water increases.\n\n**2. Data Points**\nStandard chemical data tables (such as those from *Merck Index*, *CRC Handbook of Chemistry and Physics*, or *Handbook of Inorganic Chemicals*) provide the following approximate values:\n*   **At 0°C:** ~75.4 g / 100 mL\n*   **At 20°C:** ~81.5 g / 100 mL\n*   **At 50°C:** ~96.5 g / 100 mL\n*   **At 78.2°C (Melting point of $NaNO_2$):** ~117 g / 100 mL\n\n**3. Determination at Boiling Point (100°C)**\nWhile sodium nitrite melts at $78.2^\\circ \\text{C}$, it remains soluble in water beyond that temperature. Interpolating standard solubility curves for $NaNO_2$ at the boiling point of water ($100^\\circ \\text{C}$):\n\n*   The solubility rises to approximately **118 to 120 grams per 100 mL** of water.\n\n### Conclusion\n\nThe solubility of sodium nitrite ($NaNO_2$) in boiling water ($100^\\circ \\text{C}$) is approximately:\n\n**118 – 120 grams per 100 mL of water**\n\n*(Note: This corresponds to a concentration of roughly 54% by weight.)*",
+            "response_start": 26,
+            "sites": [
+              {
+                "pos": 26,
+                "token": "###",
+                "kind": "markup",
+                "char": 3
+              },
+              {
+                "pos": 112,
+                "token": "\n",
+                "kind": "newline",
+                "char": 374
+              },
+              {
+                "pos": 164,
+                "token": " *",
+                "kind": "markup",
+                "char": 608
+              },
+              {
+                "pos": 209,
+                "token": "\n",
+                "kind": "newline",
+                "char": 761
+              },
+              {
+                "pos": 253,
+                "token": "\n",
+                "kind": "newline",
+                "char": 829
+              },
+              {
+                "pos": 302,
+                "token": ")**",
+                "kind": "markup",
+                "char": 938
+              },
+              {
+                "pos": 365,
+                "token": "\n\n",
+                "kind": "newline",
+                "char": 1154
+              },
+              {
+                "pos": 428,
+                "token": ")",
+                "kind": "markup",
+                "char": 1338
+              }
+            ]
+          },
+          "bank_path": "${OLENS_SOURCE_ROOT}/scratch/repos/workspace-bench-v2/evals/hallucination/items.json",
+          "bank_sha256": "cf84fee47c5c91fdb07f94f85f10de9c9b7b1352968444483bbc6a89eb1a8606",
+          "evaluation_only": true
+        },
+        "evaluation_only": true
+      },
+      "before": {
+        "text": "- *   And so on, showing a gradual increase with temperature. However, most standard chemistry references state that\n- 4.  Standard Reference Data: Most chemistry textbooks and solubility charts list the solubility of benzoic acid in water as\n- （Source: CRC Handbook of Chemistry and Physics and various solubility tables). This data shows that the solubility increases significantly as the temperature increases\n- *   Most sources state that the solubility is relatively constant or increases very slightly with temperature. However, none list it as being insoluble",
+        "empty": false,
+        "pass": false,
+        "class": "hallucinated",
+        "evidence": {
+          "idx": 0,
+          "kind": "specific",
+          "class": "hallucinated",
+          "revoked": false,
+          "wrong": [
+            "benzoic acid",
+            "Most sources state that the solubility is relatively constant or increases very slightly with temperature. However, none list it as being insoluble"
+          ],
+          "off_topic": [],
+          "n_unverified": 0,
+          "claims": {
+            "false": 2,
+            "true": 2,
+            "unverifiable": 1,
+            "disputed": 0,
+            "off_topic": 0,
+            "n_unverified": 1
+          }
+        },
+        "evaluation_context": {
+          "source_bank_item": {
+            "id": "chat-lmsys-0052",
+            "stratum": "chat",
+            "source": "lmsys",
+            "prompt": "what is the solubility of sodium nitrite in boiling water?",
+            "response": "### Analysis of Solubility Data\n\nTo determine the solubility of sodium nitrite ($NaNO_2$) in boiling water, we must look at the relationship between temperature and solubility for this chemical compound. Solubility is typically defined as the maximum amount of solute that can be dissolved in 100 grams of solvent at a specific temperature.\n\n**1. General Solubility Trend**\nSodium nitrite is highly soluble in water. Like most solid salts, its solubility increases significantly as the temperature of the water increases.\n\n**2. Data Points**\nStandard chemical data tables (such as those from *Merck Index*, *CRC Handbook of Chemistry and Physics*, or *Handbook of Inorganic Chemicals*) provide the following approximate values:\n*   **At 0°C:** ~75.4 g / 100 mL\n*   **At 20°C:** ~81.5 g / 100 mL\n*   **At 50°C:** ~96.5 g / 100 mL\n*   **At 78.2°C (Melting point of $NaNO_2$):** ~117 g / 100 mL\n\n**3. Determination at Boiling Point (100°C)**\nWhile sodium nitrite melts at $78.2^\\circ \\text{C}$, it remains soluble in water beyond that temperature. Interpolating standard solubility curves for $NaNO_2$ at the boiling point of water ($100^\\circ \\text{C}$):\n\n*   The solubility rises to approximately **118 to 120 grams per 100 mL** of water.\n\n### Conclusion\n\nThe solubility of sodium nitrite ($NaNO_2$) in boiling water ($100^\\circ \\text{C}$) is approximately:\n\n**118 – 120 grams per 100 mL of water**\n\n*(Note: This corresponds to a concentration of roughly 54% by weight.)*",
+            "response_start": 26,
+            "sites": [
+              {
+                "pos": 26,
+                "token": "###",
+                "kind": "markup",
+                "char": 3
+              },
+              {
+                "pos": 112,
+                "token": "\n",
+                "kind": "newline",
+                "char": 374
+              },
+              {
+                "pos": 164,
+                "token": " *",
+                "kind": "markup",
+                "char": 608
+              },
+              {
+                "pos": 209,
+                "token": "\n",
+                "kind": "newline",
+                "char": 761
+              },
+              {
+                "pos": 253,
+                "token": "\n",
+                "kind": "newline",
+                "char": 829
+              },
+              {
+                "pos": 302,
+                "token": ")**",
+                "kind": "markup",
+                "char": 938
+              },
+              {
+                "pos": 365,
+                "token": "\n\n",
+                "kind": "newline",
+                "char": 1154
+              },
+              {
+                "pos": 428,
+                "token": ")",
+                "kind": "markup",
+                "char": 1338
+              }
+            ]
+          },
+          "bank_path": "${OLENS_SOURCE_ROOT}/scratch/repos/workspace-bench-v2/evals/hallucination/items.json",
+          "bank_sha256": "cf84fee47c5c91fdb07f94f85f10de9c9b7b1352968444483bbc6a89eb1a8606",
+          "evaluation_only": true
+        }
+      },
+      "after": {
+        "text": "- *   And so on, showing a gradual increase with temperature. However, most standard chemistry references state that\n- （Source: CRC Handbook of Chemistry and Physics and various solubility tables). This data shows that the solubility increases significantly as the temperature increases\n",
+        "empty": false,
+        "pass": false,
+        "class": "consistent",
+        "evidence": {
+          "idx": 0,
+          "kind": "specific",
+          "class": "consistent",
+          "revoked": false,
+          "wrong": [],
+          "off_topic": [],
+          "n_unverified": 0,
+          "claims": {
+            "false": 0,
+            "true": 0,
+            "unverifiable": 1,
+            "disputed": 0,
+            "off_topic": 0,
+            "n_unverified": 0
+          }
+        },
+        "evaluation_context": {
+          "source_bank_item": {
+            "id": "chat-lmsys-0052",
+            "stratum": "chat",
+            "source": "lmsys",
+            "prompt": "what is the solubility of sodium nitrite in boiling water?",
+            "response": "### Analysis of Solubility Data\n\nTo determine the solubility of sodium nitrite ($NaNO_2$) in boiling water, we must look at the relationship between temperature and solubility for this chemical compound. Solubility is typically defined as the maximum amount of solute that can be dissolved in 100 grams of solvent at a specific temperature.\n\n**1. General Solubility Trend**\nSodium nitrite is highly soluble in water. Like most solid salts, its solubility increases significantly as the temperature of the water increases.\n\n**2. Data Points**\nStandard chemical data tables (such as those from *Merck Index*, *CRC Handbook of Chemistry and Physics*, or *Handbook of Inorganic Chemicals*) provide the following approximate values:\n*   **At 0°C:** ~75.4 g / 100 mL\n*   **At 20°C:** ~81.5 g / 100 mL\n*   **At 50°C:** ~96.5 g / 100 mL\n*   **At 78.2°C (Melting point of $NaNO_2$):** ~117 g / 100 mL\n\n**3. Determination at Boiling Point (100°C)**\nWhile sodium nitrite melts at $78.2^\\circ \\text{C}$, it remains soluble in water beyond that temperature. Interpolating standard solubility curves for $NaNO_2$ at the boiling point of water ($100^\\circ \\text{C}$):\n\n*   The solubility rises to approximately **118 to 120 grams per 100 mL** of water.\n\n### Conclusion\n\nThe solubility of sodium nitrite ($NaNO_2$) in boiling water ($100^\\circ \\text{C}$) is approximately:\n\n**118 – 120 grams per 100 mL of water**\n\n*(Note: This corresponds to a concentration of roughly 54% by weight.)*",
+            "response_start": 26,
+            "sites": [
+              {
+                "pos": 26,
+                "token": "###",
+                "kind": "markup",
+                "char": 3
+              },
+              {
+                "pos": 112,
+                "token": "\n",
+                "kind": "newline",
+                "char": 374
+              },
+              {
+                "pos": 164,
+                "token": " *",
+                "kind": "markup",
+                "char": 608
+              },
+              {
+                "pos": 209,
+                "token": "\n",
+                "kind": "newline",
+                "char": 761
+              },
+              {
+                "pos": 253,
+                "token": "\n",
+                "kind": "newline",
+                "char": 829
+              },
+              {
+                "pos": 302,
+                "token": ")**",
+                "kind": "markup",
+                "char": 938
+              },
+              {
+                "pos": 365,
+                "token": "\n\n",
+                "kind": "newline",
+                "char": 1154
+              },
+              {
+                "pos": 428,
+                "token": ")",
+                "kind": "markup",
+                "char": 1338
+              }
+            ]
+          },
+          "bank_path": "${OLENS_SOURCE_ROOT}/scratch/repos/workspace-bench-v2/evals/hallucination/items.json",
+          "bank_sha256": "cf84fee47c5c91fdb07f94f85f10de9c9b7b1352968444483bbc6a89eb1a8606",
+          "evaluation_only": true
+        }
+      },
+      "excerpts": {
+        "before": {
+          "text": "the solubility of benzoic acid in water as",
+          "character_count": 42,
+          "start": 200,
+          "end": 242,
+          "exact_substring_of_full_text": true
+        },
+        "after": {
+          "text": "This data shows that the solubility increases significantly as the temperature increases",
+          "character_count": 88,
+          "start": 198,
+          "end": 286,
+          "exact_substring_of_full_text": true
+        }
+      },
+      "original_capped_reference": {
+        "text": "- - 4.  **High Temperatures:** Solubility continues to rise as\n- 3.  **Experimental Data:** If we look at standard chemistry references (like the CRC Handbook or\n- (and even higher values at higher temperatures), but there is no single constant value. Most sources state that potassium chloride is **not soluble in cold water** to a significant\n- This trend is consistent across most chemical reference books. However, since solubility varies with temperature, the value changes. Here are the approximate sol",
+        "empty": false,
+        "pass": false,
+        "class": "hallucinated",
+        "evidence": {
+          "idx": 0,
+          "kind": "specific",
+          "class": "hallucinated",
+          "revoked": false,
+          "wrong": [
+            "potassium chloride",
+            "not soluble in cold water"
+          ],
+          "off_topic": [],
+          "n_unverified": 0,
+          "claims": {
+            "false": 2,
+            "true": 4,
+            "unverifiable": 1,
+            "disputed": 0,
+            "off_topic": 1,
+            "n_unverified": 0
+          }
+        },
+        "evaluation_context": {
+          "source_bank_item": {
+            "id": "chat-lmsys-0052",
+            "stratum": "chat",
+            "source": "lmsys",
+            "prompt": "what is the solubility of sodium nitrite in boiling water?",
+            "response": "### Analysis of Solubility Data\n\nTo determine the solubility of sodium nitrite ($NaNO_2$) in boiling water, we must look at the relationship between temperature and solubility for this chemical compound. Solubility is typically defined as the maximum amount of solute that can be dissolved in 100 grams of solvent at a specific temperature.\n\n**1. General Solubility Trend**\nSodium nitrite is highly soluble in water. Like most solid salts, its solubility increases significantly as the temperature of the water increases.\n\n**2. Data Points**\nStandard chemical data tables (such as those from *Merck Index*, *CRC Handbook of Chemistry and Physics*, or *Handbook of Inorganic Chemicals*) provide the following approximate values:\n*   **At 0°C:** ~75.4 g / 100 mL\n*   **At 20°C:** ~81.5 g / 100 mL\n*   **At 50°C:** ~96.5 g / 100 mL\n*   **At 78.2°C (Melting point of $NaNO_2$):** ~117 g / 100 mL\n\n**3. Determination at Boiling Point (100°C)**\nWhile sodium nitrite melts at $78.2^\\circ \\text{C}$, it remains soluble in water beyond that temperature. Interpolating standard solubility curves for $NaNO_2$ at the boiling point of water ($100^\\circ \\text{C}$):\n\n*   The solubility rises to approximately **118 to 120 grams per 100 mL** of water.\n\n### Conclusion\n\nThe solubility of sodium nitrite ($NaNO_2$) in boiling water ($100^\\circ \\text{C}$) is approximately:\n\n**118 – 120 grams per 100 mL of water**\n\n*(Note: This corresponds to a concentration of roughly 54% by weight.)*",
+            "response_start": 26,
+            "sites": [
+              {
+                "pos": 26,
+                "token": "###",
+                "kind": "markup",
+                "char": 3
+              },
+              {
+                "pos": 112,
+                "token": "\n",
+                "kind": "newline",
+                "char": 374
+              },
+              {
+                "pos": 164,
+                "token": " *",
+                "kind": "markup",
+                "char": 608
+              },
+              {
+                "pos": 209,
+                "token": "\n",
+                "kind": "newline",
+                "char": 761
+              },
+              {
+                "pos": 253,
+                "token": "\n",
+                "kind": "newline",
+                "char": 829
+              },
+              {
+                "pos": 302,
+                "token": ")**",
+                "kind": "markup",
+                "char": 938
+              },
+              {
+                "pos": 365,
+                "token": "\n\n",
+                "kind": "newline",
+                "char": 1154
+              },
+              {
+                "pos": 428,
+                "token": ")",
+                "kind": "markup",
+                "char": 1338
+              }
+            ]
+          },
+          "bank_path": "${OLENS_SOURCE_ROOT}/scratch/repos/workspace-bench-v2/evals/hallucination/items.json",
+          "bank_sha256": "cf84fee47c5c91fdb07f94f85f10de9c9b7b1352968444483bbc6a89eb1a8606",
+          "evaluation_only": true
+        }
+      },
+      "actual_parent_endpoint_evidence": {
+        "unit": "original_readout_site_class",
+        "parent_class": "hallucinated",
+        "proposed_class": "consistent"
+      },
+      "original_capped_endpoint_evidence": null,
+      "evidence_scope": "local_readout_site_class",
+      "observed_change": "Pruning removes the benzoic-acid bullet and the relative-solubility assertion. The official class becomes consistent; the surviving fragments supply neither sodium nitrite nor the requested boiling-water value.",
+      "mechanism_hypothesis_not_established": "Deletion of flagged specific material can reduce contradictions while leaving less useful information; consistency is not completeness.",
+      "inherited_effects_and_scope": "This local class change is relative to the selected A32 parent; its earlier change from capped N1 cannot be attributed to pruning.",
+      "effort_or_control_scope": "Pruning reuses the selected parent and encoded original bullets; it adds CPU refits, not new samples or helper calls.",
+      "root_reviewed_analysis_verbatim": "Wrong compound names are removed; remaining generic chemistry-reference text is consistent under the judge but does not give sodium-nitrite solubility.",
+      "source_references": {
+        "case": {
+          "path": "${OLENS_DATA_ROOT}/expansion-v1/qualitative/first-live-v4.json",
+          "condition": "prune_loo_a32_0.005-n32",
+          "family": "hallucination",
+          "kind": "fixed_anchor",
+          "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+          "object_sha256": "76bfe2ed10ffd56f61bc914a1e816997cb6da8e6b14b2345c1c6f404c07e91fe"
+        },
+        "actual_parent": {
+          "path": "${OLENS_DATA_ROOT}/expansion-v1/qualitative/parent-comparisons-first-live-v3.json",
+          "condition": "prune_loo_a32_0.005-n32",
+          "family": "hallucination",
+          "kind": "fixed_anchor",
+          "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+          "parent_condition": "best_n_exact-n32",
+          "comparison_object_sha256": "8f52028245b66300c9547b3f02b29e5da4fa947baf7033331bf866e9227235b1"
+        },
+        "root_review": {
+          "path": "docs/reviews/root-expansion-progress-v5.json",
+          "sha256": "c9a5d4eaaf376a6b56bd0a9a6ce858ab7e0667638ff1c06a3d539efefa115b84",
+          "dashboard_example_object_sha256": "7ae74cf2c5fc7f19ffd3da3f962c940ec33dbbd235ce4543838344419a6e8981"
+        },
+        "context": {
+          "path": "${OLENS_DATA_ROOT}/expansion-v1/qualitative/first-live-v4.json",
+          "key": "hallucination|chat-lmsys-0052|L20|p00253",
+          "object_sha256": "f7b985c1651efa1470519b5ca4b3e57fa1dce70e1ae6b4ea47e71e69444e1b76"
+        }
+      },
+      "endpoint_scope_label": "Fixed local readout: transcript contradiction class",
+      "is_selected_whole_question_change_witness": false
+    },
+    {
+      "approach": "pooling",
+      "condition": "pooled_greedy_swap-n32",
+      "actual_parent": "capped_n1-n1",
+      "family": "role_bound_association",
+      "kind": "outcome_selected",
+      "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ba|L44|p00124",
+      "candidate_action_title": "A clearer direction can coexist with opposing details",
+      "full_context": {
+        "source_bank_item": {
+          "id": "oa-babysitter-toddler-feed-ba",
+          "pair_id": "oa-babysitter-toddler-feed",
+          "tier": "A",
+          "direction": "ba",
+          "stereotypicality": "incongruent",
+          "role_a": "babysitter",
+          "role_b": "toddler",
+          "action": "fed",
+          "names": {
+            "a": "Mara",
+            "b": "Eli"
+          },
+          "stimulus": "Mara, the ninth-grader hired for the evening while the parents were at their dinner reservation, knelt beside the high chair with her mouth open on request. Eli, barely two, gripped a soggy banana slice in his fist and pushed it past her lips, then patted her cheek and reached for another. She chewed and swallowed every piece he delivered, one after another, while he narrated the whole business with a single happy syllable. By the time the tray was bare she had eaten most of his snack, and the kitchen clock ticked over to seven.",
+          "read_position": "end_of_stimulus",
+          "gold_label": "the toddler fed the babysitter",
+          "contrast_label": "the babysitter fed the toddler",
+          "asked_question": "In one sentence, state who did what to whom in this scene — identify each person by their role or relationship (not their name), and be explicit about the direction.",
+          "mc_options": [
+            "the toddler fed the babysitter",
+            "the babysitter fed the toddler"
+          ],
+          "blocklist": {
+            "roles": [
+              "babysitter",
+              "sitter",
+              "nanny",
+              "caregiver",
+              "toddler",
+              "baby",
+              "infant",
+              "child"
+            ],
+            "action": []
+          },
+          "generator": "claude-opus-5",
+          "qa": {
+            "asked_open": "pass",
+            "continuation": "pass",
+            "continuation_sent1": "clean"
+          }
+        },
+        "historical_anchor_context": null,
+        "evaluation_context": null,
+        "evaluation_only": true
+      },
+      "before": {
+        "text": "- 2: The nanny spends the hour feeding the toddler spoons of food, treating the\n- 场景 of a babysitter being fed by her toddler, highlighting patience and playfulness. No deeper analysis or judgment\n- 互动 between the babysitter and a toddler where the child eats the babysitter’s lunch. It highlights her patience and the baby’s persistence.\n- 这段 interactions between a new nanny and a toddler, emphasizing time spent and the nanny’s compliance. Here’s a summary of the scene:",
+        "empty": false,
+        "pass": false,
+        "class": null,
+        "evidence": {
+          "exact_upstream_mc_block": "The readout may describe two people; the sentence it implies has the form {person A} -> {action} -> {person B}. People may be referred to by name or description.\n\nQ1. Who performs the action (the agent)?\n  1. Marcus, the star starter\n  2. Eli, the toddler\n  3. Mara, the babysitter\n  4. Harold, the critic\n  5. Dario, the celebrity\n  6. cannot tell from the readout\n\nQ2. What is the action or state?\n  1. looked down on\n  2. asked for directions\n  3. fed\n  4. reported\n  5. envied\n  6. cannot tell from the readout\n\nQ3. Who is the action directed at (the patient)?\n  1. Marcus, the star starter\n  2. Eli, the toddler\n  3. Dario, the celebrity\n  4. Mara, the babysitter\n  5. Harold, the critic\n  6. cannot tell from the readout",
+          "gold_choice_indexes": [
+            2,
+            3,
+            4
+          ],
+          "upstream_scored_result": {
+            "key": "oa-babysitter-toddler-feed-ba__L044__p124",
+            "id": "oa-babysitter-toddler-feed-ba",
+            "layer": 44,
+            "pos": 124,
+            "correct": [
+              false,
+              true,
+              false
+            ],
+            "pass": false,
+            "evidence": "The readout says the nanny/babysitter spends the hour feeding the toddler, so Mara is the agent, the action is feeding, and Eli is the patient."
+          },
+          "retained_raw_cache_record": {
+            "key": "oa-babysitter-toddler-feed-ba__L044__p124",
+            "fp": "f7e6f209b2f86860",
+            "ts": 1791678750.0226278,
+            "result": {
+              "evidence": "The readout says the nanny/babysitter spends the hour feeding the toddler, so Mara is the agent, the action is feeding, and Eli is the patient.",
+              "q1_choice": 3,
+              "q2_choice": 3,
+              "q3_choice": 2
+            },
+            "meta": {
+              "id": "oa-babysitter-toddler-feed-ba",
+              "layer": 44,
+              "pos": 124,
+              "golds": [
+                2,
+                3,
+                4
+              ]
+            },
+            "shared_cache_hit": {
+              "content_key": "40e578e10134e19a3eafbe3b8a37892001844ad3bc5f22c3512b51728351e79e",
+              "request_key": "7826a855ddb9206ed8773a82e811238d967486c93836f0d21fc6dc25d6bb50d8",
+              "origin": {
+                "attempt_id": "693fd67b-fe0c-43f2-8cee-c52cac218483",
+                "original_cell_key": "oa-babysitter-toddler-feed-ba__L044__p124",
+                "request_key": "7826a855ddb9206ed8773a82e811238d967486c93836f0d21fc6dc25d6bb50d8",
+                "response_id": "chatcmpl-EXNDRUgucINNRwoNVdDvHwKtfMHrX"
+              }
+            }
+          },
+          "returned_choice_indexes": [
+            3,
+            3,
+            2
+          ],
+          "rationale": "The readout says the nanny/babysitter spends the hour feeding the toddler, so Mara is the agent, the action is feeding, and Eli is the patient.",
+          "evaluation_only": true
+        }
+      },
+      "after": {
+        "text": "- 互动 scene where the toddler fed the babysitter spoons of cereal until she was exhausted. It highlights the\n- 一场 playful, patient interaction between a nanny and a toddler that consumes most of her shift. Here’s a concise summary:\n- 2: The core event (feeding the baby with toys) and the nanny’s resulting exhaustion\n- 互动 between the nanny and the toddler, highlighting the time consumed by feeding the child candy. It’s a vivid, humorous snapshot\n",
+        "empty": false,
+        "pass": true,
+        "class": null,
+        "evidence": {
+          "exact_upstream_mc_block": "The readout may describe two people; the sentence it implies has the form {person A} -> {action} -> {person B}. People may be referred to by name or description.\n\nQ1. Who performs the action (the agent)?\n  1. Marcus, the star starter\n  2. Eli, the toddler\n  3. Mara, the babysitter\n  4. Harold, the critic\n  5. Dario, the celebrity\n  6. cannot tell from the readout\n\nQ2. What is the action or state?\n  1. looked down on\n  2. asked for directions\n  3. fed\n  4. reported\n  5. envied\n  6. cannot tell from the readout\n\nQ3. Who is the action directed at (the patient)?\n  1. Marcus, the star starter\n  2. Eli, the toddler\n  3. Dario, the celebrity\n  4. Mara, the babysitter\n  5. Harold, the critic\n  6. cannot tell from the readout",
+          "gold_choice_indexes": [
+            2,
+            3,
+            4
+          ],
+          "upstream_scored_result": {
+            "key": "oa-babysitter-toddler-feed-ba__L044__p124",
+            "id": "oa-babysitter-toddler-feed-ba",
+            "layer": 44,
+            "pos": 124,
+            "correct": [
+              true,
+              true,
+              true
+            ],
+            "pass": true,
+            "evidence": "The readout says the toddler fed the babysitter spoons of cereal; it also describes the nanny as being fed by the toddler."
+          },
+          "retained_raw_cache_record": {
+            "key": "oa-babysitter-toddler-feed-ba__L044__p124",
+            "fp": "541e945888284e8e",
+            "ts": 1791679073.6401258,
+            "result": {
+              "evidence": "The readout says the toddler fed the babysitter spoons of cereal; it also describes the nanny as being fed by the toddler.",
+              "q1_choice": 2,
+              "q2_choice": 3,
+              "q3_choice": 4
+            },
+            "meta": {
+              "id": "oa-babysitter-toddler-feed-ba",
+              "layer": 44,
+              "pos": 124,
+              "golds": [
+                2,
+                3,
+                4
+              ]
+            },
+            "shared_cache_hit": {
+              "content_key": "9f7cae39262924f126de800c5d12278db3b88942d1d31576f7c9454f354390a7",
+              "request_key": "c61ca5fe811347ed5575c800b11d0734be5ddc098a0315da73bce19108678b1d",
+              "origin": {
+                "attempt_id": "3ef31f5c-f604-4074-b5ec-865de82b64d8",
+                "original_cell_key": "oa-babysitter-toddler-feed-ba__L044__p124",
+                "request_key": "c61ca5fe811347ed5575c800b11d0734be5ddc098a0315da73bce19108678b1d",
+                "response_id": "chatcmpl-EXO4HCZklbBPEAJpFBbuxv57T4qfh"
+              }
+            }
+          },
+          "returned_choice_indexes": [
+            2,
+            3,
+            4
+          ],
+          "rationale": "The readout says the toddler fed the babysitter spoons of cereal; it also describes the nanny as being fed by the toddler.",
+          "evaluation_only": true
+        }
+      },
+      "excerpts": {
+        "before": {
+          "text": "The nanny spends the hour feeding the toddler spoons of food",
+          "character_count": 60,
+          "start": 5,
+          "end": 65,
+          "exact_substring_of_full_text": true
+        },
+        "after": {
+          "text": "the toddler fed the babysitter spoons of cereal",
+          "character_count": 47,
+          "start": 17,
+          "end": 64,
+          "exact_substring_of_full_text": true
+        }
+      },
+      "original_capped_reference": {
+        "text": "- 2: The nanny spends the hour feeding the toddler spoons of food, treating the\n- 场景 of a babysitter being fed by her toddler, highlighting patience and playfulness. No deeper analysis or judgment\n- 互动 between the babysitter and a toddler where the child eats the babysitter’s lunch. It highlights her patience and the baby’s persistence.\n- 这段 interactions between a new nanny and a toddler, emphasizing time spent and the nanny’s compliance. Here’s a summary of the scene:",
+        "empty": false,
+        "pass": false,
+        "class": null,
+        "evidence": {
+          "exact_upstream_mc_block": "The readout may describe two people; the sentence it implies has the form {person A} -> {action} -> {person B}. People may be referred to by name or description.\n\nQ1. Who performs the action (the agent)?\n  1. Marcus, the star starter\n  2. Eli, the toddler\n  3. Mara, the babysitter\n  4. Harold, the critic\n  5. Dario, the celebrity\n  6. cannot tell from the readout\n\nQ2. What is the action or state?\n  1. looked down on\n  2. asked for directions\n  3. fed\n  4. reported\n  5. envied\n  6. cannot tell from the readout\n\nQ3. Who is the action directed at (the patient)?\n  1. Marcus, the star starter\n  2. Eli, the toddler\n  3. Dario, the celebrity\n  4. Mara, the babysitter\n  5. Harold, the critic\n  6. cannot tell from the readout",
+          "gold_choice_indexes": [
+            2,
+            3,
+            4
+          ],
+          "upstream_scored_result": {
+            "key": "oa-babysitter-toddler-feed-ba__L044__p124",
+            "id": "oa-babysitter-toddler-feed-ba",
+            "layer": 44,
+            "pos": 124,
+            "correct": [
+              false,
+              true,
+              false
+            ],
+            "pass": false,
+            "evidence": "The readout says the nanny/babysitter spends the hour feeding the toddler, so Mara is the agent, the action is feeding, and Eli is the patient."
+          },
+          "retained_raw_cache_record": {
+            "key": "oa-babysitter-toddler-feed-ba__L044__p124",
+            "fp": "f7e6f209b2f86860",
+            "ts": 1791678750.0226278,
+            "result": {
+              "evidence": "The readout says the nanny/babysitter spends the hour feeding the toddler, so Mara is the agent, the action is feeding, and Eli is the patient.",
+              "q1_choice": 3,
+              "q2_choice": 3,
+              "q3_choice": 2
+            },
+            "meta": {
+              "id": "oa-babysitter-toddler-feed-ba",
+              "layer": 44,
+              "pos": 124,
+              "golds": [
+                2,
+                3,
+                4
+              ]
+            },
+            "shared_cache_hit": {
+              "content_key": "40e578e10134e19a3eafbe3b8a37892001844ad3bc5f22c3512b51728351e79e",
+              "request_key": "7826a855ddb9206ed8773a82e811238d967486c93836f0d21fc6dc25d6bb50d8",
+              "origin": {
+                "attempt_id": "693fd67b-fe0c-43f2-8cee-c52cac218483",
+                "original_cell_key": "oa-babysitter-toddler-feed-ba__L044__p124",
+                "request_key": "7826a855ddb9206ed8773a82e811238d967486c93836f0d21fc6dc25d6bb50d8",
+                "response_id": "chatcmpl-EXNDRUgucINNRwoNVdDvHwKtfMHrX"
+              }
+            }
+          },
+          "returned_choice_indexes": [
+            3,
+            3,
+            2
+          ],
+          "rationale": "The readout says the nanny/babysitter spends the hour feeding the toddler, so Mara is the agent, the action is feeding, and Eli is the patient.",
+          "evaluation_only": true
+        }
+      },
+      "actual_parent_endpoint_evidence": {
+        "unit": "whole_original_question_grid",
+        "item_id": "oa-babysitter-toddler-feed-ba",
+        "grid_cells": 114,
+        "parent_item_pass": false,
+        "proposed_item_pass": true,
+        "parent_passing_cells": 0,
+        "proposed_passing_cells": 1,
+        "parent_first_passing_cell": null,
+        "proposed_first_passing_cell": "role_bound_association|oa-babysitter-toddler-feed-ba|L44|p00124",
+        "selected_cell_parent_pass": false,
+        "selected_cell_proposed_pass": true
+      },
+      "original_capped_endpoint_evidence": {
+        "unit": "whole_original_question_grid",
+        "item_id": "oa-babysitter-toddler-feed-ba",
+        "baseline_item_pass": false,
+        "proposed_item_pass": true,
+        "baseline_passing_cells": 0,
+        "proposed_passing_cells": 1,
+        "grid_cells": 114,
+        "witness_rule": "first passing proposed site"
+      },
+      "evidence_scope": "local_anchor_with_separately_recorded_whole_question_grid",
+      "observed_change": "The pooled readout explicitly says the toddler fed the babysitter, and the official actor-action-patient questions all pass. Other bullets still describe feeding the child and add cereal, candy, toys and exhaustion.",
+      "mechanism_hypothesis_not_established": "Combining candidates may expose a clearer directed relation while retaining conflicting fragments; a recovery pass does not establish full narrative fidelity.",
+      "inherited_effects_and_scope": "The displayed site becomes the sole passing whole-question witness. No later component is credited for this pooling result.",
+      "effort_or_control_scope": "The frozen capped-N1 reference does not isolate pooling from the larger N32 sample pool; an A32 comparison is needed for that component claim.",
+      "root_reviewed_analysis_verbatim": "Pool adds a clear toddler-feeds-babysitter clause but also preserves nanny/feeding-child candy and toys fragments. The judge selects the correct relation despite internal opposing directions and food details absent from the saved scene.",
+      "source_references": {
+        "case": {
+          "path": "${OLENS_DATA_ROOT}/expansion-v1/qualitative/first-live-v4.json",
+          "condition": "pooled_greedy_swap-n32",
+          "family": "role_bound_association",
+          "kind": "outcome_selected",
+          "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ba|L44|p00124",
+          "object_sha256": "efa1fe3aa1999ab3415bdfc2bf33f7bb3796718bd3fc011180acda6c78f0b00b"
+        },
+        "actual_parent": {
+          "path": "${OLENS_DATA_ROOT}/expansion-v1/qualitative/parent-comparisons-first-live-v3.json",
+          "condition": "pooled_greedy_swap-n32",
+          "family": "role_bound_association",
+          "kind": "outcome_selected",
+          "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ba|L44|p00124",
+          "parent_condition": "capped_n1-n1",
+          "comparison_object_sha256": "613e028cfdfddcbf17e8a2bfe6cdc1b136edc95cd91be6c606cde05504432ca4"
+        },
+        "root_review": {
+          "path": "docs/reviews/root-expansion-progress-v5.json",
+          "sha256": "c9a5d4eaaf376a6b56bd0a9a6ce858ab7e0667638ff1c06a3d539efefa115b84",
+          "dashboard_example_object_sha256": "0a2a6376a329b820b99661ed511812668873fb380c50e1de70267d4614833f3d"
+        },
+        "context": {
+          "path": "${OLENS_DATA_ROOT}/expansion-v1/qualitative/first-live-v4.json",
+          "key": "role_bound_association|oa-babysitter-toddler-feed-ba|L44|p00124",
+          "object_sha256": "14493159d4ba7ef61ae86b8ccdfe15dc6a4eceebe8edba77832112f09259ef2d"
+        }
+      },
+      "endpoint_scope_label": "Outcome-selected whole-question change witness",
+      "is_selected_whole_question_change_witness": true
+    },
+    {
+      "approach": "verification",
+      "condition": "best_n_specificity_mean-n32",
+      "actual_parent": "capped_n1-n1",
+      "family": "multihop_mt",
+      "kind": "outcome_selected",
+      "cell_id": "multihop_mt|mhh-adwa-baratieri|L40|p00033",
+      "candidate_action_title": "Control scoring recovers the bridge, not the final name",
+      "full_context": {
+        "source_bank_item": {
+          "name": "mhh-adwa-baratieri",
+          "subfamily": "2hop",
+          "prompt": "Fact: the 1896 Ethiopian victory that wrecked Italy's attempt to impose a protectorate on the country was won against an invading force commanded by the general",
+          "target": "Oreste Baratieri",
+          "target_alts": [
+            "Baratieri",
+            "General Oreste Baratieri"
+          ],
+          "source": "staging_hard_mt",
+          "eval_render": "plain",
+          "readout": {
+            "kind": "final_prompt_token",
+            "offsets": [
+              -1
+            ]
+          },
+          "intermediates": [
+            "Battle of Adwa"
+          ],
+          "units": [
+            {
+              "role": "bridge1",
+              "required": true,
+              "multi_token": true,
+              "forms": {
+                "en": [
+                  "Battle of Adwa",
+                  "Battle of Adowa"
+                ]
+              },
+              "match": [
+                "Battle of Adwa",
+                "Battle of Adowa"
+              ]
+            }
+          ],
+          "bridges": [
+            {
+              "question": "Which 1896 battle did Ethiopian forces win against an invading Italian army?",
+              "units": [
+                "bridge1"
+              ],
+              "answers": [
+                "Battle of Adwa",
+                "Adwa",
+                "Adowa",
+                "Battle of Adowa"
+              ]
+            }
+          ],
+          "consistency": 0.9,
+          "consistency_strict": 0.9,
+          "consistency_greedy": 1,
+          "bridge_consistency": {
+            "bridge1": 1.0
+          },
+          "gate_variant": "chat",
+          "probe_token_lens": {
+            "units": {
+              "bridge1": {
+                "en": [
+                  4,
+                  4
+                ]
+              }
+            },
+            "target": 4,
+            "target_alts": [
+              2,
+              5
+            ]
+          },
+          "mc": {
+            "bridge1": {
+              "gold": "Battle of Adwa",
+              "distractors": [
+                "Battle of Dogali",
+                "Battle of Omdurman",
+                "Battle of Isandlwana",
+                "Battle of Maychew"
+              ]
+            }
+          }
+        },
+        "historical_anchor_context": null,
+        "evaluation_context": null,
+        "evaluation_only": true
+      },
+      "before": {
+        "text": "- /field marshal who led them, General Roberto Crispi. The Italian army was defeated by the general\n- /marchese **Robert Crispi**? Or more accurately, by the Italian general\n- 巴德诺 (General Bafile) who died in the battle. Which Italian general was it? The famous Italian general\n- （general） named **Raoul Barat**, who had just been appointed by King Victor Emmanuel II to lead the Italian forces in Ethiopia. General",
+        "empty": false,
+        "pass": false,
+        "class": null,
+        "evidence": {
+          "readout_text": "- /field marshal who led them, General Roberto Crispi. The Italian army was defeated by the general\n- /marchese **Robert Crispi**? Or more accurately, by the Italian general\n- 巴德诺 (General Bafile) who died in the battle. Which Italian general was it? The famous Italian general\n- （general） named **Raoul Barat**, who had just been appointed by King Victor Emmanuel II to lead the Italian forces in Ethiopia. General",
+          "retained_layer_match_result": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "required_roles": [
+            "bridge1"
+          ],
+          "optional_roles": [
+            "target"
+          ],
+          "interpretation": "Retained language-hit evidence with exact readout text; not invented substring offsets.",
+          "evaluation_only": true
+        }
+      },
+      "after": {
+        "text": "- /marshal named Baccelli? No, it was the Italian general\n- /field marshal who was killed at that battle. Which general was at the Battle of Adwa? The Italian general\n- （general） Roberto Crispi? No, that’s not quite right. The Italian invasion was led by General\n- /marshal who led the Italian army in that disastrous campaign. The general’s name was **Roberto Crispi**? No, the general",
+        "empty": false,
+        "pass": true,
+        "class": null,
+        "evidence": {
+          "readout_text": "- /marshal named Baccelli? No, it was the Italian general\n- /field marshal who was killed at that battle. Which general was at the Battle of Adwa? The Italian general\n- （general） Roberto Crispi? No, that’s not quite right. The Italian invasion was led by General\n- /marshal who led the Italian army in that disastrous campaign. The general’s name was **Roberto Crispi**? No, the general",
+          "retained_layer_match_result": {
+            "hits": {
+              "bridge1": [
+                "en"
+              ],
+              "target": []
+            },
+            "empty": false
+          },
+          "required_roles": [
+            "bridge1"
+          ],
+          "optional_roles": [
+            "target"
+          ],
+          "interpretation": "Retained language-hit evidence with exact readout text; not invented substring offsets.",
+          "evaluation_only": true
+        }
+      },
+      "excerpts": {
+        "before": {
+          "text": "General Roberto Crispi",
+          "character_count": 22,
+          "start": 31,
+          "end": 53,
+          "exact_substring_of_full_text": true
+        },
+        "after": {
+          "text": "Which general was at the Battle of Adwa?",
+          "character_count": 40,
+          "start": 106,
+          "end": 146,
+          "exact_substring_of_full_text": true
+        }
+      },
+      "original_capped_reference": {
+        "text": "- /field marshal who led them, General Roberto Crispi. The Italian army was defeated by the general\n- /marchese **Robert Crispi**? Or more accurately, by the Italian general\n- 巴德诺 (General Bafile) who died in the battle. Which Italian general was it? The famous Italian general\n- （general） named **Raoul Barat**, who had just been appointed by King Victor Emmanuel II to lead the Italian forces in Ethiopia. General",
+        "empty": false,
+        "pass": false,
+        "class": null,
+        "evidence": {
+          "readout_text": "- /field marshal who led them, General Roberto Crispi. The Italian army was defeated by the general\n- /marchese **Robert Crispi**? Or more accurately, by the Italian general\n- 巴德诺 (General Bafile) who died in the battle. Which Italian general was it? The famous Italian general\n- （general） named **Raoul Barat**, who had just been appointed by King Victor Emmanuel II to lead the Italian forces in Ethiopia. General",
+          "retained_layer_match_result": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "required_roles": [
+            "bridge1"
+          ],
+          "optional_roles": [
+            "target"
+          ],
+          "interpretation": "Retained language-hit evidence with exact readout text; not invented substring offsets.",
+          "evaluation_only": true
+        }
+      },
+      "actual_parent_endpoint_evidence": {
+        "unit": "whole_original_question_grid",
+        "item_id": "mhh-adwa-baratieri",
+        "grid_cells": 11,
+        "parent_item_pass": false,
+        "proposed_item_pass": true,
+        "parent_passing_cells": 0,
+        "proposed_passing_cells": 2,
+        "parent_first_passing_cell": null,
+        "proposed_first_passing_cell": "multihop_mt|mhh-adwa-baratieri|L40|p00033",
+        "selected_cell_parent_pass": false,
+        "selected_cell_proposed_pass": true
+      },
+      "original_capped_endpoint_evidence": {
+        "unit": "whole_original_question_grid",
+        "item_id": "mhh-adwa-baratieri",
+        "baseline_item_pass": false,
+        "proposed_item_pass": true,
+        "baseline_passing_cells": 0,
+        "proposed_passing_cells": 2,
+        "grid_cells": 11,
+        "witness_rule": "first passing proposed site"
+      },
+      "evidence_scope": "local_anchor_with_separately_recorded_whole_question_grid",
+      "observed_change": "The selected description explicitly names the required Battle of Adwa bridge. It still proposes wrong or uncertain generals; the optional Oreste Baratieri target is not recovered.",
+      "mechanism_hypothesis_not_established": "Specificity may promote activation-linked bridge wording; this capped-reference example does not isolate the effect of controls from extra sampling or candidate selection.",
+      "inherited_effects_and_scope": "Whole-question required-bridge recovery changes from zero to two passing sites. This is distinct from correctness of the final answer.",
+      "effort_or_control_scope": "Control-based specificity adds true/control reconstruction scoring on the same N32 pool. It is separate from the frozen N8 likelihood experiment; no independent reader was run.",
+      "root_reviewed_analysis_verbatim": "This task checks required hidden bridge concepts. A recovered name does not establish that the complete description is correct.",
+      "source_references": {
+        "case": {
+          "path": "${OLENS_DATA_ROOT}/expansion-v1/qualitative/first-live-v4.json",
+          "condition": "best_n_specificity_mean-n32",
+          "family": "multihop_mt",
+          "kind": "outcome_selected",
+          "cell_id": "multihop_mt|mhh-adwa-baratieri|L40|p00033",
+          "object_sha256": "37b7c6e35cab0d1d368eb22fd7b1d094680d134d409318e8d7931f58715d9f32"
+        },
+        "actual_parent": {
+          "path": "${OLENS_DATA_ROOT}/expansion-v1/qualitative/parent-comparisons-first-live-v3.json",
+          "condition": "best_n_specificity_mean-n32",
+          "family": "multihop_mt",
+          "kind": "outcome_selected",
+          "cell_id": "multihop_mt|mhh-adwa-baratieri|L40|p00033",
+          "parent_condition": "capped_n1-n1",
+          "comparison_object_sha256": "05ce4669b931adf34f4f5ae261c778e7181900b561a7ad009bb3a97187b2917e"
+        },
+        "root_review": {
+          "path": "docs/reviews/root-expansion-progress-v5.json",
+          "sha256": "c9a5d4eaaf376a6b56bd0a9a6ce858ab7e0667638ff1c06a3d539efefa115b84",
+          "dashboard_example_object_sha256": "f2aee8aed1d64b7b5354a5bf6c77a751aae353671ee5e0547e2d73e5495af9b8"
+        },
+        "context": {
+          "path": "${OLENS_DATA_ROOT}/expansion-v1/qualitative/first-live-v4.json",
+          "key": "multihop_mt|mhh-adwa-baratieri|L40|p00033",
+          "object_sha256": "9338b8f0f9ba7037cc9565e1c2cfb6897c114f0e75cb62a6f41a850ed6b5d988"
+        }
+      },
+      "endpoint_scope_label": "Outcome-selected whole-question change witness",
+      "is_selected_whole_question_change_witness": true
+    },
+    {
+      "approach": "combinations",
+      "condition": "pooled_specificity_mean_then_prune_0.005-n32",
+      "actual_parent": "pooled_specificity_mean-n32",
+      "family": "multihop_mt",
+      "kind": "fixed_anchor",
+      "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+      "candidate_action_title": "A shorter pool loses Enkidu while the question still passes",
+      "full_context": {
+        "source_bank_item": {
+          "name": "mhh-mesopotamian-wildman-cedar",
+          "subfamily": "2hop",
+          "prompt": "Fact: the shaggy wild man moulded from clay who grazed with gazelles until a temple woman tamed him joined the king of Uruk in slaying the roaring warden of the cedar forest, an ogre named",
+          "target": "Humbaba",
+          "target_alts": [
+            "Huwawa",
+            "Ḫumbaba"
+          ],
+          "source": "staging_hard_mt",
+          "eval_render": "plain",
+          "readout": {
+            "kind": "final_prompt_token",
+            "offsets": [
+              -1
+            ]
+          },
+          "intermediates": [
+            "Enkidu"
+          ],
+          "units": [
+            {
+              "role": "bridge1",
+              "required": true,
+              "multi_token": true,
+              "forms": {
+                "en": [
+                  "Enkidu"
+                ]
+              },
+              "match": [
+                "Enkidu"
+              ]
+            }
+          ],
+          "bridges": [
+            {
+              "question": "In the Epic of Gilgamesh, who was the wild man created from clay who lived among animals and became Gilgamesh's companion?",
+              "units": [
+                "bridge1"
+              ],
+              "answers": [
+                "Enkidu"
+              ]
+            }
+          ],
+          "consistency": 1.0,
+          "consistency_strict": 1.0,
+          "consistency_greedy": 1,
+          "bridge_consistency": {
+            "bridge1": 0.9
+          },
+          "gate_variant": "chat",
+          "probe_token_lens": {
+            "units": {
+              "bridge1": {
+                "en": [
+                  3
+                ]
+              }
+            },
+            "target": 2,
+            "target_alts": [
+              3,
+              5
+            ]
+          },
+          "mc": {
+            "bridge1": {
+              "gold": "Enkidu",
+              "distractors": [
+                "Utnapishtim",
+                "Siduri",
+                "Ninsun",
+                "Shamhat"
+              ]
+            }
+          }
+        },
+        "historical_anchor_context": {
+          "evaluation_only": true,
+          "source_bank_item": {
+            "bridges": [
+              {
+                "question": "In the Epic of Gilgamesh, who was the wild man created from clay who lived among animals and became Gilgamesh's companion?",
+                "units": [
+                  "bridge1"
+                ],
+                "answers": [
+                  "Enkidu"
+                ]
+              }
+            ],
+            "units": [
+              {
+                "role": "bridge1",
+                "required": true,
+                "multi_token": true,
+                "forms": {
+                  "en": [
+                    "Enkidu"
+                  ]
+                },
+                "match": [
+                  "Enkidu"
+                ]
+              }
+            ],
+            "prompt": "Fact: the shaggy wild man moulded from clay who grazed with gazelles until a temple woman tamed him joined the king of Uruk in slaying the roaring warden of the cedar forest, an ogre named",
+            "target_alts": [
+              "Huwawa",
+              "Ḫumbaba"
+            ],
+            "intermediates": [
+              "Enkidu"
+            ],
+            "target": "Humbaba"
+          }
+        },
+        "evaluation_context": null,
+        "evaluation_only": true
+      },
+      "before": {
+        "text": "- Humabaz (or Humbaba), the guardian of the forest. Gilgamesh killed the monster\n- 胡利 (Huw) or the Tree Man, and his demon guards. He was slain by Gilgamesh\n- Goliath, or *Yaksha* in some versions. He broke down a gate and devoured people. Gilgamesh killed Humbaba\n- Gogmagog (or Humbaba), a tree-like giant. They arrive at Enkidu's",
+        "empty": false,
+        "pass": true,
+        "class": null,
+        "evidence": {
+          "readout_text": "- Humabaz (or Humbaba), the guardian of the forest. Gilgamesh killed the monster\n- 胡利 (Huw) or the Tree Man, and his demon guards. He was slain by Gilgamesh\n- Goliath, or *Yaksha* in some versions. He broke down a gate and devoured people. Gilgamesh killed Humbaba\n- Gogmagog (or Humbaba), a tree-like giant. They arrive at Enkidu's",
+          "retained_layer_match_result": {
+            "hits": {
+              "bridge1": [
+                "en"
+              ],
+              "target": [
+                "en"
+              ]
+            },
+            "empty": false
+          },
+          "required_roles": [
+            "bridge1"
+          ],
+          "optional_roles": [
+            "target"
+          ],
+          "interpretation": "Retained language-hit evidence with exact readout text; not invented substring offsets.",
+          "evaluation_only": true
+        }
+      },
+      "after": {
+        "text": "- Humabaz (or Humbaba), the guardian of the forest. Gilgamesh killed the monster\n- 胡利 (Huw) or the Tree Man, and his demon guards. He was slain by Gilgamesh\n",
+        "empty": false,
+        "pass": false,
+        "class": null,
+        "evidence": {
+          "readout_text": "- Humabaz (or Humbaba), the guardian of the forest. Gilgamesh killed the monster\n- 胡利 (Huw) or the Tree Man, and his demon guards. He was slain by Gilgamesh\n",
+          "retained_layer_match_result": {
+            "hits": {
+              "bridge1": [],
+              "target": [
+                "en"
+              ]
+            },
+            "empty": false
+          },
+          "required_roles": [
+            "bridge1"
+          ],
+          "optional_roles": [
+            "target"
+          ],
+          "interpretation": "Retained language-hit evidence with exact readout text; not invented substring offsets.",
+          "evaluation_only": true
+        }
+      },
+      "excerpts": {
+        "before": {
+          "text": "They arrive at Enkidu's",
+          "character_count": 23,
+          "start": 309,
+          "end": 332,
+          "exact_substring_of_full_text": true
+        },
+        "after": {
+          "text": "- Humabaz (or Humbaba), the guardian of the forest.",
+          "character_count": 51,
+          "start": 0,
+          "end": 51,
+          "exact_substring_of_full_text": true
+        }
+      },
+      "original_capped_reference": {
+        "text": "- Humbaba and his men, and the hero known as\n- Huwang (Tree-Man) or a demon named Humbaba. He\n- Huma (the Demon-God of the Forest) and his guards. He had a heart of stone and horns like a bull\n- 木贼 (Humbaba) and his guards, who guard the Tree of Life.\" | \"The monster named Humbaba, who",
+        "empty": false,
+        "pass": false,
+        "class": null,
+        "evidence": {
+          "readout_text": "- Humbaba and his men, and the hero known as\n- Huwang (Tree-Man) or a demon named Humbaba. He\n- Huma (the Demon-God of the Forest) and his guards. He had a heart of stone and horns like a bull\n- 木贼 (Humbaba) and his guards, who guard the Tree of Life.\" | \"The monster named Humbaba, who",
+          "retained_layer_match_result": {
+            "hits": {
+              "bridge1": [],
+              "target": [
+                "en"
+              ]
+            },
+            "empty": false
+          },
+          "required_roles": [
+            "bridge1"
+          ],
+          "optional_roles": [
+            "target"
+          ],
+          "interpretation": "Retained language-hit evidence with exact readout text; not invented substring offsets.",
+          "evaluation_only": true
+        }
+      },
+      "actual_parent_endpoint_evidence": {
+        "unit": "whole_original_question_grid",
+        "item_id": "mhh-mesopotamian-wildman-cedar",
+        "grid_cells": 11,
+        "parent_item_pass": true,
+        "proposed_item_pass": true,
+        "parent_passing_cells": 3,
+        "proposed_passing_cells": 2,
+        "parent_first_passing_cell": "multihop_mt|mhh-mesopotamian-wildman-cedar|L40|p00046",
+        "proposed_first_passing_cell": "multihop_mt|mhh-mesopotamian-wildman-cedar|L40|p00046",
+        "selected_cell_parent_pass": true,
+        "selected_cell_proposed_pass": false
+      },
+      "original_capped_endpoint_evidence": null,
+      "evidence_scope": "local_anchor_with_separately_recorded_whole_question_grid",
+      "observed_change": "Pruning deletes the Enkidu-bearing bullet, losing required bridge recovery at this fixed anchor. Humbaba, the optional final answer, survives. Two other sites preserve whole-question recovery.",
+      "mechanism_hypothesis_not_established": "Low fit-loss deletion can remove a specific entity useful to the semantic endpoint; fit preservation does not guarantee bridge preservation.",
+      "inherited_effects_and_scope": "The parent already has a passing whole-question grid. The child retains that question-level success elsewhere while losing this local hit; no fresh question-level gain is credited to pruning.",
+      "effort_or_control_scope": "This is the actual pooled-specificity parent contrast. Targeted and matched random .005 deletion reach the same two-bullet text at this anchor.",
+      "root_reviewed_analysis_verbatim": "Both targeted and matched random .005 pruning retain Humabaz/Humbaba and Huw, removing Goliath/Yaksha plus the separate Enkidu-bearing bullet. The required bridge1 hit disappears with Enkidu, even though the optional target survives. This is deletion of useful endpoint evidence, not complete recovery.",
+      "source_references": {
+        "case": {
+          "path": "${OLENS_DATA_ROOT}/expansion-v1/qualitative/first-live-v4.json",
+          "condition": "pooled_specificity_mean_then_prune_0.005-n32",
+          "family": "multihop_mt",
+          "kind": "fixed_anchor",
+          "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+          "object_sha256": "f1084789fea3ee9742ff6cd346b3e74f1ce2ee1b5eca89f9d9de5fb23e4e6568"
+        },
+        "actual_parent": {
+          "path": "${OLENS_DATA_ROOT}/expansion-v1/qualitative/parent-comparisons-first-live-v3.json",
+          "condition": "pooled_specificity_mean_then_prune_0.005-n32",
+          "family": "multihop_mt",
+          "kind": "fixed_anchor",
+          "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+          "parent_condition": "pooled_specificity_mean-n32",
+          "comparison_object_sha256": "67a5f09b183dd3c22418a7b9ce50692065523a9808b0daef6f8f1bc7f3ecf9ef"
+        },
+        "root_review": {
+          "path": "docs/reviews/root-expansion-progress-v5.json",
+          "sha256": "c9a5d4eaaf376a6b56bd0a9a6ce858ab7e0667638ff1c06a3d539efefa115b84",
+          "dashboard_example_object_sha256": "29216040a8e298f5fe98cc937bde6ccb02bf55d9ea545318ec855ec7e6c5a684"
+        },
+        "context": {
+          "path": "${OLENS_DATA_ROOT}/expansion-v1/qualitative/first-live-v4.json",
+          "key": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+          "object_sha256": "503e623a944e93ba31e85192d752575f6ed7172a6dd2ba1b62d3442df8a19caa"
+        }
+      },
+      "matched_deletion_control": {
+        "condition": "pooled_specificity_mean_random_delete_matched_0.005-n32",
+        "same_after_text": true,
+        "source_path": "${OLENS_DATA_ROOT}/expansion-v1/qualitative/parent-comparisons-first-live-v3.json",
+        "source_case_object_sha256": "4b7bf4af06d8468ac2fa1f82b62070a8582979c62dd7059bca4409ec327ebf0e"
+      },
+      "endpoint_scope_label": "Fixed local anchor; whole-question result reported separately",
+      "is_selected_whole_question_change_witness": false
+    }
+  ],
+  "limits": [
+    "Descriptive cases selected from already audited source packs, not a random prevalence estimate.",
+    "Full exact before/after/context/official evidence are preserved; short excerpts are exact Unicode substrings at recorded character offsets.",
+    "Mechanism text is an explicitly proposed hypothesis, not a causal finding or rewritten official score.",
+    "Question-level witness and local site outcomes remain separate; original capped reference and actual frozen parent remain explicit.",
+    "Editing candidate intentionally withheld until terminal expanded outputs and review.",
+    "No new calls, grades, scientific pin mutations or publication."
+  ]
+}
