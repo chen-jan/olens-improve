@@ -1,0 +1,22 @@
+{
+  "status": "root_reviewed_illustrative_pooling_candidate_pending_final_overlap",
+  "reviewed_utc": "2026-10-11T04:33:52.538770+00:00",
+  "source_path": "docs/reviews/expanded-pooling-hidden-bridge-alternative-v1.json",
+  "source_sha256": "095154511f86227f04f0b6baae09cb3eef128ac2882b5f0bd7aa200742a33040",
+  "cell_id": "multihop_mt|mhh-adwa-baratieri|L44|p00033",
+  "comparison": [
+    "pooled_greedy_swap-n32",
+    "capped_n1-n1"
+  ],
+  "verified": [
+    "Full selected before/after, supplied evaluation context, official required/optional hits and all eleven raw/capped/pooled grid texts read.",
+    "All fourteen source pins match.",
+    "Local required phrase absent before and present after; official whole-question required recovery changes zero to two passing sites.",
+    "Bare Adowa/Adua clues already appear at capped layer56; do not infer wholly new conceptual knowledge across the grid.",
+    "Pooled witness still names unsupported/wrong commanders relative to supplied gold; optional Baratieri hit at layer36 is separate from required bridge sites44/56.",
+    "Exact excerpts are bounded and illustrative; retained five-case audit is not whole-bank prevalence."
+  ],
+  "safe_caption": "Pooling surfaces the accepted Battle of Adwa phrase at this site; wrong commanders remain.",
+  "final_overlap_verified": false,
+  "old_six_candidates_preserved": true
+}

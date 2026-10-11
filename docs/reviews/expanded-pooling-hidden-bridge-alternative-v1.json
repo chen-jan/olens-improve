@@ -1,0 +1,1579 @@
+{
+  "schema_version": 1,
+  "status": "independent_alternative_candidate_pending_root_review_and_final_overlap",
+  "created_utc": "2026-10-11T04:31:17.577049+00:00",
+  "reviewer": "Codex focused source-bound illustrative review",
+  "approach": "pooling",
+  "condition": "pooled_greedy_swap-n32",
+  "actual_parent": "capped_n1-n1",
+  "family": "multihop_mt",
+  "case_kind": "outcome_selected",
+  "cell_id": "multihop_mt|mhh-adwa-baratieri|L44|p00033",
+  "item_id": "mhh-adwa-baratieri",
+  "original_cell": {
+    "cell_id": "multihop_mt|mhh-adwa-baratieri|L44|p00033",
+    "family": "multihop_mt",
+    "item_id": "mhh-adwa-baratieri",
+    "group_id": "multihop_mt:bridge-component:bcf85b6bf7e45030",
+    "layer": 44,
+    "position": 33,
+    "split": "test",
+    "activation_sha256": "7bec9fc9a4e6a3a0d43e2986370337ecca3adf89897162d75340e1deb06ae67b"
+  },
+  "selection_policy": "Among retained fixed-anchor/outcome-selected pooling N32 multihop cases: require local false→true, every required registered phrase absent before and present after; prefer whole-question false→true, then item_id/layer/position/kind lexicographically. This is not a whole-bank search or prevalence estimate.",
+  "retained_scope_eligibility": [
+    {
+      "kind": "fixed_anchor",
+      "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+      "local_required_phrase_recovery": true,
+      "whole_question_recovery": false
+    },
+    {
+      "kind": "fixed_anchor",
+      "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+      "local_required_phrase_recovery": true,
+      "whole_question_recovery": false
+    },
+    {
+      "kind": "outcome_selected",
+      "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028",
+      "local_required_phrase_recovery": false,
+      "whole_question_recovery": false
+    },
+    {
+      "kind": "outcome_selected",
+      "cell_id": "multihop_mt|mhh-adwa-baratieri|L44|p00033",
+      "local_required_phrase_recovery": true,
+      "whole_question_recovery": true
+    },
+    {
+      "kind": "outcome_selected",
+      "cell_id": "multihop_mt|mhh-belisarius-procopius-secret-history|L52|p00038",
+      "local_required_phrase_recovery": false,
+      "whole_question_recovery": false
+    }
+  ],
+  "before": {
+    "text": "- who was named __________? (The Italian general who led the invasion was General\n- 名为 Menelik II's chief of staff, Count Roberto Capello, or the general named\n- （general）who led the Italian campaign in Abyssinia. His name was General _______? (Actually, the Italian commander in that campaign was General\n- （general）Balla and the king, Menelik II? No, it was the general who died at Addis Abeba.",
+    "empty": false,
+    "pass": false,
+    "class": null,
+    "evidence": {
+      "readout_text": "- who was named __________? (The Italian general who led the invasion was General\n- 名为 Menelik II's chief of staff, Count Roberto Capello, or the general named\n- （general）who led the Italian campaign in Abyssinia. His name was General _______? (Actually, the Italian commander in that campaign was General\n- （general）Balla and the king, Menelik II? No, it was the general who died at Addis Abeba.",
+      "retained_layer_match_result": {
+        "hits": {
+          "bridge1": [],
+          "target": []
+        },
+        "empty": false
+      },
+      "required_roles": [
+        "bridge1"
+      ],
+      "optional_roles": [
+        "target"
+      ],
+      "interpretation": "Retained language-hit evidence with exact readout text; not invented substring offsets.",
+      "evaluation_only": true
+    }
+  },
+  "after": {
+    "text": "- （general）Obboli, who commanded the Italian forces at the Battle of Adwa. What was the name of the general\n- （general） Roberto Crispi? No, it was led by General Roberto Crispi. Wait, the Italian commander was General\n- /general who led the Italian army into Addis Ababa. What was the name of the general\n- 名叫翁贝尔托·巴托利尼（General Umberto Bartolino). The king was captured by Ethiopian forces, and the Italian army was defeated. This general\n",
+    "empty": false,
+    "pass": true,
+    "class": null,
+    "evidence": {
+      "readout_text": "- （general）Obboli, who commanded the Italian forces at the Battle of Adwa. What was the name of the general\n- （general） Roberto Crispi? No, it was led by General Roberto Crispi. Wait, the Italian commander was General\n- /general who led the Italian army into Addis Ababa. What was the name of the general\n- 名叫翁贝尔托·巴托利尼（General Umberto Bartolino). The king was captured by Ethiopian forces, and the Italian army was defeated. This general\n",
+      "retained_layer_match_result": {
+        "hits": {
+          "bridge1": [
+            "en"
+          ],
+          "target": []
+        },
+        "empty": false
+      },
+      "required_roles": [
+        "bridge1"
+      ],
+      "optional_roles": [
+        "target"
+      ],
+      "interpretation": "Retained language-hit evidence with exact readout text; not invented substring offsets.",
+      "evaluation_only": true
+    }
+  },
+  "full_context": {
+    "source_bank_item": {
+      "name": "mhh-adwa-baratieri",
+      "subfamily": "2hop",
+      "prompt": "Fact: the 1896 Ethiopian victory that wrecked Italy's attempt to impose a protectorate on the country was won against an invading force commanded by the general",
+      "target": "Oreste Baratieri",
+      "target_alts": [
+        "Baratieri",
+        "General Oreste Baratieri"
+      ],
+      "source": "staging_hard_mt",
+      "eval_render": "plain",
+      "readout": {
+        "kind": "final_prompt_token",
+        "offsets": [
+          -1
+        ]
+      },
+      "intermediates": [
+        "Battle of Adwa"
+      ],
+      "units": [
+        {
+          "role": "bridge1",
+          "required": true,
+          "multi_token": true,
+          "forms": {
+            "en": [
+              "Battle of Adwa",
+              "Battle of Adowa"
+            ]
+          },
+          "match": [
+            "Battle of Adwa",
+            "Battle of Adowa"
+          ]
+        }
+      ],
+      "bridges": [
+        {
+          "question": "Which 1896 battle did Ethiopian forces win against an invading Italian army?",
+          "units": [
+            "bridge1"
+          ],
+          "answers": [
+            "Battle of Adwa",
+            "Adwa",
+            "Adowa",
+            "Battle of Adowa"
+          ]
+        }
+      ],
+      "consistency": 0.9,
+      "consistency_strict": 0.9,
+      "consistency_greedy": 1,
+      "bridge_consistency": {
+        "bridge1": 1.0
+      },
+      "gate_variant": "chat",
+      "probe_token_lens": {
+        "units": {
+          "bridge1": {
+            "en": [
+              4,
+              4
+            ]
+          }
+        },
+        "target": 4,
+        "target_alts": [
+          2,
+          5
+        ]
+      },
+      "mc": {
+        "bridge1": {
+          "gold": "Battle of Adwa",
+          "distractors": [
+            "Battle of Dogali",
+            "Battle of Omdurman",
+            "Battle of Isandlwana",
+            "Battle of Maychew"
+          ]
+        }
+      }
+    },
+    "historical_anchor_context": null,
+    "evaluation_context": null,
+    "evaluation_only": true
+  },
+  "actual_parent_comparison": {
+    "status": "complete",
+    "output": {
+      "text": "- who was named __________? (The Italian general who led the invasion was General\n- 名为 Menelik II's chief of staff, Count Roberto Capello, or the general named\n- （general）who led the Italian campaign in Abyssinia. His name was General _______? (Actually, the Italian commander in that campaign was General\n- （general）Balla and the king, Menelik II? No, it was the general who died at Addis Abeba.",
+      "empty": false,
+      "pass": false,
+      "class": null,
+      "evidence": {
+        "readout_text": "- who was named __________? (The Italian general who led the invasion was General\n- 名为 Menelik II's chief of staff, Count Roberto Capello, or the general named\n- （general）who led the Italian campaign in Abyssinia. His name was General _______? (Actually, the Italian commander in that campaign was General\n- （general）Balla and the king, Menelik II? No, it was the general who died at Addis Abeba.",
+        "retained_layer_match_result": {
+          "hits": {
+            "bridge1": [],
+            "target": []
+          },
+          "empty": false
+        },
+        "required_roles": [
+          "bridge1"
+        ],
+        "optional_roles": [
+          "target"
+        ],
+        "interpretation": "Retained language-hit evidence with exact readout text; not invented substring offsets.",
+        "evaluation_only": true
+      }
+    },
+    "text_changed": true,
+    "endpoint_evidence": {
+      "unit": "whole_original_question_grid",
+      "item_id": "mhh-adwa-baratieri",
+      "grid_cells": 11,
+      "parent_item_pass": false,
+      "proposed_item_pass": true,
+      "parent_passing_cells": 0,
+      "proposed_passing_cells": 2,
+      "parent_first_passing_cell": null,
+      "proposed_first_passing_cell": "multihop_mt|mhh-adwa-baratieri|L44|p00033",
+      "selected_cell_parent_pass": false,
+      "selected_cell_proposed_pass": true
+    }
+  },
+  "source_parent_case": {
+    "cell_id": "multihop_mt|mhh-adwa-baratieri|L44|p00033",
+    "item_id": "mhh-adwa-baratieri",
+    "layer": 44,
+    "position": 33,
+    "category": "win",
+    "endpoint_evidence": {
+      "unit": "whole_original_question_grid",
+      "item_id": "mhh-adwa-baratieri",
+      "baseline_item_pass": false,
+      "proposed_item_pass": true,
+      "baseline_passing_cells": 0,
+      "proposed_passing_cells": 2,
+      "grid_cells": 11,
+      "witness_rule": "first passing proposed site"
+    },
+    "cell": {
+      "cell_id": "multihop_mt|mhh-adwa-baratieri|L44|p00033",
+      "family": "multihop_mt",
+      "item_id": "mhh-adwa-baratieri",
+      "group_id": "multihop_mt:bridge-component:bcf85b6bf7e45030",
+      "layer": 44,
+      "position": 33,
+      "split": "test",
+      "activation_sha256": "7bec9fc9a4e6a3a0d43e2986370337ecca3adf89897162d75340e1deb06ae67b"
+    },
+    "context_ref": "multihop_mt|mhh-adwa-baratieri|L44|p00033",
+    "selection_policy": "deterministic_outcome_selected_supplement",
+    "source_case_id": "pooled_greedy_swap-n32|multihop_mt|outcome_selected|win|multihop_mt|mhh-adwa-baratieri|L44|p00033",
+    "original_baseline_condition": "capped_n1-n1",
+    "original_baseline": {
+      "text": "- who was named __________? (The Italian general who led the invasion was General\n- 名为 Menelik II's chief of staff, Count Roberto Capello, or the general named\n- （general）who led the Italian campaign in Abyssinia. His name was General _______? (Actually, the Italian commander in that campaign was General\n- （general）Balla and the king, Menelik II? No, it was the general who died at Addis Abeba.",
+      "empty": false,
+      "pass": false,
+      "class": null,
+      "evidence": {
+        "readout_text": "- who was named __________? (The Italian general who led the invasion was General\n- 名为 Menelik II's chief of staff, Count Roberto Capello, or the general named\n- （general）who led the Italian campaign in Abyssinia. His name was General _______? (Actually, the Italian commander in that campaign was General\n- （general）Balla and the king, Menelik II? No, it was the general who died at Addis Abeba.",
+        "retained_layer_match_result": {
+          "hits": {
+            "bridge1": [],
+            "target": []
+          },
+          "empty": false
+        },
+        "required_roles": [
+          "bridge1"
+        ],
+        "optional_roles": [
+          "target"
+        ],
+        "interpretation": "Retained language-hit evidence with exact readout text; not invented substring offsets.",
+        "evaluation_only": true
+      }
+    },
+    "proposed": {
+      "text": "- （general）Obboli, who commanded the Italian forces at the Battle of Adwa. What was the name of the general\n- （general） Roberto Crispi? No, it was led by General Roberto Crispi. Wait, the Italian commander was General\n- /general who led the Italian army into Addis Ababa. What was the name of the general\n- 名叫翁贝尔托·巴托利尼（General Umberto Bartolino). The king was captured by Ethiopian forces, and the Italian army was defeated. This general\n",
+      "empty": false,
+      "pass": true,
+      "class": null,
+      "evidence": {
+        "readout_text": "- （general）Obboli, who commanded the Italian forces at the Battle of Adwa. What was the name of the general\n- （general） Roberto Crispi? No, it was led by General Roberto Crispi. Wait, the Italian commander was General\n- /general who led the Italian army into Addis Ababa. What was the name of the general\n- 名叫翁贝尔托·巴托利尼（General Umberto Bartolino). The king was captured by Ethiopian forces, and the Italian army was defeated. This general\n",
+        "retained_layer_match_result": {
+          "hits": {
+            "bridge1": [
+              "en"
+            ],
+            "target": []
+          },
+          "empty": false
+        },
+        "required_roles": [
+          "bridge1"
+        ],
+        "optional_roles": [
+          "target"
+        ],
+        "interpretation": "Retained language-hit evidence with exact readout text; not invented substring offsets.",
+        "evaluation_only": true
+      }
+    },
+    "parents": {
+      "capped_n1-n1": {
+        "status": "complete",
+        "output": {
+          "text": "- who was named __________? (The Italian general who led the invasion was General\n- 名为 Menelik II's chief of staff, Count Roberto Capello, or the general named\n- （general）who led the Italian campaign in Abyssinia. His name was General _______? (Actually, the Italian commander in that campaign was General\n- （general）Balla and the king, Menelik II? No, it was the general who died at Addis Abeba.",
+          "empty": false,
+          "pass": false,
+          "class": null,
+          "evidence": {
+            "readout_text": "- who was named __________? (The Italian general who led the invasion was General\n- 名为 Menelik II's chief of staff, Count Roberto Capello, or the general named\n- （general）who led the Italian campaign in Abyssinia. His name was General _______? (Actually, the Italian commander in that campaign was General\n- （general）Balla and the king, Menelik II? No, it was the general who died at Addis Abeba.",
+            "retained_layer_match_result": {
+              "hits": {
+                "bridge1": [],
+                "target": []
+              },
+              "empty": false
+            },
+            "required_roles": [
+              "bridge1"
+            ],
+            "optional_roles": [
+              "target"
+            ],
+            "interpretation": "Retained language-hit evidence with exact readout text; not invented substring offsets.",
+            "evaluation_only": true
+          }
+        },
+        "text_changed": true,
+        "endpoint_evidence": {
+          "unit": "whole_original_question_grid",
+          "item_id": "mhh-adwa-baratieri",
+          "grid_cells": 11,
+          "parent_item_pass": false,
+          "proposed_item_pass": true,
+          "parent_passing_cells": 0,
+          "proposed_passing_cells": 2,
+          "parent_first_passing_cell": null,
+          "proposed_first_passing_cell": "multihop_mt|mhh-adwa-baratieri|L44|p00033",
+          "selected_cell_parent_pass": false,
+          "selected_cell_proposed_pass": true
+        }
+      }
+    }
+  },
+  "source_capped_case": {
+    "cell_id": "multihop_mt|mhh-adwa-baratieri|L44|p00033",
+    "item_id": "mhh-adwa-baratieri",
+    "layer": 44,
+    "position": 33,
+    "baseline": {
+      "text": "- who was named __________? (The Italian general who led the invasion was General\n- 名为 Menelik II's chief of staff, Count Roberto Capello, or the general named\n- （general）who led the Italian campaign in Abyssinia. His name was General _______? (Actually, the Italian commander in that campaign was General\n- （general）Balla and the king, Menelik II? No, it was the general who died at Addis Abeba.",
+      "empty": false,
+      "pass": false,
+      "class": null,
+      "evidence": {
+        "readout_text": "- who was named __________? (The Italian general who led the invasion was General\n- 名为 Menelik II's chief of staff, Count Roberto Capello, or the general named\n- （general）who led the Italian campaign in Abyssinia. His name was General _______? (Actually, the Italian commander in that campaign was General\n- （general）Balla and the king, Menelik II? No, it was the general who died at Addis Abeba.",
+        "retained_layer_match_result": {
+          "hits": {
+            "bridge1": [],
+            "target": []
+          },
+          "empty": false
+        },
+        "required_roles": [
+          "bridge1"
+        ],
+        "optional_roles": [
+          "target"
+        ],
+        "interpretation": "Retained language-hit evidence with exact readout text; not invented substring offsets.",
+        "evaluation_only": true
+      }
+    },
+    "proposed": {
+      "text": "- （general）Obboli, who commanded the Italian forces at the Battle of Adwa. What was the name of the general\n- （general） Roberto Crispi? No, it was led by General Roberto Crispi. Wait, the Italian commander was General\n- /general who led the Italian army into Addis Ababa. What was the name of the general\n- 名叫翁贝尔托·巴托利尼（General Umberto Bartolino). The king was captured by Ethiopian forces, and the Italian army was defeated. This general\n",
+      "empty": false,
+      "pass": true,
+      "class": null,
+      "evidence": {
+        "readout_text": "- （general）Obboli, who commanded the Italian forces at the Battle of Adwa. What was the name of the general\n- （general） Roberto Crispi? No, it was led by General Roberto Crispi. Wait, the Italian commander was General\n- /general who led the Italian army into Addis Ababa. What was the name of the general\n- 名叫翁贝尔托·巴托利尼（General Umberto Bartolino). The king was captured by Ethiopian forces, and the Italian army was defeated. This general\n",
+        "retained_layer_match_result": {
+          "hits": {
+            "bridge1": [
+              "en"
+            ],
+            "target": []
+          },
+          "empty": false
+        },
+        "required_roles": [
+          "bridge1"
+        ],
+        "optional_roles": [
+          "target"
+        ],
+        "interpretation": "Retained language-hit evidence with exact readout text; not invented substring offsets.",
+        "evaluation_only": true
+      }
+    },
+    "category": "win",
+    "endpoint_evidence": {
+      "unit": "whole_original_question_grid",
+      "item_id": "mhh-adwa-baratieri",
+      "baseline_item_pass": false,
+      "proposed_item_pass": true,
+      "baseline_passing_cells": 0,
+      "proposed_passing_cells": 2,
+      "grid_cells": 11,
+      "witness_rule": "first passing proposed site"
+    },
+    "cell": {
+      "cell_id": "multihop_mt|mhh-adwa-baratieri|L44|p00033",
+      "family": "multihop_mt",
+      "item_id": "mhh-adwa-baratieri",
+      "group_id": "multihop_mt:bridge-component:bcf85b6bf7e45030",
+      "layer": 44,
+      "position": 33,
+      "split": "test",
+      "activation_sha256": "7bec9fc9a4e6a3a0d43e2986370337ecca3adf89897162d75340e1deb06ae67b"
+    },
+    "context_ref": "multihop_mt|mhh-adwa-baratieri|L44|p00033",
+    "baseline_condition": "capped_n1-n1",
+    "condition": "pooled_greedy_swap-n32",
+    "text_changed": true,
+    "review_status": "unreviewed_source_evidence",
+    "selection_policy": "deterministic_outcome_selected_supplement"
+  },
+  "whole_original_question_grid": {
+    "sites": 11,
+    "required_passing_site_counts": {
+      "raw_n1-n1": 0,
+      "capped_n1-n1": 0,
+      "pooled_greedy_swap-n32": 2
+    },
+    "rows": [
+      {
+        "cell_id": "multihop_mt|mhh-adwa-baratieri|L20|p00033",
+        "layer": 20,
+        "position": 33,
+        "raw_original": {
+          "readout": {
+            "id": "mhh-adwa-baratieri",
+            "layer": 20,
+            "pos": 33,
+            "samples": [
+              "- /commander known as **Menelik II**? No, the invading Italian general\n- 名 (general) who invaded Ethiopia. This general\n- （general）who led the invasion of Ethiopia, specifically General **Menelik II**? No, the general\n- /commander named **Ras Alula**. This Italian general is often remembered for the general"
+            ],
+            "token": ""
+          },
+          "official_layer": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "required_bridge_pass": false
+        },
+        "capped_parent": {
+          "readout": {
+            "id": "mhh-adwa-baratieri",
+            "layer": 20,
+            "pos": 33,
+            "samples": [
+              "- /commander known as **Menelik II**? No, the invading Italian general\n- 名 (general) who invaded Ethiopia. This general\n- （general）who led the invasion of Ethiopia, specifically General **Menelik II**? No, the general\n- /commander named **Ras Alula**. This Italian general is often remembered for the general"
+            ],
+            "token": ""
+          },
+          "official_layer": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "required_bridge_pass": false
+        },
+        "pooled": {
+          "readout": {
+            "id": "mhh-adwa-baratieri",
+            "layer": 20,
+            "pos": 33,
+            "samples": [
+              "- /field marshal who invaded Ethiopia. The name of the general\n- （general） named Baldissero. The Italian invasion was led by the general\n- /marshal who invaded Abyssinia? The general\n- （general） responsible for that invasion, Menelik II defeated the Italian forces under the general\n"
+            ],
+            "token": ""
+          },
+          "official_layer": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "required_bridge_pass": false
+        }
+      },
+      {
+        "cell_id": "multihop_mt|mhh-adwa-baratieri|L24|p00033",
+        "layer": 24,
+        "position": 33,
+        "raw_original": {
+          "readout": {
+            "id": "mhh-adwa-baratieri",
+            "layer": 24,
+            "pos": 33,
+            "samples": [
+              "- /commander who led the Italian invasion of Ethiopia? The general\n- /marshal known for conquering Ethiopia. This general\n- 名 (general) who led the Italian army into Abyssinia. That general\n- （general）who led the Italian conquest of Ethiopia, named General Antonio Meazza? Or perhaps the general\n- （general）named **Baudet**? No, it was General **Baldo**. But the most famous general"
+            ],
+            "token": ""
+          },
+          "official_layer": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "required_bridge_pass": false
+        },
+        "capped_parent": {
+          "readout": {
+            "id": "mhh-adwa-baratieri",
+            "layer": 24,
+            "pos": 33,
+            "samples": [
+              "- /commander who led the Italian invasion of Ethiopia? The general\n- /marshal known for conquering Ethiopia. This general\n- 名 (general) who led the Italian army into Abyssinia. That general\n- （general）who led the Italian conquest of Ethiopia, named General Antonio Meazza? Or perhaps the general\n"
+            ],
+            "token": ""
+          },
+          "official_layer": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "required_bridge_pass": false
+        },
+        "pooled": {
+          "readout": {
+            "id": "mhh-adwa-baratieri",
+            "layer": 24,
+            "pos": 33,
+            "samples": [
+              "- （general） named **Roberto Crispi**. The Italian army defeated the Ethiopian forces, and the general\n- /commander who led the invasion of Ethiopia? The general\n- （general） named Mazzini or similar? No, the invasion was led by the general\n- /commander known for the conquest of Ethiopia? The Italian general\n"
+            ],
+            "token": ""
+          },
+          "official_layer": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "required_bridge_pass": false
+        }
+      },
+      {
+        "cell_id": "multihop_mt|mhh-adwa-baratieri|L28|p00033",
+        "layer": 28,
+        "position": 33,
+        "raw_original": {
+          "readout": {
+            "id": "mhh-adwa-baratieri",
+            "layer": 28,
+            "pos": 33,
+            "samples": [
+              "- /marshal named by Italy's leader during the invasion. What is the name of the Italian general\n- /leader known as **Menelik**? No, the Italian general\n- 名为 **Robert H. Baddey**? No, the Italian invasion of Ethiopia was led by a general\n- （general） responsible for leading the Italian army against the Ethiopian forces? The general"
+            ],
+            "token": ""
+          },
+          "official_layer": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "required_bridge_pass": false
+        },
+        "capped_parent": {
+          "readout": {
+            "id": "mhh-adwa-baratieri",
+            "layer": 28,
+            "pos": 33,
+            "samples": [
+              "- /marshal named by Italy's leader during the invasion. What is the name of the Italian general\n- /leader known as **Menelik**? No, the Italian general\n- 名为 **Robert H. Baddey**? No, the Italian invasion of Ethiopia was led by a general\n- （general） responsible for leading the Italian army against the Ethiopian forces? The general"
+            ],
+            "token": ""
+          },
+          "official_layer": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "required_bridge_pass": false
+        },
+        "pooled": {
+          "readout": {
+            "id": "mhh-adwa-baratieri",
+            "layer": 28,
+            "pos": 33,
+            "samples": [
+              "- （general） who led the Italian forces? The Ethiopian victory was led by the general\n- （general） named Menelik, while the Italian army was commanded by the general\n- /marshal responsible for crushing the Ethiopian army. Which general led the Italian invasion of Ethiopia?\"* The general\n- （general） named Menelik. Which Italian general led this campaign against Ethiopia? The general\n"
+            ],
+            "token": ""
+          },
+          "official_layer": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "required_bridge_pass": false
+        }
+      },
+      {
+        "cell_id": "multihop_mt|mhh-adwa-baratieri|L32|p00033",
+        "layer": 32,
+        "position": 33,
+        "raw_original": {
+          "readout": {
+            "id": "mhh-adwa-baratieri",
+            "layer": 32,
+            "pos": 33,
+            "samples": [
+              "- named **Marshal de Negri**? No, the specific Italian general\n- （general）named Omar Pacha, against whom he led a campaign in Ethiopia. Who is this general\n- /commander whose name is famous for leading the invasion that led to the Italian defeat. This general\n- （general） who led this failed invasion was **Marshal Pietro Savoy**? No, the Italian general"
+            ],
+            "token": ""
+          },
+          "official_layer": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "required_bridge_pass": false
+        },
+        "capped_parent": {
+          "readout": {
+            "id": "mhh-adwa-baratieri",
+            "layer": 32,
+            "pos": 33,
+            "samples": [
+              "- named **Marshal de Negri**? No, the specific Italian general\n- （general）named Omar Pacha, against whom he led a campaign in Ethiopia. Who is this general\n- /commander whose name is famous for leading the invasion that led to the Italian defeat. This general\n- （general） who led this failed invasion was **Marshal Pietro Savoy**? No, the Italian general"
+            ],
+            "token": ""
+          },
+          "official_layer": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "required_bridge_pass": false
+        },
+        "pooled": {
+          "readout": {
+            "id": "mhh-adwa-baratieri",
+            "layer": 32,
+            "pos": 33,
+            "samples": [
+              "- （general） whose name is famous for this defeat. Which Italian general led the invading force against the Ethiopian Empire under Emperor Menelik II?** A) General\n- /Marshal named _______? During this invasion, the Ethiopian army was led by the general\n- （general） responsible for its defeat was Italy's Marshal Pietro Badoglio. Here is a trivia clue: The Italian general\n- /general named **Manfredo La Marmora**. This defeat led to the Italian withdrawal from Ethiopia. The general\n"
+            ],
+            "token": ""
+          },
+          "official_layer": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "required_bridge_pass": false
+        }
+      },
+      {
+        "cell_id": "multihop_mt|mhh-adwa-baratieri|L36|p00033",
+        "layer": 36,
+        "position": 33,
+        "raw_original": {
+          "readout": {
+            "id": "mhh-adwa-baratieri",
+            "layer": 36,
+            "pos": 33,
+            "samples": [
+              "- named Oboe, who had previously led Italian troops in the Italian invasion of Abyssinia. This general\n- /field marshal who led the Italian invasion? The answer is General **Babino**. The Italian general\n- （general） named Rizza? No, the decisive Italian defeat in the First Italo-Ethiopian War occurred under the command of General\n- /maréchal who led the Italian forces? The answer is General **Manfredini**. The Italian general"
+            ],
+            "token": ""
+          },
+          "official_layer": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "required_bridge_pass": false
+        },
+        "capped_parent": {
+          "readout": {
+            "id": "mhh-adwa-baratieri",
+            "layer": 36,
+            "pos": 33,
+            "samples": [
+              "- named Oboe, who had previously led Italian troops in the Italian invasion of Abyssinia. This general\n- /field marshal who led the Italian invasion? The answer is General **Babino**. The Italian general\n- （general） named Rizza? No, the decisive Italian defeat in the First Italo-Ethiopian War occurred under the command of General\n- /maréchal who led the Italian forces? The answer is General **Manfredini**. The Italian general"
+            ],
+            "token": ""
+          },
+          "official_layer": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "required_bridge_pass": false
+        },
+        "pooled": {
+          "readout": {
+            "id": "mhh-adwa-baratieri",
+            "layer": 36,
+            "pos": 33,
+            "samples": [
+              "- /marshal who was famously defeated at Adowa? The Italian commander-in-chief was General Carlo Pianelli. He was famously humiliated by the general\n- /marshal Roberto Crispi? No, the main Italian commander of that disastrous campaign was General Roberto Crispi? No—General\n- /marshal named ___? The Italian army was defeated by Ethiopian forces under Menelik II. The general\n- （general）who led the Italian invasion, General Baratieri. Here are the key facts about the general\n"
+            ],
+            "token": ""
+          },
+          "official_layer": {
+            "hits": {
+              "bridge1": [],
+              "target": [
+                "en"
+              ]
+            },
+            "empty": false
+          },
+          "required_bridge_pass": false
+        }
+      },
+      {
+        "cell_id": "multihop_mt|mhh-adwa-baratieri|L40|p00033",
+        "layer": 40,
+        "position": 33,
+        "raw_original": {
+          "readout": {
+            "id": "mhh-adwa-baratieri",
+            "layer": 40,
+            "pos": 33,
+            "samples": [
+              "- /field marshal who led them, General Roberto Crispi. The Italian army was defeated by the general\n- /marchese **Robert Crispi**? Or more accurately, by the Italian general\n- 巴德诺 (General Bafile) who died in the battle. Which Italian general was it? The famous Italian general\n- （general） named **Raoul Barat**, who had just been appointed by King Victor Emmanuel II to lead the Italian forces in Ethiopia. General"
+            ],
+            "token": ""
+          },
+          "official_layer": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "required_bridge_pass": false
+        },
+        "capped_parent": {
+          "readout": {
+            "id": "mhh-adwa-baratieri",
+            "layer": 40,
+            "pos": 33,
+            "samples": [
+              "- /field marshal who led them, General Roberto Crispi. The Italian army was defeated by the general\n- /marchese **Robert Crispi**? Or more accurately, by the Italian general\n- 巴德诺 (General Bafile) who died in the battle. Which Italian general was it? The famous Italian general\n- （general） named **Raoul Barat**, who had just been appointed by King Victor Emmanuel II to lead the Italian forces in Ethiopia. General"
+            ],
+            "token": ""
+          },
+          "official_layer": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "required_bridge_pass": false
+        },
+        "pooled": {
+          "readout": {
+            "id": "mhh-adwa-baratieri",
+            "layer": 40,
+            "pos": 33,
+            "samples": [
+              "- （general） Roberto Filangieri di Civita. The Italian defeat at Adwa involved the general\n- （general） Roberto Crispi, who was killed at Adwa? Or was it the general\n- （general）who led the Italian forces into Ethiopia. What was the name of the general\n- 总司令 (general) whose death led to the infamous Adwa campaign failure? The Italian general\n"
+            ],
+            "token": ""
+          },
+          "official_layer": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "required_bridge_pass": false
+        }
+      },
+      {
+        "cell_id": "multihop_mt|mhh-adwa-baratieri|L44|p00033",
+        "layer": 44,
+        "position": 33,
+        "raw_original": {
+          "readout": {
+            "id": "mhh-adwa-baratieri",
+            "layer": 44,
+            "pos": 33,
+            "samples": [
+              "- who was named __________? (The Italian general who led the invasion was General\n- 名为 Menelik II's chief of staff, Count Roberto Capello, or the general named\n- （general）who led the Italian campaign in Abyssinia. His name was General _______? (Actually, the Italian commander in that campaign was General\n- （general）Balla and the king, Menelik II? No, it was the general who died at Addis Abeba."
+            ],
+            "token": ""
+          },
+          "official_layer": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "required_bridge_pass": false
+        },
+        "capped_parent": {
+          "readout": {
+            "id": "mhh-adwa-baratieri",
+            "layer": 44,
+            "pos": 33,
+            "samples": [
+              "- who was named __________? (The Italian general who led the invasion was General\n- 名为 Menelik II's chief of staff, Count Roberto Capello, or the general named\n- （general）who led the Italian campaign in Abyssinia. His name was General _______? (Actually, the Italian commander in that campaign was General\n- （general）Balla and the king, Menelik II? No, it was the general who died at Addis Abeba."
+            ],
+            "token": ""
+          },
+          "official_layer": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "required_bridge_pass": false
+        },
+        "pooled": {
+          "readout": {
+            "id": "mhh-adwa-baratieri",
+            "layer": 44,
+            "pos": 33,
+            "samples": [
+              "- （general）Obboli, who commanded the Italian forces at the Battle of Adwa. What was the name of the general\n- （general） Roberto Crispi? No, it was led by General Roberto Crispi. Wait, the Italian commander was General\n- /general who led the Italian army into Addis Ababa. What was the name of the general\n- 名叫翁贝尔托·巴托利尼（General Umberto Bartolino). The king was captured by Ethiopian forces, and the Italian army was defeated. This general\n"
+            ],
+            "token": ""
+          },
+          "official_layer": {
+            "hits": {
+              "bridge1": [
+                "en"
+              ],
+              "target": []
+            },
+            "empty": false
+          },
+          "required_bridge_pass": true
+        }
+      },
+      {
+        "cell_id": "multihop_mt|mhh-adwa-baratieri|L48|p00033",
+        "layer": 48,
+        "position": 33,
+        "raw_original": {
+          "readout": {
+            "id": "mhh-adwa-baratieri",
+            "layer": 48,
+            "pos": 33,
+            "samples": [
+              "- (or commander) named Menelik. What was the name of the Italian general\n- 梅特利尼 (General Massimo Bottego). What year did this battle take place?\n- （general）Obba, who was later executed. Which general led the Italian army in that disastrous campaign? A) General Ricasoli B\n- /generale named **Baba** (or more accurately, General **Baudi di Bettino Cannizzaro**), who"
+            ],
+            "token": ""
+          },
+          "official_layer": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "required_bridge_pass": false
+        },
+        "capped_parent": {
+          "readout": {
+            "id": "mhh-adwa-baratieri",
+            "layer": 48,
+            "pos": 33,
+            "samples": [
+              "- (or commander) named Menelik. What was the name of the Italian general\n- 梅特利尼 (General Massimo Bottego). What year did this battle take place?\n- （general）Obba, who was later executed. Which general led the Italian army in that disastrous campaign? A) General Ricasoli B\n- /generale named **Baba** (or more accurately, General **Baudi di Bettino Cannizzaro**), who"
+            ],
+            "token": ""
+          },
+          "official_layer": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "required_bridge_pass": false
+        },
+        "pooled": {
+          "readout": {
+            "id": "mhh-adwa-baratieri",
+            "layer": 48,
+            "pos": 33,
+            "samples": [
+              "- /generale Roberto Cristofari, who led the Italian army into Abyssinia. What was the name of the general\n- （general） named Menelik? No, that’s incorrect. It was defeated by the Italian general named **Roberto Cristofori\n- named G. Balbo, while the Italian king was accompanied by the general named\n- （general）Obba, who was later executed. Which general led the Italian army in that disastrous campaign? A) General Ricasoli B\n"
+            ],
+            "token": ""
+          },
+          "official_layer": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "required_bridge_pass": false
+        }
+      },
+      {
+        "cell_id": "multihop_mt|mhh-adwa-baratieri|L52|p00033",
+        "layer": 52,
+        "position": 33,
+        "raw_original": {
+          "readout": {
+            "id": "mhh-adwa-baratieri",
+            "layer": 52,
+            "pos": 33,
+            "samples": [
+              "- 名巴蒂斯塔·萨洛迪尼 (General Sabaudia)\n- 谁 led the Italian invasion of Abyssinia, **General Pietro Badoglio**. The battle was named after this general\n- 拉特鲁法伊奥 (General Raoul Patrault). Do you know who this general was? The Italian army named the campaign after him\n- /marchese (general) named Roberto Capello, whose death became the symbol of the disaster. The battle was named after the general"
+            ],
+            "token": ""
+          },
+          "official_layer": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "required_bridge_pass": false
+        },
+        "capped_parent": {
+          "readout": {
+            "id": "mhh-adwa-baratieri",
+            "layer": 52,
+            "pos": 33,
+            "samples": [
+              "- 名巴蒂斯塔·萨洛迪尼 (General Sabaudia)\n- 谁 led the Italian invasion of Abyssinia, **General Pietro Badoglio**. The battle was named after this general\n- 拉特鲁法伊奥 (General Raoul Patrault). Do you know who this general was? The Italian army named the campaign after him\n- /marchese (general) named Roberto Capello, whose death became the symbol of the disaster. The battle was named after the general"
+            ],
+            "token": ""
+          },
+          "official_layer": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "required_bridge_pass": false
+        },
+        "pooled": {
+          "readout": {
+            "id": "mhh-adwa-baratieri",
+            "layer": 52,
+            "pos": 33,
+            "samples": [
+              "- （general） Roberto Cavalli, who commanded the Italian forces at Adwa. Which general was the one who led the failed Italian invasion?\n- /marchese Roberto Crispi, the man who had led the Italian invasion. His name was General Pietro Maselli. The general\n- 卡洛·皮亚诺 (General Carlo Piazza) and the king's own chief of staff, General Roberto Kimmich, but the famous figure associated with the\n- /general who would later lead the disastrous campaign of Adwa. The general\n"
+            ],
+            "token": ""
+          },
+          "official_layer": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "required_bridge_pass": false
+        }
+      },
+      {
+        "cell_id": "multihop_mt|mhh-adwa-baratieri|L56|p00033",
+        "layer": 56,
+        "position": 33,
+        "raw_original": {
+          "readout": {
+            "id": "mhh-adwa-baratieri",
+            "layer": 56,
+            "pos": 33,
+            "samples": [
+              "- /marchese che comandava le forze italiane in Abissinia: **Antonino Di\n- 库鲁拉特 (general Curzio) che aveva portato all'umiliazione italiana ad Adua.\n- 谁 was later known as the \"General who lost Adowa.\" His name was General **Baccino**. He had been appointed by King\n- /marchese **Michele Bissola**. Ma il generale italiano che guidò la spedizione punitiva in Etiopia fu **M."
+            ],
+            "token": ""
+          },
+          "official_layer": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "required_bridge_pass": false
+        },
+        "capped_parent": {
+          "readout": {
+            "id": "mhh-adwa-baratieri",
+            "layer": 56,
+            "pos": 33,
+            "samples": [
+              "- /marchese che comandava le forze italiane in Abissinia: **Antonino Di\n- 库鲁拉特 (general Curzio) che aveva portato all'umiliazione italiana ad Adua.\n- 谁 was later known as the \"General who lost Adowa.\" His name was General **Baccino**. He had been appointed by King\n- /marchese **Michele Bissola**. Ma il generale italiano che guidò la spedizione punitiva in Etiopia fu **M."
+            ],
+            "token": ""
+          },
+          "official_layer": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "required_bridge_pass": false
+        },
+        "pooled": {
+          "readout": {
+            "id": "mhh-adwa-baratieri",
+            "layer": 56,
+            "pos": 33,
+            "samples": [
+              "- （generale）Roberto di Saboya, che fu sconfitto nella famosa battaglia di Adua nel 1896. Il generale\n- 奥托 von Wolff (general Otto von Welf). The Battle of Adwa was a defeat for General\n- （general） who was killed at Adwa. His name was **Mehemed IV**, but the commander who failed at Adwa was General\n- （general）who commanded the Italian forces in Africa, **Alessandro Massimo di San Marzano**. The Battle of Adowa was won by the\n"
+            ],
+            "token": ""
+          },
+          "official_layer": {
+            "hits": {
+              "bridge1": [
+                "en"
+              ],
+              "target": []
+            },
+            "empty": false
+          },
+          "required_bridge_pass": true
+        }
+      },
+      {
+        "cell_id": "multihop_mt|mhh-adwa-baratieri|L60|p00033",
+        "layer": 60,
+        "position": 33,
+        "raw_original": {
+          "readout": {
+            "id": "mhh-adwa-baratieri",
+            "layer": 60,
+            "pos": 33,
+            "samples": [
+              "- 官 who led the Italian forces into Ethiopia. The full name is often cited as \"\n- o generale **Duke of Aosta** who led the initial invasion. It was not named \"\n- 伯爵 (Count) who led the invasion of Ethiopia, namely **Marshal Alessandro Pianelli** or General\n- /count who later became Governor-General of Eritrea, General Roberto Baronelli. The invasion was led by General"
+            ],
+            "token": ""
+          },
+          "official_layer": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "required_bridge_pass": false
+        },
+        "capped_parent": {
+          "readout": {
+            "id": "mhh-adwa-baratieri",
+            "layer": 60,
+            "pos": 33,
+            "samples": [
+              "- 官 who led the Italian forces into Ethiopia. The full name is often cited as \"\n- o generale **Duke of Aosta** who led the initial invasion. It was not named \"\n- 伯爵 (Count) who led the invasion of Ethiopia, namely **Marshal Alessandro Pianelli** or General\n- /count who later became Governor-General of Eritrea, General Roberto Baronelli. The invasion was led by General"
+            ],
+            "token": ""
+          },
+          "official_layer": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "required_bridge_pass": false
+        },
+        "pooled": {
+          "readout": {
+            "id": "mhh-adwa-baratieri",
+            "layer": 60,
+            "pos": 33,
+            "samples": [
+              "- 伯爵 Roberto Capelli, who was the governor of the Italian East Africa. Menelik's forces defeated General\n- 罗伯特·巴蒂斯塔 (General Roberto Bastia). He was appointed by King Umberto I as the\n- （general）who led the Italian invasion: Alessandro Lambsdorff. Menelik was defeated by General Carlo Pelloni.\n\n### 2. **\n- 鲁道福·巴蒂斯蒂 (Rudolfo Batisti) who became the Governor-General of Eritrea. Menelik II was the Emperor\n"
+            ],
+            "token": ""
+          },
+          "official_layer": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "required_bridge_pass": false
+        }
+      }
+    ],
+    "official_item_records": {
+      "raw_n1-n1": {
+        "id": "mhh-adwa-baratieri",
+        "roles": [
+          "bridge1"
+        ],
+        "optional_roles": [
+          "target"
+        ],
+        "pass": false,
+        "earliest_layer": null,
+        "passing_layers": [],
+        "unit_hit": {
+          "bridge1": false,
+          "target": false
+        },
+        "unit_langs": {
+          "bridge1": [],
+          "target": []
+        },
+        "first_lang": {
+          "bridge1": null,
+          "target": null
+        },
+        "any_hit": false,
+        "missing_layers": [],
+        "layers": {
+          "20": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "24": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "28": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "32": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "36": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "40": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "44": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "48": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "52": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "56": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "60": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          }
+        }
+      },
+      "capped_n1-n1": {
+        "id": "mhh-adwa-baratieri",
+        "roles": [
+          "bridge1"
+        ],
+        "optional_roles": [
+          "target"
+        ],
+        "pass": false,
+        "earliest_layer": null,
+        "passing_layers": [],
+        "unit_hit": {
+          "bridge1": false,
+          "target": false
+        },
+        "unit_langs": {
+          "bridge1": [],
+          "target": []
+        },
+        "first_lang": {
+          "bridge1": null,
+          "target": null
+        },
+        "any_hit": false,
+        "missing_layers": [],
+        "layers": {
+          "20": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "24": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "28": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "32": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "36": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "40": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "44": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "48": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "52": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "56": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "60": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          }
+        }
+      },
+      "pooled_greedy_swap-n32": {
+        "id": "mhh-adwa-baratieri",
+        "roles": [
+          "bridge1"
+        ],
+        "optional_roles": [
+          "target"
+        ],
+        "pass": true,
+        "earliest_layer": 44,
+        "passing_layers": [
+          44,
+          56
+        ],
+        "unit_hit": {
+          "bridge1": true,
+          "target": true
+        },
+        "unit_langs": {
+          "bridge1": [
+            "en"
+          ],
+          "target": [
+            "en"
+          ]
+        },
+        "first_lang": {
+          "bridge1": "en",
+          "target": "en"
+        },
+        "any_hit": true,
+        "missing_layers": [],
+        "layers": {
+          "20": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "24": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "28": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "32": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "36": {
+            "hits": {
+              "bridge1": [],
+              "target": [
+                "en"
+              ]
+            },
+            "empty": false
+          },
+          "40": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "44": {
+            "hits": {
+              "bridge1": [
+                "en"
+              ],
+              "target": []
+            },
+            "empty": false
+          },
+          "48": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "52": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          },
+          "56": {
+            "hits": {
+              "bridge1": [
+                "en"
+              ],
+              "target": []
+            },
+            "empty": false
+          },
+          "60": {
+            "hits": {
+              "bridge1": [],
+              "target": []
+            },
+            "empty": false
+          }
+        }
+      }
+    },
+    "endpoint_evidence": {
+      "unit": "whole_original_question_grid",
+      "item_id": "mhh-adwa-baratieri",
+      "grid_cells": 11,
+      "parent_item_pass": false,
+      "proposed_item_pass": true,
+      "parent_passing_cells": 0,
+      "proposed_passing_cells": 2,
+      "parent_first_passing_cell": null,
+      "proposed_first_passing_cell": "multihop_mt|mhh-adwa-baratieri|L44|p00033",
+      "selected_cell_parent_pass": false,
+      "selected_cell_proposed_pass": true
+    }
+  },
+  "excerpts": {
+    "before": {
+      "text": "who was named __________? (The Italian general who led the invasion was General",
+      "start": 2,
+      "end": 81,
+      "characters": 79
+    },
+    "after": {
+      "text": "Obboli, who commanded the Italian forces at the Battle of Adwa.",
+      "start": 11,
+      "end": 74,
+      "characters": 63
+    }
+  },
+  "native_full_family_rows": [
+    {
+      "condition": "capped_n1-n1",
+      "family": "multihop_mt",
+      "metric": {
+        "value": 0.34,
+        "numerator": 34.0,
+        "denominator": 100.0,
+        "ci95": [
+          0.24527839437661858,
+          0.4368932038834951
+        ],
+        "defined_draws": 10000,
+        "bootstrap_replicates": 10000,
+        "warnings": [],
+        "items": 100,
+        "independent_groups": 94,
+        "name": "original_grid_item_pass_rate"
+      },
+      "exploratory": true,
+      "partial_grid": false
+    },
+    {
+      "condition": "pooled_greedy_swap-n32",
+      "family": "multihop_mt",
+      "metric": {
+        "value": 0.41,
+        "numerator": 41.0,
+        "denominator": 100.0,
+        "ci95": [
+          0.31313131313131315,
+          0.5102093962585034
+        ],
+        "defined_draws": 10000,
+        "bootstrap_replicates": 10000,
+        "warnings": [],
+        "items": 100,
+        "independent_groups": 94,
+        "name": "original_grid_item_pass_rate"
+      },
+      "exploratory": true,
+      "partial_grid": false
+    }
+  ],
+  "observations": [
+    "At L44/p33 the capped prose has no registered required bridge phrase; the pooled text contains Battle of Adwa and changes the local required-bridge verdict from false to true.",
+    "The capped and raw original question grids have zero official passing sites; pooled has two, L44 and L56. This is a whole-question native recovery witness, not only a local change.",
+    "Capped L56 already mentions bare Adowa and Adua in uncertain/wrong-general prose. These are earlier battle clues, although the retained matcher credits none as the required bridge. Do not claim the battle concept was absent from the entire original grid.",
+    "The selected pooled L44 still proposes Obboli, Roberto Crispi and Umberto Bartolino rather than the supplied gold final answer Oreste Baratieri. Both selected texts have no optional-target hit; bridge recovery does not establish final-answer correctness.",
+    "Elsewhere in the pooled grid, L36 has an optional Baratieri hit but no required bridge hit. Optional and required hits at different sites must not be conflated with a fully correct readout."
+  ],
+  "proposed_slide_caption": "Pooling restores the required Battle of Adwa phrase at this site; the surrounding generals remain wrong.",
+  "mechanism_hypothesis": "Pooling may surface a task-specific phrase from the shared candidate pool. The selected example does not establish a causal mechanism or complete faithfulness.",
+  "limits": [
+    "Illustrative retained case, chosen under the declared deterministic policy; no prevalence or all-variant ranking claim.",
+    "New accepted bridge phrase locally; earlier uncredited bare Adowa/Adua elsewhere means this is not new conceptual knowledge across the grid.",
+    "All official records remain unchanged; no independent reader, rescoring, API call or experiment.",
+    "Final output/text/context/official-evidence overlap checks and root example selection remain pending.",
+    "The existing six slide candidates are preserved verbatim."
+  ],
+  "analysis_sha256": "eea3510637c4f0b849585882e88f6dec00f85073f10525460070ab70e75d8082",
+  "manifest_sha256": "753b2d9cab0daea0d19efef7d3222fd44921dbcf4669e6864d4f1bd4805421f8",
+  "source_sha256": {
+    "${OLENS_DATA_ROOT}/expansion-v1/qualitative/parent-comparisons-first-live-v3.json": "f471b3bda848701547a973e0b766b67a5c8a3c3934809caab75b420f76eed4e5",
+    "${OLENS_DATA_ROOT}/expansion-v1/qualitative/first-live-v4.json": "15139648dd09b10ae931e7600a2aa643fae3e02ec37ccd0098a34443d9ee320c",
+    "${OLENS_DATA_ROOT}/expansion-v1/analysis/first-live-v3.json": "eea3510637c4f0b849585882e88f6dec00f85073f10525460070ab70e75d8082",
+    "configs/expansion_manifest_v1.json": "753b2d9cab0daea0d19efef7d3222fd44921dbcf4669e6864d4f1bd4805421f8",
+    "docs/reviews/expanded-slide-example-candidates-v1.json": "ac2f69c6fbe3c7540cc3ed99a642d73817869fc5d3458eb541518504c73cb68a",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/raw_n1-n1/multihop_mt.readouts.jsonl": "98267f25ac8e8a6dfed514ddac04e81f81192279bff87a8793166fef167377a2",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/raw_n1-n1/multihop_mt/results.json": "7e94d78aaa208b1375882ad3e36e5ef141d42f21f5f2927c808d7ddacabd1902",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/raw_n1-n1/multihop_mt/project_contract.json": "533394db5ba529debe6ad54374d3d7f591a6587ddf7fe495e6087d6ea84342a1",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/capped_n1-n1/multihop_mt.readouts.jsonl": "a327a88269ff21fc4bd6c46b7220d13fa202994621343ac1aee3d86f8dc2cfb5",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/capped_n1-n1/multihop_mt/results.json": "7e94d78aaa208b1375882ad3e36e5ef141d42f21f5f2927c808d7ddacabd1902",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/capped_n1-n1/multihop_mt/project_contract.json": "3d5c8f39009fbe636551da571ac82924240d5d57e48d30708d2813944b4fcfd5",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap-n32/multihop_mt.readouts.jsonl": "5037890ea0771eec287a7365b955eff34d21ed396d4e26b4c05c6bbfc586ddfd",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap-n32/multihop_mt/results.json": "6ca199109e4e902c72d5b732aa8ea934f42949588c6326bfa4f72811b36fe410",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap-n32/multihop_mt/project_contract.json": "ecd465ff53c7e0742830bd503e0e7f6fc9aadb7617e8a0ea1b349fd9bc33feb7"
+  },
+  "final_overlap_verified": null,
+  "root_reviewed": false
+}

@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "status": "completed_bounded_retained_pack_audit_no_stronger_alternative",
+  "created_utc": "2026-10-11T04:31:53.099387+00:00",
+  "scope": "Exactly the five retained pooling N32 multihop_mt case records (four unique questions) in the pinned actual-parent pack; no full-bank search or generation. A name claim must account for registered bridge answers as well as accepted multi-token unit forms.",
+  "condition": "pooled_greedy_swap-n32",
+  "reference": "capped_n1-n1",
+  "candidate_audit": [
+    {
+      "kind": "fixed_anchor",
+      "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+      "item_id": "mhh-1967-norwegian-classes-objects-codesigner",
+      "required_bridge_aliases_including_registered_bridge_answers": [
+        "SIMULA 67",
+        "Simula",
+        "Simula 67",
+        "the Simula language"
+      ],
+      "capped_grid_sites": 11,
+      "local_false_to_true": true,
+      "whole_question_false_to_true": false,
+      "all_aliases_absent_from_every_capped_site": false,
+      "first_prior_literal_alias_witness": {
+        "layer": 20,
+        "position": 28,
+        "alias": "SIMULA 67",
+        "text": "- 其他两位同事 (Kaj and Nils Wirth) to create the programming language Simula. Together with\n- 同事 Per-Arne Jensen. They designed it together with\n- 两位同事 (Per Krogh and Ole Dahl) to create SIMULA 67. It was indeed designed together with\n- 其他 colleagues (Kaj and Nils Wirth) as part of the SIMULA project. The paper, together with",
+        "start": 182
+      },
+      "prior_literal_alias_match_count": 24,
+      "qualifies_for_stronger_complementary_recovery_example": false
+    },
+    {
+      "kind": "fixed_anchor",
+      "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+      "item_id": "mhh-mesopotamian-wildman-cedar",
+      "required_bridge_aliases_including_registered_bridge_answers": [
+        "Enkidu"
+      ],
+      "capped_grid_sites": 11,
+      "local_false_to_true": true,
+      "whole_question_false_to_true": false,
+      "all_aliases_absent_from_every_capped_site": false,
+      "first_prior_literal_alias_witness": {
+        "layer": 52,
+        "position": 46,
+        "alias": "Enkidu",
+        "text": "- Humbaba, who ate humans and burned forests. This giant named Humbaba\n- 吉尔伽美什 (Gigantes named Humbaba). He and Enkidu killed the monster named\n- Hubal or Humbaba. And the forest was guarded by a monster named Humbaba, a giant of terrifying proportions, named after the forest itself\n- Huballak, and his brother named Humbaba. The monster named Humbaba was no mere beast; he was a king of",
+        "start": 112
+      },
+      "prior_literal_alias_match_count": 1,
+      "qualifies_for_stronger_complementary_recovery_example": false
+    },
+    {
+      "kind": "outcome_selected",
+      "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028",
+      "item_id": "mhh-1967-norwegian-classes-objects-codesigner",
+      "required_bridge_aliases_including_registered_bridge_answers": [
+        "SIMULA 67",
+        "Simula",
+        "Simula 67",
+        "the Simula language"
+      ],
+      "capped_grid_sites": 11,
+      "local_false_to_true": false,
+      "whole_question_false_to_true": false,
+      "all_aliases_absent_from_every_capped_site": false,
+      "first_prior_literal_alias_witness": {
+        "layer": 20,
+        "position": 28,
+        "alias": "SIMULA 67",
+        "text": "- 其他两位同事 (Kaj and Nils Wirth) to create the programming language Simula. Together with\n- 同事 Per-Arne Jensen. They designed it together with\n- 两位同事 (Per Krogh and Ole Dahl) to create SIMULA 67. It was indeed designed together with\n- 其他 colleagues (Kaj and Nils Wirth) as part of the SIMULA project. The paper, together with",
+        "start": 182
+      },
+      "prior_literal_alias_match_count": 24,
+      "qualifies_for_stronger_complementary_recovery_example": false
+    },
+    {
+      "kind": "outcome_selected",
+      "cell_id": "multihop_mt|mhh-adwa-baratieri|L44|p00033",
+      "item_id": "mhh-adwa-baratieri",
+      "required_bridge_aliases_including_registered_bridge_answers": [
+        "Adowa",
+        "Adwa",
+        "Battle of Adowa",
+        "Battle of Adwa"
+      ],
+      "capped_grid_sites": 11,
+      "local_false_to_true": true,
+      "whole_question_false_to_true": true,
+      "all_aliases_absent_from_every_capped_site": false,
+      "first_prior_literal_alias_witness": {
+        "layer": 56,
+        "position": 33,
+        "alias": "Adowa",
+        "text": "- /marchese che comandava le forze italiane in Abissinia: **Antonino Di\n- 库鲁拉特 (general Curzio) che aveva portato all'umiliazione italiana ad Adua.\n- 谁 was later known as the \"General who lost Adowa.\" His name was General **Baccino**. He had been appointed by King\n- /marchese **Michele Bissola**. Ma il generale italiano che guidò la spedizione punitiva in Etiopia fu **M.",
+        "start": 193
+      },
+      "prior_literal_alias_match_count": 1,
+      "qualifies_for_stronger_complementary_recovery_example": false
+    },
+    {
+      "kind": "outcome_selected",
+      "cell_id": "multihop_mt|mhh-belisarius-procopius-secret-history|L52|p00038",
+      "item_id": "mhh-belisarius-procopius-secret-history",
+      "required_bridge_aliases_including_registered_bridge_answers": [
+        "Belisarius",
+        "Flavius Belisarius",
+        "Procopius",
+        "Procopius of Caesarea"
+      ],
+      "capped_grid_sites": 11,
+      "local_false_to_true": false,
+      "whole_question_false_to_true": false,
+      "all_aliases_absent_from_every_capped_site": false,
+      "first_prior_literal_alias_witness": {
+        "layer": 52,
+        "position": 38,
+        "alias": "Belisarius",
+        "text": "- “Secret History” (or *Byzantinologia*). It is attributed to Procopius and titled\n- __Anonymus Byzantinus__ or *Declamation against Theodora*. Here’s why the work’s actual title\n- ____De secretis_____ (or more accurately, its surviving fragments are now titled *Historiae contra Belisarius* or simply *\n- （or rather, titled) *Historia contra Justinum*. How does this late-6th-century polemic get its",
+        "start": 280
+      },
+      "prior_literal_alias_match_count": 4,
+      "qualifies_for_stronger_complementary_recovery_example": false
+    }
+  ],
+  "qualifying_cell_ids": [],
+  "conclusion": "No second retained example has a locally new required bridge while all registered bridge names/aliases are absent from every capped grid site. Adwa remains only a bounded local/full-phrase native recovery example: bare Adowa is present earlier elsewhere. Simula and Enkidu have preexisting passing capped sites; the remaining retained example is a regression.",
+  "preserved_alternative": {
+    "path": "docs/reviews/expanded-pooling-hidden-bridge-alternative-v1.json",
+    "sha256": "095154511f86227f04f0b6baae09cb3eef128ac2882b5f0bd7aa200742a33040"
+  },
+  "source_sha256": {
+    "${OLENS_DATA_ROOT}/expansion-v1/qualitative/parent-comparisons-first-live-v3.json": "f471b3bda848701547a973e0b766b67a5c8a3c3934809caab75b420f76eed4e5",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/capped_n1-n1/multihop_mt.readouts.jsonl": "a327a88269ff21fc4bd6c46b7220d13fa202994621343ac1aee3d86f8dc2cfb5"
+  },
+  "limits": [
+    "Absence of a qualifying retained case does not establish absence in the full task bank.",
+    "No independent reader, verdict modification, new case generation, API call, job or publication.",
+    "Existing six candidates and alternative v1 remain unchanged."
+  ]
+}
