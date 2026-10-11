@@ -7,7 +7,7 @@ import {pathToFileURL} from 'node:url';
 import {createHash} from 'node:crypto';
 
 const supplied=process.argv.slice(2), options={};
-const names=new Set(['chrome','html','report','review','native','reconstruction','effort','qualitative-notes','inventory','native-state','reconstruction-state','qualitative-state','original-whole','original-report']);
+const names=new Set(['chrome','html','report','review','native','reconstruction','effort','qualitative-notes','inventory','native-state','reconstruction-state','qualitative-state','original-whole','original-report','original-reference']);
 for(let i=0;i<supplied.length;i++) {
   const flag=supplied[i];
   if(flag==='--preflight'){if(options.preflight)throw Error('Duplicate preflight flag');options.preflight=true;continue;}
@@ -90,6 +90,23 @@ for(const a of active){const c=expectedData.conditions.find(c=>c.condition_id===
 const embeddedRows=uniqueRows(expectedData.cohorts.full.rows,'embedded native rows');for(const [k,r]of nativeRows)requireTrue(same(r,embeddedRows.get(k)),'Embedded native row differs: '+k);
 for(const [k,c]of nativeComparisons){const matches=expectedData.cohorts.full.comparisons.filter(p=>[p.condition,p.reference??p.baseline_condition,p.family].join('|')===k&&same(p,c));requireTrue(matches.length===1,'Embedded declared comparison missing/duplicated: '+k);}
 requireTrue(same(expectedData.reconstruction,reconstruction)&&same(expectedData.resources,effort)&&same(expectedData.method_findings,review.method_findings)&&same(normalExamples(expectedData.examples),expectedExamples),'Embedded fit/resources/reviewed examples differ from expected artifacts');
+let originalReference=null;
+const originalEmbedded=htmlBytes.toString().match(/<script type="application\/json" id="original-reference-data">([\s\S]*?)<\/script>/g);
+if(originalEmbedded?.length){
+ requireTrue(originalEmbedded.length===1,'One original-reference supplement expected');
+ originalReference=readInput(options['original-reference']||'docs/reviews/original-reference-comparisons-v1.json');
+ const shownOriginal=JSON.parse(originalEmbedded[0].replace(/^.*?>/,'').replace(/<\/script>$/,''));
+ const originalSidecar=readInput(path.join(path.dirname(htmlPath),'original-reference-comparisons.json'));
+ requireTrue(same(shownOriginal,originalReference)&&same(originalSidecar,originalReference),'Original-reference displayed supplement differs');
+ requireTrue(originalReference.status==='posthoc_exploratory_pointwise_only'&&originalReference.reference==='raw_n1-n1'&&originalReference.cohort==='full'&&originalReference.results_sha256===nativeSha&&originalReference.root_review_sha256===inputPins[path.resolve(options.review)]&&originalReference.manifest_sha256===inventorySha,'Original-reference scope or source binding differs');
+ requireTrue(originalReference.comparisons.length===28&&originalReference.absolute_rows.length===32,'Original-reference count differs');
+ for(const r of originalReference.absolute_rows)requireTrue(same(r,nativeRows.get(r.condition+'|'+r.family)),'Original-reference absolute endpoint differs');
+ const keys=new Set();for(const c of originalReference.comparisons){const k=c.condition+'|'+c.family;requireTrue(!keys.has(k)&&c.reference==='raw_n1-n1'&&c.simultaneous_ci95_delta===null,'Original-reference duplicate/reference/joint interval differs');keys.add(k);
+  const selected=nativeRows.get(k)?.metric,raw=nativeRows.get('raw_n1-n1|'+c.family)?.metric;
+  requireTrue(selected&&raw&&Math.abs(c.delta-(selected.value-raw.value))<1e-15&&c.ci95_delta[0]<=c.ci95_delta[1]&&c.independent_groups===selected.independent_groups,'Original-reference paired endpoint differs');
+ }
+ for(const [p,digest]of Object.entries({...originalReference.source_sha256,...originalReference.implementation_sha256}))requireTrue(rawPin(p)===digest,'Original-reference pinned evidence changed');
+}
 const exampleCondition=['editing_round2-n32','consensus_exact_support0-n16',...Object.keys(expectedExamples)].find(c=>expectedExamples[c]?.length);const exampleChoice={condition:exampleCondition,cell_id:expectedExamples[exampleCondition][0].cell_id};
 const exampleExpression=`element('detail').close();detail(${JSON.stringify(exampleChoice.condition)});var ex=[...document.querySelectorAll('dialog details.example')].find(e=>e.textContent.includes(${JSON.stringify(exampleChoice.cell_id)}));if(!ex)throw Error('Expected audited example absent');ex.open=true;ex.scrollIntoView({block:'start'});`;
 const expectedDataString=JSON.stringify(expectedData),caseCount=Object.values(expectedExamples).reduce((n,a)=>n+a.length,0);
@@ -137,8 +154,10 @@ try {
     const checked=[];const sourceSnapshot=await evaluate('JSON.stringify(data)');
     if(sourceSnapshot!==expectedDataString)throw Error('Browser source object differs from exact preflight embedded artifacts');
     const sources=await evaluate('data.source_hashes');
-    const initial=await evaluate(`({panels:document.querySelectorAll('#scaling article').length,hiddenTitle:document.body.textContent.includes('Hidden intermediate names'),chainTitle:document.body.textContent.includes('Intermediate numbers'),rankingRule:document.body.textContent.includes('ranked first by the judge'),caption:document.body.textContent.includes('the final answer is optional')})`);
-    if(initial.panels!==4||!initial.hiddenTitle||!initial.chainTitle||!initial.rankingRule||!initial.caption)throw Error('Plain language title/caption missing');
+    const originalSnapshot=await evaluate('JSON.stringify(originalComparisons)');
+    if(originalReference&&originalSnapshot!==JSON.stringify(originalReference.comparisons))throw Error('Browser original-reference comparisons differ');
+    const initial=await evaluate(`({panels:document.querySelectorAll('#scaling article').length,hiddenTitle:document.body.textContent.includes('Multihop (multi-token)'),chainTitle:document.body.textContent.includes('Chained intermediates'),officialNames:['Hallucination (chat)','Multihop (multi-token)','Chained intermediates','Role-bound association'].every(t=>document.body.textContent.includes(t)),rankingRule:document.body.textContent.includes('ranked first by the judge'),caption:document.body.textContent.includes('the final answer is optional')})`);
+    if(initial.panels!==4||!initial.hiddenTitle||!initial.chainTitle||!initial.officialNames||!initial.rankingRule||!initial.caption)throw Error('Official task name or plain language caption missing');
     const measurements=await evaluate(`(() => {
       const sourceBefore=JSON.stringify(data);if(Object.values(data.examples).reduce((n,a)=>n+a.length,0)!==${caseCount})throw Error('Derived reviewed example count differs'); const rows=data.reconstruction.rows.filter(r=>r.mean_fve!=null);
       const failures=rows.filter(r=>fve(r.mean_fve)!==(100*r.mean_fve).toFixed(2)+'%').map(r=>r.condition+':'+r.family);
@@ -158,11 +177,59 @@ try {
       element('detail').close();element('scaling-metric').value='reconstruction';scaling();
       const curves=[...document.querySelectorAll('#scaling article')];
       curves.forEach((curve,i)=>{
-        const a=reconstruction('best_n_exact-n1',families[i]),b=reconstruction('best_n_exact-n32',families[i]);
-        if(!curve.textContent.includes('1 → 32 samples: '+fveDelta(b.mean_fve-a.mean_fve))||!curve.textContent.includes('Difference of available site means'))failures.push(families[i]+':gain');
-        for(const c of curve.querySelectorAll('circle'))if(!c.querySelector('title').textContent.includes('raw FVE '+c.getAttribute('data-raw-value')))failures.push(families[i]+':tooltip');
+        const b=reconstruction('best_n_exact-n32',families[i]);
+        const p=b.parent_comparisons.find(p=>p.reference==='best_n_exact-n1');
+        if(p?.mean_delta!=null&&!curve.textContent.includes('Recorded paired 1 → 32 change: '+fveDelta(p.mean_delta)))failures.push(families[i]+':paired-gain');
+        if(!p&&curve.querySelector('.fit-gain'))failures.push(families[i]+':invented-gain');
+        if(!curve.textContent.includes('Focused axis'))failures.push(families[i]+':axis-label');
+        for(const c of curve.querySelectorAll('circle'))if(!(c.querySelector('title')??c.parentElement.querySelector('title'))?.textContent.includes('raw FVE '+c.getAttribute('data-raw-value')))failures.push(families[i]+':tooltip');
       });
+      const interventionChecks=[];
+      element('intervention-approach').value='all';
+      for(const mode of ['sample','parent',...(${originalReference!==null}?['original']:[])])for(const kind of ['quality','reconstruction']){
+        element('intervention-reference').value=mode;element('intervention-metric').value=kind;interventions();
+        const panels=[...document.querySelectorAll('#interventions article')];
+        if(panels.length!==4)failures.push('intervention-task-count:'+mode+':'+kind);
+        let measured=0,unavailable=0;
+        panels.forEach((panel,i)=>headlineInterventions.forEach(setting=>{
+          const point=[...panel.querySelectorAll('.intervention-point')].find(p=>p.dataset.condition===setting.id);
+          const row=headlineComparison(setting,families[i],kind==='reconstruction',mode);
+          const raw=kind==='reconstruction'?row?.mean_delta:row?.delta;
+          const benefit=raw==null?null:kind==='quality'&&i===0?-raw:raw;
+          const expectedCI=row?.ci95_delta?(kind==='quality'&&i===0?[-row.ci95_delta[1],-row.ci95_delta[0]]:row.ci95_delta):null;
+          if(!point||point.dataset.reference!==(mode==='parent'?setting.parent:mode==='original'?'raw_n1-n1':defaultReference))failures.push('intervention-reference:'+setting.id+':'+families[i]);
+          if(point?.dataset.rawDelta!==String(raw??''))failures.push('intervention-raw:'+setting.id+':'+families[i]);
+          const circle=point?.querySelector('circle'),bar=point?.querySelector('line.interval');
+          if(benefit==null){unavailable++;if(circle||bar||!point?.textContent.includes('Unavailable'))failures.push('intervention-unavailable:'+setting.id+':'+families[i]);}
+          else{measured++;if(!circle||!point.getAttribute('aria-label').includes('benefit '+(kind==='reconstruction'?fveDelta(benefit):signed(benefit))))failures.push('intervention-benefit:'+setting.id+':'+families[i]);
+            const extentValues=families.flatMap(f=>headlineInterventions.flatMap(s=>{const r=headlineComparison(s,f,kind==='reconstruction',mode);const v=kind==='reconstruction'?r?.mean_delta:r?.delta;return v==null?[]:[v,...(r.ci95_delta??[])];}));
+            const extent=Math.max(.01,Math.ceil(Math.max(0,...extentValues.map(Math.abs))*100)/100),x=v=>188+200*(v+extent)/(2*extent);
+            if(Math.abs(Number(circle.getAttribute('cx'))-x(benefit))>1e-6)failures.push('intervention-direction:'+setting.id+':'+families[i]);
+            if(expectedCI&&(!bar||Math.abs(Number(bar.getAttribute('x1'))-x(expectedCI[0]))>1e-6||Math.abs(Number(bar.getAttribute('x2'))-x(expectedCI[1]))>1e-6))failures.push('intervention-interval:'+setting.id+':'+families[i]);
+          }
+        }));
+        interventionChecks.push({mode,kind,measured,unavailable});
+      }
+      element('intervention-reference').value='sample';element('intervention-metric').value='quality';interventions();
+      const focusChecks=[];
+      for(const setting of [headlineInterventions[0],headlineInterventions[3]]){
+        element('intervention-approach').value=setting.id;interventions();
+        const shown=[...document.querySelectorAll('#interventions .intervention-point')];
+        if(shown.length!==4||shown.some(p=>p.dataset.condition!==setting.id))failures.push('approach-not-hidden:'+setting.id);
+        shown[0].dispatchEvent(new Event('pointerenter'));
+        if(!element('intervention-preview').textContent.includes('original lens'))failures.push('hover-original-preview:'+setting.id);
+        document.querySelector('#interventions .chart-expand').click();
+        if(!element('chart-dialog').open||!element('chart-content').textContent.includes('Original lens'))failures.push('enlargement-original-reference:'+setting.id);
+        element('close-chart').click();
+        focusChecks.push({condition:setting.id,visible:shown.length,preview:true,enlargement:true});
+      }
+      element('intervention-approach').value='all';interventions();
       element('tradeoff-group').value='all';tradeoff();if([...document.querySelectorAll('.tradeoff-point')].some(x=>x.dataset.opacity!=='.95'&&x.dataset.opacity!=='0.95'))failures.push('all-groups-opacity');
+      element('tradeoff-group').value='consensus';tradeoff();
+      const visibleGroups=[...document.querySelectorAll('#tradeoff .tradeoff-point')].map(p=>data.conditions.find(c=>c.condition_id===p.dataset.condition));
+      if(visibleGroups.some(c=>c.group!=='consensus'&&!['raw_n1-n1',defaultReference].includes(c.condition_id)))failures.push('tradeoff-not-hidden');
+      if(!visibleGroups.some(c=>c.condition_id==='raw_n1-n1'))failures.push('tradeoff-original-reference-hidden');
+      element('tradeoff-group').value='all';tradeoff();
       const project=projectAccounting(data.resources.ledger_audit); showResources();
       const cards=[...document.querySelectorAll('.resource-grid article')];
       const money=v=>'$'+v.toFixed(2); const card=cards[0];
@@ -170,13 +237,21 @@ try {
       const labels=[...document.querySelectorAll('#scaling svg text')];
       if(labels.some(n=>n.getBBox().x<0))failures.push('cropped-scaling-tick');
       const sourceObjectsMutated=sourceBefore!==JSON.stringify(data); if(sourceObjectsMutated)failures.push('source-object-mutation');
-      return {failures,formattedMeans:rows.length,taskPanels:panels.length,exactParents:parents,sourceObjectsMutated,projectAccounting:project,resourceCards:cards.length};
+      return {failures,formattedMeans:rows.length,taskPanels:panels.length,exactParents:parents,interventionChecks,focusChecks,sourceObjectsMutated,projectAccounting:project,resourceCards:cards.length};
     })()`);
     if(measurements.failures.length)throw Error(JSON.stringify(measurements));
     for(const [name,width,expr] of [
       ['desktop-overview',1280,"element('scaling-metric').value='quality';scaling();scrollTo(0,0);"],
       ['desktop-variance-scaling',1280,"element('scaling-metric').value='reconstruction';scaling();element('scaling').scrollIntoView({block:'center'});"],
-      ['desktop-quality-details',1280,"detail('best_n_exact-n32');"],
+      ['desktop-quality-scaling',1280,"element('scaling-metric').value='quality';scaling();element('scaling').scrollIntoView({block:'center'});"],
+      ['desktop-intervention-effects',1280,"element('intervention-metric').value='quality';element('intervention-reference').value='sample';interventions();element('interventions').scrollIntoView({block:'center'});"],
+      ['mobile-intervention-effects',390,"element('interventions').scrollIntoView({block:'start'});"],
+      ['desktop-intervention-fit',1280,"element('intervention-metric').value='reconstruction';element('intervention-reference').value='parent';interventions();element('interventions').scrollIntoView({block:'center'});"],
+      ['desktop-focused-intervention',1280,"element('intervention-metric').value='quality';element('intervention-reference').value='original';element('intervention-approach').value='pooled_greedy_swap-n32';interventions();element('intervention-effects').scrollIntoView({block:'start'});"],
+      ['mobile-focused-intervention',390,"interventions();element('intervention-effects').scrollIntoView({block:'start'});"],
+      ['desktop-enlarged-intervention',1280,"interventions();document.querySelector('#interventions .chart-expand').click();"],
+      ['mobile-enlarged-intervention',390,"element('chart-dialog').close();interventions();document.querySelector('#interventions .chart-expand').click();"],
+      ['desktop-quality-details',1280,"element('chart-dialog').close();detail('best_n_exact-n32');"],
       ['desktop-variance-details',1280,"document.querySelector('.reconstruction-grid').scrollIntoView({block:'center'});"],
       ['mobile-variance-details',390,"element('detail').close();detail('best_n_exact-n32');document.querySelector('.reconstruction-grid').scrollIntoView({block:'start'});"],
       ['mobile-parent-details',390,"element('detail').close();detail('pooled_greedy_swap_then_prune_0.005-n32');document.querySelector('.reconstruction-grid').scrollIntoView({block:'start'});"],
@@ -196,8 +271,9 @@ try {
       const png=await command('Page.captureScreenshot',{format:'png',captureBeyondViewport:false},sessionId);fs.writeFileSync(path.join(path.dirname(reportPath),name+'.png'),Buffer.from(png.data,'base64'),{flag:'wx'});checked.push({name,...stats});
     }
     if(await evaluate('JSON.stringify(data)')!==sourceSnapshot)throw Error('Source object changed during full browser pass');
+    if(await evaluate('JSON.stringify(originalComparisons)')!==originalSnapshot)throw Error('Original-reference source changed during full browser pass');
     checkInputPins();
-    fs.writeFileSync(reportPath,JSON.stringify({status:'pass',scope:'Actual final source-bound dashboard browser QA. Exact embedded native/numeric/effort/root-review/case objects match explicit immutable expected inputs and remain unchanged through all14 interactions. No publication or inference.',authority,sources,measurements,initial,checked,engine:version.product},null,2)+'\n',{flag:'wx'});
+    fs.writeFileSync(reportPath,JSON.stringify({status:'pass',scope:'Actual final source-bound dashboard browser QA. Exact embedded native/numeric/effort/root-review/case objects match explicit immutable expected inputs and remain unchanged through all recorded interactions. No publication or inference.',authority,sources,measurements,initial,checked,engine:version.product},null,2)+'\n',{flag:'wx'});
     return;
   })(),new Promise((_,reject)=>{deadline=setTimeout(()=>reject(new Error('Overall dashboard browser QA deadline')),60000);})]);
 } finally {

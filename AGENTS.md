@@ -1,18 +1,18 @@
-# Cluster (MIT Engaging)
+# Cluster (HPC cluster)
 - Shared node with a small CPU/RAM slice (`systemctl status user-$(id -u).slice`). No heavy compute here: GPU work or anything over a few CPU-minutes goes through `srun`/`sbatch`.
 - Check `/etc/motd.d/` for maintenance windows before launching long jobs.
 
 # GPUs
-- 4× H200 on `mit_normal_gpu` (acct `mit_amf_advanced_gpu`, 48 h max) + up to 4 on `mit_preemptable`.
+- 4× H200 on `${SLURM_GPU_PARTITION}` (acct `${SLURM_GPU_ACCOUNT}`, 48 h max) + up to 4 on `${SLURM_PREEMPT_PARTITION}`.
 - Prefer H200 > H100 > A100 > L40S. Always pin the type: `--gres=gpu:h200:N` (fallback `gpu:h100:N`).
 - L40S (48 GB) is a last resort: only if the model fits (bf16 ≈ 2 bytes/param, so ≲ 20B params with headroom), or for non-model work.
 
 # Storage
-- Current usage: read `~/orcd/.quota` (refreshes ~30 min). Never `du`/`find` on `/orcd`; scope any other `find` with `-maxdepth`.
+- Current usage: read `the cluster quota report` (refreshes ~30 min). Never `du`/`find` on `/orcd`; scope any other `find` with `-maxdepth`.
 - HOME 200 GB / 1M files: code and configs only. File count is the bottleneck.
 - Scratch 1 TB: fast temp/compute. Purged after 6 months idle.
 - Pool 1 TB: raw data and durable results.
-- Lab compute `/orcd/compute/pattie/001/`: 20 TB group quota shared with the lab (~4 TB free as of Oct 2026). Use for big activations/caches. `df` shows the whole filesystem, not our quota.
+- Lab compute `${LAB_COMPUTE_ROOT}/`: 20 TB group quota shared with the lab (~4 TB free as of Oct 2026). Use for big activations/caches. `df` shows the whole filesystem, not our quota.
 - Big files only via symlinks; never in a repo. Nothing is backed up.
 - HF/torch/pip/wandb caches, venvs and conda envs live off HOME.
 - Write a few big files, not many small ones. Clean up after runs.
@@ -29,3 +29,7 @@
 # Project plan and experiment records
 - Read [docs/PLAN.md](docs/PLAN.md) before continuing this project; it records the frozen model contract, evaluation stages, budget, and current handoff.
 - Record each experiment using [docs/experiments/TEMPLATE.md](docs/experiments/TEMPLATE.md), and update the plan's handoff block after material progress. Preserve the existing historical checkout and results.
+
+# Research display names
+
+Use the pinned WorkspaceBench registry titles on current plots, tables, slides and reports: `hallucination` → **Hallucination (chat)**; `multihop_mt` → **Multihop (multi-token)**; `chain_intermediates` → **Chained intermediates**; `role_bound_association` → **Role-bound association**. Put plain endpoint explanations underneath; keep scientific family IDs unchanged. Always make the original released Oracle Lens reference visible and distinguish it from the four-bullet original and actual-parent comparisons. Preserve historical artifacts and frozen evidence.

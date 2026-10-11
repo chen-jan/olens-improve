@@ -59,6 +59,37 @@ td{padding:10px;border-bottom:1px solid var(--line);vertical-align:middle}
 .curve-box{min-width:0;padding:16px 12px;background:var(--wash)}
 .curve-box h3{margin:0 0 15px;font-size:16px}
 .curve-box p{font-size:12px;margin:8px 0 0}
+.headline-section{margin:36px 0 48px}
+#scaling,#interventions{grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 42px}
+.headline-section .curve-box,.effect-box{min-width:0;padding:16px 0 0;background:transparent;border-top:1px solid var(--line)}
+.headline-section .curve-box h3,.effect-box h3{font-size:18px;margin:0 0 10px}
+.curve-endpoints{display:flex;justify-content:space-between;gap:12px}
+.headline-section .curve-endpoints{font-size:14px;margin:0 0 8px}
+.headline-section .curve-box svg{display:block;max-width:530px}
+.headline-section .curve-box p,.effect-box p{font-size:13px}
+.effect-box>p{margin:0 0 12px}
+.chart-heading{display:flex;align-items:start;justify-content:space-between;gap:12px}
+.chart-heading h3{flex:1}
+.chart-expand{font-size:12px;padding:5px 10px;background:transparent;white-space:nowrap}
+.original-reference{font-size:13px!important;padding-left:10px;border-left:2px solid var(--ink);color:var(--muted);margin:8px 0 12px!important}
+.chart-preview{font-size:14px;background:var(--wash);padding:12px 16px;max-width:none;min-height:50px}
+.absolute-pair{margin:16px 0;font-size:13px}
+.absolute-pair svg{margin-top:12px}
+#chart-dialog{width:min(1100px,96vw);max-width:96vw;resize:both;overflow:auto;min-width:280px;min-height:300px}
+#chart-content{clear:both;margin-top:20px;width:100%}
+#chart-content .curve-box,#chart-content .effect-box{max-width:850px;margin:auto;border-top:0}
+#chart-content .curve-box svg{max-width:none}
+#chart-content svg{display:block;width:100%;height:auto;max-height:none}
+#close-chart{float:right;margin:0 0 15px 20px}
+.effect-box svg{display:block;width:100%;height:auto;overflow:visible}
+.intervention-point{cursor:pointer}
+.intervention-point:hover text:first-of-type,.intervention-point:focus text:first-of-type{fill:var(--blue);text-decoration:underline}
+.intervention-point:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+#intervention-details{margin-top:24px}
+#intervention-records{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 30px}
+#intervention-records article{min-width:0;border-top:1px solid var(--line);padding-top:12px}
+#intervention-records h4{margin:0 0 10px;font-size:15px}
+#intervention-records p{font-size:13px;overflow-wrap:anywhere}
 .limitations{margin-top:50px;padding:25px 0;border-top:1px solid var(--line)}
 footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:20px}
 dialog{border:1px solid var(--line);border-radius:10px;padding:26px 32px;max-width:1000px;width:92vw;max-height:88vh;color:var(--ink);box-shadow:0 15px 60px #19344b26}
@@ -96,6 +127,7 @@ header{align-items:start;flex-direction:column;gap:12px}
 .finding p{margin-bottom:8px}
 .contract{gap:12px;font-size:13px}
 .four,.detail-grid,.quote-pair{grid-template-columns:1fr}
+#scaling,#interventions,#intervention-records{grid-template-columns:1fr;gap:26px}
 .reconstruction-grid,.resource-grid{grid-template-columns:1fr}
 .section-heading{align-items:start;flex-direction:column}
 h2{font-size:24px}

@@ -14,14 +14,34 @@ Better reconstruction does not consistently produce more useful explanations.
 
 The target model, Oracle Lens and matched activation reconstructor remain frozen. Each method explains the same target vector at the same layer and token position; control-based scorers additionally use the recorded matched activations. The shared pool contains at most 32 original descriptions per vector. Final outputs have at most four bullets and 256 Qwen tokens; the released raw baseline is retained separately with its original output. Pooling keeps intact source bullets. Editing uses explicitly recorded Luna proposals and fresh reconstruction vectors.
 
-Transcript contradictions measure wrong specific readouts divided by all specific readouts, including off-topic readouts. Hidden intermediate names measure required intermediate entities; the final answer is optional. Intermediate numbers count only the judge’s first-ranked verified integer at a reading site; a required value appearing lower in the list does not count. Number and role recovery then aggregate over the complete original question grid. Recovering that content can coexist with incorrect surrounding prose. We keep the four endpoints separate.
+**Hallucination (chat)** measures wrong specific readouts divided by all specific readouts, including off-topic readouts. **Multihop (multi-token)** measures required intermediate entities; the final answer is optional. **Chained intermediates** counts only the judge’s first-ranked verified integer at a reading site; a required value appearing lower in the list does not count. **Role-bound association** checks the entity–role bindings. Number and role recovery then aggregate over the complete original question grid. Recovering that content can coexist with incorrect surrounding prose. We keep the four endpoints separate.
 
 | Task | Questions | Related groups | Better direction |
 |---|---:|---:|---|
-| Transcript contradictions | 149 | 149 | Lower |
-| Hidden intermediate names | 100 | 94 | Higher |
-| Intermediate numbers | 120 | 42 | Higher |
-| Who did what | 100 | 50 | Higher |
+| Hallucination (chat) | 149 | 149 | Lower |
+| Multihop (multi-token) | 100 | 94 | Higher |
+| Chained intermediates | 120 | 42 | Higher |
+| Role-bound association | 100 | 50 | Higher |
+
+## Direct comparison with the original released lens
+
+The original output is one unmodified Oracle Lens sample. Its full-bank rates are **47.6%** for Hallucination (chat), **34.0%** for Multihop (multi-token), **49.2%** for Chained intermediates, and **78.0%** for Role-bound association. The four-bullet original differs, including 47.5% on Chained intermediates; these are separate references.
+
+The following fixed representative settings are compared directly with that original output. Positive changes mean improvement: fewer hallucinations, or more recovered questions. These additional comparisons use the saved judgments and the same whole-group resampling. They were requested after inspecting results, so their pointwise 95% intervals are exploratory and are outside the original simultaneous comparison menu. No new inference or judging was needed.
+
+| Approach | Hallucination (chat), fewer errors | Multihop (multi-token) | Chained intermediates | Role-bound association |
+|---|---:|---:|---:|---:|
+| More samples | +1.8 pp | +6.0 pp | +1.7 pp | -1.0 pp |
+| Keep repeated statements | +26.5 pp | -29.0 pp | -8.3 pp | -57.0 pp |
+| Remove weak bullets | +7.0 pp | -3.0 pp | -2.5 pp | -2.0 pp |
+| Combine original bullets | +0.4 pp | +7.0 pp | -5.0 pp | +3.0 pp |
+| Compare control activations | +1.8 pp | +7.0 pp | +1.7 pp | +3.0 pp |
+| Edit pooled text twice | +0.4 pp | +7.0 pp | -5.0 pp | +3.0 pp |
+| Combine and remove weak bullets | +3.0 pp | +5.0 pp | -6.7 pp | +3.0 pp |
+
+Consensus still reduces specific-readout coverage from about 99% to 32%; its error reduction must be read alongside its recovery losses. Original full-prose reconstruction fit remains unavailable; the existing reconstruction reference is explicitly the four-bullet original.
+
+Exact original-reference paired intervals are in [the source-bound supplement](https://olens-improve-research.jan618.chatgpt.site/downloads/original-reference-comparisons.json). The dashboard lets you switch between original, four-bullet original, and actual-parent comparisons.
 
 ## Findings by approach
 
@@ -33,12 +53,12 @@ Full-bank exploratory comparison; all related-question groups retained. Reconstr
 
 Representative comparison: **Choose the best complete readout (32 samples)** versus **Original, capped to four bullets**. These notes describe this setting, not every variant.
 
-| Task | What changed |
-|---|---|
-| Transcript contradictions | 2550/5565 versus 2641/5554. Fit +5.407 percentage points on 5615 common valid sites. Wrong specific readouts fall modestly; the joint interval still includes no change. Incorrect specifics remain despite higher fit. |
-| Hidden intermediate names | 40/100 versus 34/100. Fit +4.972 percentage points on 1100 common valid sites. Six more questions recover a required name. Optional answers and invented collaborators remain separate; the joint interval includes no change. |
-| Intermediate numbers | 61/120 versus 57/120. Fit +6.656 percentage points on 1320 common valid sites. Four more questions recover the first-ranked required integer. Audited hits can contain false equations; the joint interval includes losses and gains. |
-| Who did what | 77/100 versus 78/100. Fit +3.674 percentage points on 11357 common valid sites. One fewer question recovers who did what. Better topical fit does not guarantee correct direction or entity binding. |
+| WorkspaceBench task | Original released lens | What changed |
+|---|---|---|
+| Hallucination (chat) | 47.6% (2648/5560) | 2550/5565 versus 2641/5554. Fit +5.407 percentage points on 5615 common valid sites. Wrong specific readouts fall modestly; the joint interval still includes no change. Incorrect specifics remain despite higher fit. |
+| Multihop (multi-token) | 34.0% (34/100) | 40/100 versus 34/100. Fit +4.972 percentage points on 1100 common valid sites. Six more questions recover a required name. Optional answers and invented collaborators remain separate; the joint interval includes no change. |
+| Chained intermediates | 49.2% (59/120) | 61/120 versus 57/120. Fit +6.656 percentage points on 1320 common valid sites. Four more questions recover the first-ranked required integer. Audited hits can contain false equations; the joint interval includes losses and gains. |
+| Role-bound association | 78.0% (78/100) | 77/100 versus 78/100. Fit +3.674 percentage points on 11357 common valid sites. One fewer question recovers who did what. Better topical fit does not guarantee correct direction or entity binding. |
 
 ### Keeping repeated statements
 
@@ -48,12 +68,12 @@ Full-bank exploratory comparison; all related-question groups retained. Reconstr
 
 Representative comparison: **Semantic repetition; at least 2 of 16 samples; compatibility check; contradiction filter (16 samples)** versus **Exact repetition; at least 0 of 16 samples (16 samples)**. These notes describe this setting, not every variant.
 
-| Task | What changed |
-|---|---|
-| Transcript contradictions | 377/1783 versus 2591/5518. Fit -27.661 percentage points on 5615 common valid sites. Wrong readouts fall sharply among the much smaller specific-readout set. Abstention removes information as well as errors. |
-| Hidden intermediate names | 5/100 versus 34/100. Fit -26.319 percentage points on 1100 common valid sites. Required-name recovery falls from 34 to 5 questions. Stable generic phrases can displace rare useful names. |
-| Intermediate numbers | 49/120 versus 56/120. Fit -8.296 percentage points on 1320 common valid sites. Seven fewer questions recover the ranked intermediate. The joint interval includes no change; correct values can be unstable across samples. |
-| Who did what | 21/100 versus 78/100. Fit -15.895 percentage points on 11265 common valid sites. Complete relation recovery falls from 78 to 21 questions. Repeated scene descriptions do not preserve all agent/action/patient details. |
+| WorkspaceBench task | Original released lens | What changed |
+|---|---|---|
+| Hallucination (chat) | 47.6% (2648/5560) | 377/1783 versus 2591/5518. Fit -27.661 percentage points on 5615 common valid sites. Wrong readouts fall sharply among the much smaller specific-readout set. Abstention removes information as well as errors. |
+| Multihop (multi-token) | 34.0% (34/100) | 5/100 versus 34/100. Fit -26.319 percentage points on 1100 common valid sites. Required-name recovery falls from 34 to 5 questions. Stable generic phrases can displace rare useful names. |
+| Chained intermediates | 49.2% (59/120) | 49/120 versus 56/120. Fit -8.296 percentage points on 1320 common valid sites. Seven fewer questions recover the ranked intermediate. The joint interval includes no change; correct values can be unstable across samples. |
+| Role-bound association | 78.0% (78/100) | 21/100 versus 78/100. Fit -15.895 percentage points on 11265 common valid sites. Complete relation recovery falls from 78 to 21 questions. Repeated scene descriptions do not preserve all agent/action/patient details. |
 
 ### Removing weak bullets
 
@@ -63,12 +83,12 @@ Full-bank exploratory comparison; all related-question groups retained. Reconstr
 
 Representative comparison: **Best complete readout; remove weak bullets 0.005 (32 samples)** versus **Choose the best complete readout (32 samples)**. These notes describe this setting, not every variant.
 
-| Task | What changed |
-|---|---|
-| Transcript contradictions | 2261/5567 versus 2550/5565. Fit -0.151 percentage points on 5615 common valid sites. Wrong readouts fall by 5.21 points, with the joint interval below zero. Audits show removal of false details, sometimes leaving generic or unverifiable prose. |
-| Hidden intermediate names | 31/100 versus 40/100. Fit -0.160 percentage points on 1100 common valid sites. Nine required-name hits disappear despite a tiny fit loss. A weak reconstruction contribution can still carry the needed name. |
-| Intermediate numbers | 56/120 versus 61/120. Fit -0.110 percentage points on 1320 common valid sites. Five fewer questions recover the intermediate. The joint interval includes losses and gains; weak-fit bullets are not necessarily incorrect. |
-| Who did what | 76/100 versus 77/100. Fit -0.162 percentage points on 11400 common valid sites. One fewer question recovers the complete relation. Removing low-fit bullets can remove bindings; retained details can still conflict. |
+| WorkspaceBench task | Original released lens | What changed |
+|---|---|---|
+| Hallucination (chat) | 47.6% (2648/5560) | 2261/5567 versus 2550/5565. Fit -0.151 percentage points on 5615 common valid sites. Wrong readouts fall by 5.21 points, with the joint interval below zero. Audits show removal of false details, sometimes leaving generic or unverifiable prose. |
+| Multihop (multi-token) | 34.0% (34/100) | 31/100 versus 40/100. Fit -0.160 percentage points on 1100 common valid sites. Nine required-name hits disappear despite a tiny fit loss. A weak reconstruction contribution can still carry the needed name. |
+| Chained intermediates | 49.2% (59/120) | 56/120 versus 61/120. Fit -0.110 percentage points on 1320 common valid sites. Five fewer questions recover the intermediate. The joint interval includes losses and gains; weak-fit bullets are not necessarily incorrect. |
+| Role-bound association | 78.0% (78/100) | 76/100 versus 77/100. Fit -0.162 percentage points on 11400 common valid sites. One fewer question recovers the complete relation. Removing low-fit bullets can remove bindings; retained details can still conflict. |
 
 ### Combining original bullets
 
@@ -78,12 +98,12 @@ Full-bank exploratory comparison; all related-question groups retained. Reconstr
 
 Representative comparison: **Combine original bullets (32 samples)** versus **Original, capped to four bullets**. These notes describe this setting, not every variant.
 
-| Task | What changed |
-|---|---|
-| Transcript contradictions | 2621/5555 versus 2641/5554. Fit +7.937 percentage points on 5615 common valid sites. Fit rises substantially, while the contradiction change remains uncertain. Combining complementary bullets also combines unsupported specifics. |
-| Hidden intermediate names | 41/100 versus 34/100. Fit +7.219 percentage points on 1100 common valid sites. Seven more questions recover a required name. Some gains reflect fuller accepted phrases around existing clues, with invented details still present. |
-| Intermediate numbers | 53/120 versus 57/120. Fit +8.674 percentage points on 1320 common valid sites. Four fewer questions recover the ranked intermediate. Stronger reconstruction can move competing numbers above the needed value. |
-| Who did what | 81/100 versus 78/100. Fit +5.635 percentage points on 11357 common valid sites. Three more questions recover complete relations. Audited direction gains coexist with wrong foods, names or competing interpretations. |
+| WorkspaceBench task | Original released lens | What changed |
+|---|---|---|
+| Hallucination (chat) | 47.6% (2648/5560) | 2621/5555 versus 2641/5554. Fit +7.937 percentage points on 5615 common valid sites. Fit rises substantially, while the contradiction change remains uncertain. Combining complementary bullets also combines unsupported specifics. |
+| Multihop (multi-token) | 34.0% (34/100) | 41/100 versus 34/100. Fit +7.219 percentage points on 1100 common valid sites. Seven more questions recover a required name. Some gains reflect fuller accepted phrases around existing clues, with invented details still present. |
+| Chained intermediates | 49.2% (59/120) | 53/120 versus 57/120. Fit +8.674 percentage points on 1320 common valid sites. Four fewer questions recover the ranked intermediate. Stronger reconstruction can move competing numbers above the needed value. |
+| Role-bound association | 78.0% (78/100) | 81/100 versus 78/100. Fit +5.635 percentage points on 11357 common valid sites. Three more questions recover complete relations. Audited direction gains coexist with wrong foods, names or competing interpretations. |
 
 ### Comparing activation evidence
 
@@ -93,12 +113,12 @@ Full-bank exploratory comparison; all related-question groups retained. Reconstr
 
 Representative comparison: **Compare with average control activation (32 samples)** versus **Original, capped to four bullets**. These notes describe this setting, not every variant.
 
-| Task | What changed |
-|---|---|
-| Transcript contradictions | 2550/5566 versus 2641/5554. Fit +5.391 percentage points on 5615 common valid sites. Wrong readouts fall modestly; the joint interval includes no change. Specificity against controls does not verify every factual detail. |
-| Hidden intermediate names | 41/100 versus 34/100. Fit +4.950 percentage points on 1100 common valid sites. Seven more questions recover a required name. The pointwise interval excludes zero, but the joint interval does not; invented people remain. |
-| Intermediate numbers | 61/120 versus 57/120. Fit +4.906 percentage points on 1320 common valid sites. Four more questions recover the ranked intermediate. Control specificity can favor a number without validating the stated arithmetic. |
-| Who did what | 81/100 versus 78/100. Fit +1.521 percentage points on 11357 common valid sites. Three more questions recover complete relations. Generic scene matches and language priors remain possible; direction is not established by fit. |
+| WorkspaceBench task | Original released lens | What changed |
+|---|---|---|
+| Hallucination (chat) | 47.6% (2648/5560) | 2550/5566 versus 2641/5554. Fit +5.391 percentage points on 5615 common valid sites. Wrong readouts fall modestly; the joint interval includes no change. Specificity against controls does not verify every factual detail. |
+| Multihop (multi-token) | 34.0% (34/100) | 41/100 versus 34/100. Fit +4.950 percentage points on 1100 common valid sites. Seven more questions recover a required name. The pointwise interval excludes zero, but the joint interval does not; invented people remain. |
+| Chained intermediates | 49.2% (59/120) | 61/120 versus 57/120. Fit +4.906 percentage points on 1320 common valid sites. Four more questions recover the ranked intermediate. Control specificity can favor a number without validating the stated arithmetic. |
+| Role-bound association | 78.0% (78/100) | 81/100 versus 78/100. Fit +1.521 percentage points on 11357 common valid sites. Three more questions recover complete relations. Generic scene matches and language priors remain possible; direction is not established by fit. |
 
 ### Editing a readout
 
@@ -108,12 +128,12 @@ Full-bank exploratory comparison; all related-question groups retained. Reconstr
 
 Representative comparison: **Edit twice (32 samples)** versus **Combine original bullets (32 samples)**. These notes describe this setting, not every variant.
 
-| Task | What changed |
-|---|---|
-| Transcript contradictions | 2623/5556 versus 2621/5555. Fit +0.013 percentage points on 5615 common valid sites. Contradiction rate changes by only +0.03 points versus pooling. New prose is selected at 150/5615 cells after two rounds; fit gain is tiny. |
-| Hidden intermediate names | 41/100 versus 41/100. Fit +0.007 percentage points on 1100 common valid sites. Recovery stays 41/100, with changed prose at 32/1100 cells. Identical observed totals are not proof of equivalence; the joint interval is undefined. |
-| Intermediate numbers | 53/120 versus 53/120. Fit +0.096 percentage points on 1320 common valid sites. Recovery stays 53/120, with changed prose at 165/1320 cells. Fit improves slightly, but false arithmetic and ranking sensitivity remain. |
-| Who did what | 81/100 versus 81/100. Fit +0.002 percentage points on 11400 common valid sites. Recovery stays 81/100, with changed prose at 98/11400 cells. Tiny fit gains do not establish corrected direction or names. |
+| WorkspaceBench task | Original released lens | What changed |
+|---|---|---|
+| Hallucination (chat) | 47.6% (2648/5560) | 2623/5556 versus 2621/5555. Fit +0.013 percentage points on 5615 common valid sites. Contradiction rate changes by only +0.03 points versus pooling. New prose is selected at 150/5615 cells after two rounds; fit gain is tiny. |
+| Multihop (multi-token) | 34.0% (34/100) | 41/100 versus 41/100. Fit +0.007 percentage points on 1100 common valid sites. Recovery stays 41/100, with changed prose at 32/1100 cells. Identical observed totals are not proof of equivalence; the joint interval is undefined. |
+| Chained intermediates | 49.2% (59/120) | 53/120 versus 53/120. Fit +0.096 percentage points on 1320 common valid sites. Recovery stays 53/120, with changed prose at 165/1320 cells. Fit improves slightly, but false arithmetic and ranking sensitivity remain. |
+| Role-bound association | 78.0% (78/100) | 81/100 versus 81/100. Fit +0.002 percentage points on 11400 common valid sites. Recovery stays 81/100, with changed prose at 98/11400 cells. Tiny fit gains do not establish corrected direction or names. |
 
 ### Combining approaches
 
@@ -123,12 +143,12 @@ Full-bank exploratory comparison; all related-question groups retained. Reconstr
 
 Representative comparison: **Combine bullets with activation specificity; remove weak bullets 0.005 (32 samples)** versus **Combine bullets with activation specificity (32 samples)**. These notes describe this setting, not every variant.
 
-| Task | What changed |
-|---|---|
-| Transcript contradictions | 2484/5564 versus 2620/5557. Fit -0.226 percentage points on 5615 common valid sites. Adding pruning to pooled specificity lowers contradictions by 2.50 points; the joint interval excludes zero. This is an incremental parent comparison. |
-| Hidden intermediate names | 39/100 versus 42/100. Fit -0.272 percentage points on 1100 common valid sites. Three fewer questions recover a required name after pruning. Audits show removal of relevant names that barely affect fit. |
-| Intermediate numbers | 51/120 versus 46/120. Fit -0.183 percentage points on 1320 common valid sites. Five more questions recover a ranked intermediate after pruning. The joint interval includes no change; reordering/removing competitors can explain hits. |
-| Who did what | 81/100 versus 81/100. Fit -0.197 percentage points on 11400 common valid sites. Complete recovery stays 81/100, but individual wins and losses occur. Equal totals hide changed bindings and judge-sensitive cases. |
+| WorkspaceBench task | Original released lens | What changed |
+|---|---|---|
+| Hallucination (chat) | 47.6% (2648/5560) | 2484/5564 versus 2620/5557. Fit -0.226 percentage points on 5615 common valid sites. Adding pruning to pooled specificity lowers contradictions by 2.50 points; the joint interval excludes zero. This is an incremental parent comparison. |
+| Multihop (multi-token) | 34.0% (34/100) | 39/100 versus 42/100. Fit -0.272 percentage points on 1100 common valid sites. Three fewer questions recover a required name after pruning. Audits show removal of relevant names that barely affect fit. |
+| Chained intermediates | 49.2% (59/120) | 51/120 versus 46/120. Fit -0.183 percentage points on 1320 common valid sites. Five more questions recover a ranked intermediate after pruning. The joint interval includes no change; reordering/removing competitors can explain hits. |
+| Role-bound association | 78.0% (78/100) | 81/100 versus 81/100. Fit -0.197 percentage points on 11400 common valid sites. Complete recovery stays 81/100, but individual wins and losses occur. Equal totals hide changed bindings and judge-sensitive cases. |
 
 ## Reconstruction fit: a separate secondary diagnostic
 
@@ -140,117 +160,117 @@ Absolute FVE values are percentages; changes are percentage points (pp). For exa
 
 | Setting | Task | Mean FVE; grouped pointwise 95% interval | Valid sites / intended sites |
 |---|---|---|---:|
-| Original, capped to four bullets | Transcript contradictions | 37.09%; [+36.14, +38.03]% | 5,615 / 5,615 |
-| Original, capped to four bullets | Hidden intermediate names | 30.20%; [+28.60, +31.86]% | 1,100 / 1,100 |
-| Original, capped to four bullets | Intermediate numbers | 17.13%; [+16.38, +17.88]% | 1,320 / 1,320 |
-| Original, capped to four bullets | Who did what | 19.40%; [+19.24, +19.56]% | 11,357 / 11,400 |
-| Choose the best complete readout (32 samples) | Transcript contradictions | 42.50%; [+41.57, +43.40]% | 5,615 / 5,615 |
-| Choose the best complete readout (32 samples) | Hidden intermediate names | 35.17%; [+33.57, +36.77]% | 1,100 / 1,100 |
-| Choose the best complete readout (32 samples) | Intermediate numbers | 23.79%; [+22.93, +24.66]% | 1,320 / 1,320 |
-| Choose the best complete readout (32 samples) | Who did what | 23.08%; [+22.91, +23.23]% | 11,400 / 11,400 |
-| Combine original bullets (32 samples) | Transcript contradictions | 45.03%; [+44.14, +45.92]% | 5,615 / 5,615 |
-| Combine original bullets (32 samples) | Hidden intermediate names | 37.42%; [+35.84, +39.00]% | 1,100 / 1,100 |
-| Combine original bullets (32 samples) | Intermediate numbers | 25.81%; [+25.00, +26.67]% | 1,320 / 1,320 |
-| Combine original bullets (32 samples) | Who did what | 25.04%; [+24.87, +25.20]% | 11,400 / 11,400 |
-| Best complete readout; remove weak bullets 0.005 (32 samples) | Transcript contradictions | 42.35%; [+41.44, +43.26]% | 5,615 / 5,615 |
-| Best complete readout; remove weak bullets 0.005 (32 samples) | Hidden intermediate names | 35.01%; [+33.43, +36.63]% | 1,100 / 1,100 |
-| Best complete readout; remove weak bullets 0.005 (32 samples) | Intermediate numbers | 23.68%; [+22.84, +24.54]% | 1,320 / 1,320 |
-| Best complete readout; remove weak bullets 0.005 (32 samples) | Who did what | 22.92%; [+22.75, +23.08]% | 11,400 / 11,400 |
-| Compare with average control activation (32 samples) | Transcript contradictions | 42.49%; [+41.56, +43.37]% | 5,615 / 5,615 |
-| Compare with average control activation (32 samples) | Hidden intermediate names | 35.15%; [+33.55, +36.70]% | 1,100 / 1,100 |
-| Compare with average control activation (32 samples) | Intermediate numbers | 22.04%; [+21.07, +23.02]% | 1,320 / 1,320 |
-| Compare with average control activation (32 samples) | Who did what | 20.92%; [+20.72, +21.11]% | 11,400 / 11,400 |
-| Likelihood: true activation minus controls (8 samples) | Transcript contradictions | 37.16%; [+36.18, +38.11]% | 5,615 / 5,615 |
-| Likelihood: true activation minus controls (8 samples) | Hidden intermediate names | 30.10%; [+28.50, +31.70]% | 1,100 / 1,100 |
-| Likelihood: true activation minus controls (8 samples) | Intermediate numbers | 17.12%; [+16.25, +17.95]% | 1,320 / 1,320 |
-| Likelihood: true activation minus controls (8 samples) | Who did what | 19.37%; [+19.20, +19.53]% | 11,356 / 11,400 |
-| Semantic repetition; at least 2 of 16 samples; compatibility check; contradiction filter (16 samples) | Transcript contradictions | 9.21%; [+8.20, +10.28]% | 5,615 / 5,615 |
-| Semantic repetition; at least 2 of 16 samples; compatibility check; contradiction filter (16 samples) | Hidden intermediate names | 3.80%; [+2.97, +4.69]% | 1,100 / 1,100 |
-| Semantic repetition; at least 2 of 16 samples; compatibility check; contradiction filter (16 samples) | Intermediate numbers | 2.91%; [+2.70, +3.15]% | 1,320 / 1,320 |
-| Semantic repetition; at least 2 of 16 samples; compatibility check; contradiction filter (16 samples) | Who did what | 3.42%; [+3.28, +3.55]% | 11,276 / 11,400 |
-| Edit once (32 samples) | Transcript contradictions | 45.04%; [+44.13, +45.93]% | 5,615 / 5,615 |
-| Edit once (32 samples) | Hidden intermediate names | 37.42%; [+35.85, +39.01]% | 1,100 / 1,100 |
-| Edit once (32 samples) | Intermediate numbers | 25.87%; [+25.05, +26.70]% | 1,320 / 1,320 |
-| Edit once (32 samples) | Who did what | 25.04%; [+24.87, +25.20]% | 11,400 / 11,400 |
-| Edit twice (32 samples) | Transcript contradictions | 45.04%; [+44.13, +45.91]% | 5,615 / 5,615 |
-| Edit twice (32 samples) | Hidden intermediate names | 37.42%; [+35.89, +39.00]% | 1,100 / 1,100 |
-| Edit twice (32 samples) | Intermediate numbers | 25.90%; [+25.09, +26.74]% | 1,320 / 1,320 |
-| Edit twice (32 samples) | Who did what | 25.04%; [+24.88, +25.20]% | 11,400 / 11,400 |
+| Original, capped to four bullets | Hallucination (chat) | 37.09%; [+36.14, +38.03]% | 5,615 / 5,615 |
+| Original, capped to four bullets | Multihop (multi-token) | 30.20%; [+28.60, +31.86]% | 1,100 / 1,100 |
+| Original, capped to four bullets | Chained intermediates | 17.13%; [+16.38, +17.88]% | 1,320 / 1,320 |
+| Original, capped to four bullets | Role-bound association | 19.40%; [+19.24, +19.56]% | 11,357 / 11,400 |
+| Choose the best complete readout (32 samples) | Hallucination (chat) | 42.50%; [+41.57, +43.40]% | 5,615 / 5,615 |
+| Choose the best complete readout (32 samples) | Multihop (multi-token) | 35.17%; [+33.57, +36.77]% | 1,100 / 1,100 |
+| Choose the best complete readout (32 samples) | Chained intermediates | 23.79%; [+22.93, +24.66]% | 1,320 / 1,320 |
+| Choose the best complete readout (32 samples) | Role-bound association | 23.08%; [+22.91, +23.23]% | 11,400 / 11,400 |
+| Combine original bullets (32 samples) | Hallucination (chat) | 45.03%; [+44.14, +45.92]% | 5,615 / 5,615 |
+| Combine original bullets (32 samples) | Multihop (multi-token) | 37.42%; [+35.84, +39.00]% | 1,100 / 1,100 |
+| Combine original bullets (32 samples) | Chained intermediates | 25.81%; [+25.00, +26.67]% | 1,320 / 1,320 |
+| Combine original bullets (32 samples) | Role-bound association | 25.04%; [+24.87, +25.20]% | 11,400 / 11,400 |
+| Best complete readout; remove weak bullets 0.005 (32 samples) | Hallucination (chat) | 42.35%; [+41.44, +43.26]% | 5,615 / 5,615 |
+| Best complete readout; remove weak bullets 0.005 (32 samples) | Multihop (multi-token) | 35.01%; [+33.43, +36.63]% | 1,100 / 1,100 |
+| Best complete readout; remove weak bullets 0.005 (32 samples) | Chained intermediates | 23.68%; [+22.84, +24.54]% | 1,320 / 1,320 |
+| Best complete readout; remove weak bullets 0.005 (32 samples) | Role-bound association | 22.92%; [+22.75, +23.08]% | 11,400 / 11,400 |
+| Compare with average control activation (32 samples) | Hallucination (chat) | 42.49%; [+41.56, +43.37]% | 5,615 / 5,615 |
+| Compare with average control activation (32 samples) | Multihop (multi-token) | 35.15%; [+33.55, +36.70]% | 1,100 / 1,100 |
+| Compare with average control activation (32 samples) | Chained intermediates | 22.04%; [+21.07, +23.02]% | 1,320 / 1,320 |
+| Compare with average control activation (32 samples) | Role-bound association | 20.92%; [+20.72, +21.11]% | 11,400 / 11,400 |
+| Likelihood: true activation minus controls (8 samples) | Hallucination (chat) | 37.16%; [+36.18, +38.11]% | 5,615 / 5,615 |
+| Likelihood: true activation minus controls (8 samples) | Multihop (multi-token) | 30.10%; [+28.50, +31.70]% | 1,100 / 1,100 |
+| Likelihood: true activation minus controls (8 samples) | Chained intermediates | 17.12%; [+16.25, +17.95]% | 1,320 / 1,320 |
+| Likelihood: true activation minus controls (8 samples) | Role-bound association | 19.37%; [+19.20, +19.53]% | 11,356 / 11,400 |
+| Semantic repetition; at least 2 of 16 samples; compatibility check; contradiction filter (16 samples) | Hallucination (chat) | 9.21%; [+8.20, +10.28]% | 5,615 / 5,615 |
+| Semantic repetition; at least 2 of 16 samples; compatibility check; contradiction filter (16 samples) | Multihop (multi-token) | 3.80%; [+2.97, +4.69]% | 1,100 / 1,100 |
+| Semantic repetition; at least 2 of 16 samples; compatibility check; contradiction filter (16 samples) | Chained intermediates | 2.91%; [+2.70, +3.15]% | 1,320 / 1,320 |
+| Semantic repetition; at least 2 of 16 samples; compatibility check; contradiction filter (16 samples) | Role-bound association | 3.42%; [+3.28, +3.55]% | 11,276 / 11,400 |
+| Edit once (32 samples) | Hallucination (chat) | 45.04%; [+44.13, +45.93]% | 5,615 / 5,615 |
+| Edit once (32 samples) | Multihop (multi-token) | 37.42%; [+35.85, +39.01]% | 1,100 / 1,100 |
+| Edit once (32 samples) | Chained intermediates | 25.87%; [+25.05, +26.70]% | 1,320 / 1,320 |
+| Edit once (32 samples) | Role-bound association | 25.04%; [+24.87, +25.20]% | 11,400 / 11,400 |
+| Edit twice (32 samples) | Hallucination (chat) | 45.04%; [+44.13, +45.91]% | 5,615 / 5,615 |
+| Edit twice (32 samples) | Multihop (multi-token) | 37.42%; [+35.89, +39.00]% | 1,100 / 1,100 |
+| Edit twice (32 samples) | Chained intermediates | 25.90%; [+25.09, +26.74]% | 1,320 / 1,320 |
+| Edit twice (32 samples) | Role-bound association | 25.04%; [+24.88, +25.20]% | 11,400 / 11,400 |
 
 | Setting | Task | Recorded reconstruction reference | Comparison kind | Δ FVE; grouped paired pointwise 95% interval | Common valid sites / intended pairs | Related groups |
 |---|---|---|---|---|---:|---:|
-| Original, capped to four bullets | Transcript contradictions | Original Oracle Lens | frozen_parent | Unavailable; Unavailable † No common valid reconstruction sites | 0 / 5,615 | 0 |
-| Original, capped to four bullets | Hidden intermediate names | Original Oracle Lens | frozen_parent | Unavailable; Unavailable † No common valid reconstruction sites | 0 / 1,100 | 0 |
-| Original, capped to four bullets | Intermediate numbers | Original Oracle Lens | frozen_parent | Unavailable; Unavailable † No common valid reconstruction sites | 0 / 1,320 | 0 |
-| Original, capped to four bullets | Who did what | Original Oracle Lens | frozen_parent | Unavailable; Unavailable † No common valid reconstruction sites | 0 / 11,400 | 0 |
-| Choose the best complete readout (32 samples) | Transcript contradictions | Original, capped to four bullets | frozen_parent | +5.41 pp; [+5.25, +5.57] pp | 5,615 / 5,615 | 149 |
-| Choose the best complete readout (32 samples) | Transcript contradictions | Choose the best complete readout (16 samples) | sampling_prefix_diagnostic | +0.68 pp; [+0.65, +0.72] pp | 5,615 / 5,615 | 149 |
-| Choose the best complete readout (32 samples) | Hidden intermediate names | Original, capped to four bullets | frozen_parent | +4.97 pp; [+4.69, +5.26] pp | 1,100 / 1,100 | 94 |
-| Choose the best complete readout (32 samples) | Hidden intermediate names | Choose the best complete readout (16 samples) | sampling_prefix_diagnostic | +0.69 pp; [+0.62, +0.78] pp | 1,100 / 1,100 | 94 |
-| Choose the best complete readout (32 samples) | Intermediate numbers | Original, capped to four bullets | frozen_parent | +6.66 pp; [+6.34, +7.01] pp | 1,320 / 1,320 | 42 |
-| Choose the best complete readout (32 samples) | Intermediate numbers | Choose the best complete readout (16 samples) | sampling_prefix_diagnostic | +1.01 pp; [+0.91, +1.11] pp | 1,320 / 1,320 | 42 |
-| Choose the best complete readout (32 samples) | Who did what | Original, capped to four bullets | frozen_parent | +3.67 pp; [+3.63, +3.72] pp | 11,357 / 11,400 | 50 |
-| Choose the best complete readout (32 samples) | Who did what | Choose the best complete readout (16 samples) | sampling_prefix_diagnostic | +0.50 pp; [+0.49, +0.52] pp | 11,400 / 11,400 | 50 |
-| Combine original bullets (32 samples) | Transcript contradictions | Original, capped to four bullets | frozen_parent | +7.94 pp; [+7.73, +8.15] pp | 5,615 / 5,615 | 149 |
-| Combine original bullets (32 samples) | Transcript contradictions | Choose the best complete readout (32 samples) | pooling_vs_best_complete_diagnostic | +2.53 pp; [+2.45, +2.60] pp | 5,615 / 5,615 | 149 |
-| Combine original bullets (32 samples) | Hidden intermediate names | Original, capped to four bullets | frozen_parent | +7.22 pp; [+6.90, +7.56] pp | 1,100 / 1,100 | 94 |
-| Combine original bullets (32 samples) | Hidden intermediate names | Choose the best complete readout (32 samples) | pooling_vs_best_complete_diagnostic | +2.25 pp; [+2.16, +2.33] pp | 1,100 / 1,100 | 94 |
-| Combine original bullets (32 samples) | Intermediate numbers | Original, capped to four bullets | frozen_parent | +8.67 pp; [+8.33, +9.06] pp | 1,320 / 1,320 | 42 |
-| Combine original bullets (32 samples) | Intermediate numbers | Choose the best complete readout (32 samples) | pooling_vs_best_complete_diagnostic | +2.02 pp; [+1.90, +2.14] pp | 1,320 / 1,320 | 42 |
-| Combine original bullets (32 samples) | Who did what | Original, capped to four bullets | frozen_parent | +5.63 pp; [+5.59, +5.68] pp | 11,357 / 11,400 | 50 |
-| Combine original bullets (32 samples) | Who did what | Choose the best complete readout (32 samples) | pooling_vs_best_complete_diagnostic | +1.96 pp; [+1.95, +1.98] pp | 11,400 / 11,400 | 50 |
-| Best complete readout; remove weak bullets 0.005 (32 samples) | Transcript contradictions | Choose the best complete readout (32 samples) | frozen_parent | -0.15 pp; [-0.16, -0.15] pp | 5,615 / 5,615 | 149 |
-| Best complete readout; remove weak bullets 0.005 (32 samples) | Hidden intermediate names | Choose the best complete readout (32 samples) | frozen_parent | -0.16 pp; [-0.17, -0.15] pp | 1,100 / 1,100 | 94 |
-| Best complete readout; remove weak bullets 0.005 (32 samples) | Intermediate numbers | Choose the best complete readout (32 samples) | frozen_parent | -0.11 pp; [-0.12, -0.10] pp | 1,320 / 1,320 | 42 |
-| Best complete readout; remove weak bullets 0.005 (32 samples) | Who did what | Choose the best complete readout (32 samples) | frozen_parent | -0.16 pp; [-0.16, -0.16] pp | 11,400 / 11,400 | 50 |
-| Compare with average control activation (32 samples) | Transcript contradictions | Original, capped to four bullets | frozen_parent | +5.39 pp; [+5.23, +5.56] pp | 5,615 / 5,615 | 149 |
-| Compare with average control activation (32 samples) | Hidden intermediate names | Original, capped to four bullets | frozen_parent | +4.95 pp; [+4.67, +5.23] pp | 1,100 / 1,100 | 94 |
-| Compare with average control activation (32 samples) | Intermediate numbers | Original, capped to four bullets | frozen_parent | +4.91 pp; [+4.53, +5.33] pp | 1,320 / 1,320 | 42 |
-| Compare with average control activation (32 samples) | Who did what | Original, capped to four bullets | frozen_parent | +1.52 pp; [+1.44, +1.60] pp | 11,357 / 11,400 | 50 |
-| Likelihood: true activation minus controls (8 samples) | Transcript contradictions | Original, capped to four bullets | frozen_parent | +0.07 pp; [-0.04, +0.18] pp | 5,615 / 5,615 | 149 |
-| Likelihood: true activation minus controls (8 samples) | Hidden intermediate names | Original, capped to four bullets | frozen_parent | -0.10 pp; [-0.35, +0.15] pp | 1,100 / 1,100 | 94 |
-| Likelihood: true activation minus controls (8 samples) | Intermediate numbers | Original, capped to four bullets | frozen_parent | -0.01 pp; [-0.30, +0.31] pp | 1,320 / 1,320 | 42 |
-| Likelihood: true activation minus controls (8 samples) | Who did what | Original, capped to four bullets | frozen_parent | -0.04 pp; [-0.10, +0.02] pp | 11,332 / 11,400 | 50 |
-| Semantic repetition; at least 2 of 16 samples; compatibility check; contradiction filter (16 samples) | Transcript contradictions | Exact repetition; at least 0 of 16 samples (16 samples) | frozen_parent | -27.66 pp; [-28.70, -26.60] pp | 5,615 / 5,615 | 149 |
-| Semantic repetition; at least 2 of 16 samples; compatibility check; contradiction filter (16 samples) | Hidden intermediate names | Exact repetition; at least 0 of 16 samples (16 samples) | frozen_parent | -26.32 pp; [-28.04, -24.64] pp | 1,100 / 1,100 | 94 |
-| Semantic repetition; at least 2 of 16 samples; compatibility check; contradiction filter (16 samples) | Intermediate numbers | Exact repetition; at least 0 of 16 samples (16 samples) | frozen_parent | -8.30 pp; [-8.82, -7.74] pp | 1,320 / 1,320 | 42 |
-| Semantic repetition; at least 2 of 16 samples; compatibility check; contradiction filter (16 samples) | Who did what | Exact repetition; at least 0 of 16 samples (16 samples) | frozen_parent | -15.89 pp; [-16.07, -15.72] pp | 11,265 / 11,400 | 50 |
-| Edit once (32 samples) | Transcript contradictions | Choose the best complete readout (32 samples) | frozen_parent | +2.54 pp; [+2.46, +2.61] pp | 5,615 / 5,615 | 149 |
-| Edit once (32 samples) | Transcript contradictions | Combine original bullets (32 samples) | frozen_parent | +0.01 pp; [+0.01, +0.01] pp | 5,615 / 5,615 | 149 |
-| Edit once (32 samples) | Transcript contradictions | Choose the best complete readout (32 samples) | editor_initial_reference | +2.54 pp; [+2.46, +2.61] pp | 5,615 / 5,615 | 149 |
-| Edit once (32 samples) | Transcript contradictions | Combine original bullets (32 samples) | editor_initial_reference | +0.01 pp; [+0.01, +0.01] pp | 5,615 / 5,615 | 149 |
-| Edit once (32 samples) | Hidden intermediate names | Choose the best complete readout (32 samples) | frozen_parent | +2.25 pp; [+2.17, +2.34] pp | 1,100 / 1,100 | 94 |
-| Edit once (32 samples) | Hidden intermediate names | Combine original bullets (32 samples) | frozen_parent | +0.00 pp; [+0.00, +0.01] pp | 1,100 / 1,100 | 94 |
-| Edit once (32 samples) | Hidden intermediate names | Choose the best complete readout (32 samples) | editor_initial_reference | +2.25 pp; [+2.17, +2.34] pp | 1,100 / 1,100 | 94 |
-| Edit once (32 samples) | Hidden intermediate names | Combine original bullets (32 samples) | editor_initial_reference | +0.00 pp; [+0.00, +0.01] pp | 1,100 / 1,100 | 94 |
-| Edit once (32 samples) | Intermediate numbers | Choose the best complete readout (32 samples) | frozen_parent | +2.08 pp; [+1.96, +2.20] pp | 1,320 / 1,320 | 42 |
-| Edit once (32 samples) | Intermediate numbers | Combine original bullets (32 samples) | frozen_parent | +0.06 pp; [+0.04, +0.08] pp | 1,320 / 1,320 | 42 |
-| Edit once (32 samples) | Intermediate numbers | Choose the best complete readout (32 samples) | editor_initial_reference | +2.08 pp; [+1.96, +2.20] pp | 1,320 / 1,320 | 42 |
-| Edit once (32 samples) | Intermediate numbers | Combine original bullets (32 samples) | editor_initial_reference | +0.06 pp; [+0.04, +0.08] pp | 1,320 / 1,320 | 42 |
-| Edit once (32 samples) | Who did what | Choose the best complete readout (32 samples) | frozen_parent | +1.96 pp; [+1.95, +1.98] pp | 11,400 / 11,400 | 50 |
-| Edit once (32 samples) | Who did what | Combine original bullets (32 samples) | frozen_parent | +0.00 pp; [+0.00, +0.00] pp | 11,400 / 11,400 | 50 |
-| Edit once (32 samples) | Who did what | Choose the best complete readout (32 samples) | editor_initial_reference | +1.96 pp; [+1.95, +1.98] pp | 11,400 / 11,400 | 50 |
-| Edit once (32 samples) | Who did what | Combine original bullets (32 samples) | editor_initial_reference | +0.00 pp; [+0.00, +0.00] pp | 11,400 / 11,400 | 50 |
-| Edit twice (32 samples) | Transcript contradictions | Choose the best complete readout (32 samples) | frozen_parent | +2.54 pp; [+2.47, +2.62] pp | 5,615 / 5,615 | 149 |
-| Edit twice (32 samples) | Transcript contradictions | Combine original bullets (32 samples) | frozen_parent | +0.01 pp; [+0.01, +0.02] pp | 5,615 / 5,615 | 149 |
-| Edit twice (32 samples) | Transcript contradictions | Choose the best complete readout (32 samples) | editor_initial_reference | +2.54 pp; [+2.47, +2.62] pp | 5,615 / 5,615 | 149 |
-| Edit twice (32 samples) | Transcript contradictions | Combine original bullets (32 samples) | editor_initial_reference | +0.01 pp; [+0.01, +0.02] pp | 5,615 / 5,615 | 149 |
-| Edit twice (32 samples) | Transcript contradictions | Edit once (32 samples) | editor_previous_round_diagnostic | +0.00 pp; [+0.00, +0.01] pp | 5,615 / 5,615 | 149 |
-| Edit twice (32 samples) | Hidden intermediate names | Choose the best complete readout (32 samples) | frozen_parent | +2.25 pp; [+2.17, +2.34] pp | 1,100 / 1,100 | 94 |
-| Edit twice (32 samples) | Hidden intermediate names | Combine original bullets (32 samples) | frozen_parent | +0.01 pp; [+0.00, +0.01] pp | 1,100 / 1,100 | 94 |
-| Edit twice (32 samples) | Hidden intermediate names | Choose the best complete readout (32 samples) | editor_initial_reference | +2.25 pp; [+2.17, +2.34] pp | 1,100 / 1,100 | 94 |
-| Edit twice (32 samples) | Hidden intermediate names | Combine original bullets (32 samples) | editor_initial_reference | +0.01 pp; [+0.00, +0.01] pp | 1,100 / 1,100 | 94 |
-| Edit twice (32 samples) | Hidden intermediate names | Edit once (32 samples) | editor_previous_round_diagnostic | +0.00 pp; [+0.00, +0.00] pp | 1,100 / 1,100 | 94 |
-| Edit twice (32 samples) | Intermediate numbers | Choose the best complete readout (32 samples) | frozen_parent | +2.11 pp; [+1.99, +2.23] pp | 1,320 / 1,320 | 42 |
-| Edit twice (32 samples) | Intermediate numbers | Combine original bullets (32 samples) | frozen_parent | +0.10 pp; [+0.07, +0.13] pp | 1,320 / 1,320 | 42 |
-| Edit twice (32 samples) | Intermediate numbers | Choose the best complete readout (32 samples) | editor_initial_reference | +2.11 pp; [+1.99, +2.23] pp | 1,320 / 1,320 | 42 |
-| Edit twice (32 samples) | Intermediate numbers | Combine original bullets (32 samples) | editor_initial_reference | +0.10 pp; [+0.07, +0.13] pp | 1,320 / 1,320 | 42 |
-| Edit twice (32 samples) | Intermediate numbers | Edit once (32 samples) | editor_previous_round_diagnostic | +0.04 pp; [+0.02, +0.06] pp | 1,320 / 1,320 | 42 |
-| Edit twice (32 samples) | Who did what | Choose the best complete readout (32 samples) | frozen_parent | +1.97 pp; [+1.95, +1.98] pp | 11,400 / 11,400 | 50 |
-| Edit twice (32 samples) | Who did what | Combine original bullets (32 samples) | frozen_parent | +0.00 pp; [+0.00, +0.00] pp | 11,400 / 11,400 | 50 |
-| Edit twice (32 samples) | Who did what | Choose the best complete readout (32 samples) | editor_initial_reference | +1.97 pp; [+1.95, +1.98] pp | 11,400 / 11,400 | 50 |
-| Edit twice (32 samples) | Who did what | Combine original bullets (32 samples) | editor_initial_reference | +0.00 pp; [+0.00, +0.00] pp | 11,400 / 11,400 | 50 |
-| Edit twice (32 samples) | Who did what | Edit once (32 samples) | editor_previous_round_diagnostic | +0.00 pp; [+0.00, +0.00] pp | 11,400 / 11,400 | 50 |
+| Original, capped to four bullets | Hallucination (chat) | Original Oracle Lens | frozen_parent | Unavailable; Unavailable † No common valid reconstruction sites | 0 / 5,615 | 0 |
+| Original, capped to four bullets | Multihop (multi-token) | Original Oracle Lens | frozen_parent | Unavailable; Unavailable † No common valid reconstruction sites | 0 / 1,100 | 0 |
+| Original, capped to four bullets | Chained intermediates | Original Oracle Lens | frozen_parent | Unavailable; Unavailable † No common valid reconstruction sites | 0 / 1,320 | 0 |
+| Original, capped to four bullets | Role-bound association | Original Oracle Lens | frozen_parent | Unavailable; Unavailable † No common valid reconstruction sites | 0 / 11,400 | 0 |
+| Choose the best complete readout (32 samples) | Hallucination (chat) | Original, capped to four bullets | frozen_parent | +5.41 pp; [+5.25, +5.57] pp | 5,615 / 5,615 | 149 |
+| Choose the best complete readout (32 samples) | Hallucination (chat) | Choose the best complete readout (16 samples) | sampling_prefix_diagnostic | +0.68 pp; [+0.65, +0.72] pp | 5,615 / 5,615 | 149 |
+| Choose the best complete readout (32 samples) | Multihop (multi-token) | Original, capped to four bullets | frozen_parent | +4.97 pp; [+4.69, +5.26] pp | 1,100 / 1,100 | 94 |
+| Choose the best complete readout (32 samples) | Multihop (multi-token) | Choose the best complete readout (16 samples) | sampling_prefix_diagnostic | +0.69 pp; [+0.62, +0.78] pp | 1,100 / 1,100 | 94 |
+| Choose the best complete readout (32 samples) | Chained intermediates | Original, capped to four bullets | frozen_parent | +6.66 pp; [+6.34, +7.01] pp | 1,320 / 1,320 | 42 |
+| Choose the best complete readout (32 samples) | Chained intermediates | Choose the best complete readout (16 samples) | sampling_prefix_diagnostic | +1.01 pp; [+0.91, +1.11] pp | 1,320 / 1,320 | 42 |
+| Choose the best complete readout (32 samples) | Role-bound association | Original, capped to four bullets | frozen_parent | +3.67 pp; [+3.63, +3.72] pp | 11,357 / 11,400 | 50 |
+| Choose the best complete readout (32 samples) | Role-bound association | Choose the best complete readout (16 samples) | sampling_prefix_diagnostic | +0.50 pp; [+0.49, +0.52] pp | 11,400 / 11,400 | 50 |
+| Combine original bullets (32 samples) | Hallucination (chat) | Original, capped to four bullets | frozen_parent | +7.94 pp; [+7.73, +8.15] pp | 5,615 / 5,615 | 149 |
+| Combine original bullets (32 samples) | Hallucination (chat) | Choose the best complete readout (32 samples) | pooling_vs_best_complete_diagnostic | +2.53 pp; [+2.45, +2.60] pp | 5,615 / 5,615 | 149 |
+| Combine original bullets (32 samples) | Multihop (multi-token) | Original, capped to four bullets | frozen_parent | +7.22 pp; [+6.90, +7.56] pp | 1,100 / 1,100 | 94 |
+| Combine original bullets (32 samples) | Multihop (multi-token) | Choose the best complete readout (32 samples) | pooling_vs_best_complete_diagnostic | +2.25 pp; [+2.16, +2.33] pp | 1,100 / 1,100 | 94 |
+| Combine original bullets (32 samples) | Chained intermediates | Original, capped to four bullets | frozen_parent | +8.67 pp; [+8.33, +9.06] pp | 1,320 / 1,320 | 42 |
+| Combine original bullets (32 samples) | Chained intermediates | Choose the best complete readout (32 samples) | pooling_vs_best_complete_diagnostic | +2.02 pp; [+1.90, +2.14] pp | 1,320 / 1,320 | 42 |
+| Combine original bullets (32 samples) | Role-bound association | Original, capped to four bullets | frozen_parent | +5.63 pp; [+5.59, +5.68] pp | 11,357 / 11,400 | 50 |
+| Combine original bullets (32 samples) | Role-bound association | Choose the best complete readout (32 samples) | pooling_vs_best_complete_diagnostic | +1.96 pp; [+1.95, +1.98] pp | 11,400 / 11,400 | 50 |
+| Best complete readout; remove weak bullets 0.005 (32 samples) | Hallucination (chat) | Choose the best complete readout (32 samples) | frozen_parent | -0.15 pp; [-0.16, -0.15] pp | 5,615 / 5,615 | 149 |
+| Best complete readout; remove weak bullets 0.005 (32 samples) | Multihop (multi-token) | Choose the best complete readout (32 samples) | frozen_parent | -0.16 pp; [-0.17, -0.15] pp | 1,100 / 1,100 | 94 |
+| Best complete readout; remove weak bullets 0.005 (32 samples) | Chained intermediates | Choose the best complete readout (32 samples) | frozen_parent | -0.11 pp; [-0.12, -0.10] pp | 1,320 / 1,320 | 42 |
+| Best complete readout; remove weak bullets 0.005 (32 samples) | Role-bound association | Choose the best complete readout (32 samples) | frozen_parent | -0.16 pp; [-0.16, -0.16] pp | 11,400 / 11,400 | 50 |
+| Compare with average control activation (32 samples) | Hallucination (chat) | Original, capped to four bullets | frozen_parent | +5.39 pp; [+5.23, +5.56] pp | 5,615 / 5,615 | 149 |
+| Compare with average control activation (32 samples) | Multihop (multi-token) | Original, capped to four bullets | frozen_parent | +4.95 pp; [+4.67, +5.23] pp | 1,100 / 1,100 | 94 |
+| Compare with average control activation (32 samples) | Chained intermediates | Original, capped to four bullets | frozen_parent | +4.91 pp; [+4.53, +5.33] pp | 1,320 / 1,320 | 42 |
+| Compare with average control activation (32 samples) | Role-bound association | Original, capped to four bullets | frozen_parent | +1.52 pp; [+1.44, +1.60] pp | 11,357 / 11,400 | 50 |
+| Likelihood: true activation minus controls (8 samples) | Hallucination (chat) | Original, capped to four bullets | frozen_parent | +0.07 pp; [-0.04, +0.18] pp | 5,615 / 5,615 | 149 |
+| Likelihood: true activation minus controls (8 samples) | Multihop (multi-token) | Original, capped to four bullets | frozen_parent | -0.10 pp; [-0.35, +0.15] pp | 1,100 / 1,100 | 94 |
+| Likelihood: true activation minus controls (8 samples) | Chained intermediates | Original, capped to four bullets | frozen_parent | -0.01 pp; [-0.30, +0.31] pp | 1,320 / 1,320 | 42 |
+| Likelihood: true activation minus controls (8 samples) | Role-bound association | Original, capped to four bullets | frozen_parent | -0.04 pp; [-0.10, +0.02] pp | 11,332 / 11,400 | 50 |
+| Semantic repetition; at least 2 of 16 samples; compatibility check; contradiction filter (16 samples) | Hallucination (chat) | Exact repetition; at least 0 of 16 samples (16 samples) | frozen_parent | -27.66 pp; [-28.70, -26.60] pp | 5,615 / 5,615 | 149 |
+| Semantic repetition; at least 2 of 16 samples; compatibility check; contradiction filter (16 samples) | Multihop (multi-token) | Exact repetition; at least 0 of 16 samples (16 samples) | frozen_parent | -26.32 pp; [-28.04, -24.64] pp | 1,100 / 1,100 | 94 |
+| Semantic repetition; at least 2 of 16 samples; compatibility check; contradiction filter (16 samples) | Chained intermediates | Exact repetition; at least 0 of 16 samples (16 samples) | frozen_parent | -8.30 pp; [-8.82, -7.74] pp | 1,320 / 1,320 | 42 |
+| Semantic repetition; at least 2 of 16 samples; compatibility check; contradiction filter (16 samples) | Role-bound association | Exact repetition; at least 0 of 16 samples (16 samples) | frozen_parent | -15.89 pp; [-16.07, -15.72] pp | 11,265 / 11,400 | 50 |
+| Edit once (32 samples) | Hallucination (chat) | Choose the best complete readout (32 samples) | frozen_parent | +2.54 pp; [+2.46, +2.61] pp | 5,615 / 5,615 | 149 |
+| Edit once (32 samples) | Hallucination (chat) | Combine original bullets (32 samples) | frozen_parent | +0.01 pp; [+0.01, +0.01] pp | 5,615 / 5,615 | 149 |
+| Edit once (32 samples) | Hallucination (chat) | Choose the best complete readout (32 samples) | editor_initial_reference | +2.54 pp; [+2.46, +2.61] pp | 5,615 / 5,615 | 149 |
+| Edit once (32 samples) | Hallucination (chat) | Combine original bullets (32 samples) | editor_initial_reference | +0.01 pp; [+0.01, +0.01] pp | 5,615 / 5,615 | 149 |
+| Edit once (32 samples) | Multihop (multi-token) | Choose the best complete readout (32 samples) | frozen_parent | +2.25 pp; [+2.17, +2.34] pp | 1,100 / 1,100 | 94 |
+| Edit once (32 samples) | Multihop (multi-token) | Combine original bullets (32 samples) | frozen_parent | +0.00 pp; [+0.00, +0.01] pp | 1,100 / 1,100 | 94 |
+| Edit once (32 samples) | Multihop (multi-token) | Choose the best complete readout (32 samples) | editor_initial_reference | +2.25 pp; [+2.17, +2.34] pp | 1,100 / 1,100 | 94 |
+| Edit once (32 samples) | Multihop (multi-token) | Combine original bullets (32 samples) | editor_initial_reference | +0.00 pp; [+0.00, +0.01] pp | 1,100 / 1,100 | 94 |
+| Edit once (32 samples) | Chained intermediates | Choose the best complete readout (32 samples) | frozen_parent | +2.08 pp; [+1.96, +2.20] pp | 1,320 / 1,320 | 42 |
+| Edit once (32 samples) | Chained intermediates | Combine original bullets (32 samples) | frozen_parent | +0.06 pp; [+0.04, +0.08] pp | 1,320 / 1,320 | 42 |
+| Edit once (32 samples) | Chained intermediates | Choose the best complete readout (32 samples) | editor_initial_reference | +2.08 pp; [+1.96, +2.20] pp | 1,320 / 1,320 | 42 |
+| Edit once (32 samples) | Chained intermediates | Combine original bullets (32 samples) | editor_initial_reference | +0.06 pp; [+0.04, +0.08] pp | 1,320 / 1,320 | 42 |
+| Edit once (32 samples) | Role-bound association | Choose the best complete readout (32 samples) | frozen_parent | +1.96 pp; [+1.95, +1.98] pp | 11,400 / 11,400 | 50 |
+| Edit once (32 samples) | Role-bound association | Combine original bullets (32 samples) | frozen_parent | +0.00 pp; [+0.00, +0.00] pp | 11,400 / 11,400 | 50 |
+| Edit once (32 samples) | Role-bound association | Choose the best complete readout (32 samples) | editor_initial_reference | +1.96 pp; [+1.95, +1.98] pp | 11,400 / 11,400 | 50 |
+| Edit once (32 samples) | Role-bound association | Combine original bullets (32 samples) | editor_initial_reference | +0.00 pp; [+0.00, +0.00] pp | 11,400 / 11,400 | 50 |
+| Edit twice (32 samples) | Hallucination (chat) | Choose the best complete readout (32 samples) | frozen_parent | +2.54 pp; [+2.47, +2.62] pp | 5,615 / 5,615 | 149 |
+| Edit twice (32 samples) | Hallucination (chat) | Combine original bullets (32 samples) | frozen_parent | +0.01 pp; [+0.01, +0.02] pp | 5,615 / 5,615 | 149 |
+| Edit twice (32 samples) | Hallucination (chat) | Choose the best complete readout (32 samples) | editor_initial_reference | +2.54 pp; [+2.47, +2.62] pp | 5,615 / 5,615 | 149 |
+| Edit twice (32 samples) | Hallucination (chat) | Combine original bullets (32 samples) | editor_initial_reference | +0.01 pp; [+0.01, +0.02] pp | 5,615 / 5,615 | 149 |
+| Edit twice (32 samples) | Hallucination (chat) | Edit once (32 samples) | editor_previous_round_diagnostic | +0.00 pp; [+0.00, +0.01] pp | 5,615 / 5,615 | 149 |
+| Edit twice (32 samples) | Multihop (multi-token) | Choose the best complete readout (32 samples) | frozen_parent | +2.25 pp; [+2.17, +2.34] pp | 1,100 / 1,100 | 94 |
+| Edit twice (32 samples) | Multihop (multi-token) | Combine original bullets (32 samples) | frozen_parent | +0.01 pp; [+0.00, +0.01] pp | 1,100 / 1,100 | 94 |
+| Edit twice (32 samples) | Multihop (multi-token) | Choose the best complete readout (32 samples) | editor_initial_reference | +2.25 pp; [+2.17, +2.34] pp | 1,100 / 1,100 | 94 |
+| Edit twice (32 samples) | Multihop (multi-token) | Combine original bullets (32 samples) | editor_initial_reference | +0.01 pp; [+0.00, +0.01] pp | 1,100 / 1,100 | 94 |
+| Edit twice (32 samples) | Multihop (multi-token) | Edit once (32 samples) | editor_previous_round_diagnostic | +0.00 pp; [+0.00, +0.00] pp | 1,100 / 1,100 | 94 |
+| Edit twice (32 samples) | Chained intermediates | Choose the best complete readout (32 samples) | frozen_parent | +2.11 pp; [+1.99, +2.23] pp | 1,320 / 1,320 | 42 |
+| Edit twice (32 samples) | Chained intermediates | Combine original bullets (32 samples) | frozen_parent | +0.10 pp; [+0.07, +0.13] pp | 1,320 / 1,320 | 42 |
+| Edit twice (32 samples) | Chained intermediates | Choose the best complete readout (32 samples) | editor_initial_reference | +2.11 pp; [+1.99, +2.23] pp | 1,320 / 1,320 | 42 |
+| Edit twice (32 samples) | Chained intermediates | Combine original bullets (32 samples) | editor_initial_reference | +0.10 pp; [+0.07, +0.13] pp | 1,320 / 1,320 | 42 |
+| Edit twice (32 samples) | Chained intermediates | Edit once (32 samples) | editor_previous_round_diagnostic | +0.04 pp; [+0.02, +0.06] pp | 1,320 / 1,320 | 42 |
+| Edit twice (32 samples) | Role-bound association | Choose the best complete readout (32 samples) | frozen_parent | +1.97 pp; [+1.95, +1.98] pp | 11,400 / 11,400 | 50 |
+| Edit twice (32 samples) | Role-bound association | Combine original bullets (32 samples) | frozen_parent | +0.00 pp; [+0.00, +0.00] pp | 11,400 / 11,400 | 50 |
+| Edit twice (32 samples) | Role-bound association | Choose the best complete readout (32 samples) | editor_initial_reference | +1.97 pp; [+1.95, +1.98] pp | 11,400 / 11,400 | 50 |
+| Edit twice (32 samples) | Role-bound association | Combine original bullets (32 samples) | editor_initial_reference | +0.00 pp; [+0.00, +0.00] pp | 11,400 / 11,400 | 50 |
+| Edit twice (32 samples) | Role-bound association | Edit once (32 samples) | editor_previous_round_diagnostic | +0.00 pp; [+0.00, +0.00] pp | 11,400 / 11,400 | 50 |
 
 The settings shown here follow the reviewed presentation order; they are not ranked by fit. All method/family rows, every recorded parent comparison, masks, warnings and source pins are retained in the [complete numeric reconstruction data](final-v1.json).
 
@@ -280,7 +300,7 @@ Selection from a saved pool is cheaper than creating that pool for a new activat
 
 Each entry gives the native percentage followed by its grouped 95% interval. Exact numerators, denominators, paired intervals, simultaneous intervals and secondary coverage measures are available in the accompanying data export.
 
-| Setting | Contradictions ↓ | Hidden intermediate names ↑ | Intermediate numbers ↑ | Roles ↑ |
+| Setting | Hallucination (chat) ↓ | Multihop (multi-token) ↑ | Chained intermediates ↑ | Role-bound association ↑ |
 |---|---:|---:|---:|---:|
 | Original Oracle Lens | 47.6% (44.2 to 51.1%) | 34.0% (24.5 to 43.7%) | 49.2% (40.2 to 59.1%) | 78.0% (70.0 to 85.0%) |
 | Original, capped to four bullets | 47.6% (44.1 to 51.1%) | 34.0% (24.5 to 43.7%) | 47.5% (37.8 to 58.0%) | 78.0% (70.0 to 85.0%) |
@@ -355,7 +375,7 @@ Each entry gives the native percentage followed by its grouped 95% interval. Exa
 
 † Bootstrap warnings for the marked absolute intervals:
 
-- Exact repetition; at least 4 of 16 samples (16 samples), Who did what: Zero bootstrap variation; the displayed interval does not establish certainty.
+- Exact repetition; at least 4 of 16 samples (16 samples), Role-bound association: Zero bootstrap variation; the displayed interval does not establish certainty.
 
 ## Scope and reproducibility
 

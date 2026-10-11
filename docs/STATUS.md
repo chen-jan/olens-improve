@@ -1,5 +1,15 @@
 # Execution status
 
+## Clearer dashboard and slides published — 2026-10-11 12:25 UTC
+
+Public version **18** adds early sample-count curves and a focused intervention view. One approach is shown by default; choosing another removes unrelated methods. Hover/focus previews and enlarged, resizable plots are available. All 70 settings and the complete audited examples remain in the detailed views.
+
+Current dashboard, report and 94-slide deck use **Hallucination (chat)**, **Multihop (multi-token)**, **Chained intermediates**, and **Role-bound association**, with plain explanations below the official names. The deck explains seven methods and the meaning of sample count, thresholds and editing rounds before the results. Original released-lens results remain visibly distinct from the same sample capped to four bullets and from actual-parent comparisons.
+
+A separately reviewed supplement adds 28 original-relative paired comparisons from existing saved judgments. Its source hashes and all 32 absolute endpoints match the final study. These are post-hoc exploratory pointwise intervals, outside the unchanged frozen joint comparison menu. No new judge calls, GPU allocations or model inference were used. Actual 22-view dashboard checks and all 94 slide layout/PDF checks passed; native PowerPoint rendering remains unverified.
+
+See [experiment 063](experiments/063-clear-graphs-and-original-reference.md), [source review](reviews/clear-presentation-root-review-v1.json), [publication](reviews/clear-presentation-site-delivery-v1.json), and [delivery links](DELIVERY.md).
+
 ## Expanded study complete and public — 2026-10-11 07:10 UTC
 
 All **70 settings × four full benchmark banks** are complete: 469 questions and 19,435 fixed activation sites. The [public dashboard](https://olens-improve-research.jan618.chatgpt.site) is version **17**, with final results, reconstruction, grouped uncertainty, all variants, costs and 2,206 audited case entries. The [expanded report](EXPANDED_REPORT.md) and 86-slide deck are delivered; see [all download links](DELIVERY.md).

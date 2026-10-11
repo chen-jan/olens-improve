@@ -1,0 +1,28 @@
+{
+  "status": "published",
+  "created_utc": "2026-10-11T12:25:05.596237+00:00",
+  "url": "https://olens-improve-research.jan618.chatgpt.site",
+  "audience": "public",
+  "project_id": "appgprj_6aca37fc2878819185850105787209f9",
+  "version_id": "appgprj_6aca37fc2878819185850105787209f9~appgver_d9c25d8b98108191a35a6f27aaaa4d8f",
+  "version_number": 18,
+  "source_commit_sha": "dabd5efede1b658e799c917b1f5c399b960ced09",
+  "deployment_id": "appgdep_6acb80112050819193bdb5071dfe3989",
+  "archive_storage": {
+    "archive_format": "tar",
+    "sediment_file_id": "file_00000000bdcc81f6a45d2103ca9b8855",
+    "content_hash": "sha256:4f67bad5fc72ac79c3d3616526ae9a0fe69a7e5569cc10b781493788537539d4",
+    "size_bytes": 93214720,
+    "file_count": 90
+  },
+  "root_review": "docs/reviews/clear-presentation-root-review-v1.json",
+  "dashboard": "${OLENS_DATA_ROOT}/expansion-v1/dashboard/clear-v1",
+  "presentation": "${OLENS_DATA_ROOT}/expansion-v1/presentation/clear-v4",
+  "local_browser_views": 22,
+  "slide_pages": 94,
+  "limits": [
+    "Original-relative supplement is post-hoc exploratory with pointwise intervals only.",
+    "Native PowerPoint rendering parity has not been verified.",
+    "Local source-bound browser QA and actual publication are separate checks."
+  ]
+}

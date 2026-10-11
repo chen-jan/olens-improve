@@ -1,0 +1,59 @@
+{
+  "status": "all_selected_hosted_assets_verified",
+  "created_utc": "2026-10-11T12:25:54.014980+00:00",
+  "version_number": 18,
+  "base_url": "https://olens-improve-research.jan618.chatgpt.site",
+  "assets": [
+    {
+      "asset": "index.html",
+      "status": 200,
+      "sha256": "ae9d5738068ed8a513c8e728d73ea3809792712637998ec1f331687cdaccd606",
+      "bytes": 15677543,
+      "middleware_bytes": 938,
+      "verification": "Exact application HTML; Cloudflare-inserted middleware recorded separately"
+    },
+    {
+      "asset": "expansion.js",
+      "status": 200,
+      "sha256": "10eab83be43528529cc8d610e05efbbbfad1aa7144a23010f56b55ed0e8fab46",
+      "bytes": 64626,
+      "middleware_bytes": 0,
+      "verification": "Exact served asset bytes"
+    },
+    {
+      "asset": "expansion.css",
+      "status": 200,
+      "sha256": "2c93cfb690023d03f28f64c0cc13b53f088cda557796b8d4743640c847cdf04a",
+      "bytes": 9140,
+      "middleware_bytes": 0,
+      "verification": "Exact served asset bytes"
+    },
+    {
+      "asset": "original-reference-comparisons.json",
+      "status": 200,
+      "sha256": "59c2f3adc288e2d615e8abd928c10745a98ad4a57e6572cbf75c9aefc9441011",
+      "bytes": 38195,
+      "middleware_bytes": 0,
+      "verification": "Exact served asset bytes"
+    },
+    {
+      "asset": "downloads/expanded-slides.pdf",
+      "status": 200,
+      "sha256": "71041a77358161ff7eda8400a20af06150f1ef5bb8fb5492c2901cbd867fa830",
+      "bytes": 1197098,
+      "middleware_bytes": 0,
+      "verification": "Exact served asset bytes"
+    },
+    {
+      "asset": "downloads/expanded-report.md",
+      "status": 200,
+      "sha256": "a703853063d66b54d59c9df8beec558d870c8ba318e418ca09faef8cd96d0a90",
+      "bytes": 51392,
+      "middleware_bytes": 0,
+      "verification": "Exact served asset bytes"
+    }
+  ],
+  "limits": [
+    "Byte readback does not attest rendering on the user device. Local browser checks used the identical application assets."
+  ]
+}

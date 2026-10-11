@@ -2,7 +2,8 @@
 
 const element = id => document.getElementById(id);
 const families = ['hallucination', 'multihop_mt', 'chain_intermediates', 'role_bound_association'];
-const titles = ['Transcript contradictions', 'Hidden intermediate names', 'Intermediate numbers', 'Who did what'];
+const titles = ['Hallucination (chat)', 'Multihop (multi-token)', 'Chained intermediates', 'Role-bound association'];
+const taskDescriptions = ['Transcript contradictions', 'Required intermediate names', 'Intermediate numbers', 'Who did what to whom'];
 const groups = {
   selection: 'Choose a complete readout',
   consensus: 'Keep repeated statements',
@@ -31,6 +32,16 @@ const aliases = {
   combinations: 'combinations components ablations',
 };
 const defaultReference = 'capped_n1-n1';
+// Presentation contrasts fixed before rendering; no selection by observed outcome.
+const headlineInterventions = [
+  {label: 'More samples', id: 'best_n_exact-n32', parent: defaultReference, parentLabel: 'one capped sample', meaning: 'Choose the highest reconstruction-scoring complete description from 32 samples.'},
+  {label: 'Keep repeats', id: 'consensus_semantic_v5_support0.125_compaton_vetoon-n16', parent: 'consensus_exact_support0-n16', parentLabel: 'exact repetition (16 samples)', meaning: 'Keep statements repeated in at least 2 of 16 samples, with semantic matching, compatibility checks and a contradiction filter.'},
+  {label: 'Remove weak bullets', id: 'prune_loo_a32_0.005-n32', parent: 'best_n_exact-n32', parentLabel: 'best of 32 samples', meaning: 'Start with the best of 32 samples, then remove bullets contributing less than the frozen 0.005 reconstruction threshold.'},
+  {label: 'Combine bullets', id: 'pooled_greedy_swap-n32', parent: defaultReference, parentLabel: 'one capped sample', meaning: 'Combine up to four original bullets from 32 samples, choosing them by joint reconstruction fit.'},
+  {label: 'Control activations', id: 'best_n_specificity_mean-n32', parent: defaultReference, parentLabel: 'one capped sample', meaning: 'Choose among 32 samples by comparing fit under the real activation against the mean fit under frozen control activations.'},
+  {label: 'Edit pooled text', id: 'editing_round2-n32', parent: 'pooled_greedy_swap-n32', parentLabel: 'pooled bullets (32 samples)', meaning: 'Use two bounded rounds of helper edits and reconstruction scoring; compare the result with pooled bullets from 32 samples.'},
+  {label: 'Combine + prune', id: 'pooled_specificity_mean_then_prune_0.005-n32', parent: 'pooled_specificity_mean-n32', parentLabel: 'pooling with control activations', meaning: 'Combine bullets from 32 samples using control activations, then remove weak bullets at the frozen 0.005 threshold.'},
+];
 function methodDescription(condition) {
   if (condition.method === 'raw_n1') return 'Use the first original Oracle Lens sample as emitted.';
   if (condition.method === 'capped_n1') return 'Keep the first original sample, with the frozen deterministic cap of four bullets.';
@@ -39,6 +50,7 @@ function methodDescription(condition) {
   return descriptions[condition.group];
 }
 let data;
+let originalComparisons = [];
 let expanded = new Set();
 let allExpanded = false;
 let changeExtent = 0.3;
@@ -78,6 +90,47 @@ function reconstruction(id, family) {
 
 function fve(value) { return value == null ? 'Unavailable' : `${(100 * value).toFixed(2)}%`; }
 function fveDelta(value) { return value == null ? 'Unavailable' : `${value > 0 ? '+' : ''}${(100 * value).toFixed(2)} pp`; }
+
+function originalContext(family, fit = false, selectedId = null) {
+  const original = metric('raw_n1-n1', family);
+  const capped = metric(defaultReference, family);
+  const selected = selectedId ? metric(selectedId, family) : null;
+  return `<p class='original-reference'>Task rates: <strong>Original lens: ${percent(original?.value)}</strong> · four-bullet original: ${percent(capped?.value)}${selectedId ? ` · selected approach: ${percent(selected?.value)}` : ''}${fit ? '<br>Original full-prose reconstruction fit: unavailable.' : ''}</p>`;
+}
+
+function pointPreview(id, family) {
+  const condition = data.conditions.find(row => row.condition_id === id);
+  return `${condition?.label ?? 'Recorded setting'}. ${condition?.n ?? '?'} shared samples. ${titles[families.indexOf(family)]}: ${percent(metric(id, family)?.value)}; original lens ${percent(metric('raw_n1-n1', family)?.value)}; four-bullet original ${percent(metric(defaultReference, family)?.value)}.`;
+}
+
+function bindPlotActions(container, previewId) {
+  for (const point of container.querySelectorAll('[data-condition]')) {
+    const preview = () => {
+      if (element(previewId)) element(previewId).textContent = point.dataset.preview ?? pointPreview(point.dataset.condition, point.dataset.family ?? 'hallucination');
+    };
+    point.addEventListener('pointerenter', preview);
+    point.addEventListener('focus', preview);
+    const open = () => detail(point.dataset.condition, point.dataset.reference || element('reference').value);
+    point.addEventListener('click', open);
+    point.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); open(); }
+    });
+  }
+}
+
+function enlargeChart(id, title) {
+  const source = element(id);
+  if (!source) return;
+  const clone = source.cloneNode(true);
+  clone.removeAttribute('id');
+  for (const child of clone.querySelectorAll('[id]')) child.removeAttribute('id');
+  for (const button of clone.querySelectorAll('.chart-expand')) button.remove();
+  element('chart-title').textContent = title;
+  element('chart-content').replaceChildren(clone);
+  element('chart-preview').textContent = 'Original lens rates remain visible alongside the selected approach.';
+  bindPlotActions(element('chart-content'), 'chart-preview');
+  element('chart-dialog').showModal();
+}
 
 function fitGraph(row, label) {
   if (row?.mean_fve == null) return '';
@@ -123,9 +176,9 @@ function comparisonReference(row) {
   return row.reference ?? row.baseline_condition;
 }
 
-function paired(id, family) {
-  const reference = element('reference').value;
-  return (cohort().comparisons ?? []).find(row =>
+function paired(id, family, reference = element('reference').value) {
+  const rows = [...(cohort().comparisons ?? []), ...(element('cohort').value === 'full' ? originalComparisons : [])];
+  return rows.find(row =>
     row.condition === id && row.family === family &&
     comparisonReference(row) === reference && eligibleComparison(row));
 }
@@ -313,6 +366,7 @@ function render() {
     button.addEventListener('click', () => detail(button.dataset.condition));
   }
   scaling();
+  interventions();
   tradeoff();
 }
 
@@ -352,24 +406,26 @@ function tradeoff() {
       <text x='${left - 8}' y='${y(value) + 4}' text-anchor='end' font-size='12' fill='#536678'>${value * 100}%</text>`);
   }
   const measured = data.conditions.filter(condition => metric(condition.condition_id, family)?.value != null &&
-    metric(condition.condition_id, 'hallucination')?.value != null);
+    metric(condition.condition_id, 'hallucination')?.value != null &&
+    (selectedGroup === 'all' || condition.group === selectedGroup || ['raw_n1-n1', defaultReference].includes(condition.condition_id)));
   for (const condition of measured) {
     const horizontal = metric(condition.condition_id, family);
     const vertical = metric(condition.condition_id, 'hallucination');
-    const hint = `${condition.label}; ${titles[families.indexOf(family)]}: ${measurementHint(horizontal)}; ` +
-      `Transcript contradictions: ${measurementHint(vertical)}. Outcomes from different task banks.`;
-    const opacity = selectedGroup === 'all' || condition.group === selectedGroup ? 0.95 : 0.28;
+    const original = ['raw_n1-n1', defaultReference].includes(condition.condition_id);
+    const hint = `${condition.label}; ${condition.n} shared samples; ${titles[families.indexOf(family)]}: ${measurementHint(horizontal)}; ` +
+      `Transcript contradictions: ${measurementHint(vertical)}. Original lens: recovery ${percent(metric('raw_n1-n1', family)?.value)}, contradictions ${percent(metric('raw_n1-n1', 'hallucination')?.value)}. Four-bullet original: recovery ${percent(metric(defaultReference, family)?.value)}, contradictions ${percent(metric(defaultReference, 'hallucination')?.value)}. Outcomes from different task banks.`;
+    const opacity = 0.95;
     const horizontalBar = horizontal.ci95 ? `<line class='horizontal-interval'
       x1='${x(horizontal.ci95[0])}' x2='${x(horizontal.ci95[1])}' y1='${y(vertical.value)}' y2='${y(vertical.value)}'/>
       <path d='M${x(horizontal.ci95[0])} ${y(vertical.value) - 4}v8M${x(horizontal.ci95[1])} ${y(vertical.value) - 4}v8'/>` : '';
     const verticalBar = vertical.ci95 ? `<line class='vertical-interval'
       x1='${x(horizontal.value)}' x2='${x(horizontal.value)}' y1='${y(vertical.ci95[0])}' y2='${y(vertical.ci95[1])}'/>
       <path d='M${x(horizontal.value) - 4} ${y(vertical.ci95[0])}h8M${x(horizontal.value) - 4} ${y(vertical.ci95[1])}h8'/>` : '';
-    parts.push(`<g class='tradeoff-point' data-condition='${escape(condition.condition_id)}' data-opacity='${opacity}'
+    parts.push(`<g class='tradeoff-point' data-condition='${escape(condition.condition_id)}' data-family='${family}' data-preview='${escape(hint)}' data-opacity='${opacity}'
       tabindex='0' role='button' aria-label='${escape(hint)}' opacity='${opacity}'
-      stroke='${color(condition.group)}' stroke-width='1.5' style='cursor:pointer'>
+      stroke='${original ? '#19344b' : color(condition.group)}' stroke-width='1.5' style='cursor:pointer'>
       <title>${escape(hint)}</title>${horizontalBar}${verticalBar}
-      <circle cx='${x(horizontal.value)}' cy='${y(vertical.value)}' r='5' fill='${color(condition.group)}'/></g>`);
+      <circle cx='${x(horizontal.value)}' cy='${y(vertical.value)}' r='${original ? 7 : 5}' fill='${original ? '#fff' : color(condition.group)}'/>${condition.condition_id === 'raw_n1-n1' ? `<text x='${x(horizontal.value) + 10}' y='${y(vertical.value) - 12}' stroke='none' fill='#19344b' font-size='12'>Original lens</text>` : ''}</g>`);
   }
   container.innerHTML = `<svg viewBox='0 0 ${width} ${height}' width='100%' role='img'
     aria-label='${endpoint} versus transcript contradictions across separate task banks, with pointwise grouped 95% intervals'>
@@ -377,10 +433,10 @@ function tradeoff() {
     <text x='${width / 2}' y='${height - 11}' text-anchor='middle' font-size='14' fill='#263e50'>${titles[families.indexOf(family)]}: ${endpoint.toLowerCase()} (higher)</text>
     <text transform='translate(18 ${(top + bottom) / 2}) rotate(-90)' text-anchor='middle' font-size='14' fill='#263e50'>Transcript contradictions (lower)</text>
     ${measured.length ? '' : `<text x='${width / 2}' y='${(top + bottom) / 2}' text-anchor='middle' fill='#536678'>No measured task pairs in this cohort</text>`}
-    </svg><p class='detail-note'>${measured.length} measured settings. Pointwise grouped 95% intervals on both axes.
+    </svg>${originalContext(family)}<p class='original-reference'>Original lens transcript contradictions: <strong>${percent(metric('raw_n1-n1', 'hallucination')?.value)}</strong>; four-bullet original: ${percent(metric(defaultReference, 'hallucination')?.value)}.</p><p class='detail-note'>${measured.length} visible measured settings, including the original references. Pointwise grouped 95% intervals on both axes.
       Outcomes come from different task banks, not within-example precision/recall. No pooled average.
       ${element('cohort').value === 'pilot' ? 'Pilot points measure per-activation recovery rather than the native complete-question endpoint.' : ''}</p>
-    <p>${Object.entries(groups).map(([key, label]) =>
+    <p>${Object.entries(groups).filter(([key]) => selectedGroup === 'all' || key === selectedGroup).map(([key, label]) =>
       `<span style='display:inline-block;margin:0 16px 8px 0;color:${color(key)}'>● ${escape(label)}</span>`).join('')}</p>`;
   for (const point of container.querySelectorAll('.tradeoff-point')) {
     const highlight = active => {
@@ -391,39 +447,43 @@ function tradeoff() {
     point.addEventListener('pointerleave', () => highlight(false));
     point.addEventListener('focus', () => highlight(true));
     point.addEventListener('blur', () => highlight(false));
-    point.addEventListener('click', () => detail(point.dataset.condition));
-    point.addEventListener('keydown', event => {
-      if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        detail(point.dataset.condition);
-      }
-    });
   }
+  bindPlotActions(container, 'tradeoff-preview');
 }
 
 function scaling() {
   const samples = [1, 2, 4, 8, 16, 32];
   const fit = element('scaling-metric').value === 'reconstruction';
-  element('scaling-note').textContent = fit ? 'Secondary all-bank activation-site means with grouped pointwise 95% intervals; valid scored sites only. These are not question recovery rates. Raw unmodified text has no comparable fit. Missing points remain blank.' : 'Native task endpoints retain the selected cohort and original denominators. Grouped pointwise 95% intervals accompany each value. Reconstruction fit does not verify the truth of a description.';
+  element('headline-scope').textContent = cohort().scope;
+  element('scaling-note').textContent = fit ? 'Secondary all-bank activation-site means with grouped pointwise 95% intervals, regardless of the selected cohort. Reconstruction measures fit, not truthful prose. Focused axes include every displayed interval; missing points remain blank.' : 'Native task endpoints retain the selected cohort and original denominators. Bars show grouped pointwise 95% intervals. Focused axes include every displayed interval and differ across tasks; compare the labeled values.';
   element('scaling').innerHTML = families.map((family, index) => {
     const rows = samples.map(n => {
       const row = reconstruction(`best_n_exact-n${n}`, family);
       return {n, metric: fit ? row ? {value: row.mean_fve, ci95: row.mean_fve_ci95, scored: row.scored_site_count, intended: row.full_site_count} : null : metric(`best_n_exact-n${n}`, family)};
     });
-    const lower = fit ? Math.min(0, ...rows.flatMap(r => r.metric?.value == null ? [] : [r.metric.value, ...(r.metric.ci95 ?? [])])) : 0;
-    const upper = fit ? Math.max(1, ...rows.flatMap(r => r.metric?.value == null ? [] : [r.metric.value, ...(r.metric.ci95 ?? [])])) : 1;
-    const x = n => 50 + samples.indexOf(n) * 35;
-    const y = value => 170 - 140 * (value - lower) / (upper - lower);
+    const original = fit ? null : metric('raw_n1-n1', family);
+    const values = [...rows.map(r => r.metric), original].flatMap(r => r?.value == null ? [] : [r.value, ...(r.ci95 ?? [])]).filter(Number.isFinite);
+    const minimum = values.length ? Math.min(...values) : 0;
+    const maximum = values.length ? Math.max(...values) : 1;
+    const padding = Math.max(0.025, (maximum - minimum) * 0.18);
+    const lower = minimum >= 0 ? Math.max(0, Math.floor((minimum - padding) * 20) / 20) : Math.floor((minimum - padding) * 20) / 20;
+    const upper = maximum <= 1 ? Math.min(1, Math.ceil((maximum + padding) * 20) / 20) : Math.ceil((maximum + padding) * 20) / 20;
+    const x = n => 58 + samples.indexOf(n) * 45;
+    const y = value => 186 - 140 * (value - lower) / (upper - lower);
     const parts = [
-      `<line x1='50' y1='30' x2='50' y2='170' stroke='#bacddc'/>`,
-      `<line x1='50' y1='170' x2='225' y2='170' stroke='#bacddc'/>`,
+      `<line x1='58' y1='46' x2='58' y2='186' stroke='#bacddc'/>`,
+      `<line x1='58' y1='186' x2='283' y2='186' stroke='#bacddc'/>`,
     ];
     for (const value of [lower, (upper + lower) / 2, upper]) {
-      parts.push(`<text x='44' y='${y(value) + 4}' text-anchor='end' font-size='10' fill='#536678'>${percent(value)}</text>
-        <line x1='50' x2='225' y1='${y(value)}' y2='${y(value)}' stroke='#d9e4ed'/>`);
+      parts.push(`<text x='50' y='${y(value) + 4}' text-anchor='end' font-size='12' fill='#536678'>${percent(value)}</text>
+        <line x1='58' x2='283' y1='${y(value)}' y2='${y(value)}' stroke='#d9e4ed'/>`);
+    }
+    if (original?.value != null) {
+      if (original.ci95) parts.push(`<rect x='58' width='225' y='${y(original.ci95[1])}' height='${y(original.ci95[0]) - y(original.ci95[1])}' fill='#19344b' opacity='.045'/>`);
+      parts.push(`<line x1='58' x2='283' y1='${y(original.value)}' y2='${y(original.value)}' stroke='#19344b' stroke-dasharray='5 4'><title>Original released lens: ${escape(measurementHint(original, false, family))}</title></line>`);
     }
     rows.forEach((row, position) => {
-      parts.push(`<text x='${x(row.n)}' y='190' text-anchor='middle' font-size='11' fill='#536678'>${row.n}</text>`);
+      parts.push(`<text x='${x(row.n)}' y='207' text-anchor='middle' font-size='13' fill='#536678'>${row.n}</text>`);
       if (row.metric?.value == null) return;
       const value = row.metric.value;
       const ci = row.metric.ci95;
@@ -432,20 +492,140 @@ function scaling() {
         parts.push(`<line x1='${x(previous.n)}' x2='${x(row.n)}' y1='${y(previous.metric.value)}'
           y2='${y(value)}' stroke='#246ea3' stroke-width='2'/>`);
       }
-      if (ci) parts.push(`<line x1='${x(row.n)}' x2='${x(row.n)}' y1='${y(ci[0])}' y2='${y(ci[1])}' stroke='#246ea3'/>`);
-      parts.push(`<circle cx='${x(row.n)}' cy='${y(value)}' r='4' fill='#13756c' data-raw-value='${value}'>
-        <title>${row.n} samples: ${fit ? `${fve(value)} explained activation variance; raw FVE ${value}; ${row.metric.scored}/${row.metric.intended} sites${ci ? `; 95% ${ci.map(fve).join(' to ')}` : ''}` : `${percent(value)}${ci ? `, ${intervalText(row.metric)}` : ''}`}</title></circle>`);
+      if (ci) parts.push(`<line x1='${x(row.n)}' x2='${x(row.n)}' y1='${y(ci[0])}' y2='${y(ci[1])}' stroke='#246ea3'/>
+        <path d='M${x(row.n) - 4} ${y(ci[0])}h8M${x(row.n) - 4} ${y(ci[1])}h8' stroke='#246ea3'/>`);
+      const hint = `${row.n} samples: ${fit ? `${fve(value)} explained activation variance; raw FVE ${value}; ${row.metric.scored}/${row.metric.intended} sites${ci ? `; 95% ${ci.map(fve).join(' to ')}` : ''}` : measurementHint(row.metric, false, family)}`;
+      parts.push(`<g tabindex='0' role='img' aria-label='${escape(hint)}'><title>${escape(hint)}</title><circle cx='${x(row.n)}' cy='${y(value)}' r='4' fill='#13756c' data-raw-value='${value}'/></g>`);
     });
     const first = rows[0].metric;
     const last = rows[rows.length - 1].metric;
-    const recorded = fit ? reconstruction('best_n_exact-n32', family)?.parent_comparisons?.find(p => p.reference === 'best_n_exact-n1') : null;
-    const gain = fit && first?.value != null && last?.value != null ? `<p class='fit-gain'><strong>1 → 32 samples: ${fveDelta(recorded ? recorded.mean_delta : last.value - first.value)}</strong><br><small title='First ${first.scored}/${first.intended} sites; 32 samples ${last.scored}/${last.intended} sites'>${recorded ? `Paired change${recorded.ci95_delta ? `; 95% ${recorded.ci95_delta.map(fveDelta).join(' to ')}` : ''}` : 'Difference of available site means'}</small></p>` : '';
+    const recorded = fit ? reconstruction('best_n_exact-n32', family)?.parent_comparisons?.find(p => p.reference === 'best_n_exact-n1')
+      : (cohort().comparisons ?? []).find(p => p.condition === 'best_n_exact-n32' && p.family === family && comparisonReference(p) === 'best_n_exact-n1' && eligibleComparison(p));
+    const recordedDelta = fit ? recorded?.mean_delta : recorded?.delta;
+    const recordedCI = fit ? recorded?.ci95_delta : recorded?.ci95_delta;
+    const gain = recordedDelta == null ? '' : `<p class='fit-gain'>Recorded paired 1 → 32 change: <strong>${fit ? fveDelta(recordedDelta) : signed(recordedDelta)}</strong>${recordedCI ? ` (95% ${recordedCI.map(fit ? fveDelta : signed).join(' to ')})` : '; interval unavailable'}. ${escape(recorded.warning ?? '')}</p>`;
     const endpoint = element('cohort').value === 'pilot' ? 'Per activation diagnostic' : 'Original benchmark endpoint';
-    return `<article class='curve-box'><h3>${titles[index]}</h3>${gain}
-      <svg viewBox='0 0 260 215' role='img' aria-label='${titles[index]} against sample count'>
-        ${parts.join('')}<text x='140' y='212' text-anchor='middle' font-size='11' fill='#536678'>Samples per activation</text>
-      </svg>${taskCaption(family)}<p>${fit ? 'Explained activation variance · all-bank sites (secondary)' : `${index === 0 ? 'Lower' : 'Higher'} is better · ${endpoint}`}</p></article>`;
+    return `<article class='curve-box' id='samples-${family}'><div class='chart-heading'><h3>${titles[index]}</h3><button class='chart-expand' type='button' data-expand-chart='samples-${family}' data-chart-title='${titles[index]} versus samples'>Enlarge</button></div><p>${taskDescriptions[index]}</p>${originalContext(family, fit)}<p class='curve-endpoints'><strong>1 sample: ${fit ? fve(first?.value) : percent(first?.value)}</strong><span><strong>32 samples: ${fit ? fve(last?.value) : percent(last?.value)}</strong></span></p>
+      <svg viewBox='0 0 330 240' role='img' aria-label='${titles[index]} against sample count; focused axis ${percent(lower)} to ${percent(upper)}'>
+        <text x='58' y='22' font-size='12' fill='#536678'>Focused axis · ${fit || index !== 0 ? 'higher' : 'lower'} is better</text>
+        ${parts.join('')}<text x='170' y='233' text-anchor='middle' font-size='13' fill='#536678'>Samples per activation</text>
+      </svg>${gain}${taskCaption(family)}<p>${fit ? 'Explained activation variance · all-bank sites (secondary)' : `${endpoint}. Dashed line: original released lens; faint band: its 95% interval.`}</p></article>`;
   }).join('');
+}
+
+function headlineComparison(setting, family, fit, mode) {
+  const reference = mode === 'parent' ? setting.parent : mode === 'original' ? 'raw_n1-n1' : defaultReference;
+  if (fit) {
+    const matches = (reconstruction(setting.id, family)?.parent_comparisons ?? []).filter(row => row.reference === reference);
+    return matches.find(row => row.kind === 'frozen_parent') ?? matches[0];
+  }
+  return paired(setting.id, family, reference);
+}
+
+function headlineWarnings(row, fit) {
+  if (!row) return ['Recorded paired comparison unavailable; no change was calculated.'];
+  const warnings = [row.warning, ...(row.warnings ?? [])].filter(Boolean);
+  const defined = fit ? row.defined_bootstrap_draws : row.defined_draws;
+  if (row.bootstrap_replicates && defined != null && defined < row.bootstrap_replicates) warnings.push(`${defined} of ${row.bootstrap_replicates} bootstrap draws were defined.`);
+  const ci = row.ci95_delta;
+  if (ci && ci[0] === ci[1] && !warnings.some(w => /zero|degenerate|variation/i.test(w))) warnings.push('Degenerate bootstrap interval; this does not establish zero uncertainty or equivalence.');
+  if (fit && row.missing_or_invalid_pairs) warnings.push(`${row.missing_or_invalid_pairs} intended pairs have missing or invalid fits.`);
+  return warnings;
+}
+
+function interventions() {
+  const fit = element('intervention-metric').value === 'reconstruction';
+  const mode = element('intervention-reference').value;
+  const selected = element('intervention-approach').value;
+  const settings = headlineInterventions.filter(setting => selected === 'all' || setting.id === selected);
+  const observations = families.map(family => settings.map(setting => {
+    const row = headlineComparison(setting, family, fit, mode);
+    const reference = mode === 'parent' ? setting.parent : mode === 'original' ? 'raw_n1-n1' : defaultReference;
+    const raw = fit ? row?.mean_delta : row?.delta;
+    const ci = row?.ci95_delta;
+    const direction = !fit && family === 'hallucination' ? -1 : 1;
+    return {setting, reference, row, raw, value: raw == null ? null : direction * raw,
+      ci95: ci ? direction === -1 ? [-ci[1], -ci[0]] : ci : null, warnings: headlineWarnings(row, fit)};
+  }));
+  // If recorded raw-original pairs are missing, show absolute rates, never a mean subtraction.
+  const rates = mode === 'original' && !fit && observations.flat().some(row => row.raw == null);
+  const values = observations.flat().flatMap(row => row.value == null ? [] : [row.value, ...(row.ci95 ?? [])]).filter(Number.isFinite);
+  const extent = Math.max(0.01, Math.ceil(Math.max(0, ...values.map(Math.abs)) * 100) / 100);
+  const compact = window.innerWidth < 650;
+  const plotWidth = compact ? 390 : 480;
+  const plotLeft = compact ? 165 : 188;
+  const plotSpan = compact ? 150 : 200;
+  const format = fit ? fveDelta : signed;
+  const selection = settings.length === 1 ? settings[0] : null;
+  element('intervention-choice').textContent = selection ? `${selection.label}: ${selection.meaning} All other approaches are hidden. This is an inference setting of the same frozen lens.` : 'Choose an approach to show it alone and focus the axis around its complete intervals.';
+  element('intervention-scope').textContent = `${fit ? 'Reconstruction uses all-bank sites. Higher fit does not establish truthful prose.' : cohort().scope + '.'} ${mode === 'parent' ? 'Changes compare with each method’s starting point; the original lens stays visible.' : mode === 'original' ? rates ? 'Paired changes against the original are unavailable here; these plots show measured rates.' : 'Changes compare directly with the original Oracle Lens. These added comparisons are exploratory, with pointwise 95% intervals.' : 'Changes compare with the first original description, limited to four intact bullets. The full original output stays visible.'} ${rates ? 'Axes include the original and every interval.' : 'Right means better. All four plots use the same scale.'}`;
+  element('intervention-preview').textContent = 'Hover or focus a row to preview its result. Select it for details.';
+  const records = [];
+  element('interventions').innerHTML = observations.map((rows, index) => {
+    const family = families[index];
+    const direction = family === 'hallucination' ? -1 : 1;
+    const original = metric('raw_n1-n1', family);
+    const rateMeasurements = [original, ...rows.map(row => metric(row.setting.id, family))];
+    const rateValues = rateMeasurements.flatMap(row => row?.value == null ? [] : [row.value, ...(row.ci95 ?? [])]).filter(Number.isFinite);
+    const minimum = rateValues.length ? Math.min(...rateValues) : 0;
+    const maximum = rateValues.length ? Math.max(...rateValues) : 1;
+    const padding = Math.max(0.025, (maximum - minimum) * 0.12);
+    const rateLow = Math.max(0, Math.floor((minimum - padding) * 20) / 20);
+    const rateHigh = Math.min(1, Math.ceil((maximum + padding) * 20) / 20);
+    const x = rates ? value => plotLeft + plotSpan * (direction === -1 ? (rateHigh - value) : (value - rateLow)) / (rateHigh - rateLow) : value => plotLeft + plotSpan * (value + extent) / (2 * extent);
+    const lastY = 53 + (rows.length - 1) * 43;
+    const bottom = lastY + 29;
+    const height = bottom + 61;
+    const parts = [];
+    const ticks = rates ? [rateLow, (rateLow + rateHigh) / 2, rateHigh] : [-extent, 0, extent];
+    for (const tick of ticks) {
+      parts.push(`<line x1='${x(tick)}' x2='${x(tick)}' y1='31' y2='${bottom}' stroke='${!rates && tick === 0 ? '#91aabb' : '#e8eef3'}' ${!rates && tick === 0 ? "stroke-dasharray='3 3'" : ''}/>
+        <text x='${x(tick)}' y='${bottom + 21}' text-anchor='middle' font-size='12' fill='#536678'>${rates ? percent(tick) : tick === 0 ? '0' : `${tick > 0 ? '+' : '−'}${(Math.abs(tick) * 100).toFixed(extent < 0.1 ? 1 : 0)}`}</text>`);
+    }
+    if (rates && original?.value != null) {
+      parts.push(`<line x1='${x(original.value)}' x2='${x(original.value)}' y1='26' y2='${bottom}' stroke='#19344b' stroke-dasharray='4 3'/><text x='${x(original.value)}' y='17' text-anchor='middle' font-size='11' fill='#19344b'>Original lens</text>`);
+    }
+    rows.forEach((observation, position) => {
+      const {setting, reference, row, raw, warnings} = observation;
+      const measured = metric(setting.id, family);
+      const shown = rates ? measured : observation;
+      const y = 53 + position * 43;
+      const referenceName = mode === 'parent' ? setting.parentLabel : mode === 'original' ? 'original full prose' : 'four-bullet original';
+      const rawCI = row?.ci95_delta;
+      const unavailable = shown?.value == null;
+      const hint = `${pointPreview(setting.id, family)} ${rates ? `Measured rate ${percent(measured?.value)}; ${intervalText(measured)}. Recorded paired change unavailable.` : `${setting.label}, versus ${referenceName}: ${unavailable ? 'recorded paired comparison unavailable' : `benefit ${format(observation.value)}; raw ${fit ? 'FVE' : 'task-rate'} delta ${raw}; raw 95% interval ${rawCI ? rawCI.join(' to ') : 'unavailable'}`}`} ${warnings.join(' ')}`;
+      parts.push(`<g class='intervention-point' data-condition='${escape(setting.id)}' data-family='${family}' data-reference='${escape(reference)}' data-preview='${escape(hint)}' data-raw-delta='${raw ?? ''}' tabindex='0' role='button' aria-label='${escape(hint)}'>
+        <title>${escape(hint)}</title><text x='0' y='${y - 3}' font-size='14' fill='#19344b'>${escape(setting.label)}</text>
+        <text x='0' y='${y + 12}' font-size='10' fill='#536678'>${mode === 'parent' ? `vs ${escape(referenceName)}` : `${data.conditions.find(c => c.condition_id === setting.id)?.n ?? '?'} samples`}</text>
+        ${unavailable ? `<text x='${plotLeft + plotSpan / 2}' y='${y + 4}' text-anchor='middle' font-size='12' fill='#778998'>Unavailable</text>` : pointAndInterval(shown, x, y)}
+        <text x='${plotWidth - 12}' y='${y + 4}' text-anchor='end' font-size='12' fill='#19344b'>${unavailable ? '' : rates ? percent(shown.value) : `${shown.value > 0 ? '+' : ''}${(shown.value * 100).toFixed(fit ? 2 : 1)}${warnings.length ? '*' : ''}`}</text></g>`);
+      records.push(`<article><h4>${titles[index]} · ${escape(setting.label)}</h4><p>${escape(setting.meaning)}</p><p>Setting: ${breakableId(setting.id)}<br>Reference: ${escape(conditionName(reference))} (${breakableId(reference)})</p>${originalContext(family, fit, setting.id)}
+        <p>${raw == null ? 'Recorded paired comparison unavailable; no change was calculated.' : `Raw change: ${format(raw)}${rawCI ? `; pointwise 95% interval ${rawCI.map(format).join(' to ')}.` : '; interval unavailable.'} ${fit ? `${row.paired_sites} / ${row.intended_paired_sites} intended sites paired; ${row.independent_groups} groups.` : `${row.items} questions; ${row.independent_groups} groups.`}`}</p>
+        ${warnings.map(warning => `<p class='detail-note paired-warning'>${escape(warning)}</p>`).join('')}</article>`);
+    });
+    const consensus = rows.find(row => row.setting.id === headlineInterventions[1].id);
+    const shareText = id => {
+      const share = cohort().secondary?.[id]?.hallucination?.assertion_share;
+      return share?.denominator > 0 ? `${share.numerator.toLocaleString()} / ${share.denominator.toLocaleString()} (${percent(share.numerator / share.denominator)})` : `${metric(id, family)?.denominator ?? 'unmeasured'}`;
+    };
+    const caution = !fit && index === 0 && consensus ? `<p class='note'>Fewer errors can mean less information. Keep repeats: ${shareText(consensus.setting.id)} readouts are specific, versus ${shareText(consensus.reference)} for its reference.</p>` : '';
+    const selectedOriginalPair = selection && !fit && !rates ? `<details class='absolute-pair'><summary>Measured rates against the original lens</summary>${absolutePair(selection.id, family)}</details>` : '';
+    return `<article class='effect-box' id='effects-${family}'><div class='chart-heading'><h3>${titles[index]}</h3><button class='chart-expand' type='button' data-expand-chart='effects-${family}' data-chart-title='${titles[index]}'>Enlarge</button></div>${originalContext(family, fit, selection?.id)}<p>${rates ? 'Measured rates' : fit ? 'Higher reconstruction fit' : index === 0 ? 'Fewer transcript contradictions' : 'More questions recovered'} → right is better</p>
+      <svg viewBox='0 0 ${plotWidth} ${height}' role='group' aria-label='${titles[index]} ${rates ? 'measured rates with original reference' : 'paired benefit in percentage points'}'>${parts.join('')}
+        <text x='${plotLeft + plotSpan / 2}' y='${height - 10}' text-anchor='middle' font-size='12' fill='#536678'>← worse · ${rates ? 'measured rate' : 'percentage points'} · better →</text></svg>${selectedOriginalPair}${caution}${!rates && rows.some(row => row.warnings.length && row.value != null) ? '<p class="note">* Measurement warning; open the row or comparison records.</p>' : ''}</article>`;
+  }).join('');
+  element('intervention-records').innerHTML = records.join('');
+  bindPlotActions(element('interventions'), 'intervention-preview');
+}
+
+function absolutePair(id, family) {
+  const original = metric('raw_n1-n1', family);
+  const selected = metric(id, family);
+  const values = [original, selected].flatMap(row => row?.value == null ? [] : [row.value, ...(row.ci95 ?? [])]).filter(Number.isFinite);
+  const low = Math.max(0, Math.min(0, ...values));
+  const high = Math.max(1, ...values);
+  const x = value => 130 + 230 * (value - low) / (high - low);
+  return `<svg viewBox='0 0 420 118' role='img' aria-label='Original lens and selected approach absolute measured rates; no paired inference'>${[original, selected].map((row, i) => `<g><title>${escape(measurementHint(row, false, family))}</title><text x='0' y='${33 + i * 34}' font-size='13'>${i ? 'Selected approach' : 'Original lens'}</text>${pointAndInterval(row, x, 29 + i * 34)}</g>`).join('')}<text x='130' y='103' font-size='12'>0%</text><text x='360' y='103' text-anchor='end' font-size='12'>100%</text></svg><p class='note'>Absolute measured rates and separate 95% intervals; the paired comparison above uses its stated reference.</p>`;
 }
 
 function detailTask(id, family, index) {
@@ -459,11 +639,12 @@ function detailTask(id, family, index) {
   const warnings = (measurement?.warnings ?? []).map(warning =>
     `<p class='detail-note'>${escape(warning)}</p>`).join('');
   return `<article data-task='${family}'><h3>${titles[index]}</h3>${taskCaption(family)}
+    ${originalContext(family)}
     <strong>${measurement?.value != null ? percent(measurement.value) : missingLabel(measurement, family)}</strong>
     ${detailGraph(measurement, titles[index], false, family)}${description}${warnings}</article>`;
 }
 
-function detail(id) {
+function detail(id, reference = element('reference').value) {
   const condition = data.conditions.find(row => row.condition_id === id);
   const parts = [
     `<h2>${escape(condition.label)}</h2><p>${escape(methodDescription(condition))}</p>`,
@@ -483,9 +664,9 @@ function detail(id) {
         ${families.map((family, index) => `<p><strong>${titles[index]}:</strong> ${escape(taskComparison.notes[family])}</p>`).join('')}</details>`);
     }
   }
-  const comparisons = families.map(family => paired(id, family)).filter(Boolean);
+  const comparisons = families.map(family => paired(id, family, reference)).filter(Boolean);
   if (comparisons.length) {
-    parts.push('<h3>Paired change versus the selected reference</h3>');
+    parts.push(`<h3>Paired change versus ${escape(conditionName(reference))}</h3>`);
     for (const comparison of comparisons) {
       const title = titles[families.indexOf(comparison.family)];
       const measurement = {value: comparison.delta, ci95: comparison.ci95_delta,
@@ -615,6 +796,17 @@ async function start() {
       if (!response.ok) throw Error('Data request failed');
       data = await response.json();
     }
+    // Additive, separately reviewed raw-original contrasts; frozen data stays intact.
+    try {
+      const originalEmbedded = element('original-reference-data');
+      let supplement;
+      if (originalEmbedded) supplement = JSON.parse(originalEmbedded.textContent);
+      else {
+        const response = await fetch('original-reference-comparisons.json', {cache: 'no-store'});
+        if (response.ok) supplement = await response.json();
+      }
+      if (supplement?.cohort === 'full' && supplement.reference === 'raw_n1-n1' && Array.isArray(supplement.comparisons)) originalComparisons = supplement.comparisons;
+    } catch (_) { originalComparisons = []; }
     const complete = data.conditions.filter(condition => families.every(family =>
       data.cohorts.full.rows.some(row => row.condition === condition.condition_id &&
         row.family === family && row.metric?.value != null))).length;
@@ -628,6 +820,12 @@ async function start() {
     showResources();
     element('scaling-metric').querySelector('[value="reconstruction"]').disabled = !data.reconstruction;
     element('scaling-metric').addEventListener('change', scaling);
+    element('intervention-metric').querySelector('[value="reconstruction"]').disabled = !data.reconstruction;
+    element('intervention-approach').innerHTML = `<option value='all'>All seven approaches</option>` + headlineInterventions.map(setting => `<option value='${escape(setting.id)}'>${escape(setting.label)}</option>`).join('');
+    element('intervention-approach').value = headlineInterventions[0].id;
+    if (originalComparisons.length) element('intervention-reference').value = 'original';
+    for (const id of ['intervention-metric', 'intervention-reference', 'intervention-approach']) element(id).addEventListener('change', interventions);
+    window.addEventListener('resize', interventions);
     for (const id of ['cohort', 'view', 'reference', 'search']) {
       element(id).addEventListener(id === 'search' ? 'input' : 'change', render);
     }
@@ -638,6 +836,11 @@ async function start() {
       render();
     });
     element('close-detail').addEventListener('click', () => element('detail').close());
+    element('close-chart').addEventListener('click', () => element('chart-dialog').close());
+    document.addEventListener('click', event => {
+      const button = event.target.closest('[data-expand-chart]');
+      if (button) enlargeChart(button.dataset.expandChart, button.dataset.chartTitle);
+    });
     render();
   } catch (error) {
     element('status').textContent = 'Results could not be loaded';

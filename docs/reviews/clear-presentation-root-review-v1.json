@@ -1,0 +1,73 @@
+{
+  "status": "root_reviewed_clear_presentation_ready",
+  "scientific_native_sha256": "e2773e297d7724f20d656ecf07c5de00097604d8a85c516938a565626b07876e",
+  "original_reference_sha256": "079bc1426b89cfb774433032f3144219289d42ade57ae37e0d23eea8f45f1355",
+  "dashboard_directory": "${OLENS_DATA_ROOT}/expansion-v1/dashboard/clear-v1",
+  "dashboard_browser_views": 22,
+  "dashboard_sources_unchanged": true,
+  "slide_directory": "${OLENS_DATA_ROOT}/expansion-v1/presentation/clear-v4",
+  "slide_count": 94,
+  "slide_core_count": 27,
+  "slide_layout": "pass",
+  "native_powerpoint_rendering": "unverified",
+  "interpretation": "Original-relative supplement is posthoc exploratory and pointwise only. Original complete frozen headline menu and judgments unchanged.",
+  "official_task_names": [
+    "Hallucination (chat)",
+    "Multihop (multi-token)",
+    "Chained intermediates",
+    "Role-bound association"
+  ],
+  "inference_calls": 0,
+  "assets": {
+    "index.html": {
+      "source": "${OLENS_DATA_ROOT}/expansion-v1/dashboard/clear-v1/index.html",
+      "sha256": "ae9d5738068ed8a513c8e728d73ea3809792712637998ec1f331687cdaccd606",
+      "bytes": 15677543
+    },
+    "expansion.js": {
+      "source": "${OLENS_DATA_ROOT}/expansion-v1/dashboard/clear-v1/expansion.js",
+      "sha256": "10eab83be43528529cc8d610e05efbbbfad1aa7144a23010f56b55ed0e8fab46",
+      "bytes": 64626
+    },
+    "expansion.css": {
+      "source": "${OLENS_DATA_ROOT}/expansion-v1/dashboard/clear-v1/expansion.css",
+      "sha256": "2c93cfb690023d03f28f64c0cc13b53f088cda557796b8d4743640c847cdf04a",
+      "bytes": 9140
+    },
+    "expansion-data.json": {
+      "source": "${OLENS_DATA_ROOT}/expansion-v1/dashboard/clear-v1/expansion-data.json",
+      "sha256": "7c6ee17aff9f0b4310e08b2814dfe8c862f11d083a50b35d309982074db595dd",
+      "bytes": 15629798
+    },
+    "original-reference-comparisons.json": {
+      "source": "${OLENS_DATA_ROOT}/expansion-v1/dashboard/clear-v1/original-reference-comparisons.json",
+      "sha256": "59c2f3adc288e2d615e8abd928c10745a98ad4a57e6572cbf75c9aefc9441011",
+      "bytes": 38195
+    },
+    "downloads/expanded-slides.pdf": {
+      "source": "${OLENS_DATA_ROOT}/expansion-v1/presentation/clear-v4/expanded.pdf",
+      "sha256": "71041a77358161ff7eda8400a20af06150f1ef5bb8fb5492c2901cbd867fa830",
+      "bytes": 1197098
+    },
+    "downloads/expanded-slides.pptx": {
+      "source": "${OLENS_DATA_ROOT}/expansion-v1/presentation/clear-v4/expanded.pptx",
+      "sha256": "5e794e3cfecfa256bbf0498eba1a5953938a27d6088f6bbdcd4452fe0059c0c8",
+      "bytes": 717178
+    },
+    "downloads/expanded-speaker-notes.md": {
+      "source": "${OLENS_DATA_ROOT}/expansion-v1/presentation/clear-v4/speaker-notes.md",
+      "sha256": "d77c93b7499897d0dab2859f1c33a71f0590618236b1c4afd4cbff426d8524d7",
+      "bytes": 1861333
+    },
+    "downloads/expanded-report.md": {
+      "source": "docs/EXPANDED_REPORT.md",
+      "sha256": "a703853063d66b54d59c9df8beec558d870c8ba318e418ca09faef8cd96d0a90",
+      "bytes": 51392
+    },
+    "downloads/original-reference-comparisons.json": {
+      "source": "docs/reviews/original-reference-comparisons-v1.json",
+      "sha256": "079bc1426b89cfb774433032f3144219289d42ade57ae37e0d23eea8f45f1355",
+      "bytes": 48914
+    }
+  }
+}
