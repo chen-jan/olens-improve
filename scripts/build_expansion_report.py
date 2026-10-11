@@ -6,12 +6,13 @@ The reviewer binds every conclusion to the exact measured result artifact.
 import argparse
 import hashlib
 import json
+import math
 from pathlib import Path
 
-from build_expansion_dashboard import FAMILIES, ACTIVE, label, category
+from build_expansion_dashboard import FAMILIES, ACTIVE, label, category, checked_artifact
 
 TITLES = dict(zip(FAMILIES, (
-    'Transcript contradictions', 'Hidden names', 'Arithmetic steps', 'Who did what')))
+    'Transcript contradictions', 'Hidden intermediate names', 'Intermediate numbers', 'Who did what')))
 GROUPS = {
     'selection': 'Choosing a complete readout',
     'consensus': 'Keeping repeated statements',
@@ -66,7 +67,150 @@ def checked_inputs(results_path, inventory_path, review_path):
         'results': results_sha, 'inventory': inventory_sha, 'review': review_sha}
 
 
-def render(results, inventory, review, active, metrics, hashes):
+def checked_reconstruction(path, inventory, review, active, hashes):
+    """Optional secondary data must match this reviewed result and frozen reader."""
+    top = review.get('reconstruction_sha256')
+    presentation = review.get('presentation', {}).get('reconstruction_sha256')
+    if top and presentation and top != presentation:
+        raise ValueError('Conflicting reviewed reconstruction source hashes')
+    authority = top or presentation
+    if path is None:
+        if authority:
+            raise ValueError('Reviewed reconstruction artifact must be supplied')
+        return None, None
+    artifact, artifact_sha = checked_artifact(
+        path, 'reconstruction', {**review, 'reconstruction_sha256': authority},
+        inventory, hashes['inventory'], hashes['results'], set(active))
+
+    def number(value):
+        return isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value)
+
+    def fit(value):
+        if value is not None and (not number(value) or value > 1):
+            raise ValueError('Invalid reconstruction FVE')
+
+    def bounds(values, difference=False):
+        if values is not None and (not isinstance(values, list) or len(values) != 2
+                                   or not all(number(v) for v in values) or values[0] > values[1]
+                                   or (not difference and values[1] > 1)):
+            raise ValueError('Invalid reconstruction interval')
+
+    def pp_matches(row, raw_field, pp_field):
+        if pp_field not in row:
+            return
+        raw = row.get(raw_field)
+        expected = None if raw is None else [100 * v for v in raw] if isinstance(raw, list) else 100 * raw
+        if row[pp_field] != expected:
+            raise ValueError('Reconstruction percentage-point field differs from raw value')
+
+    def sites(value):
+        if not isinstance(value, int) or isinstance(value, bool) or value < 0:
+            raise ValueError('Invalid reconstruction site count')
+
+    for row in artifact['rows']:
+        for field in ('full_site_count', 'scored_site_count'):
+            sites(row[field])
+        fit(row['mean_fve']); fit(row['median_fve'])
+        bounds(row.get('mean_fve_ci95'))
+        if row['scored_site_count'] == 0 and (row['mean_fve'] is not None or row.get('mean_fve_ci95') is not None):
+            raise ValueError('Empty reconstruction coverage must have unavailable mean and interval')
+        pp_matches(row, 'mean_fve', 'mean_fve_percentage_points')
+        pp_matches(row, 'mean_fve_ci95', 'mean_fve_ci95_percentage_points')
+        seen = set()
+        for paired in row.get('parent_comparisons', []):
+            key = paired['reference'], paired.get('kind')
+            if key in seen:
+                raise ValueError('Duplicate reconstruction parent comparison')
+            seen.add(key)
+            sites(paired['paired_sites'])
+            if paired['paired_sites'] > row['scored_site_count']:
+                raise ValueError('Paired reconstruction mask exceeds scored coverage')
+            if paired['mean_delta'] is not None and not number(paired['mean_delta']):
+                raise ValueError('Invalid reconstruction difference')
+            bounds(paired.get('ci95_delta'), difference=True)
+            if paired['paired_sites'] == 0 and (paired['mean_delta'] is not None or paired.get('ci95_delta') is not None):
+                raise ValueError('Empty paired mask must have unavailable difference and interval')
+            pp_matches(paired, 'mean_delta', 'mean_delta_percentage_points')
+            pp_matches(paired, 'ci95_delta', 'ci95_delta_percentage_points')
+    return artifact, artifact_sha
+
+
+def fve_points(value, difference=False):
+    if value is None:
+        return 'Unavailable'
+    return (f'{100 * value:+.2f}' if difference else f'{100 * value:.2f}') + ' pp'
+
+
+def fve_interval(values):
+    if values is None:
+        return 'Unavailable'
+    return f'[{100 * values[0]:+.2f}, {100 * values[1]:+.2f}] pp'
+
+
+def reconstruction_section(artifact, artifact_sha, source, review, active):
+    if artifact is None:
+        return []
+    source_link = Path(source).name
+    conditions = review.get('reconstruction_conditions',
+                            review.get('presentation', {}).get('chart_conditions', list(active)))
+    if (not isinstance(conditions, list) or not conditions or len(set(conditions)) != len(conditions)
+            or any(c not in active for c in conditions)):
+        raise ValueError('Reconstruction table must name distinct frozen active settings')
+    rows = {(r['condition'], r['family']): r for r in artifact['rows']}
+    lines = ['## Reconstruction fit: a separate secondary diagnostic', '',
+             'Fraction of variance explained (FVE) measures how well the fixed reconstructor fits '
+             'a recorded activation vector after the original layer-specific whitening and exact '
+             'nonnegative joint fit. It measures fit at activation sites, while the quality tables '
+             'retain their native question-grid or transcript endpoints. Fit gains do not establish '
+             'semantic faithfulness. Negative FVE values remain valid.', '',
+             'FVE means give equal weight to valid activation sites. Pointwise 95% intervals resample '
+             'whole related-question groups with those site weights. Parent-relative differences use '
+             'only sites valid for both outputs, so their masks can differ from the absolute means '
+             'and the quality comparisons. Each recorded reference is named below. These post-hoc '
+             'intervals are outside the 496 headline contrast adjustment.', '',
+             'All fit values below are in percentage points of FVE: 0.025 on the raw fraction scale '
+             'is 2.5 pp. The reconstructor scores at most the first 32 cleaned tokens per bullet; '
+             'longer suffixes remain in the readout without independent reconstruction verification. '
+             'Recorded valid empty outputs can have zero fit; unavailable fits and empty paired masks '
+             'remain unavailable. Zero bootstrap variation does not establish certainty.', '',
+             '| Setting | Task | Mean FVE; grouped pointwise 95% interval | Valid sites / intended sites |',
+             '|---|---|---|---:|']
+    for condition in conditions:
+        for family in FAMILIES:
+            row = rows.get((condition, family))
+            if row is None:
+                lines.append(f'| {label(active[condition])} | {TITLES[family]} | Unavailable: no recorded fit row | Unavailable |')
+                continue
+            warnings = row.get('mean_fve_warnings', [])
+            suffix = ' † ' + '; '.join(warnings) if warnings else ''
+            lines.append(f"| {label(active[condition])} | {TITLES[family]} | "
+                         f"{fve_points(row['mean_fve'])}; {fve_interval(row.get('mean_fve_ci95'))}{suffix} | "
+                         f"{row['scored_site_count']:,} / {row['full_site_count']:,} |")
+    lines += ['', '| Setting | Task | Recorded reconstruction reference | Comparison kind | Δ FVE; grouped paired pointwise 95% interval | Common valid sites / intended pairs | Related groups |',
+              '|---|---|---|---|---|---:|---:|']
+    for condition in conditions:
+        for family in FAMILIES:
+            row = rows.get((condition, family), {})
+            parents = row.get('parent_comparisons', [])
+            if not parents:
+                lines.append(f'| {label(active[condition])} | {TITLES[family]} | No recorded reference | — | Unavailable | — | — |')
+            for paired in parents:
+                warning = ' † ' + paired['warning'] if paired.get('warning') else ''
+                intended = paired.get('intended_paired_sites')
+                coverage = f"{paired['paired_sites']:,} / {intended:,}" if intended is not None else f"{paired['paired_sites']:,} / unrecorded"
+                lines.append(f"| {label(active[condition])} | {TITLES[family]} | {label(active[paired['reference']])} | "
+                             f"{paired.get('kind', 'unrecorded')} | {fve_points(paired['mean_delta'], True)}; "
+                             f"{fve_interval(paired.get('ci95_delta'))}{warning} | {coverage} | "
+                             f"{paired.get('independent_groups', 'unrecorded')} |")
+    lines += ['', 'The settings shown here follow the reviewed presentation order; they are not ranked by fit. '
+              'All method/family rows, every recorded parent comparison, masks, warnings and source pins '
+              f'are retained in the [complete numeric reconstruction data]({source_link}).', '',
+              f'Reconstruction artifact SHA-256: `{artifact_sha}`.', '']
+    return lines
+
+
+def render(results, inventory, review, active, metrics, hashes, *, reconstruction=None,
+           reconstruction_sha256=None, reconstruction_source=None):
     full = results['cohorts']['full']
     lines = [f"# {review.get('title', 'Oracle Lens: expanded inference-time comparison')}",
              '', review['headline'], '',
@@ -82,8 +226,9 @@ def render(results, inventory, review, active, metrics, hashes):
               'is retained separately with its original output. Pooling keeps intact source bullets. '
               'Editing uses explicitly recorded Luna proposals and fresh reconstruction vectors.', '',
               'Transcript contradictions measure wrong specific readouts divided by all specific readouts, '
-              'including off-topic readouts. The other tasks measure whether the required name, intermediate '
-              'number, or role bindings appear at any site in the complete original question grid. '
+              'including off-topic readouts. Hidden intermediate names measure required intermediate entities; '
+              'the final answer is optional. The other tasks measure whether the required intermediate '
+              'number or role bindings appear at any site in the complete original question grid. '
               'Recovering that content can coexist with incorrect surrounding prose. '
               'We keep the four endpoints separate.', '',
               '| Task | Questions | Related groups | Better direction |',
@@ -95,14 +240,21 @@ def render(results, inventory, review, active, metrics, hashes):
     for group, title in GROUPS.items():
         body = review['method_findings'][group]
         lines += [f'### {title}', '', body['finding'], '', body['limits'], '']
+    lines += reconstruction_section(reconstruction, reconstruction_sha256, reconstruction_source,
+                                    review, active)
     lines += ['## Uncertainty and interpretation', '',
               f"We resample whole related groups with {full['bootstrap_replicates']:,} shared draws "
               'within each task. Paired intervals compare the same groups across methods. '
-              f"Simultaneous intervals cover the fixed menu of {full['declared_contrasts']} headline contrasts "
-              'using a centered, standardized bootstrap maximum. These intervals provide approximate '
-              'coverage. Zero bootstrap variation receives an explicit warning rather than a certainty claim.', '',
-              'All 469 questions were inspected before this expansion. Multiplicity adjustment accounts '
-              'for the declared comparisons and preserves this adaptive history. The original test subset '
+              f"The fixed menu contains {full['declared_contrasts']} headline contrasts. "
+              f"{full.get('effective_non_degenerate_contrasts', 'Unrecorded')} are defined and nondegenerate; "
+              f"{full.get('joint_interval_contrasts', 'unrecorded')} receive simultaneous intervals. "
+              'Simultaneous intervals use a centered, standardized bootstrap maximum over its '
+              'defined, nondegenerate contrasts. These intervals provide approximate coverage. '
+              'Undefined ratio draws and zero bootstrap variation receive explicit warnings; '
+              'their simultaneous intervals remain unavailable. A zero-width absolute interval for all-zero '
+              'or all-one recovery does not establish certainty.', '',
+              'All 469 questions were inspected before this expansion. Adjustment addresses the declared '
+              'comparisons; it does not undo prior outcome access or create fresh held-out evidence. The original test subset '
               'is now a descriptive subcohort; the earlier frozen test report is preserved separately. '
               'Adding methods or activation sites does not increase the number of independent questions. '
               'An overlapping interval is not a reason to discard an otherwise useful method.', '',
@@ -119,14 +271,23 @@ def render(results, inventory, review, active, metrics, hashes):
               'Each entry gives the native percentage followed by its grouped 95% interval. '
               'Exact numerators, denominators, paired intervals, simultaneous intervals and '
               'secondary coverage measures are available in the accompanying data export.', '',
-              '| Setting | Contradictions ↓ | Hidden names ↑ | Arithmetic ↑ | Roles ↑ |',
+              '| Setting | Contradictions ↓ | Hidden intermediate names ↑ | Intermediate numbers ↑ | Roles ↑ |',
               '|---|---:|---:|---:|---:|']
     for condition, row in active.items():
         values = []
         for family in FAMILIES:
             metric = metrics[condition, family]
-            values.append(f"{percentage(metric['value'])} ({interval(metric['ci95'])})")
+            warning = ' †' if metric.get('warnings') else ''
+            value = ('No specific readouts' if family == 'hallucination' and metric['denominator'] == 0
+                     else percentage(metric['value']))
+            values.append(f"{value} ({interval(metric['ci95'])}){warning}")
         lines.append(f"| {label(row)} | " + ' | '.join(values) + ' |')
+    flagged = [(condition, family, metric['warnings']) for (condition, family), metric in metrics.items()
+               if metric.get('warnings')]
+    if flagged:
+        lines += ['', '† Bootstrap warnings for the marked absolute intervals:', '']
+        for condition, family, warnings in flagged:
+            lines.append(f"- {label(active[condition])}, {TITLES[family]}: {'; '.join(warnings)}.")
     lines += ['', '## Scope and reproducibility', '',
               'Independent-reader extensions, including J++, NLA and another reconstructor, remain '
               'postponed. Malformed historical semantic conditions, exact aliases and unjudged '
@@ -152,11 +313,16 @@ def main():
     parser.add_argument('--results', type=Path, required=True)
     parser.add_argument('--inventory', type=Path, default=Path('configs/expansion_manifest_v1.json'))
     parser.add_argument('--review', type=Path, required=True)
+    parser.add_argument('--reconstruction', type=Path, help='Root-reviewed secondary fit artifact bound to these exact quality results')
     parser.add_argument('--output', type=Path, required=True)
     args = parser.parse_args()
     inputs = checked_inputs(args.results, args.inventory, args.review)
+    reconstruction, reconstruction_sha = checked_reconstruction(args.reconstruction, inputs[1], inputs[2],
+                                                               inputs[3], inputs[5])
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(render(*inputs))
+    args.output.write_text(render(*inputs, reconstruction=reconstruction,
+                                  reconstruction_sha256=reconstruction_sha,
+                                  reconstruction_source=args.reconstruction))
     print(json.dumps({'output': str(args.output), 'conditions': len(inputs[3]), 'inference_calls': 0}))
 
 

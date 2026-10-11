@@ -1,0 +1,3128 @@
+{
+  "status": "passed",
+  "artifacts": [
+    {
+      "path": "${OLENS_DATA_ROOT}/expansion-v1/reconstruction/first-live-v1.json",
+      "sha256": "86b1b0bd80a5265e6ff8696c7cb851d46df0d5c323e25aa34ceb2146a5fc6df6"
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/expansion-v1/reconstruction/first-live-v2.json",
+      "sha256": "f2fbe23e5c7ded42e7d86323559495d6b20a16976b9cec578d9befb899a9fd6d"
+    }
+  ],
+  "rows_compared": 280,
+  "parent_comparisons_compared": 432,
+  "classified_comparisons": 331,
+  "raw_metrics_masks_intervals_quality_and_source_pins": "exactly_equal",
+  "percentage_point_fields": "verified_exactly_100_times_raw",
+  "v2_site_equivalence_tolerance": 1e-05,
+  "classification_changed_comparisons": [
+    {
+      "condition": "best_n_exact-n2",
+      "family": "role_bound_association",
+      "reference": "capped_n1-n1",
+      "v1": [
+        5664,
+        1,
+        5692
+      ],
+      "v2": [
+        5661,
+        1,
+        5695
+      ]
+    },
+    {
+      "condition": "best_n_exact-n2",
+      "family": "role_bound_association",
+      "reference": "best_n_exact-n1",
+      "v1": [
+        5696,
+        0,
+        5704
+      ],
+      "v2": [
+        5693,
+        0,
+        5707
+      ]
+    },
+    {
+      "condition": "best_n_exact-n4",
+      "family": "hallucination",
+      "reference": "capped_n1-n1",
+      "v1": [
+        4199,
+        0,
+        1416
+      ],
+      "v2": [
+        4196,
+        0,
+        1419
+      ]
+    },
+    {
+      "condition": "best_n_exact-n4",
+      "family": "hallucination",
+      "reference": "best_n_exact-n2",
+      "v1": [
+        2833,
+        0,
+        2782
+      ],
+      "v2": [
+        2830,
+        0,
+        2785
+      ]
+    },
+    {
+      "condition": "best_n_exact-n4",
+      "family": "role_bound_association",
+      "reference": "capped_n1-n1",
+      "v1": [
+        8444,
+        1,
+        2912
+      ],
+      "v2": [
+        8440,
+        1,
+        2916
+      ]
+    },
+    {
+      "condition": "best_n_exact-n4",
+      "family": "role_bound_association",
+      "reference": "best_n_exact-n2",
+      "v1": [
+        5653,
+        0,
+        5747
+      ],
+      "v2": [
+        5648,
+        0,
+        5752
+      ]
+    },
+    {
+      "condition": "best_n_exact-n8",
+      "family": "hallucination",
+      "reference": "capped_n1-n1",
+      "v1": [
+        4884,
+        0,
+        731
+      ],
+      "v2": [
+        4883,
+        0,
+        732
+      ]
+    },
+    {
+      "condition": "best_n_exact-n8",
+      "family": "chain_intermediates",
+      "reference": "best_n_exact-n4",
+      "v1": [
+        686,
+        0,
+        634
+      ],
+      "v2": [
+        685,
+        0,
+        635
+      ]
+    },
+    {
+      "condition": "best_n_exact-n8",
+      "family": "role_bound_association",
+      "reference": "capped_n1-n1",
+      "v1": [
+        9880,
+        1,
+        1476
+      ],
+      "v2": [
+        9878,
+        1,
+        1478
+      ]
+    },
+    {
+      "condition": "best_n_exact-n8",
+      "family": "role_bound_association",
+      "reference": "best_n_exact-n4",
+      "v1": [
+        5735,
+        0,
+        5665
+      ],
+      "v2": [
+        5725,
+        0,
+        5675
+      ]
+    },
+    {
+      "condition": "best_n_exact-n16",
+      "family": "hallucination",
+      "reference": "capped_n1-n1",
+      "v1": [
+        5259,
+        0,
+        356
+      ],
+      "v2": [
+        5258,
+        0,
+        357
+      ]
+    },
+    {
+      "condition": "best_n_exact-n16",
+      "family": "hallucination",
+      "reference": "best_n_exact-n8",
+      "v1": [
+        2820,
+        0,
+        2795
+      ],
+      "v2": [
+        2819,
+        0,
+        2796
+      ]
+    },
+    {
+      "condition": "best_n_exact-n16",
+      "family": "multihop_mt",
+      "reference": "best_n_exact-n8",
+      "v1": [
+        520,
+        0,
+        580
+      ],
+      "v2": [
+        519,
+        0,
+        581
+      ]
+    },
+    {
+      "condition": "best_n_exact-n16",
+      "family": "role_bound_association",
+      "reference": "capped_n1-n1",
+      "v1": [
+        10610,
+        0,
+        747
+      ],
+      "v2": [
+        10608,
+        0,
+        749
+      ]
+    },
+    {
+      "condition": "best_n_exact-n16",
+      "family": "role_bound_association",
+      "reference": "best_n_exact-n8",
+      "v1": [
+        5692,
+        0,
+        5708
+      ],
+      "v2": [
+        5685,
+        0,
+        5715
+      ]
+    },
+    {
+      "condition": "best_n_exact-n32",
+      "family": "hallucination",
+      "reference": "capped_n1-n1",
+      "v1": [
+        5440,
+        0,
+        175
+      ],
+      "v2": [
+        5439,
+        0,
+        176
+      ]
+    },
+    {
+      "condition": "best_n_exact-n32",
+      "family": "hallucination",
+      "reference": "best_n_exact-n16",
+      "v1": [
+        2826,
+        0,
+        2789
+      ],
+      "v2": [
+        2822,
+        0,
+        2793
+      ]
+    },
+    {
+      "condition": "best_n_exact-n32",
+      "family": "role_bound_association",
+      "reference": "capped_n1-n1",
+      "v1": [
+        10976,
+        0,
+        381
+      ],
+      "v2": [
+        10975,
+        0,
+        382
+      ]
+    },
+    {
+      "condition": "best_n_exact-n32",
+      "family": "role_bound_association",
+      "reference": "best_n_exact-n16",
+      "v1": [
+        5687,
+        0,
+        5713
+      ],
+      "v2": [
+        5681,
+        0,
+        5719
+      ]
+    },
+    {
+      "condition": "random_complete-n16",
+      "family": "hallucination",
+      "reference": "capped_n1-n1",
+      "v1": [
+        2655,
+        2633,
+        327
+      ],
+      "v2": [
+        2653,
+        2631,
+        331
+      ]
+    },
+    {
+      "condition": "random_complete-n16",
+      "family": "hallucination",
+      "reference": "random_complete-n8",
+      "v1": [
+        2643,
+        2594,
+        378
+      ],
+      "v2": [
+        2642,
+        2594,
+        379
+      ]
+    },
+    {
+      "condition": "random_complete-n16",
+      "family": "chain_intermediates",
+      "reference": "capped_n1-n1",
+      "v1": [
+        630,
+        604,
+        86
+      ],
+      "v2": [
+        629,
+        604,
+        87
+      ]
+    },
+    {
+      "condition": "random_complete-n16",
+      "family": "chain_intermediates",
+      "reference": "random_complete-n8",
+      "v1": [
+        611,
+        608,
+        101
+      ],
+      "v2": [
+        610,
+        608,
+        102
+      ]
+    },
+    {
+      "condition": "random_complete-n16",
+      "family": "role_bound_association",
+      "reference": "capped_n1-n1",
+      "v1": [
+        5188,
+        5376,
+        762
+      ],
+      "v2": [
+        5184,
+        5374,
+        768
+      ]
+    },
+    {
+      "condition": "random_complete-n16",
+      "family": "role_bound_association",
+      "reference": "random_complete-n8",
+      "v1": [
+        5237,
+        5353,
+        737
+      ],
+      "v2": [
+        5233,
+        5350,
+        744
+      ]
+    },
+    {
+      "condition": "random_complete-n32",
+      "family": "hallucination",
+      "reference": "capped_n1-n1",
+      "v1": [
+        2725,
+        2708,
+        182
+      ],
+      "v2": [
+        2725,
+        2707,
+        183
+      ]
+    },
+    {
+      "condition": "random_complete-n32",
+      "family": "multihop_mt",
+      "reference": "random_complete-n16",
+      "v1": [
+        494,
+        576,
+        30
+      ],
+      "v2": [
+        494,
+        575,
+        31
+      ]
+    },
+    {
+      "condition": "random_complete-n32",
+      "family": "chain_intermediates",
+      "reference": "capped_n1-n1",
+      "v1": [
+        635,
+        639,
+        46
+      ],
+      "v2": [
+        634,
+        639,
+        47
+      ]
+    },
+    {
+      "condition": "random_complete-n32",
+      "family": "chain_intermediates",
+      "reference": "random_complete-n16",
+      "v1": [
+        608,
+        669,
+        43
+      ],
+      "v2": [
+        608,
+        668,
+        44
+      ]
+    },
+    {
+      "condition": "random_complete-n32",
+      "family": "role_bound_association",
+      "reference": "capped_n1-n1",
+      "v1": [
+        5445,
+        5531,
+        358
+      ],
+      "v2": [
+        5442,
+        5527,
+        365
+      ]
+    },
+    {
+      "condition": "random_complete-n32",
+      "family": "role_bound_association",
+      "reference": "random_complete-n16",
+      "v1": [
+        5521,
+        5463,
+        343
+      ],
+      "v2": [
+        5518,
+        5461,
+        348
+      ]
+    },
+    {
+      "condition": "pooled_greedy_swap-n16",
+      "family": "chain_intermediates",
+      "reference": "best_n_exact-n16",
+      "v1": [
+        1316,
+        0,
+        4
+      ],
+      "v2": [
+        1315,
+        0,
+        5
+      ]
+    },
+    {
+      "condition": "pooled_greedy_swap-n32",
+      "family": "chain_intermediates",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        1319,
+        0,
+        1
+      ],
+      "v2": [
+        1318,
+        0,
+        2
+      ]
+    },
+    {
+      "condition": "prune_loo_a32_0.001-n32",
+      "family": "hallucination",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        0,
+        2354,
+        3261
+      ],
+      "v2": [
+        0,
+        2176,
+        3439
+      ]
+    },
+    {
+      "condition": "prune_loo_a32_0.001-n32",
+      "family": "multihop_mt",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        0,
+        517,
+        583
+      ],
+      "v2": [
+        0,
+        471,
+        629
+      ]
+    },
+    {
+      "condition": "prune_loo_a32_0.001-n32",
+      "family": "chain_intermediates",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        0,
+        486,
+        834
+      ],
+      "v2": [
+        0,
+        439,
+        881
+      ]
+    },
+    {
+      "condition": "prune_loo_a32_0.001-n32",
+      "family": "role_bound_association",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        0,
+        5479,
+        5921
+      ],
+      "v2": [
+        0,
+        5060,
+        6340
+      ]
+    },
+    {
+      "condition": "prune_loo_a32_0.005-n32",
+      "family": "hallucination",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        0,
+        4108,
+        1507
+      ],
+      "v2": [
+        0,
+        4007,
+        1608
+      ]
+    },
+    {
+      "condition": "prune_loo_a32_0.005-n32",
+      "family": "multihop_mt",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        0,
+        846,
+        254
+      ],
+      "v2": [
+        0,
+        819,
+        281
+      ]
+    },
+    {
+      "condition": "prune_loo_a32_0.005-n32",
+      "family": "chain_intermediates",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        0,
+        794,
+        526
+      ],
+      "v2": [
+        0,
+        762,
+        558
+      ]
+    },
+    {
+      "condition": "prune_loo_a32_0.005-n32",
+      "family": "role_bound_association",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        0,
+        8792,
+        2608
+      ],
+      "v2": [
+        0,
+        8578,
+        2822
+      ]
+    },
+    {
+      "condition": "random_delete_matched_a32_0.001-n32",
+      "family": "hallucination",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        0,
+        4152,
+        1463
+      ],
+      "v2": [
+        0,
+        4123,
+        1492
+      ]
+    },
+    {
+      "condition": "random_delete_matched_a32_0.001-n32",
+      "family": "multihop_mt",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        0,
+        892,
+        208
+      ],
+      "v2": [
+        0,
+        878,
+        222
+      ]
+    },
+    {
+      "condition": "random_delete_matched_a32_0.001-n32",
+      "family": "chain_intermediates",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        0,
+        1147,
+        173
+      ],
+      "v2": [
+        0,
+        1132,
+        188
+      ]
+    },
+    {
+      "condition": "random_delete_matched_a32_0.001-n32",
+      "family": "role_bound_association",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        0,
+        8875,
+        2525
+      ],
+      "v2": [
+        0,
+        8780,
+        2620
+      ]
+    },
+    {
+      "condition": "random_delete_matched_a32_0.005-n32",
+      "family": "hallucination",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        0,
+        5144,
+        471
+      ],
+      "v2": [
+        0,
+        5121,
+        494
+      ]
+    },
+    {
+      "condition": "random_delete_matched_a32_0.005-n32",
+      "family": "multihop_mt",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        0,
+        1045,
+        55
+      ],
+      "v2": [
+        0,
+        1041,
+        59
+      ]
+    },
+    {
+      "condition": "random_delete_matched_a32_0.005-n32",
+      "family": "chain_intermediates",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        0,
+        1214,
+        106
+      ],
+      "v2": [
+        0,
+        1205,
+        115
+      ]
+    },
+    {
+      "condition": "random_delete_matched_a32_0.005-n32",
+      "family": "role_bound_association",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        0,
+        10609,
+        791
+      ],
+      "v2": [
+        0,
+        10569,
+        831
+      ]
+    },
+    {
+      "condition": "prune_loo_n1_0.005-n1",
+      "family": "hallucination",
+      "reference": "capped_n1-n1",
+      "v1": [
+        0,
+        4148,
+        1467
+      ],
+      "v2": [
+        0,
+        4042,
+        1573
+      ]
+    },
+    {
+      "condition": "prune_loo_n1_0.005-n1",
+      "family": "multihop_mt",
+      "reference": "capped_n1-n1",
+      "v1": [
+        0,
+        900,
+        200
+      ],
+      "v2": [
+        0,
+        878,
+        222
+      ]
+    },
+    {
+      "condition": "prune_loo_n1_0.005-n1",
+      "family": "chain_intermediates",
+      "reference": "capped_n1-n1",
+      "v1": [
+        0,
+        935,
+        385
+      ],
+      "v2": [
+        0,
+        914,
+        406
+      ]
+    },
+    {
+      "condition": "prune_loo_n1_0.005-n1",
+      "family": "role_bound_association",
+      "reference": "capped_n1-n1",
+      "v1": [
+        0,
+        9317,
+        2040
+      ],
+      "v2": [
+        0,
+        9142,
+        2215
+      ]
+    },
+    {
+      "condition": "random_delete_matched_n1_0.005-n1",
+      "family": "hallucination",
+      "reference": "capped_n1-n1",
+      "v1": [
+        0,
+        4992,
+        623
+      ],
+      "v2": [
+        0,
+        4970,
+        645
+      ]
+    },
+    {
+      "condition": "random_delete_matched_n1_0.005-n1",
+      "family": "multihop_mt",
+      "reference": "capped_n1-n1",
+      "v1": [
+        0,
+        1043,
+        57
+      ],
+      "v2": [
+        0,
+        1036,
+        64
+      ]
+    },
+    {
+      "condition": "random_delete_matched_n1_0.005-n1",
+      "family": "chain_intermediates",
+      "reference": "capped_n1-n1",
+      "v1": [
+        0,
+        1248,
+        72
+      ],
+      "v2": [
+        0,
+        1243,
+        77
+      ]
+    },
+    {
+      "condition": "random_delete_matched_n1_0.005-n1",
+      "family": "role_bound_association",
+      "reference": "capped_n1-n1",
+      "v1": [
+        0,
+        10602,
+        755
+      ],
+      "v2": [
+        0,
+        10569,
+        788
+      ]
+    },
+    {
+      "condition": "best_n_specificity_mean-n32",
+      "family": "role_bound_association",
+      "reference": "capped_n1-n1",
+      "v1": [
+        7625,
+        3363,
+        369
+      ],
+      "v2": [
+        7623,
+        3361,
+        373
+      ]
+    },
+    {
+      "condition": "best_n_specificity_max-n32",
+      "family": "role_bound_association",
+      "reference": "capped_n1-n1",
+      "v1": [
+        6422,
+        4548,
+        387
+      ],
+      "v2": [
+        6419,
+        4547,
+        391
+      ]
+    },
+    {
+      "condition": "best_n_specificity_mean_then_prune_0.001-n32",
+      "family": "hallucination",
+      "reference": "best_n_specificity_mean-n32",
+      "v1": [
+        460,
+        2810,
+        2345
+      ],
+      "v2": [
+        0,
+        2176,
+        3439
+      ]
+    },
+    {
+      "condition": "best_n_specificity_mean_then_prune_0.001-n32",
+      "family": "multihop_mt",
+      "reference": "best_n_specificity_mean-n32",
+      "v1": [
+        59,
+        578,
+        463
+      ],
+      "v2": [
+        0,
+        474,
+        626
+      ]
+    },
+    {
+      "condition": "best_n_specificity_mean_then_prune_0.001-n32",
+      "family": "chain_intermediates",
+      "reference": "best_n_specificity_mean-n32",
+      "v1": [
+        122,
+        671,
+        527
+      ],
+      "v2": [
+        0,
+        474,
+        846
+      ]
+    },
+    {
+      "condition": "best_n_specificity_mean_then_prune_0.001-n32",
+      "family": "role_bound_association",
+      "reference": "best_n_specificity_mean-n32",
+      "v1": [
+        619,
+        6520,
+        4261
+      ],
+      "v2": [
+        0,
+        5450,
+        5950
+      ]
+    },
+    {
+      "condition": "best_n_specificity_mean_then_prune_0.005-n32",
+      "family": "hallucination",
+      "reference": "best_n_specificity_mean-n32",
+      "v1": [
+        239,
+        4332,
+        1044
+      ],
+      "v2": [
+        0,
+        4015,
+        1600
+      ]
+    },
+    {
+      "condition": "best_n_specificity_mean_then_prune_0.005-n32",
+      "family": "multihop_mt",
+      "reference": "best_n_specificity_mean-n32",
+      "v1": [
+        22,
+        873,
+        205
+      ],
+      "v2": [
+        0,
+        822,
+        278
+      ]
+    },
+    {
+      "condition": "best_n_specificity_mean_then_prune_0.005-n32",
+      "family": "chain_intermediates",
+      "reference": "best_n_specificity_mean-n32",
+      "v1": [
+        84,
+        907,
+        329
+      ],
+      "v2": [
+        0,
+        785,
+        535
+      ]
+    },
+    {
+      "condition": "best_n_specificity_mean_then_prune_0.005-n32",
+      "family": "role_bound_association",
+      "reference": "best_n_specificity_mean-n32",
+      "v1": [
+        275,
+        9424,
+        1701
+      ],
+      "v2": [
+        0,
+        8899,
+        2501
+      ]
+    },
+    {
+      "condition": "best_n_specificity_mean_random_delete_matched_0.001-n32",
+      "family": "hallucination",
+      "reference": "best_n_specificity_mean-n32",
+      "v1": [
+        168,
+        4391,
+        1056
+      ],
+      "v2": [
+        0,
+        4155,
+        1460
+      ]
+    },
+    {
+      "condition": "best_n_specificity_mean_random_delete_matched_0.001-n32",
+      "family": "multihop_mt",
+      "reference": "best_n_specificity_mean-n32",
+      "v1": [
+        22,
+        922,
+        156
+      ],
+      "v2": [
+        0,
+        904,
+        196
+      ]
+    },
+    {
+      "condition": "best_n_specificity_mean_random_delete_matched_0.001-n32",
+      "family": "chain_intermediates",
+      "reference": "best_n_specificity_mean-n32",
+      "v1": [
+        33,
+        1155,
+        132
+      ],
+      "v2": [
+        0,
+        1108,
+        212
+      ]
+    },
+    {
+      "condition": "best_n_specificity_mean_random_delete_matched_0.001-n32",
+      "family": "role_bound_association",
+      "reference": "best_n_specificity_mean-n32",
+      "v1": [
+        255,
+        9204,
+        1941
+      ],
+      "v2": [
+        0,
+        8834,
+        2566
+      ]
+    },
+    {
+      "condition": "best_n_specificity_mean_random_delete_matched_0.005-n32",
+      "family": "hallucination",
+      "reference": "best_n_specificity_mean-n32",
+      "v1": [
+        67,
+        5230,
+        318
+      ],
+      "v2": [
+        0,
+        5141,
+        474
+      ]
+    },
+    {
+      "condition": "best_n_specificity_mean_random_delete_matched_0.005-n32",
+      "family": "multihop_mt",
+      "reference": "best_n_specificity_mean-n32",
+      "v1": [
+        9,
+        1037,
+        54
+      ],
+      "v2": [
+        0,
+        1027,
+        73
+      ]
+    },
+    {
+      "condition": "best_n_specificity_mean_random_delete_matched_0.005-n32",
+      "family": "chain_intermediates",
+      "reference": "best_n_specificity_mean-n32",
+      "v1": [
+        23,
+        1223,
+        74
+      ],
+      "v2": [
+        0,
+        1203,
+        117
+      ]
+    },
+    {
+      "condition": "best_n_specificity_mean_random_delete_matched_0.005-n32",
+      "family": "role_bound_association",
+      "reference": "best_n_specificity_mean-n32",
+      "v1": [
+        76,
+        10771,
+        553
+      ],
+      "v2": [
+        0,
+        10632,
+        768
+      ]
+    },
+    {
+      "condition": "likelihood_true_minus_mean_two_controls-n8",
+      "family": "chain_intermediates",
+      "reference": "capped_n1-n1",
+      "v1": [
+        564,
+        583,
+        173
+      ],
+      "v2": [
+        564,
+        582,
+        174
+      ]
+    },
+    {
+      "condition": "own_mean_log_likelihood-n8",
+      "family": "chain_intermediates",
+      "reference": "capped_n1-n1",
+      "v1": [
+        577,
+        565,
+        178
+      ],
+      "v2": [
+        577,
+        564,
+        179
+      ]
+    },
+    {
+      "condition": "consensus_exact_support0-n16",
+      "family": "hallucination",
+      "reference": "capped_n1-n1",
+      "v1": [
+        176,
+        447,
+        4992
+      ],
+      "v2": [
+        174,
+        444,
+        4997
+      ]
+    },
+    {
+      "condition": "consensus_exact_support0-n16",
+      "family": "chain_intermediates",
+      "reference": "capped_n1-n1",
+      "v1": [
+        95,
+        713,
+        512
+      ],
+      "v2": [
+        94,
+        708,
+        518
+      ]
+    },
+    {
+      "condition": "consensus_exact_support0-n16",
+      "family": "role_bound_association",
+      "reference": "capped_n1-n1",
+      "v1": [
+        691,
+        1303,
+        9270
+      ],
+      "v2": [
+        641,
+        1233,
+        9390
+      ]
+    },
+    {
+      "condition": "consensus_exact_support0.125-n16",
+      "family": "chain_intermediates",
+      "reference": "capped_n1-n1",
+      "v1": [
+        43,
+        1272,
+        5
+      ],
+      "v2": [
+        42,
+        1272,
+        6
+      ]
+    },
+    {
+      "condition": "consensus_exact_support0.125-n16",
+      "family": "role_bound_association",
+      "reference": "capped_n1-n1",
+      "v1": [
+        253,
+        11009,
+        2
+      ],
+      "v2": [
+        253,
+        11007,
+        4
+      ]
+    },
+    {
+      "condition": "consensus_exact_support0.25-n16",
+      "family": "chain_intermediates",
+      "reference": "capped_n1-n1",
+      "v1": [
+        19,
+        1296,
+        5
+      ],
+      "v2": [
+        18,
+        1296,
+        6
+      ]
+    },
+    {
+      "condition": "consensus_exact_support0.25-n16",
+      "family": "role_bound_association",
+      "reference": "capped_n1-n1",
+      "v1": [
+        30,
+        11298,
+        2
+      ],
+      "v2": [
+        29,
+        11296,
+        5
+      ]
+    },
+    {
+      "condition": "pooled_greedy_swap_then_prune_0.001-n32",
+      "family": "hallucination",
+      "reference": "pooled_greedy_swap-n32",
+      "v1": [
+        0,
+        469,
+        5146
+      ],
+      "v2": [
+        0,
+        462,
+        5153
+      ]
+    },
+    {
+      "condition": "pooled_greedy_swap_then_prune_0.001-n32",
+      "family": "multihop_mt",
+      "reference": "pooled_greedy_swap-n32",
+      "v1": [
+        0,
+        78,
+        1022
+      ],
+      "v2": [
+        0,
+        77,
+        1023
+      ]
+    },
+    {
+      "condition": "pooled_greedy_swap_then_prune_0.001-n32",
+      "family": "chain_intermediates",
+      "reference": "pooled_greedy_swap-n32",
+      "v1": [
+        0,
+        326,
+        994
+      ],
+      "v2": [
+        0,
+        312,
+        1008
+      ]
+    },
+    {
+      "condition": "pooled_greedy_swap_then_prune_0.001-n32",
+      "family": "chain_intermediates",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        1309,
+        3,
+        8
+      ],
+      "v2": [
+        1309,
+        2,
+        9
+      ]
+    },
+    {
+      "condition": "pooled_greedy_swap_then_prune_0.001-n32",
+      "family": "role_bound_association",
+      "reference": "pooled_greedy_swap-n32",
+      "v1": [
+        55,
+        2488,
+        8857
+      ],
+      "v2": [
+        0,
+        2419,
+        8981
+      ]
+    },
+    {
+      "condition": "pooled_greedy_swap_then_prune_0.001-n32",
+      "family": "role_bound_association",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        11319,
+        51,
+        30
+      ],
+      "v2": [
+        11318,
+        42,
+        40
+      ]
+    },
+    {
+      "condition": "pooled_greedy_swap_random_delete_matched_0.001-n32",
+      "family": "hallucination",
+      "reference": "pooled_greedy_swap-n32",
+      "v1": [
+        0,
+        469,
+        5146
+      ],
+      "v2": [
+        0,
+        467,
+        5148
+      ]
+    },
+    {
+      "condition": "pooled_greedy_swap_random_delete_matched_0.001-n32",
+      "family": "hallucination",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        5507,
+        104,
+        4
+      ],
+      "v2": [
+        5506,
+        104,
+        5
+      ]
+    },
+    {
+      "condition": "pooled_greedy_swap_random_delete_matched_0.001-n32",
+      "family": "chain_intermediates",
+      "reference": "pooled_greedy_swap-n32",
+      "v1": [
+        0,
+        326,
+        994
+      ],
+      "v2": [
+        0,
+        321,
+        999
+      ]
+    },
+    {
+      "condition": "pooled_greedy_swap_random_delete_matched_0.001-n32",
+      "family": "role_bound_association",
+      "reference": "pooled_greedy_swap-n32",
+      "v1": [
+        55,
+        2488,
+        8857
+      ],
+      "v2": [
+        0,
+        2423,
+        8977
+      ]
+    },
+    {
+      "condition": "pooled_greedy_swap_random_delete_matched_0.001-n32",
+      "family": "role_bound_association",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        10759,
+        632,
+        9
+      ],
+      "v2": [
+        10756,
+        625,
+        19
+      ]
+    },
+    {
+      "condition": "pooled_greedy_swap_then_prune_0.005-n32",
+      "family": "chain_intermediates",
+      "reference": "pooled_greedy_swap-n32",
+      "v1": [
+        0,
+        1203,
+        117
+      ],
+      "v2": [
+        0,
+        1197,
+        123
+      ]
+    },
+    {
+      "condition": "pooled_greedy_swap_then_prune_0.005-n32",
+      "family": "chain_intermediates",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        1219,
+        47,
+        54
+      ],
+      "v2": [
+        1219,
+        41,
+        60
+      ]
+    },
+    {
+      "condition": "pooled_greedy_swap_then_prune_0.005-n32",
+      "family": "role_bound_association",
+      "reference": "pooled_greedy_swap-n32",
+      "v1": [
+        18,
+        7972,
+        3410
+      ],
+      "v2": [
+        0,
+        7944,
+        3456
+      ]
+    },
+    {
+      "condition": "pooled_greedy_swap_then_prune_0.005-n32",
+      "family": "role_bound_association",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        9801,
+        1412,
+        187
+      ],
+      "v2": [
+        9800,
+        1377,
+        223
+      ]
+    },
+    {
+      "condition": "pooled_greedy_swap_random_delete_matched_0.005-n32",
+      "family": "hallucination",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        4730,
+        870,
+        15
+      ],
+      "v2": [
+        4729,
+        869,
+        17
+      ]
+    },
+    {
+      "condition": "pooled_greedy_swap_random_delete_matched_0.005-n32",
+      "family": "chain_intermediates",
+      "reference": "pooled_greedy_swap-n32",
+      "v1": [
+        0,
+        1203,
+        117
+      ],
+      "v2": [
+        0,
+        1201,
+        119
+      ]
+    },
+    {
+      "condition": "pooled_greedy_swap_random_delete_matched_0.005-n32",
+      "family": "chain_intermediates",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        923,
+        374,
+        23
+      ],
+      "v2": [
+        923,
+        371,
+        26
+      ]
+    },
+    {
+      "condition": "pooled_greedy_swap_random_delete_matched_0.005-n32",
+      "family": "role_bound_association",
+      "reference": "pooled_greedy_swap-n32",
+      "v1": [
+        18,
+        7972,
+        3410
+      ],
+      "v2": [
+        0,
+        7946,
+        3454
+      ]
+    },
+    {
+      "condition": "pooled_greedy_swap_random_delete_matched_0.005-n32",
+      "family": "role_bound_association",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        7991,
+        3365,
+        44
+      ],
+      "v2": [
+        7990,
+        3354,
+        56
+      ]
+    },
+    {
+      "condition": "pooling_exact_support_lambda0.05-n16",
+      "family": "hallucination",
+      "reference": "pooled_greedy_swap-n16",
+      "v1": [
+        3,
+        246,
+        5366
+      ],
+      "v2": [
+        3,
+        242,
+        5370
+      ]
+    },
+    {
+      "condition": "pooling_exact_support_lambda0.05-n16",
+      "family": "chain_intermediates",
+      "reference": "pooled_greedy_swap-n16",
+      "v1": [
+        1,
+        585,
+        734
+      ],
+      "v2": [
+        1,
+        579,
+        740
+      ]
+    },
+    {
+      "condition": "pooling_exact_support_lambda0.05-n16",
+      "family": "chain_intermediates",
+      "reference": "best_n_exact-n16",
+      "v1": [
+        1305,
+        2,
+        13
+      ],
+      "v2": [
+        1304,
+        2,
+        14
+      ]
+    },
+    {
+      "condition": "pooling_exact_support_lambda0.05-n16",
+      "family": "role_bound_association",
+      "reference": "pooled_greedy_swap-n16",
+      "v1": [
+        56,
+        1287,
+        10057
+      ],
+      "v2": [
+        2,
+        1214,
+        10184
+      ]
+    },
+    {
+      "condition": "pooling_exact_support_lambda0.2-n16",
+      "family": "hallucination",
+      "reference": "pooled_greedy_swap-n16",
+      "v1": [
+        5,
+        528,
+        5082
+      ],
+      "v2": [
+        5,
+        525,
+        5085
+      ]
+    },
+    {
+      "condition": "pooling_exact_support_lambda0.2-n16",
+      "family": "chain_intermediates",
+      "reference": "pooled_greedy_swap-n16",
+      "v1": [
+        1,
+        840,
+        479
+      ],
+      "v2": [
+        1,
+        836,
+        483
+      ]
+    },
+    {
+      "condition": "pooling_exact_support_lambda0.2-n16",
+      "family": "chain_intermediates",
+      "reference": "best_n_exact-n16",
+      "v1": [
+        1268,
+        20,
+        32
+      ],
+      "v2": [
+        1267,
+        19,
+        34
+      ]
+    },
+    {
+      "condition": "pooling_exact_support_lambda0.2-n16",
+      "family": "role_bound_association",
+      "reference": "pooled_greedy_swap-n16",
+      "v1": [
+        58,
+        1983,
+        9359
+      ],
+      "v2": [
+        6,
+        1915,
+        9479
+      ]
+    },
+    {
+      "condition": "pooling_exact_support_lambda0.2-n16",
+      "family": "role_bound_association",
+      "reference": "best_n_exact-n16",
+      "v1": [
+        11295,
+        83,
+        22
+      ],
+      "v2": [
+        11293,
+        82,
+        25
+      ]
+    },
+    {
+      "condition": "exact_support_only-n16",
+      "family": "hallucination",
+      "reference": "capped_n1-n1",
+      "v1": [
+        176,
+        447,
+        4992
+      ],
+      "v2": [
+        174,
+        444,
+        4997
+      ]
+    },
+    {
+      "condition": "exact_support_only-n16",
+      "family": "chain_intermediates",
+      "reference": "capped_n1-n1",
+      "v1": [
+        95,
+        713,
+        512
+      ],
+      "v2": [
+        94,
+        708,
+        518
+      ]
+    },
+    {
+      "condition": "exact_support_only-n16",
+      "family": "role_bound_association",
+      "reference": "capped_n1-n1",
+      "v1": [
+        691,
+        1303,
+        9270
+      ],
+      "v2": [
+        641,
+        1233,
+        9390
+      ]
+    },
+    {
+      "condition": "consensus_semantic_v5_support0_compatoff_vetooff-n16",
+      "family": "hallucination",
+      "reference": "consensus_exact_support0-n16",
+      "v1": [
+        545,
+        951,
+        4119
+      ],
+      "v2": [
+        541,
+        945,
+        4129
+      ]
+    },
+    {
+      "condition": "consensus_semantic_v5_support0_compatoff_vetooff-n16",
+      "family": "multihop_mt",
+      "reference": "consensus_exact_support0-n16",
+      "v1": [
+        40,
+        53,
+        1007
+      ],
+      "v2": [
+        40,
+        52,
+        1008
+      ]
+    },
+    {
+      "condition": "consensus_semantic_v5_support0_compatoff_vetooff-n16",
+      "family": "chain_intermediates",
+      "reference": "consensus_exact_support0-n16",
+      "v1": [
+        149,
+        204,
+        967
+      ],
+      "v2": [
+        149,
+        202,
+        969
+      ]
+    },
+    {
+      "condition": "consensus_semantic_v5_support0_compatoff_vetooff-n16",
+      "family": "role_bound_association",
+      "reference": "consensus_exact_support0-n16",
+      "v1": [
+        450,
+        823,
+        9992
+      ],
+      "v2": [
+        449,
+        821,
+        9995
+      ]
+    },
+    {
+      "condition": "consensus_semantic_v5_support0_compatoff_vetoon-n16",
+      "family": "hallucination",
+      "reference": "consensus_exact_support0-n16",
+      "v1": [
+        536,
+        943,
+        4136
+      ],
+      "v2": [
+        532,
+        937,
+        4146
+      ]
+    },
+    {
+      "condition": "consensus_semantic_v5_support0_compatoff_vetoon-n16",
+      "family": "multihop_mt",
+      "reference": "consensus_exact_support0-n16",
+      "v1": [
+        35,
+        50,
+        1015
+      ],
+      "v2": [
+        35,
+        49,
+        1016
+      ]
+    },
+    {
+      "condition": "consensus_semantic_v5_support0_compatoff_vetoon-n16",
+      "family": "chain_intermediates",
+      "reference": "consensus_exact_support0-n16",
+      "v1": [
+        122,
+        179,
+        1019
+      ],
+      "v2": [
+        122,
+        177,
+        1021
+      ]
+    },
+    {
+      "condition": "consensus_semantic_v5_support0_compatoff_vetoon-n16",
+      "family": "role_bound_association",
+      "reference": "consensus_exact_support0-n16",
+      "v1": [
+        422,
+        776,
+        10067
+      ],
+      "v2": [
+        421,
+        774,
+        10070
+      ]
+    },
+    {
+      "condition": "consensus_semantic_v5_support0_compaton_vetoon-n16",
+      "family": "hallucination",
+      "reference": "consensus_exact_support0-n16",
+      "v1": [
+        59,
+        5540,
+        16
+      ],
+      "v2": [
+        58,
+        5540,
+        17
+      ]
+    },
+    {
+      "condition": "consensus_semantic_v5_support0_compaton_vetoon-n16",
+      "family": "multihop_mt",
+      "reference": "consensus_exact_support0-n16",
+      "v1": [
+        9,
+        1091,
+        0
+      ],
+      "v2": [
+        9,
+        1090,
+        1
+      ]
+    },
+    {
+      "condition": "consensus_semantic_v5_support0_compaton_vetoon-n16",
+      "family": "chain_intermediates",
+      "reference": "consensus_exact_support0-n16",
+      "v1": [
+        13,
+        1250,
+        57
+      ],
+      "v2": [
+        13,
+        1249,
+        58
+      ]
+    },
+    {
+      "condition": "consensus_semantic_v5_support0_compaton_vetoon-n16",
+      "family": "role_bound_association",
+      "reference": "consensus_exact_support0-n16",
+      "v1": [
+        46,
+        11174,
+        45
+      ],
+      "v2": [
+        46,
+        11165,
+        54
+      ]
+    },
+    {
+      "condition": "consensus_semantic_v5_support0.125_compatoff_vetoon-n16",
+      "family": "hallucination",
+      "reference": "consensus_exact_support0-n16",
+      "v1": [
+        228,
+        5326,
+        61
+      ],
+      "v2": [
+        228,
+        5325,
+        62
+      ]
+    },
+    {
+      "condition": "consensus_semantic_v5_support0.125_compatoff_vetoon-n16",
+      "family": "role_bound_association",
+      "reference": "consensus_exact_support0-n16",
+      "v1": [
+        221,
+        10896,
+        148
+      ],
+      "v2": [
+        221,
+        10891,
+        153
+      ]
+    },
+    {
+      "condition": "consensus_semantic_v5_support0.125_compaton_vetoon-n16",
+      "family": "hallucination",
+      "reference": "consensus_exact_support0-n16",
+      "v1": [
+        59,
+        5541,
+        15
+      ],
+      "v2": [
+        58,
+        5541,
+        16
+      ]
+    },
+    {
+      "condition": "consensus_semantic_v5_support0.125_compaton_vetoon-n16",
+      "family": "chain_intermediates",
+      "reference": "consensus_exact_support0-n16",
+      "v1": [
+        13,
+        1254,
+        53
+      ],
+      "v2": [
+        13,
+        1253,
+        54
+      ]
+    },
+    {
+      "condition": "consensus_semantic_v5_support0.125_compaton_vetoon-n16",
+      "family": "role_bound_association",
+      "reference": "consensus_exact_support0-n16",
+      "v1": [
+        45,
+        11204,
+        16
+      ],
+      "v2": [
+        45,
+        11200,
+        20
+      ]
+    },
+    {
+      "condition": "pooled_specificity_mean-n32",
+      "family": "hallucination",
+      "reference": "pooled_greedy_swap-n32",
+      "v1": [
+        163,
+        1330,
+        4122
+      ],
+      "v2": [
+        162,
+        1295,
+        4158
+      ]
+    },
+    {
+      "condition": "pooled_specificity_mean-n32",
+      "family": "multihop_mt",
+      "reference": "pooled_greedy_swap-n32",
+      "v1": [
+        41,
+        370,
+        689
+      ],
+      "v2": [
+        40,
+        359,
+        701
+      ]
+    },
+    {
+      "condition": "pooled_specificity_mean-n32",
+      "family": "chain_intermediates",
+      "reference": "pooled_greedy_swap-n32",
+      "v1": [
+        3,
+        1231,
+        86
+      ],
+      "v2": [
+        3,
+        1226,
+        91
+      ]
+    },
+    {
+      "condition": "pooled_specificity_mean-n32",
+      "family": "chain_intermediates",
+      "reference": "best_n_specificity_mean-n32",
+      "v1": [
+        883,
+        393,
+        44
+      ],
+      "v2": [
+        883,
+        392,
+        45
+      ]
+    },
+    {
+      "condition": "pooled_specificity_mean-n32",
+      "family": "chain_intermediates",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        646,
+        642,
+        32
+      ],
+      "v2": [
+        646,
+        641,
+        33
+      ]
+    },
+    {
+      "condition": "pooled_specificity_mean-n32",
+      "family": "role_bound_association",
+      "reference": "pooled_greedy_swap-n32",
+      "v1": [
+        146,
+        10398,
+        856
+      ],
+      "v2": [
+        143,
+        10386,
+        871
+      ]
+    },
+    {
+      "condition": "pooled_specificity_mean-n32",
+      "family": "role_bound_association",
+      "reference": "best_n_specificity_mean-n32",
+      "v1": [
+        6388,
+        4994,
+        18
+      ],
+      "v2": [
+        6384,
+        4994,
+        22
+      ]
+    },
+    {
+      "condition": "pooled_specificity_mean-n32",
+      "family": "role_bound_association",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        3951,
+        7444,
+        5
+      ],
+      "v2": [
+        3949,
+        7441,
+        10
+      ]
+    },
+    {
+      "condition": "pooled_specificity_mean_then_prune_0.005-n32",
+      "family": "multihop_mt",
+      "reference": "pooled_specificity_mean-n32",
+      "v1": [
+        0,
+        846,
+        254
+      ],
+      "v2": [
+        0,
+        845,
+        255
+      ]
+    },
+    {
+      "condition": "pooled_specificity_mean_then_prune_0.005-n32",
+      "family": "chain_intermediates",
+      "reference": "pooled_specificity_mean-n32",
+      "v1": [
+        0,
+        940,
+        380
+      ],
+      "v2": [
+        0,
+        933,
+        387
+      ]
+    },
+    {
+      "condition": "pooled_specificity_mean_then_prune_0.005-n32",
+      "family": "chain_intermediates",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        534,
+        712,
+        74
+      ],
+      "v2": [
+        534,
+        704,
+        82
+      ]
+    },
+    {
+      "condition": "pooled_specificity_mean_then_prune_0.005-n32",
+      "family": "role_bound_association",
+      "reference": "pooled_specificity_mean-n32",
+      "v1": [
+        0,
+        7191,
+        4209
+      ],
+      "v2": [
+        0,
+        7175,
+        4225
+      ]
+    },
+    {
+      "condition": "pooled_specificity_mean_then_prune_0.005-n32",
+      "family": "role_bound_association",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        3350,
+        8024,
+        26
+      ],
+      "v2": [
+        3350,
+        8017,
+        33
+      ]
+    },
+    {
+      "condition": "pooled_specificity_mean_random_delete_matched_0.005-n32",
+      "family": "hallucination",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        4711,
+        877,
+        27
+      ],
+      "v2": [
+        4709,
+        877,
+        29
+      ]
+    },
+    {
+      "condition": "pooled_specificity_mean_random_delete_matched_0.005-n32",
+      "family": "chain_intermediates",
+      "reference": "pooled_specificity_mean-n32",
+      "v1": [
+        0,
+        957,
+        363
+      ],
+      "v2": [
+        0,
+        955,
+        365
+      ]
+    },
+    {
+      "condition": "pooled_specificity_mean_random_delete_matched_0.005-n32",
+      "family": "chain_intermediates",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        395,
+        876,
+        49
+      ],
+      "v2": [
+        394,
+        871,
+        55
+      ]
+    },
+    {
+      "condition": "pooled_specificity_mean_random_delete_matched_0.005-n32",
+      "family": "role_bound_association",
+      "reference": "pooled_specificity_mean-n32",
+      "v1": [
+        0,
+        7246,
+        4154
+      ],
+      "v2": [
+        0,
+        7242,
+        4158
+      ]
+    },
+    {
+      "condition": "pooled_specificity_mean_random_delete_matched_0.005-n32",
+      "family": "role_bound_association",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        2771,
+        8615,
+        14
+      ],
+      "v2": [
+        2771,
+        8612,
+        17
+      ]
+    },
+    {
+      "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+      "family": "hallucination",
+      "reference": "consensus_exact_support0-n16",
+      "v1": [
+        341,
+        650,
+        4624
+      ],
+      "v2": [
+        340,
+        642,
+        4633
+      ]
+    },
+    {
+      "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+      "family": "chain_intermediates",
+      "reference": "consensus_exact_support0-n16",
+      "v1": [
+        144,
+        148,
+        1028
+      ],
+      "v2": [
+        143,
+        146,
+        1031
+      ]
+    },
+    {
+      "condition": "consensus_semantic_v5_medium_support0_compaton_vetoon-n16",
+      "family": "hallucination",
+      "reference": "consensus_exact_support0-n16",
+      "v1": [
+        39,
+        5559,
+        17
+      ],
+      "v2": [
+        38,
+        5559,
+        18
+      ]
+    },
+    {
+      "condition": "consensus_semantic_v5_medium_support0_compaton_vetoon-n16",
+      "family": "multihop_mt",
+      "reference": "consensus_exact_support0-n16",
+      "v1": [
+        7,
+        1093,
+        0
+      ],
+      "v2": [
+        7,
+        1092,
+        1
+      ]
+    },
+    {
+      "condition": "consensus_semantic_v5_medium_support0_compaton_vetoon-n16",
+      "family": "chain_intermediates",
+      "reference": "consensus_exact_support0-n16",
+      "v1": [
+        15,
+        1261,
+        44
+      ],
+      "v2": [
+        15,
+        1260,
+        45
+      ]
+    },
+    {
+      "condition": "consensus_semantic_v5_medium_support0.125_compatoff_vetoon-n16",
+      "family": "hallucination",
+      "reference": "consensus_exact_support0-n16",
+      "v1": [
+        153,
+        5401,
+        61
+      ],
+      "v2": [
+        153,
+        5399,
+        63
+      ]
+    },
+    {
+      "condition": "consensus_semantic_v5_medium_support0.125_compatoff_vetoon-n16",
+      "family": "chain_intermediates",
+      "reference": "consensus_exact_support0-n16",
+      "v1": [
+        111,
+        944,
+        265
+      ],
+      "v2": [
+        111,
+        943,
+        266
+      ]
+    },
+    {
+      "condition": "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16",
+      "family": "hallucination",
+      "reference": "consensus_exact_support0-n16",
+      "v1": [
+        37,
+        5563,
+        15
+      ],
+      "v2": [
+        36,
+        5563,
+        16
+      ]
+    },
+    {
+      "condition": "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16",
+      "family": "chain_intermediates",
+      "reference": "consensus_exact_support0-n16",
+      "v1": [
+        14,
+        1266,
+        40
+      ],
+      "v2": [
+        14,
+        1265,
+        41
+      ]
+    },
+    {
+      "condition": "random_complete-n2",
+      "family": "hallucination",
+      "reference": "capped_n1-n1",
+      "v1": [
+        1416,
+        1416,
+        2783
+      ],
+      "v2": [
+        1416,
+        1415,
+        2784
+      ]
+    },
+    {
+      "condition": "random_complete-n2",
+      "family": "hallucination",
+      "reference": "random_complete-n1",
+      "v1": [
+        1417,
+        1414,
+        2784
+      ],
+      "v2": [
+        1417,
+        1413,
+        2785
+      ]
+    },
+    {
+      "condition": "random_complete-n2",
+      "family": "chain_intermediates",
+      "reference": "capped_n1-n1",
+      "v1": [
+        346,
+        287,
+        687
+      ],
+      "v2": [
+        346,
+        286,
+        688
+      ]
+    },
+    {
+      "condition": "random_complete-n2",
+      "family": "chain_intermediates",
+      "reference": "random_complete-n1",
+      "v1": [
+        346,
+        287,
+        687
+      ],
+      "v2": [
+        346,
+        286,
+        688
+      ]
+    },
+    {
+      "condition": "random_complete-n2",
+      "family": "role_bound_association",
+      "reference": "capped_n1-n1",
+      "v1": [
+        2839,
+        2819,
+        5684
+      ],
+      "v2": [
+        2838,
+        2818,
+        5686
+      ]
+    },
+    {
+      "condition": "random_complete-n2",
+      "family": "role_bound_association",
+      "reference": "random_complete-n1",
+      "v1": [
+        2842,
+        2818,
+        5684
+      ],
+      "v2": [
+        2841,
+        2817,
+        5686
+      ]
+    },
+    {
+      "condition": "random_complete-n4",
+      "family": "hallucination",
+      "reference": "capped_n1-n1",
+      "v1": [
+        2101,
+        2082,
+        1432
+      ],
+      "v2": [
+        2101,
+        2081,
+        1433
+      ]
+    },
+    {
+      "condition": "random_complete-n4",
+      "family": "chain_intermediates",
+      "reference": "capped_n1-n1",
+      "v1": [
+        505,
+        476,
+        339
+      ],
+      "v2": [
+        505,
+        475,
+        340
+      ]
+    },
+    {
+      "condition": "random_complete-n4",
+      "family": "chain_intermediates",
+      "reference": "random_complete-n2",
+      "v1": [
+        494,
+        497,
+        329
+      ],
+      "v2": [
+        493,
+        496,
+        331
+      ]
+    },
+    {
+      "condition": "random_complete-n4",
+      "family": "role_bound_association",
+      "reference": "capped_n1-n1",
+      "v1": [
+        4158,
+        4314,
+        2856
+      ],
+      "v2": [
+        4157,
+        4312,
+        2859
+      ]
+    },
+    {
+      "condition": "random_complete-n4",
+      "family": "role_bound_association",
+      "reference": "random_complete-n2",
+      "v1": [
+        4135,
+        4320,
+        2872
+      ],
+      "v2": [
+        4135,
+        4317,
+        2875
+      ]
+    },
+    {
+      "condition": "random_complete-n8",
+      "family": "hallucination",
+      "reference": "capped_n1-n1",
+      "v1": [
+        2429,
+        2478,
+        708
+      ],
+      "v2": [
+        2428,
+        2478,
+        709
+      ]
+    },
+    {
+      "condition": "random_complete-n8",
+      "family": "chain_intermediates",
+      "reference": "capped_n1-n1",
+      "v1": [
+        583,
+        560,
+        177
+      ],
+      "v2": [
+        583,
+        559,
+        178
+      ]
+    },
+    {
+      "condition": "random_complete-n8",
+      "family": "role_bound_association",
+      "reference": "capped_n1-n1",
+      "v1": [
+        4935,
+        5032,
+        1364
+      ],
+      "v2": [
+        4929,
+        5029,
+        1373
+      ]
+    },
+    {
+      "condition": "random_complete-n8",
+      "family": "role_bound_association",
+      "reference": "random_complete-n4",
+      "v1": [
+        4976,
+        4923,
+        1430
+      ],
+      "v2": [
+        4969,
+        4923,
+        1437
+      ]
+    },
+    {
+      "condition": "random_delete_matched_a32_0-n32",
+      "family": "hallucination",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        0,
+        2601,
+        3014
+      ],
+      "v2": [
+        0,
+        2571,
+        3044
+      ]
+    },
+    {
+      "condition": "random_delete_matched_a32_0-n32",
+      "family": "multihop_mt",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        0,
+        577,
+        523
+      ],
+      "v2": [
+        0,
+        570,
+        530
+      ]
+    },
+    {
+      "condition": "random_delete_matched_a32_0-n32",
+      "family": "chain_intermediates",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        0,
+        989,
+        331
+      ],
+      "v2": [
+        0,
+        971,
+        349
+      ]
+    },
+    {
+      "condition": "random_delete_matched_a32_0-n32",
+      "family": "role_bound_association",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        0,
+        5576,
+        5824
+      ],
+      "v2": [
+        0,
+        5492,
+        5908
+      ]
+    },
+    {
+      "condition": "prune_coefficient_a32_0.01-n32",
+      "family": "hallucination",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        0,
+        320,
+        5295
+      ],
+      "v2": [
+        0,
+        96,
+        5519
+      ]
+    },
+    {
+      "condition": "prune_coefficient_a32_0.01-n32",
+      "family": "multihop_mt",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        0,
+        77,
+        1023
+      ],
+      "v2": [
+        0,
+        15,
+        1085
+      ]
+    },
+    {
+      "condition": "prune_coefficient_a32_0.01-n32",
+      "family": "chain_intermediates",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        0,
+        63,
+        1257
+      ],
+      "v2": [
+        0,
+        11,
+        1309
+      ]
+    },
+    {
+      "condition": "prune_coefficient_a32_0.01-n32",
+      "family": "role_bound_association",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        0,
+        613,
+        10787
+      ],
+      "v2": [
+        0,
+        127,
+        11273
+      ]
+    },
+    {
+      "condition": "prune_coefficient_a32_0.05-n32",
+      "family": "hallucination",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        0,
+        1621,
+        3994
+      ],
+      "v2": [
+        0,
+        1427,
+        4188
+      ]
+    },
+    {
+      "condition": "prune_coefficient_a32_0.05-n32",
+      "family": "multihop_mt",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        0,
+        342,
+        758
+      ],
+      "v2": [
+        0,
+        290,
+        810
+      ]
+    },
+    {
+      "condition": "prune_coefficient_a32_0.05-n32",
+      "family": "chain_intermediates",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        0,
+        304,
+        1016
+      ],
+      "v2": [
+        0,
+        251,
+        1069
+      ]
+    },
+    {
+      "condition": "prune_coefficient_a32_0.05-n32",
+      "family": "role_bound_association",
+      "reference": "best_n_exact-n32",
+      "v1": [
+        0,
+        3115,
+        8285
+      ],
+      "v2": [
+        0,
+        2527,
+        8873
+      ]
+    },
+    {
+      "condition": "random_delete_matched_n1_0-n1",
+      "family": "hallucination",
+      "reference": "capped_n1-n1",
+      "v1": [
+        0,
+        2015,
+        3600
+      ],
+      "v2": [
+        0,
+        2000,
+        3615
+      ]
+    },
+    {
+      "condition": "random_delete_matched_n1_0-n1",
+      "family": "multihop_mt",
+      "reference": "capped_n1-n1",
+      "v1": [
+        0,
+        451,
+        649
+      ],
+      "v2": [
+        0,
+        450,
+        650
+      ]
+    },
+    {
+      "condition": "random_delete_matched_n1_0-n1",
+      "family": "chain_intermediates",
+      "reference": "capped_n1-n1",
+      "v1": [
+        0,
+        835,
+        485
+      ],
+      "v2": [
+        0,
+        826,
+        494
+      ]
+    },
+    {
+      "condition": "random_delete_matched_n1_0-n1",
+      "family": "role_bound_association",
+      "reference": "capped_n1-n1",
+      "v1": [
+        0,
+        4645,
+        6712
+      ],
+      "v2": [
+        0,
+        4567,
+        6790
+      ]
+    },
+    {
+      "condition": "prune_loo_n1_0.001-n1",
+      "family": "hallucination",
+      "reference": "capped_n1-n1",
+      "v1": [
+        0,
+        2143,
+        3472
+      ],
+      "v2": [
+        0,
+        1966,
+        3649
+      ]
+    },
+    {
+      "condition": "prune_loo_n1_0.001-n1",
+      "family": "multihop_mt",
+      "reference": "capped_n1-n1",
+      "v1": [
+        0,
+        501,
+        599
+      ],
+      "v2": [
+        0,
+        456,
+        644
+      ]
+    },
+    {
+      "condition": "prune_loo_n1_0.001-n1",
+      "family": "chain_intermediates",
+      "reference": "capped_n1-n1",
+      "v1": [
+        0,
+        570,
+        750
+      ],
+      "v2": [
+        0,
+        531,
+        789
+      ]
+    },
+    {
+      "condition": "prune_loo_n1_0.001-n1",
+      "family": "role_bound_association",
+      "reference": "capped_n1-n1",
+      "v1": [
+        0,
+        5874,
+        5483
+      ],
+      "v2": [
+        0,
+        5500,
+        5857
+      ]
+    },
+    {
+      "condition": "random_delete_matched_n1_0.001-n1",
+      "family": "hallucination",
+      "reference": "capped_n1-n1",
+      "v1": [
+        0,
+        3615,
+        2000
+      ],
+      "v2": [
+        0,
+        3580,
+        2035
+      ]
+    },
+    {
+      "condition": "random_delete_matched_n1_0.001-n1",
+      "family": "multihop_mt",
+      "reference": "capped_n1-n1",
+      "v1": [
+        0,
+        802,
+        298
+      ],
+      "v2": [
+        0,
+        792,
+        308
+      ]
+    },
+    {
+      "condition": "random_delete_matched_n1_0.001-n1",
+      "family": "chain_intermediates",
+      "reference": "capped_n1-n1",
+      "v1": [
+        0,
+        1118,
+        202
+      ],
+      "v2": [
+        0,
+        1111,
+        209
+      ]
+    },
+    {
+      "condition": "random_delete_matched_n1_0.001-n1",
+      "family": "role_bound_association",
+      "reference": "capped_n1-n1",
+      "v1": [
+        0,
+        8572,
+        2785
+      ],
+      "v2": [
+        0,
+        8499,
+        2858
+      ]
+    },
+    {
+      "condition": "prune_coefficient_n1_0.01-n1",
+      "family": "hallucination",
+      "reference": "capped_n1-n1",
+      "v1": [
+        0,
+        268,
+        5347
+      ],
+      "v2": [
+        0,
+        60,
+        5555
+      ]
+    },
+    {
+      "condition": "prune_coefficient_n1_0.01-n1",
+      "family": "multihop_mt",
+      "reference": "capped_n1-n1",
+      "v1": [
+        0,
+        57,
+        1043
+      ],
+      "v2": [
+        0,
+        9,
+        1091
+      ]
+    },
+    {
+      "condition": "prune_coefficient_n1_0.01-n1",
+      "family": "chain_intermediates",
+      "reference": "capped_n1-n1",
+      "v1": [
+        0,
+        62,
+        1258
+      ],
+      "v2": [
+        0,
+        7,
+        1313
+      ]
+    },
+    {
+      "condition": "prune_coefficient_n1_0.01-n1",
+      "family": "role_bound_association",
+      "reference": "capped_n1-n1",
+      "v1": [
+        0,
+        540,
+        10817
+      ],
+      "v2": [
+        0,
+        100,
+        11257
+      ]
+    },
+    {
+      "condition": "prune_coefficient_n1_0.05-n1",
+      "family": "hallucination",
+      "reference": "capped_n1-n1",
+      "v1": [
+        0,
+        1343,
+        4272
+      ],
+      "v2": [
+        0,
+        1145,
+        4470
+      ]
+    },
+    {
+      "condition": "prune_coefficient_n1_0.05-n1",
+      "family": "multihop_mt",
+      "reference": "capped_n1-n1",
+      "v1": [
+        0,
+        293,
+        807
+      ],
+      "v2": [
+        0,
+        246,
+        854
+      ]
+    },
+    {
+      "condition": "prune_coefficient_n1_0.05-n1",
+      "family": "chain_intermediates",
+      "reference": "capped_n1-n1",
+      "v1": [
+        0,
+        300,
+        1020
+      ],
+      "v2": [
+        0,
+        244,
+        1076
+      ]
+    },
+    {
+      "condition": "prune_coefficient_n1_0.05-n1",
+      "family": "role_bound_association",
+      "reference": "capped_n1-n1",
+      "v1": [
+        0,
+        2828,
+        8529
+      ],
+      "v2": [
+        0,
+        2228,
+        9129
+      ]
+    }
+  ],
+  "runtime_seconds": 320.34,
+  "maximum_rss_kib": 1241556
+}

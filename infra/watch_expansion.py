@@ -65,7 +65,11 @@ def main():
                   for path, body in progress.items()
                   if body.get('status') in ('failed', 'blocked')]
         for path, body in progress.items():
-            if any(worker.get('exit_code') not in (None, 0) for worker in body.get('workers', [])):
+            workers = body.get('workers', [])
+            if isinstance(workers, dict):
+                workers = workers.values()
+            if any(isinstance(worker, dict) and worker.get('exit_code') not in (None, 0)
+                   for worker in workers):
                 alerts.append(path + ': a worker exited with an error')
         receipt = {'utc': datetime.now(timezone.utc).isoformat(),
                    'pid': os.getpid(), 'cpu_job': args.cpu_job,

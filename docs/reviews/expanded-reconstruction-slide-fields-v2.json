@@ -1,0 +1,21 @@
+{
+  "status": "passed_actual_source_field_qa_only",
+  "slide_builder_sha256": "aacdd22b569e6237ae191b1926e2f525a45cc25e7e517e245649b38fabb70fb0",
+  "reconstruction_v2_sha256": "f2fbe23e5c7ded42e7d86323559495d6b20a16976b9cec578d9befb899a9fd6d",
+  "rows_checked": 280,
+  "scored_parent_displays": 235,
+  "recorded_parent_fallbacks": 152,
+  "no_parent_records_raw_baseline": 4,
+  "checks": [
+    "pp() scales fractions by100 and appends pp",
+    "reconstruction_comparison returns an existing recorded comparison without recomputation",
+    "source keeps reconstruction reference separate from quality reference",
+    "speaker notes retain full row/parent masks/groups/CI/warnings",
+    "raw baseline no comparable fit remains unavailable"
+  ],
+  "limits": [
+    "No real final slide render attested",
+    "Partial snapshot does not satisfy final report completeness gate",
+    "Seven root-reviewed presentation approach choices still govern final deck"
+  ]
+}

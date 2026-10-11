@@ -1,0 +1,4292 @@
+{
+  "status": "new_case_index_pending_independent_review",
+  "analysis_sha256": "bd501f26f228e1648f2be178b2fa3a1244fe64e4719e1ac304fc47aea99be9ae",
+  "manifest_sha256": "753b2d9cab0daea0d19efef7d3222fd44921dbcf4669e6864d4f1bd4805421f8",
+  "source_sha256": {
+    "${OLENS_DATA_ROOT}/expansion-v1/qualitative/first-live-v2.json": "7ceb7214fd75dce21e672ba77802f4c9a486056ef7e42a15d093963083d7b71e",
+    "${OLENS_DATA_ROOT}/expansion-v1/qualitative/first-live-v3.json": "d688338f8eada00de8d7f0c3ba6a39c56c2e8f137b010a1cc686181ff2fe9b88",
+    "${OLENS_DATA_ROOT}/expansion-v1/qualitative/parent-comparisons-first-live-v2.json": "a078ecb9d20d747a219bb772fdb2a24420371eaea5cb3b6ecd1a880dde5a1903"
+  },
+  "retained_previous_case_references": 591,
+  "new_case_references": 384,
+  "unique_new_content_pairs": 197,
+  "new_pairs_already_present_in_previous_pack": 61,
+  "partitions": {
+    "partition_1": [
+      {
+        "pair_sha256": "00695e96131baea3b8d359fc9c8fca3be9cf4ecc8285a21c34229a5a7275b3ce",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "random_complete-n8",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "37344db041e5d46e695f7c36db5b52260e06e4c4586138f87a4080c3f7ce99eb",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "best_n_specificity_mean_then_prune_0.001-n32",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+            "category": "changed_no_endpoint_change"
+          },
+          {
+            "condition": "prune_coefficient_a32_0.05-n32",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "51c2af57192866afbec321cd45182b17755e8cc7b75ecff313b1866b72f3ead3",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "pooling_exact_support_lambda0.05-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "7c13c791bdf6b97fd12345615cc464d1f64555ea7f59ad01cad28b5fc307ecf0",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "random_delete_matched_n1_0.005-n1",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "d9586d1b6c85fbc2f26c8de465cc28cafe17114e5d68280eb66afacc39257876",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "random_delete_matched_n1_0-n1",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "f76c3973afa448f81f002e8f21681c1560e42e6c4d2c708515ef2cdf68fd372d",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "prune_loo_n1_0-n1",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+            "category": "win"
+          },
+          {
+            "condition": "prune_coefficient_n1_0.01-n1",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+            "category": "win"
+          },
+          {
+            "condition": "prune_coefficient_n1_0.05-n1",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "c28db13f1a4cc70814d79647dcf97d0edfc75aa7243e4006045712af9f8348dd",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00038",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "random_delete_matched_n1_0.001-n1",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00038",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "381b5beb02cda8b951c5ec0cc7c5f3c3bb5182d3dbc035c3a82aee0b361f47f0",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00046",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "pooling_exact_support_lambda0.05-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00046",
+            "category": "regression"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "6b9d2e1a975f729aa5f13a470a81e36e5c928e69b7f9e42be4012eb26083edf5",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00046",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "random_delete_matched_a32_0.001-n32",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00046",
+            "category": "regression"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "856ac4e706997628f7d7e6dc11ceddb353d72a80c471d5e93f47a62b6708986f",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00046",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "best_n_specificity_mean_then_prune_0.005-n32",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00046",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "41188e1907efb81a9d331bc2f9142c6d520266b443c7cb1db68a4ad78de5387c",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00055",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_semantic_v5_support0_compatoff_vetooff-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00055",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "54535546c729bd6b2b4560fda032993df40289eb2f409f17de908185d8960b73",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00055",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "random_delete_matched_a32_0.001-n32",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00055",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "9be1e527c597fc464efd8d3d0f0ae1c163a7cbc1876b12d37eb2f0aa7693ef8f",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00055",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_semantic_v5_support0_compatoff_vetoon-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00055",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "3178795e00e02d0261bc2a4402358f196e9c4883e0edce0334a765ca9f39c242",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00082",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "random_complete-n4",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00082",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "5513176da7003861253c4426da9699aed1d07b025e029b82429d5a9c7aad11b4",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L36|p00023",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "random_complete-n8",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L36|p00023",
+            "category": "regression"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "399a70fce7da16be2678d02766aefa8e54a9cb91c7197e794d835ef2518d8b72",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L36|p00055",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "best_n_specificity_mean_then_prune_0.001-n32",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L36|p00055",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "0a250d3f70114e2532882caae528896aa74bc1894208b1e8974f3f46cbac57e2",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L36|p00092",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_semantic_v5_medium_support0.125_compatoff_vetoon-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L36|p00092",
+            "category": "changed_no_endpoint_change"
+          },
+          {
+            "condition": "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L36|p00092",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "7c687744b716d33babbc6b617410e2911ec7e9f3ffe1326317e075e1d56bb89c",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L44|p00038",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "random_complete-n4",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L44|p00038",
+            "category": "regression"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "8a0902f0efdb58ca41e09de47989a81be42645b8accd1b054d6d5b06afec151c",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L44|p00055",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "best_n_specificity_mean-n32",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L44|p00055",
+            "category": "win"
+          },
+          {
+            "condition": "best_n_specificity_mean_abstain_nonpositive-n32",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L44|p00055",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "efbc9e9e6edd2cd5692907c71a72fe929393b9d41c13fd2cabbbfea807f976fb",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L52|p00067",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "best_n_specificity_mean_random_delete_matched_0.005-n32",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L52|p00067",
+            "category": "regression"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "6e2d0d62fccb9f6daa53d2fbd667a7e1e2362330c6cad542a8cf4d5f9d3f11d0",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0001|L52|p00078",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_semantic_v5_support0_compatoff_vetooff-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0001|L52|p00078",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "d9f2f332d6ce6997d964e90d7ea488108414c80452c595d9adeb61b12f8f8cf2",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0002|L20|p00020",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0002|L20|p00020",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "bf1c32a9afcc20a4c9b4ef4b12a46c430b4cbc2c4954282a3e2f5aeb84bf4862",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0003|L52|p00298",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_semantic_v5_medium_support0.125_compatoff_vetoon-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0003|L52|p00298",
+            "category": "regression"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "4adc588fe18174551465f3713299827516ed5fb3fa3377e7e343028a5e46c3c7",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0005|L52|p00103",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_exact_support0.25-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0005|L52|p00103",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "0f4b07487aeb36ffffd8361ad495bfa492575a6d6187dcf62a0246bcb3c1402d",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_semantic_v5_support0_compaton_vetoon-n16",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "consensus_semantic_v5_support0.125_compatoff_vetoon-n16",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "consensus_semantic_v5_support0.125_compaton_vetoon-n16",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "consensus_semantic_v5_medium_support0_compaton_vetoon-n16",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "consensus_semantic_v5_medium_support0.125_compatoff_vetoon-n16",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "6cac83b549eeb5df0b86f54a2358651dfc756c6ee9ab223f3643d21f95f5162d",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "best_n_specificity_mean_random_delete_matched_0.005-n32",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "85ea64c269d254781dcf1f60b3fd690f330d9d5f6ca5b4329d8c53c7f340d333",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "random_delete_matched_a32_0.001-n32",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "random_delete_matched_a32_0.005-n32",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "best_n_specificity_mean_then_prune_0.001-n32",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "best_n_specificity_mean_then_prune_0.005-n32",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "prune_coefficient_a32_0.01-n32",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "prune_coefficient_a32_0.05-n32",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "a626ed9f319ee0a54454f3b16f4608d9fa3028c1623109f0e4dfb8b4d48a87f3",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "pooling_exact_support_lambda0.05-n16",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "698347344ced024c859728e502d169092993a026012137e3618474f7c51ccbf9",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-lmsys-0033|L52|p00128",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_exact_support0.25-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-lmsys-0033|L52|p00128",
+            "category": "regression"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "41821ad05ef5e02ea90e879727c149cae92dc1933ea225808e345f0eb5ccaac6",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "random_delete_matched_a32_0.001-n32",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "best_n_specificity_mean_then_prune_0.001-n32",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "prune_loo_a32_0-n32",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "prune_coefficient_a32_0.01-n32",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "prune_coefficient_a32_0.05-n32",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "52a236b3b6d0a1360369a794a81d2c0ef3a407ad1ccf264e529c8340bf12e900",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "best_n_specificity_mean_random_delete_matched_0.001-n32",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "random_delete_matched_a32_0-n32",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "9a3dfc74c59065be9fb4a441e252a4c7cd1796667799bebaf48bc5e05b16fb98",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_exact_support0.125-n16",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "consensus_exact_support0.25-n16",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "consensus_semantic_v5_support0.125_compatoff_vetoon-n16",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "consensus_semantic_v5_support0.125_compaton_vetoon-n16",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "consensus_semantic_v5_medium_support0.125_compatoff_vetoon-n16",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "cf510c181b831b503af26a3203fe26f46cfa85d5523d68d4fd344dd37f1cdf27",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "consensus_exact_support0-n16",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "exact_support_only-n16",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "consensus_semantic_v5_support0_compatoff_vetooff-n16",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "consensus_semantic_v5_support0_compatoff_vetoon-n16",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "random_complete-n1",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "random_complete-n4",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "prune_loo_n1_0-n1",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "random_delete_matched_n1_0-n1",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "prune_loo_n1_0.001-n1",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "random_delete_matched_n1_0.001-n1",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "prune_coefficient_n1_0.01-n1",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "prune_coefficient_n1_0.05-n1",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "547f793207f398c20df68998ccc759216e61941fedaf549e0aa3686b8d1eafb4",
+        "family": "multihop_mt",
+        "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "pooled_greedy_swap_random_delete_matched_0.005-n32",
+            "family": "multihop_mt",
+            "kind": "outcome_selected",
+            "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "8c03a0f99443751a23ab5152c62d7f1fde451c34db347e4acbd1cd138af34bc7",
+        "family": "multihop_mt",
+        "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "pooled_specificity_mean-n32",
+            "family": "multihop_mt",
+            "kind": "outcome_selected",
+            "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "d27ab689a78104c6623901f26a2a7e9de3d3d476e0d4a892f963faf7052db203",
+        "family": "multihop_mt",
+        "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "consensus_exact_support0.125-n16",
+            "family": "multihop_mt",
+            "kind": "outcome_selected",
+            "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028",
+            "category": "regression"
+          },
+          {
+            "condition": "consensus_exact_support0.25-n16",
+            "family": "multihop_mt",
+            "kind": "outcome_selected",
+            "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028",
+            "category": "regression"
+          },
+          {
+            "condition": "consensus_semantic_v5_medium_support0.125_compatoff_vetoon-n16",
+            "family": "multihop_mt",
+            "kind": "outcome_selected",
+            "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028",
+            "category": "regression"
+          },
+          {
+            "condition": "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16",
+            "family": "multihop_mt",
+            "kind": "outcome_selected",
+            "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028",
+            "category": "regression"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "281d44793a02fa1bf1682d2cae4fd7604408e182329efe6aaf46d91ec2b3079e",
+        "family": "multihop_mt",
+        "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "pooled_greedy_swap_random_delete_matched_0.001-n32",
+            "family": "multihop_mt",
+            "kind": "fixed_anchor",
+            "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "9bfa0f0520d60771f9f9f777a6baab3cf2f881c13b2ee0ced9189e7d4ed6b4bb",
+        "family": "multihop_mt",
+        "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "pooling_exact_support_lambda0.05-n16",
+            "family": "multihop_mt",
+            "kind": "fixed_anchor",
+            "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "pooling_exact_support_lambda0.2-n16",
+            "family": "multihop_mt",
+            "kind": "fixed_anchor",
+            "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "f394c713519ce3846479c72ee1fac811b3d452a194134663c8df5ab3e199717e",
+        "family": "multihop_mt",
+        "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "pooled_greedy_swap_then_prune_0.001-n32",
+            "family": "multihop_mt",
+            "kind": "fixed_anchor",
+            "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "73854fd069b506c146be0d688ea3dae52409d426ce3ba599f7a5fee90a1a75a9",
+        "family": "multihop_mt",
+        "cell_id": "multihop_mt|mhh-51peg-peebles|L20|p00046",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_exact_support0.125-n16",
+            "family": "multihop_mt",
+            "kind": "outcome_selected",
+            "cell_id": "multihop_mt|mhh-51peg-peebles|L20|p00046",
+            "category": "changed_no_endpoint_change"
+          },
+          {
+            "condition": "consensus_exact_support0.25-n16",
+            "family": "multihop_mt",
+            "kind": "outcome_selected",
+            "cell_id": "multihop_mt|mhh-51peg-peebles|L20|p00046",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "c0e490daaaed383f0d01073b2ec25e65a9174ccda7bd354354e9a459f37d0b81",
+        "family": "multihop_mt",
+        "cell_id": "multihop_mt|mhh-adwa-baratieri|L44|p00033",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "pooled_greedy_swap_then_prune_0.005-n32",
+            "family": "multihop_mt",
+            "kind": "outcome_selected",
+            "cell_id": "multihop_mt|mhh-adwa-baratieri|L44|p00033",
+            "category": "win"
+          },
+          {
+            "condition": "pooled_greedy_swap_random_delete_matched_0.005-n32",
+            "family": "multihop_mt",
+            "kind": "outcome_selected",
+            "cell_id": "multihop_mt|mhh-adwa-baratieri|L44|p00033",
+            "category": "win"
+          },
+          {
+            "condition": "pooled_specificity_mean_then_prune_0.005-n32",
+            "family": "multihop_mt",
+            "kind": "outcome_selected",
+            "cell_id": "multihop_mt|mhh-adwa-baratieri|L44|p00033",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "15de04d20ae119987f135bc51f83643d36f10e61931268cabbd436c937fb2fe9",
+        "family": "multihop_mt",
+        "cell_id": "multihop_mt|mhh-belisarius-procopius-secret-history|L52|p00038",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "pooled_greedy_swap_then_prune_0.001-n32",
+            "family": "multihop_mt",
+            "kind": "outcome_selected",
+            "cell_id": "multihop_mt|mhh-belisarius-procopius-secret-history|L52|p00038",
+            "category": "regression"
+          },
+          {
+            "condition": "pooled_greedy_swap_random_delete_matched_0.001-n32",
+            "family": "multihop_mt",
+            "kind": "outcome_selected",
+            "cell_id": "multihop_mt|mhh-belisarius-procopius-secret-history|L52|p00038",
+            "category": "regression"
+          },
+          {
+            "condition": "pooled_greedy_swap_then_prune_0.005-n32",
+            "family": "multihop_mt",
+            "kind": "outcome_selected",
+            "cell_id": "multihop_mt|mhh-belisarius-procopius-secret-history|L52|p00038",
+            "category": "regression"
+          },
+          {
+            "condition": "pooled_greedy_swap_random_delete_matched_0.005-n32",
+            "family": "multihop_mt",
+            "kind": "outcome_selected",
+            "cell_id": "multihop_mt|mhh-belisarius-procopius-secret-history|L52|p00038",
+            "category": "regression"
+          },
+          {
+            "condition": "pooled_specificity_mean-n32",
+            "family": "multihop_mt",
+            "kind": "outcome_selected",
+            "cell_id": "multihop_mt|mhh-belisarius-procopius-secret-history|L52|p00038",
+            "category": "regression"
+          },
+          {
+            "condition": "pooled_specificity_mean_then_prune_0.005-n32",
+            "family": "multihop_mt",
+            "kind": "outcome_selected",
+            "cell_id": "multihop_mt|mhh-belisarius-procopius-secret-history|L52|p00038",
+            "category": "regression"
+          },
+          {
+            "condition": "pooled_specificity_mean_random_delete_matched_0.005-n32",
+            "family": "multihop_mt",
+            "kind": "outcome_selected",
+            "cell_id": "multihop_mt|mhh-belisarius-procopius-secret-history|L52|p00038",
+            "category": "regression"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "4d2e14a78fbb170f2d241ad43726f9cab5631779558b982d259c7fbca1062a80",
+        "family": "multihop_mt",
+        "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "consensus_exact_support0-n16",
+            "family": "multihop_mt",
+            "kind": "fixed_anchor",
+            "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "exact_support_only-n16",
+            "family": "multihop_mt",
+            "kind": "fixed_anchor",
+            "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+            "family": "multihop_mt",
+            "kind": "fixed_anchor",
+            "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "b8ee3d925e537a8c48233625b371a5e87f7841694f445a494aaba10ed49756f1",
+        "family": "multihop_mt",
+        "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "pooled_greedy_swap_then_prune_0.005-n32",
+            "family": "multihop_mt",
+            "kind": "fixed_anchor",
+            "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "pooled_greedy_swap_random_delete_matched_0.005-n32",
+            "family": "multihop_mt",
+            "kind": "fixed_anchor",
+            "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "pooled_specificity_mean_then_prune_0.005-n32",
+            "family": "multihop_mt",
+            "kind": "fixed_anchor",
+            "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "pooled_specificity_mean_random_delete_matched_0.005-n32",
+            "family": "multihop_mt",
+            "kind": "fixed_anchor",
+            "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "ed8a4836b0da7d718d0394b97095eceb8628d927c3975526371d0944ea9f17f7",
+        "family": "multihop_mt",
+        "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "pooled_greedy_swap_then_prune_0.001-n32",
+            "family": "multihop_mt",
+            "kind": "fixed_anchor",
+            "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "26eaea4b1f28a6e88afc5b894ff340c45ec50d5cd0aab74dc068dc6a7158cdfb",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "pooled_greedy_swap_then_prune_0.001-n32",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "48a046c5e417c3ed08fd12210ff66d9a7d4cd9f16001d118b95dbc95599a5333",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "random_delete_matched_n1_0-n1",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "ad22502158d10bfcc66204b0a834593d5fb0ec8922cc5e904ffdf262bfd9c022",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "best_n_specificity_mean_then_prune_0.001-n32",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+            "category": "changed_no_endpoint_change"
+          },
+          {
+            "condition": "best_n_specificity_mean_then_prune_0.005-n32",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "fd786be959b05db7f232f9b9f3553bfb3cb68894aecfcd785ec2540c3629ca02",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "pooling_exact_support_lambda0.05-n16",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+            "category": "changed_no_endpoint_change"
+          },
+          {
+            "condition": "pooling_exact_support_lambda0.2-n16",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "82d73cc74bef550c2c8732d6edfce8490f16a530ccca42dd2712bc16fa0dc9c8",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00134",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_exact_support0.125-n16",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00134",
+            "category": "regression"
+          },
+          {
+            "condition": "consensus_exact_support0.25-n16",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00134",
+            "category": "regression"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "7b33f9dbfef755ec5ec345067f24d3d9cf07110f3f1ca0cc06c1e81fb40359ec",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ba|L20|p00122",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_exact_support0.125-n16",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ba|L20|p00122",
+            "category": "changed_no_endpoint_change"
+          },
+          {
+            "condition": "consensus_exact_support0.25-n16",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ba|L20|p00122",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "765bd9b391cefa1910dd5dac922e4707cbe63f46f2929562577bb661735e4e87",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ba|L36|p00124",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "random_complete-n8",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ba|L36|p00124",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "8c1b0af98b6e4eb1fc70db3b906852539fa1a6cd63959b48986ec41b9861156e",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ba|L44|p00124",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "best_n_specificity_mean_then_prune_0.001-n32",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ba|L44|p00124",
+            "category": "win"
+          },
+          {
+            "condition": "prune_coefficient_a32_0.05-n32",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ba|L44|p00124",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "faaf40f98b21c688ef3b7bd1e42ce823316d2311265c803d96f052740bec2350",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ba|L44|p00124",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "best_n_specificity_mean_random_delete_matched_0.001-n32",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ba|L44|p00124",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "c3d28342a5e4f20991ce31734d6a449e3c740e7bf23d7bc00c890bc471151ba9",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-bride-caterer-yell-ab|L36|p00121",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "random_complete-n8",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-bride-caterer-yell-ab|L36|p00121",
+            "category": "regression"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "191912bbbc344391d23c33ca7526fe5d563e224f2e0208005d2dbe7232473a9e",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_exact_support0.125-n16",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "consensus_exact_support0.25-n16",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "50b5d8db1e669109f32143c3091500f6181d19749603acd8d634b0dbc9d4e2f3",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "prune_loo_a32_0-n32",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "prune_coefficient_a32_0.01-n32",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "a187f3717c0a32ff6666bd1ed88b1322dc93854fb11dcf119b32d2a397fc4171",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "random_delete_matched_a32_0-n32",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "df7b7ef11320fa1ed4dbcd699d7827ad4cc99e3f20908c75e713c58b5dbd81b1",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "best_n_specificity_mean_random_delete_matched_0.005-n32",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "0e6809c1e8140b5ba72f994ce4f8d1736f8fb46735fb00f3bb4e4c29268230e9",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-critic-musician-mock-ab|L44|p00132",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "best_n_specificity_mean_abstain_nonpositive-n32",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-critic-musician-mock-ab|L44|p00132",
+            "category": "regression"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "1a645a0e3bca52b372b7b63e1920984d8a6f6b499f854910a826ee8cb723f493",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-doctor-nurse-instruct-ab|L28|p00119",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "prune_loo_n1_0.001-n1",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-doctor-nurse-instruct-ab|L28|p00119",
+            "category": "win"
+          },
+          {
+            "condition": "random_delete_matched_n1_0.001-n1",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-doctor-nurse-instruct-ab|L28|p00119",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "2b0a752712b35a6c4297742e2a731cd8dbed02e539cbcb2b913b67fa28bcbbeb",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-hairdresser-client-compliment-ba|L44|p00121",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "prune_loo_n1_0-n1",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-hairdresser-client-compliment-ba|L44|p00121",
+            "category": "regression"
+          },
+          {
+            "condition": "prune_loo_n1_0.001-n1",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-hairdresser-client-compliment-ba|L44|p00121",
+            "category": "regression"
+          },
+          {
+            "condition": "prune_coefficient_n1_0.01-n1",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-hairdresser-client-compliment-ba|L44|p00121",
+            "category": "regression"
+          },
+          {
+            "condition": "prune_coefficient_n1_0.05-n1",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-hairdresser-client-compliment-ba|L44|p00121",
+            "category": "regression"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "0d13f0281de7476ba8f53b279219612ce0a5ecd1e78d34ee0e4127339a7f4e76",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "random_complete-n8",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "32374a4684250290e015860f92ec9b0715a6e3cbabf56057a4c1dc91c4a1270e",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "prune_loo_a32_0-n32",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "random_delete_matched_a32_0-n32",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "prune_coefficient_a32_0.01-n32",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "prune_coefficient_a32_0.05-n32",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "63753c027bec816363f5f766d3124bd638795eb396f07ec1de4b5aaa1c0ac0f2",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "pooling_exact_support_lambda0.05-n16",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "pooling_exact_support_lambda0.2-n16",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "a569b7f088134e146da46c48d03714cfa023edd6815857c5482caec37f839e6b",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_exact_support0.125-n16",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "consensus_exact_support0.25-n16",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "best_n_specificity_mean_abstain_nonpositive-n32",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+            "category": "fixed_anchor"
+          }
+        ]
+      }
+    ],
+    "partition_2": [
+      {
+        "pair_sha256": "1690782c3aa2a1dd2dd516706fd4216b70b4ba28ff96f444393c51a85d826ae4",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "random_delete_matched_a32_0.005-n32",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "39362da3cd41a03b24bd13e099530f43d8db5ba04ccc04deb0a3138e4a3ee9a3",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "best_n_specificity_mean-n32",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+            "category": "changed_no_endpoint_change"
+          },
+          {
+            "condition": "best_n_specificity_max-n32",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+            "category": "changed_no_endpoint_change"
+          },
+          {
+            "condition": "best_n_specificity_mean_abstain_nonpositive-n32",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+            "category": "changed_no_endpoint_change"
+          },
+          {
+            "condition": "prune_loo_a32_0-n32",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+            "category": "changed_no_endpoint_change"
+          },
+          {
+            "condition": "random_delete_matched_a32_0-n32",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+            "category": "changed_no_endpoint_change"
+          },
+          {
+            "condition": "prune_coefficient_a32_0.01-n32",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "59c1a543eaef2cc8496e1fef96df6d970cb24cb0037c83ea926891ccc366276d",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "best_n_specificity_mean_random_delete_matched_0.005-n32",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "7f10e48b576eba5b3e37a1650476dcf66d2f44a9099beaae29665f607c64d3ef",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "best_n_specificity_mean_then_prune_0.005-n32",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "e2185c707774995084b53cafc231063967f36200974194d6ab7cb22a1ffbac22",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "random_delete_matched_a32_0.001-n32",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+            "category": "changed_no_endpoint_change"
+          },
+          {
+            "condition": "best_n_specificity_mean_random_delete_matched_0.001-n32",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "1d8ef07439b5822e145c6e6b593dbc659cc61729b0b7f196e4578cac0fd75371",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00038",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "prune_loo_n1_0.005-n1",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00038",
+            "category": "regression"
+          },
+          {
+            "condition": "best_n_specificity_mean_then_prune_0.001-n32",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00038",
+            "category": "regression"
+          },
+          {
+            "condition": "best_n_specificity_mean_then_prune_0.005-n32",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00038",
+            "category": "regression"
+          },
+          {
+            "condition": "prune_loo_a32_0-n32",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00038",
+            "category": "regression"
+          },
+          {
+            "condition": "prune_coefficient_a32_0.01-n32",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00038",
+            "category": "regression"
+          },
+          {
+            "condition": "prune_coefficient_a32_0.05-n32",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00038",
+            "category": "regression"
+          },
+          {
+            "condition": "prune_loo_n1_0-n1",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00038",
+            "category": "regression"
+          },
+          {
+            "condition": "random_delete_matched_n1_0-n1",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00038",
+            "category": "regression"
+          },
+          {
+            "condition": "prune_loo_n1_0.001-n1",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00038",
+            "category": "regression"
+          },
+          {
+            "condition": "prune_coefficient_n1_0.01-n1",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00038",
+            "category": "regression"
+          },
+          {
+            "condition": "prune_coefficient_n1_0.05-n1",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00038",
+            "category": "regression"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "dcd5520efb2353f3399dbeeab6e94e7ce7fb6393475e86d7fa1795fe567b48bb",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00038",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "pooling_exact_support_lambda0.05-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00038",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "3f2e08658bde98f1bbf4fb7a6ea449ebfaca1cc9aaae27f9f199a2ca554a8256",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00046",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "random_delete_matched_n1_0.005-n1",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00046",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "6f0025f7248b77ef9dd1adf8d1e65f85c349c16ce3109ee1bbbf69084fa0b36a",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00046",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_semantic_v5_support0_compaton_vetoon-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00046",
+            "category": "changed_no_endpoint_change"
+          },
+          {
+            "condition": "consensus_semantic_v5_medium_support0_compaton_vetoon-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00046",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "254ebdb0fd48b58db4ab387b0d3476558f6bddc1e1d009d94cb60ffb148fea25",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00055",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00055",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "491d227b68cc2ec44b194f4d7b0b1f491e38c6024ebcfbb3392cb76a1ed1e220",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00055",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_semantic_v5_support0.125_compatoff_vetoon-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00055",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "55937cf09bd783a74664cbdedc1e1c18652d323dbfc0c65a4bee81ac931b7173",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00055",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "best_n_specificity_mean_random_delete_matched_0.005-n32",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00055",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "c842371c36f3f9a0d517b72025b7e48780f1250a2575d1d27a7702b80688a2fa",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00055",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "best_n_specificity_mean_random_delete_matched_0.001-n32",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00055",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "24b541af7651521fb9990a57feb08b2c5b0125475dd02e94809e2ff043925fef",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00092",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_semantic_v5_support0_compatoff_vetoon-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00092",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "dbf795037f0f7177f7744295ee67f147b3afef2846990d6742dd1d36b4e89370",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L36|p00023",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "best_n_specificity_max-n32",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L36|p00023",
+            "category": "regression"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "5532e0bd9ffce432525ce0f2384e31e83fea434cce92f10a1aed82f28a3b4f9f",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L36|p00055",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "random_delete_matched_n1_0-n1",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L36|p00055",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "310d24df0b4526e1f951cd5bd3c25177bf12b58aceb1b48aacad1e9d29b64415",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L44|p00023",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "random_delete_matched_n1_0.001-n1",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L44|p00023",
+            "category": "regression"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "d19f8bdcd70e7df1cc3f060115f8ddafec9f5aabfc43f40e6c1ad1d4bb547b8b",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L44|p00038",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_semantic_v5_support0_compaton_vetoon-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L44|p00038",
+            "category": "regression"
+          },
+          {
+            "condition": "consensus_semantic_v5_support0.125_compatoff_vetoon-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L44|p00038",
+            "category": "regression"
+          },
+          {
+            "condition": "consensus_semantic_v5_support0.125_compaton_vetoon-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L44|p00038",
+            "category": "regression"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "19659acb18016b14f07205746093e0d03d089e11f72c49832d1c39a7f9637398",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L52|p00023",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_exact_support0-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L52|p00023",
+            "category": "changed_no_endpoint_change"
+          },
+          {
+            "condition": "exact_support_only-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L52|p00023",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "eeb0655f960f362b7b2fbd7a54a9edac575d6e2a2a9d9d895da774dd88e7ed4e",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L60|p00046",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "best_n_specificity_max-n32",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L60|p00046",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "b37e93d22e41a506575cbe6e0c6b5989ecc07e2c1577a7faa6a1ada2c1d58eea",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0002|L20|p00020",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_exact_support0-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0002|L20|p00020",
+            "category": "win"
+          },
+          {
+            "condition": "exact_support_only-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0002|L20|p00020",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "2a5e614768ac31b03b733b67edc03ea66d6dc25bea3a50069cdf312c0497c49c",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0002|L44|p00049",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0002|L44|p00049",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "58d7562646008228033b3c68aa5d45791424f9b505d54ec82349a25339becf51",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0003|L60|p00338",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_exact_support0-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0003|L60|p00338",
+            "category": "regression"
+          },
+          {
+            "condition": "exact_support_only-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0003|L60|p00338",
+            "category": "regression"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "a7eb12b4e49f4400737c8fac00fb94601b11c0ad0a32acfdbb5b0c951afb089a",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0006|L44|p00243",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_exact_support0.125-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0006|L44|p00243",
+            "category": "regression"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "4122c08f78407d223fa5bdfcd936a1427a960bf3ecfb840a11879325d8ba6973",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "best_n_specificity_mean_random_delete_matched_0.001-n32",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "72c16d068a358b8db2a50d4828d326bac3fddf155514e252f83a2bfd7c4f284d",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "prune_loo_n1_0.005-n1",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "88e89764ce9d95fbc8ae7b99fb779e0bce549fc30f0fd66716377e41c6ab3042",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_semantic_v5_support0_compatoff_vetooff-n16",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "consensus_semantic_v5_support0_compatoff_vetoon-n16",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "bb219407dcd3fc883def3c0993fd47210fa122690f0f434ad985b9f20d8a41ca",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "best_n_specificity_mean-n32",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "best_n_specificity_max-n32",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "best_n_specificity_mean_abstain_nonpositive-n32",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "prune_loo_a32_0-n32",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "random_delete_matched_a32_0-n32",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "17436f3a19b3c55e3fbae68b4c57dd35a763137e0f21cd42368590b8d62b39bd",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_semantic_v5_support0_compaton_vetoon-n16",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "consensus_semantic_v5_medium_support0_compaton_vetoon-n16",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "43f5072a4546db993bdadb17bd2b5819b4fd169bb61af22f7a59e3583eae5e80",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "random_delete_matched_n1_0.005-n1",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "541fece7a276272a48be60f12342e6070a56529a3369cdb8ff865e19f7781568",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "best_n_specificity_mean_random_delete_matched_0.005-n32",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "a7a255c8efabdcd6980f9e8bbd3306875f948963e17e2844a634a46fad443000",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "best_n_specificity_mean_then_prune_0.005-n32",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "ff2f15b8a7f7af802b8f7ce978f84a9e513892cc28fa1557bf0eeb5790555e5f",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "best_n_specificity_mean-n32",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "best_n_specificity_max-n32",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "best_n_specificity_mean_abstain_nonpositive-n32",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "62f8614a217a81fdac10afe3269869ce401cc78d8c8840382ca6da220164638b",
+        "family": "multihop_mt",
+        "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "pooled_greedy_swap_then_prune_0.001-n32",
+            "family": "multihop_mt",
+            "kind": "outcome_selected",
+            "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028",
+            "category": "changed_no_endpoint_change"
+          },
+          {
+            "condition": "pooled_greedy_swap_random_delete_matched_0.001-n32",
+            "family": "multihop_mt",
+            "kind": "outcome_selected",
+            "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "ae334491ce6897e07781157f32927b23d0e106c3f8db53c5e85f24e4a4b0ad2c",
+        "family": "multihop_mt",
+        "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "consensus_semantic_v5_medium_support0_compaton_vetoon-n16",
+            "family": "multihop_mt",
+            "kind": "outcome_selected",
+            "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "07ef18a77b575a447b21b4c9a254a61b4e677a4da5a74b5b4b1e5b776993864d",
+        "family": "multihop_mt",
+        "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "consensus_exact_support0-n16",
+            "family": "multihop_mt",
+            "kind": "fixed_anchor",
+            "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "exact_support_only-n16",
+            "family": "multihop_mt",
+            "kind": "fixed_anchor",
+            "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+            "family": "multihop_mt",
+            "kind": "fixed_anchor",
+            "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "49d2d40e9bfcbd67d05ea64bdf3898caf90679d98134e816880960ad17fc3867",
+        "family": "multihop_mt",
+        "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "pooled_specificity_mean_random_delete_matched_0.005-n32",
+            "family": "multihop_mt",
+            "kind": "fixed_anchor",
+            "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "aad64202c3c291bdac9ae413401f243396e4dee1ce825efc3832c28b0f388ca9",
+        "family": "multihop_mt",
+        "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "pooled_greedy_swap_then_prune_0.005-n32",
+            "family": "multihop_mt",
+            "kind": "fixed_anchor",
+            "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "pooled_greedy_swap_random_delete_matched_0.005-n32",
+            "family": "multihop_mt",
+            "kind": "fixed_anchor",
+            "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "pooled_specificity_mean_then_prune_0.005-n32",
+            "family": "multihop_mt",
+            "kind": "fixed_anchor",
+            "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "3b80bd7c0da340735e83d12877f0c49792fac6927b568bb796b7927254651fd1",
+        "family": "multihop_mt",
+        "cell_id": "multihop_mt|mhh-1976philadelphia-bacterium|L20|p00028",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "consensus_semantic_v5_medium_support0.125_compatoff_vetoon-n16",
+            "family": "multihop_mt",
+            "kind": "outcome_selected",
+            "cell_id": "multihop_mt|mhh-1976philadelphia-bacterium|L20|p00028",
+            "category": "changed_no_endpoint_change"
+          },
+          {
+            "condition": "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16",
+            "family": "multihop_mt",
+            "kind": "outcome_selected",
+            "cell_id": "multihop_mt|mhh-1976philadelphia-bacterium|L20|p00028",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "3402226a800b19f678fb583fde55013549aca2b17474eb7f9e684a905a65ae17",
+        "family": "multihop_mt",
+        "cell_id": "multihop_mt|mhh-adwa-baratieri|L44|p00033",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "pooled_greedy_swap_then_prune_0.001-n32",
+            "family": "multihop_mt",
+            "kind": "outcome_selected",
+            "cell_id": "multihop_mt|mhh-adwa-baratieri|L44|p00033",
+            "category": "win"
+          },
+          {
+            "condition": "pooled_greedy_swap_random_delete_matched_0.001-n32",
+            "family": "multihop_mt",
+            "kind": "outcome_selected",
+            "cell_id": "multihop_mt|mhh-adwa-baratieri|L44|p00033",
+            "category": "win"
+          },
+          {
+            "condition": "pooled_specificity_mean-n32",
+            "family": "multihop_mt",
+            "kind": "outcome_selected",
+            "cell_id": "multihop_mt|mhh-adwa-baratieri|L44|p00033",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "8a58211204c1d4d9a3923842730757b5ec1d03f73d5c362e2a3ea06be20072c9",
+        "family": "multihop_mt",
+        "cell_id": "multihop_mt|mhh-adwa-baratieri|L56|p00033",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "pooling_exact_support_lambda0.05-n16",
+            "family": "multihop_mt",
+            "kind": "outcome_selected",
+            "cell_id": "multihop_mt|mhh-adwa-baratieri|L56|p00033",
+            "category": "win"
+          },
+          {
+            "condition": "pooling_exact_support_lambda0.2-n16",
+            "family": "multihop_mt",
+            "kind": "outcome_selected",
+            "cell_id": "multihop_mt|mhh-adwa-baratieri|L56|p00033",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "5c1d7f3b730abaf8ea84a7f9623b3f240d05b3306ce1cfe87bf01cfc9c9e725c",
+        "family": "multihop_mt",
+        "cell_id": "multihop_mt|mhh-belisarius-procopius-secret-history|L52|p00038",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "pooling_exact_support_lambda0.05-n16",
+            "family": "multihop_mt",
+            "kind": "outcome_selected",
+            "cell_id": "multihop_mt|mhh-belisarius-procopius-secret-history|L52|p00038",
+            "category": "regression"
+          },
+          {
+            "condition": "pooling_exact_support_lambda0.2-n16",
+            "family": "multihop_mt",
+            "kind": "outcome_selected",
+            "cell_id": "multihop_mt|mhh-belisarius-procopius-secret-history|L52|p00038",
+            "category": "regression"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "4d7b3db02f788f14fdcaa4bc3987f37c2a5268bea4e6361412bad28909420343",
+        "family": "multihop_mt",
+        "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "pooled_specificity_mean-n32",
+            "family": "multihop_mt",
+            "kind": "fixed_anchor",
+            "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "c69efa4b6590e1d33764476442b1dc53aa2f296d8eb66862cc8b4a30a72876c4",
+        "family": "multihop_mt",
+        "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "pooling_exact_support_lambda0.05-n16",
+            "family": "multihop_mt",
+            "kind": "fixed_anchor",
+            "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "pooling_exact_support_lambda0.2-n16",
+            "family": "multihop_mt",
+            "kind": "fixed_anchor",
+            "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "0ebef026d94a2172c2d0f3002636c6e24f5c70102066911c41b92c3df7beda35",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "prune_loo_a32_0-n32",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+            "category": "changed_no_endpoint_change"
+          },
+          {
+            "condition": "prune_coefficient_a32_0.01-n32",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+            "category": "changed_no_endpoint_change"
+          },
+          {
+            "condition": "prune_coefficient_a32_0.05-n32",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "292d2d8662ca9ef4e9500fb2ccc2252a7a4e91ab756efc7bc128a422e00b3f19",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "random_delete_matched_n1_0.001-n1",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "83c6f44ba7b602dff90acd51002a04b8fb75b19df305724fb0032e67d5c52b79",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "random_complete-n4",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+            "category": "changed_no_endpoint_change"
+          },
+          {
+            "condition": "random_complete-n8",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "ec3c6a03d80b5cffb7c8c3352e67755a4de431934180c690e1a74c32d0137bad",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "best_n_specificity_mean_abstain_nonpositive-n32",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "563a38b93c0c106f940b5b2e4db7481545dccb327e1c5a869c9c436c5a971d7c",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00133",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "random_complete-n2",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00133",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "09aaee341da92ae554b06123ab50dce19f5ddf7309bcecc44f7fc4a9fb66265d",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ab|L36|p00089",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "best_n_specificity_mean_then_prune_0.005-n32",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ab|L36|p00089",
+            "category": "regression"
+          },
+          {
+            "condition": "best_n_specificity_mean_random_delete_matched_0.005-n32",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ab|L36|p00089",
+            "category": "regression"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "3d06c3b762efdf9b50626260ae4c0d3fc7c835e0f2cc04da13e4bd2dad088984",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ba|L36|p00124",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "best_n_specificity_mean_random_delete_matched_0.005-n32",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ba|L36|p00124",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "c118de12e30163bf0f433325d2a5e6c5ab66e0cd19d23cd7d5d167d86aa23a34",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ba|L36|p00124",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "best_n_specificity_mean_then_prune_0.005-n32",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ba|L36|p00124",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "9a3c5322924580e1a64f24a2a0031969345305b5c2df90600c76df73bae4b59b",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ba|L44|p00124",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "pooling_exact_support_lambda0.05-n16",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ba|L44|p00124",
+            "category": "win"
+          },
+          {
+            "condition": "pooling_exact_support_lambda0.2-n16",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ba|L44|p00124",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "205d2e83547434442d9fb9adca65c8d715143ca52aec8a5f97178bc8089db3e6",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-bouncer-patron-eject-ba|L44|p00153",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "random_delete_matched_n1_0-n1",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-bouncer-patron-eject-ba|L44|p00153",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "a35bc69a2f70f6ed4733a2fd0b999d91782949e203f3220ae5f0d8e30e78bd3f",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-burglar-neighbor-spy-ba|L60|p00142",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "best_n_specificity_mean_then_prune_0.001-n32",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-burglar-neighbor-spy-ba|L60|p00142",
+            "category": "regression"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "279fe9a65f36bc632f726cfe9e8d7552e9bad2ed02f475184892dde8e1814d23",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "consensus_exact_support0-n16",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "exact_support_only-n16",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "prune_loo_n1_0-n1",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "random_delete_matched_n1_0-n1",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "prune_loo_n1_0.001-n1",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "random_delete_matched_n1_0.001-n1",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "prune_coefficient_n1_0.01-n1",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "prune_coefficient_n1_0.05-n1",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "5e62de243a582704e3e0d178fa63b342e0479c72f16e9d966b9983074e8161c6",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "best_n_specificity_mean_random_delete_matched_0.001-n32",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "b5b00e6c4429bc44ab5e974e8be9d2143db27c10965aef48e34f45a841759d9e",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "pooling_exact_support_lambda0.05-n16",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "pooling_exact_support_lambda0.2-n16",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "e6fab412d1bbf13e1269b0e88462ce3c4b4458472bc7ed2e88ae75c1b794ee3b",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "random_complete-n4",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "5ed3240ae5048d10896236c7f71978e38f39cda5d621c80df0aaa7e6bb3c7733",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-critic-musician-mock-ab|L44|p00132",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "pooling_exact_support_lambda0.05-n16",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-critic-musician-mock-ab|L44|p00132",
+            "category": "regression"
+          },
+          {
+            "condition": "pooling_exact_support_lambda0.2-n16",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-critic-musician-mock-ab|L44|p00132",
+            "category": "regression"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "08e0909c2687b3928ecfb41a324137711f70dad1cd9d23a73d43743f57775a30",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-father-daughter-worry-ba|L44|p00135",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "pooled_greedy_swap_then_prune_0.001-n32",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-father-daughter-worry-ba|L44|p00135",
+            "category": "regression"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "9fbdaeb06872de2bb21d1a730fc92b1262506d59cb359b306fd1c9ba23c2f35e",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-referee-player-warn-ba|L52|p00154",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "random_delete_matched_n1_0.001-n1",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-referee-player-warn-ba|L52|p00154",
+            "category": "regression"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "1cda5aac1987062c6669762562c5890d50b269a0ca730e7b8a3a8a48505409ed",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "pooled_greedy_swap_then_prune_0.001-n32",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "47814be10f9a47822f1d660ef62fe5ab5610159ae002601ab9f6d92cfba4a882",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "best_n_specificity_mean_then_prune_0.001-n32",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "best_n_specificity_mean_then_prune_0.005-n32",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "best_n_specificity_mean_random_delete_matched_0.001-n32",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "8e664a4a43dc878efc0c61efeee3a320cec587067952805d72452603f1cfc3e2",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "best_n_specificity_mean_random_delete_matched_0.005-n32",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "e811defc7ae47d7366227b9fff3894e6798c6add6c769fcc5c012f4ec7286157",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "consensus_exact_support0-n16",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "exact_support_only-n16",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "random_complete-n2",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "random_complete-n4",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+            "category": "fixed_anchor"
+          }
+        ]
+      }
+    ],
+    "partition_3": [
+      {
+        "pair_sha256": "2c7d281251c0ee3c3eaf5cff956670d6eab155c960ef81c28ad20c30643e4dfd",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "random_complete-n2",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "449e5fef86597bfee9ca9e53fcf56df5b2f4178535079be66eda200694af892d",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_semantic_v5_support0_compaton_vetoon-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+            "category": "win"
+          },
+          {
+            "condition": "consensus_semantic_v5_medium_support0_compaton_vetoon-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "628679aa021181a378d75796f65855bad94c11d245eac327a760a777248b4a51",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "random_complete-n4",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "d0cdaf109dab33e747bee776a5aa9b822b0b77129ad0f0bb547412802bb45455",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "random_delete_matched_n1_0.001-n1",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "e62dee01990cc2764aa6066aba8f21115736e156107dff59808fce7d8c6381cc",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "prune_loo_n1_0.005-n1",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+            "category": "win"
+          },
+          {
+            "condition": "prune_loo_n1_0.001-n1",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "76f22cc8f8d7918a51cf4c0a28d782d8233e2a12f18746be0e6c6fde30a3be7a",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00038",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "random_delete_matched_a32_0.005-n32",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00038",
+            "category": "regression"
+          },
+          {
+            "condition": "random_delete_matched_n1_0.005-n1",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00038",
+            "category": "regression"
+          },
+          {
+            "condition": "best_n_specificity_mean_random_delete_matched_0.001-n32",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00038",
+            "category": "regression"
+          },
+          {
+            "condition": "random_delete_matched_a32_0-n32",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00038",
+            "category": "regression"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "1f9afe49a2361363fb681da85af62f499d6d558f28dce40ec92920a092b61ec5",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00046",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "random_complete-n2",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00046",
+            "category": "regression"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "4b27c3a2c4d1426cbef327544be1d11ee550337fd49f5ee0dc4ba3305456b1f8",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00046",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "random_complete-n8",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00046",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "7dfff59fcc8380a9b520a7201b68551e327c54c8925dddf759aff2bde6f36712",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00046",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "prune_loo_n1_0.005-n1",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00046",
+            "category": "changed_no_endpoint_change"
+          },
+          {
+            "condition": "prune_loo_n1_0-n1",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00046",
+            "category": "changed_no_endpoint_change"
+          },
+          {
+            "condition": "prune_loo_n1_0.001-n1",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00046",
+            "category": "changed_no_endpoint_change"
+          },
+          {
+            "condition": "prune_coefficient_n1_0.01-n1",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00046",
+            "category": "changed_no_endpoint_change"
+          },
+          {
+            "condition": "prune_coefficient_n1_0.05-n1",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00046",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "37018f686af905d271244cd72b1121fc51a742780ebee967595443fa4d4e096b",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00055",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_semantic_v5_support0.125_compaton_vetoon-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00055",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "49bb37c7d7cc88531e39a65fef8265dbf68c338034f8a3ce83d8203f925c2d94",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00055",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "random_delete_matched_a32_0-n32",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00055",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "833f15cb46a80befcc8d42b790e67b31f800e34e47ab18bbf3fae9fbf091bd5f",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00055",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "random_delete_matched_a32_0.005-n32",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00055",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "a7ae9e0f2d52d378d6b3f9c4bb17d8171f72b813015f849a5b8a6d5f4b7a4f1e",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00067",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "random_complete-n2",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00067",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "5464e7b5c2aea32c903764c4404d6682ed01193712958cc7444e9ec958dd9bba",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L20|p00092",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "best_n_specificity_mean-n32",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00092",
+            "category": "regression"
+          },
+          {
+            "condition": "best_n_specificity_mean_abstain_nonpositive-n32",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L20|p00092",
+            "category": "regression"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "ba277798d2f869531ef2a404a4cb394f747e741ddb1ec2bb1f12474a27455cb2",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L36|p00038",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "prune_loo_a32_0-n32",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L36|p00038",
+            "category": "win"
+          },
+          {
+            "condition": "prune_coefficient_a32_0.01-n32",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L36|p00038",
+            "category": "win"
+          },
+          {
+            "condition": "prune_coefficient_a32_0.05-n32",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L36|p00038",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "0834c73bb865e9ba88113e3410c0ddba479ee456f8bdf5a9d69470708295ecb7",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L36|p00092",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_semantic_v5_support0.125_compatoff_vetoon-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L36|p00092",
+            "category": "changed_no_endpoint_change"
+          },
+          {
+            "condition": "consensus_semantic_v5_support0.125_compaton_vetoon-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L36|p00092",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "4763e4ebad7d1e165dabf3ffd3c51de173c5c77fcb9c1d759e25d9b701738376",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L44|p00038",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_semantic_v5_support0_compatoff_vetooff-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L44|p00038",
+            "category": "regression"
+          },
+          {
+            "condition": "consensus_semantic_v5_support0_compatoff_vetoon-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L44|p00038",
+            "category": "regression"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "5494cc1758d7cbdf19dbba4a1183bdc67166d1c880b6346a0d1936d3c5d019d7",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L44|p00046",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_exact_support0.125-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L44|p00046",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "616fdb5c92802f7f0c099229f0cfa31854e9a6cf1efd222316903bfec1428595",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0000|L52|p00067",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0000|L52|p00067",
+            "category": "regression"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "338ea95d6f35ba2bbb7fb8df3a740257113be0077bda71e01c8e8e8ba3bc9dd3",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0001|L20|p00022",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_semantic_v5_medium_support0_compaton_vetoon-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0001|L20|p00022",
+            "category": "regression"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "bb463884b3b2c637656e9e8e61531e09501b41ff66e0bb9a77d70aff26c04d2a",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0002|L20|p00020",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_semantic_v5_medium_support0.125_compatoff_vetoon-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0002|L20|p00020",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "a09a7862f0d5ab185b8a307d0df5bf5274278c55e9a7a65368f7662d1fad7d85",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0002|L60|p00032",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_exact_support0.125-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0002|L60|p00032",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "7fda56c01c523d7fef05b070d374ddcfe9f0976027dc57daa3b97030276122ac",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0005|L36|p00091",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0005|L36|p00091",
+            "category": "regression"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "4891964c4fbc1d0ca545a58e2ddcabb43f35e9cff064d52cf5910c37f5c70e04",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-dailydialog-0027|L20|p00123",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_exact_support0.25-n16",
+            "family": "hallucination",
+            "kind": "outcome_selected",
+            "cell_id": "hallucination|chat-dailydialog-0027|L20|p00123",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "67acb40f74e6011e18c2a2a3343720d45cc628b38189821a8e377f4b63f3c29e",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_exact_support0.125-n16",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "consensus_exact_support0.25-n16",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "79a4d720474569b4622d01917dd8f6afe447d0baeb4ad7f64666940ee27159ee",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "random_complete-n4",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "a5c14f37f1c2eed689a0281826c94535cd13db18a2d9e4ba818bd1526f21ef20",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "consensus_exact_support0-n16",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "exact_support_only-n16",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "random_complete-n1",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "random_complete-n2",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "random_complete-n8",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "prune_loo_n1_0-n1",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "random_delete_matched_n1_0-n1",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "prune_loo_n1_0.001-n1",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "random_delete_matched_n1_0.001-n1",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "prune_coefficient_n1_0.01-n1",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "prune_coefficient_n1_0.05-n1",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "e53a1ea2c32ca473cd4893e38b831260f1f82b51e372748064285cbcda08e5d9",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "random_delete_matched_n1_0.005-n1",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "2efa78f05ff24a874431c8d831cc6e6821462ad2ac0992c6aa47a814ba97fb51",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "pooling_exact_support_lambda0.05-n16",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "511ee921ffec60a8306c0614c430147de18695e5cae74ff75c141ac0b5aeb378",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "random_delete_matched_a32_0.005-n32",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "8600ff2844f8f44c4b71c770046c4ea0084afbc1d0cade580b41c020424d2d84",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "prune_loo_n1_0.005-n1",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "be20a3b309e1d6b24b3451927bd0c1dea069acb7926a50cc99cdcf78a11b1554",
+        "family": "hallucination",
+        "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "random_complete-n2",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "random_complete-n8",
+            "family": "hallucination",
+            "kind": "fixed_anchor",
+            "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "249c0de27e4dea490eab89969c0a471974e4c8f1c12c6f9597a556321e846c6e",
+        "family": "multihop_mt",
+        "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "pooled_greedy_swap_then_prune_0.005-n32",
+            "family": "multihop_mt",
+            "kind": "outcome_selected",
+            "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028",
+            "category": "changed_no_endpoint_change"
+          },
+          {
+            "condition": "pooled_specificity_mean_then_prune_0.005-n32",
+            "family": "multihop_mt",
+            "kind": "outcome_selected",
+            "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "857d448b894ab4949c68f3337980f96f16138dedd3ad5ec6d65190f52d93b56a",
+        "family": "multihop_mt",
+        "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "pooling_exact_support_lambda0.05-n16",
+            "family": "multihop_mt",
+            "kind": "outcome_selected",
+            "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028",
+            "category": "changed_no_endpoint_change"
+          },
+          {
+            "condition": "pooling_exact_support_lambda0.2-n16",
+            "family": "multihop_mt",
+            "kind": "outcome_selected",
+            "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "b26b6e8137550464ccfa1f556e2208b01461db029a4f1031992207d2cefbd802",
+        "family": "multihop_mt",
+        "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "pooled_specificity_mean_random_delete_matched_0.005-n32",
+            "family": "multihop_mt",
+            "kind": "outcome_selected",
+            "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "1a0a805ffbbe8325c6c0881fb9f9bd37b703b8f12fce87f219553a693ede5ee5",
+        "family": "multihop_mt",
+        "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "pooled_specificity_mean-n32",
+            "family": "multihop_mt",
+            "kind": "fixed_anchor",
+            "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "7ec784070990afa299cc1214bace357a11cd70c9dc2cd5212d051f35c74fd49c",
+        "family": "multihop_mt",
+        "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "consensus_semantic_v5_medium_support0_compaton_vetoon-n16",
+            "family": "multihop_mt",
+            "kind": "fixed_anchor",
+            "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "e1e28aeb7fc172030e1d864d2ddcc1123342cce4c5d41ecc54c585aa93d2b1fe",
+        "family": "multihop_mt",
+        "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "consensus_exact_support0.125-n16",
+            "family": "multihop_mt",
+            "kind": "fixed_anchor",
+            "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "consensus_exact_support0.25-n16",
+            "family": "multihop_mt",
+            "kind": "fixed_anchor",
+            "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "consensus_semantic_v5_medium_support0.125_compatoff_vetoon-n16",
+            "family": "multihop_mt",
+            "kind": "fixed_anchor",
+            "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16",
+            "family": "multihop_mt",
+            "kind": "fixed_anchor",
+            "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "9c9ae3c4c6991c6764f479795f4fcb70cf26f6ba7d9d9295e83e2cf0222c0619",
+        "family": "multihop_mt",
+        "cell_id": "multihop_mt|mhh-1976philadelphia-bacterium|L40|p00028",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_exact_support0-n16",
+            "family": "multihop_mt",
+            "kind": "outcome_selected",
+            "cell_id": "multihop_mt|mhh-1976philadelphia-bacterium|L40|p00028",
+            "category": "changed_no_endpoint_change"
+          },
+          {
+            "condition": "exact_support_only-n16",
+            "family": "multihop_mt",
+            "kind": "outcome_selected",
+            "cell_id": "multihop_mt|mhh-1976philadelphia-bacterium|L40|p00028",
+            "category": "changed_no_endpoint_change"
+          },
+          {
+            "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+            "family": "multihop_mt",
+            "kind": "outcome_selected",
+            "cell_id": "multihop_mt|mhh-1976philadelphia-bacterium|L40|p00028",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "47787436563034dd064813fd804e300ee518ccfe2a8c0da7f37899ffc0b794ec",
+        "family": "multihop_mt",
+        "cell_id": "multihop_mt|mhh-adwa-baratieri|L44|p00033",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "pooled_specificity_mean_random_delete_matched_0.005-n32",
+            "family": "multihop_mt",
+            "kind": "outcome_selected",
+            "cell_id": "multihop_mt|mhh-adwa-baratieri|L44|p00033",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "4c223042b42c9f41d05cf1f81e4eb650f363dccfb7dd79d6563c79c04c8e06c0",
+        "family": "multihop_mt",
+        "cell_id": "multihop_mt|mhh-adwa-victor-accord|L52|p00044",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "consensus_semantic_v5_medium_support0_compaton_vetoon-n16",
+            "family": "multihop_mt",
+            "kind": "outcome_selected",
+            "cell_id": "multihop_mt|mhh-adwa-victor-accord|L52|p00044",
+            "category": "regression"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "0ebcb9dad3a40ae408f7ae2c3cac741565920382e15f16371de37c2984800dd2",
+        "family": "multihop_mt",
+        "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "consensus_exact_support0.125-n16",
+            "family": "multihop_mt",
+            "kind": "fixed_anchor",
+            "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "consensus_exact_support0.25-n16",
+            "family": "multihop_mt",
+            "kind": "fixed_anchor",
+            "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "consensus_semantic_v5_medium_support0.125_compatoff_vetoon-n16",
+            "family": "multihop_mt",
+            "kind": "fixed_anchor",
+            "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16",
+            "family": "multihop_mt",
+            "kind": "fixed_anchor",
+            "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "7300a7141efe2a3acd22de1003ebf907f72dbe0089c761d2a10d2be254dcd649",
+        "family": "multihop_mt",
+        "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "pooled_greedy_swap_random_delete_matched_0.001-n32",
+            "family": "multihop_mt",
+            "kind": "fixed_anchor",
+            "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "d9a2357e9d0b487972e366205f2d8b3c78b079e88707e5a9b2cb88ac89dd6848",
+        "family": "multihop_mt",
+        "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "consensus_semantic_v5_medium_support0_compaton_vetoon-n16",
+            "family": "multihop_mt",
+            "kind": "fixed_anchor",
+            "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "1cd7c1785b4d65b2c08c2b532a4936b0a56a6fa719c1eba46cde38473a1ffda3",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "prune_loo_n1_0-n1",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+            "category": "changed_no_endpoint_change"
+          },
+          {
+            "condition": "prune_coefficient_n1_0.01-n1",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+            "category": "changed_no_endpoint_change"
+          },
+          {
+            "condition": "prune_coefficient_n1_0.05-n1",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "3a650f9ebb69c85c2b2181a9751f8bfeb8dc1826708aa274213b4f0b9f2ea5fe",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "best_n_specificity_mean_random_delete_matched_0.001-n32",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+            "category": "changed_no_endpoint_change"
+          },
+          {
+            "condition": "best_n_specificity_mean_random_delete_matched_0.005-n32",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "88b8e63fa083187763e4e70a3e5469c9492483592357bda60dc66ec6fbab1e15",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "random_delete_matched_a32_0-n32",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "f8e7bdf34fcb7e45792e63bf55d783c4180bbd8b14276b712bc0f3081f4002df",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "prune_loo_n1_0.001-n1",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "835f20aadd9ced5b5c9c652c99209bc60dd1e49f7018170dfb13ecd1ab4f5bea",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00133",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "consensus_exact_support0-n16",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00133",
+            "category": "changed_no_endpoint_change"
+          },
+          {
+            "condition": "exact_support_only-n16",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00133",
+            "category": "changed_no_endpoint_change"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "dd131a823f2194a9718221282f4792f74dd4346d5c292299db46147d1369ba3e",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ab|L36|p00089",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "best_n_specificity_mean_random_delete_matched_0.001-n32",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ab|L36|p00089",
+            "category": "regression"
+          },
+          {
+            "condition": "prune_loo_a32_0-n32",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ab|L36|p00089",
+            "category": "regression"
+          },
+          {
+            "condition": "random_delete_matched_a32_0-n32",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ab|L36|p00089",
+            "category": "regression"
+          },
+          {
+            "condition": "prune_coefficient_a32_0.01-n32",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ab|L36|p00089",
+            "category": "regression"
+          },
+          {
+            "condition": "prune_coefficient_a32_0.05-n32",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ab|L36|p00089",
+            "category": "regression"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "4d008f28f300b150f111363194fa8e7519bd404a2b0fb7a684d4ce9b6d8c3139",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ba|L36|p00124",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "random_complete-n2",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ba|L36|p00124",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "2298a20cd93c644971dc993b0e40d14b009fe5bf385b8a82dac02c2da3a6bc80",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ba|L44|p00124",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "pooled_greedy_swap_then_prune_0.001-n32",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ba|L44|p00124",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "f60f92a986f74877c1b554e38b10e8f7c159084ce8c7cae41546496e382b3075",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ba|L44|p00124",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "best_n_specificity_mean_abstain_nonpositive-n32",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ba|L44|p00124",
+            "category": "win"
+          },
+          {
+            "condition": "prune_loo_a32_0-n32",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ba|L44|p00124",
+            "category": "win"
+          },
+          {
+            "condition": "random_delete_matched_a32_0-n32",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ba|L44|p00124",
+            "category": "win"
+          },
+          {
+            "condition": "prune_coefficient_a32_0.01-n32",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ba|L44|p00124",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "15942518beb7569ce9bf05bc1ea83727f4c07c4b96e2d350fd9bfca06b3aa3d6",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-bride-caterer-yell-ab|L36|p00121",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "random_complete-n2",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-bride-caterer-yell-ab|L36|p00121",
+            "category": "regression"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "0bc3fe9c275c2057b52d19338e31d23829c7b332ab6d2a15ee8a718bf8ac1ab1",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "best_n_specificity_mean_then_prune_0.001-n32",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "best_n_specificity_mean_then_prune_0.005-n32",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "prune_coefficient_a32_0.05-n32",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "38fb3335bfe38fbb031742dfd761fe0d40cbafd89353e2b6268fae23fe78ef8a",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "best_n_specificity_mean_abstain_nonpositive-n32",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "6eb6814472fe7c140a4a521c94fd19a31d1c5613b3ffd2cd3c9c79128d7cd005",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "random_complete-n2",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "d9ab18c08703300efe145fc7cb6dff3497bb729e080b34f145e2b41b32388e10",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "random_complete-n8",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "feeeeade178b6e6ea7e7b88af2d65de9ed5ff6e9e2bf3438a0849cb173987299",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+        "same_text_pair_in_previous_review_pack": true,
+        "references": [
+          {
+            "condition": "pooled_greedy_swap_then_prune_0.001-n32",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "f3c613c997fcfa38929738da8e846315b30a76e2a3dd2d7e20296a2366ccba3f",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-critic-musician-mock-ba|L60|p00132",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "random_complete-n4",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-critic-musician-mock-ba|L60|p00132",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "ae1d606dde69eb31321f8a2ebdafa40a83128ba1071ba8b288e44148366615b4",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-firefighter-homeowner-rescue-ab|L36|p00136",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "random_complete-n4",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-firefighter-homeowner-rescue-ab|L36|p00136",
+            "category": "regression"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "744c008fefb66d418314672f4903479f40ca026d7547b85573412e541cc708fd",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-tourist-local-ask-ba|L52|p00159",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "prune_loo_n1_0-n1",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-tourist-local-ask-ba|L52|p00159",
+            "category": "win"
+          },
+          {
+            "condition": "prune_coefficient_n1_0.01-n1",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-tourist-local-ask-ba|L52|p00159",
+            "category": "win"
+          },
+          {
+            "condition": "prune_coefficient_n1_0.05-n1",
+            "family": "role_bound_association",
+            "kind": "outcome_selected",
+            "cell_id": "role_bound_association|oa-tourist-local-ask-ba|L52|p00159",
+            "category": "win"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "1fc2c788c35e5eea8d28148f79edf64312b343c4ade1a24313a0937fc295778e",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "prune_loo_n1_0-n1",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "prune_coefficient_n1_0.01-n1",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "prune_coefficient_n1_0.05-n1",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "546bfd2a2287dd12afb02cdeba56b855320a07e216be13bdf568fa51780661ed",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "random_delete_matched_n1_0-n1",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+            "category": "fixed_anchor"
+          }
+        ]
+      },
+      {
+        "pair_sha256": "99e9d08ce5be4a16dcf2ab492d74396a2bbdeae85024ae09cae114d24f2b8bb5",
+        "family": "role_bound_association",
+        "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+        "same_text_pair_in_previous_review_pack": false,
+        "references": [
+          {
+            "condition": "prune_loo_n1_0.001-n1",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+            "category": "fixed_anchor"
+          },
+          {
+            "condition": "random_delete_matched_n1_0.001-n1",
+            "family": "role_bound_association",
+            "kind": "fixed_anchor",
+            "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+            "category": "fixed_anchor"
+          }
+        ]
+      }
+    ]
+  },
+  "limits": [
+    "Prior review coverage is not extended to new condition-family evidence.",
+    "Deduplicated content review must retain condition-specific official evidence and whole-question outcomes from the source pack.",
+    "Exact same eight fixed anchors and lexicographic supplement policies; all591 previous cases are unchanged.",
+    "Parent-relative comparisons are in the separate pinned parent pack; capped-N1 gains cannot establish deletion or editing mechanisms."
+  ]
+}

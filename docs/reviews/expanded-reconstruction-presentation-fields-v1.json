@@ -1,0 +1,1229 @@
+{
+  "status": "source_field_audit_passed; rendered-slide QA remains separate",
+  "reconstruction_path": "${OLENS_DATA_ROOT}/expansion-v1/reconstruction/first-live-v2.json",
+  "reconstruction_sha256": "f2fbe23e5c7ded42e7d86323559495d6b20a16976b9cec578d9befb899a9fd6d",
+  "quality_analysis_sha256": "bd501f26f228e1648f2be178b2fa3a1244fe64e4719e1ac304fc47aea99be9ae",
+  "manifest_sha256": "753b2d9cab0daea0d19efef7d3222fd44921dbcf4669e6864d4f1bd4805421f8",
+  "all_active_rows_verified": 280,
+  "examples_policy": "illustrative fixed method/reference IDs; no ranking or winner selection; final root-reviewed approach choices may differ",
+  "checks": [
+    "percentage-point fields exact 100 times raw",
+    "paired denominator is recorded common-valid mask",
+    "all seven approaches have recorded reference rows in every family, unavailable is explicit",
+    "absolute means are valid-site means; quality uses all intended original sites",
+    "raw N1 fit remains unavailable",
+    "all official quality endpoints unchanged"
+  ],
+  "limits": [
+    "First-live partial snapshot; editing and some likelihood families are unready",
+    "Fit means do not measure truth or whole-prose faithfulness",
+    "Displayed gain must name actual reconstruction reference independently of quality reference",
+    "Mean group intervals and paired change intervals are post-hoc pointwise diagnostics outside 496 headline contrasts"
+  ],
+  "method_family_render_previews": [
+    {
+      "approach": "selection",
+      "condition": "best_n_exact-n32",
+      "family": "hallucination",
+      "reference": "capped_n1-n1",
+      "reference_kind": "frozen_parent",
+      "status": "complete_comparable",
+      "mean_fve_percentage_points": 42.50203116286793,
+      "mean_fve_ci95_percentage_points": [
+        41.56597600565036,
+        43.40185016586752
+      ],
+      "scored_sites": 5615,
+      "intended_sites": 5615,
+      "parent_comparison": {
+        "reference": "capped_n1-n1",
+        "kind": "frozen_parent",
+        "paired_sites": 5615,
+        "independent_groups": 149,
+        "reference_mean_same_mask": 0.37094629687762415,
+        "proposed_mean_same_mask": 0.42502031162867937,
+        "mean_delta": 0.05407401475105514,
+        "median_delta": 0.043353821309374596,
+        "ci95_delta": [
+          0.052460751467618895,
+          0.055703975048667885
+        ],
+        "bootstrap_replicates": 10000,
+        "defined_bootstrap_draws": 10000,
+        "improved_sites": 5439,
+        "worsened_sites": 0,
+        "unchanged_or_within_numerical_tolerance": 176,
+        "site_change_equivalence_tolerance": 1e-05,
+        "warning": null,
+        "weighting": "equal activation sites within resampled whole related-question groups",
+        "interpretation": "post-hoc secondary diagnostic; pointwise interval; outside 496 headline contrasts",
+        "mean_delta_percentage_points": 5.407401475105514,
+        "ci95_delta_percentage_points": [
+          5.246075146761889,
+          5.570397504866788
+        ],
+        "mean_bullets_removed_common_fit_mask": -0.0014247551202137133,
+        "mean_tokens_removed_common_fit_mask": -0.8744434550311665,
+        "intended_paired_sites": 5615,
+        "missing_or_invalid_pairs": 0
+      },
+      "render_text": "Fit change vs capped_n1-n1: +5.407 pp; 95% grouped CI [+5.246, +5.570] pp; 5615/5615 valid paired sites"
+    },
+    {
+      "approach": "selection",
+      "condition": "best_n_exact-n32",
+      "family": "multihop_mt",
+      "reference": "capped_n1-n1",
+      "reference_kind": "frozen_parent",
+      "status": "complete_comparable",
+      "mean_fve_percentage_points": 35.17095722545617,
+      "mean_fve_ci95_percentage_points": [
+        33.57124439933132,
+        36.76903399057625
+      ],
+      "scored_sites": 1100,
+      "intended_sites": 1100,
+      "parent_comparison": {
+        "reference": "capped_n1-n1",
+        "kind": "frozen_parent",
+        "paired_sites": 1100,
+        "independent_groups": 94,
+        "reference_mean_same_mask": 0.30198971081240744,
+        "proposed_mean_same_mask": 0.3517095722545616,
+        "mean_delta": 0.04971986144215419,
+        "median_delta": 0.040724201470633214,
+        "ci95_delta": [
+          0.046930374379505854,
+          0.05257223100591116
+        ],
+        "bootstrap_replicates": 10000,
+        "defined_bootstrap_draws": 10000,
+        "improved_sites": 1071,
+        "worsened_sites": 0,
+        "unchanged_or_within_numerical_tolerance": 29,
+        "site_change_equivalence_tolerance": 1e-05,
+        "warning": null,
+        "weighting": "equal activation sites within resampled whole related-question groups",
+        "interpretation": "post-hoc secondary diagnostic; pointwise interval; outside 496 headline contrasts",
+        "mean_delta_percentage_points": 4.971986144215419,
+        "ci95_delta_percentage_points": [
+          4.6930374379505855,
+          5.257223100591116
+        ],
+        "mean_bullets_removed_common_fit_mask": 0.0009090909090909091,
+        "mean_tokens_removed_common_fit_mask": -0.9436363636363636,
+        "intended_paired_sites": 1100,
+        "missing_or_invalid_pairs": 0
+      },
+      "render_text": "Fit change vs capped_n1-n1: +4.972 pp; 95% grouped CI [+4.693, +5.257] pp; 1100/1100 valid paired sites"
+    },
+    {
+      "approach": "selection",
+      "condition": "best_n_exact-n32",
+      "family": "chain_intermediates",
+      "reference": "capped_n1-n1",
+      "reference_kind": "frozen_parent",
+      "status": "complete_comparable",
+      "mean_fve_percentage_points": 23.788636889702726,
+      "mean_fve_ci95_percentage_points": [
+        22.92588494349963,
+        24.657987454557865
+      ],
+      "scored_sites": 1320,
+      "intended_sites": 1320,
+      "parent_comparison": {
+        "reference": "capped_n1-n1",
+        "kind": "frozen_parent",
+        "paired_sites": 1320,
+        "independent_groups": 42,
+        "reference_mean_same_mask": 0.17132267485736555,
+        "proposed_mean_same_mask": 0.23788636889702722,
+        "mean_delta": 0.06656369403966168,
+        "median_delta": 0.05500222655259723,
+        "ci95_delta": [
+          0.06335421721251866,
+          0.07006992882413507
+        ],
+        "bootstrap_replicates": 10000,
+        "defined_bootstrap_draws": 10000,
+        "improved_sites": 1288,
+        "worsened_sites": 0,
+        "unchanged_or_within_numerical_tolerance": 32,
+        "site_change_equivalence_tolerance": 1e-05,
+        "warning": null,
+        "weighting": "equal activation sites within resampled whole related-question groups",
+        "interpretation": "post-hoc secondary diagnostic; pointwise interval; outside 496 headline contrasts",
+        "mean_delta_percentage_points": 6.656369403966169,
+        "ci95_delta_percentage_points": [
+          6.3354217212518655,
+          7.006992882413507
+        ],
+        "mean_bullets_removed_common_fit_mask": 0.0007575757575757576,
+        "mean_tokens_removed_common_fit_mask": -2.743939393939394,
+        "intended_paired_sites": 1320,
+        "missing_or_invalid_pairs": 0
+      },
+      "render_text": "Fit change vs capped_n1-n1: +6.656 pp; 95% grouped CI [+6.335, +7.007] pp; 1320/1320 valid paired sites"
+    },
+    {
+      "approach": "selection",
+      "condition": "best_n_exact-n32",
+      "family": "role_bound_association",
+      "reference": "capped_n1-n1",
+      "reference_kind": "frozen_parent",
+      "status": "complete_comparable",
+      "mean_fve_percentage_points": 23.076646650532176,
+      "mean_fve_ci95_percentage_points": [
+        22.909692823167237,
+        23.234113000393457
+      ],
+      "scored_sites": 11400,
+      "intended_sites": 11400,
+      "parent_comparison": {
+        "reference": "capped_n1-n1",
+        "kind": "frozen_parent",
+        "paired_sites": 11357,
+        "independent_groups": 50,
+        "reference_mean_same_mask": 0.1940187532213485,
+        "proposed_mean_same_mask": 0.23075978190443194,
+        "mean_delta": 0.036741028683083446,
+        "median_delta": 0.029029847069683368,
+        "ci95_delta": [
+          0.0363162103490087,
+          0.03718317379175942
+        ],
+        "bootstrap_replicates": 10000,
+        "defined_bootstrap_draws": 10000,
+        "improved_sites": 10975,
+        "worsened_sites": 0,
+        "unchanged_or_within_numerical_tolerance": 382,
+        "site_change_equivalence_tolerance": 1e-05,
+        "warning": null,
+        "weighting": "equal activation sites within resampled whole related-question groups",
+        "interpretation": "post-hoc secondary diagnostic; pointwise interval; outside 496 headline contrasts",
+        "mean_delta_percentage_points": 3.6741028683083448,
+        "ci95_delta_percentage_points": [
+          3.6316210349008697,
+          3.718317379175942
+        ],
+        "mean_bullets_removed_common_fit_mask": -0.002025182706700713,
+        "mean_tokens_removed_common_fit_mask": -0.5940829444395527,
+        "intended_paired_sites": 11400,
+        "missing_or_invalid_pairs": 43
+      },
+      "render_text": "Fit change vs capped_n1-n1: +3.674 pp; 95% grouped CI [+3.632, +3.718] pp; 11357/11400 valid paired sites"
+    },
+    {
+      "approach": "pruning",
+      "condition": "prune_loo_a32_0.005-n32",
+      "family": "hallucination",
+      "reference": "best_n_exact-n32",
+      "reference_kind": "frozen_parent",
+      "status": "complete_comparable",
+      "mean_fve_percentage_points": 42.35067792156697,
+      "mean_fve_ci95_percentage_points": [
+        41.441152535198874,
+        43.25793840109227
+      ],
+      "scored_sites": 5615,
+      "intended_sites": 5615,
+      "parent_comparison": {
+        "reference": "best_n_exact-n32",
+        "kind": "frozen_parent",
+        "paired_sites": 5615,
+        "independent_groups": 149,
+        "reference_mean_same_mask": 0.42502031162867937,
+        "proposed_mean_same_mask": 0.42350677921566965,
+        "mean_delta": -0.001513532413009648,
+        "median_delta": -0.0008230405017111142,
+        "ci95_delta": [
+          -0.0015641239612990123,
+          -0.0014608525951717937
+        ],
+        "bootstrap_replicates": 10000,
+        "defined_bootstrap_draws": 10000,
+        "improved_sites": 0,
+        "worsened_sites": 4007,
+        "unchanged_or_within_numerical_tolerance": 1608,
+        "site_change_equivalence_tolerance": 1e-05,
+        "warning": null,
+        "weighting": "equal activation sites within resampled whole related-question groups",
+        "interpretation": "post-hoc secondary diagnostic; pointwise interval; outside 496 headline contrasts",
+        "mean_delta_percentage_points": -0.15135324130096478,
+        "ci95_delta_percentage_points": [
+          -0.15641239612990124,
+          -0.14608525951717938
+        ],
+        "mean_bullets_removed_common_fit_mask": 1.7777382012466607,
+        "mean_tokens_removed_common_fit_mask": 43.01905609973286,
+        "intended_paired_sites": 5615,
+        "missing_or_invalid_pairs": 0
+      },
+      "render_text": "Fit change vs best_n_exact-n32: -0.151 pp; 95% grouped CI [-0.156, -0.146] pp; 5615/5615 valid paired sites"
+    },
+    {
+      "approach": "pruning",
+      "condition": "prune_loo_a32_0.005-n32",
+      "family": "multihop_mt",
+      "reference": "best_n_exact-n32",
+      "reference_kind": "frozen_parent",
+      "status": "complete_comparable",
+      "mean_fve_percentage_points": 35.01086750643686,
+      "mean_fve_ci95_percentage_points": [
+        33.43021608666351,
+        36.63251857684905
+      ],
+      "scored_sites": 1100,
+      "intended_sites": 1100,
+      "parent_comparison": {
+        "reference": "best_n_exact-n32",
+        "kind": "frozen_parent",
+        "paired_sites": 1100,
+        "independent_groups": 94,
+        "reference_mean_same_mask": 0.3517095722545616,
+        "proposed_mean_same_mask": 0.35010867506436866,
+        "mean_delta": -0.0016008971901930787,
+        "median_delta": -0.0008985092162396291,
+        "ci95_delta": [
+          -0.0017142146979423386,
+          -0.0014897600757684188
+        ],
+        "bootstrap_replicates": 10000,
+        "defined_bootstrap_draws": 10000,
+        "improved_sites": 0,
+        "worsened_sites": 819,
+        "unchanged_or_within_numerical_tolerance": 281,
+        "site_change_equivalence_tolerance": 1e-05,
+        "warning": null,
+        "weighting": "equal activation sites within resampled whole related-question groups",
+        "interpretation": "post-hoc secondary diagnostic; pointwise interval; outside 496 headline contrasts",
+        "mean_delta_percentage_points": -0.16008971901930788,
+        "ci95_delta_percentage_points": [
+          -0.17142146979423387,
+          -0.14897600757684187
+        ],
+        "mean_bullets_removed_common_fit_mask": 1.960909090909091,
+        "mean_tokens_removed_common_fit_mask": 47.094545454545454,
+        "intended_paired_sites": 1100,
+        "missing_or_invalid_pairs": 0
+      },
+      "render_text": "Fit change vs best_n_exact-n32: -0.160 pp; 95% grouped CI [-0.171, -0.149] pp; 1100/1100 valid paired sites"
+    },
+    {
+      "approach": "pruning",
+      "condition": "prune_loo_a32_0.005-n32",
+      "family": "chain_intermediates",
+      "reference": "best_n_exact-n32",
+      "reference_kind": "frozen_parent",
+      "status": "complete_comparable",
+      "mean_fve_percentage_points": 23.67852651080932,
+      "mean_fve_ci95_percentage_points": [
+        22.835978359662555,
+        24.543254570838812
+      ],
+      "scored_sites": 1320,
+      "intended_sites": 1320,
+      "parent_comparison": {
+        "reference": "best_n_exact-n32",
+        "kind": "frozen_parent",
+        "paired_sites": 1320,
+        "independent_groups": 42,
+        "reference_mean_same_mask": 0.23788636889702722,
+        "proposed_mean_same_mask": 0.23678526510809317,
+        "mean_delta": -0.0011011037889340465,
+        "median_delta": -0.00014333773067409794,
+        "ci95_delta": [
+          -0.0012040852698431196,
+          -0.000999983516243102
+        ],
+        "bootstrap_replicates": 10000,
+        "defined_bootstrap_draws": 10000,
+        "improved_sites": 0,
+        "worsened_sites": 762,
+        "unchanged_or_within_numerical_tolerance": 558,
+        "site_change_equivalence_tolerance": 1e-05,
+        "warning": null,
+        "weighting": "equal activation sites within resampled whole related-question groups",
+        "interpretation": "post-hoc secondary diagnostic; pointwise interval; outside 496 headline contrasts",
+        "mean_delta_percentage_points": -0.11011037889340465,
+        "ci95_delta_percentage_points": [
+          -0.12040852698431195,
+          -0.0999983516243102
+        ],
+        "mean_bullets_removed_common_fit_mask": 2.462878787878788,
+        "mean_tokens_removed_common_fit_mask": 48.54242424242424,
+        "intended_paired_sites": 1320,
+        "missing_or_invalid_pairs": 0
+      },
+      "render_text": "Fit change vs best_n_exact-n32: -0.110 pp; 95% grouped CI [-0.120, -0.100] pp; 1320/1320 valid paired sites"
+    },
+    {
+      "approach": "pruning",
+      "condition": "prune_loo_a32_0.005-n32",
+      "family": "role_bound_association",
+      "reference": "best_n_exact-n32",
+      "reference_kind": "frozen_parent",
+      "status": "complete_comparable",
+      "mean_fve_percentage_points": 22.91502665626987,
+      "mean_fve_ci95_percentage_points": [
+        22.749160049056012,
+        23.07851332024697
+      ],
+      "scored_sites": 11400,
+      "intended_sites": 11400,
+      "parent_comparison": {
+        "reference": "best_n_exact-n32",
+        "kind": "frozen_parent",
+        "paired_sites": 11400,
+        "independent_groups": 50,
+        "reference_mean_same_mask": 0.23076646650532176,
+        "proposed_mean_same_mask": 0.22915026656269868,
+        "mean_delta": -0.0016161999426230324,
+        "median_delta": -0.0009643342934979038,
+        "ci95_delta": [
+          -0.0016469430206897018,
+          -0.001586245453575161
+        ],
+        "bootstrap_replicates": 10000,
+        "defined_bootstrap_draws": 10000,
+        "improved_sites": 0,
+        "worsened_sites": 8578,
+        "unchanged_or_within_numerical_tolerance": 2822,
+        "site_change_equivalence_tolerance": 1e-05,
+        "warning": null,
+        "weighting": "equal activation sites within resampled whole related-question groups",
+        "interpretation": "post-hoc secondary diagnostic; pointwise interval; outside 496 headline contrasts",
+        "mean_delta_percentage_points": -0.16161999426230325,
+        "ci95_delta_percentage_points": [
+          -0.16469430206897018,
+          -0.1586245453575161
+        ],
+        "mean_bullets_removed_common_fit_mask": 2.0132456140350876,
+        "mean_tokens_removed_common_fit_mask": 46.83201754385965,
+        "intended_paired_sites": 11400,
+        "missing_or_invalid_pairs": 0
+      },
+      "render_text": "Fit change vs best_n_exact-n32: -0.162 pp; 95% grouped CI [-0.165, -0.159] pp; 11400/11400 valid paired sites"
+    },
+    {
+      "approach": "pooling",
+      "condition": "pooled_greedy_swap-n32",
+      "family": "hallucination",
+      "reference": "best_n_exact-n32",
+      "reference_kind": "pooling_vs_best_complete_diagnostic",
+      "status": "complete_comparable",
+      "mean_fve_percentage_points": 45.03168500776181,
+      "mean_fve_ci95_percentage_points": [
+        44.141051581804916,
+        45.91905755045886
+      ],
+      "scored_sites": 5615,
+      "intended_sites": 5615,
+      "parent_comparison": {
+        "reference": "best_n_exact-n32",
+        "kind": "pooling_vs_best_complete_diagnostic",
+        "paired_sites": 5615,
+        "independent_groups": 149,
+        "reference_mean_same_mask": 0.42502031162867937,
+        "proposed_mean_same_mask": 0.4503168500776181,
+        "mean_delta": 0.025296538448938748,
+        "median_delta": 0.023114917553188286,
+        "ci95_delta": [
+          0.02453921471213481,
+          0.02603506929040362
+        ],
+        "bootstrap_replicates": 10000,
+        "defined_bootstrap_draws": 10000,
+        "improved_sites": 5614,
+        "worsened_sites": 0,
+        "unchanged_or_within_numerical_tolerance": 1,
+        "site_change_equivalence_tolerance": 1e-05,
+        "warning": null,
+        "weighting": "equal activation sites within resampled whole related-question groups",
+        "interpretation": "post-hoc secondary diagnostic; pointwise interval; outside 496 headline contrasts",
+        "mean_delta_percentage_points": 2.5296538448938746,
+        "ci95_delta_percentage_points": [
+          2.453921471213481,
+          2.603506929040362
+        ],
+        "mean_bullets_removed_common_fit_mask": 0.003918076580587711,
+        "mean_tokens_removed_common_fit_mask": -7.344256455921639,
+        "intended_paired_sites": 5615,
+        "missing_or_invalid_pairs": 0
+      },
+      "render_text": "Fit change vs best_n_exact-n32: +2.530 pp; 95% grouped CI [+2.454, +2.604] pp; 5615/5615 valid paired sites"
+    },
+    {
+      "approach": "pooling",
+      "condition": "pooled_greedy_swap-n32",
+      "family": "multihop_mt",
+      "reference": "best_n_exact-n32",
+      "reference_kind": "pooling_vs_best_complete_diagnostic",
+      "status": "complete_comparable",
+      "mean_fve_percentage_points": 37.41758192217085,
+      "mean_fve_ci95_percentage_points": [
+        35.836063904242046,
+        38.99927839349037
+      ],
+      "scored_sites": 1100,
+      "intended_sites": 1100,
+      "parent_comparison": {
+        "reference": "best_n_exact-n32",
+        "kind": "pooling_vs_best_complete_diagnostic",
+        "paired_sites": 1100,
+        "independent_groups": 94,
+        "reference_mean_same_mask": 0.3517095722545616,
+        "proposed_mean_same_mask": 0.37417581922170845,
+        "mean_delta": 0.022466246967146806,
+        "median_delta": 0.021431896254476113,
+        "ci95_delta": [
+          0.0216317907153407,
+          0.0233362753064622
+        ],
+        "bootstrap_replicates": 10000,
+        "defined_bootstrap_draws": 10000,
+        "improved_sites": 1100,
+        "worsened_sites": 0,
+        "unchanged_or_within_numerical_tolerance": 0,
+        "site_change_equivalence_tolerance": 1e-05,
+        "warning": null,
+        "weighting": "equal activation sites within resampled whole related-question groups",
+        "interpretation": "post-hoc secondary diagnostic; pointwise interval; outside 496 headline contrasts",
+        "mean_delta_percentage_points": 2.246624696714681,
+        "ci95_delta_percentage_points": [
+          2.16317907153407,
+          2.3336275306462197
+        ],
+        "mean_bullets_removed_common_fit_mask": 0.0018181818181818182,
+        "mean_tokens_removed_common_fit_mask": -5.92,
+        "intended_paired_sites": 1100,
+        "missing_or_invalid_pairs": 0
+      },
+      "render_text": "Fit change vs best_n_exact-n32: +2.247 pp; 95% grouped CI [+2.163, +2.334] pp; 1100/1100 valid paired sites"
+    },
+    {
+      "approach": "pooling",
+      "condition": "pooled_greedy_swap-n32",
+      "family": "chain_intermediates",
+      "reference": "best_n_exact-n32",
+      "reference_kind": "pooling_vs_best_complete_diagnostic",
+      "status": "complete_comparable",
+      "mean_fve_percentage_points": 25.80675278486271,
+      "mean_fve_ci95_percentage_points": [
+        25.001688174866022,
+        26.66982746827854
+      ],
+      "scored_sites": 1320,
+      "intended_sites": 1320,
+      "parent_comparison": {
+        "reference": "best_n_exact-n32",
+        "kind": "pooling_vs_best_complete_diagnostic",
+        "paired_sites": 1320,
+        "independent_groups": 42,
+        "reference_mean_same_mask": 0.23788636889702722,
+        "proposed_mean_same_mask": 0.2580675278486271,
+        "mean_delta": 0.02018115895159981,
+        "median_delta": 0.019036099638645054,
+        "ci95_delta": [
+          0.01903120269382008,
+          0.021366479897421204
+        ],
+        "bootstrap_replicates": 10000,
+        "defined_bootstrap_draws": 10000,
+        "improved_sites": 1318,
+        "worsened_sites": 0,
+        "unchanged_or_within_numerical_tolerance": 2,
+        "site_change_equivalence_tolerance": 1e-05,
+        "warning": null,
+        "weighting": "equal activation sites within resampled whole related-question groups",
+        "interpretation": "post-hoc secondary diagnostic; pointwise interval; outside 496 headline contrasts",
+        "mean_delta_percentage_points": 2.018115895159981,
+        "ci95_delta_percentage_points": [
+          1.9031202693820077,
+          2.1366479897421202
+        ],
+        "mean_bullets_removed_common_fit_mask": 0.04015151515151515,
+        "mean_tokens_removed_common_fit_mask": -15.06060606060606,
+        "intended_paired_sites": 1320,
+        "missing_or_invalid_pairs": 0
+      },
+      "render_text": "Fit change vs best_n_exact-n32: +2.018 pp; 95% grouped CI [+1.903, +2.137] pp; 1320/1320 valid paired sites"
+    },
+    {
+      "approach": "pooling",
+      "condition": "pooled_greedy_swap-n32",
+      "family": "role_bound_association",
+      "reference": "best_n_exact-n32",
+      "reference_kind": "pooling_vs_best_complete_diagnostic",
+      "status": "complete_comparable",
+      "mean_fve_percentage_points": 25.039690542039068,
+      "mean_fve_ci95_percentage_points": [
+        24.871316509122547,
+        25.1976674466574
+      ],
+      "scored_sites": 11400,
+      "intended_sites": 11400,
+      "parent_comparison": {
+        "reference": "best_n_exact-n32",
+        "kind": "pooling_vs_best_complete_diagnostic",
+        "paired_sites": 11400,
+        "independent_groups": 50,
+        "reference_mean_same_mask": 0.23076646650532176,
+        "proposed_mean_same_mask": 0.25039690542039067,
+        "mean_delta": 0.019630438915068892,
+        "median_delta": 0.017931435818753727,
+        "ci95_delta": [
+          0.0194656910542534,
+          0.019798640464682174
+        ],
+        "bootstrap_replicates": 10000,
+        "defined_bootstrap_draws": 10000,
+        "improved_sites": 11399,
+        "worsened_sites": 0,
+        "unchanged_or_within_numerical_tolerance": 1,
+        "site_change_equivalence_tolerance": 1e-05,
+        "warning": null,
+        "weighting": "equal activation sites within resampled whole related-question groups",
+        "interpretation": "post-hoc secondary diagnostic; pointwise interval; outside 496 headline contrasts",
+        "mean_delta_percentage_points": 1.9630438915068893,
+        "ci95_delta_percentage_points": [
+          1.94656910542534,
+          1.9798640464682173
+        ],
+        "mean_bullets_removed_common_fit_mask": -0.0004385964912280702,
+        "mean_tokens_removed_common_fit_mask": -5.986578947368421,
+        "intended_paired_sites": 11400,
+        "missing_or_invalid_pairs": 0
+      },
+      "render_text": "Fit change vs best_n_exact-n32: +1.963 pp; 95% grouped CI [+1.947, +1.980] pp; 11400/11400 valid paired sites"
+    },
+    {
+      "approach": "specificity",
+      "condition": "best_n_specificity_mean-n32",
+      "family": "hallucination",
+      "reference": "capped_n1-n1",
+      "reference_kind": "frozen_parent",
+      "status": "complete_comparable",
+      "mean_fve_percentage_points": 42.485318683032716,
+      "mean_fve_ci95_percentage_points": [
+        41.557788127560116,
+        43.36796620575072
+      ],
+      "scored_sites": 5615,
+      "intended_sites": 5615,
+      "parent_comparison": {
+        "reference": "capped_n1-n1",
+        "kind": "frozen_parent",
+        "paired_sites": 5615,
+        "independent_groups": 149,
+        "reference_mean_same_mask": 0.37094629687762415,
+        "proposed_mean_same_mask": 0.42485318683032713,
+        "mean_delta": 0.053906889952702944,
+        "median_delta": 0.04323930159529854,
+        "ci95_delta": [
+          0.05231507047011625,
+          0.055580643047180266
+        ],
+        "bootstrap_replicates": 10000,
+        "defined_bootstrap_draws": 10000,
+        "improved_sites": 5420,
+        "worsened_sites": 13,
+        "unchanged_or_within_numerical_tolerance": 182,
+        "site_change_equivalence_tolerance": 1e-05,
+        "warning": null,
+        "weighting": "equal activation sites within resampled whole related-question groups",
+        "interpretation": "post-hoc secondary diagnostic; pointwise interval; outside 496 headline contrasts",
+        "mean_delta_percentage_points": 5.3906889952702945,
+        "ci95_delta_percentage_points": [
+          5.231507047011625,
+          5.558064304718027
+        ],
+        "mean_bullets_removed_common_fit_mask": -0.0014247551202137133,
+        "mean_tokens_removed_common_fit_mask": -0.8776491540516473,
+        "intended_paired_sites": 5615,
+        "missing_or_invalid_pairs": 0
+      },
+      "render_text": "Fit change vs capped_n1-n1: +5.391 pp; 95% grouped CI [+5.232, +5.558] pp; 5615/5615 valid paired sites"
+    },
+    {
+      "approach": "specificity",
+      "condition": "best_n_specificity_mean-n32",
+      "family": "multihop_mt",
+      "reference": "capped_n1-n1",
+      "reference_kind": "frozen_parent",
+      "status": "complete_comparable",
+      "mean_fve_percentage_points": 35.14889837043141,
+      "mean_fve_ci95_percentage_points": [
+        33.54748379989338,
+        36.69565519260054
+      ],
+      "scored_sites": 1100,
+      "intended_sites": 1100,
+      "parent_comparison": {
+        "reference": "capped_n1-n1",
+        "kind": "frozen_parent",
+        "paired_sites": 1100,
+        "independent_groups": 94,
+        "reference_mean_same_mask": 0.30198971081240744,
+        "proposed_mean_same_mask": 0.35148898370431414,
+        "mean_delta": 0.049499272891906684,
+        "median_delta": 0.04035695083594831,
+        "ci95_delta": [
+          0.046735541072721556,
+          0.052285923863699416
+        ],
+        "bootstrap_replicates": 10000,
+        "defined_bootstrap_draws": 10000,
+        "improved_sites": 1064,
+        "worsened_sites": 11,
+        "unchanged_or_within_numerical_tolerance": 25,
+        "site_change_equivalence_tolerance": 1e-05,
+        "warning": null,
+        "weighting": "equal activation sites within resampled whole related-question groups",
+        "interpretation": "post-hoc secondary diagnostic; pointwise interval; outside 496 headline contrasts",
+        "mean_delta_percentage_points": 4.9499272891906685,
+        "ci95_delta_percentage_points": [
+          4.673554107272156,
+          5.228592386369941
+        ],
+        "mean_bullets_removed_common_fit_mask": 0.0009090909090909091,
+        "mean_tokens_removed_common_fit_mask": -0.9636363636363636,
+        "intended_paired_sites": 1100,
+        "missing_or_invalid_pairs": 0
+      },
+      "render_text": "Fit change vs capped_n1-n1: +4.950 pp; 95% grouped CI [+4.674, +5.229] pp; 1100/1100 valid paired sites"
+    },
+    {
+      "approach": "specificity",
+      "condition": "best_n_specificity_mean-n32",
+      "family": "chain_intermediates",
+      "reference": "capped_n1-n1",
+      "reference_kind": "frozen_parent",
+      "status": "complete_comparable",
+      "mean_fve_percentage_points": 22.038215627961964,
+      "mean_fve_ci95_percentage_points": [
+        21.065379556870656,
+        23.016901027377394
+      ],
+      "scored_sites": 1320,
+      "intended_sites": 1320,
+      "parent_comparison": {
+        "reference": "capped_n1-n1",
+        "kind": "frozen_parent",
+        "paired_sites": 1320,
+        "independent_groups": 42,
+        "reference_mean_same_mask": 0.17132267485736555,
+        "proposed_mean_same_mask": 0.22038215627961966,
+        "mean_delta": 0.0490594814222541,
+        "median_delta": 0.038155808782144196,
+        "ci95_delta": [
+          0.04530665735776932,
+          0.05326330193649779
+        ],
+        "bootstrap_replicates": 10000,
+        "defined_bootstrap_draws": 10000,
+        "improved_sites": 1063,
+        "worsened_sites": 220,
+        "unchanged_or_within_numerical_tolerance": 37,
+        "site_change_equivalence_tolerance": 1e-05,
+        "warning": null,
+        "weighting": "equal activation sites within resampled whole related-question groups",
+        "interpretation": "post-hoc secondary diagnostic; pointwise interval; outside 496 headline contrasts",
+        "mean_delta_percentage_points": 4.9059481422254105,
+        "ci95_delta_percentage_points": [
+          4.530665735776932,
+          5.326330193649778
+        ],
+        "mean_bullets_removed_common_fit_mask": 0.0022727272727272726,
+        "mean_tokens_removed_common_fit_mask": -1.3143939393939394,
+        "intended_paired_sites": 1320,
+        "missing_or_invalid_pairs": 0
+      },
+      "render_text": "Fit change vs capped_n1-n1: +4.906 pp; 95% grouped CI [+4.531, +5.326] pp; 1320/1320 valid paired sites"
+    },
+    {
+      "approach": "specificity",
+      "condition": "best_n_specificity_mean-n32",
+      "family": "role_bound_association",
+      "reference": "capped_n1-n1",
+      "reference_kind": "frozen_parent",
+      "status": "complete_comparable",
+      "mean_fve_percentage_points": 20.9155821106477,
+      "mean_fve_ci95_percentage_points": [
+        20.71739432529374,
+        21.10614238065779
+      ],
+      "scored_sites": 11400,
+      "intended_sites": 11400,
+      "parent_comparison": {
+        "reference": "capped_n1-n1",
+        "kind": "frozen_parent",
+        "paired_sites": 11357,
+        "independent_groups": 50,
+        "reference_mean_same_mask": 0.1940187532213485,
+        "proposed_mean_same_mask": 0.20922966964630363,
+        "mean_delta": 0.01521091642495513,
+        "median_delta": 0.00899501239363043,
+        "ci95_delta": [
+          0.014428788385302758,
+          0.01600284242849979
+        ],
+        "bootstrap_replicates": 10000,
+        "defined_bootstrap_draws": 10000,
+        "improved_sites": 7623,
+        "worsened_sites": 3361,
+        "unchanged_or_within_numerical_tolerance": 373,
+        "site_change_equivalence_tolerance": 1e-05,
+        "warning": null,
+        "weighting": "equal activation sites within resampled whole related-question groups",
+        "interpretation": "post-hoc secondary diagnostic; pointwise interval; outside 496 headline contrasts",
+        "mean_delta_percentage_points": 1.521091642495513,
+        "ci95_delta_percentage_points": [
+          1.4428788385302758,
+          1.600284242849979
+        ],
+        "mean_bullets_removed_common_fit_mask": -0.0005283085321827948,
+        "mean_tokens_removed_common_fit_mask": -0.23941181650083648,
+        "intended_paired_sites": 11400,
+        "missing_or_invalid_pairs": 43
+      },
+      "render_text": "Fit change vs capped_n1-n1: +1.521 pp; 95% grouped CI [+1.443, +1.600] pp; 11357/11400 valid paired sites"
+    },
+    {
+      "approach": "likelihood",
+      "condition": "likelihood_true_minus_mean_two_controls-n8",
+      "family": "hallucination",
+      "reference": "capped_n1-n1",
+      "reference_kind": "frozen_parent",
+      "status": "partial_or_unavailable",
+      "mean_fve_percentage_points": null,
+      "mean_fve_ci95_percentage_points": null,
+      "scored_sites": 0,
+      "intended_sites": 5615,
+      "parent_comparison": {
+        "reference": "capped_n1-n1",
+        "kind": "frozen_parent",
+        "paired_sites": 0,
+        "independent_groups": 0,
+        "mean_delta": null,
+        "ci95_delta": null,
+        "warning": "No common valid reconstruction sites",
+        "mean_delta_percentage_points": null,
+        "ci95_delta_percentage_points": null,
+        "mean_bullets_removed_common_fit_mask": null,
+        "mean_tokens_removed_common_fit_mask": null,
+        "intended_paired_sites": 5615,
+        "missing_or_invalid_pairs": 5615
+      },
+      "render_text": "Fit change vs capped_n1-n1: unavailable; 0/5615 valid paired sites"
+    },
+    {
+      "approach": "likelihood",
+      "condition": "likelihood_true_minus_mean_two_controls-n8",
+      "family": "multihop_mt",
+      "reference": "capped_n1-n1",
+      "reference_kind": "frozen_parent",
+      "status": "partial_or_unavailable",
+      "mean_fve_percentage_points": null,
+      "mean_fve_ci95_percentage_points": null,
+      "scored_sites": 0,
+      "intended_sites": 1100,
+      "parent_comparison": {
+        "reference": "capped_n1-n1",
+        "kind": "frozen_parent",
+        "paired_sites": 0,
+        "independent_groups": 0,
+        "mean_delta": null,
+        "ci95_delta": null,
+        "warning": "No common valid reconstruction sites",
+        "mean_delta_percentage_points": null,
+        "ci95_delta_percentage_points": null,
+        "mean_bullets_removed_common_fit_mask": null,
+        "mean_tokens_removed_common_fit_mask": null,
+        "intended_paired_sites": 1100,
+        "missing_or_invalid_pairs": 1100
+      },
+      "render_text": "Fit change vs capped_n1-n1: unavailable; 0/1100 valid paired sites"
+    },
+    {
+      "approach": "likelihood",
+      "condition": "likelihood_true_minus_mean_two_controls-n8",
+      "family": "chain_intermediates",
+      "reference": "capped_n1-n1",
+      "reference_kind": "frozen_parent",
+      "status": "complete_comparable",
+      "mean_fve_percentage_points": 17.12098267479116,
+      "mean_fve_ci95_percentage_points": [
+        16.25384625546242,
+        17.949662663728233
+      ],
+      "scored_sites": 1320,
+      "intended_sites": 1320,
+      "parent_comparison": {
+        "reference": "capped_n1-n1",
+        "kind": "frozen_parent",
+        "paired_sites": 1320,
+        "independent_groups": 42,
+        "reference_mean_same_mask": 0.17132267485736555,
+        "proposed_mean_same_mask": 0.1712098267479116,
+        "mean_delta": -0.00011284810945395221,
+        "median_delta": 0.0,
+        "ci95_delta": [
+          -0.0030326877918414492,
+          0.0031205908795833527
+        ],
+        "bootstrap_replicates": 10000,
+        "defined_bootstrap_draws": 10000,
+        "improved_sites": 564,
+        "worsened_sites": 582,
+        "unchanged_or_within_numerical_tolerance": 174,
+        "site_change_equivalence_tolerance": 1e-05,
+        "warning": null,
+        "weighting": "equal activation sites within resampled whole related-question groups",
+        "interpretation": "post-hoc secondary diagnostic; pointwise interval; outside 496 headline contrasts",
+        "mean_delta_percentage_points": -0.011284810945395221,
+        "ci95_delta_percentage_points": [
+          -0.3032687791841449,
+          0.31205908795833526
+        ],
+        "mean_bullets_removed_common_fit_mask": 0.005303030303030303,
+        "mean_tokens_removed_common_fit_mask": 5.325757575757576,
+        "intended_paired_sites": 1320,
+        "missing_or_invalid_pairs": 0
+      },
+      "render_text": "Fit change vs capped_n1-n1: -0.011 pp; 95% grouped CI [-0.303, +0.312] pp; 1320/1320 valid paired sites"
+    },
+    {
+      "approach": "likelihood",
+      "condition": "likelihood_true_minus_mean_two_controls-n8",
+      "family": "role_bound_association",
+      "reference": "capped_n1-n1",
+      "reference_kind": "frozen_parent",
+      "status": "partial_or_unavailable",
+      "mean_fve_percentage_points": null,
+      "mean_fve_ci95_percentage_points": null,
+      "scored_sites": 0,
+      "intended_sites": 11400,
+      "parent_comparison": {
+        "reference": "capped_n1-n1",
+        "kind": "frozen_parent",
+        "paired_sites": 0,
+        "independent_groups": 0,
+        "mean_delta": null,
+        "ci95_delta": null,
+        "warning": "No common valid reconstruction sites",
+        "mean_delta_percentage_points": null,
+        "ci95_delta_percentage_points": null,
+        "mean_bullets_removed_common_fit_mask": null,
+        "mean_tokens_removed_common_fit_mask": null,
+        "intended_paired_sites": 11400,
+        "missing_or_invalid_pairs": 11400
+      },
+      "render_text": "Fit change vs capped_n1-n1: unavailable; 0/11400 valid paired sites"
+    },
+    {
+      "approach": "consensus",
+      "condition": "consensus_semantic_v5_support0.125_compaton_vetoon-n16",
+      "family": "hallucination",
+      "reference": "consensus_exact_support0-n16",
+      "reference_kind": "frozen_parent",
+      "status": "complete_comparable",
+      "mean_fve_percentage_points": 9.208878820864587,
+      "mean_fve_ci95_percentage_points": [
+        8.204365783316536,
+        10.279057441561994
+      ],
+      "scored_sites": 5615,
+      "intended_sites": 5615,
+      "parent_comparison": {
+        "reference": "consensus_exact_support0-n16",
+        "kind": "frozen_parent",
+        "paired_sites": 5615,
+        "independent_groups": 149,
+        "reference_mean_same_mask": 0.36869928124405277,
+        "proposed_mean_same_mask": 0.09208878820864586,
+        "mean_delta": -0.27661049303540686,
+        "median_delta": -0.2559672178810234,
+        "ci95_delta": [
+          -0.2870078920662877,
+          -0.266001125388941
+        ],
+        "bootstrap_replicates": 10000,
+        "defined_bootstrap_draws": 10000,
+        "improved_sites": 58,
+        "worsened_sites": 5541,
+        "unchanged_or_within_numerical_tolerance": 16,
+        "site_change_equivalence_tolerance": 1e-05,
+        "warning": null,
+        "weighting": "equal activation sites within resampled whole related-question groups",
+        "interpretation": "post-hoc secondary diagnostic; pointwise interval; outside 496 headline contrasts",
+        "mean_delta_percentage_points": -27.661049303540686,
+        "ci95_delta_percentage_points": [
+          -28.70078920662877,
+          -26.6001125388941
+        ],
+        "mean_bullets_removed_common_fit_mask": 3.620658949243099,
+        "mean_tokens_removed_common_fit_mask": 92.6447016918967,
+        "intended_paired_sites": 5615,
+        "missing_or_invalid_pairs": 0
+      },
+      "render_text": "Fit change vs consensus_exact_support0-n16: -27.661 pp; 95% grouped CI [-28.701, -26.600] pp; 5615/5615 valid paired sites"
+    },
+    {
+      "approach": "consensus",
+      "condition": "consensus_semantic_v5_support0.125_compaton_vetoon-n16",
+      "family": "multihop_mt",
+      "reference": "consensus_exact_support0-n16",
+      "reference_kind": "frozen_parent",
+      "status": "complete_comparable",
+      "mean_fve_percentage_points": 3.8045136259690673,
+      "mean_fve_ci95_percentage_points": [
+        2.968325210200121,
+        4.688331919577318
+      ],
+      "scored_sites": 1100,
+      "intended_sites": 1100,
+      "parent_comparison": {
+        "reference": "consensus_exact_support0-n16",
+        "kind": "frozen_parent",
+        "paired_sites": 1100,
+        "independent_groups": 94,
+        "reference_mean_same_mask": 0.3012347062409407,
+        "proposed_mean_same_mask": 0.03804513625969068,
+        "mean_delta": -0.26318956998125,
+        "median_delta": -0.22912922733424052,
+        "ci95_delta": [
+          -0.28043881701475787,
+          -0.24638788687225047
+        ],
+        "bootstrap_replicates": 10000,
+        "defined_bootstrap_draws": 10000,
+        "improved_sites": 9,
+        "worsened_sites": 1091,
+        "unchanged_or_within_numerical_tolerance": 0,
+        "site_change_equivalence_tolerance": 1e-05,
+        "warning": null,
+        "weighting": "equal activation sites within resampled whole related-question groups",
+        "interpretation": "post-hoc secondary diagnostic; pointwise interval; outside 496 headline contrasts",
+        "mean_delta_percentage_points": -26.318956998125,
+        "ci95_delta_percentage_points": [
+          -28.043881701475787,
+          -24.63878868722505
+        ],
+        "mean_bullets_removed_common_fit_mask": 3.8581818181818184,
+        "mean_tokens_removed_common_fit_mask": 96.74181818181818,
+        "intended_paired_sites": 1100,
+        "missing_or_invalid_pairs": 0
+      },
+      "render_text": "Fit change vs consensus_exact_support0-n16: -26.319 pp; 95% grouped CI [-28.044, -24.639] pp; 1100/1100 valid paired sites"
+    },
+    {
+      "approach": "consensus",
+      "condition": "consensus_semantic_v5_support0.125_compaton_vetoon-n16",
+      "family": "chain_intermediates",
+      "reference": "consensus_exact_support0-n16",
+      "reference_kind": "frozen_parent",
+      "status": "complete_comparable",
+      "mean_fve_percentage_points": 2.911210183274541,
+      "mean_fve_ci95_percentage_points": [
+        2.698382366675533,
+        3.1466690571663714
+      ],
+      "scored_sites": 1320,
+      "intended_sites": 1320,
+      "parent_comparison": {
+        "reference": "consensus_exact_support0-n16",
+        "kind": "frozen_parent",
+        "paired_sites": 1320,
+        "independent_groups": 42,
+        "reference_mean_same_mask": 0.11206976999897528,
+        "proposed_mean_same_mask": 0.029112101832745412,
+        "mean_delta": -0.08295766816622985,
+        "median_delta": -0.058786010155595314,
+        "ci95_delta": [
+          -0.08823767053715326,
+          -0.0773800595894151
+        ],
+        "bootstrap_replicates": 10000,
+        "defined_bootstrap_draws": 10000,
+        "improved_sites": 13,
+        "worsened_sites": 1253,
+        "unchanged_or_within_numerical_tolerance": 54,
+        "site_change_equivalence_tolerance": 1e-05,
+        "warning": null,
+        "weighting": "equal activation sites within resampled whole related-question groups",
+        "interpretation": "post-hoc secondary diagnostic; pointwise interval; outside 496 headline contrasts",
+        "mean_delta_percentage_points": -8.295766816622985,
+        "ci95_delta_percentage_points": [
+          -8.823767053715326,
+          -7.73800595894151
+        ],
+        "mean_bullets_removed_common_fit_mask": 3.1083333333333334,
+        "mean_tokens_removed_common_fit_mask": 52.262121212121215,
+        "intended_paired_sites": 1320,
+        "missing_or_invalid_pairs": 0
+      },
+      "render_text": "Fit change vs consensus_exact_support0-n16: -8.296 pp; 95% grouped CI [-8.824, -7.738] pp; 1320/1320 valid paired sites"
+    },
+    {
+      "approach": "consensus",
+      "condition": "consensus_semantic_v5_support0.125_compaton_vetoon-n16",
+      "family": "role_bound_association",
+      "reference": "consensus_exact_support0-n16",
+      "reference_kind": "frozen_parent",
+      "status": "partial_or_unavailable",
+      "mean_fve_percentage_points": 3.416301203440547,
+      "mean_fve_ci95_percentage_points": [
+        3.2818816430281417,
+        3.5462604991742133
+      ],
+      "scored_sites": 11276,
+      "intended_sites": 11400,
+      "parent_comparison": {
+        "reference": "consensus_exact_support0-n16",
+        "kind": "frozen_parent",
+        "paired_sites": 11265,
+        "independent_groups": 50,
+        "reference_mean_same_mask": 0.19314099055135303,
+        "proposed_mean_same_mask": 0.03419502666122882,
+        "mean_delta": -0.15894596389012425,
+        "median_delta": -0.13343401196045535,
+        "ci95_delta": [
+          -0.16066111584345008,
+          -0.15722600244064017
+        ],
+        "bootstrap_replicates": 10000,
+        "defined_bootstrap_draws": 10000,
+        "improved_sites": 45,
+        "worsened_sites": 11200,
+        "unchanged_or_within_numerical_tolerance": 20,
+        "site_change_equivalence_tolerance": 1e-05,
+        "warning": null,
+        "weighting": "equal activation sites within resampled whole related-question groups",
+        "interpretation": "post-hoc secondary diagnostic; pointwise interval; outside 496 headline contrasts",
+        "mean_delta_percentage_points": -15.894596389012424,
+        "ci95_delta_percentage_points": [
+          -16.06611158434501,
+          -15.722600244064017
+        ],
+        "mean_bullets_removed_common_fit_mask": 3.7099866844207723,
+        "mean_tokens_removed_common_fit_mask": 89.61198402130492,
+        "intended_paired_sites": 11400,
+        "missing_or_invalid_pairs": 135
+      },
+      "render_text": "Fit change vs consensus_exact_support0-n16: -15.895 pp; 95% grouped CI [-16.066, -15.723] pp; 11265/11400 valid paired sites"
+    },
+    {
+      "approach": "editing",
+      "condition": "editing_round2-n32",
+      "family": "hallucination",
+      "reference": "editing_round1-n32",
+      "reference_kind": "editor_previous_round_diagnostic",
+      "status": "partial_or_unavailable",
+      "mean_fve_percentage_points": null,
+      "mean_fve_ci95_percentage_points": null,
+      "scored_sites": 0,
+      "intended_sites": 5615,
+      "parent_comparison": {
+        "reference": "editing_round1-n32",
+        "kind": "editor_previous_round_diagnostic",
+        "paired_sites": 0,
+        "independent_groups": 0,
+        "mean_delta": null,
+        "ci95_delta": null,
+        "warning": "No common valid reconstruction sites",
+        "mean_delta_percentage_points": null,
+        "ci95_delta_percentage_points": null,
+        "mean_bullets_removed_common_fit_mask": null,
+        "mean_tokens_removed_common_fit_mask": null,
+        "intended_paired_sites": 5615,
+        "missing_or_invalid_pairs": 5615
+      },
+      "render_text": "Fit change vs editing_round1-n32: unavailable; 0/5615 valid paired sites"
+    },
+    {
+      "approach": "editing",
+      "condition": "editing_round2-n32",
+      "family": "multihop_mt",
+      "reference": "editing_round1-n32",
+      "reference_kind": "editor_previous_round_diagnostic",
+      "status": "partial_or_unavailable",
+      "mean_fve_percentage_points": null,
+      "mean_fve_ci95_percentage_points": null,
+      "scored_sites": 0,
+      "intended_sites": 1100,
+      "parent_comparison": {
+        "reference": "editing_round1-n32",
+        "kind": "editor_previous_round_diagnostic",
+        "paired_sites": 0,
+        "independent_groups": 0,
+        "mean_delta": null,
+        "ci95_delta": null,
+        "warning": "No common valid reconstruction sites",
+        "mean_delta_percentage_points": null,
+        "ci95_delta_percentage_points": null,
+        "mean_bullets_removed_common_fit_mask": null,
+        "mean_tokens_removed_common_fit_mask": null,
+        "intended_paired_sites": 1100,
+        "missing_or_invalid_pairs": 1100
+      },
+      "render_text": "Fit change vs editing_round1-n32: unavailable; 0/1100 valid paired sites"
+    },
+    {
+      "approach": "editing",
+      "condition": "editing_round2-n32",
+      "family": "chain_intermediates",
+      "reference": "editing_round1-n32",
+      "reference_kind": "editor_previous_round_diagnostic",
+      "status": "partial_or_unavailable",
+      "mean_fve_percentage_points": null,
+      "mean_fve_ci95_percentage_points": null,
+      "scored_sites": 0,
+      "intended_sites": 1320,
+      "parent_comparison": {
+        "reference": "editing_round1-n32",
+        "kind": "editor_previous_round_diagnostic",
+        "paired_sites": 0,
+        "independent_groups": 0,
+        "mean_delta": null,
+        "ci95_delta": null,
+        "warning": "No common valid reconstruction sites",
+        "mean_delta_percentage_points": null,
+        "ci95_delta_percentage_points": null,
+        "mean_bullets_removed_common_fit_mask": null,
+        "mean_tokens_removed_common_fit_mask": null,
+        "intended_paired_sites": 1320,
+        "missing_or_invalid_pairs": 1320
+      },
+      "render_text": "Fit change vs editing_round1-n32: unavailable; 0/1320 valid paired sites"
+    },
+    {
+      "approach": "editing",
+      "condition": "editing_round2-n32",
+      "family": "role_bound_association",
+      "reference": "editing_round1-n32",
+      "reference_kind": "editor_previous_round_diagnostic",
+      "status": "partial_or_unavailable",
+      "mean_fve_percentage_points": null,
+      "mean_fve_ci95_percentage_points": null,
+      "scored_sites": 0,
+      "intended_sites": 11400,
+      "parent_comparison": {
+        "reference": "editing_round1-n32",
+        "kind": "editor_previous_round_diagnostic",
+        "paired_sites": 0,
+        "independent_groups": 0,
+        "mean_delta": null,
+        "ci95_delta": null,
+        "warning": "No common valid reconstruction sites",
+        "mean_delta_percentage_points": null,
+        "ci95_delta_percentage_points": null,
+        "mean_bullets_removed_common_fit_mask": null,
+        "mean_tokens_removed_common_fit_mask": null,
+        "intended_paired_sites": 11400,
+        "missing_or_invalid_pairs": 11400
+      },
+      "render_text": "Fit change vs editing_round1-n32: unavailable; 0/11400 valid paired sites"
+    }
+  ]
+}

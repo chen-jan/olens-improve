@@ -1,0 +1,321 @@
+{
+  "status": "passed",
+  "native_v2_sha256": "bd501f26f228e1648f2be178b2fa3a1244fe64e4719e1ac304fc47aea99be9ae",
+  "native_v3_sha256": "eea3510637c4f0b849585882e88f6dec00f85073f10525460070ab70e75d8082",
+  "manifest_sha256": "753b2d9cab0daea0d19efef7d3222fd44921dbcf4669e6864d4f1bd4805421f8",
+  "complete_condition_families": 235,
+  "missing_condition_families": 45,
+  "conditions_complete_all_four_families": 47,
+  "family_complete_counts": {
+    "hallucination": 59,
+    "multihop_mt": 64,
+    "chain_intermediates": 64,
+    "role_bound_association": 48
+  },
+  "cohort_overlap": {
+    "full": {
+      "unchanged_existing_rows": 209,
+      "new_rows": 26,
+      "unchanged_existing_comparisons": 328,
+      "new_comparisons": 66,
+      "available_comparisons": 394
+    },
+    "test": {
+      "unchanged_existing_rows": 209,
+      "new_rows": 26,
+      "unchanged_existing_comparisons": 328,
+      "new_comparisons": 66,
+      "available_comparisons": 394
+    },
+    "development": {
+      "unchanged_existing_rows": 209,
+      "new_rows": 26,
+      "unchanged_existing_comparisons": 328,
+      "new_comparisons": 66,
+      "available_comparisons": 394
+    },
+    "pilot": {
+      "unchanged_existing_rows": 209,
+      "new_rows": 26,
+      "unchanged_existing_comparisons": 328,
+      "new_comparisons": 66,
+      "available_comparisons": 394
+    }
+  },
+  "existing_absolute_rows_exactly_equal": 836,
+  "existing_paired_comparisons_exactly_equal": 1312,
+  "new_complete_condition_families": [
+    {
+      "condition": "likelihood_true_minus_mean_two_controls-n8",
+      "family": "multihop_mt",
+      "coverage": {
+        "expected_cells": 1100,
+        "empty_abstentions": 0,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      }
+    },
+    {
+      "condition": "own_mean_log_likelihood-n8",
+      "family": "multihop_mt",
+      "coverage": {
+        "expected_cells": 1100,
+        "empty_abstentions": 0,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      }
+    },
+    {
+      "condition": "control_mean_log_likelihood-n8",
+      "family": "multihop_mt",
+      "coverage": {
+        "expected_cells": 1100,
+        "empty_abstentions": 0,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      }
+    },
+    {
+      "condition": "consensus_exact_support0-n16",
+      "family": "chain_intermediates",
+      "coverage": {
+        "expected_cells": 1320,
+        "empty_abstentions": 0,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      }
+    },
+    {
+      "condition": "consensus_exact_support0.125-n16",
+      "family": "chain_intermediates",
+      "coverage": {
+        "expected_cells": 1320,
+        "empty_abstentions": 397,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      }
+    },
+    {
+      "condition": "consensus_exact_support0.25-n16",
+      "family": "chain_intermediates",
+      "coverage": {
+        "expected_cells": 1320,
+        "empty_abstentions": 781,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      }
+    },
+    {
+      "condition": "pooled_greedy_swap_then_prune_0.001-n32",
+      "family": "hallucination",
+      "coverage": {
+        "expected_cells": 5615,
+        "empty_abstentions": 1,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      }
+    },
+    {
+      "condition": "pooled_greedy_swap_then_prune_0.001-n32",
+      "family": "chain_intermediates",
+      "coverage": {
+        "expected_cells": 1320,
+        "empty_abstentions": 0,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      }
+    },
+    {
+      "condition": "pooled_greedy_swap_random_delete_matched_0.001-n32",
+      "family": "hallucination",
+      "coverage": {
+        "expected_cells": 5615,
+        "empty_abstentions": 1,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      }
+    },
+    {
+      "condition": "pooled_greedy_swap_random_delete_matched_0.001-n32",
+      "family": "chain_intermediates",
+      "coverage": {
+        "expected_cells": 1320,
+        "empty_abstentions": 0,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      }
+    },
+    {
+      "condition": "pooled_greedy_swap_random_delete_matched_0.001-n32",
+      "family": "role_bound_association",
+      "coverage": {
+        "expected_cells": 11400,
+        "empty_abstentions": 0,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      }
+    },
+    {
+      "condition": "pooled_greedy_swap_then_prune_0.005-n32",
+      "family": "hallucination",
+      "coverage": {
+        "expected_cells": 5615,
+        "empty_abstentions": 1,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      }
+    },
+    {
+      "condition": "pooled_greedy_swap_then_prune_0.005-n32",
+      "family": "chain_intermediates",
+      "coverage": {
+        "expected_cells": 1320,
+        "empty_abstentions": 0,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      }
+    },
+    {
+      "condition": "pooled_greedy_swap_then_prune_0.005-n32",
+      "family": "role_bound_association",
+      "coverage": {
+        "expected_cells": 11400,
+        "empty_abstentions": 92,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      }
+    },
+    {
+      "condition": "pooled_greedy_swap_random_delete_matched_0.005-n32",
+      "family": "hallucination",
+      "coverage": {
+        "expected_cells": 5615,
+        "empty_abstentions": 1,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      }
+    },
+    {
+      "condition": "pooled_greedy_swap_random_delete_matched_0.005-n32",
+      "family": "chain_intermediates",
+      "coverage": {
+        "expected_cells": 1320,
+        "empty_abstentions": 0,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      }
+    },
+    {
+      "condition": "pooled_greedy_swap_random_delete_matched_0.005-n32",
+      "family": "role_bound_association",
+      "coverage": {
+        "expected_cells": 11400,
+        "empty_abstentions": 92,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      }
+    },
+    {
+      "condition": "pooling_exact_support_lambda0.05-n16",
+      "family": "chain_intermediates",
+      "coverage": {
+        "expected_cells": 1320,
+        "empty_abstentions": 0,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      }
+    },
+    {
+      "condition": "pooling_exact_support_lambda0.2-n16",
+      "family": "hallucination",
+      "coverage": {
+        "expected_cells": 5615,
+        "empty_abstentions": 2,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      }
+    },
+    {
+      "condition": "pooling_exact_support_lambda0.2-n16",
+      "family": "chain_intermediates",
+      "coverage": {
+        "expected_cells": 1320,
+        "empty_abstentions": 0,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      }
+    },
+    {
+      "condition": "exact_support_only-n16",
+      "family": "chain_intermediates",
+      "coverage": {
+        "expected_cells": 1320,
+        "empty_abstentions": 0,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      }
+    },
+    {
+      "condition": "pooled_specificity_mean-n32",
+      "family": "hallucination",
+      "coverage": {
+        "expected_cells": 5615,
+        "empty_abstentions": 1,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      }
+    },
+    {
+      "condition": "pooled_specificity_mean-n32",
+      "family": "chain_intermediates",
+      "coverage": {
+        "expected_cells": 1320,
+        "empty_abstentions": 0,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      }
+    },
+    {
+      "condition": "pooled_specificity_mean_then_prune_0.005-n32",
+      "family": "hallucination",
+      "coverage": {
+        "expected_cells": 5615,
+        "empty_abstentions": 1,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      }
+    },
+    {
+      "condition": "pooled_specificity_mean_then_prune_0.005-n32",
+      "family": "chain_intermediates",
+      "coverage": {
+        "expected_cells": 1320,
+        "empty_abstentions": 0,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      }
+    },
+    {
+      "condition": "pooled_specificity_mean_random_delete_matched_0.005-n32",
+      "family": "chain_intermediates",
+      "coverage": {
+        "expected_cells": 1320,
+        "empty_abstentions": 0,
+        "missing_stage1": 0,
+        "missing_stage2": 0
+      }
+    }
+  ],
+  "unique_metric_and_comparison_keys": true,
+  "all496joint_intervals_withheld": true,
+  "descriptor_duplicate_proof_sha256": "f79fca7256ad87823c79398cb7e822c737f13458830c911a99a0328001e3f68e",
+  "source_pin_count": 1020,
+  "implementation_sha256": {
+    "${OLENS_REPO_ROOT}/scripts/analyze_expansion.py": "9ba5a4966b53cc636e786c888bda8c9da267d31e0f6c3d7f5c5ae3b1b50d8281",
+    "src/olens_improve/expanded_statistics.py": "66dc640a6a4c0760f2a9591e78554bdd5dfb3dba35e306675448c4280b1458c9",
+    "src/olens_improve/reporting.py": "7bc728136f19eac771ed3fb8c3b9077f416d047197bb3c9c0de2c431985ee319",
+    "scripts/verify_expansion_judge_contracts.py": "e14395c110c1b56ac93db84d183ec014e13368d4a28e0310e80a2ae4f5d78d2a"
+  },
+  "runtime_seconds": 83.85,
+  "maximum_rss_kib": 1425324
+}

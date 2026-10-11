@@ -1,0 +1,120 @@
+{
+  "status": "passed",
+  "scope": "additive cached replay audit only; no old-row re-extraction or bootstrap recomputation",
+  "replay_runner": "scripts/expanded_reconstruction_replay_v2.py",
+  "replay_runner_sha256": "9221a77da41ece4c1757b2ea5319098353cf03fa480ebb2f98a308bc6c845372",
+  "map_intake_sha256": "8ca93637d07e838276c53204411bf12e5d1f3bfe9005177fb08b0c14a9dbdb07",
+  "sites": 18115,
+  "fit_rows": 65745,
+  "maximum_a32_saved_replay_difference": 3.1057685756508135e-08,
+  "workers": [
+    {
+      "path": "${OLENS_DATA_ROOT}/expansion-v1/reconstruction/replay-addon-v1/shard-0",
+      "cells": 6250,
+      "seconds": 427.7438278198242,
+      "status_sha256": "dbe5fad9504a21a1188a5d5c09d5c5e01321edcfa505635ddaae7b57d5b42619",
+      "spec_sha256": "78e3a3599fd0c28d4fbdb9eda52eb217b0851d2f86b9c40da2df33ba64bf9260",
+      "fits_sha256": "b9a2c527b7c156f09c9966c936d16596feab493cb11b33638b763100a16c9cbe",
+      "source_pin_count": 1415,
+      "resume_pin_policy": "durable_cumulative_used_source_map_v2; pinned before each dependent journal commit",
+      "resumed_existing_cells": 0,
+      "source_map_sha256": "0170411df5aabc4e2e3ffe8f36bd2ddb88fb005e2bd885a6545c27245927d325"
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/expansion-v1/reconstruction/replay-addon-v1/shard-1",
+      "cells": 6250,
+      "seconds": 360.0416145324707,
+      "status_sha256": "0482e2d2db87c56fd73d6af8a9ceb0b2991b21a58752b7191748161bf8dd09eb",
+      "spec_sha256": "8ff50feaca15e19aa92dfa7d3d0219b73c358fdcd16a1ca00ebae09970c69876",
+      "fits_sha256": "392ce3e963865e46ce89191b872b86163c5f19d664b5012223d60d404d072e47",
+      "source_pin_count": 1415,
+      "resume_pin_policy": "durable_cumulative_used_source_map_v2; pinned before each dependent journal commit",
+      "resumed_existing_cells": 0,
+      "source_map_sha256": "0a5340fd5678cecf9422ab217636cd14856fb357f9554615a4dd68e880303cfc"
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/expansion-v1/reconstruction/replay-hall-addon-v1/shard-0",
+      "cells": 5615,
+      "seconds": 292.6080975532532,
+      "status_sha256": "c2b7499052f54d8e5294c60a157ad2087d5451a499e30d09d8fd36237fc321ab",
+      "spec_sha256": "7fb68a0d1e3691df8159fa00e2ea55b67d09413e8f890572c6d74714cdcddd7f",
+      "fits_sha256": "537f07b1965d5c25fe553af8edeaacfb96f76f537f39b5dda10e3d8a323c217c",
+      "source_pin_count": 1217,
+      "resume_pin_policy": "durable_cumulative_used_source_map_v2; pinned before each dependent journal commit",
+      "resumed_existing_cells": 0,
+      "source_map_sha256": "c5f14a4f0141aee7ed323260a5ea5dfe5cec0be2babf27d31734d1946e2da45f"
+    }
+  ],
+  "condition_family_summaries": [
+    {
+      "condition": "consensus_semantic_v5_medium_support0.125_compatoff_vetoon-n16",
+      "family": "role_bound_association",
+      "scored_sites": 11271,
+      "invalid_sites": 129,
+      "mean_fve": 0.03474120628301582
+    },
+    {
+      "condition": "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16",
+      "family": "role_bound_association",
+      "scored_sites": 11276,
+      "invalid_sites": 124,
+      "mean_fve": 0.03051320216080642
+    },
+    {
+      "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+      "family": "role_bound_association",
+      "scored_sites": 11265,
+      "invalid_sites": 135,
+      "mean_fve": 0.1923597429495859
+    },
+    {
+      "condition": "consensus_semantic_v5_medium_support0_compaton_vetoon-n16",
+      "family": "role_bound_association",
+      "scored_sites": 11276,
+      "invalid_sites": 124,
+      "mean_fve": 0.11304080237323529
+    },
+    {
+      "condition": "control_mean_log_likelihood-n8",
+      "family": "hallucination",
+      "scored_sites": 5615,
+      "invalid_sites": 0,
+      "mean_fve": 0.3704716999601629
+    },
+    {
+      "condition": "control_mean_log_likelihood-n8",
+      "family": "multihop_mt",
+      "scored_sites": 1100,
+      "invalid_sites": 0,
+      "mean_fve": 0.3019042508225388
+    },
+    {
+      "condition": "likelihood_true_minus_mean_two_controls-n8",
+      "family": "hallucination",
+      "scored_sites": 5615,
+      "invalid_sites": 0,
+      "mean_fve": 0.37164107651193806
+    },
+    {
+      "condition": "likelihood_true_minus_mean_two_controls-n8",
+      "family": "multihop_mt",
+      "scored_sites": 1100,
+      "invalid_sites": 0,
+      "mean_fve": 0.30097718464068923
+    },
+    {
+      "condition": "own_mean_log_likelihood-n8",
+      "family": "hallucination",
+      "scored_sites": 5615,
+      "invalid_sites": 0,
+      "mean_fve": 0.37364909899643234
+    },
+    {
+      "condition": "own_mean_log_likelihood-n8",
+      "family": "multihop_mt",
+      "scored_sites": 1100,
+      "invalid_sites": 0,
+      "mean_fve": 0.3044826856067499
+    }
+  ]
+}
