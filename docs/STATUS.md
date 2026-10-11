@@ -1,5 +1,13 @@
 # Execution status
 
+## Current follow-up: search within the current activation — 2026-10-11
+
+The approved [follow-up](TARGET_ONLY_SEARCH_PLAN.md) tests repeated bullet swaps, swaps followed by pruning, bounded prune/refill, and matched random deletion on all 469 questions and 19,435 fixed sites. Only the current activation and its own existing 32-sample pool are available to selection. Control-activation methods are outside the current valid-method scope. Historical results below remain unchanged.
+
+The unjudged 12-site timing pilot and independent checks passed. Six workers are running on distinct groups of four physical CPU cores in the existing user allocation 25299630. A shared-core placement error in the first launch was corrected; 21 committed rows were preserved and the scientific contract did not change. No additional GPU or new model encoding is needed. Exact read-only judge forecasts follow the complete merge; paid dispatch awaits the root's source and budget review, within the already authorized project ceiling.
+
+The additive implementation passed 51 targeted offline tests. Pending presentation and synthetic interface checks passed; these are engineering checks, not experimental findings. The public dashboard remains its earlier version until new judgments and qualitative review are complete.
+
 ## Uncertainty and seven-setting selection clarified — 2026-10-11 13:46 UTC
 
 Public version **19** explains the distinction between uncertainty in an absolute task rate, a paired change on the same questions, and intervals adjusted for many comparisons. The seven illustrative settings match the slide highlights and were chosen after results, not by a predefined winner-selection rule. All 70 settings remain accessible. Existing scientific data and the version-18 slides are unchanged; 22 actual browser views passed, with no new inference, judging or GPU work. See [experiment 064](experiments/064-uncertainty-and-illustrative-settings.md) and the [publication receipt](reviews/ci-labels-site-delivery-v1.json).

@@ -1,0 +1,296 @@
+{
+  "schema_version": 1,
+  "scope": "exploratory_target_only_search_on_all_four_previously_inspected_banks",
+  "expected": {
+    "items": 469,
+    "cells": 19435,
+    "samples": 621920
+  },
+  "families": [
+    "hallucination",
+    "multihop_mt",
+    "chain_intermediates",
+    "role_bound_association"
+  ],
+  "family_group_counts": {
+    "hallucination": 149,
+    "multihop_mt": 94,
+    "chain_intermediates": 42,
+    "role_bound_association": 50
+  },
+  "fresh_manifest": {
+    "path": "${OLENS_COMPUTE_ROOT}/activations/core-v1/fresh_manifest_v2.json",
+    "sha256": "5a61cff89aca532f3e022233b6d2d8e12dab0d3a3f4f44085097bc6dc58fc385",
+    "hash_status": "verified_now"
+  },
+  "vector_contract": {
+    "base_revision": "6a9e13bd6fc8f0983b9b99948120bc37f49c13e9",
+    "pair_revision": "c95215d5d2f6250f20c305ae55c6e4d7569f92dc",
+    "head_sha256": "9f4cb6d193679c8683d7b49c8d2821c71567b3fc720baa73d7dbddb95f4c2179",
+    "meta_sha256": "d87687fa9b55b95d714c33dd05436d65163ae214b2b39a73ed9cb36572e16a45",
+    "adapter_config_sha256": "f570eeac608af8453d6f2888f63aab3035fdfdc7af6c8207247902881a7ba716",
+    "adapter_sha256": "d90bb9df02c352ef19f28536374e4a333e6dae8a103ba37d9e1c4e5183654e8a",
+    "tokenizer_revision": "6a9e13bd6fc8f0983b9b99948120bc37f49c13e9",
+    "tokenizer_cleanup": "source_scaffolding_and_special_ids_v1",
+    "span_limit": 32,
+    "padding": "right_zero",
+    "head_layer_norm": true,
+    "head_layer_norm_epsilon": 1e-05,
+    "final_norm": "Identity",
+    "backbone_dtype": "bfloat16",
+    "head_dtype": "float32",
+    "key_policy": "effective_scored_tokens_and_tag_v1",
+    "sha256": "a451cf49d28ac74477229e74dfc738e51b8961b5376c688fd9e40abbd8c133b6"
+  },
+  "status": "sealed",
+  "sealed_utc": "2026-10-11T15:27:02.571706+00:00",
+  "source_inventory": {
+    "path": "configs/expansion_manifest_v1.json",
+    "sha256": "753b2d9cab0daea0d19efef7d3222fd44921dbcf4669e6864d4f1bd4805421f8"
+  },
+  "artifact_root": "${OLENS_DATA_ROOT}/target-only-search-v1",
+  "stages": {
+    "development": {
+      "samples": [
+        {
+          "path": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/shard-000-of-004.jsonl",
+          "sha256": "99129dd7ec601056cffa58a6a7df1974c3e2530140c9b6418405195981ebf2bc"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/shard-001-of-004.jsonl",
+          "sha256": "7c73921841c245fa9f56cd2059df758bcedd896e70790d671c38da3d9f5b28c5"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/shard-002-of-004.jsonl",
+          "sha256": "26f11e3c8e6df696475dc634182decdae8858c86ff2abaedd5f0aaece84d7b8f"
+        },
+        {
+          "path": "${OLENS_DATA_ROOT}/runs/development-full-grid-v2/shard-003-of-004.jsonl",
+          "sha256": "a62df7e10417ed216064845b5ce97e6586d64ad1b99c9035ffd9e632bb232be8"
+        }
+      ],
+      "selectors": {
+        "path": "${OLENS_DATA_ROOT}/selections/development-full-grid-v4/merged/selections.jsonl",
+        "sha256": "54ee50e61ebc11ac66d8d11c294dda60e17a7f9e06ad8632665e6bbb6505635e",
+        "hash_status": "terminal_receipt_pending_stream_verification"
+      },
+      "vector_cache": "${OLENS_COMPUTE_ROOT}/vectors/shared-global-v1/a451cf49d28ac7447722",
+      "cells": 5236
+    },
+    "validation": {
+      "samples": [
+        {
+          "path": "${OLENS_DATA_ROOT}/runs/validation-full-grid-v1/samples-n32.jsonl",
+          "sha256": "9854b1b1afaa78ecb6cd1c1144a0990ecf569c86c4b81f1321641e6d01bf8024"
+        }
+      ],
+      "selectors": {
+        "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/merged/selections.jsonl",
+        "sha256": "44b817683374049245f8d84d0fee3c7ebc27d37cd62c79e97976394323df30fa",
+        "hash_status": "terminal_receipt_pending_stream_verification"
+      },
+      "vector_cache": "${OLENS_COMPUTE_ROOT}/vectors/validation-catalog-v1",
+      "cells": 3485
+    },
+    "test": {
+      "samples": [
+        {
+          "path": "${OLENS_DATA_ROOT}/runs/test-full-grid-v1/samples-n32.jsonl",
+          "sha256": "a9ac1a66d819a2da0a551e40f9b49b309a62aefb767071d7f866e84e36f61c6d"
+        }
+      ],
+      "selectors": {
+        "path": "${OLENS_DATA_ROOT}/selections/test-full-grid-v1/merged/selections.jsonl",
+        "sha256": "547b953be6fff89d2f850001fd6dcdb3aed606708c8a211b6270369a4aa25df1",
+        "hash_status": "terminal_receipt_pending_stream_verification"
+      },
+      "vector_cache": "${OLENS_COMPUTE_ROOT}/vectors/test-catalog-v1",
+      "cells": 10714
+    }
+  },
+  "conditions": [
+    {
+      "method": "repeat_swap",
+      "n": 32,
+      "condition_id": "repeat_swap-n32",
+      "status": "active",
+      "display_name": "Repeat bullet swaps",
+      "actual_parent": "pooled_greedy_swap-n32",
+      "candidate_budget": 32,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "selection_access": {
+        "target_activations_per_cell": 1,
+        "other_activations": false,
+        "prompt_access": false,
+        "label_access": false
+      }
+    },
+    {
+      "method": "repeat_swap_then_prune_005",
+      "n": 32,
+      "condition_id": "repeat_swap_then_prune_005-n32",
+      "status": "active",
+      "display_name": "Repeat swaps, then prune",
+      "actual_parent": "repeat_swap-n32",
+      "candidate_budget": 32,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "selection_access": {
+        "target_activations_per_cell": 1,
+        "other_activations": false,
+        "prompt_access": false,
+        "label_access": false
+      }
+    },
+    {
+      "method": "bounded_prune_refill_005",
+      "n": 32,
+      "condition_id": "bounded_prune_refill_005-n32",
+      "status": "active",
+      "display_name": "Prune and refill",
+      "actual_parent": "pooled_greedy_swap_then_prune_0.005-n32",
+      "candidate_budget": 32,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "selection_access": {
+        "target_activations_per_cell": 1,
+        "other_activations": false,
+        "prompt_access": false,
+        "label_access": false
+      }
+    },
+    {
+      "method": "repeated_swaps_random_delete_match_005",
+      "n": 32,
+      "condition_id": "repeated_swaps_random_delete_match_005-n32",
+      "status": "active",
+      "display_name": "Matched random deletion",
+      "actual_parent": "repeat_swap-n32",
+      "candidate_budget": 32,
+      "new_olens_samples": 0,
+      "max_bullets": 4,
+      "max_qwen_tokens": 256,
+      "selection_access": {
+        "target_activations_per_cell": 1,
+        "other_activations": false,
+        "prompt_access": false,
+        "label_access": false
+      }
+    }
+  ],
+  "active_condition_count": 4,
+  "headline_comparison_family": [
+    {
+      "condition": "repeat_swap-n32",
+      "reference": "raw_n1-n1",
+      "role": "original_reference"
+    },
+    {
+      "condition": "repeat_swap-n32",
+      "reference": "pooled_greedy_swap-n32",
+      "role": "component_parent"
+    },
+    {
+      "condition": "repeat_swap_then_prune_005-n32",
+      "reference": "raw_n1-n1",
+      "role": "original_reference"
+    },
+    {
+      "condition": "repeat_swap_then_prune_005-n32",
+      "reference": "repeat_swap-n32",
+      "role": "component_parent"
+    },
+    {
+      "condition": "bounded_prune_refill_005-n32",
+      "reference": "raw_n1-n1",
+      "role": "original_reference"
+    },
+    {
+      "condition": "bounded_prune_refill_005-n32",
+      "reference": "pooled_greedy_swap_then_prune_0.005-n32",
+      "role": "component_parent"
+    },
+    {
+      "condition": "repeated_swaps_random_delete_match_005-n32",
+      "reference": "raw_n1-n1",
+      "role": "original_reference"
+    },
+    {
+      "condition": "repeated_swaps_random_delete_match_005-n32",
+      "reference": "repeat_swap-n32",
+      "role": "component_parent"
+    },
+    {
+      "condition": "repeat_swap_then_prune_005-n32",
+      "reference": "repeated_swaps_random_delete_match_005-n32",
+      "role": "guided_vs_count_matched_random"
+    },
+    {
+      "condition": "bounded_prune_refill_005-n32",
+      "reference": "repeat_swap_then_prune_005-n32",
+      "role": "constrained_search_vs_terminal_pruning"
+    },
+    {
+      "condition": "repeat_swap_then_prune_005-n32",
+      "reference": "pooled_greedy_swap_then_prune_0.005-n32",
+      "role": "swap_search_before_pruning"
+    }
+  ],
+  "multiplicity_policy": "Paired whole-group bootstrap joint maximum over the 44 declared new contrasts; does not correct earlier adaptive research history.",
+  "selection_access": {
+    "target_activations_per_cell": 1,
+    "other_activations": false,
+    "prompt_access": false,
+    "label_access": false
+  },
+  "search": {
+    "subset_fit_budget": 2048,
+    "max_swap_steps": 8,
+    "max_rounds": 2,
+    "threshold": 0.005,
+    "tolerance": 1e-08,
+    "max_bullets": 4,
+    "max_qwen_tokens": 256,
+    "swap_phase_fit_limit": 2034,
+    "terminal_pruning_reserve": 14,
+    "random_seed_policy": "sha256(target_only_random_delete_match_005_v1,cell_id) first16hex"
+  },
+  "analysis": {
+    "status": "frozen_before_new_judgments",
+    "bootstrap_replicates": 10000,
+    "seed": 20261012
+  },
+  "invariants": [
+    "No new samples, encodings, rewrites, context, other activations or training.",
+    "Original reference and complete grids preserved.",
+    "All outcomes exploratory; fullbank previously inspected.",
+    "Exact cache reuse and both hallucination stages."
+  ],
+  "runtime_inputs": {
+    "runtime": {
+      "path": "configs/runtime.json",
+      "sha256": "d18ea8e86b91a682239a43af471f28f56d46c4888c75e3b2d5a8893786de21ab"
+    },
+    "checkpoint": "${OLENS_COMPUTE_ROOT}/cache/huggingface/hub/models--agu18dec--olens_and_ar/snapshots/c95215d5d2f6250f20c305ae55c6e4d7569f92dc/ar_ptag_pooled",
+    "whitener_directory": "${OLENS_COMPUTE_ROOT}/cache/huggingface/hub/datasets--agu18dec--local-workspace/snapshots/5653a7fead43ecbd87e3b6d2a2990a98b32843ca/ckpts/ar/ptag/whiteners",
+    "whitener_moments_sha256": {
+      "20": "dcdf2d9d332262ded95692ef5a43d86f8478ab9b77350d8ad5702fec039da313",
+      "24": "4c2d387ae3cc53b8c2df883062ac8afbad5d8205db1f0024b58d51391bc7521d",
+      "28": "0e4bdda6be1d011e9fbf3cc478eeffad35c99ddff5744dbe25e50f2172e45061",
+      "32": "c88df024d30a65c77bd55feee8c42f95df5acbdfccd407b58755cd5115955934",
+      "36": "8c8c6d27b39204fb39e1fb8bc729a5c2bb7fb83f0466e3371965642703f07fa1",
+      "40": "efbca2bb9dc2147b02f9dad92f3e6c20010ba67153157fcf514c15395240f650",
+      "44": "178ceb36251e5e7ed2eb51aa54ccc4eac45dc928116b7498b46d22657a31c62a",
+      "48": "9cf2f819746af5f6c0434b7e076345826a568fe77642d1c404eb1db9b8b63192",
+      "52": "f4500a8e2fd9329bbbb66499832b55d4a0b87d4a9088ee5d4a512ba8865d8c2c",
+      "56": "aa9c796a38a9ad763d66c170f7eaf9a6135ee4b6eceea1f7cfef11fec271f80c",
+      "60": "3723db02ea8f2c6aa3a4183ced7ecf2bdc9d8e2b229e43d0e51528071a0a2b71"
+    },
+    "whitening_ridge_c": 0.1
+  },
+  "version_note": "v2 adds original runtime and whitening artifact pins; method/analysis bounds unchanged from unjudged timing pilot v1."
+}

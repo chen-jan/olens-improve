@@ -1,0 +1,35 @@
+{
+  "status": "root_reviewed_for_cpu_production",
+  "pilot": "${OLENS_DATA_ROOT}/target-only-search-v1/pilot-v1/status.json",
+  "pilot_cells": 12,
+  "quality_inspected": false,
+  "pilot_methods_median_seconds": {
+    "repeat_swap": 0.1312352,
+    "repeat_swap_then_prune_005": 0.1299352,
+    "bounded_prune_refill_005": 0.148917
+  },
+  "independent_review": "18 unit tests and 216 independent small NNLS searches; 12 real pilot invariants passed. No hard algorithm bug. CLI binding and runtime/whitening pins added before production.",
+  "post_pilot_changes": [
+    "Fail closed on sealed search-bound mismatch.",
+    "Bind original runtime/whitening artifacts.",
+    "Record construction parent separately from component comparator."
+  ],
+  "cpu_job_id": 25299630,
+  "workers": 6,
+  "cpus_per_worker": 4,
+  "gpu_allocations": 0,
+  "paid_calls_authorized": false,
+  "code_source_sha256": {
+    "scripts/run_target_only_search.py": "eedb5953d97cc9ab6a158d9bae2270bd25e5bd8133f57c0be8045b079f68a69b",
+    "src/olens_improve/target_only_search.py": "42f505c4b8e94e95df4c38611848b7e4fd119cd4961e28d4cf7e90b0bea4a0c6",
+    "scripts/evaluate_target_only_search.py": "4662b1eb03c14a5f67cd2c3603723c4c957655813c1ab6893ded2fa20d2bae44",
+    "scripts/analyze_target_only_search.py": "eb93d42abb49476ad5783aa33ae9831c1b61a20465690d21ff5837d0fdf4caf8",
+    "configs/target_only_inventory_v2.json": "181fcc259ed81213a7b26ea18142b6cd35648e89b83100a5cf07590ed75b2c47",
+    "configs/target_only_api_v1.json": "12e8455e644fdfcd96b5b71dd580469f071c7b755e428a53f0a7d26c06515ca7"
+  },
+  "limits": [
+    "Pilot source-pin additions occurred during pilot startup; treat it as an unjudged technical pilot. Production uses separately sealed v2 input pins and the final reviewed source.",
+    "1e-5 parent-FVE replay alone does not validate near-threshold decisions.",
+    "All new results exploratory on previously inspected banks."
+  ]
+}
