@@ -273,6 +273,55 @@ def reconstruction_comparison(row, quality_reference):
     return next((p for p in parents if p.get('kind') == 'frozen_parent'), None)
 
 
+def tradeoff_intervals(horizontal, vertical, px, py, pw, ph, color):
+    """Native marginal intervals on separate-bank axes, not a joint region."""
+    if horizontal['value'] is None or vertical['value'] is None:return []
+    xx=px+pw*horizontal['value'];yy=py-ph*vertical['value'];items=[]
+    if horizontal.get('ci95') is not None:
+        lo,hi=[px+pw*v for v in horizontal['ci95']]
+        items += [line(lo,yy,hi,yy,color,2),line(lo,yy-4,lo,yy+4,color,2),line(hi,yy-4,hi,yy+4,color,2)]
+    if vertical.get('ci95') is not None:
+        lo,hi=[py-ph*v for v in vertical['ci95']]
+        items += [line(xx,lo,xx,hi,color,2),line(xx-4,lo,xx+4,lo,color,2),line(xx-4,hi,xx+4,hi,color,2)]
+    return items
+
+
+def reconstruction_cell(row):
+    """Display original mean/interval/coverage without filling unavailable fits."""
+    if row is None:
+        return 'Not supplied†\nCI unavailable\nCoverage unavailable'
+    value=row['mean_fve'];bounds=row.get('mean_fve_ci95')
+    warning=(value is None or bounds is None or row.get('mean_fve_warnings')
+             or row['scored_site_count']<row['full_site_count'])
+    mean='Unavailable' if value is None else f'{100*value:.2f}%'
+    interval='CI unavailable' if bounds is None else f'{100*bounds[0]:.2f}–{100*bounds[1]:.2f}%'
+    return mean+('†' if warning else '')+'\n'+interval+'\n'+count(row['scored_site_count'])+'/'+count(row['full_site_count'])+' sites'
+
+
+def reconstruction_appendix(active, names, rows):
+    """All frozen settings in inventory order, using the native appendix layout."""
+    recorded={(r['condition'],r['family']):r for r in rows};conditions=list(active);pages=[]
+    for start in range(0,len(conditions),5):
+        selected=conditions[start:start+5]
+        items=[text(70,195,1460,38,'Explained activation variance · grouped 95% CI · scored/intended sites',23,MUTED)]
+        for j,f in enumerate(FAMILIES):items.append(text(510+j*255,248,245,65,TITLES[f],23,TEAL,True))
+        for i,c in enumerate(selected):
+            yy=330+i*94;items += [text(70,yy,420,85,wrapped(names[c],35),22),line(70,yy+85,1535,yy+85)]
+            for j,f in enumerate(FAMILIES):items.append(text(510+j*255,yy,245,86,reconstruction_cell(recorded.get((c,f))),21))
+        items.append(text(70,808,1460,30,'Secondary fit, not correctness · † unavailable/partial fit or interval; reasons and masks in notes.',20,MUTED))
+        records=[{'condition':c,'label':names[c],'reconstruction':{f:recorded.get((c,f)) for f in FAMILIES}} for c in selected]
+        notes=('Exact reconstruction records: '+json.dumps(records,ensure_ascii=False)+'\n'
+               'Means and grouped pointwise 95% intervals are copied from the bound reconstruction artifact; '
+               'displayed percentages equal raw fractions times100, with two-decimal display rounding only. '
+               'Coverage is scored activation sites / all intended activation sites, not question-level quality. '
+               'Unavailable values and intervals stay unavailable; zero fit is displayed as zero, never substituted for null. '
+               'Partial valid-site masks, unavailable reasons, grouped-bootstrap warnings, actual paired parents and '
+               'unrounded source values remain in these records. Raw unmodified N1 has no comparable saved fit. '
+               'Inventory order, all settings, no ranking or significance filter.')
+        pages.append((f'All reconstruction settings · {start+1}–{min(start+5,len(conditions))} of {len(conditions)}',items,notes))
+    return pages
+
+
 def reconstruction_scaling(rows, names):
     """Draw saved fit means and intervals; never manufacture a baseline fit."""
     conditions = [f'best_n_exact-n{n}' for n in N_VALUES] + [
@@ -455,17 +504,17 @@ def pages_from(inputs,qa=False):
     trade=[]
     for i,f in enumerate(FAMILIES[1:]):
         x=70+i*500;y=235;px=x+75;py=580;pw=385;ph=250
-        trade += [text(x,y,465,70,TITLES[f]+' recovery ↑',26,bold=True),line(px,py,px+pw,py),line(px,py,px,py-ph)]
+        trade += [text(x,y,465,70,TITLES[f]+' recovery ↑',24,bold=True),line(px,py,px+pw,py),line(px,py,px,py-ph)]
         for z in (0,.5,1):trade += [text(px+pw*z-15,py+12,58,26,f'{100*z:g}%',17,MUTED),text(x+12,py-ph*z-12,55,28,f'{100*z:g}%',17,MUTED)]
         for j,c in enumerate(chosen):
             a,b=metrics[c,'hallucination'],metrics[c,f]
             if a['value'] is None or b['value'] is None:continue
-            xx=px+pw*a['value'];yy=py-ph*b['value'];trade.append(dot(xx,yy,COLORS[j],6));trade.append(text(xx+7,yy-12,38,27,str(j+1),16,COLORS[j],True))
+            xx=px+pw*a['value'];yy=py-ph*b['value'];trade += tradeoff_intervals(a,b,px,py,pw,ph,COLORS[j]);trade.append(dot(xx,yy,COLORS[j],6));trade.append(text(xx+7,yy-12,38,27,str(j+1),16,COLORS[j],True))
         trade.append(text(x+40,625,430,48,'Transcript contradictions → · lower is better',18,MUTED))
     for j,c in enumerate(chosen):
         trade.append(text(80+(j%3)*500,690+(j//3)*34,480,34,wrapped(str(j+1)+'. '+names[c],49),16,COLORS[j]))
-    trade += [text(70,796,1440,40,'Different question banks on the two axes. No per-question joint success or pooled accuracy.',23,MUTED)]
-    add('Practical tradeoffs across separate task banks',trade,'Same method appears in three separate cross-bank panels. X is contradiction rate in 149 transcript questions; Y is native recovery in the indicated 100/120 question bank. Coordinates are not paired item observations and do not identify a joint task-level tradeoff.\nLegend: '+json.dumps({str(i+1):names[c] for i,c in enumerate(chosen)}))
+    trade += [text(70,797,1440,21,'Axis-wise pointwise 95% intervals; paired differences in appendix.',18,MUTED),text(70,824,1440,20,'Separate question banks · no joint uncertainty region, per-question joint success or pooled accuracy.',18,MUTED)]
+    add('Practical tradeoffs across separate task banks',trade,'Same method appears in three separate cross-bank panels. X is contradiction rate in 149 transcript questions; Y is native recovery in the indicated 100/120 question bank. Coordinates are not paired item observations and do not identify a joint task-level tradeoff. Whiskers copy each axis native absolute grouped pointwise95% interval; no cross-bank covariance/joint uncertainty region is estimated. Missing intervals remain absent. Exact native source records: '+json.dumps({c:{f:metrics[c,f] for f in FAMILIES} for c in chosen})+'\nLegend: '+json.dumps({str(i+1):names[c] for i,c in enumerate(chosen)}))
     eligible=[c for c in chosen if (c,'capped_n1-n1',FAMILIES[0]) in contrasts]
     pairs=pres.get('paired_contrasts') or [{'condition':c,'reference':'capped_n1-n1','family':f} for c in eligible[:2] for f in FAMILIES]
     if not 1<=len(pairs)<=8:raise ValueError('Choose one to eight paired rows for main deck')
@@ -568,7 +617,7 @@ def pages_from(inputs,qa=False):
         if recon:
             fit_refs={p['reconstruction_reference'] for p in fit_notes if p['reconstruction_reference']}
             reference=names[next(iter(fit_refs))] if len(fit_refs)==1 else 'recorded parents; see notes'
-            left += [text(75,501,440,35,wrapped('FVE Δ (pp) vs '+reference,52),15,TEAL,True),text(75,543,440,42,'Transcript '+fits[0]+' · Entities '+fits[1]+'\nNumbers '+fits[2]+' · Roles '+fits[3],15)]
+            left += [text(75,501,440,35,wrapped('Reconstruction change (pp) vs '+reference,52),15,TEAL,True),text(75,543,440,42,'Transcript '+fits[0]+' · Entities '+fits[1]+'\nNumbers '+fits[2]+' · Roles '+fits[3],15)]
         e=a['example'];before=e.get('baseline_excerpt',e['baseline_text']);after=e.get('selected_excerpt',e['selected_text'])
         if len(before)>100 or len(after)>100:raise ValueError('Approach examples need exact excerpts ≤100 characters')
         parent=e.get('reference','capped_n1-n1') not in ('raw_n1-n1','capped_n1-n1')
@@ -604,6 +653,9 @@ def pages_from(inputs,qa=False):
             for j,f in enumerate(FAMILIES):
                 m=metrics[c,f];items.append(text(510+j*255,yy,245,86,percent(m['value'])+('†' if native_warning(m) else '')+'\n'+ci(m.get('ci95'))+'\n'+count(m['numerator'])+'/'+count(m['denominator']),22))
         add(f'All settings · {start+1}–{min(start+5,len(conditions))} of 70',items,'Full condition IDs and native metric records: '+json.dumps([{ 'condition':c,'label':label(active[c]),'metrics':{f:metrics[c,f] for f in FAMILIES}} for c in conditions[start:start+5]])+'\n† Exact warnings remain in each metric record; a zero-width all-zero/all-one recovery interval does not establish certainty.\nNo significance-based shortlist. Every setting remains visible.')
+    if results.get('_reconstruction') is not None:
+        for title,items,notes in reconstruction_appendix(active,names,results['_reconstruction']['rows']):
+            add(title,items,notes+'\nReconstruction artifact SHA: '+hashes['reconstruction'])
     declared=inventory['headline_comparison_family']
     for start in range(0,len(declared),4):
         items=[text(70,195,1460,52,'Δ in percentage points · P: paired pointwise 95% · S: simultaneous 95% · †: see notes',23,MUTED)]
@@ -640,7 +692,7 @@ def build(results_path,inventory_path,review_path,output,qa=False,reconstruction
     html_path=output/'expanded.html';html_path.write_text(html_path.read_text().replace('<title>DRAFT validation style proof</title>','<title>Expanded Oracle Lens comparison</title>'))
     (output/'geometry.json').write_text(json.dumps(pages,ensure_ascii=False,indent=2)+'\n')
     (output/'speaker-notes.md').write_text('\n\n'.join(f"# {i}. {p['title']}\n\n{p['notes']}" for i,p in enumerate(pages,1))+'\n')
-    receipt={'status':contract.status,'synthetic_layout_fixture':qa,'slides':len(pages),'core_slides':core,'all_conditions':len(active),'all_condition_families':len(metrics),'all_frozen_contrast_rows':len(inputs[8]),'source_hashes':hashes,'builder_sha256':digest(__file__),'primitive_builder_sha256':digest(Path(__file__).with_name('build_slides.py')),'metric_refs':refs,'inference_calls':0,'pdf_route':'Same-content geometry HTML mirror; not a native PPTX conversion','native_pptx_rendering_validated':False,'outputs':{p.name:digest(p) for p in output.iterdir() if p.is_file()}}
+    receipt={'status':contract.status,'synthetic_layout_fixture':qa,'slides':len(pages),'core_slides':core,'all_conditions':len(active),'all_condition_families':len(metrics),'all_frozen_contrast_rows':len(inputs[8]),'all_reconstruction_source_rows':len(results.get('_reconstruction',{}).get('rows',[])),'reconstruction_appendix_slides':sum(p['title'].startswith('All reconstruction settings') for p in pages),'source_hashes':hashes,'builder_sha256':digest(__file__),'primitive_builder_sha256':digest(Path(__file__).with_name('build_slides.py')),'metric_refs':refs,'inference_calls':0,'pdf_route':'Same-content geometry HTML mirror; not a native PPTX conversion','native_pptx_rendering_validated':False,'outputs':{p.name:digest(p) for p in output.iterdir() if p.is_file()}}
     (output/'build.json').write_text(json.dumps(receipt,indent=2)+'\n');return receipt
 
 

@@ -222,7 +222,7 @@ class ExpansionSlideContract(unittest.TestCase):
         self.assertEqual(core,26)
         self.assertIn('Reconstruction fit across the sample budgets',[p['title'] for p in pages])
         alltext=' '.join(i.get('text','') for p in pages for i in p['items'])
-        self.assertIn('FVE Δ (pp) vs',alltext)
+        self.assertIn('Reconstruction change (pp) vs',alltext)
         self.assertIn('+2.5 pp',alltext)
         x['quality_analysis_sha256']='other';review['presentation']['reconstruction_sha256']=write(xp,x);write(paths[2],review)
         with self.assertRaisesRegex(ValueError,'bound'):b.load(*paths,qa=True,reconstruction_path=xp)
@@ -277,6 +277,57 @@ class ExpansionSlideContract(unittest.TestCase):
     def test_final_build_requires_numeric_artifact(self):
         with self.assertRaisesRegex(ValueError,'source-bound reconstruction'):
             b.build(None,None,None,self.root/'final')
+
+    def test_reconstruction_appendix_transcribes_all_values_and_coverage(self):
+        paths,_,_,_=fixture(self.root);inputs=b.load(*paths,qa=True);active=inputs[3]
+        names={c:b.short_name(r) for c,r in active.items()};rows=[]
+        for c in active:
+            for f in b.FAMILIES:rows.append({'condition':c,'family':f,'mean_fve':.123456,
+                'mean_fve_ci95':[.120001,.126666],'scored_site_count':12340,'full_site_count':12345,
+                'unavailable_reasons':{'invalid_cleaned_atom':5},'mean_fve_warnings':[],
+                'status':'partial_or_unavailable','parent_comparisons':[]})
+        original=deepcopy(rows);pages=b.reconstruction_appendix(active,names,rows)
+        self.assertEqual(rows,original);self.assertEqual(len(pages),14)
+        transcribed=[]
+        for title,items,notes in pages:
+            records=json.loads(notes.split('\n',1)[0].removeprefix('Exact reconstruction records: '))
+            for r in records:
+                transcribed.extend(r['reconstruction'][f] for f in b.FAMILIES)
+            visible=' '.join(i.get('text','') for i in items)
+            self.assertIn('12.35%†\n12.00–12.67%\n12,340/12,345 sites',visible)
+        self.assertEqual(transcribed,rows)
+        self.assertEqual([r['condition'] for r in transcribed[::4]],list(active))
+        # Retain source nulls, true zero and negative fits distinctly.
+        self.assertEqual(b.reconstruction_cell({'mean_fve':None,'mean_fve_ci95':None,
+            'scored_site_count':0,'full_site_count':1320}),
+            'Unavailable†\nCI unavailable\n0/1,320 sites')
+        self.assertEqual(b.reconstruction_cell({'mean_fve':0.,'mean_fve_ci95':[0.,0.],
+            'scored_site_count':1320,'full_site_count':1320,'mean_fve_warnings':['Zero variation']}),
+            '0.00%†\n0.00–0.00%\n1,320/1,320 sites')
+        self.assertEqual(b.reconstruction_cell({'mean_fve':-.025,'mean_fve_ci95':[-.04,-.01],
+            'scored_site_count':100,'full_site_count':100}),
+            '-2.50%\n-4.00–-1.00%\n100/100 sites')
+
+    def test_tradeoff_whiskers_copy_separate_axis_intervals(self):
+        a={'value':.2,'ci95':[.1,.3]};z={'value':.4,'ci95':[.3,.5]};original=deepcopy((a,z))
+        items=b.tradeoff_intervals(a,z,145,580,385,250,b.BLUE)
+        self.assertEqual(len(items),6);self.assertEqual((a,z),original)
+        horizontal,vertical=items[0],items[3]
+        self.assertEqual((horizontal['x'],horizontal['y'],horizontal['x2'],horizontal['y2']),(183.5,480.,260.5,480.))
+        self.assertEqual((vertical['x'],vertical['y'],vertical['x2'],vertical['y2']),(222.,505.,222.,455.))
+        a['ci95']=None
+        self.assertEqual(len(b.tradeoff_intervals(a,z,145,580,385,250,b.BLUE)),3)
+        z['ci95']=None
+        self.assertEqual(b.tradeoff_intervals(a,z,145,580,385,250,b.BLUE),[])
+        a['value']=None;z['ci95']=[.3,.5]
+        self.assertEqual(b.tradeoff_intervals(a,z,145,580,385,250,b.BLUE),[])
+        paths,*_=fixture(self.root)
+        pages,_,_=b.pages_from(b.load(*paths,qa=True),qa=True)
+        trade=next(p for p in pages if p['title']=='Practical tradeoffs across separate task banks')
+        legend=[i for i in trade['items'] if i['kind']=='text' and i['y'] in (690,724,758)]
+        self.assertEqual(len(legend),9)
+        caption=next(i for i in trade['items'] if i.get('text','').startswith('Axis-wise pointwise'))
+        self.assertGreaterEqual(caption['y'],max(i['y']+i['h'] for i in legend))
 
     def test_native_task_labels_and_boundary_warning_are_visible(self):
         paths,results,_,review=fixture(self.root)

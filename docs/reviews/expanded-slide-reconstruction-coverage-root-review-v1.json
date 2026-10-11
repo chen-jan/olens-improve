@@ -1,0 +1,22 @@
+{
+  "status": "root_reviewed_presentation_only_reconstruction_coverage",
+  "reviewed_utc": "2026-10-11T04:02:57.485517+00:00",
+  "source_sha256": {
+    "scripts/build_expansion_slides.py": "60dfccd35b6fcf4d7165c1a7ba5feb6e23b55972cd08acc4306eb77c4766388e",
+    "tests/test_expansion_slides.py": "5002ad57ccb13b3a64c44b0e7a484458468bd9c8edeaddfbf5a1cb24cbb4cd32",
+    ".state/expanded-slides-appendix-v2.qa-receipt.json": "deed26636cc318570f0690f76d9204178a677bd7b15dccffce710c0581d3faeb"
+  },
+  "decision": "Use for actual terminal deck after final numerical and qualitative review; no actual final findings are rendered yet.",
+  "verified": [
+    "Fourteen reconstruction appendix pages cover all70 settings and four task means/intervals/site denominators, without ranking.",
+    "Raw null, truezero, negative and partial fits remain distinct; exact records and warnings remain in notes.",
+    "Overview whiskers copy separate task absolute95% intervals; absent intervals are not fabricated and no joint region is implied.",
+    "Fifteen tests and synthetic86-page browser/PDF geometry QA passed on an existing CPU allocation.",
+    "Root visually inspected overview and first/last reconstruction appendices; no clipping or caption collision was observed.",
+    "Twenty-six core slides and existing scientific artifacts are unchanged."
+  ],
+  "limits": [
+    "Synthetic geometry QA does not attest final numerical outcomes or source-populated final layout.",
+    "PDF uses the HTML geometry mirror; native PowerPoint rendering parity is unverified."
+  ]
+}

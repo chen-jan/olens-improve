@@ -1,5 +1,17 @@
 # Execution status
 
+## Final analysis prepared; GPU work continues — 2026-10-11 03:56 UTC
+
+**04:03 UTC restart update:** the preemptable H200 was interrupted at 03:57:55 UTC and the same job resumed on node4010 at 04:01:02 UTC. A read-only full-journal audit validates all 15,779 saved likelihood cells, exact activation/control identities and no partial tail. The runner has loaded those saved cells; the first new commits and unchanged old prefix are being checked. No extra GPU or batch/model change was made. CPU/API work stayed active.
+
+The full comparison remains active. Operational judging is 253/280, while public version 16 still uses the reviewed 235/280 snapshot. At 03:49 UTC, likelihood scoring had processed 15,175/19,435 sites; role likelihood and both editing-score rounds remain on the one owned H200. No final editing result is claimed.
+
+The final native analysis, reconstruction analysis and effort export now have separate bounded watchers on existing CPU allocations. They wait for the exact terminal source menu and preserve explicit invalid fits and interval warnings. Reconstruction uses the reviewed v5 intake, with immutable successful editor task receipts and the approved native output hash. The earlier unrun prototypes remain preserved. See [the root gate review](reviews/expanded-final-reconstruction-gate-root-review-v1.json).
+
+Final qualitative notes will preserve the prior audits and derive new coverage counts from the terminal index. Each new inherited comparison must match full context and official before/after evidence; other comparisons require a fresh human review. Six source-bound slide examples have been inspected, with editing still pending. The presentation will show reconstruction and task outcomes separately for every approach and task, including actual-parent comparisons and uncertainty.
+
+Reviewed analysis guards and examples are committed locally as `dbbf477`. Research Git has not been pushed. The dated 02:50 UTC API accounting and public version 16 remain the latest reviewed resource and delivery checkpoints; final accounting and final report/slides await terminal work.
+
 ## More examples and reconstruction scaling reviewed — 2026-10-11 03:14 UTC
 
 Public dashboard version **16** is live at <https://olens-improve-research.jan618.chatgpt.site>. Its source-checked statistical snapshot has 235/280 complete method/task measurements, with 47 settings complete across all four banks. Reconstruction has 249 defined means, including 221 complete comparable rows. Each method drawer and the sampling chart can show reconstruction separately from benchmark quality. The original study and downloads remain available; expanded final slides and report are pending.
