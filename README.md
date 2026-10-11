@@ -2,7 +2,7 @@
 
 The project tests whether inference-time selection and composition can improve the frozen released Oracle Lens. Maximum quality is the priority: measure recovery/error tradeoffs, explore sampling saturation, and explain any combined method with controlled comparisons.
 
-The [expanded comparison plan](docs/EXPANSION_PLAN.md) is now prepared: broaden full-bank method coverage, add pooling length controls, and overlap CPU/API work with one preemptable H200. **Execution is waiting for the user's start instruction and allocation.** The completed first-study results below remain unchanged.
+The [expanded comparison plan](docs/EXPANSION_PLAN.md) is now prepared: broaden full-bank method coverage, report natural output lengths, and overlap CPU/API work with one preemptable H200. **Execution is waiting for the user's start instruction and allocation.** The completed first-study results below remain unchanged.
 
 The initial execution target was approximately 20 hours; current timing and remaining work are recorded in [STATUS.md](docs/STATUS.md). The completed dashboard provides key findings, charts, method details, uncertainty, costs and inspectable examples. The presentation has 16 main slides followed by a comprehensive appendix.
 

@@ -4,7 +4,7 @@ Prepared 2026-10-10. **Planning only: wait for the user's start instruction and 
 
 ## Goal to activate when the user starts the work
 
-Evaluate the distinct, usable inference-time variants across all 469 questions in the four existing WorkspaceBench families, using the same saved activations and at most 32 original Oracle Lens samples per activation. Establish which gains survive equal-output-length controls and component ablations, report unresolved uncertainty and failure modes, and publish an interactive approach-by-task comparison with an updated report and presentation.
+Evaluate the distinct, usable inference-time variants across all 469 questions in the four existing WorkspaceBench families, using the same saved activations and at most 32 original Oracle Lens samples per activation. Measure practical quality gains and component ablations, report output lengths, unresolved uncertainty and failure modes, and publish an interactive approach-by-task comparison with an updated report and presentation.
 
 The intended improvement is supported information recovery with fewer contradictions, not a higher reconstruction score alone. No training or new Oracle Lens sample pools are required. All independent-reader work is postponed: no J++, NLA, second reconstructor or new reader-based selector in this expansion.
 
@@ -29,7 +29,7 @@ The approximately 46 displayed settings without full-bank coverage are an invent
 | Complete readout selection | Complete the N1/2/4/8 reconstruction curve and random N16 alongside existing N16/N32 and raw/capped references. N1 scoring eligibility is distinct from capped N1. | Cached CPU work |
 | Repeated statements | Exact support; repaired semantic support with ordinary and medium helper reasoning; recorded soft/cutoff, compatibility and contradiction-veto settings. | Exact support is local; semantic variants share helper labels |
 | Removing bullets | Recorded stricter reconstruction-loss, zero-loss and coefficient-filter settings; single-sample pruning; matched random deletion. Preserve both .001 and .005 settings where recorded. | Cached CPU work |
-| Pooling | Existing N16/N32 outputs remain reference methods; add the length controls below. | Cached CPU work |
+| Pooling | Existing N16/N32 outputs remain reference methods for the expanded combinations; retain their natural output lengths within the existing cap. | Cached CPU work |
 | Activation specificity | Strongest-control comparison and the explicit nonpositive-score abstention option alongside existing mean-control selection. | Cached CPU work |
 | Conditional likelihood | True-activation score, control-only score and their difference, using the first eight candidates and exactly two frozen controls per activation. | One shared GPU scoring pass |
 | Editing | One and two bounded rounds; shared proposals, recorded source provenance, fresh vectors and unchanged-parent references. | Helper calls followed by GPU encoding |
@@ -41,16 +41,11 @@ Preserve the initial malformed semantic-helper version as a historical diagnosti
 
 Use small checks to validate implementation and provenance, not to eliminate functioning methods because a noisy quality estimate is unimpressive. If a method fails its implementation contract, repair it or record that explicit block. Preserve weak and adverse results.
 
-## Pooling length controls
+## Pooling output length
 
-Pooling selects intact bullets, but its measured average outputs are longer than the same-cap baseline. A shared four-bullet/256-token ceiling does not remove that confound.
+The user explicitly accepts pooling's modestly longer outputs and removed the proposed extra length-matching experiments from this expansion. Keep natural pooled outputs under the existing four-bullet/256-token ceiling. Do not add the proposed baseline-length-capped pooling or length-matched random-pooling conditions.
 
-Add two control types at N16 and N32:
-
-1. Pooling with each activation's capped-baseline token count as its additional output ceiling. Keep whole bullets and apply the same restriction to the complete-readout fallback. Preserve explicit empty outputs and report assertion coverage.
-2. Seeded random pooled selection matched to the ordinary pooled output's bullet count and as closely as possible to its token count. Freeze a bounded matching procedure, token tolerance and tie-breaking before judging; disclose unmatched cases and actual length gaps. Do not cut clauses or use benchmark answers to find a match.
-
-Report actual length distributions and multiple-claim bullets, not only the common maximum. The reconstructor sees the first 32 cleaned tokens per bullet; separately report claims beyond that boundary without suggesting their suffixes were verified. Compare pooling with the same-N best complete readout as well as these controls.
+Report actual output lengths alongside quality and cost. These comparisons measure practical method performance; they do not isolate a causal benefit independent of output length. The reconstructor still sees only the first 32 cleaned tokens per bullet, so longer suffixes must not be described as independently verified. Existing pruning component ablations and matched-count random-deletion controls remain in scope.
 
 ## Three concurrent work streams
 
@@ -92,7 +87,7 @@ Forecasts use the existing logs and are not completed new measurements:
 
 - Additional GPU work: approximately **eight H200-hours** (5.6 likelihood, 2.2 edit encoding, rounded), with likelihood fixed to eight candidates/two controls. Queueing, model reloads and preemption retries can increase elapsed time.
 - Total wall time on one H200 with concurrent CPU/API streams: plan **12–20 hours after execution starts and resources are available**. Reforecast from the first sustained production batches. Additional GPUs are not assumed.
-- Approximately $3.78 judging per completely changed full-bank output condition before exact cache savings; roughly $230 extra API usage for the earlier broad-menu estimate. The new length controls and any separately repaired settings require an updated exact request forecast; a practical initial expectation is approximately **$230–250 extra**, or **$271–291 project total**.
+- Approximately $3.78 judging per completely changed full-bank output condition before exact cache savings; roughly $230 extra API usage for the earlier broad-menu estimate. The final menu and any separately repaired settings require an updated exact request forecast; a practical initial expectation is approximately **$230–250 extra**, or **$271–291 project total**.
 - Existing committed amount: **$41.36733756**, consisting of $36.50759506 usage estimates plus $4.8597425 retained reservations. Preserve every uncertain hold.
 - The user accepted roughly 30–40% overrun. Use a conservative **$340 total project operating ceiling** when execution is activated: approximately $230 extra plus a 30% contingency plus existing commitments. At a $250 forecast, the same ceiling leaves a smaller contingency; do not automatically compound the allowance. This stays below either a 30% increase on the former $300 ceiling or the upper 40% allowance. It is a spending limit, not a target. No ledger ceiling is changed during this planning turn. GPU dollars and research-agent billing remain unpriced and separate.
 - Storage: approximately **30–60 GB extra persistent data**, reaching 129–159 GB from the measured 98.704 GB baseline. Reserve 100 GB extra working space, for approximately 200 GB project peak. Reused external 55.563 GB model weights require no additional copy. The aggregate storage allowance stays 500 GB; verify actual shared-group headroom at launch.
@@ -105,7 +100,7 @@ Build an interactive approach-by-four-task matrix from versioned results. Expand
 
 Refresh the public dashboard at reviewed milestones, then update the plain-language report and editable/PDF slides. Lead with actual benefits, costs, tradeoffs and remaining uncertainty. Retain links to the original study and label new evidence exploratory. Research Git commits remain local; the user handles pushing.
 
-Completion requires every exact manifest setting to have either complete four-family coverage or a specific unresolved status with evidence; parent/component/length controls; paired analyses; systematic qualitative review; an updated dashboard and presentation; and reconciled usage, storage and GPU-time reporting. Mark time-limited work unfinished. No blanket claim that a method family fails can rest on a small or broken pilot.
+Completion requires every exact manifest setting to have either complete four-family coverage or a specific unresolved status with evidence; parent/component controls and output-length reporting; paired analyses; systematic qualitative review; an updated dashboard and presentation; and reconciled usage, storage and GPU-time reporting. Mark time-limited work unfinished. No blanket claim that a method family fails can rest on a small or broken pilot.
 
 ## Start handoff
 

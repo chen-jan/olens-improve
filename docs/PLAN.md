@@ -178,7 +178,7 @@ Make local commits at meaningful reviewed milestones, keeping code, documentatio
 
 **First study completed: 2026-10-10 22:43 UTC.** Scientific judging, analysis, independent reviews, report, final dashboard and editable/PDF presentation are delivered for its frozen scope. The public dashboard is version 12; see [DELIVERY.md](DELIVERY.md). Its primary comparison remains 268 held-out items, with all 469 separately labeled descriptive. No winning method or setting in that study was changed after TEST. The owned watcher and successor CPU allocation have been released; user allocations were preserved. All data, caches and financial holds remain retained. GitHub pushing is the user's action.
 
-**Next phase prepared, not started:** follow [EXPANSION_PLAN.md](EXPANSION_PLAN.md). Expand the distinct methods on the same four complete banks, add pooling length controls, preserve the 32-sample cap, and defer all other readers. The user will supply one preemptable H200 and a start instruction. Do not reuse historical allocations, launch paid work, or activate a goal while waiting. New analyses of the already observed 469 items are exploratory; they do not replace the original held-out report.
+**Next phase prepared, not started:** follow [EXPANSION_PLAN.md](EXPANSION_PLAN.md). Expand the distinct methods on the same four complete banks, retain natural pooling output lengths, preserve the 32-sample cap, and defer all other readers. The user will supply one preemptable H200 and a start instruction. Do not reuse historical allocations, launch paid work, or activate a goal while waiting. New analyses of the already observed 469 items are exploratory; they do not replace the original held-out report.
 
 ## Prior handoff, before final packaging
 
