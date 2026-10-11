@@ -1,0 +1,18 @@
+{
+  "status": "root_reviewed_prospective_terminal_descriptive_supplement_not_launched",
+  "created_utc": "2026-10-11T05:29:48.702522+00:00",
+  "source_sha256": {
+    "scripts/summarize_expansion_edit_selection.py": "2248473344234216f9818aa56af22d36d932b45d0317c0b1e92278b10ba2f6bf",
+    "tests/test_expansion_edit_selection_supplement.py": "33e88d195f7868439f66a8383f0ad958151b7e885d789d089d145fcafdb85706",
+    "docs/reviews/expanded-editor-selection-supplement-plan-v1.md": "8c57eccae06dfd0ae8deaa2a04e577cc88bb72a32eca4d50be7f709eae9fa15b",
+    "docs/reviews/expanded-editor-selection-supplement-independent-review-v1.json": "3f7de89a40d8c6007169694239ad92376bc441e1e185ad955774689690eceb7d"
+  },
+  "reviewed_boundary": [
+    "Run once only after exact terminal native and v5 reconstruction plus eight approved successful editor tasks.",
+    "Counts classify actual selected provenance and full-text identity; inherited R1 edits are not new R2 edits.",
+    "Existing fit masks/change counts are copied, not recomputed; no quality tests or API calls are added.",
+    "No output overwrite, source mutation, production resealing or new allocation."
+  ],
+  "terminal_sources_validated": false,
+  "actual_full_supplement_launched": false
+}

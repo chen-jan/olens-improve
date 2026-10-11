@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "status": "prospective_independent_source_review_passed_pending_actual_final_intake",
+  "created_utc": "2026-10-11T05:29:03.405604+00:00",
+  "reviewer": "expanded_manifest_cpu",
+  "source_sha256": {
+    "scripts/summarize_expansion_edit_selection.py": "2248473344234216f9818aa56af22d36d932b45d0317c0b1e92278b10ba2f6bf",
+    "tests/test_expansion_edit_selection_supplement.py": "33e88d195f7868439f66a8383f0ad958151b7e885d789d089d145fcafdb85706",
+    "docs/reviews/expanded-editor-selection-supplement-plan-v1.md": "8c57eccae06dfd0ae8deaa2a04e577cc88bb72a32eca4d50be7f709eae9fa15b",
+    "scripts/analyze_expansion_reconstruction_v5.py": "cb9cc9a7578f0a617e6a567e2c14e3fcee720e1a807c0b452ca9b40f925a99f8",
+    "scripts/expanded_editor_fit_intake_v2.py": "ec6a8de982fd25023a1130c6c4cb4ae87418765e0991629b171f58bf1c6e436f",
+    "scripts/expanded_encode_edits.py": "121e9910af24339ee8448301e9f05e2e845d8e9bf695aa98af9efe20e619231e",
+    "docs/reviews/expanded-editing-fixed-anchor-preliminary-v1.json": "544fef0b75c0665c3ad70fc5772ac2b0c7c7bec0bf9a2ee48efccb97ae7646b4"
+  },
+  "blockers": [],
+  "findings": [
+    "R2 editing_round1 provenance is classified as a prior-round edit only after retained candidate ID, full UTF-8 text digest and origin match R1 history; it is never counted as a new R2 proposal. Current proposals require exact registered ID and round-specific origin.",
+    "Original parent, prior edit and current edit categories partition selected cells. Exact full text equality, including whitespace and unscored suffixes, is separate from candidate provenance/ID equality. Missing parent text comparisons remain explicit.",
+    "V5 field names/shape match the supplement: eight editor_fit_authority_audits with dispatch_task, successful completed_task_receipt, canonical_spec_sha256 and sites; row parent_comparisons contain the copied common-valid masks/counts. Approved extractor/helper hashes and native/numeric bindings are enforced.",
+    "The supplement trusts the supplied terminal V5 aggregate as the already validated scoring/task authority, verifies signed immutable task projection and rereads only aggregate-pinned sources; no mutable GPU queue/service authority is substituted. Canonical event linkage remains distinct from raw source pins.",
+    "Producer spec.candidate_ids contains only valid scored candidates, so the scored/rejected disjoint-set check agrees with actual producer semantics. Round2 scored candidates must retain R1 IDs/text/origins.",
+    "Fit change counts are copied by source row/comparison index without fit computation, resampling, means/CIs or new endpoints. Missing fit-change fields stay missing; >1e-5 classification remains the reviewed V5 authority.",
+    "Journals stream one record at a time; only per-family cohorts/proposal ID sets and lightweight prior/next text hashes/origins are retained. No tensors/models are loaded. The proposed one-task 4GiB allocation is reasonable; actual terminal peak RSS remains unmeasured."
+  ],
+  "validation": {
+    "pure_unit_tests": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 ${OLENS_COMPUTE_ROOT}/envs/runtime/bin/python -m unittest discover -s tests -p test_expansion_edit_selection_supplement.py",
+      "tests": 4,
+      "exit_code": 0,
+      "exec_chunk": "ad4469"
+    },
+    "actual_round1_anchor_schema_check": {
+      "anchors": 4,
+      "families": [
+        "multihop_mt",
+        "chain_intermediates"
+      ],
+      "exec_chunk": "23e314",
+      "actual_spec_raw_pins_and_canonical_linkage_verified": true,
+      "embedded_best_matches_published_selection_text": true,
+      "selected_original_pooled_parent": 4,
+      "new_current_round_edits": 0,
+      "scored_candidate_counts": [
+        2,
+        4,
+        2,
+        4
+      ],
+      "rejected_counts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "scope": "Embedded exact events and selections bound by preliminary dossier SHA, plus actual pinned spec files; no full journal rescan."
+    }
+  },
+  "limits": [
+    "Prospective source review only: final native/numeric artifacts and all eight real terminal editor journals have not been attested by this review.",
+    "Four anchors are illustrative and not editing acceptance prevalence; synthetic R2 fixtures do not establish actual final R2 coverage.",
+    "CLI end-to-end terminal mutation/authority guards were inspected, not exercised against a completed final artifact.",
+    "Selection origin and unchanged text do not establish truth, causal effect, quality gains or general editing efficacy."
+  ],
+  "actions": {
+    "scientific_source_changes": 0,
+    "producer_changes": 0,
+    "new_calls": 0,
+    "jobs_launched": 0,
+    "supplement_launched": false
+  }
+}

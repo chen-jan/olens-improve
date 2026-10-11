@@ -1,0 +1,18 @@
+{
+  "status": "root_reviewed_prospective_harness_not_executed_on_final_data",
+  "created_utc": "2026-10-11T05:29:48.702522+00:00",
+  "source_sha256": {
+    "scripts/check_expansion_dashboard_final.mjs": "847fc813ee46d694aa1215d1f45289317d10ff18c12559effb8d7607a1ff19fc",
+    ".state/check-real-dashboard-final-v1.mjs": "847fc813ee46d694aa1215d1f45289317d10ff18c12559effb8d7607a1ff19fc",
+    "docs/reviews/expanded-final-dashboard-qa-harness-v1.md": "2674b2459b8f1d4f3dd8b9cabd1e6a2ef4c4e684c8a4a5abced1886e79129a94",
+    ".state/final-dashboard-harness-guards-v1/receipt-v2.json": "578c5a0239b972993d76bf8b1fc3b0b615177bee2e6679cca4fef19914c309e5"
+  },
+  "reviewed_boundary": [
+    "Exact terminal native/reconstruction/effort/qualitative review authority must exist before Chromium.",
+    "Counts derive reviewed entry arrays separately from unique identities and audit references.",
+    "Expected embedded data, parents, context, official outcomes and intervals remain source-bound.",
+    "Original progress harness and inputs remain preserved; no producer changed."
+  ],
+  "actual_final_preflight": false,
+  "actual_browser_execution": false
+}
