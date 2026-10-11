@@ -1,0 +1,31 @@
+{
+  "status": "prospective_v2_copy_fixtures_passed_actual_final_extraction_unrun",
+  "created_utc": "2026-10-11T05:52:06.232885+00:00",
+  "source_sha256": {
+    ".state/extract-final-presentation-evidence-v2.py": "7e71db4d4502655a17e5bf0a600e17c35337bc8543c34e7d95c09d0979a1713b",
+    "tests/test_expansion_final_evidence_extract_v2.py": "78f2fdc210aa9a82e47ed691246dcd9636e8fcec7df1401b0de732a2e319e4a7",
+    "docs/reviews/expanded-final-evidence-extractor-procedure-v2.md": "7ab976c0c6674f6809bd1c3090d7eb92765102c5e804f82cca6388cc888a9131",
+    ".state/extract-final-presentation-evidence-v1.py": "58e02ce30cf150f0da18c53cd7f7af96b4609ce77d57550e82ba15aa6b305157",
+    "tests/test_expansion_final_evidence_extract.py": "b1438c6651b4ee1bd0a909f2fbd6d9c851588bc30c7d10033ed56dba76fa1e52",
+    "docs/reviews/expanded-final-evidence-extractor-procedure-v1.md": "fbb4da0947b2f0864194011209243577de66e36d31966bdab31f9441b4307748",
+    "docs/reviews/expanded-final-evidence-extractor-preparation-v1.json": "d2e56342d9ba12c9f8bcdbd876344471a68b356a4a0960b102eff15434f54dbb"
+  },
+  "tests": {
+    "count": 5,
+    "exit_code": 0,
+    "seconds": 0.021,
+    "exec_chunk": "638a97"
+  },
+  "preserved_v1_prototype_bytes": true,
+  "correction": "Retain all same-reference kinds/pointers; select named frozen_parent for primary records and named appropriate diagnostic for extras; reject same-kind ambiguity.",
+  "new_statistics": 0,
+  "new_fits": 0,
+  "actual_final_extraction": false,
+  "scientific_producer_changes": 0,
+  "calls": 0,
+  "new_allocations": 0,
+  "limits": [
+    "V1 was never approved for final extraction; preserved for historical preparation provenance.",
+    "Synthetic guard/copy tests only, not actual final source attestation."
+  ]
+}

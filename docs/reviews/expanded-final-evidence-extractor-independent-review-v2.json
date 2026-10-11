@@ -1,0 +1,35 @@
+{
+  "status": "independent_prospective_evidence_extractor_v2_review_passed_no_blockers",
+  "created_utc": "2026-10-11T06:06:00.993204+00:00",
+  "reviewer": "expanded_api delegated independent source reviewer",
+  "source_sha256": {
+    ".state/extract-final-presentation-evidence-v2.py": "7e71db4d4502655a17e5bf0a600e17c35337bc8543c34e7d95c09d0979a1713b",
+    "tests/test_expansion_final_evidence_extract_v2.py": "78f2fdc210aa9a82e47ed691246dcd9636e8fcec7df1401b0de732a2e319e4a7",
+    "docs/reviews/expanded-final-evidence-extractor-procedure-v2.md": "7ab976c0c6674f6809bd1c3090d7eb92765102c5e804f82cca6388cc888a9131",
+    "docs/reviews/expanded-final-evidence-extractor-preparation-v2.json": "11856b9076ac811aa4f09ce930391795d342416838929b27a6bb1eb009f6b8e7",
+    "docs/reviews/expanded-final-evidence-extractor-root-review-v2.json": "0ea8ed6ad966882074cef54f55e5ee42d824055a9afc75ce9999ead2ba9c3999",
+    ".state/expanded-final-review-draft-v3.json": "d1889a8c31c5422b5805577cf00e8df9b353e81af9ac84a79a72a5c9bb17b2f7",
+    "configs/expansion_manifest_v1.json": "753b2d9cab0daea0d19efef7d3222fd44921dbcf4669e6864d4f1bd4805421f8"
+  },
+  "tests": {
+    "count": 5,
+    "exit_code": 0,
+    "seconds": 0.021,
+    "tool_chunk": "1c08ab",
+    "actual_final_cli_run": false
+  },
+  "reviewed_contract": [
+    "Same-reference/different-kind reconstruction records are preserved with exact array pointers; frozen_parent is explicitly chosen for primary lookup and other kinds remain visible. Duplicate same-kind records reject.",
+    "All primary native contrast condition/reference/role identities must belong to the frozen496 menu, with exactly70x4 native/numeric rows and terminal missing-selection guards. No new comparison, arithmetic subtraction or interval is computed.",
+    "Exact existing common-mask fit records, null values, group/mask counts, raw fractions, pp fields and degenerate warnings are retained. Named scaling/pooling extras are copied only when recorded.",
+    "Explicit supplied native/numeric and raw terminal-state SHA authorities must match completed gates and source receipts; native scientific validation, canonical32 receipt and exact final fit/native linkage are required. Source files are rehashed before exclusive output creation.",
+    "Status remains machine_extraction_pending_human_interpretation. Seven draft choices supply28 lookup records; neither human interpretation, root_reviewed presentation nor final empirical effectiveness is synthesized."
+  ],
+  "actual_final_source_boundary": "Final outputs/index still pending at review. Synthetic tests and source review do not attest actual terminal intake.",
+  "blockers": [],
+  "new_api_calls": 0,
+  "new_model_calls": 0,
+  "new_jobs": 0,
+  "root_owned_source_changes": 0,
+  "git_actions": 0
+}

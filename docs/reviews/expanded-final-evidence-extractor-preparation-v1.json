@@ -1,0 +1,27 @@
+{
+  "status": "prospective_copy_fixtures_passed_actual_final_extraction_unrun",
+  "created_utc": "2026-10-11T05:49:46.908177+00:00",
+  "source_sha256": {
+    ".state/extract-final-presentation-evidence-v1.py": "58e02ce30cf150f0da18c53cd7f7af96b4609ce77d57550e82ba15aa6b305157",
+    "tests/test_expansion_final_evidence_extract.py": "b1438c6651b4ee1bd0a909f2fbd6d9c851588bc30c7d10033ed56dba76fa1e52",
+    "docs/reviews/expanded-final-evidence-extractor-procedure-v1.md": "fbb4da0947b2f0864194011209243577de66e36d31966bdab31f9441b4307748",
+    ".state/expanded-final-review-draft-v3.json": "d1889a8c31c5422b5805577cf00e8df9b353e81af9ac84a79a72a5c9bb17b2f7",
+    "configs/expansion_manifest_v1.json": "753b2d9cab0daea0d19efef7d3222fd44921dbcf4669e6864d4f1bd4805421f8"
+  },
+  "tests": {
+    "count": 4,
+    "exit_code": 0,
+    "seconds": 0.018,
+    "exec_chunk": "428000"
+  },
+  "new_statistics": 0,
+  "new_fits": 0,
+  "actual_final_extraction": false,
+  "new_calls": 0,
+  "new_allocations": 0,
+  "runtime_changes": 0,
+  "limits": [
+    "Synthetic source-copy/guard fixtures only. Exact actual final output/state SHA authority remains pending.",
+    "No automatic prose, certainty claim, missing comparison imputation or change to declared contrasts."
+  ]
+}

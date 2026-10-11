@@ -1,0 +1,18 @@
+{
+  "status": "root_reviewed_prospective_final_lookup_v2_not_launched",
+  "created_utc": "2026-10-11T05:56:26.633064+00:00",
+  "source_sha256": {
+    ".state/extract-final-presentation-evidence-v2.py": "7e71db4d4502655a17e5bf0a600e17c35337bc8543c34e7d95c09d0979a1713b",
+    "tests/test_expansion_final_evidence_extract_v2.py": "78f2fdc210aa9a82e47ed691246dcd9636e8fcec7df1401b0de732a2e319e4a7",
+    "docs/reviews/expanded-final-evidence-extractor-preparation-v2.json": "11856b9076ac811aa4f09ce930391795d342416838929b27a6bb1eb009f6b8e7",
+    "docs/reviews/expanded-final-evidence-extractor-procedure-v2.md": "7ab976c0c6674f6809bd1c3090d7eb92765102c5e804f82cca6388cc888a9131"
+  },
+  "reviewed_boundary": [
+    "Copies the28 existing primary comparisons and their source pointers, with no fitting, statistics or human conclusions.",
+    "Preserves all same-reference fit records and selects frozen_parent explicitly; editor_initial_reference remains separately visible.",
+    "The V1 same-reference ambiguity was found before execution and corrected only in the new preparation helper. Scientific producers are unchanged.",
+    "Requires exact terminal source/state/receipt identities, full280/native496 scope, absent output and existing owned CPU."
+  ],
+  "fixture_evidence": "Five focused copy/guard fixtures pass in the preparation receipt; actual terminal extraction has not run.",
+  "actual_final_extraction_launched": false
+}

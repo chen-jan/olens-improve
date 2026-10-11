@@ -1,0 +1,20 @@
+{
+  "status": "byte_identical_v2_helper_promoted_for_repository_delivery",
+  "created_utc": "2026-10-11T06:06:00.602428+00:00",
+  "source_sha256": {
+    ".state/extract-final-presentation-evidence-v2.py": "7e71db4d4502655a17e5bf0a600e17c35337bc8543c34e7d95c09d0979a1713b",
+    "scripts/extract_expansion_final_evidence.py": "7e71db4d4502655a17e5bf0a600e17c35337bc8543c34e7d95c09d0979a1713b",
+    "tests/test_expansion_final_evidence_lookup.py": "8b3fb52e902dab92e4810b495a5cf033179bf080f1448d9a9b2c95bc62c3ad27"
+  },
+  "implementation_changed": false,
+  "test_change": "Only import path points to tracked script; five fixture bodies are unchanged. Historical prototypes and their reviews remain preserved.",
+  "actual_terminal_extraction_run": false,
+  "tracked_fixture_result": {
+    "tests": 5,
+    "exit_code": 0,
+    "elapsed_seconds": 0.023,
+    "exec_chunk": "c2be74",
+    "allocation": "25536417"
+  },
+  "approved_invocation": "Use scripts/extract_expansion_final_evidence.py with the V2 procedure arguments; original source SHA is unchanged."
+}

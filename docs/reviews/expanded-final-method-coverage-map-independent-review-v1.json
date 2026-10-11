@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "status": "independent_inventory_scope_and_source_review_passed_not_terminal_results",
+  "created_utc": "2026-10-11T06:06:04.470265+00:00",
+  "reviewer": "expanded_manifest_cpu",
+  "map_source": {
+    "path": "docs/reviews/expanded-final-method-coverage-map-v1.md",
+    "sha256": "74da70a231d521ad36a4ba1aacba4b64760a201ad307077a835305d95e676594"
+  },
+  "source_sha256": {
+    "configs/expansion_manifest_v1.json": "753b2d9cab0daea0d19efef7d3222fd44921dbcf4669e6864d4f1bd4805421f8",
+    "configs/conditions_expansion_v1.json": "b1f9865999aa30480dda2b7add68dcab880d99d5b51065a980a38cef61478852",
+    "scripts/build_expansion_dashboard.py": "761941ffb677beb5c6d374fbbf52cb0c2701f0af4567dbed491c1c0d55bd2d43",
+    "dashboard/expansion.js": "3f7a37c1d7ede121b2f225d0d11b71763c00407fea835bc76991032c1567aef7",
+    "docs/EXPANSION_PLAN.md": "b20574bd3338b42c01bcd65c7e432f37ebc03c7eeb862e37b859b3eaad405d09",
+    "docs/METHODS.md": "3a0e0eae17d1c8a24abf4261ad69056559ea680d7fe68ffe51f1ec0de2667436",
+    "docs/experiments/004-contrastive-diagnostic.md": "b0e02af7edc0a9e4796a69fc70ad9be741701701bbae37292d7bcd9230266ad3",
+    "docs/experiments/024-exact-source-span-consensus.md": "06f98e960571d2d9458d2f2003e4008677441a3ec25f9929d545b33a99bffafd",
+    "scripts/expanded_api.py": "afbf52dd86f1818f503fa5c0c9b4e4e3843e1d1076468286721a9a4c353313b6",
+    "scripts/expanded_helpers_service.py": "084da1579830a2b51329eb47d0c185c1f565fe975a5034aef6b362bdda1faff1",
+    "scripts/expanded_cpu_combinations.py": "dc5847b137a0569084c39d664cc4a8a6afef1851c5adc3a93beaa9e9c8737ecd",
+    "scripts/expanded_encode_edits.py": "121e9910af24339ee8448301e9f05e2e845d8e9bf695aa98af9efe20e619231e",
+    "configs/expansion_likelihood_controls_v1.json": "8525f8b4a97c9731d00725711f7231d9a96346b7ebe4ea8426d25bd3204d7b1f",
+    "${OLENS_DATA_ROOT}/manifests/development-matched-controls-v2-metadata-v1.json": "ccca28d80794d4de7e612b3a7b1924a9f1e2a43259e31f3b77841e14a18be520",
+    "${OLENS_DATA_ROOT}/diagnostics/e2-expanded-v1/manifest.json": "9f050c9d0f6ef3393f281bffc35b55e03e08d0d27cf869fd047b32e86755958f",
+    "${OLENS_DATA_ROOT}/diagnostics/e2-expanded-v1/results.json": "ec8b86dd5eb10390631724a8fe56cfc7c8f1740348eb7664c22631fdf75bf676"
+  },
+  "pin_checks": {
+    "expected": 16,
+    "matched": 16,
+    "failures": [],
+    "exec_chunk": "efdcae"
+  },
+  "coverage": {
+    "document_ids": 70,
+    "unique_ids": 70,
+    "missing_ids": [],
+    "foreign_ids": [],
+    "category_counts": {
+      "selection": 14,
+      "consensus": 13,
+      "pruning": 16,
+      "pooling": 2,
+      "verification": 6,
+      "editing": 2,
+      "combinations": 17
+    },
+    "original_question_count": 469,
+    "original_site_count": 19435
+  },
+  "language_review": {
+    "blockers": [],
+    "findings": [
+      "The map correctly distinguishes70 setting IDs from independent algorithms, paid generations and independent evidence. Named equivalent controls are explicit.",
+      "Original A\u2013F intervention groups plus combinations are distinguished from postponed independent-reader G; this is not allseven original approaches completed.",
+      "Each row names its actual interventions/input reuse and additional compute, including scoring eligibility A1 versus cappedN1, shared semantic proposals/labels, shared likelihood teacher forcing, retained editor candidates and downstream CPU refits.",
+      "N is candidates per vector, not questions. Matched deletion counts are distinct from exact token-length controls. Whole-bullet pruning/consensus is not atomic rewriting or within-bullet pruning.",
+      "The fourbank exploratory scope, original-grid preservation and absence of final completion authority are stated clearly. Historical E2 sets are explicitly correlated and outside active70; source manifest/results each contain36 sets with fournumber/fourrole pairs and deferred balanced negation.",
+      "No performance or causal finding is inferred from inventory coverage or postponed work."
+    ],
+    "minor_readability_note": "The map uses NNLS and AR shorthand in implementation-cost explanations; these are appropriate in this technical inventory, while the final public presentation should retain familiar reconstruction/activation wording."
+  },
+  "qualitative_readiness_observation": {
+    "observed_utc": "2026-10-11T06:06:04.470985+00:00",
+    "state_path": ".state/expanded-final-qualitative-v1.service.json",
+    "status": "waiting_for_exact_terminal_native",
+    "updated_utc": "2026-10-11T06:05:54.868299+00:00",
+    "index_path": "${OLENS_DATA_ROOT}/expansion-v1/qualitative/final-delta-index-v1.json",
+    "index_exists": false,
+    "partition": "agent_2",
+    "review_started": false
+  },
+  "limits": [
+    "Bounded source/inventory/language review only; source pins do not attest live final completion.",
+    "No final index or final qualitative partition coverage is claimed.",
+    "No source edits, Git, new calls/jobs or scientific calculations."
+  ]
+}
