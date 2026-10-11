@@ -1,0 +1,18 @@
+{
+  "status": "root_reviewed_resource_supplement_procedure",
+  "source_sha256": {
+    "scripts/build_expansion_resource_supplement.py": "12ef857a10a376a5073f67c485f5c63f49d36771454571869b46cabb8dcb1c68",
+    "tests/test_expansion_resource_supplement.py": "252f17c9b9a45c3e80d0cfb364ea48179ac72ade503b38d30f8123f2e8038a5e",
+    "docs/reviews/expanded-terminal-resource-supplement-v1.md": "191275fa93e544b83610ce39547cfb7da7dab664af831fe7c110608add3f26a4",
+    ".state/resource-supplement-live-preflight-v2/receipt.json": "8f8323041386a0e3c2e66be8c8c2cd60a919bd44659d6a33a21537707d425afe"
+  },
+  "verified": [
+    "Source review and four offline guard fixtures passed.",
+    "Live headed UTC sacct capture parses exactly two owned GPU allocation intervals and one for each CPU job, preserving the first 13332-second GPU interval.",
+    "Parent allocations only; no queue wait or diagnostic-step double counting.",
+    "Allocated time, scoring-loop wall time, API usage estimates and unmeasured kernel or dollar quantities remain distinct.",
+    "Scoped storage excludes symlinks and inode duplicates; no shared lab traversal."
+  ],
+  "final_quantities_attested": false,
+  "terminal_refresh_required": true
+}
