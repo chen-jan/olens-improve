@@ -1,0 +1,7 @@
+# Future parent validation optimization
+
+Recorded from the bounded role-pruning check at2026-10-11T06:12UTC. This is a future implementation note, **not a current runtime/source change**. The frozen production gate remains unchanged.
+
+`scripts/expanded_edit_pruning_gate.py:verified_parent` calls `digest(contract)` inside its committed-event loop. The terminal role round2 spec is6,396,322 bytes and the journal has11,400 cells (272,326,180 bytes). Repeated canonical JSON serialization/hashing can add substantial validation latency before the watcher publishes its materializing state. The actual active child subsequently progressed; this was not evidence of a hung scientific producer. Receipt `.state/expanded-role-pruning-delay-check-v1.json` pins the observation and source SHA. No profiling-based allocation of elapsed time is claimed.
+
+For a separately reviewed future version, compute the canonical spec digest once after loading the immutable contract, compare each event against that retained digest, and preserve the existing raw source hashes and before/after immutability checks. A meaningful fixture should show identical acceptance/rejection for valid events, altered canonical linkage, changed raw spec bytes and incomplete/duplicate cohorts. Do not replace raw-file SHA authority with a canonical digest or apply this optimization to the currently pinned gate. No method choice, solver, candidate set, score or statistical menu would need to change.

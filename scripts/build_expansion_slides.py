@@ -611,7 +611,12 @@ def pages_from(inputs,qa=False):
         fits=[];fit_notes=[]
         for f in FAMILIES:
             row=recon.get((key[0],f),{});p=reconstruction_comparison(row,key[1])
-            fits.append('Unavailable' if not p or p['mean_delta'] is None else pp(p['mean_delta'])+('†' if p.get('warning') else ''))
+            if not p or p['mean_delta'] is None:
+                fits.append('Unavailable')
+            else:
+                delta_pp = p['mean_delta'] * 100
+                shown = f'{delta_pp:+.3f} pp' if 0 < abs(delta_pp) < .1 else pp(p['mean_delta'])
+                fits.append(shown + ('†' if p.get('warning') else ''))
             fit_notes.append({'family':f,'score':row,'comparison':p,'quality_reference':key[1],
                               'reconstruction_reference':p['reference'] if p else None})
         if recon:

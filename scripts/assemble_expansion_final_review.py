@@ -68,7 +68,8 @@ def same_content(left, right):
     return all(left[k] == right[k] for k in ('before','after','context','selection_policy'))
 
 def notes(h):
-    text = h.get('observed_content_and_parent_review', h.get('observation', h.get('observed_changes_and_limits')))
+    text = h.get('observed_content_and_parent_review', h.get('observation',
+                 h.get('observed_changes_and_limits', h.get('observed_change'))))
     if text is None:
         text = ' '.join(str(h.get(k,'')) for k in ('what_changed','where_it_fails_or_limits','judge_disagreement')).strip()
     require(isinstance(text,str) and bool(text.strip()), 'Human case observation missing')

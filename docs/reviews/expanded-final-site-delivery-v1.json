@@ -1,0 +1,29 @@
+{
+  "project_id": "appgprj_6aca37fc2878819185850105787209f9",
+  "version_id": "appgprj_6aca37fc2878819185850105787209f9~appgver_581def7b3c2c819181b49901ba2bd674",
+  "version": 17,
+  "deployment_id": "appgdep_6acb3641f0d081919acccc2660b53cbd",
+  "status": "succeeded",
+  "url": "https://olens-improve-research.jan618.chatgpt.site",
+  "commit_sha": "e4de1ee108193a8129bf4322d0d24e18e8ff7467",
+  "updated_utc": "2026-10-11T07:10:16.469529+00:00",
+  "archive": {
+    "archive_format": "tar",
+    "sediment_file_id": "file_00000000fd8881f6bf276652d82f78b3",
+    "content_hash": "sha256:c6bd3bf69903686de46de4691df60b0d69bd134ea8cb888bcb90b7aba0393956",
+    "size_bytes": 92733440,
+    "file_count": 88
+  },
+  "native_analysis_sha256": "e2773e297d7724f20d656ecf07c5de00097604d8a85c516938a565626b07876e",
+  "reconstruction_sha256": "0c3f99db532641326d4d432a9587d9ee10d9ea978fe16f9c74c9d96740965ba8",
+  "effort_sha256": "bb2a14bfbac15d3d76ae9936376c4343d422253f1904d74bcb4717932351121f",
+  "root_review_sha256": "a861d9b0002b48f2d493b4be6dcf6f06f9cecbfb59af20bdf11561539b91a14d",
+  "coverage": {
+    "family_rows": 280,
+    "all_four_methods": 70,
+    "active_methods": 70,
+    "reconstruction_rows": 280,
+    "reviewed_case_entries": 2206
+  },
+  "research_git_pushed": false
+}

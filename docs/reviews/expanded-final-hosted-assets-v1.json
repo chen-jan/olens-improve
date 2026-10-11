@@ -1,0 +1,89 @@
+{
+  "status": "all_selected_hosted_assets_verified",
+  "verified_utc": "2026-10-11T07:13:46.512215+00:00",
+  "url": "https://olens-improve-research.jan618.chatgpt.site",
+  "version": 17,
+  "files": [
+    {
+      "path": "index.html",
+      "status": 200,
+      "content_type": "text/html",
+      "hosted_bytes": 15637761,
+      "local_bytes": 15636823,
+      "local_sha256": "e2b8c1ca5cd4120784d97a85b5068fc3d1da37cd41d431d8e0e7cc044c46e179",
+      "hosted_sha256": "f357f684c868db0667c5c4fb677e227b1df1b35dcef7948965bb9de37d4029bb",
+      "verification": "exact_entire_app_html_plus_cloudflare_injected_script"
+    },
+    {
+      "path": "expansion.js",
+      "status": 200,
+      "content_type": "text/javascript",
+      "hosted_bytes": 43339,
+      "local_bytes": 43339,
+      "local_sha256": "3f7a37c1d7ede121b2f225d0d11b71763c00407fea835bc76991032c1567aef7",
+      "hosted_sha256": "3f7a37c1d7ede121b2f225d0d11b71763c00407fea835bc76991032c1567aef7",
+      "verification": "exact_static_bytes"
+    },
+    {
+      "path": "expansion.css",
+      "status": 200,
+      "content_type": "text/css",
+      "hosted_bytes": 6808,
+      "local_bytes": 6808,
+      "local_sha256": "93b94a645ca799dabb3a8693d4a721ade9da3d083eba8ab3647a380dd8f5019e",
+      "hosted_sha256": "93b94a645ca799dabb3a8693d4a721ade9da3d083eba8ab3647a380dd8f5019e",
+      "verification": "exact_static_bytes"
+    },
+    {
+      "path": "expansion-data.json",
+      "status": 200,
+      "content_type": "application/json",
+      "hosted_bytes": 15629798,
+      "local_bytes": 15629798,
+      "local_sha256": "5459541c53d910008400e44bbda058cad278bac091e18339d045b7e3ee11e74b",
+      "hosted_sha256": "5459541c53d910008400e44bbda058cad278bac091e18339d045b7e3ee11e74b",
+      "verification": "exact_static_bytes"
+    },
+    {
+      "path": "downloads/expanded-slides.pdf",
+      "status": 200,
+      "content_type": "application/pdf",
+      "hosted_bytes": 1109971,
+      "local_bytes": 1109971,
+      "local_sha256": "4da38aaeab5a8b262e6433af6741cff1668c811a8e95b3c88b66ca273044a9b1",
+      "hosted_sha256": "4da38aaeab5a8b262e6433af6741cff1668c811a8e95b3c88b66ca273044a9b1",
+      "verification": "exact_static_bytes"
+    },
+    {
+      "path": "downloads/expanded-slides.pptx",
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "hosted_bytes": 648238,
+      "local_bytes": 648238,
+      "local_sha256": "f56b246c494066bca9ad9f6c924f432b6c50bf2e5d9ed43069e0276fe716df21",
+      "hosted_sha256": "f56b246c494066bca9ad9f6c924f432b6c50bf2e5d9ed43069e0276fe716df21",
+      "verification": "exact_static_bytes"
+    },
+    {
+      "path": "downloads/expanded-report.md",
+      "status": 200,
+      "content_type": "text/markdown",
+      "hosted_bytes": 48336,
+      "local_bytes": 48336,
+      "local_sha256": "0b9600789315f6aae1b97758058ee90b7a62638963f0dea9ca431c6468c0d4ce",
+      "hosted_sha256": "0b9600789315f6aae1b97758058ee90b7a62638963f0dea9ca431c6468c0d4ce",
+      "verification": "exact_static_bytes"
+    },
+    {
+      "path": "downloads/expanded-resource-supplement.json",
+      "status": 200,
+      "content_type": "application/json",
+      "hosted_bytes": 21104,
+      "local_bytes": 21104,
+      "local_sha256": "5adf7be6709d0f93e0d60081c234c4d80ff77b9a886b4bdf8077c80038ee3edc",
+      "hosted_sha256": "5adf7be6709d0f93e0d60081c234c4d80ff77b9a886b4bdf8077c80038ee3edc",
+      "verification": "exact_static_bytes"
+    }
+  ],
+  "limits": "HTML app bytes exactly preserved with a Cloudflare script inserted before the closing body. All other selected static downloads match byte-for-byte. Local browser QA passed on the application assets; user-device rendering and native PowerPoint rendering are not attested."
+}

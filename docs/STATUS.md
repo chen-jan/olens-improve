@@ -1,5 +1,33 @@
 # Execution status
 
+## Expanded study complete and public — 2026-10-11 07:10 UTC
+
+All **70 settings × four full benchmark banks** are complete: 469 questions and 19,435 fixed activation sites. The [public dashboard](https://olens-improve-research.jan618.chatgpt.site) is version **17**, with final results, reconstruction, grouped uncertainty, all variants, costs and 2,206 audited case entries. The [expanded report](EXPANDED_REPORT.md) and 86-slide deck are delivered; see [all download links](DELIVERY.md).
+
+Reconstruction improves substantially under best-of-N and pooling, while recovery is nonmonotonic and task-specific. Pruning reduces contradictions but can remove essential names. Editing gains versus its pooled parent are tiny, with unchanged totals for the three recovery endpoints. All 28 method/task explanations distinguish fit, native recovery and full-prose correctness. The 496-contrast joint menu has 451 nondegenerate intervals; expanded evidence is exploratory, with zero-variation warnings preserved.
+
+Four reviewers completed all final qualitative partitions; exact prior examples remain unchanged. Actual dashboard browser checks passed in 14 desktop/mobile views. The 86-page slide layout/PDF checks passed, and selected method pages were visually reviewed. Small editing fit changes retain three-decimal precision. Native PowerPoint rendering remains unverified.
+
+All owned expansion allocations are released: H200 **25536297**, API CPU **25536291**, analysis CPU **25536417**, and extra CPU **25536927**. Terminal accounting records **5.825 allocated H200-hours** and **225.662 host CPU core-hours** for this expansion. The final scoped project snapshot is **123.07 GB logical / 94.18 GB allocated blocks**, excluding shared external weights. Recorded API usage is **$142.73 overall / $106.22 expansion**, with **$5.07** unknown/reserved holds retained. These are usage estimates, not invoices. No paid work remains queued. Research commits remain local; user-owned jobs were untouched.
+
+The frozen original TEST study remains separate. Independent readers, more benchmark families, sampling above 32 and new training are postponed. Receipts: [final source review](reviews/root-expansion-final-v1.json), [qualitative merger](reviews/expanded-qualitative-final-merged-notes-v1.json), [terminal resources](reviews/expanded-terminal-resource-supplement-v1.json), [public deployment](reviews/expanded-final-site-delivery-v1.json), [experiment 062](experiments/062-expanded-final-synthesis-and-delivery.md).
+
+## Runs finished; three missing records repaired before final analysis — 2026-10-11 06:40 UTC
+
+All **280 operational condition–task units** are finished. The final native coverage guard stopped correctly on three missing records in previously cached conditions: one hallucination second-stage result and two role results. These units were also excluded from the earlier reviewed partial figures. The unchanged judge instrument recovered two exact cache entries and made one Luna request, costing **$0.0000747**. All other result rows are identical; original artifacts and failed service states are archived. Repair receipt: `durable/expansion-v1/receipts/native-coverage-repair-v1/receipt.json`, SHA `921b16cf0977d60d0d8f987e31b612014c96dc4c437710f37fb58088c08f43a7`.
+
+The independent strict all-280 scan passed with zero missing stages, validating 32 canonical descriptors and 1,167 stable source pins. Root explicitly relaunched the unchanged native, reconstruction and qualitative gates. Failed states remain archived under `.state/expanded-final-recovery-v1`; no incomplete snapshot is accepted. The API-accounting watcher remains healthy and waiting. The repaired sources do not change any previously reviewed partial-result row. Public version 16 remains unchanged until the final evidence, qualitative review and presentation pass their checks.
+
+Estimated settled project API usage after repair is **$142.7286**; all **$5.0685** outstanding holds remain, including the unknown subset. These are usage estimates, not an invoice. No new GPU is needed: the owned H200 already released naturally after **5.825 allocated hours**. Final report, dashboard and slides will compare reconstruction gains, task recovery, errors and examples separately for each method and task. Existing CPU allocations handle the remaining work; research Git stays local.
+
+## GPU work complete; final role controls and reporting remain — 2026-10-11 06:12 UTC
+
+All nine GPU tasks completed, and job **25536297 released naturally at 06:08:20 UTC**. The two parent allocation intervals total **5.825 H200-hours**, including the work before natural preemption. Both editing rounds cover every original activation cell; their eight tasks encoded 131,332 new phrase vectors. Summed editing task wall is 70.16 minutes, including encoding, CPU fitting and I/O; GPU kernel time was not measured. Exact receipts are `.state/gpu-terminal-accounting-v1/receipt.json` and `dispatch-authority.json`.
+
+Judging is **276/280** condition–task units. All three non-role banks have all 70 settings judged. Role editing round two is judged; its four fixed pruning/matched-deletion settings are being materialized on the existing analysis CPU allocation. No extra GPU, method, model or sample budget is required. Final native, reconstruction, qualitative and API-accounting gates remain healthy, then four source-bound human review partitions feed the report, dashboard and slide deck. Public version 16 remains the reviewed 235/280 snapshot until final publication.
+
+The final presentation retains all 70 settings and separate task-specific quality and reconstruction results. The reviewed source-only lookup now lives in `scripts/extract_expansion_final_evidence.py`; its five guard/copy fixtures pass. The [coverage map](reviews/expanded-final-method-coverage-map-v1.md) records the exact variants and exclusions. Research Git is locally committed through `27ba1fe`; no research push was made. The total $340 API ceiling remains unchanged.
+
 ## All first-round editing scores complete — 2026-10-11 05:35 UTC
 
 All four first-round editor tasks are terminal: **19,435 cells and 72,821 new reconstruction vectors**, with 2,016.3 seconds of summed dispatcher wall time. The role task ended at 05:31:14 UTC. Second-round number-task scoring is also complete (1,320 cells, 2,197 new vectors); name-task scoring is active. The same single owned preemptable H200 continues, with checkpointing and no source, batch or policy changes. Second-round helper proposals, fixed pruning variants and Luna judging overlap on existing CPU jobs.

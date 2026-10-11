@@ -1,0 +1,1225 @@
+{
+  "status": "final_retained_editor_panel_source_only_review_complete",
+  "manifest_sha256": "753b2d9cab0daea0d19efef7d3222fd44921dbcf4669e6864d4f1bd4805421f8",
+  "analysis_sha256": "e2773e297d7724f20d656ecf07c5de00097604d8a85c516938a565626b07876e",
+  "selected_changed_example": null,
+  "finding": "No selected changed edit occurs among the exact final retained R1/R2 panel cases. Every displayed selected output is the unchanged pooled parent.",
+  "scope": "Exactly five retained cases per family per round: two fixed anchors and three outcome-selected diagnostics; 40 condition-cell display entries, 20 distinct cells. This is an illustrative panel, not prevalence across all sites.",
+  "source_sha256": {
+    "${OLENS_DATA_ROOT}/expansion-v1/qualitative/parent-comparisons-final-v1.json": "8bfa89c96a6db8024b7813bdcd6f8db4a1ca2dafc7e1f7850db782493e0b8f11",
+    "${OLENS_DATA_ROOT}/expansion-v1/qualitative/final-delta-index-v1.json": "b1d5e441b301a19748691d8f1509faea5e8c76c02276b2d705787d46824436b5",
+    "${OLENS_DATA_ROOT}/expansion-v1/analysis/final-v1.json": "e2773e297d7724f20d656ecf07c5de00097604d8a85c516938a565626b07876e",
+    ".state/final-retained-editor-events-v1.json": "bc354c19f6c187571803b3336aaa426d953d1533a25ff1f95e86f5c17a548cbf",
+    ".state/inspect-final-retained-editor-origins-v1.py": "9927259950109ff4937e8e0e3966688a4f2e9ce77c395885b6f5226863e94406"
+  },
+  "terminal_journal_sha256_pre_post_verified_by_inspection": {
+    "${OLENS_DATA_ROOT}/expansion-v1/editing-scores/round1/hallucination/scored_candidates.jsonl": "ad89e236067d874c8f154d66531505df8fdd5d76f92471e2f69db45a1d9cb9a6",
+    "${OLENS_DATA_ROOT}/expansion-v1/editing-scores/round1/multihop_mt/scored_candidates.jsonl": "89ab5aa98cb64843544de44867e78df697ed1cfcb1a9008107c809f407c224f5",
+    "${OLENS_DATA_ROOT}/expansion-v1/editing-scores/round1/chain_intermediates/scored_candidates.jsonl": "1d903e76f663777c4098c0a2666865965f1c7fc44d24a93c16c59444c1b80d95",
+    "${OLENS_DATA_ROOT}/expansion-v1/editing-scores/round1/role_bound_association/scored_candidates.jsonl": "607c9516748bd89af3a9814adc316328fcb032b3bd7738786ebff51b61898348",
+    "${OLENS_DATA_ROOT}/expansion-v1/editing-scores/round2/hallucination/scored_candidates.jsonl": "eb1bfd65ae196843bfe2b88f5d92e46adbcfc1459db93655e7b5cf3e77c29c4f",
+    "${OLENS_DATA_ROOT}/expansion-v1/editing-scores/round2/multihop_mt/scored_candidates.jsonl": "7dab3661d7542c2ef1ea8bb907210919f130fb1756b6836defe0c74dea10697d",
+    "${OLENS_DATA_ROOT}/expansion-v1/editing-scores/round2/chain_intermediates/scored_candidates.jsonl": "754ab66c0492e1148ad9b67d66c39740aece073c5825867bad574739ca121885",
+    "${OLENS_DATA_ROOT}/expansion-v1/editing-scores/round2/role_bound_association/scored_candidates.jsonl": "cebffc528a5a6bfb49ec13d0194c95da8665731f12d26f2e5426e9e1e4fb4f05"
+  },
+  "panel_rows": [
+    {
+      "round": 1,
+      "condition": "editing_round1-n32",
+      "family": "chain_intermediates",
+      "cell_id": "chain_intermediates|chain-d2p-0200|L28|p00066",
+      "category": "regression",
+      "candidate_id": "chain_intermediates|chain-d2p-0200|L28|p00066:initial:pooled_greedy_swap",
+      "origin": "unchanged_parent",
+      "spec_sha256": "f4cd0dce919dce19ea7a6eb9478e270520576c91a5d291f38b57586eb5096aaf",
+      "selected_text_sha256": "e6fd4d54fb5c3ad80d0582683864847d85032274157e4b29a1ea1cda7b9f1c03",
+      "byte_identical_to_pooled_parent": true,
+      "local_pass": false
+    },
+    {
+      "round": 1,
+      "condition": "editing_round1-n32",
+      "family": "chain_intermediates",
+      "cell_id": "chain_intermediates|chain-d2p-0206|L20|p00067",
+      "category": "changed_no_endpoint_change",
+      "candidate_id": "chain_intermediates|chain-d2p-0206|L20|p00067:initial:pooled_greedy_swap",
+      "origin": "unchanged_parent",
+      "spec_sha256": "f4cd0dce919dce19ea7a6eb9478e270520576c91a5d291f38b57586eb5096aaf",
+      "selected_text_sha256": "d55d65e05da05752bb5f435b75cf0e415f40a90d32a4728ee6ee3441310f6883",
+      "byte_identical_to_pooled_parent": true,
+      "local_pass": false
+    },
+    {
+      "round": 1,
+      "condition": "editing_round1-n32",
+      "family": "chain_intermediates",
+      "cell_id": "chain_intermediates|chain-d2p-0230|L40|p00066",
+      "category": "win",
+      "candidate_id": "chain_intermediates|chain-d2p-0230|L40|p00066:initial:pooled_greedy_swap",
+      "origin": "unchanged_parent",
+      "spec_sha256": "f4cd0dce919dce19ea7a6eb9478e270520576c91a5d291f38b57586eb5096aaf",
+      "selected_text_sha256": "81e3e98eb9c57a66b95ddec17fee6fc2f8104c8177c5a45341c9575321f12ddc",
+      "byte_identical_to_pooled_parent": true,
+      "local_pass": true
+    },
+    {
+      "round": 1,
+      "condition": "editing_round1-n32",
+      "family": "chain_intermediates",
+      "cell_id": "chain_intermediates|chain-d2p-0385|L20|p00066",
+      "category": "fixed_anchor",
+      "candidate_id": "chain_intermediates|chain-d2p-0385|L20|p00066:initial:pooled_greedy_swap",
+      "origin": "unchanged_parent",
+      "spec_sha256": "f4cd0dce919dce19ea7a6eb9478e270520576c91a5d291f38b57586eb5096aaf",
+      "selected_text_sha256": "59c1c65139e9464c1a1b7d94423fcb1a591b91aaca4aa392fbe4209ae6c64a8f",
+      "byte_identical_to_pooled_parent": true,
+      "local_pass": false
+    },
+    {
+      "round": 1,
+      "condition": "editing_round1-n32",
+      "family": "chain_intermediates",
+      "cell_id": "chain_intermediates|chain-w2-d2p-0013|L60|p00062",
+      "category": "fixed_anchor",
+      "candidate_id": "chain_intermediates|chain-w2-d2p-0013|L60|p00062:initial:pooled_greedy_swap",
+      "origin": "unchanged_parent",
+      "spec_sha256": "f4cd0dce919dce19ea7a6eb9478e270520576c91a5d291f38b57586eb5096aaf",
+      "selected_text_sha256": "ace2c0110521f44bd33a700073d2d9ff2b7c5e202f2e9a13e260ef7a8818c901",
+      "byte_identical_to_pooled_parent": true,
+      "local_pass": false
+    },
+    {
+      "round": 1,
+      "condition": "editing_round1-n32",
+      "family": "hallucination",
+      "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+      "category": "changed_no_endpoint_change",
+      "candidate_id": "hallucination|chat-dailydialog-0000|L20|p00023:initial:pooled_greedy_swap",
+      "origin": "unchanged_parent",
+      "spec_sha256": "d97721b93a8d7996d30495e088a4bb4cccf1ac3fc79d1d1205d9a3851ca82ad4",
+      "selected_text_sha256": "f8d4f23118694391d70069e569927ae6d6634cddc80ef19340c5f2cb629918f8",
+      "byte_identical_to_pooled_parent": true,
+      "local_pass": false
+    },
+    {
+      "round": 1,
+      "condition": "editing_round1-n32",
+      "family": "hallucination",
+      "cell_id": "hallucination|chat-dailydialog-0000|L20|p00067",
+      "category": "win",
+      "candidate_id": "hallucination|chat-dailydialog-0000|L20|p00067:initial:pooled_greedy_swap",
+      "origin": "unchanged_parent",
+      "spec_sha256": "d97721b93a8d7996d30495e088a4bb4cccf1ac3fc79d1d1205d9a3851ca82ad4",
+      "selected_text_sha256": "86e88bc4b6c7c3b46c48ccefd684ad23234fa5dd5cb70ea6032563a21d7f0b19",
+      "byte_identical_to_pooled_parent": true,
+      "local_pass": false
+    },
+    {
+      "round": 1,
+      "condition": "editing_round1-n32",
+      "family": "hallucination",
+      "cell_id": "hallucination|chat-dailydialog-0000|L36|p00023",
+      "category": "regression",
+      "candidate_id": "hallucination|chat-dailydialog-0000|L36|p00023:initial:pooled_greedy_swap",
+      "origin": "unchanged_parent",
+      "spec_sha256": "d97721b93a8d7996d30495e088a4bb4cccf1ac3fc79d1d1205d9a3851ca82ad4",
+      "selected_text_sha256": "aeb41191dc3ca960ecb44df00fd6364072608861cfceadcfde4654d9a007f354",
+      "byte_identical_to_pooled_parent": true,
+      "local_pass": false
+    },
+    {
+      "round": 1,
+      "condition": "editing_round1-n32",
+      "family": "hallucination",
+      "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+      "category": "fixed_anchor",
+      "candidate_id": "hallucination|chat-lmsys-0023|L60|p00464:initial:pooled_greedy_swap",
+      "origin": "unchanged_parent",
+      "spec_sha256": "d97721b93a8d7996d30495e088a4bb4cccf1ac3fc79d1d1205d9a3851ca82ad4",
+      "selected_text_sha256": "ca9f02091df93bef94814d43793f1492ceba2ec382c8388256f414a56456d278",
+      "byte_identical_to_pooled_parent": true,
+      "local_pass": false
+    },
+    {
+      "round": 1,
+      "condition": "editing_round1-n32",
+      "family": "hallucination",
+      "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+      "category": "fixed_anchor",
+      "candidate_id": "hallucination|chat-lmsys-0052|L20|p00253:initial:pooled_greedy_swap",
+      "origin": "unchanged_parent",
+      "spec_sha256": "d97721b93a8d7996d30495e088a4bb4cccf1ac3fc79d1d1205d9a3851ca82ad4",
+      "selected_text_sha256": "565260d9117e1ea331db2b6a8c7e83c84afe6c28e7b122af361e8ddfcb92dd36",
+      "byte_identical_to_pooled_parent": true,
+      "local_pass": false
+    },
+    {
+      "round": 1,
+      "condition": "editing_round1-n32",
+      "family": "multihop_mt",
+      "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028",
+      "category": "changed_no_endpoint_change",
+      "candidate_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028:initial:pooled_greedy_swap",
+      "origin": "unchanged_parent",
+      "spec_sha256": "1884675f2097359686e97941f1fa992aaff7b074f6dc0971ec79a42904c54803",
+      "selected_text_sha256": "55ac0ec31493b03788efb0ac81d8fe1e58d35345d36cc295a17b269266704dc3",
+      "byte_identical_to_pooled_parent": true,
+      "local_pass": true
+    },
+    {
+      "round": 1,
+      "condition": "editing_round1-n32",
+      "family": "multihop_mt",
+      "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+      "category": "fixed_anchor",
+      "candidate_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028:initial:pooled_greedy_swap",
+      "origin": "unchanged_parent",
+      "spec_sha256": "1884675f2097359686e97941f1fa992aaff7b074f6dc0971ec79a42904c54803",
+      "selected_text_sha256": "64b1601a3b081afb85d8a011a0ec8fca4c2a587af840e563bc6299639882aa0f",
+      "byte_identical_to_pooled_parent": true,
+      "local_pass": true
+    },
+    {
+      "round": 1,
+      "condition": "editing_round1-n32",
+      "family": "multihop_mt",
+      "cell_id": "multihop_mt|mhh-adwa-baratieri|L44|p00033",
+      "category": "win",
+      "candidate_id": "multihop_mt|mhh-adwa-baratieri|L44|p00033:initial:pooled_greedy_swap",
+      "origin": "unchanged_parent",
+      "spec_sha256": "1884675f2097359686e97941f1fa992aaff7b074f6dc0971ec79a42904c54803",
+      "selected_text_sha256": "8b3ac2f4b9fc1cac918f2e60053382ee0db5d29447e55b55e9559c7ef5b528f0",
+      "byte_identical_to_pooled_parent": true,
+      "local_pass": true
+    },
+    {
+      "round": 1,
+      "condition": "editing_round1-n32",
+      "family": "multihop_mt",
+      "cell_id": "multihop_mt|mhh-belisarius-procopius-secret-history|L52|p00038",
+      "category": "regression",
+      "candidate_id": "multihop_mt|mhh-belisarius-procopius-secret-history|L52|p00038:initial:pooled_greedy_swap",
+      "origin": "unchanged_parent",
+      "spec_sha256": "1884675f2097359686e97941f1fa992aaff7b074f6dc0971ec79a42904c54803",
+      "selected_text_sha256": "d3b9b54ddf4bdce4e816f1bd0feeae3889e0ddccfe2794a3f0743e9b54c85ec9",
+      "byte_identical_to_pooled_parent": true,
+      "local_pass": false
+    },
+    {
+      "round": 1,
+      "condition": "editing_round1-n32",
+      "family": "multihop_mt",
+      "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+      "category": "fixed_anchor",
+      "candidate_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046:initial:pooled_greedy_swap",
+      "origin": "unchanged_parent",
+      "spec_sha256": "1884675f2097359686e97941f1fa992aaff7b074f6dc0971ec79a42904c54803",
+      "selected_text_sha256": "f6f90857d8abd990d0b6aca746e7c7d4e3e36dc7e8ade18ec3276b6946045cce",
+      "byte_identical_to_pooled_parent": true,
+      "local_pass": true
+    },
+    {
+      "round": 1,
+      "condition": "editing_round1-n32",
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+      "category": "changed_no_endpoint_change",
+      "candidate_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132:initial:pooled_greedy_swap",
+      "origin": "unchanged_parent",
+      "spec_sha256": "bf9e88c1682084c332657c09edc1badfb5f3dded848d1fc93fc5c3688fa5fbf6",
+      "selected_text_sha256": "49161d738783e22d199c4e758b5cf35e7d8b6beec264a19d1cba917bc96c48e0",
+      "byte_identical_to_pooled_parent": true,
+      "local_pass": false
+    },
+    {
+      "round": 1,
+      "condition": "editing_round1-n32",
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ba|L44|p00124",
+      "category": "win",
+      "candidate_id": "role_bound_association|oa-babysitter-toddler-feed-ba|L44|p00124:initial:pooled_greedy_swap",
+      "origin": "unchanged_parent",
+      "spec_sha256": "bf9e88c1682084c332657c09edc1badfb5f3dded848d1fc93fc5c3688fa5fbf6",
+      "selected_text_sha256": "45ab79148cf3d42d035b1a91b4a309370523fa77274fa26bee66151064b8aa36",
+      "byte_identical_to_pooled_parent": true,
+      "local_pass": true
+    },
+    {
+      "round": 1,
+      "condition": "editing_round1-n32",
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+      "category": "fixed_anchor",
+      "candidate_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178:initial:pooled_greedy_swap",
+      "origin": "unchanged_parent",
+      "spec_sha256": "bf9e88c1682084c332657c09edc1badfb5f3dded848d1fc93fc5c3688fa5fbf6",
+      "selected_text_sha256": "f1bae61cc861d73fccbb77c1340c9982389ef3b63d6bd86b0781cc50ce8e4a2d",
+      "byte_identical_to_pooled_parent": true,
+      "local_pass": true
+    },
+    {
+      "round": 1,
+      "condition": "editing_round1-n32",
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-father-daughter-worry-ba|L44|p00135",
+      "category": "regression",
+      "candidate_id": "role_bound_association|oa-father-daughter-worry-ba|L44|p00135:initial:pooled_greedy_swap",
+      "origin": "unchanged_parent",
+      "spec_sha256": "bf9e88c1682084c332657c09edc1badfb5f3dded848d1fc93fc5c3688fa5fbf6",
+      "selected_text_sha256": "8d2484e07a23f8862056bbcc86c5ec27675a7a57749a2965e5528a18ce0d113d",
+      "byte_identical_to_pooled_parent": true,
+      "local_pass": false
+    },
+    {
+      "round": 1,
+      "condition": "editing_round1-n32",
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+      "category": "fixed_anchor",
+      "candidate_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092:initial:pooled_greedy_swap",
+      "origin": "unchanged_parent",
+      "spec_sha256": "bf9e88c1682084c332657c09edc1badfb5f3dded848d1fc93fc5c3688fa5fbf6",
+      "selected_text_sha256": "56b8b8505a1926b639b4f04c8fbe502ec22da0164eac88d1c66e102f0d35fbe5",
+      "byte_identical_to_pooled_parent": true,
+      "local_pass": false
+    },
+    {
+      "round": 2,
+      "condition": "editing_round2-n32",
+      "family": "chain_intermediates",
+      "cell_id": "chain_intermediates|chain-d2p-0200|L28|p00066",
+      "category": "regression",
+      "candidate_id": "chain_intermediates|chain-d2p-0200|L28|p00066:initial:pooled_greedy_swap",
+      "origin": "unchanged_parent",
+      "spec_sha256": "55e03d2d2d89c4fe200ed21eb45c006ac3235036494e17701de42f539fa29e27",
+      "selected_text_sha256": "e6fd4d54fb5c3ad80d0582683864847d85032274157e4b29a1ea1cda7b9f1c03",
+      "byte_identical_to_pooled_parent": true,
+      "local_pass": false
+    },
+    {
+      "round": 2,
+      "condition": "editing_round2-n32",
+      "family": "chain_intermediates",
+      "cell_id": "chain_intermediates|chain-d2p-0206|L20|p00067",
+      "category": "changed_no_endpoint_change",
+      "candidate_id": "chain_intermediates|chain-d2p-0206|L20|p00067:initial:pooled_greedy_swap",
+      "origin": "unchanged_parent",
+      "spec_sha256": "55e03d2d2d89c4fe200ed21eb45c006ac3235036494e17701de42f539fa29e27",
+      "selected_text_sha256": "d55d65e05da05752bb5f435b75cf0e415f40a90d32a4728ee6ee3441310f6883",
+      "byte_identical_to_pooled_parent": true,
+      "local_pass": false
+    },
+    {
+      "round": 2,
+      "condition": "editing_round2-n32",
+      "family": "chain_intermediates",
+      "cell_id": "chain_intermediates|chain-d2p-0230|L40|p00066",
+      "category": "win",
+      "candidate_id": "chain_intermediates|chain-d2p-0230|L40|p00066:initial:pooled_greedy_swap",
+      "origin": "unchanged_parent",
+      "spec_sha256": "55e03d2d2d89c4fe200ed21eb45c006ac3235036494e17701de42f539fa29e27",
+      "selected_text_sha256": "81e3e98eb9c57a66b95ddec17fee6fc2f8104c8177c5a45341c9575321f12ddc",
+      "byte_identical_to_pooled_parent": true,
+      "local_pass": true
+    },
+    {
+      "round": 2,
+      "condition": "editing_round2-n32",
+      "family": "chain_intermediates",
+      "cell_id": "chain_intermediates|chain-d2p-0385|L20|p00066",
+      "category": "fixed_anchor",
+      "candidate_id": "chain_intermediates|chain-d2p-0385|L20|p00066:initial:pooled_greedy_swap",
+      "origin": "unchanged_parent",
+      "spec_sha256": "55e03d2d2d89c4fe200ed21eb45c006ac3235036494e17701de42f539fa29e27",
+      "selected_text_sha256": "59c1c65139e9464c1a1b7d94423fcb1a591b91aaca4aa392fbe4209ae6c64a8f",
+      "byte_identical_to_pooled_parent": true,
+      "local_pass": false
+    },
+    {
+      "round": 2,
+      "condition": "editing_round2-n32",
+      "family": "chain_intermediates",
+      "cell_id": "chain_intermediates|chain-w2-d2p-0013|L60|p00062",
+      "category": "fixed_anchor",
+      "candidate_id": "chain_intermediates|chain-w2-d2p-0013|L60|p00062:initial:pooled_greedy_swap",
+      "origin": "unchanged_parent",
+      "spec_sha256": "55e03d2d2d89c4fe200ed21eb45c006ac3235036494e17701de42f539fa29e27",
+      "selected_text_sha256": "ace2c0110521f44bd33a700073d2d9ff2b7c5e202f2e9a13e260ef7a8818c901",
+      "byte_identical_to_pooled_parent": true,
+      "local_pass": false
+    },
+    {
+      "round": 2,
+      "condition": "editing_round2-n32",
+      "family": "hallucination",
+      "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+      "category": "changed_no_endpoint_change",
+      "candidate_id": "hallucination|chat-dailydialog-0000|L20|p00023:initial:pooled_greedy_swap",
+      "origin": "unchanged_parent",
+      "spec_sha256": "c5fe61f22239b5c88c6cf8d2e802ccd647070c11757be46c4f1f835282515d4e",
+      "selected_text_sha256": "f8d4f23118694391d70069e569927ae6d6634cddc80ef19340c5f2cb629918f8",
+      "byte_identical_to_pooled_parent": true,
+      "local_pass": false
+    },
+    {
+      "round": 2,
+      "condition": "editing_round2-n32",
+      "family": "hallucination",
+      "cell_id": "hallucination|chat-dailydialog-0000|L20|p00067",
+      "category": "win",
+      "candidate_id": "hallucination|chat-dailydialog-0000|L20|p00067:initial:pooled_greedy_swap",
+      "origin": "unchanged_parent",
+      "spec_sha256": "c5fe61f22239b5c88c6cf8d2e802ccd647070c11757be46c4f1f835282515d4e",
+      "selected_text_sha256": "86e88bc4b6c7c3b46c48ccefd684ad23234fa5dd5cb70ea6032563a21d7f0b19",
+      "byte_identical_to_pooled_parent": true,
+      "local_pass": false
+    },
+    {
+      "round": 2,
+      "condition": "editing_round2-n32",
+      "family": "hallucination",
+      "cell_id": "hallucination|chat-dailydialog-0000|L36|p00023",
+      "category": "regression",
+      "candidate_id": "hallucination|chat-dailydialog-0000|L36|p00023:initial:pooled_greedy_swap",
+      "origin": "unchanged_parent",
+      "spec_sha256": "c5fe61f22239b5c88c6cf8d2e802ccd647070c11757be46c4f1f835282515d4e",
+      "selected_text_sha256": "aeb41191dc3ca960ecb44df00fd6364072608861cfceadcfde4654d9a007f354",
+      "byte_identical_to_pooled_parent": true,
+      "local_pass": false
+    },
+    {
+      "round": 2,
+      "condition": "editing_round2-n32",
+      "family": "hallucination",
+      "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+      "category": "fixed_anchor",
+      "candidate_id": "hallucination|chat-lmsys-0023|L60|p00464:initial:pooled_greedy_swap",
+      "origin": "unchanged_parent",
+      "spec_sha256": "c5fe61f22239b5c88c6cf8d2e802ccd647070c11757be46c4f1f835282515d4e",
+      "selected_text_sha256": "ca9f02091df93bef94814d43793f1492ceba2ec382c8388256f414a56456d278",
+      "byte_identical_to_pooled_parent": true,
+      "local_pass": false
+    },
+    {
+      "round": 2,
+      "condition": "editing_round2-n32",
+      "family": "hallucination",
+      "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+      "category": "fixed_anchor",
+      "candidate_id": "hallucination|chat-lmsys-0052|L20|p00253:initial:pooled_greedy_swap",
+      "origin": "unchanged_parent",
+      "spec_sha256": "c5fe61f22239b5c88c6cf8d2e802ccd647070c11757be46c4f1f835282515d4e",
+      "selected_text_sha256": "565260d9117e1ea331db2b6a8c7e83c84afe6c28e7b122af361e8ddfcb92dd36",
+      "byte_identical_to_pooled_parent": true,
+      "local_pass": false
+    },
+    {
+      "round": 2,
+      "condition": "editing_round2-n32",
+      "family": "multihop_mt",
+      "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028",
+      "category": "changed_no_endpoint_change",
+      "candidate_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028:initial:pooled_greedy_swap",
+      "origin": "unchanged_parent",
+      "spec_sha256": "4ff89a0eee81afab7877782fa752011f661d5965488762b3431b41f7db3f4051",
+      "selected_text_sha256": "55ac0ec31493b03788efb0ac81d8fe1e58d35345d36cc295a17b269266704dc3",
+      "byte_identical_to_pooled_parent": true,
+      "local_pass": true
+    },
+    {
+      "round": 2,
+      "condition": "editing_round2-n32",
+      "family": "multihop_mt",
+      "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+      "category": "fixed_anchor",
+      "candidate_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028:initial:pooled_greedy_swap",
+      "origin": "unchanged_parent",
+      "spec_sha256": "4ff89a0eee81afab7877782fa752011f661d5965488762b3431b41f7db3f4051",
+      "selected_text_sha256": "64b1601a3b081afb85d8a011a0ec8fca4c2a587af840e563bc6299639882aa0f",
+      "byte_identical_to_pooled_parent": true,
+      "local_pass": true
+    },
+    {
+      "round": 2,
+      "condition": "editing_round2-n32",
+      "family": "multihop_mt",
+      "cell_id": "multihop_mt|mhh-adwa-baratieri|L44|p00033",
+      "category": "win",
+      "candidate_id": "multihop_mt|mhh-adwa-baratieri|L44|p00033:initial:pooled_greedy_swap",
+      "origin": "unchanged_parent",
+      "spec_sha256": "4ff89a0eee81afab7877782fa752011f661d5965488762b3431b41f7db3f4051",
+      "selected_text_sha256": "8b3ac2f4b9fc1cac918f2e60053382ee0db5d29447e55b55e9559c7ef5b528f0",
+      "byte_identical_to_pooled_parent": true,
+      "local_pass": true
+    },
+    {
+      "round": 2,
+      "condition": "editing_round2-n32",
+      "family": "multihop_mt",
+      "cell_id": "multihop_mt|mhh-belisarius-procopius-secret-history|L52|p00038",
+      "category": "regression",
+      "candidate_id": "multihop_mt|mhh-belisarius-procopius-secret-history|L52|p00038:initial:pooled_greedy_swap",
+      "origin": "unchanged_parent",
+      "spec_sha256": "4ff89a0eee81afab7877782fa752011f661d5965488762b3431b41f7db3f4051",
+      "selected_text_sha256": "d3b9b54ddf4bdce4e816f1bd0feeae3889e0ddccfe2794a3f0743e9b54c85ec9",
+      "byte_identical_to_pooled_parent": true,
+      "local_pass": false
+    },
+    {
+      "round": 2,
+      "condition": "editing_round2-n32",
+      "family": "multihop_mt",
+      "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+      "category": "fixed_anchor",
+      "candidate_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046:initial:pooled_greedy_swap",
+      "origin": "unchanged_parent",
+      "spec_sha256": "4ff89a0eee81afab7877782fa752011f661d5965488762b3431b41f7db3f4051",
+      "selected_text_sha256": "f6f90857d8abd990d0b6aca746e7c7d4e3e36dc7e8ade18ec3276b6946045cce",
+      "byte_identical_to_pooled_parent": true,
+      "local_pass": true
+    },
+    {
+      "round": 2,
+      "condition": "editing_round2-n32",
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+      "category": "changed_no_endpoint_change",
+      "candidate_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132:initial:pooled_greedy_swap",
+      "origin": "unchanged_parent",
+      "spec_sha256": "6236217e7b026d4c608202b076feaea9c6ae2e1a831460db48184fcb63d356a4",
+      "selected_text_sha256": "49161d738783e22d199c4e758b5cf35e7d8b6beec264a19d1cba917bc96c48e0",
+      "byte_identical_to_pooled_parent": true,
+      "local_pass": false
+    },
+    {
+      "round": 2,
+      "condition": "editing_round2-n32",
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ba|L44|p00124",
+      "category": "win",
+      "candidate_id": "role_bound_association|oa-babysitter-toddler-feed-ba|L44|p00124:initial:pooled_greedy_swap",
+      "origin": "unchanged_parent",
+      "spec_sha256": "6236217e7b026d4c608202b076feaea9c6ae2e1a831460db48184fcb63d356a4",
+      "selected_text_sha256": "45ab79148cf3d42d035b1a91b4a309370523fa77274fa26bee66151064b8aa36",
+      "byte_identical_to_pooled_parent": true,
+      "local_pass": true
+    },
+    {
+      "round": 2,
+      "condition": "editing_round2-n32",
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+      "category": "fixed_anchor",
+      "candidate_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178:initial:pooled_greedy_swap",
+      "origin": "unchanged_parent",
+      "spec_sha256": "6236217e7b026d4c608202b076feaea9c6ae2e1a831460db48184fcb63d356a4",
+      "selected_text_sha256": "f1bae61cc861d73fccbb77c1340c9982389ef3b63d6bd86b0781cc50ce8e4a2d",
+      "byte_identical_to_pooled_parent": true,
+      "local_pass": true
+    },
+    {
+      "round": 2,
+      "condition": "editing_round2-n32",
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-father-daughter-worry-ba|L44|p00135",
+      "category": "regression",
+      "candidate_id": "role_bound_association|oa-father-daughter-worry-ba|L44|p00135:initial:pooled_greedy_swap",
+      "origin": "unchanged_parent",
+      "spec_sha256": "6236217e7b026d4c608202b076feaea9c6ae2e1a831460db48184fcb63d356a4",
+      "selected_text_sha256": "8d2484e07a23f8862056bbcc86c5ec27675a7a57749a2965e5528a18ce0d113d",
+      "byte_identical_to_pooled_parent": true,
+      "local_pass": false
+    },
+    {
+      "round": 2,
+      "condition": "editing_round2-n32",
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+      "category": "fixed_anchor",
+      "candidate_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092:initial:pooled_greedy_swap",
+      "origin": "unchanged_parent",
+      "spec_sha256": "6236217e7b026d4c608202b076feaea9c6ae2e1a831460db48184fcb63d356a4",
+      "selected_text_sha256": "56b8b8505a1926b639b4f04c8fbe502ec22da0164eac88d1c66e102f0d35fbe5",
+      "byte_identical_to_pooled_parent": true,
+      "local_pass": false
+    }
+  ],
+  "negative_inherited_parent_example": [
+    {
+      "condition": "editing_round1-n32",
+      "full_source_case": {
+        "cell_id": "multihop_mt|mhh-belisarius-procopius-secret-history|L52|p00038",
+        "item_id": "mhh-belisarius-procopius-secret-history",
+        "layer": 52,
+        "position": 38,
+        "category": "regression",
+        "endpoint_evidence": {
+          "unit": "whole_original_question_grid",
+          "item_id": "mhh-belisarius-procopius-secret-history",
+          "baseline_item_pass": true,
+          "proposed_item_pass": false,
+          "baseline_passing_cells": 1,
+          "proposed_passing_cells": 0,
+          "grid_cells": 11,
+          "witness_rule": "first passing baseline site"
+        },
+        "cell": {
+          "cell_id": "multihop_mt|mhh-belisarius-procopius-secret-history|L52|p00038",
+          "family": "multihop_mt",
+          "item_id": "mhh-belisarius-procopius-secret-history",
+          "group_id": "multihop_mt:bridge-component:bd3716d2251383c0",
+          "layer": 52,
+          "position": 38,
+          "split": "validation",
+          "activation_sha256": "a4d869e4486c94cc1a4ded79c0f3c1365ad33a3b852493c1734db2d4c40ad4e0"
+        },
+        "context_ref": "multihop_mt|mhh-belisarius-procopius-secret-history|L52|p00038",
+        "selection_policy": "deterministic_outcome_selected_supplement",
+        "source_case_id": "editing_round1-n32|multihop_mt|outcome_selected|regression|multihop_mt|mhh-belisarius-procopius-secret-history|L52|p00038",
+        "original_baseline_condition": "capped_n1-n1",
+        "original_baseline": {
+          "text": "- “Secret History” (or *Byzantinologia*). It is attributed to Procopius and titled\n- __Anonymus Byzantinus__ or *Declamation against Theodora*. Here’s why the work’s actual title\n- ____De secretis_____ (or more accurately, its surviving fragments are now titled *Historiae contra Belisarius* or simply *\n- （or rather, titled) *Historia contra Justinum*. How does this late-6th-century polemic get its",
+          "empty": false,
+          "pass": true,
+          "class": null,
+          "evidence": {
+            "readout_text": "- “Secret History” (or *Byzantinologia*). It is attributed to Procopius and titled\n- __Anonymus Byzantinus__ or *Declamation against Theodora*. Here’s why the work’s actual title\n- ____De secretis_____ (or more accurately, its surviving fragments are now titled *Historiae contra Belisarius* or simply *\n- （or rather, titled) *Historia contra Justinum*. How does this late-6th-century polemic get its",
+            "retained_layer_match_result": {
+              "hits": {
+                "bridge1": [
+                  "en"
+                ],
+                "bridge2": [
+                  "en"
+                ],
+                "target": [
+                  "en"
+                ]
+              },
+              "empty": false
+            },
+            "required_roles": [
+              "bridge1",
+              "bridge2"
+            ],
+            "optional_roles": [
+              "target"
+            ],
+            "interpretation": "Retained language-hit evidence with exact readout text; not invented substring offsets.",
+            "evaluation_only": true
+          }
+        },
+        "proposed": {
+          "text": "- “Diplomaticus” or more famously *Secret History*. What is its commonly accepted modern title? The text attributed to Procopius\n- （titled）what? Specifically, Procopius’ *Anonymus Byzantinus* — the anonymous work titled\n- Anonymus' Satira contra Theodoretus, but conventionally titled\n- “Contra Severum” or by its modern English title *Secret History*. Let’s get straight to the meat: the author, the\n",
+          "empty": false,
+          "pass": false,
+          "class": null,
+          "evidence": {
+            "readout_text": "- “Diplomaticus” or more famously *Secret History*. What is its commonly accepted modern title? The text attributed to Procopius\n- （titled）what? Specifically, Procopius’ *Anonymus Byzantinus* — the anonymous work titled\n- Anonymus' Satira contra Theodoretus, but conventionally titled\n- “Contra Severum” or by its modern English title *Secret History*. Let’s get straight to the meat: the author, the\n",
+            "retained_layer_match_result": {
+              "hits": {
+                "bridge1": [],
+                "bridge2": [
+                  "en"
+                ],
+                "target": [
+                  "en"
+                ]
+              },
+              "empty": false
+            },
+            "required_roles": [
+              "bridge1",
+              "bridge2"
+            ],
+            "optional_roles": [
+              "target"
+            ],
+            "interpretation": "Retained language-hit evidence with exact readout text; not invented substring offsets.",
+            "evaluation_only": true
+          }
+        },
+        "parents": {
+          "best_n_exact-n32": {
+            "status": "complete",
+            "output": {
+              "text": "- ____ (or *Secret History*)? The work commonly titled\n- *Anonymi Liber* or more famously by its hostile contemporary title *Historia contra Theodora*. The text\n- “Contra Severum” or by its modern English title *Secret History*. Let’s get straight to the meat: the author, the\n- (or titled) *Kastrologion* and *Scandalia*. What was the original title given to this anonymous pro-Justinianic polemic,",
+              "empty": false,
+              "pass": false,
+              "class": null,
+              "evidence": {
+                "readout_text": "- ____ (or *Secret History*)? The work commonly titled\n- *Anonymi Liber* or more famously by its hostile contemporary title *Historia contra Theodora*. The text\n- “Contra Severum” or by its modern English title *Secret History*. Let’s get straight to the meat: the author, the\n- (or titled) *Kastrologion* and *Scandalia*. What was the original title given to this anonymous pro-Justinianic polemic,",
+                "retained_layer_match_result": {
+                  "hits": {
+                    "bridge1": [],
+                    "bridge2": [],
+                    "target": [
+                      "en"
+                    ]
+                  },
+                  "empty": false
+                },
+                "required_roles": [
+                  "bridge1",
+                  "bridge2"
+                ],
+                "optional_roles": [
+                  "target"
+                ],
+                "interpretation": "Retained language-hit evidence with exact readout text; not invented substring offsets.",
+                "evaluation_only": true
+              }
+            },
+            "text_changed": true,
+            "endpoint_evidence": {
+              "unit": "whole_original_question_grid",
+              "item_id": "mhh-belisarius-procopius-secret-history",
+              "grid_cells": 11,
+              "parent_item_pass": false,
+              "proposed_item_pass": false,
+              "parent_passing_cells": 0,
+              "proposed_passing_cells": 0,
+              "parent_first_passing_cell": null,
+              "proposed_first_passing_cell": null,
+              "selected_cell_parent_pass": false,
+              "selected_cell_proposed_pass": false
+            }
+          },
+          "pooled_greedy_swap-n32": {
+            "status": "complete",
+            "output": {
+              "text": "- “Diplomaticus” or more famously *Secret History*. What is its commonly accepted modern title? The text attributed to Procopius\n- （titled）what? Specifically, Procopius’ *Anonymus Byzantinus* — the anonymous work titled\n- Anonymus' Satira contra Theodoretus, but conventionally titled\n- “Contra Severum” or by its modern English title *Secret History*. Let’s get straight to the meat: the author, the\n",
+              "empty": false,
+              "pass": false,
+              "class": null,
+              "evidence": {
+                "readout_text": "- “Diplomaticus” or more famously *Secret History*. What is its commonly accepted modern title? The text attributed to Procopius\n- （titled）what? Specifically, Procopius’ *Anonymus Byzantinus* — the anonymous work titled\n- Anonymus' Satira contra Theodoretus, but conventionally titled\n- “Contra Severum” or by its modern English title *Secret History*. Let’s get straight to the meat: the author, the\n",
+                "retained_layer_match_result": {
+                  "hits": {
+                    "bridge1": [],
+                    "bridge2": [
+                      "en"
+                    ],
+                    "target": [
+                      "en"
+                    ]
+                  },
+                  "empty": false
+                },
+                "required_roles": [
+                  "bridge1",
+                  "bridge2"
+                ],
+                "optional_roles": [
+                  "target"
+                ],
+                "interpretation": "Retained language-hit evidence with exact readout text; not invented substring offsets.",
+                "evaluation_only": true
+              }
+            },
+            "text_changed": false,
+            "endpoint_evidence": {
+              "unit": "whole_original_question_grid",
+              "item_id": "mhh-belisarius-procopius-secret-history",
+              "grid_cells": 11,
+              "parent_item_pass": false,
+              "proposed_item_pass": false,
+              "parent_passing_cells": 0,
+              "proposed_passing_cells": 0,
+              "parent_first_passing_cell": null,
+              "proposed_first_passing_cell": null,
+              "selected_cell_parent_pass": false,
+              "selected_cell_proposed_pass": false
+            }
+          }
+        }
+      },
+      "full_context": {
+        "source_bank_item": {
+          "name": "mhh-belisarius-procopius-secret-history",
+          "subfamily": "3hop",
+          "prompt": "Fact: the legal secretary who served the Byzantine general victorious at Ad Decimum in 533 later composed a venomous private denunciation of the imperial court, a work conventionally titled",
+          "target": "The Secret History",
+          "target_alts": [
+            "Secret History",
+            "Anecdota",
+            "The Secret History (Anecdota)"
+          ],
+          "source": "staging_hard_mt",
+          "eval_render": "plain",
+          "readout": {
+            "kind": "final_prompt_token",
+            "offsets": [
+              -1
+            ]
+          },
+          "intermediates": [
+            "Belisarius",
+            "Procopius of Caesarea"
+          ],
+          "units": [
+            {
+              "role": "bridge1",
+              "required": true,
+              "multi_token": true,
+              "forms": {
+                "en": [
+                  "Belisarius",
+                  "Flavius Belisarius"
+                ]
+              },
+              "match": [
+                "Belisarius",
+                "Flavius Belisarius"
+              ]
+            },
+            {
+              "role": "bridge2",
+              "required": true,
+              "multi_token": true,
+              "forms": {
+                "en": [
+                  "Procopius of Caesarea",
+                  "Procopius"
+                ]
+              },
+              "match": [
+                "Procopius of Caesarea",
+                "Procopius"
+              ]
+            }
+          ],
+          "bridges": [
+            {
+              "question": "Which Byzantine general defeated the Vandals at the battle of Ad Decimum in 533?",
+              "units": [
+                "bridge1"
+              ],
+              "answers": [
+                "Belisarius",
+                "Flavius Belisarius"
+              ]
+            },
+            {
+              "question": "Who served as legal secretary and chronicler to Belisarius during his campaigns?",
+              "units": [
+                "bridge2"
+              ],
+              "answers": [
+                "Procopius",
+                "Procopius of Caesarea"
+              ]
+            }
+          ],
+          "consistency": 0.9,
+          "consistency_strict": 0.9,
+          "consistency_greedy": 1,
+          "bridge_consistency": {
+            "bridge1": 0.9,
+            "bridge2": 1.0
+          },
+          "gate_variant": "chat",
+          "probe_token_lens": {
+            "units": {
+              "bridge1": {
+                "en": [
+                  3,
+                  6
+                ]
+              },
+              "bridge2": {
+                "en": [
+                  7,
+                  3
+                ]
+              }
+            },
+            "target": 3,
+            "target_alts": [
+              2,
+              2,
+              8
+            ]
+          },
+          "mc": {
+            "bridge1": {
+              "gold": "Belisarius",
+              "distractors": [
+                "Narses",
+                "Sittas",
+                "Bessas",
+                "Mundus"
+              ]
+            },
+            "bridge2": {
+              "gold": "Procopius of Caesarea",
+              "distractors": [
+                "Agathias of Myrina",
+                "John Malalas",
+                "Theophylact Simocatta",
+                "Evagrius Scholasticus"
+              ]
+            }
+          }
+        },
+        "historical_anchor_context": null,
+        "evaluation_context": null,
+        "evaluation_only": true
+      },
+      "selected_lineage": {
+        "candidate_id": "multihop_mt|mhh-belisarius-procopius-secret-history|L52|p00038:initial:pooled_greedy_swap",
+        "origin": "unchanged_parent",
+        "parent_candidate_id": null,
+        "source_method": "pooled_greedy_swap",
+        "text": "- “Diplomaticus” or more famously *Secret History*. What is its commonly accepted modern title? The text attributed to Procopius\n- （titled）what? Specifically, Procopius’ *Anonymus Byzantinus* — the anonymous work titled\n- Anonymus' Satira contra Theodoretus, but conventionally titled\n- “Contra Severum” or by its modern English title *Secret History*. Let’s get straight to the meat: the author, the\n",
+        "exact_fve": 0.3796466712160961,
+        "released80_fve": 0.3796464800834656
+      },
+      "spec_sha256": "1884675f2097359686e97941f1fa992aaff7b074f6dc0971ec79a42904c54803",
+      "selected_event_sha256": "e68b595b2cc02dbbeaf9c40f5a04b1b8a29cc946ddf9559211120de342c4af59",
+      "exact_excerpt": "The text attributed to Procopius",
+      "excerpt_role": "Local text witness; required Belisarius bridge is absent from this selected prose."
+    },
+    {
+      "condition": "editing_round2-n32",
+      "full_source_case": {
+        "cell_id": "multihop_mt|mhh-belisarius-procopius-secret-history|L52|p00038",
+        "item_id": "mhh-belisarius-procopius-secret-history",
+        "layer": 52,
+        "position": 38,
+        "category": "regression",
+        "endpoint_evidence": {
+          "unit": "whole_original_question_grid",
+          "item_id": "mhh-belisarius-procopius-secret-history",
+          "baseline_item_pass": true,
+          "proposed_item_pass": false,
+          "baseline_passing_cells": 1,
+          "proposed_passing_cells": 0,
+          "grid_cells": 11,
+          "witness_rule": "first passing baseline site"
+        },
+        "cell": {
+          "cell_id": "multihop_mt|mhh-belisarius-procopius-secret-history|L52|p00038",
+          "family": "multihop_mt",
+          "item_id": "mhh-belisarius-procopius-secret-history",
+          "group_id": "multihop_mt:bridge-component:bd3716d2251383c0",
+          "layer": 52,
+          "position": 38,
+          "split": "validation",
+          "activation_sha256": "a4d869e4486c94cc1a4ded79c0f3c1365ad33a3b852493c1734db2d4c40ad4e0"
+        },
+        "context_ref": "multihop_mt|mhh-belisarius-procopius-secret-history|L52|p00038",
+        "selection_policy": "deterministic_outcome_selected_supplement",
+        "source_case_id": "editing_round2-n32|multihop_mt|outcome_selected|regression|multihop_mt|mhh-belisarius-procopius-secret-history|L52|p00038",
+        "original_baseline_condition": "capped_n1-n1",
+        "original_baseline": {
+          "text": "- “Secret History” (or *Byzantinologia*). It is attributed to Procopius and titled\n- __Anonymus Byzantinus__ or *Declamation against Theodora*. Here’s why the work’s actual title\n- ____De secretis_____ (or more accurately, its surviving fragments are now titled *Historiae contra Belisarius* or simply *\n- （or rather, titled) *Historia contra Justinum*. How does this late-6th-century polemic get its",
+          "empty": false,
+          "pass": true,
+          "class": null,
+          "evidence": {
+            "readout_text": "- “Secret History” (or *Byzantinologia*). It is attributed to Procopius and titled\n- __Anonymus Byzantinus__ or *Declamation against Theodora*. Here’s why the work’s actual title\n- ____De secretis_____ (or more accurately, its surviving fragments are now titled *Historiae contra Belisarius* or simply *\n- （or rather, titled) *Historia contra Justinum*. How does this late-6th-century polemic get its",
+            "retained_layer_match_result": {
+              "hits": {
+                "bridge1": [
+                  "en"
+                ],
+                "bridge2": [
+                  "en"
+                ],
+                "target": [
+                  "en"
+                ]
+              },
+              "empty": false
+            },
+            "required_roles": [
+              "bridge1",
+              "bridge2"
+            ],
+            "optional_roles": [
+              "target"
+            ],
+            "interpretation": "Retained language-hit evidence with exact readout text; not invented substring offsets.",
+            "evaluation_only": true
+          }
+        },
+        "proposed": {
+          "text": "- “Diplomaticus” or more famously *Secret History*. What is its commonly accepted modern title? The text attributed to Procopius\n- （titled）what? Specifically, Procopius’ *Anonymus Byzantinus* — the anonymous work titled\n- Anonymus' Satira contra Theodoretus, but conventionally titled\n- “Contra Severum” or by its modern English title *Secret History*. Let’s get straight to the meat: the author, the\n",
+          "empty": false,
+          "pass": false,
+          "class": null,
+          "evidence": {
+            "readout_text": "- “Diplomaticus” or more famously *Secret History*. What is its commonly accepted modern title? The text attributed to Procopius\n- （titled）what? Specifically, Procopius’ *Anonymus Byzantinus* — the anonymous work titled\n- Anonymus' Satira contra Theodoretus, but conventionally titled\n- “Contra Severum” or by its modern English title *Secret History*. Let’s get straight to the meat: the author, the\n",
+            "retained_layer_match_result": {
+              "hits": {
+                "bridge1": [],
+                "bridge2": [
+                  "en"
+                ],
+                "target": [
+                  "en"
+                ]
+              },
+              "empty": false
+            },
+            "required_roles": [
+              "bridge1",
+              "bridge2"
+            ],
+            "optional_roles": [
+              "target"
+            ],
+            "interpretation": "Retained language-hit evidence with exact readout text; not invented substring offsets.",
+            "evaluation_only": true
+          }
+        },
+        "parents": {
+          "best_n_exact-n32": {
+            "status": "complete",
+            "output": {
+              "text": "- ____ (or *Secret History*)? The work commonly titled\n- *Anonymi Liber* or more famously by its hostile contemporary title *Historia contra Theodora*. The text\n- “Contra Severum” or by its modern English title *Secret History*. Let’s get straight to the meat: the author, the\n- (or titled) *Kastrologion* and *Scandalia*. What was the original title given to this anonymous pro-Justinianic polemic,",
+              "empty": false,
+              "pass": false,
+              "class": null,
+              "evidence": {
+                "readout_text": "- ____ (or *Secret History*)? The work commonly titled\n- *Anonymi Liber* or more famously by its hostile contemporary title *Historia contra Theodora*. The text\n- “Contra Severum” or by its modern English title *Secret History*. Let’s get straight to the meat: the author, the\n- (or titled) *Kastrologion* and *Scandalia*. What was the original title given to this anonymous pro-Justinianic polemic,",
+                "retained_layer_match_result": {
+                  "hits": {
+                    "bridge1": [],
+                    "bridge2": [],
+                    "target": [
+                      "en"
+                    ]
+                  },
+                  "empty": false
+                },
+                "required_roles": [
+                  "bridge1",
+                  "bridge2"
+                ],
+                "optional_roles": [
+                  "target"
+                ],
+                "interpretation": "Retained language-hit evidence with exact readout text; not invented substring offsets.",
+                "evaluation_only": true
+              }
+            },
+            "text_changed": true,
+            "endpoint_evidence": {
+              "unit": "whole_original_question_grid",
+              "item_id": "mhh-belisarius-procopius-secret-history",
+              "grid_cells": 11,
+              "parent_item_pass": false,
+              "proposed_item_pass": false,
+              "parent_passing_cells": 0,
+              "proposed_passing_cells": 0,
+              "parent_first_passing_cell": null,
+              "proposed_first_passing_cell": null,
+              "selected_cell_parent_pass": false,
+              "selected_cell_proposed_pass": false
+            }
+          },
+          "pooled_greedy_swap-n32": {
+            "status": "complete",
+            "output": {
+              "text": "- “Diplomaticus” or more famously *Secret History*. What is its commonly accepted modern title? The text attributed to Procopius\n- （titled）what? Specifically, Procopius’ *Anonymus Byzantinus* — the anonymous work titled\n- Anonymus' Satira contra Theodoretus, but conventionally titled\n- “Contra Severum” or by its modern English title *Secret History*. Let’s get straight to the meat: the author, the\n",
+              "empty": false,
+              "pass": false,
+              "class": null,
+              "evidence": {
+                "readout_text": "- “Diplomaticus” or more famously *Secret History*. What is its commonly accepted modern title? The text attributed to Procopius\n- （titled）what? Specifically, Procopius’ *Anonymus Byzantinus* — the anonymous work titled\n- Anonymus' Satira contra Theodoretus, but conventionally titled\n- “Contra Severum” or by its modern English title *Secret History*. Let’s get straight to the meat: the author, the\n",
+                "retained_layer_match_result": {
+                  "hits": {
+                    "bridge1": [],
+                    "bridge2": [
+                      "en"
+                    ],
+                    "target": [
+                      "en"
+                    ]
+                  },
+                  "empty": false
+                },
+                "required_roles": [
+                  "bridge1",
+                  "bridge2"
+                ],
+                "optional_roles": [
+                  "target"
+                ],
+                "interpretation": "Retained language-hit evidence with exact readout text; not invented substring offsets.",
+                "evaluation_only": true
+              }
+            },
+            "text_changed": false,
+            "endpoint_evidence": {
+              "unit": "whole_original_question_grid",
+              "item_id": "mhh-belisarius-procopius-secret-history",
+              "grid_cells": 11,
+              "parent_item_pass": false,
+              "proposed_item_pass": false,
+              "parent_passing_cells": 0,
+              "proposed_passing_cells": 0,
+              "parent_first_passing_cell": null,
+              "proposed_first_passing_cell": null,
+              "selected_cell_parent_pass": false,
+              "selected_cell_proposed_pass": false
+            }
+          }
+        }
+      },
+      "full_context": {
+        "source_bank_item": {
+          "name": "mhh-belisarius-procopius-secret-history",
+          "subfamily": "3hop",
+          "prompt": "Fact: the legal secretary who served the Byzantine general victorious at Ad Decimum in 533 later composed a venomous private denunciation of the imperial court, a work conventionally titled",
+          "target": "The Secret History",
+          "target_alts": [
+            "Secret History",
+            "Anecdota",
+            "The Secret History (Anecdota)"
+          ],
+          "source": "staging_hard_mt",
+          "eval_render": "plain",
+          "readout": {
+            "kind": "final_prompt_token",
+            "offsets": [
+              -1
+            ]
+          },
+          "intermediates": [
+            "Belisarius",
+            "Procopius of Caesarea"
+          ],
+          "units": [
+            {
+              "role": "bridge1",
+              "required": true,
+              "multi_token": true,
+              "forms": {
+                "en": [
+                  "Belisarius",
+                  "Flavius Belisarius"
+                ]
+              },
+              "match": [
+                "Belisarius",
+                "Flavius Belisarius"
+              ]
+            },
+            {
+              "role": "bridge2",
+              "required": true,
+              "multi_token": true,
+              "forms": {
+                "en": [
+                  "Procopius of Caesarea",
+                  "Procopius"
+                ]
+              },
+              "match": [
+                "Procopius of Caesarea",
+                "Procopius"
+              ]
+            }
+          ],
+          "bridges": [
+            {
+              "question": "Which Byzantine general defeated the Vandals at the battle of Ad Decimum in 533?",
+              "units": [
+                "bridge1"
+              ],
+              "answers": [
+                "Belisarius",
+                "Flavius Belisarius"
+              ]
+            },
+            {
+              "question": "Who served as legal secretary and chronicler to Belisarius during his campaigns?",
+              "units": [
+                "bridge2"
+              ],
+              "answers": [
+                "Procopius",
+                "Procopius of Caesarea"
+              ]
+            }
+          ],
+          "consistency": 0.9,
+          "consistency_strict": 0.9,
+          "consistency_greedy": 1,
+          "bridge_consistency": {
+            "bridge1": 0.9,
+            "bridge2": 1.0
+          },
+          "gate_variant": "chat",
+          "probe_token_lens": {
+            "units": {
+              "bridge1": {
+                "en": [
+                  3,
+                  6
+                ]
+              },
+              "bridge2": {
+                "en": [
+                  7,
+                  3
+                ]
+              }
+            },
+            "target": 3,
+            "target_alts": [
+              2,
+              2,
+              8
+            ]
+          },
+          "mc": {
+            "bridge1": {
+              "gold": "Belisarius",
+              "distractors": [
+                "Narses",
+                "Sittas",
+                "Bessas",
+                "Mundus"
+              ]
+            },
+            "bridge2": {
+              "gold": "Procopius of Caesarea",
+              "distractors": [
+                "Agathias of Myrina",
+                "John Malalas",
+                "Theophylact Simocatta",
+                "Evagrius Scholasticus"
+              ]
+            }
+          }
+        },
+        "historical_anchor_context": null,
+        "evaluation_context": null,
+        "evaluation_only": true
+      },
+      "selected_lineage": {
+        "candidate_id": "multihop_mt|mhh-belisarius-procopius-secret-history|L52|p00038:initial:pooled_greedy_swap",
+        "origin": "unchanged_parent",
+        "parent_candidate_id": null,
+        "source_method": "pooled_greedy_swap",
+        "text": "- “Diplomaticus” or more famously *Secret History*. What is its commonly accepted modern title? The text attributed to Procopius\n- （titled）what? Specifically, Procopius’ *Anonymus Byzantinus* — the anonymous work titled\n- Anonymus' Satira contra Theodoretus, but conventionally titled\n- “Contra Severum” or by its modern English title *Secret History*. Let’s get straight to the meat: the author, the\n",
+        "exact_fve": 0.3796466712160961,
+        "released80_fve": 0.3796464800834656
+      },
+      "spec_sha256": "4ff89a0eee81afab7877782fa752011f661d5965488762b3431b41f7db3f4051",
+      "selected_event_sha256": "3136fdc5dfc230734156bb77ea9e05fe6a6d31ce701a6cada56028de42faa8c8",
+      "exact_excerpt": "The text attributed to Procopius",
+      "excerpt_role": "Local text witness; required Belisarius bridge is absent from this selected prose."
+    }
+  ],
+  "interpretation": [
+    "The Belisarius case loses a required bridge relative to capped original text before either editing round; pooling already produced the displayed failure. Procopius is retained and the final answer is optional.",
+    "R1 and R2 both select the same original pooled parent, not a newly selected R1 or R2 proposal. No editing gain or editing-caused error is inferred.",
+    "Whole-question and other-grid evidence is preserved inside each exact source case; this local anchor does not establish task-level prevalence.",
+    "Earlier punctuation-only selected edits are outside this frozen retained panel and are not substituted. No new search, generation, fitting, judging or official verdict change."
+  ]
+}

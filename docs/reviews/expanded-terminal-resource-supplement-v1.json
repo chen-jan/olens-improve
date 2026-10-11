@@ -1,0 +1,490 @@
+{
+  "schema_version": 1,
+  "status": "terminal_allocation_supplement",
+  "generated_utc": "2026-10-11T07:08:00.363598+00:00",
+  "sacct_captured_utc": "2026-10-11T07:07:42.031152+00:00",
+  "effort_generated_utc": "2026-10-11T06:43:00.211248+00:00",
+  "effort_status": "complete_retrospective",
+  "manifest_sha256": "753b2d9cab0daea0d19efef7d3222fd44921dbcf4669e6864d4f1bd4805421f8",
+  "parent_allocations_by_job": {
+    "25536297": [
+      {
+        "start_utc": "2026-10-11T00:15:43+00:00",
+        "end_utc": "2026-10-11T03:57:55+00:00",
+        "state": "PREEMPTED",
+        "terminal": true,
+        "allocated_seconds": 13332,
+        "allocated_cpus": 8,
+        "allocated_gpus": 1,
+        "allocated_cpu_core_hours": 29.626666666666665,
+        "allocated_gpu_hours": 3.703333333333333,
+        "node": "node4603",
+        "source_parent_row": {
+          "JobIDRaw": "25536297",
+          "JobName": "olens-expand-gpu-v1",
+          "State": "PREEMPTED",
+          "Submit": "2026-10-11T00:14:52",
+          "Eligible": "2026-10-11T00:14:52",
+          "Start": "2026-10-11T00:15:43",
+          "End": "2026-10-11T03:57:55",
+          "ElapsedRaw": "13332",
+          "AllocTRES": "billing=8,cpu=8,gres/gpu:h200=1,gres/gpu=1,mem=96G,node=1",
+          "NodeList": "node4603"
+        }
+      },
+      {
+        "start_utc": "2026-10-11T04:01:02+00:00",
+        "end_utc": "2026-10-11T06:08:20+00:00",
+        "state": "COMPLETED",
+        "terminal": true,
+        "allocated_seconds": 7638,
+        "allocated_cpus": 8,
+        "allocated_gpus": 1,
+        "allocated_cpu_core_hours": 16.973333333333333,
+        "allocated_gpu_hours": 2.1216666666666666,
+        "node": "node4010",
+        "source_parent_row": {
+          "JobIDRaw": "25536297",
+          "JobName": "olens-expand-gpu-v1",
+          "State": "COMPLETED",
+          "Submit": "2026-10-11T03:58:06",
+          "Eligible": "2026-10-11T04:00:07",
+          "Start": "2026-10-11T04:01:02",
+          "End": "2026-10-11T06:08:20",
+          "ElapsedRaw": "7638",
+          "AllocTRES": "billing=8,cpu=8,gres/gpu:h200=1,gres/gpu=1,mem=96G,node=1",
+          "NodeList": "node4010"
+        }
+      }
+    ],
+    "25536291": [
+      {
+        "start_utc": "2026-10-11T00:14:55+00:00",
+        "end_utc": "2026-10-11T06:59:45+00:00",
+        "state": "CANCELLED by ${UID}",
+        "terminal": true,
+        "allocated_seconds": 24290,
+        "allocated_cpus": 8,
+        "allocated_gpus": 0,
+        "allocated_cpu_core_hours": 53.977777777777774,
+        "allocated_gpu_hours": 0.0,
+        "node": "node1603",
+        "source_parent_row": {
+          "JobIDRaw": "25536291",
+          "JobName": "olens-expand-api",
+          "State": "CANCELLED by ${UID}",
+          "Submit": "2026-10-11T00:14:42",
+          "Eligible": "2026-10-11T00:14:42",
+          "Start": "2026-10-11T00:14:55",
+          "End": "2026-10-11T06:59:45",
+          "ElapsedRaw": "24290",
+          "AllocTRES": "billing=8,cpu=8,mem=32G,node=1",
+          "NodeList": "node1603"
+        }
+      }
+    ],
+    "25536417": [
+      {
+        "start_utc": "2026-10-11T00:18:55+00:00",
+        "end_utc": "2026-10-11T07:07:23+00:00",
+        "state": "CANCELLED by ${UID}",
+        "terminal": true,
+        "allocated_seconds": 24508,
+        "allocated_cpus": 16,
+        "allocated_gpus": 0,
+        "allocated_cpu_core_hours": 108.92444444444445,
+        "allocated_gpu_hours": 0.0,
+        "node": "node1623",
+        "source_parent_row": {
+          "JobIDRaw": "25536417",
+          "JobName": "olens-expand-cpu",
+          "State": "CANCELLED by ${UID}",
+          "Submit": "2026-10-11T00:18:34",
+          "Eligible": "2026-10-11T00:18:34",
+          "Start": "2026-10-11T00:18:55",
+          "End": "2026-10-11T07:07:23",
+          "ElapsedRaw": "24508",
+          "AllocTRES": "billing=16,cpu=16,mem=80G,node=1",
+          "NodeList": "node1623"
+        }
+      }
+    ],
+    "25536927": [
+      {
+        "start_utc": "2026-10-11T00:28:42+00:00",
+        "end_utc": "2026-10-11T01:29:18+00:00",
+        "state": "CANCELLED by ${UID}",
+        "terminal": true,
+        "allocated_seconds": 3636,
+        "allocated_cpus": 16,
+        "allocated_gpus": 0,
+        "allocated_cpu_core_hours": 16.16,
+        "allocated_gpu_hours": 0.0,
+        "node": "node3105",
+        "source_parent_row": {
+          "JobIDRaw": "25536927",
+          "JobName": "olens-expand-cpu2",
+          "State": "CANCELLED by ${UID}",
+          "Submit": "2026-10-11T00:28:00",
+          "Eligible": "2026-10-11T00:28:00",
+          "Start": "2026-10-11T00:28:42",
+          "End": "2026-10-11T01:29:18",
+          "ElapsedRaw": "3636",
+          "AllocTRES": "billing=16,cpu=16,mem=80G,node=1",
+          "NodeList": "node3105"
+        }
+      }
+    ]
+  },
+  "unallocated_parent_rows": [],
+  "total_allocated_H200_hours": 5.824999999999999,
+  "total_allocated_cpu_core_hours": 225.66222222222223,
+  "cpu_core_hours_scope": "Allocated host CPUs in all four jobs, including the GPU allocation; not measured process CPU consumption.",
+  "first_attempt_committed_scoring_loop_seconds": 13021.449643611908,
+  "scoring_loop_scope": "source timer includes scoring loop CPU work, GPU inference and checkpoint/journal I/O; excludes input/model loading and batching guard",
+  "operational_timings_from_effort": [
+    {
+      "path": ".state/expanded-cpu-v1.service.json",
+      "value": {
+        "job_id": 25536417,
+        "job_ids": [
+          25536417,
+          25536927
+        ],
+        "node": "node1623",
+        "cpu_count": 32,
+        "memory_gib": 160,
+        "end_utc": "2026-10-11T12:18:55Z",
+        "cached_status": "${OLENS_DATA_ROOT}/expansion-v1/selections/cached-v2/status.json",
+        "cached_state": "complete",
+        "combinations_root": "${OLENS_DATA_ROOT}/expansion-v1/selections/combinations-v2",
+        "pid": 1671839,
+        "started_utc": "2026-10-11T00:29:11.881627+00:00",
+        "state": "terminal",
+        "inventory_sha256": "753b2d9cab0daea0d19efef7d3222fd44921dbcf4669e6864d4f1bd4805421f8",
+        "code_sha256": "7f103d8a9395e4e94fc5abc91a69b2d3a179cdae9a89bcf5283150a7ff11f0ac",
+        "last_check_utc": "2026-10-11T01:29:03.366111+00:00",
+        "workers": [
+          {
+            "pid": 1672038,
+            "exit_code": 0,
+            "status_path": "${OLENS_DATA_ROOT}/expansion-v1/selections/combinations-v2/shard-0/status.json",
+            "status": {
+              "status": "complete",
+              "completed_cells": 2401,
+              "expected_cells": 2401,
+              "selection_sha256": "dbe8ee289ad73308bc5553e3fceeab4ac7ef27602a38e626bdb052abb7ebda8c",
+              "seconds": 3349.5780432224274,
+              "new_model_calls": 0,
+              "new_api_calls": 0
+            },
+            "log": "/tmp/olens-expansion-combo-v2-0.log",
+            "error_log": "/tmp/olens-expansion-combo-v2-0.err",
+            "error_tail": null
+          },
+          {
+            "pid": 1672039,
+            "exit_code": 0,
+            "status_path": "${OLENS_DATA_ROOT}/expansion-v1/selections/combinations-v2/shard-1/status.json",
+            "status": {
+              "status": "complete",
+              "completed_cells": 2459,
+              "expected_cells": 2459,
+              "selection_sha256": "a783f4d93fad900ab372ed552ed0b427152cc177e1496942ae2752961616c415",
+              "seconds": 3456.0952899456024,
+              "new_model_calls": 0,
+              "new_api_calls": 0
+            },
+            "log": "/tmp/olens-expansion-combo-v2-1.log",
+            "error_log": "/tmp/olens-expansion-combo-v2-1.err",
+            "error_tail": null
+          },
+          {
+            "pid": 1672040,
+            "exit_code": 0,
+            "status_path": "${OLENS_DATA_ROOT}/expansion-v1/selections/combinations-v2/shard-2/status.json",
+            "status": {
+              "status": "complete",
+              "completed_cells": 2484,
+              "expected_cells": 2484,
+              "selection_sha256": "fe2fc99544817e14ca1a3335077c901db58c0ff2852ed9b71c804cc2c6e2d0f7",
+              "seconds": 3520.8243339061737,
+              "new_model_calls": 0,
+              "new_api_calls": 0
+            },
+            "log": "/tmp/olens-expansion-combo-v2-2.log",
+            "error_log": "/tmp/olens-expansion-combo-v2-2.err",
+            "error_tail": null
+          },
+          {
+            "pid": 1672041,
+            "exit_code": 0,
+            "status_path": "${OLENS_DATA_ROOT}/expansion-v1/selections/combinations-v2/shard-3/status.json",
+            "status": {
+              "status": "complete",
+              "completed_cells": 2529,
+              "expected_cells": 2529,
+              "selection_sha256": "4d5613310e20510972d147ba95880305e241945083cb01c6124e37295000418d",
+              "seconds": 3528.5401527881622,
+              "new_model_calls": 0,
+              "new_api_calls": 0
+            },
+            "log": "/tmp/olens-expansion-combo-v2-3.log",
+            "error_log": "/tmp/olens-expansion-combo-v2-3.err",
+            "error_tail": null
+          },
+          {
+            "pid": 1672042,
+            "exit_code": 0,
+            "status_path": "${OLENS_DATA_ROOT}/expansion-v1/selections/combinations-v2/shard-4/status.json",
+            "status": {
+              "status": "complete",
+              "completed_cells": 2524,
+              "expected_cells": 2524,
+              "selection_sha256": "cce8ac38f33ce360a6d538ba972a80483917ee08cf5697c241bdc510a726fc63",
+              "seconds": 3541.8909018039703,
+              "new_model_calls": 0,
+              "new_api_calls": 0
+            },
+            "log": "/tmp/olens-expansion-combo-v2-4.log",
+            "error_log": "/tmp/olens-expansion-combo-v2-4.err",
+            "error_tail": null
+          },
+          {
+            "pid": 1672043,
+            "exit_code": 0,
+            "status_path": "${OLENS_DATA_ROOT}/expansion-v1/selections/combinations-v2/shard-5/status.json",
+            "status": {
+              "status": "complete",
+              "completed_cells": 2311,
+              "expected_cells": 2311,
+              "selection_sha256": "b88d1bad81ba767997e46e98d9ddb804d69d3d75d6eecab42368807069b48c80",
+              "seconds": 2964.771580696106,
+              "new_model_calls": 0,
+              "new_api_calls": 0
+            },
+            "log": "/tmp/olens-expansion-combo-v2-5.log",
+            "error_log": "/tmp/olens-expansion-combo-v2-5.err",
+            "error_tail": null
+          },
+          {
+            "pid": 1672044,
+            "exit_code": 0,
+            "status_path": "${OLENS_DATA_ROOT}/expansion-v1/selections/combinations-v2/shard-6/status.json",
+            "status": {
+              "status": "complete",
+              "completed_cells": 2371,
+              "expected_cells": 2371,
+              "selection_sha256": "5122e3e0a84c51598c45129532db18ca3fcc7dcddd7b67db2d8e61c512437e33",
+              "seconds": 3073.804096221924,
+              "new_model_calls": 0,
+              "new_api_calls": 0
+            },
+            "log": "/tmp/olens-expansion-combo-v2-6.log",
+            "error_log": "/tmp/olens-expansion-combo-v2-6.err",
+            "error_tail": null
+          },
+          {
+            "pid": 1672045,
+            "exit_code": 0,
+            "status_path": "${OLENS_DATA_ROOT}/expansion-v1/selections/combinations-v2/shard-7/status.json",
+            "status": {
+              "status": "complete",
+              "completed_cells": 2356,
+              "expected_cells": 2356,
+              "selection_sha256": "8ae2a6fc2067abb10583862aededb9d3ba7a28d692d2ffdf9c420f6a86682453",
+              "seconds": 3066.5788333415985,
+              "new_model_calls": 0,
+              "new_api_calls": 0
+            },
+            "log": "/tmp/olens-expansion-combo-v2-7.log",
+            "error_log": "/tmp/olens-expansion-combo-v2-7.err",
+            "error_tail": null
+          }
+        ],
+        "merge_exit_code": 0,
+        "merge_stdout": "{\"status\": \"complete\", \"cells\": 19435, \"conditions\": 13}\n",
+        "merge_stderr": ""
+      },
+      "scope": "Operational task wall time, not per-method latency or summed CPU time."
+    },
+    {
+      "path": ".state/expanded-gpu-v1.service.json",
+      "value": {
+        "job_id": "25536297",
+        "pid": 1475648,
+        "hostname": "node4010",
+        "restart_count": 1,
+        "started_unix": 1791691263.0204532,
+        "completed_tasks": {
+          "likelihood-n8-two-controls-v1": {
+            "task_sha256": "43f3a358dbe048827e62e8b8a887fa78eb7c27f19c34b36b9b7ccc8620fdab5c",
+            "seconds": 3394.194668531418,
+            "finished_unix": 1791694657.4027529,
+            "job_id": "25536297"
+          },
+          "editing-round1-chain_intermediates-v1": {
+            "task_sha256": "445c78a863928fb76958c86b6529795082c8c243d62658c4561a85ba5b00c44c",
+            "seconds": 171.0707550048828,
+            "finished_unix": 1791694828.5874615,
+            "job_id": "25536297"
+          },
+          "editing-round1-multihop_mt-v1": {
+            "task_sha256": "b7c4fd30f4bea53354579dad47d7a5f217f81713c9c144452e8c217ced866b1c",
+            "seconds": 171.64409518241882,
+            "finished_unix": 1791695000.3310966,
+            "job_id": "25536297"
+          },
+          "editing-round1-hallucination-v1": {
+            "task_sha256": "408ae4786314d06ac3b57c82889d35970b01961c04ffbf2c2f2ac537464e20e2",
+            "seconds": 547.2151026725769,
+            "finished_unix": 1791695547.8042681,
+            "job_id": "25536297"
+          },
+          "editing-round1-role_bound_association-v1": {
+            "task_sha256": "f8c0355a2a5a8e93574499ebbd0bb2c62044622859b75d3f53ede22f0d82f52f",
+            "seconds": 1126.409977197647,
+            "finished_unix": 1791696674.7406695,
+            "job_id": "25536297"
+          },
+          "editing-round2-chain_intermediates-v1": {
+            "task_sha256": "8b3d0647fe7350f59fee2a0951b311ab78e645a16f4f56a6b00f14fc6ac69e1d",
+            "seconds": 171.574401140213,
+            "finished_unix": 1791696846.6113262,
+            "job_id": "25536297"
+          },
+          "editing-round2-multihop_mt-v1": {
+            "task_sha256": "a97a35673461224d59bd7da4e96c8f15a0411b49bffb44b5b68e67449138c4cb",
+            "seconds": 176.4097454547882,
+            "finished_unix": 1791697023.358468,
+            "job_id": "25536297"
+          },
+          "editing-round2-hallucination-v1": {
+            "task_sha256": "8b1e1994475a49f658060e92ef5448365f338a437b3a2880b2395e618502a3c8",
+            "seconds": 574.1575181484222,
+            "finished_unix": 1791697598.8048437,
+            "job_id": "25536297"
+          },
+          "editing-round2-role_bound_association-v1": {
+            "task_sha256": "cd22b9341a194e0b0c25c0e834155119d738e7e35b28b2a867687c715a55385f",
+            "seconds": 1271.1362948417664,
+            "finished_unix": 1791698870.4920478,
+            "job_id": "25536297"
+          }
+        },
+        "gpu": "NVIDIA H200 NVL, 143771 MiB, GPU-95de5fd1-eb0c-5004-b228-365bee20e18f",
+        "status": "complete",
+        "task_id": "editing-round2-role_bound_association-v1",
+        "last_check_unix": 1791698900.5033846,
+        "queue_status": "sealed_likelihood_and_editing_tasks"
+      },
+      "scope": "Operational task wall time, not per-method latency or summed CPU time."
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/expansion-v1/selections/cached-v2/status.json",
+      "value": {
+        "status": "complete",
+        "completed_cells": 19435,
+        "conditions": 39,
+        "expected_cells": 19435,
+        "source_parents": [
+          {
+            "path": "${OLENS_DATA_ROOT}/selections/development-full-grid-v4/merged/selections.jsonl",
+            "sha256": "54ee50e61ebc11ac66d8d11c294dda60e17a7f9e06ad8632665e6bbb6505635e",
+            "hash_status": "terminal_receipt_pending_stream_verification"
+          },
+          {
+            "path": "${OLENS_DATA_ROOT}/selections/development-full-grid-e1-pruning-v1/selections.jsonl",
+            "sha256": "a645983ab2e24eb4ef6f6fb298698405b4a2cee29c221af3da00d2e06ec6935a"
+          },
+          {
+            "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/merged/selections.jsonl",
+            "sha256": "44b817683374049245f8d84d0fee3c7ebc27d37cd62c79e97976394323df30fa",
+            "hash_status": "terminal_receipt_pending_stream_verification"
+          },
+          {
+            "path": "${OLENS_DATA_ROOT}/selections/validation-full-grid-v1/e1-pruning/selections.jsonl",
+            "sha256": "76a775e169919f3e01e56cd5ab744d803e64fad5c99628f26a145d4a4c8b1c50"
+          },
+          {
+            "path": "${OLENS_DATA_ROOT}/selections/test-full-grid-v1/merged/selections.jsonl",
+            "sha256": "547b953be6fff89d2f850001fd6dcdb3aed606708c8a211b6270369a4aa25df1",
+            "hash_status": "terminal_receipt_pending_stream_verification"
+          },
+          {
+            "path": "${OLENS_DATA_ROOT}/selections/test-full-grid-e1-pruning-v2/selections.jsonl",
+            "sha256": "0e2f4583bd9ee5a9d3b75960801b0dd656b4355ad3fbe3e78ac55d12592170f8"
+          }
+        ],
+        "seconds": 45.06743049621582,
+        "new_api_calls": 0,
+        "new_model_calls": 0
+      },
+      "scope": "Operational task wall time, not per-method latency or summed CPU time."
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/expansion-v1/likelihood-n8-two-controls/status.json",
+      "value": {
+        "status": "complete",
+        "completed_cells": 19435,
+        "expected_cells": 19435,
+        "scoring_seconds": 3345.827311038971,
+        "total_seconds": 3391.4578886032104,
+        "quality_status": "unjudged",
+        "slurm_job_id": "25536297",
+        "last_update_unix": 1791694656.4835181
+      },
+      "scope": "Operational task wall time, not per-method latency or summed CPU time."
+    }
+  ],
+  "actual_gpu_kernel_seconds": null,
+  "actual_process_cpu_seconds": null,
+  "GPU_dollars": null,
+  "CPU_dollars": null,
+  "storage": {
+    "observed_utc": "2026-10-11T07:08:00.363563+00:00",
+    "owned_subtrees": {
+      "logical_bytes": 123068213061,
+      "allocated_bytes": 94183791104,
+      "files": 18583,
+      "complete": true,
+      "per_root": {
+        "${OLENS_COMPUTE_ROOT}": {
+          "logical_bytes": 83085572511,
+          "allocated_bytes": 83111116800,
+          "files": 10831,
+          "complete": true
+        },
+        "${OLENS_DATA_ROOT}": {
+          "logical_bytes": 39982640550,
+          "allocated_bytes": 11072674304,
+          "files": 7752,
+          "complete": true
+        }
+      }
+    },
+    "externally_reused_artifacts": [
+      {
+        "path": "${OLENS_SCRATCH}/workspace/hf_cache/hub/models--Qwen--Qwen3.6-27B/snapshots/6a9e13bd6fc8f0983b9b99948120bc37f49c13e9",
+        "scope": "Shared reused base weights, excluded from the project-owned traversal. The earlier verified 15 weight shards total 55562855904 bytes; this configuration does not remeasure them."
+      }
+    ],
+    "scope": "Specified subtrees only; inode-deduplicated logical bytes and filesystem allocated blocks. Symlinks excluded; externally reused weights are listed separately without traversal. Not a project quota or peak-storage claim."
+  },
+  "source_sha256": {
+    ".state/resource-terminal-final-v1/sacct-UTC.txt": "8ccc0b19170bb18b4693d7ba2fe09ca464deddc35d8b90199fb70a60cdea57f6",
+    ".state/gpu-preemption-accounting-v1/receipt.json": "ff4b40a6a2f3e3ce047d65e83c228a432d7b9f834119561bf5ce6a5333d3ff31",
+    "${OLENS_DATA_ROOT}/expansion-v1/analysis/effort-final-v1/effort.json": "bb2a14bfbac15d3d76ae9936376c4343d422253f1904d74bcb4717932351121f",
+    ".state/expanded-terminal-storage-roots-v1.json": "60a8f2e7adaad28ba1dfd5286919d4c87ba50f57b957a8fc0606e0b74bbaca6a",
+    "${OLENS_REPO_ROOT}/infra/watch_resources.py": "6198f358c226c062615a23c396fecf2eb6afc27be7e8a73d6e4d8fbe3d94f95d"
+  },
+  "implementation_sha256": "12ef857a10a376a5073f67c485f5c63f49d36771454571869b46cabb8dcb1c68",
+  "limits": [
+    "Allocation totals exclude queue wait and sum parent intervals only; step durations are excluded.",
+    "The prior resumed 232-second snapshot is not added: its interval is replaced by this capture.",
+    "Concurrent allocations contribute separate resource-hours; these are not end-to-end wall latency.",
+    "Scoring-loop timers include host work/inference/I/O and are separate observations, never added to allocation hours.",
+    "Completed-task seconds after resume describe the successful last attempt, not cumulative campaign time.",
+    "No prices, invoice reconciliation, kernel utilization, project quota or exclusive ownership of reused weights inferred."
+  ]
+}

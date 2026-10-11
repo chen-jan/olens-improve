@@ -1,0 +1,26 @@
+{
+  "status": "root_verified_terminal_allocation_and_success_receipts",
+  "created_utc": "2026-10-11T06:16:35.990840+00:00",
+  "receipt": {
+    "path": ".state/gpu-terminal-accounting-v1/receipt.json",
+    "sha256": "5e29237295aa257d5765223c9b9986cd81c89b9f4fd9be0f9b760603c07d7b3c"
+  },
+  "source_pin_count": 20,
+  "source_pin_mismatches": [],
+  "owned_GPU_job": "25536297",
+  "successful_tasks": 9,
+  "editor_tasks": 8,
+  "allocated_H200_hours": 5.825,
+  "allocated_seconds": 20970,
+  "editor_new_vectors": 131332,
+  "editor_scored_cell_round_units": 38870,
+  "root_checks": [
+    "All20 frozen source pins verified; terminal parent rows preserve both preemption intervals.",
+    "20970 allocated seconds equals 13332+7638; 5.825 H200 hours. Queue waits and substeps are excluded.",
+    "Nine successful task receipts and eight complete editor statuses are present; these do not certify benchmark correctness."
+  ],
+  "limits": [
+    "Task wall, allocated time and GPU kernel time differ. Kernel time and dollar cost remain unavailable.",
+    "CPU allocations and final scientific/qualitative/accounting analyses remain active."
+  ]
+}

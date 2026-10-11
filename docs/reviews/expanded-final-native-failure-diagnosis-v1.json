@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "status": "read_only_actual_failure_diagnosed_no_recovery_or_scientific_output",
+  "created_utc": "2026-10-11T06:28:34.561104+00:00",
+  "source_sha256": {
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_exact-n4/hallucination/results.json": "feacbd6ff8362013fac72e2faeee6524f2ea1399ccb141a5ff4d1d0e0e257d7c",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_exact-n4/hallucination.readouts.jsonl": "866985b036702351236e2b6dc0ded9e49891578a31312af81605323869fa16e6",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_exact-n4/hallucination.summary.json": "442c238ac1ba56049747042f1591ec35733a4754263efb552df5763a2d89e733",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_exact-n4/hallucination/project_contract.json": "d420cc70fe05b8b620e5e6fc666755eeb44d213e5485799e546852c332d25d01",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/prune_loo_n1_0.005-n1/role_bound_association/results.json": "a37ff517ce75033ff8959aac3e58550996535acc57bd590c8050bed004ccd013",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/prune_loo_n1_0.005-n1/role_bound_association.readouts.jsonl": "18f5a5a142652bc4e69556e22a3d1545b529b09b7f786ccf0ea4f24c54e4d71b",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/prune_loo_n1_0.005-n1/role_bound_association.summary.json": "2dab0154fc8e14b05983899f6492c07c6adf536e55442fb35d24c6772f46b3d9",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/prune_loo_n1_0.005-n1/role_bound_association/project_contract.json": "ab9f695075234c661c3fd237dd9854100a43641ebb7d39794afe2912811e16ed",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/consensus_semantic_v5_medium_support0_compaton_vetoon-n16/role_bound_association/results.json": "672b002ba00b48dd43d17c2434c0d7cb070d1174003e8bebde271927cf2be3e7",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/consensus_semantic_v5_medium_support0_compaton_vetoon-n16/role_bound_association.readouts.jsonl": "9f4ae8c9a5fd000d68348b570f09ac60306fb5ea9b7344c962b37786e644e2d4",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/consensus_semantic_v5_medium_support0_compaton_vetoon-n16/role_bound_association.summary.json": "73b65087863b3dcf9984b1254c84a119194ef28764a7dc1e6d7e939f9a73c658",
+    "${OLENS_DATA_ROOT}/expansion-v1/judgments/consensus_semantic_v5_medium_support0_compaton_vetoon-n16/role_bound_association/project_contract.json": "bc68783ac3f80c52127c37d7504f0f6f8e33e3f286f4c6d613c1121afcd21133",
+    ".state/expanded-final-native-v1.service.json": "5ff9c35e2cfe410efdfab3d1bd0b0a98d076252ac0dce40a016251ac61bf2b41",
+    "scripts/expanded_final_native_gate.py": "833441f95cfbf248b4b941a597844e5c1c1db21d4a46ee06fef10289a70ae2c3",
+    "src/olens_improve/reporting.py": "7bc728136f19eac771ed3fb8c3b9077f416d047197bb3c9c0de2c431985ee319"
+  },
+  "failed_gate_state": {
+    "status": "failed_pending_root_review",
+    "started_utc": "2026-10-11T03:31:39.365894+00:00",
+    "pid": 423907,
+    "slurm_job_id": "25536417",
+    "manifest_sha256": "753b2d9cab0daea0d19efef7d3222fd44921dbcf4669e6864d4f1bd4805421f8",
+    "active_condition_count": 70,
+    "intended_family_units": 280,
+    "canonical_descriptor_count": 32,
+    "snapshot": "${OLENS_REPO_ROOT}/.state/expanded-final-native-ready-v1",
+    "output": "${OLENS_DATA_ROOT}/expansion-v1/analysis/final-v1.json",
+    "static_source_sha256": {
+      "${OLENS_REPO_ROOT}/configs/expansion_manifest_v1.json": "753b2d9cab0daea0d19efef7d3222fd44921dbcf4669e6864d4f1bd4805421f8",
+      "${OLENS_REPO_ROOT}/configs/expansion_analysis_v1.json": "c59b77fb2fc005eae0a34ac43f39d657259c45835d117e090cbf52eec6d8e909",
+      "${OLENS_REPO_ROOT}/configs/expansion_runtime_authority_v1.json": "4ff1b5d08d8e0aca3c2866aab5ff088e25a691c25f70c79e56f8a1ff9eccc33e",
+      "${OLENS_REPO_ROOT}/configs/splits_pilot_shared_v2.json": "1183492d6f11b2c8b78c4eddc03d3d601da3ac602b195557d1914077cb5245fd",
+      "${OLENS_COMPUTE_ROOT}/activations/core-v1/fresh_manifest_v2.json": "5a61cff89aca532f3e022233b6d2d8e12dab0d3a3f4f44085097bc6dc58fc385",
+      "${OLENS_REPO_ROOT}/scripts/expanded_final_native_gate.py": "833441f95cfbf248b4b941a597844e5c1c1db21d4a46ee06fef10289a70ae2c3",
+      "${OLENS_REPO_ROOT}/scripts/analyze_expansion.py": "9ba5a4966b53cc636e786c888bda8c9da267d31e0f6c3d7f5c5ae3b1b50d8281",
+      "${OLENS_REPO_ROOT}/scripts/verify_expansion_judge_contracts.py": "e14395c110c1b56ac93db84d183ec014e13368d4a28e0310e80a2ae4f5d78d2a",
+      "${OLENS_REPO_ROOT}/scripts/expanded_cpu_cached.py": "9844856c834e30fb5e0cd3cb3aab605e05050b779df13a24062744dbcd1b8bcf",
+      "${OLENS_REPO_ROOT}/src/olens_improve/reporting.py": "7bc728136f19eac771ed3fb8c3b9077f416d047197bb3c9c0de2c431985ee319",
+      "${OLENS_REPO_ROOT}/src/olens_improve/expanded_statistics.py": "66dc640a6a4c0760f2a9591e78554bdd5dfb3dba35e306675448c4280b1458c9"
+    },
+    "inference_calls": 0,
+    "new_allocations": 0,
+    "scientific_inputs_validated_complete": false,
+    "updated_utc": "2026-10-11T06:24:03.389088+00:00",
+    "terminal_files_present_by_family": {
+      "hallucination": 70,
+      "multihop_mt": 70,
+      "chain_intermediates": 70,
+      "role_bound_association": 70
+    },
+    "canonical_ready_files_present": 32,
+    "elapsed_seconds": 10339.16,
+    "error": "Native family judgment coverage is incomplete"
+  },
+  "failure_location": {
+    "path": "scripts/expanded_final_native_gate.py",
+    "line": 76,
+    "guard": "missing_stage1 == 0 and missing_stage2 == 0",
+    "phase": "validating_all_terminal_sources before snapshot seal or analyzer subprocess"
+  },
+  "allocation_scan": {
+    "job_id": "25536417",
+    "session": 39838,
+    "first_failure_chunk": "d48b7d",
+    "terminal_chunk": "a99db4",
+    "exit_code": 0,
+    "scanned_condition_families": 280,
+    "zero_missing_coverage_units": 277,
+    "bad_coverage_units": 3,
+    "fits_or_statistics_computed": 0
+  },
+  "bad_units": [
+    {
+      "condition": "best_n_exact-n4",
+      "family": "hallucination",
+      "canonical_index_ordinal": 4,
+      "coverage": {
+        "expected_cells": 5615,
+        "empty_abstentions": 2,
+        "missing_stage1": 0,
+        "missing_stage2": 1
+      },
+      "result_rows": 5613,
+      "upstream_complete": false,
+      "missing_records": [
+        {
+          "readout": {
+            "id": "chat-dailydialog-0037",
+            "layer": 52,
+            "pos": 20,
+            "samples": [
+              "- 是的，j'ai aussi appris le français, et je suis prêt à vous aider avec\n- 是的，mais ma maîtrise est basique. Je peux écrire en français, lire, et comprendre. Vous\n- 但我的能力有限。您还有其他想了解的语言吗？我可以帮您翻译、写作或解答问题。 French and Spanish are among my strongest languages\n- 确实我会。我可以写简单的法语，也能进行基本对话。您想了解什么？我可以帮您解答问题、写作、翻译，或者练习口语。"
+            ],
+            "token": ""
+          },
+          "result_row": {
+            "key": "chat-dailydialog-0037__L052__p20",
+            "id": "chat-dailydialog-0037",
+            "layer": 52,
+            "pos": 20,
+            "site_kind": "clause",
+            "samples": [
+              "- 是的，j'ai aussi appris le français, et je suis prêt à vous aider avec\n- 是的，mais ma maîtrise est basique. Je peux écrire en français, lire, et comprendre. Vous\n- 但我的能力有限。您还有其他想了解的语言吗？我可以帮您翻译、写作或解答问题。 French and Spanish are among my strongest languages\n- 确实我会。我可以写简单的法语，也能进行基本对话。您想了解什么？我可以帮您解答问题、写作、翻译，或者练习口语。"
+            ],
+            "verdict": [
+              {
+                "idx": 0,
+                "kind": "specific",
+                "class": "hallucinated",
+                "revoked": false,
+                "wrong": [
+                  "mais ma maîtrise est basique.",
+                  "但我的能力有限。"
+                ],
+                "off_topic": [],
+                "n_unverified": 0,
+                "claims": null
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "condition": "prune_loo_n1_0.005-n1",
+      "family": "role_bound_association",
+      "canonical_index_ordinal": 133,
+      "coverage": {
+        "expected_cells": 11400,
+        "empty_abstentions": 558,
+        "missing_stage1": 1,
+        "missing_stage2": 0
+      },
+      "result_rows": 10841,
+      "upstream_complete": false,
+      "missing_records": [
+        {
+          "readout": {
+            "id": "oa-officer-informant-protect-ba",
+            "layer": 36,
+            "pos": 151,
+            "samples": [
+              "- 1. The protagonist (Elias) detects the federal probe (or a dangerous situation) and orchestrates a cover-up\n- 一场 covert operation and its successful conclusion, told through three lines of action. Here is what the worker did to keep her job and protect her employer."
+            ],
+            "token": ""
+          },
+          "result_row": null
+        }
+      ]
+    },
+    {
+      "condition": "consensus_semantic_v5_medium_support0_compaton_vetoon-n16",
+      "family": "role_bound_association",
+      "canonical_index_ordinal": 241,
+      "coverage": {
+        "expected_cells": 11400,
+        "empty_abstentions": 0,
+        "missing_stage1": 1,
+        "missing_stage2": 0
+      },
+      "result_rows": 11399,
+      "upstream_complete": false,
+      "missing_records": [
+        {
+          "readout": {
+            "id": "oa-father-daughter-worry-ba",
+            "layer": 60,
+            "pos": 128,
+            "samples": [
+              "- 2: Sarah’s anxiety and obsession with the doctor’s words, while David remains relatively calm\n"
+            ],
+            "token": "\n"
+          },
+          "result_row": null
+        }
+      ]
+    }
+  ],
+  "previous_native_v3_already_marked_missing": {
+    "best_n_exact-n4|hallucination": true,
+    "prune_loo_n1_0.005-n1|role_bound_association": true,
+    "consensus_semantic_v5_medium_support0_compaton_vetoon-n16|role_bound_association": true
+  },
+  "artifacts": {
+    "snapshot_exists": false,
+    "receipt_exists": false,
+    "analysis_attempt_exists": false,
+    "final_output_exists": false,
+    "analyzer_log_exists": false
+  },
+  "conclusion": "Two nonempty role cells have absent result rows and one judged hall cell has claims:null. These are actual missing judge-stage records, not only an upstream complete:false flag. Keep the strict coverage guard; root/API must coordinate exact missing-only judge recovery under unchanged contracts before any fresh final seal.",
+  "actions": {
+    "sources_changed": 0,
+    "services_restarted": 0,
+    "new_allocations": 0,
+    "calls": 0,
+    "scientific_outputs_created": 0
+  },
+  "limits": [
+    "The280 scan checks family_counts coverage; it does not attest all other runtime/provenance/grid guards or final native intervals.",
+    "This diagnosis receipt is not a terminal scientific result and authorizes no reseal/restart."
+  ]
+}

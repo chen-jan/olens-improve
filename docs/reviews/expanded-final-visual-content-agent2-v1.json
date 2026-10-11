@@ -1,0 +1,72 @@
+{
+  "status": "pass_with_explicit_scope",
+  "reviewer": "expanded_manifest_cpu / agent_2",
+  "created_utc": "2026-10-11T07:10:50.896669+00:00",
+  "delivery": "final-v3",
+  "source_sha256": {
+    "${OLENS_REPO_ROOT}/docs/reviews/root-expansion-final-v1.json": "a861d9b0002b48f2d493b4be6dcf6f06f9cecbfb59af20bdf11561539b91a14d",
+    "${OLENS_REPO_ROOT}/docs/EXPANDED_REPORT.md": "0b9600789315f6aae1b97758058ee90b7a62638963f0dea9ca431c6468c0d4ce",
+    "${OLENS_DATA_ROOT}/expansion-v1/analysis/final-v1.json": "e2773e297d7724f20d656ecf07c5de00097604d8a85c516938a565626b07876e",
+    "${OLENS_DATA_ROOT}/expansion-v1/reconstruction/final-v1.json": "0c3f99db532641326d4d432a9587d9ee10d9ea978fe16f9c74c9d96740965ba8",
+    "${OLENS_DATA_ROOT}/expansion-v1/presentation/final-v3/build.json": "2adeffb9e416c381976e3074a75745bb15cb18c3706b52d8764e26e0f8f024f7",
+    "${OLENS_DATA_ROOT}/expansion-v1/presentation/final-v3/source-contract.json": "cede6a0cfbf3eed5fef02abad9b63afb25494af8c9bdea00a06a23437c3cbfde",
+    "${OLENS_DATA_ROOT}/expansion-v1/presentation/final-v3/layout-qa.json": "a9d24422fb215764bb59cce5c0f9c4c2386b79e9591b458086449994abf1382e",
+    "${OLENS_DATA_ROOT}/expansion-v1/presentation/final-v3/render.json": "128aef874f24bb50710aefa72ab0facb9013d4fb16f4023a9a8379410ce35a3f",
+    "${OLENS_DATA_ROOT}/expansion-v1/presentation/final-v3/geometry.json": "4d3494c86a93697a5dbd57cccbc6b5a9370d8ed73caaab8342ac7edff5fce86a",
+    "${OLENS_DATA_ROOT}/expansion-v1/presentation/final-v3/contact-sheet.png": "8d86c1ca11465d82018ccc185475ae7d7a372acb72ca2db15a6979aeb2809d39",
+    "${OLENS_DATA_ROOT}/expansion-v1/presentation/final-v3/slide-06.png": "011ac103e42d5c2df4723cae67bb0266e8ff235f4e48964c35a2de920e59e38e",
+    "${OLENS_DATA_ROOT}/expansion-v1/presentation/final-v3/slide-10.png": "8cd1891064f54bba825889aabc4f8e0334365e5befd74c17a3a5273eac0deab2",
+    "${OLENS_DATA_ROOT}/expansion-v1/presentation/final-v3/slide-16.png": "7914868f8945ca8988cd3c17e372acfe25de5bad48dc0583b2a7ecfc7bccb15b",
+    "${OLENS_DATA_ROOT}/expansion-v1/presentation/final-v3/expanded.pdf": "4da38aaeab5a8b262e6433af6741cff1668c811a8e95b3c88b66ca273044a9b1",
+    "${OLENS_DATA_ROOT}/expansion-v1/presentation/final-v3/expanded.pptx": "f56b246c494066bca9ad9f6c924f432b6c50bf2e5d9ed43069e0276fe716df21",
+    "${OLENS_DATA_ROOT}/expansion-v1/dashboard/final-v3/qa.json": "aac27106fa75fbe5b67eebb724fdf1a3151f07199db6700ed5b5475363341717"
+  },
+  "scope": {
+    "independently_viewed_existing_images": [
+      "contact-sheet.png",
+      "slide-06.png",
+      "slide-10.png",
+      "slide-16.png"
+    ],
+    "read_only_content_checks": [
+      "Final report seven approach-specific task tables and all70 native-quality rows",
+      "Source-bound primary fit/quality comparisons, parent identities, valid masks and denominator meanings",
+      "Existing geometry records for sample-budget reconstruction figure and uncertainty slide"
+    ],
+    "reused_checks": {
+      "deck_layout": {
+        "status": "pass",
+        "failures": []
+      },
+      "dashboard_browser": {
+        "status": "pass",
+        "views": 14,
+        "source_objects_mutated": false,
+        "independent_browser_rerun": false
+      }
+    },
+    "new_jobs_renders_calls_or_generator_edits": false
+  },
+  "findings": [
+    "No observed substantive content or visual defect in the inspected final artifacts.",
+    "Selection example correctly distinguishes the already-present target integer from newly introduced incorrect arithmetic and the first-ranked endpoint.",
+    "Pruning example credits the official shorter-readout class label without claiming a supported sodium-nitrite answer.",
+    "Editing figure now preserves family-specific gains: transcript +0.013, hidden intermediate names +0.007, intermediate numbers +0.096, roles +0.002 FVE percentage points versus pooling. Its unchanged selected example is explicitly labelled inherited pooled wording.",
+    "Native quality and site-weighted reconstruction retain separate denominators; raw original and capped references are distinct.",
+    "Pointwise and simultaneous uncertainty retain their source scope; zero variation does not establish certainty."
+  ],
+  "breadth": {
+    "slides": 86,
+    "core_slides": 26,
+    "settings": 70,
+    "condition_families": 280,
+    "frozen_contrasts": 496,
+    "reconstruction_appendix_slides": 14
+  },
+  "limitations": [
+    "Contact sheet and selected full-resolution previews were inspected; not every appendix page was independently visually read.",
+    "The recorded PDF rendering uses the same-content geometry HTML mirror. Native PowerPoint rendering was not validated.",
+    "Dashboard interaction evidence reuses the actual source-bound 14-view QA receipt; this review adds no independent browser execution."
+  ],
+  "publication_authority": "Parent root only; this review does not attest public hosting."
+}

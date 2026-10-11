@@ -36,6 +36,14 @@ def note(source, parent=False):
 def merged(rows):return {'new_case_notes':rows,'required_new_case_reference_count':len(rows),'reviewed_new_case_reference_count':len(rows)}
 
 class FinalAssembly(unittest.TestCase):
+    def test_final_reviewer_observed_change_is_copied_verbatim(self):
+        observation = ('The unrelated summarization prompts become an explicit empty abstention; '
+                       'neither readout recovers Marcus the waiter apologizing to Priya.')
+        self.assertEqual(module.notes({'observed_change': observation,
+                                      'mechanism_hypothesis': 'Separate unproven hypothesis.'}), observation)
+        with self.assertRaisesRegex(ValueError, 'Human case observation missing'):
+            module.notes({'mechanism_hypothesis': 'No observed content.'})
+
     def test_prior_entries_and_repeated_identities_preserved_verbatim(self):
         old=pack();prior={'dashboard_examples':{'method':[entry('old'),entry('old')]}}
         del prior['dashboard_examples']['method'][0]['reference']

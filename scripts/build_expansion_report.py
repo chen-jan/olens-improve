@@ -152,13 +152,13 @@ def checked_reconstruction(path, inventory, review, active, hashes):
 def fve_points(value, difference=False):
     if value is None:
         return 'Unavailable'
-    return (f'{100 * value:+.2f}' if difference else f'{100 * value:.2f}') + ' pp'
+    return (f'{100 * value:+.2f}' if difference else f'{100 * value:.2f}') + (' pp' if difference else '%')
 
 
-def fve_interval(values):
+def fve_interval(values, difference=False):
     if values is None:
         return 'Unavailable'
-    return f'[{100 * values[0]:+.2f}, {100 * values[1]:+.2f}] pp'
+    return f'[{100 * values[0]:+.2f}, {100 * values[1]:+.2f}]' + (' pp' if difference else '%')
 
 
 def reconstruction_section(artifact, artifact_sha, source, review, active):
@@ -182,8 +182,9 @@ def reconstruction_section(artifact, artifact_sha, source, review, active):
              'only sites valid for both outputs, so their masks can differ from the absolute means '
              'and the quality comparisons. Each recorded reference is named below. These post-hoc '
              'intervals are outside the 496 headline contrast adjustment.', '',
-             'All fit values below are in percentage points of FVE: 0.025 on the raw fraction scale '
-             'is 2.5 pp. The reconstructor scores at most the first 32 cleaned tokens per bullet; '
+             'Absolute FVE values are percentages; changes are percentage points (pp). '
+             'For example, a change from 25% to 27.5% is +2.5 pp. '
+             'The reconstructor scores at most the first 32 cleaned tokens per bullet; '
              'longer suffixes remain in the readout without independent reconstruction verification. '
              'Recorded valid empty outputs can have zero fit; unavailable fits and empty paired masks '
              'remain unavailable. Zero bootstrap variation does not establish certainty.', '',
@@ -214,7 +215,7 @@ def reconstruction_section(artifact, artifact_sha, source, review, active):
                 coverage = f"{paired['paired_sites']:,} / {intended:,}" if intended is not None else f"{paired['paired_sites']:,} / unrecorded"
                 lines.append(f"| {label(active[condition])} | {TITLES[family]} | {label(active[paired['reference']])} | "
                              f"{paired.get('kind', 'unrecorded')} | {fve_points(paired['mean_delta'], True)}; "
-                             f"{fve_interval(paired.get('ci95_delta'))}{warning} | {coverage} | "
+                             f"{fve_interval(paired.get('ci95_delta'), True)}{warning} | {coverage} | "
                              f"{paired.get('independent_groups', 'unrecorded')} |")
     lines += ['', 'The settings shown here follow the reviewed presentation order; they are not ranked by fit. '
               'All method/family rows, every recorded parent comparison, masks, warnings and source pins '
@@ -234,7 +235,8 @@ def render(results, inventory, review, active, metrics, hashes, *, reconstructio
         lines += [f"**{finding['title']}** {finding['detail']}", '']
     lines += ['## What was compared', '',
               'The target model, Oracle Lens and matched activation reconstructor remain frozen. '
-              'Each method reads the same single vector at the same layer and token position. '
+              'Each method explains the same target vector at the same layer and token position; '
+              'control-based scorers additionally use the recorded matched activations. '
               'The shared pool contains at most 32 original descriptions per vector. '
               'Final outputs have at most four bullets and 256 Qwen tokens; the released raw baseline '
               'is retained separately with its original output. Pooling keeps intact source bullets. '

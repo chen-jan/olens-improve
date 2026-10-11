@@ -1,0 +1,3106 @@
+{
+  "status": "independent_final_delta_review_complete",
+  "reviewer": "GPT-6.1 Sol delegated API agent",
+  "generated_utc": "2026-10-11T06:49:23.297043+00:00",
+  "partition": "agent_1",
+  "source_index_path": "${OLENS_DATA_ROOT}/expansion-v1/qualitative/final-delta-index-v1.json",
+  "source_index_sha256": "b1d5e441b301a19748691d8f1509faea5e8c76c02276b2d705787d46824436b5",
+  "manifest_sha256": "753b2d9cab0daea0d19efef7d3222fd44921dbcf4669e6864d4f1bd4805421f8",
+  "analysis_sha256": "e2773e297d7724f20d656ecf07c5de00097604d8a85c516938a565626b07876e",
+  "source_sha256": {
+    "${OLENS_DATA_ROOT}/expansion-v1/qualitative/first-live-v4.json": "15139648dd09b10ae931e7600a2aa643fae3e02ec37ccd0098a34443d9ee320c",
+    "${OLENS_DATA_ROOT}/expansion-v1/qualitative/final-v1.json": "3644c6d6451a638b0cfee8ae7b2542332dd8f5cafd6203441ef15e77e9023f59",
+    "${OLENS_DATA_ROOT}/expansion-v1/qualitative/parent-comparisons-first-live-v3.json": "f471b3bda848701547a973e0b766b67a5c8a3c3934809caab75b420f76eed4e5",
+    "${OLENS_DATA_ROOT}/expansion-v1/qualitative/parent-comparisons-final-v1.json": "8bfa89c96a6db8024b7813bdcd6f8db4a1ca2dafc7e1f7850db782493e0b8f11",
+    "docs/reviews/expanded-qualitative-partition1-v1.json": "0f1a8384a392bb44849c6fcbd1b239b8978d7688f2eb435fe61075dbe612dd71",
+    "docs/reviews/expanded-qualitative-partition2-v1.json": "a1921f256f5095c75e53c41571bddd18418b4cd60e304fb6aaf2d258294cf870",
+    "docs/reviews/expanded-qualitative-partition3-v1.json": "70cc0cf89d90ecfe9abfd5d139df6c6e37893d7ffb84d1cb877bb50ca35f7dd7",
+    "docs/reviews/expanded-pruning-parent-qualitative-v1.json": "95e5fa9f9fe99a767c6860eeadb583464b123ad10b654396943d95beb9bbfccc",
+    "docs/reviews/expanded-qualitative-v4-new-case-index-v1.json": "837e15aae032297a5190f2132b73b5bdab0eccd16c8561868bda553c4f6a4d95",
+    "docs/reviews/expanded-qualitative-v4-root-v2.json": "6031ca2d526e1aeb6d0ee8fe54f9a380f178f477cee94b02fca8ac15beee68be",
+    "docs/reviews/expanded-qualitative-v4-agent1-v2.json": "a32253119b7b55c22660bd0c8e0aed084c1f6bb2bd8e3d8c41bebf6cb1ba7081",
+    "docs/reviews/expanded-qualitative-v4-agent2-v2.json": "6de2e076238724dfd6c76e65e1eb813b33ba10ee47cfa8bf0045692d4192a483",
+    "docs/reviews/expanded-qualitative-v4-agent3-v1.json": "78a23630e987e95889b765c1d8a5fb2f24a72bab33e7ba5aab9157fe3b5d8d0a",
+    "${OLENS_DATA_ROOT}/expansion-v1/qualitative/final-delta-index-v1.json": "b1d5e441b301a19748691d8f1509faea5e8c76c02276b2d705787d46824436b5"
+  },
+  "reviewed_content_units": 27,
+  "reviewed_content_comparisons": 61,
+  "reviewed_condition_case_references": 106,
+  "reviewed_condition_ids": [
+    "best_n_exact-n4",
+    "consensus_semantic_v5_medium_support0.125_compatoff_vetoon-n16",
+    "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16",
+    "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+    "consensus_semantic_v5_medium_support0_compaton_vetoon-n16",
+    "consensus_semantic_v5_support0.125_compatoff_vetoon-n16",
+    "consensus_semantic_v5_support0.125_compaton_vetoon-n16",
+    "consensus_semantic_v5_support0_compatoff_vetooff-n16",
+    "consensus_semantic_v5_support0_compatoff_vetoon-n16",
+    "consensus_semantic_v5_support0_compaton_vetoon-n16",
+    "editing_round1-n32",
+    "editing_round2-n32",
+    "editing_round2_random_delete_matched_0.001-n32",
+    "editing_round2_random_delete_matched_0.005-n32",
+    "editing_round2_then_prune_0.001-n32",
+    "editing_round2_then_prune_0.005-n32",
+    "likelihood_true_minus_mean_two_controls-n8",
+    "pooled_specificity_mean-n32",
+    "pooled_specificity_mean_random_delete_matched_0.005-n32",
+    "pooled_specificity_mean_then_prune_0.005-n32",
+    "prune_loo_n1_0.005-n1"
+  ],
+  "family_unit_counts": {
+    "chain_intermediates": 3,
+    "hallucination": 6,
+    "multihop_mt": 3,
+    "role_bound_association": 15
+  },
+  "observations": [
+    {
+      "review_unit_index": 0,
+      "pair_kind": "capped_N1_pairs",
+      "pair_index": 0,
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+      "context_ref": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+      "context_sha256": "d3be2b715007fdb620515e3f9d1c2ec30867df9855b4c7712d4b8327e68417ad",
+      "source_pair_sha256": "7c9ad8af2711415c654c6419056367d3793b58358455432fbf0aa9d8bd0e608c",
+      "before_text_sha256": "8219d97a4ae9a888658e099406ec06b4f72a333f90e6ae92d0d6eaf5a176576b",
+      "after_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "observed_change": "The unrelated summarization prompts become an explicit empty abstention; neither readout recovers Marcus the waiter apologizing to Priya. This failed fixed anchor is not itself a witness for any whole-question change.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "consensus_semantic_v5_support0.125_compatoff_vetoon-n16",
+          "parent_condition": null,
+          "official_reference_sha256": "bbb501695fda3f6b8db052876a982ad896e8ab0bb359aa0400dc670357a30105",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": null
+        },
+        {
+          "condition": "consensus_semantic_v5_support0.125_compaton_vetoon-n16",
+          "parent_condition": null,
+          "official_reference_sha256": "dcddfa29f96d3ea1094c76cf0a23f0d013b1d85beaca8ee7f142cbc3befecd68",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": null
+        },
+        {
+          "condition": "pooled_specificity_mean-n32",
+          "parent_condition": null,
+          "official_reference_sha256": "c04351dd27ec95c8b589a21b0a65083ac141d9d77f1c89d30bad1e42d36aafb9",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": null
+        },
+        {
+          "condition": "pooled_specificity_mean_then_prune_0.005-n32",
+          "parent_condition": null,
+          "official_reference_sha256": "9d8e65b8975cceb6c5e5b8526ba2188d7126258163933864097220770e479576",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": null
+        },
+        {
+          "condition": "pooled_specificity_mean_random_delete_matched_0.005-n32",
+          "parent_condition": null,
+          "official_reference_sha256": "d194a0a9136a30a2e6b8f9efadb20894f83f3e79bc7385430ad11386b1008faa",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": null
+        },
+        {
+          "condition": "consensus_semantic_v5_medium_support0.125_compatoff_vetoon-n16",
+          "parent_condition": null,
+          "official_reference_sha256": "1925b8191a306841d313bb6fec73c263fd082ad4f0bc5bd1e47c6fd4d5fe4a5e",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": null
+        },
+        {
+          "condition": "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16",
+          "parent_condition": null,
+          "official_reference_sha256": "8807b93e6079734009b796d42e8a5051e6b1fdfb00e13f979d0f27e406555737",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": null
+        }
+      ]
+    },
+    {
+      "review_unit_index": 0,
+      "pair_kind": "actual_parent_pairs",
+      "pair_index": 0,
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+      "context_ref": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+      "context_sha256": "d3be2b715007fdb620515e3f9d1c2ec30867df9855b4c7712d4b8327e68417ad",
+      "source_pair_sha256": "4e05bce3e55faa98d863a3d58ee98dde9a4951985de1f0b4695fd67dc051c867",
+      "before_text_sha256": "8219d97a4ae9a888658e099406ec06b4f72a333f90e6ae92d0d6eaf5a176576b",
+      "after_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "observed_change": "Ordinary and medium support .125 variants empty this failed site. Their recorded exact-support parent has four passing sites elsewhere, whereas all four proposed grids have none; loss of those other witnesses must not be inferred from this anchor alone.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "consensus_semantic_v5_support0.125_compatoff_vetoon-n16",
+          "parent_condition": "consensus_exact_support0-n16",
+          "official_reference_sha256": "c8107a79880d6830252ae77697e8a2e1c5cfc67a75a6e410b0e72f7846e2befa",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-waiter-customer-apologize-ab",
+            "grid_cells": 114,
+            "parent_item_pass": true,
+            "proposed_item_pass": false,
+            "parent_passing_cells": 4,
+            "proposed_passing_cells": 0,
+            "parent_first_passing_cell": "role_bound_association|oa-waiter-customer-apologize-ab|L36|p00094",
+            "proposed_first_passing_cell": null,
+            "selected_cell_parent_pass": false,
+            "selected_cell_proposed_pass": false
+          }
+        },
+        {
+          "condition": "consensus_semantic_v5_support0.125_compaton_vetoon-n16",
+          "parent_condition": "consensus_exact_support0-n16",
+          "official_reference_sha256": "c7f2195ef632008414be9aafaa47d338779fa96e233c8ee2a1c8c74213263de9",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-waiter-customer-apologize-ab",
+            "grid_cells": 114,
+            "parent_item_pass": true,
+            "proposed_item_pass": false,
+            "parent_passing_cells": 4,
+            "proposed_passing_cells": 0,
+            "parent_first_passing_cell": "role_bound_association|oa-waiter-customer-apologize-ab|L36|p00094",
+            "proposed_first_passing_cell": null,
+            "selected_cell_parent_pass": false,
+            "selected_cell_proposed_pass": false
+          }
+        },
+        {
+          "condition": "consensus_semantic_v5_medium_support0.125_compatoff_vetoon-n16",
+          "parent_condition": "consensus_exact_support0-n16",
+          "official_reference_sha256": "9c150506a1be25e1e644bf7ff795603ccb5185d3f61890ee9a6e7ac93ba8120a",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-waiter-customer-apologize-ab",
+            "grid_cells": 114,
+            "parent_item_pass": true,
+            "proposed_item_pass": false,
+            "parent_passing_cells": 4,
+            "proposed_passing_cells": 0,
+            "parent_first_passing_cell": "role_bound_association|oa-waiter-customer-apologize-ab|L36|p00094",
+            "proposed_first_passing_cell": null,
+            "selected_cell_parent_pass": false,
+            "selected_cell_proposed_pass": false
+          }
+        },
+        {
+          "condition": "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16",
+          "parent_condition": "consensus_exact_support0-n16",
+          "official_reference_sha256": "864bec0e3790fa01e1bdab70eef8abf62bccac7000c59f0a9eed961fbf476f2b",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-waiter-customer-apologize-ab",
+            "grid_cells": 114,
+            "parent_item_pass": true,
+            "proposed_item_pass": false,
+            "parent_passing_cells": 4,
+            "proposed_passing_cells": 0,
+            "parent_first_passing_cell": "role_bound_association|oa-waiter-customer-apologize-ab|L36|p00094",
+            "proposed_first_passing_cell": null,
+            "selected_cell_parent_pass": false,
+            "selected_cell_proposed_pass": false
+          }
+        }
+      ]
+    },
+    {
+      "review_unit_index": 0,
+      "pair_kind": "actual_parent_pairs",
+      "pair_index": 1,
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+      "context_ref": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+      "context_sha256": "d3be2b715007fdb620515e3f9d1c2ec30867df9855b4c7712d4b8327e68417ad",
+      "source_pair_sha256": "2dc0bcd05c04ceba95575713f0007728d992dc5ce1dbe1348e9f891693612e0c",
+      "before_text_sha256": "56b8b8505a1926b639b4f04c8fbe502ec22da0164eac88d1c66e102f0d35fbe5",
+      "after_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "observed_change": "Specificity pooling empties an already failed ordinary-pooling site. Question recovery remains present: ordinary pooling has four passing sites and specificity pooling five; this anchor explains neither gain.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "pooled_specificity_mean-n32",
+          "parent_condition": "pooled_greedy_swap-n32",
+          "official_reference_sha256": "94e9ee252d16f78b967ee1500478b9370c91b71886b823d04f4f87bc76b2992a",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-waiter-customer-apologize-ab",
+            "grid_cells": 114,
+            "parent_item_pass": true,
+            "proposed_item_pass": true,
+            "parent_passing_cells": 4,
+            "proposed_passing_cells": 5,
+            "parent_first_passing_cell": "role_bound_association|oa-waiter-customer-apologize-ab|L36|p00103",
+            "proposed_first_passing_cell": "role_bound_association|oa-waiter-customer-apologize-ab|L36|p00094",
+            "selected_cell_parent_pass": false,
+            "selected_cell_proposed_pass": false
+          }
+        }
+      ]
+    },
+    {
+      "review_unit_index": 0,
+      "pair_kind": "actual_parent_pairs",
+      "pair_index": 2,
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+      "context_ref": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+      "context_sha256": "d3be2b715007fdb620515e3f9d1c2ec30867df9855b4c7712d4b8327e68417ad",
+      "source_pair_sha256": "f1a3910b80cda2b6abe94a958c7e525448a343d9e37f384a069ef098ff2e8654",
+      "before_text_sha256": "89d97484dadeac62415e8a08526437ecaa031e7b71737ddccab23dc19846deb0",
+      "after_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "observed_change": "The best-complete specificity readout also fails this anchor. Its eight passing sites become five under pooled specificity, while the question remains recovered; no local role recovery appears here.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "pooled_specificity_mean-n32",
+          "parent_condition": "best_n_specificity_mean-n32",
+          "official_reference_sha256": "add76b8c4a9c9b6d1ab075bf0853bdfe5ad01a346f4b931b65c2183567c229ce",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-waiter-customer-apologize-ab",
+            "grid_cells": 114,
+            "parent_item_pass": true,
+            "proposed_item_pass": true,
+            "parent_passing_cells": 8,
+            "proposed_passing_cells": 5,
+            "parent_first_passing_cell": "role_bound_association|oa-waiter-customer-apologize-ab|L28|p00103",
+            "proposed_first_passing_cell": "role_bound_association|oa-waiter-customer-apologize-ab|L36|p00094",
+            "selected_cell_parent_pass": false,
+            "selected_cell_proposed_pass": false
+          }
+        }
+      ]
+    },
+    {
+      "review_unit_index": 0,
+      "pair_kind": "actual_parent_pairs",
+      "pair_index": 3,
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+      "context_ref": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+      "context_sha256": "d3be2b715007fdb620515e3f9d1c2ec30867df9855b4c7712d4b8327e68417ad",
+      "source_pair_sha256": "056ddf76d142a60071306aec11362f93a6e5cbce22a15e304571aaf7b7526cc1",
+      "before_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "after_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "observed_change": "The derivative and specificity parent are both byte-identical empty abstentions. Pruning and matched deletion have eight and seven passing sites elsewhere versus the parent's five, but there is no local text or verdict change to attribute to deletion.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "pooled_specificity_mean_then_prune_0.005-n32",
+          "parent_condition": "pooled_specificity_mean-n32",
+          "official_reference_sha256": "4c877e193bafd79f97afb390546ba68a7cb1e3b24a5cf7fb644e9c4e6943c69b",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-waiter-customer-apologize-ab",
+            "grid_cells": 114,
+            "parent_item_pass": true,
+            "proposed_item_pass": true,
+            "parent_passing_cells": 5,
+            "proposed_passing_cells": 8,
+            "parent_first_passing_cell": "role_bound_association|oa-waiter-customer-apologize-ab|L36|p00094",
+            "proposed_first_passing_cell": "role_bound_association|oa-waiter-customer-apologize-ab|L36|p00094",
+            "selected_cell_parent_pass": false,
+            "selected_cell_proposed_pass": false
+          }
+        },
+        {
+          "condition": "pooled_specificity_mean_random_delete_matched_0.005-n32",
+          "parent_condition": "pooled_specificity_mean-n32",
+          "official_reference_sha256": "2e446a30197e91db320645d59352ca63116e3aa1b0b6972f12d40191ab0f96cc",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-waiter-customer-apologize-ab",
+            "grid_cells": 114,
+            "parent_item_pass": true,
+            "proposed_item_pass": true,
+            "parent_passing_cells": 5,
+            "proposed_passing_cells": 7,
+            "parent_first_passing_cell": "role_bound_association|oa-waiter-customer-apologize-ab|L36|p00094",
+            "proposed_first_passing_cell": "role_bound_association|oa-waiter-customer-apologize-ab|L36|p00094",
+            "selected_cell_parent_pass": false,
+            "selected_cell_proposed_pass": false
+          }
+        }
+      ]
+    },
+    {
+      "review_unit_index": 1,
+      "pair_kind": "capped_N1_pairs",
+      "pair_index": 0,
+      "family": "chain_intermediates",
+      "cell_id": "chain_intermediates|chain-w2-d2p-0013|L60|p00062",
+      "context_ref": "chain_intermediates|chain-w2-d2p-0013|L60|p00062",
+      "context_sha256": "4c506c0ca58ec70e8d7d43a0034115104102e53f17fd17bef8b8deb11a279d92",
+      "source_pair_sha256": "b326b63c15e305fb75d8f0c4bef589f174e2638406f3a846023b091c96160c68",
+      "before_text_sha256": "a5053af6a6908754c376e975cca5bab0250522e7d8c961d7a183678fc2f1cec3",
+      "after_text_sha256": "ace2c0110521f44bd33a700073d2d9ff2b7c5e202f2e9a13e260ef7a8818c901",
+      "observed_change": "The capped and edited outputs retain unrelated arithmetic/final-answer fragments rather than required intermediate 5. Final-answer 14 and other extracted integers do not satisfy the declared first-ranked intermediate endpoint.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "editing_round1-n32",
+          "parent_condition": null,
+          "official_reference_sha256": "42bc5f195a2a87449fb18b3a1f1d9b9b5cbc840c6127c7085369c4766aa4e0ad",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": null
+        },
+        {
+          "condition": "editing_round2-n32",
+          "parent_condition": null,
+          "official_reference_sha256": "4d5ac4798d63b5a1e2c2445cbe10a75b11083270b2af67f16bbbf4e02e1ffba0",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": null
+        },
+        {
+          "condition": "editing_round2_then_prune_0.001-n32",
+          "parent_condition": null,
+          "official_reference_sha256": "3202450ccbbd97966ea8cfe8f94abe2f564908854bfabb4213c988b5a599ab4a",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": null
+        },
+        {
+          "condition": "editing_round2_random_delete_matched_0.001-n32",
+          "parent_condition": null,
+          "official_reference_sha256": "6813a5c35fa1ed1527a1b00af0f923adb35d61fa4a0f3a486be00c81a1bef937",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": null
+        }
+      ]
+    },
+    {
+      "review_unit_index": 1,
+      "pair_kind": "actual_parent_pairs",
+      "pair_index": 0,
+      "family": "chain_intermediates",
+      "cell_id": "chain_intermediates|chain-w2-d2p-0013|L60|p00062",
+      "context_ref": "chain_intermediates|chain-w2-d2p-0013|L60|p00062",
+      "context_sha256": "4c506c0ca58ec70e8d7d43a0034115104102e53f17fd17bef8b8deb11a279d92",
+      "source_pair_sha256": "405749ab92a7c52ff331de62a45af3c0af4e94e8264d21903a934cee7d65e8fb",
+      "before_text_sha256": "e9544e15e02ad0fedd6cf9dea39554b95db3ea8ed4e02cf6d97fea08a3536d27",
+      "after_text_sha256": "ace2c0110521f44bd33a700073d2d9ff2b7c5e202f2e9a13e260ef7a8818c901",
+      "observed_change": "Relative to best-complete N32, the output substitutes pooled text and still fails at this anchor. The best-complete grid has two intermediate witnesses while the proposed grids have zero; this is not a locally successful new edit.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "editing_round1-n32",
+          "parent_condition": "best_n_exact-n32",
+          "official_reference_sha256": "1c34224c429a48a41fb5c170aed5aea31ff765ed123a4576c22a5a49dd16a6e1",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "chain-w2-d2p-0013",
+            "grid_cells": 11,
+            "parent_item_pass": true,
+            "proposed_item_pass": false,
+            "parent_passing_cells": 2,
+            "proposed_passing_cells": 0,
+            "parent_first_passing_cell": "chain_intermediates|chain-w2-d2p-0013|L44|p00062",
+            "proposed_first_passing_cell": null,
+            "selected_cell_parent_pass": false,
+            "selected_cell_proposed_pass": false
+          }
+        },
+        {
+          "condition": "editing_round2-n32",
+          "parent_condition": "best_n_exact-n32",
+          "official_reference_sha256": "0f38aae45ec7c750ad84eabb93685ad26a1a5e840c1a0f67e82bb6fe15c8995d",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "chain-w2-d2p-0013",
+            "grid_cells": 11,
+            "parent_item_pass": true,
+            "proposed_item_pass": false,
+            "parent_passing_cells": 2,
+            "proposed_passing_cells": 0,
+            "parent_first_passing_cell": "chain_intermediates|chain-w2-d2p-0013|L44|p00062",
+            "proposed_first_passing_cell": null,
+            "selected_cell_parent_pass": false,
+            "selected_cell_proposed_pass": false
+          }
+        }
+      ]
+    },
+    {
+      "review_unit_index": 1,
+      "pair_kind": "actual_parent_pairs",
+      "pair_index": 1,
+      "family": "chain_intermediates",
+      "cell_id": "chain_intermediates|chain-w2-d2p-0013|L60|p00062",
+      "context_ref": "chain_intermediates|chain-w2-d2p-0013|L60|p00062",
+      "context_sha256": "4c506c0ca58ec70e8d7d43a0034115104102e53f17fd17bef8b8deb11a279d92",
+      "source_pair_sha256": "e565612a862f8cdd9a63b8522a188a05ccca29e9883e333666c9046f7a07ffc5",
+      "before_text_sha256": "ace2c0110521f44bd33a700073d2d9ff2b7c5e202f2e9a13e260ef7a8818c901",
+      "after_text_sha256": "ace2c0110521f44bd33a700073d2d9ff2b7c5e202f2e9a13e260ef7a8818c901",
+      "observed_change": "The edited/derived output is byte-identical to its pooled/editor reference and both grids have zero intermediate witnesses. The loss relative to best-complete/capped selection is inherited, not evidence of new editing or pruning content damage at this anchor.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "editing_round1-n32",
+          "parent_condition": "pooled_greedy_swap-n32",
+          "official_reference_sha256": "fd983001b20f1312f2010528a545c1c215be6297c25b5a2efd788b46ae1d7309",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "chain-w2-d2p-0013",
+            "grid_cells": 11,
+            "parent_item_pass": false,
+            "proposed_item_pass": false,
+            "parent_passing_cells": 0,
+            "proposed_passing_cells": 0,
+            "parent_first_passing_cell": null,
+            "proposed_first_passing_cell": null,
+            "selected_cell_parent_pass": false,
+            "selected_cell_proposed_pass": false
+          }
+        },
+        {
+          "condition": "editing_round2-n32",
+          "parent_condition": "pooled_greedy_swap-n32",
+          "official_reference_sha256": "761a782d2fa31b93a839d855e61c2709c29cf7ef48083b4ebd82ef185ea483d4",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "chain-w2-d2p-0013",
+            "grid_cells": 11,
+            "parent_item_pass": false,
+            "proposed_item_pass": false,
+            "parent_passing_cells": 0,
+            "proposed_passing_cells": 0,
+            "parent_first_passing_cell": null,
+            "proposed_first_passing_cell": null,
+            "selected_cell_parent_pass": false,
+            "selected_cell_proposed_pass": false
+          }
+        },
+        {
+          "condition": "editing_round2_then_prune_0.001-n32",
+          "parent_condition": "editing_round2-n32",
+          "official_reference_sha256": "db77db4aec3c62d3077c3db9f9fb8a4b74c8de45718df0f488aba98df073d2f8",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "chain-w2-d2p-0013",
+            "grid_cells": 11,
+            "parent_item_pass": false,
+            "proposed_item_pass": false,
+            "parent_passing_cells": 0,
+            "proposed_passing_cells": 0,
+            "parent_first_passing_cell": null,
+            "proposed_first_passing_cell": null,
+            "selected_cell_parent_pass": false,
+            "selected_cell_proposed_pass": false
+          }
+        },
+        {
+          "condition": "editing_round2_random_delete_matched_0.001-n32",
+          "parent_condition": "editing_round2-n32",
+          "official_reference_sha256": "9b150478ab0c6a09bb8f82ca8a5a4042f2d9fce17a17e0de4d44d0574d2873a7",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "chain-w2-d2p-0013",
+            "grid_cells": 11,
+            "parent_item_pass": false,
+            "proposed_item_pass": false,
+            "parent_passing_cells": 0,
+            "proposed_passing_cells": 0,
+            "parent_first_passing_cell": null,
+            "proposed_first_passing_cell": null,
+            "selected_cell_parent_pass": false,
+            "selected_cell_proposed_pass": false
+          }
+        }
+      ]
+    },
+    {
+      "review_unit_index": 2,
+      "pair_kind": "capped_N1_pairs",
+      "pair_index": 0,
+      "family": "multihop_mt",
+      "cell_id": "multihop_mt|mhh-belisarius-procopius-secret-history|L52|p00038",
+      "context_ref": "multihop_mt|mhh-belisarius-procopius-secret-history|L52|p00038",
+      "context_sha256": "72db3e42c48a8f20e9e6ee500eaf30182a781ae3961c219bbb6fd278b95c8999",
+      "source_pair_sha256": "941e8f8340157bf8b0af4460b62a1a4c4ffdad29b8834f29fdc4b8570341b8f2",
+      "before_text_sha256": "699fd828796fc82e93ede24dc23bd559959f9590ff1d57f616c6c59b298a23a3",
+      "after_text_sha256": "d3b9b54ddf4bdce4e816f1bd0feeae3889e0ddccfe2794a3f0743e9b54c85ec9",
+      "observed_change": "The capped site contains both required names Belisarius and Procopius; the proposed output retains Procopius and the optional title Secret History but loses Belisarius. The only capped grid witness disappears, yet the proposed prose is identical to pooling and the regression predates editing.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "editing_round1-n32",
+          "parent_condition": null,
+          "official_reference_sha256": "3fc955d4d55c9532a33ccf45e33ba25f23471e38c96168f82ee6e3c9823d1e06",
+          "category": "regression",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "mhh-belisarius-procopius-secret-history",
+            "baseline_item_pass": true,
+            "proposed_item_pass": false,
+            "baseline_passing_cells": 1,
+            "proposed_passing_cells": 0,
+            "grid_cells": 11,
+            "witness_rule": "first passing baseline site"
+          },
+          "parent_endpoint_evidence": null
+        },
+        {
+          "condition": "editing_round2-n32",
+          "parent_condition": null,
+          "official_reference_sha256": "dcec18d886473f383e588aae014ef8ee7911b774e25010455fa27517eb7139b5",
+          "category": "regression",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "mhh-belisarius-procopius-secret-history",
+            "baseline_item_pass": true,
+            "proposed_item_pass": false,
+            "baseline_passing_cells": 1,
+            "proposed_passing_cells": 0,
+            "grid_cells": 11,
+            "witness_rule": "first passing baseline site"
+          },
+          "parent_endpoint_evidence": null
+        },
+        {
+          "condition": "editing_round2_then_prune_0.001-n32",
+          "parent_condition": null,
+          "official_reference_sha256": "b8251d844651ebc56878b8dd05eb542954fe1ed13c52785bd55d19b683a885f2",
+          "category": "regression",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "mhh-belisarius-procopius-secret-history",
+            "baseline_item_pass": true,
+            "proposed_item_pass": false,
+            "baseline_passing_cells": 1,
+            "proposed_passing_cells": 0,
+            "grid_cells": 11,
+            "witness_rule": "first passing baseline site"
+          },
+          "parent_endpoint_evidence": null
+        },
+        {
+          "condition": "editing_round2_random_delete_matched_0.001-n32",
+          "parent_condition": null,
+          "official_reference_sha256": "0486adff389451b77e57994befe12ef190bc1a343724abe22299806d6a988686",
+          "category": "regression",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "mhh-belisarius-procopius-secret-history",
+            "baseline_item_pass": true,
+            "proposed_item_pass": false,
+            "baseline_passing_cells": 1,
+            "proposed_passing_cells": 0,
+            "grid_cells": 11,
+            "witness_rule": "first passing baseline site"
+          },
+          "parent_endpoint_evidence": null
+        },
+        {
+          "condition": "editing_round2_then_prune_0.005-n32",
+          "parent_condition": null,
+          "official_reference_sha256": "848cb40f66ebca39030dc181b3a44bbf2be2db0cc172820d34b5d5b8aed10800",
+          "category": "regression",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "mhh-belisarius-procopius-secret-history",
+            "baseline_item_pass": true,
+            "proposed_item_pass": false,
+            "baseline_passing_cells": 1,
+            "proposed_passing_cells": 0,
+            "grid_cells": 11,
+            "witness_rule": "first passing baseline site"
+          },
+          "parent_endpoint_evidence": null
+        },
+        {
+          "condition": "editing_round2_random_delete_matched_0.005-n32",
+          "parent_condition": null,
+          "official_reference_sha256": "b073f475b198bbe002f7d2155712db92a6cfccff2ac8637850fa1fa4e3abc633",
+          "category": "regression",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "mhh-belisarius-procopius-secret-history",
+            "baseline_item_pass": true,
+            "proposed_item_pass": false,
+            "baseline_passing_cells": 1,
+            "proposed_passing_cells": 0,
+            "grid_cells": 11,
+            "witness_rule": "first passing baseline site"
+          },
+          "parent_endpoint_evidence": null
+        }
+      ]
+    },
+    {
+      "review_unit_index": 2,
+      "pair_kind": "actual_parent_pairs",
+      "pair_index": 0,
+      "family": "multihop_mt",
+      "cell_id": "multihop_mt|mhh-belisarius-procopius-secret-history|L52|p00038",
+      "context_ref": "multihop_mt|mhh-belisarius-procopius-secret-history|L52|p00038",
+      "context_sha256": "72db3e42c48a8f20e9e6ee500eaf30182a781ae3961c219bbb6fd278b95c8999",
+      "source_pair_sha256": "f0d8bcbc6f5638559e33ec5b9acf8366b51a252b80afbeca3ed32a0634169f89",
+      "before_text_sha256": "ed742b6b4b0b3c61ade211189c18a7a8635ad98b0896b4cfcd3de6b1927e000b",
+      "after_text_sha256": "d3b9b54ddf4bdce4e816f1bd0feeae3889e0ddccfe2794a3f0743e9b54c85ec9",
+      "observed_change": "Relative to best-complete N32, Procopius becomes visible but Belisarius remains absent. Both grids already fail the two-required-name endpoint, so this is partial name recovery without whole-question success.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "editing_round1-n32",
+          "parent_condition": "best_n_exact-n32",
+          "official_reference_sha256": "898cb5c195aa3522d0a6a7552ba03a15f1b2a545286926358ee80ce67ea51c05",
+          "category": "regression",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "mhh-belisarius-procopius-secret-history",
+            "baseline_item_pass": true,
+            "proposed_item_pass": false,
+            "baseline_passing_cells": 1,
+            "proposed_passing_cells": 0,
+            "grid_cells": 11,
+            "witness_rule": "first passing baseline site"
+          },
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "mhh-belisarius-procopius-secret-history",
+            "grid_cells": 11,
+            "parent_item_pass": false,
+            "proposed_item_pass": false,
+            "parent_passing_cells": 0,
+            "proposed_passing_cells": 0,
+            "parent_first_passing_cell": null,
+            "proposed_first_passing_cell": null,
+            "selected_cell_parent_pass": false,
+            "selected_cell_proposed_pass": false
+          }
+        },
+        {
+          "condition": "editing_round2-n32",
+          "parent_condition": "best_n_exact-n32",
+          "official_reference_sha256": "4f29cb96d95787e7f4b9a1ba5e0ee83d942daf8dd2da52e46dffe17f75726300",
+          "category": "regression",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "mhh-belisarius-procopius-secret-history",
+            "baseline_item_pass": true,
+            "proposed_item_pass": false,
+            "baseline_passing_cells": 1,
+            "proposed_passing_cells": 0,
+            "grid_cells": 11,
+            "witness_rule": "first passing baseline site"
+          },
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "mhh-belisarius-procopius-secret-history",
+            "grid_cells": 11,
+            "parent_item_pass": false,
+            "proposed_item_pass": false,
+            "parent_passing_cells": 0,
+            "proposed_passing_cells": 0,
+            "parent_first_passing_cell": null,
+            "proposed_first_passing_cell": null,
+            "selected_cell_parent_pass": false,
+            "selected_cell_proposed_pass": false
+          }
+        }
+      ]
+    },
+    {
+      "review_unit_index": 2,
+      "pair_kind": "actual_parent_pairs",
+      "pair_index": 1,
+      "family": "multihop_mt",
+      "cell_id": "multihop_mt|mhh-belisarius-procopius-secret-history|L52|p00038",
+      "context_ref": "multihop_mt|mhh-belisarius-procopius-secret-history|L52|p00038",
+      "context_sha256": "72db3e42c48a8f20e9e6ee500eaf30182a781ae3961c219bbb6fd278b95c8999",
+      "source_pair_sha256": "20cfcc19f8d87aca64c23118d04bce1892e38d8915fcc490943b5632b062d875",
+      "before_text_sha256": "d3b9b54ddf4bdce4e816f1bd0feeae3889e0ddccfe2794a3f0743e9b54c85ec9",
+      "after_text_sha256": "d3b9b54ddf4bdce4e816f1bd0feeae3889e0ddccfe2794a3f0743e9b54c85ec9",
+      "observed_change": "The output is byte-identical to its pool/editor parent; both already lack Belisarius and have zero passing sites. Preserve this inherited failure rather than attributing it to new editing or subsequent pruning.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "editing_round1-n32",
+          "parent_condition": "pooled_greedy_swap-n32",
+          "official_reference_sha256": "7f4647554b6afb743b392a7e1865b6bef7e6c449e2314e70433c24dce50f956c",
+          "category": "regression",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "mhh-belisarius-procopius-secret-history",
+            "baseline_item_pass": true,
+            "proposed_item_pass": false,
+            "baseline_passing_cells": 1,
+            "proposed_passing_cells": 0,
+            "grid_cells": 11,
+            "witness_rule": "first passing baseline site"
+          },
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "mhh-belisarius-procopius-secret-history",
+            "grid_cells": 11,
+            "parent_item_pass": false,
+            "proposed_item_pass": false,
+            "parent_passing_cells": 0,
+            "proposed_passing_cells": 0,
+            "parent_first_passing_cell": null,
+            "proposed_first_passing_cell": null,
+            "selected_cell_parent_pass": false,
+            "selected_cell_proposed_pass": false
+          }
+        },
+        {
+          "condition": "editing_round2-n32",
+          "parent_condition": "pooled_greedy_swap-n32",
+          "official_reference_sha256": "d67a62dd8584c454d253bf4d3d1fa2989170a7af091b80016a3b3bb684fd1b79",
+          "category": "regression",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "mhh-belisarius-procopius-secret-history",
+            "baseline_item_pass": true,
+            "proposed_item_pass": false,
+            "baseline_passing_cells": 1,
+            "proposed_passing_cells": 0,
+            "grid_cells": 11,
+            "witness_rule": "first passing baseline site"
+          },
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "mhh-belisarius-procopius-secret-history",
+            "grid_cells": 11,
+            "parent_item_pass": false,
+            "proposed_item_pass": false,
+            "parent_passing_cells": 0,
+            "proposed_passing_cells": 0,
+            "parent_first_passing_cell": null,
+            "proposed_first_passing_cell": null,
+            "selected_cell_parent_pass": false,
+            "selected_cell_proposed_pass": false
+          }
+        },
+        {
+          "condition": "editing_round2_then_prune_0.001-n32",
+          "parent_condition": "editing_round2-n32",
+          "official_reference_sha256": "e3308d9bb159274b0420eab242417fd2e65466bc173e5797c0dae0d5b82eaace",
+          "category": "regression",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "mhh-belisarius-procopius-secret-history",
+            "baseline_item_pass": true,
+            "proposed_item_pass": false,
+            "baseline_passing_cells": 1,
+            "proposed_passing_cells": 0,
+            "grid_cells": 11,
+            "witness_rule": "first passing baseline site"
+          },
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "mhh-belisarius-procopius-secret-history",
+            "grid_cells": 11,
+            "parent_item_pass": false,
+            "proposed_item_pass": false,
+            "parent_passing_cells": 0,
+            "proposed_passing_cells": 0,
+            "parent_first_passing_cell": null,
+            "proposed_first_passing_cell": null,
+            "selected_cell_parent_pass": false,
+            "selected_cell_proposed_pass": false
+          }
+        },
+        {
+          "condition": "editing_round2_random_delete_matched_0.001-n32",
+          "parent_condition": "editing_round2-n32",
+          "official_reference_sha256": "946e29801b3c7cc654a3f11d7251217f80737de43c09b21a3ab01fd79a4e8ffd",
+          "category": "regression",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "mhh-belisarius-procopius-secret-history",
+            "baseline_item_pass": true,
+            "proposed_item_pass": false,
+            "baseline_passing_cells": 1,
+            "proposed_passing_cells": 0,
+            "grid_cells": 11,
+            "witness_rule": "first passing baseline site"
+          },
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "mhh-belisarius-procopius-secret-history",
+            "grid_cells": 11,
+            "parent_item_pass": false,
+            "proposed_item_pass": false,
+            "parent_passing_cells": 0,
+            "proposed_passing_cells": 0,
+            "parent_first_passing_cell": null,
+            "proposed_first_passing_cell": null,
+            "selected_cell_parent_pass": false,
+            "selected_cell_proposed_pass": false
+          }
+        },
+        {
+          "condition": "editing_round2_then_prune_0.005-n32",
+          "parent_condition": "editing_round2-n32",
+          "official_reference_sha256": "df0b768dba354cd5c9b3321be2954005ec74e1406cf5bc2817ee2f1593aceb7a",
+          "category": "regression",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "mhh-belisarius-procopius-secret-history",
+            "baseline_item_pass": true,
+            "proposed_item_pass": false,
+            "baseline_passing_cells": 1,
+            "proposed_passing_cells": 0,
+            "grid_cells": 11,
+            "witness_rule": "first passing baseline site"
+          },
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "mhh-belisarius-procopius-secret-history",
+            "grid_cells": 11,
+            "parent_item_pass": false,
+            "proposed_item_pass": false,
+            "parent_passing_cells": 0,
+            "proposed_passing_cells": 0,
+            "parent_first_passing_cell": null,
+            "proposed_first_passing_cell": null,
+            "selected_cell_parent_pass": false,
+            "selected_cell_proposed_pass": false
+          }
+        },
+        {
+          "condition": "editing_round2_random_delete_matched_0.005-n32",
+          "parent_condition": "editing_round2-n32",
+          "official_reference_sha256": "d2456d53632c03fcc628e718161caa01d31689bb8c5f50a9aa50e01d27f90b0d",
+          "category": "regression",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "mhh-belisarius-procopius-secret-history",
+            "baseline_item_pass": true,
+            "proposed_item_pass": false,
+            "baseline_passing_cells": 1,
+            "proposed_passing_cells": 0,
+            "grid_cells": 11,
+            "witness_rule": "first passing baseline site"
+          },
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "mhh-belisarius-procopius-secret-history",
+            "grid_cells": 11,
+            "parent_item_pass": false,
+            "proposed_item_pass": false,
+            "parent_passing_cells": 0,
+            "proposed_passing_cells": 0,
+            "parent_first_passing_cell": null,
+            "proposed_first_passing_cell": null,
+            "selected_cell_parent_pass": false,
+            "selected_cell_proposed_pass": false
+          }
+        }
+      ]
+    },
+    {
+      "review_unit_index": 3,
+      "pair_kind": "capped_N1_pairs",
+      "pair_index": 0,
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-bride-caterer-yell-ba|L60|p00144",
+      "context_ref": "role_bound_association|oa-bride-caterer-yell-ba|L60|p00144",
+      "context_sha256": "cce2c9bcbeed88223ce0a17718736e169ce1e83eb3c749465f842d4d679cff88",
+      "source_pair_sha256": "8cd22faf7385f13cc886414f886804ba9f9211da8ed5a875af11d6f5fd7024cc",
+      "before_text_sha256": "c008ae2f19006dda0c120ece5a736c55ec43bdf1543237ed8f1d0d495bac44af",
+      "after_text_sha256": "7ec9aa8bf4a85542e371cdaac1c1c9e30487d8800c803605807428ec95dd67bf",
+      "observed_change": "The capped readout is scored Marcus-to-Priya yelling, while the proposed mixture includes a reverse-direction Priya-to-Marcus bullet and is scored that way. Both texts also misdescribe the caterer as a groom/coordinator and contain unsupported wedding details; native matching does not certify full scene fidelity.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "pooled_specificity_mean-n32",
+          "parent_condition": null,
+          "official_reference_sha256": "49d8b57c018c9c737c2a5466f383bce4f32da228d810335860bb45041612e42e",
+          "category": "regression",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-bride-caterer-yell-ba",
+            "baseline_item_pass": true,
+            "proposed_item_pass": false,
+            "baseline_passing_cells": 2,
+            "proposed_passing_cells": 0,
+            "grid_cells": 114,
+            "witness_rule": "first passing baseline site"
+          },
+          "parent_endpoint_evidence": null
+        }
+      ]
+    },
+    {
+      "review_unit_index": 3,
+      "pair_kind": "actual_parent_pairs",
+      "pair_index": 0,
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-bride-caterer-yell-ba|L60|p00144",
+      "context_ref": "role_bound_association|oa-bride-caterer-yell-ba|L60|p00144",
+      "context_sha256": "cce2c9bcbeed88223ce0a17718736e169ce1e83eb3c749465f842d4d679cff88",
+      "source_pair_sha256": "5573003d66a63f0fa1d9904678e465349f43d9c60e361e8cc685d6f4ab740bdb",
+      "before_text_sha256": "77005483856d4c4c1349a19640ca42a9df7b0ddaabaa138738da0ce6283d3ddd",
+      "after_text_sha256": "7ec9aa8bf4a85542e371cdaac1c1c9e30487d8800c803605807428ec95dd67bf",
+      "observed_change": "Ordinary pooling's two witnesses disappear under specificity pooling. At this site the proposed mixture contains both Marcus confronting Priya and Priya shouting at Marcus; the returned MC selects the reverse direction. This is conflicting-prose/selection uncertainty, not a clean corrected narrative.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "pooled_specificity_mean-n32",
+          "parent_condition": "pooled_greedy_swap-n32",
+          "official_reference_sha256": "8e77f72592f4a3325ca963650a289cd4ed6617383fde5857570163996121c19b",
+          "category": "regression",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-bride-caterer-yell-ba",
+            "baseline_item_pass": true,
+            "proposed_item_pass": false,
+            "baseline_passing_cells": 2,
+            "proposed_passing_cells": 0,
+            "grid_cells": 114,
+            "witness_rule": "first passing baseline site"
+          },
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-bride-caterer-yell-ba",
+            "grid_cells": 114,
+            "parent_item_pass": true,
+            "proposed_item_pass": false,
+            "parent_passing_cells": 2,
+            "proposed_passing_cells": 0,
+            "parent_first_passing_cell": "role_bound_association|oa-bride-caterer-yell-ba|L60|p00144",
+            "proposed_first_passing_cell": null,
+            "selected_cell_parent_pass": true,
+            "selected_cell_proposed_pass": false
+          }
+        }
+      ]
+    },
+    {
+      "review_unit_index": 3,
+      "pair_kind": "actual_parent_pairs",
+      "pair_index": 1,
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-bride-caterer-yell-ba|L60|p00144",
+      "context_ref": "role_bound_association|oa-bride-caterer-yell-ba|L60|p00144",
+      "context_sha256": "cce2c9bcbeed88223ce0a17718736e169ce1e83eb3c749465f842d4d679cff88",
+      "source_pair_sha256": "0e7ef4eb8a9d75e39198ce5272c62bbe80ff18efca77fe6eef28c004c2990a6e",
+      "before_text_sha256": "365e1072ab033188a1bfded1f6a5ccac16c2f80d7e4075d18996318e44e78890",
+      "after_text_sha256": "7ec9aa8bf4a85542e371cdaac1c1c9e30487d8800c803605807428ec95dd67bf",
+      "observed_change": "Best-complete specificity also passes this site and has two passing sites; the pooled-specificity mixture loses both. Its reversed-direction fourth bullet competes with retained correct-direction fragments, and the source identifies Marcus as caterer rather than groom.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "pooled_specificity_mean-n32",
+          "parent_condition": "best_n_specificity_mean-n32",
+          "official_reference_sha256": "927adbf42989a27c115b78ad77625ab8e1fea8acceaf3f14a878bab5f00a81dc",
+          "category": "regression",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-bride-caterer-yell-ba",
+            "baseline_item_pass": true,
+            "proposed_item_pass": false,
+            "baseline_passing_cells": 2,
+            "proposed_passing_cells": 0,
+            "grid_cells": 114,
+            "witness_rule": "first passing baseline site"
+          },
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-bride-caterer-yell-ba",
+            "grid_cells": 114,
+            "parent_item_pass": true,
+            "proposed_item_pass": false,
+            "parent_passing_cells": 2,
+            "proposed_passing_cells": 0,
+            "parent_first_passing_cell": "role_bound_association|oa-bride-caterer-yell-ba|L52|p00144",
+            "proposed_first_passing_cell": null,
+            "selected_cell_parent_pass": true,
+            "selected_cell_proposed_pass": false
+          }
+        }
+      ]
+    },
+    {
+      "review_unit_index": 4,
+      "pair_kind": "capped_N1_pairs",
+      "pair_index": 0,
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+      "context_ref": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+      "context_sha256": "d3be2b715007fdb620515e3f9d1c2ec30867df9855b4c7712d4b8327e68417ad",
+      "source_pair_sha256": "237e8f30ee4f8ae3874936b935aa5c949a57bbbab76d074caf672928076b4541",
+      "before_text_sha256": "8219d97a4ae9a888658e099406ec06b4f72a333f90e6ae92d0d6eaf5a176576b",
+      "after_text_sha256": "56b8b8505a1926b639b4f04c8fbe502ec22da0164eac88d1c66e102f0d35fbe5",
+      "observed_change": "Editing replaces capped generic prompts with a different set of generic/unrelated Elias, David and John fragments. Neither supplies waiter-to-customer apology at this fixed anchor.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "editing_round1-n32",
+          "parent_condition": null,
+          "official_reference_sha256": "280be2c992a9ccb591d58441390ef67eaece4a44f1cb7578c075a8830207be23",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": null
+        },
+        {
+          "condition": "editing_round2-n32",
+          "parent_condition": null,
+          "official_reference_sha256": "b6620cd8f1eae3d07236d6605093123fc3e4aab5f0e0b3c969976d6c6e24214b",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": null
+        }
+      ]
+    },
+    {
+      "review_unit_index": 4,
+      "pair_kind": "actual_parent_pairs",
+      "pair_index": 0,
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+      "context_ref": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+      "context_sha256": "d3be2b715007fdb620515e3f9d1c2ec30867df9855b4c7712d4b8327e68417ad",
+      "source_pair_sha256": "c235636ce45847b9b63af06acdff9c0b8c66a5c90a0668534161490f226f789d",
+      "before_text_sha256": "67d7b20e4d53e502e798f4631c4f73f70e088ac73e76f8f3b36447c5a0863704",
+      "after_text_sha256": "56b8b8505a1926b639b4f04c8fbe502ec22da0164eac88d1c66e102f0d35fbe5",
+      "observed_change": "Best-complete and proposed readouts both fail locally; the question remains recovered elsewhere, with passing sites decreasing from seven to four. This failed anchor does not witness that grid difference.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "editing_round1-n32",
+          "parent_condition": "best_n_exact-n32",
+          "official_reference_sha256": "6a8c6fc462298ed38f72e8f9bc620a79b9d9dccccdec8b1d3870a4f55e712bc8",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-waiter-customer-apologize-ab",
+            "grid_cells": 114,
+            "parent_item_pass": true,
+            "proposed_item_pass": true,
+            "parent_passing_cells": 7,
+            "proposed_passing_cells": 4,
+            "parent_first_passing_cell": "role_bound_association|oa-waiter-customer-apologize-ab|L36|p00103",
+            "proposed_first_passing_cell": "role_bound_association|oa-waiter-customer-apologize-ab|L36|p00103",
+            "selected_cell_parent_pass": false,
+            "selected_cell_proposed_pass": false
+          }
+        },
+        {
+          "condition": "editing_round2-n32",
+          "parent_condition": "best_n_exact-n32",
+          "official_reference_sha256": "a9d055419eb191b176e0a8d496fb2f5203097063a1b7296302a6305094d08ada",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-waiter-customer-apologize-ab",
+            "grid_cells": 114,
+            "parent_item_pass": true,
+            "proposed_item_pass": true,
+            "parent_passing_cells": 7,
+            "proposed_passing_cells": 4,
+            "parent_first_passing_cell": "role_bound_association|oa-waiter-customer-apologize-ab|L36|p00103",
+            "proposed_first_passing_cell": "role_bound_association|oa-waiter-customer-apologize-ab|L36|p00103",
+            "selected_cell_parent_pass": false,
+            "selected_cell_proposed_pass": false
+          }
+        }
+      ]
+    },
+    {
+      "review_unit_index": 4,
+      "pair_kind": "actual_parent_pairs",
+      "pair_index": 1,
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+      "context_ref": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+      "context_sha256": "d3be2b715007fdb620515e3f9d1c2ec30867df9855b4c7712d4b8327e68417ad",
+      "source_pair_sha256": "2efb7d96ffdd4c97e9d5321b9e0e0ff0fe7441e25d28fb08f3e15d54260fd654",
+      "before_text_sha256": "56b8b8505a1926b639b4f04c8fbe502ec22da0164eac88d1c66e102f0d35fbe5",
+      "after_text_sha256": "56b8b8505a1926b639b4f04c8fbe502ec22da0164eac88d1c66e102f0d35fbe5",
+      "observed_change": "Both editing rounds retain the pooled parent exactly at this anchor, with the same four passing grid sites. There is no newly selected edited prose or new native recovery here.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "editing_round1-n32",
+          "parent_condition": "pooled_greedy_swap-n32",
+          "official_reference_sha256": "2051791ff961aa4f25dca6f31eae5a12939808037fe613eab6c767bcc79d31fc",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-waiter-customer-apologize-ab",
+            "grid_cells": 114,
+            "parent_item_pass": true,
+            "proposed_item_pass": true,
+            "parent_passing_cells": 4,
+            "proposed_passing_cells": 4,
+            "parent_first_passing_cell": "role_bound_association|oa-waiter-customer-apologize-ab|L36|p00103",
+            "proposed_first_passing_cell": "role_bound_association|oa-waiter-customer-apologize-ab|L36|p00103",
+            "selected_cell_parent_pass": false,
+            "selected_cell_proposed_pass": false
+          }
+        },
+        {
+          "condition": "editing_round2-n32",
+          "parent_condition": "pooled_greedy_swap-n32",
+          "official_reference_sha256": "3b52b798997377d8710cab7af654335693d0e929cdda3c850a48e29b216c356c",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-waiter-customer-apologize-ab",
+            "grid_cells": 114,
+            "parent_item_pass": true,
+            "proposed_item_pass": true,
+            "parent_passing_cells": 4,
+            "proposed_passing_cells": 4,
+            "parent_first_passing_cell": "role_bound_association|oa-waiter-customer-apologize-ab|L36|p00103",
+            "proposed_first_passing_cell": "role_bound_association|oa-waiter-customer-apologize-ab|L36|p00103",
+            "selected_cell_parent_pass": false,
+            "selected_cell_proposed_pass": false
+          }
+        }
+      ]
+    },
+    {
+      "review_unit_index": 5,
+      "pair_kind": "capped_N1_pairs",
+      "pair_index": 0,
+      "family": "chain_intermediates",
+      "cell_id": "chain_intermediates|chain-d2p-0231|L36|p00068",
+      "context_ref": "chain_intermediates|chain-d2p-0231|L36|p00068",
+      "context_sha256": "7f2538ce5929f95fb9e1fc3b0cc7f3de6c0db9ad82ad20348705f1e077a107dc",
+      "source_pair_sha256": "197647256f4ab2330225bf9051023e1e219b7b144d69979c360b2934830e802a",
+      "before_text_sha256": "e506512aa0689472fc1b042ebda9cf8acb9decc89c69f5c306b477aaf9f9dbed",
+      "after_text_sha256": "f5ac4d37d6803e1f9023f388763fa8c1536e5003f1844a1d8fbd09539352ef2e",
+      "observed_change": "Capped text is judged first-ranked intermediate 2; proposed text ranks final result 1 first and therefore fails, even though 2 occurs lower in the prose. The capped grid's two passing sites become zero under this derived setting; numeral presence is not the endpoint.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "editing_round2_then_prune_0.005-n32",
+          "parent_condition": null,
+          "official_reference_sha256": "5a6ad53cc00196a63ddebd5967407b224bb6ef2fe7f6c70f38af70a4ee698a1e",
+          "category": "regression",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "chain-d2p-0231",
+            "baseline_item_pass": true,
+            "proposed_item_pass": false,
+            "baseline_passing_cells": 2,
+            "proposed_passing_cells": 0,
+            "grid_cells": 11,
+            "witness_rule": "first passing baseline site"
+          },
+          "parent_endpoint_evidence": null
+        }
+      ]
+    },
+    {
+      "review_unit_index": 5,
+      "pair_kind": "actual_parent_pairs",
+      "pair_index": 0,
+      "family": "chain_intermediates",
+      "cell_id": "chain_intermediates|chain-d2p-0231|L36|p00068",
+      "context_ref": "chain_intermediates|chain-d2p-0231|L36|p00068",
+      "context_sha256": "7f2538ce5929f95fb9e1fc3b0cc7f3de6c0db9ad82ad20348705f1e077a107dc",
+      "source_pair_sha256": "2d1256df9736bad924caf18e48cae5e6e65ead87b9e6b5fd155207b5e0e0f2f1",
+      "before_text_sha256": "f5ac4d37d6803e1f9023f388763fa8c1536e5003f1844a1d8fbd09539352ef2e",
+      "after_text_sha256": "f5ac4d37d6803e1f9023f388763fa8c1536e5003f1844a1d8fbd09539352ef2e",
+      "observed_change": "The .005 pruned output is byte-identical to round2 at this site and both grids already have zero hits. Thus the capped regression is inherited from the editor selection, not local pruning damage.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "editing_round2_then_prune_0.005-n32",
+          "parent_condition": "editing_round2-n32",
+          "official_reference_sha256": "90a300f1b9b83e8e6ef6ebf124f7a586b6a2900bcffa76ccaca1262c6a51613d",
+          "category": "regression",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "chain-d2p-0231",
+            "baseline_item_pass": true,
+            "proposed_item_pass": false,
+            "baseline_passing_cells": 2,
+            "proposed_passing_cells": 0,
+            "grid_cells": 11,
+            "witness_rule": "first passing baseline site"
+          },
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "chain-d2p-0231",
+            "grid_cells": 11,
+            "parent_item_pass": false,
+            "proposed_item_pass": false,
+            "parent_passing_cells": 0,
+            "proposed_passing_cells": 0,
+            "parent_first_passing_cell": null,
+            "proposed_first_passing_cell": null,
+            "selected_cell_parent_pass": false,
+            "selected_cell_proposed_pass": false
+          }
+        }
+      ]
+    },
+    {
+      "review_unit_index": 6,
+      "pair_kind": "capped_N1_pairs",
+      "pair_index": 0,
+      "family": "chain_intermediates",
+      "cell_id": "chain_intermediates|chain-w2-d2p-0013|L60|p00062",
+      "context_ref": "chain_intermediates|chain-w2-d2p-0013|L60|p00062",
+      "context_sha256": "4c506c0ca58ec70e8d7d43a0034115104102e53f17fd17bef8b8deb11a279d92",
+      "source_pair_sha256": "aa2b04d1ac5eca31b3c3389488bb12a068298a47a63bb12b8da8d05956322442",
+      "before_text_sha256": "a5053af6a6908754c376e975cca5bab0250522e7d8c961d7a183678fc2f1cec3",
+      "after_text_sha256": "7d3ed35ddb6328a170f009c5407655071802b11e1ef80604519f13d306c599de",
+      "observed_change": "Random deletion leaves unrelated 1401/142/26 fragments without required intermediate 5. The first-ranked value changes to 4 and receives a near label, which remains a diagnostic non-hit.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "editing_round2_random_delete_matched_0.005-n32",
+          "parent_condition": null,
+          "official_reference_sha256": "96c91a4471cd1c6e7299cea842816f467be76abd152c076f6b9096fd5feeaf1b",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": null
+        }
+      ]
+    },
+    {
+      "review_unit_index": 6,
+      "pair_kind": "actual_parent_pairs",
+      "pair_index": 0,
+      "family": "chain_intermediates",
+      "cell_id": "chain_intermediates|chain-w2-d2p-0013|L60|p00062",
+      "context_ref": "chain_intermediates|chain-w2-d2p-0013|L60|p00062",
+      "context_sha256": "4c506c0ca58ec70e8d7d43a0034115104102e53f17fd17bef8b8deb11a279d92",
+      "source_pair_sha256": "5ddd91792d32855f35cf3d66bc7c5afeb29e9c143b1e0089dc214ec4fa7e4bd9",
+      "before_text_sha256": "ace2c0110521f44bd33a700073d2d9ff2b7c5e202f2e9a13e260ef7a8818c901",
+      "after_text_sha256": "7d3ed35ddb6328a170f009c5407655071802b11e1ef80604519f13d306c599de",
+      "observed_change": "The matched-deletion arm removes the second pooled/editor bullet; extracted values change but neither reference nor proposed grid recovers 5. A near label provides no official recovery gain.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "editing_round2_random_delete_matched_0.005-n32",
+          "parent_condition": "editing_round2-n32",
+          "official_reference_sha256": "39a9c3dcad0ee1c848370c52d94a81a3af9d1596af80b0ba18ec443eed06f162",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "chain-w2-d2p-0013",
+            "grid_cells": 11,
+            "parent_item_pass": false,
+            "proposed_item_pass": false,
+            "parent_passing_cells": 0,
+            "proposed_passing_cells": 0,
+            "parent_first_passing_cell": null,
+            "proposed_first_passing_cell": null,
+            "selected_cell_parent_pass": false,
+            "selected_cell_proposed_pass": false
+          }
+        }
+      ]
+    },
+    {
+      "review_unit_index": 7,
+      "pair_kind": "capped_N1_pairs",
+      "pair_index": 0,
+      "family": "hallucination",
+      "cell_id": "hallucination|chat-dailydialog-0000|L20|p00038",
+      "context_ref": "hallucination|chat-dailydialog-0000|L20|p00038",
+      "context_sha256": "0976d77c010c5e0488036ae2ea97b769f7ba619331b7feeefd31ed9e43f0d9f3",
+      "source_pair_sha256": "3597fcf69f6d8a3b21c759149bcc6f268633759f965460708ad63f98f18389cf",
+      "before_text_sha256": "1f1b3897467867a4022dfa61256227b57a14208ff738373c44b018a35d9ba328",
+      "after_text_sha256": "7861f81081f428f1c67bd0942cdc89490dd4a3658b8503b12cd7d50dd3eb2b40",
+      "observed_change": "The proposed output adds a garage fragment relative to capped text and is officially hallucinated, while capped is consistent. This is a site-class comparison, not a question-level outcome.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "editing_round2_random_delete_matched_0.005-n32",
+          "parent_condition": null,
+          "official_reference_sha256": "56f0b199f9180ebde88eb67cf39716f3210f27fe64a6f194b3b680bb172ad567",
+          "category": "regression",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "original_readout_site_class",
+            "baseline_class": "consistent",
+            "proposed_class": "hallucinated"
+          },
+          "parent_endpoint_evidence": null
+        }
+      ]
+    },
+    {
+      "review_unit_index": 7,
+      "pair_kind": "actual_parent_pairs",
+      "pair_index": 0,
+      "family": "hallucination",
+      "cell_id": "hallucination|chat-dailydialog-0000|L20|p00038",
+      "context_ref": "hallucination|chat-dailydialog-0000|L20|p00038",
+      "context_sha256": "0976d77c010c5e0488036ae2ea97b769f7ba619331b7feeefd31ed9e43f0d9f3",
+      "source_pair_sha256": "f53ecabce4714ce83ab2e2ebf5d4b34be87b454391269f8b6c26c7fcb94c8543",
+      "before_text_sha256": "6096feda48dcd8c2dd50a3a962eba9c1f390b805c0fc6c240cdbb7cdbd946e78",
+      "after_text_sha256": "7861f81081f428f1c67bd0942cdc89490dd4a3658b8503b12cd7d50dd3eb2b40",
+      "observed_change": "Random deletion removes the cloud/home bullet but retains the exact newly flagged span I don't have a garage. Parent consistent becomes hallucinated without adding that claim; flag framing-sensitive judgment uncertainty separately from the official regression.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "editing_round2_random_delete_matched_0.005-n32",
+          "parent_condition": "editing_round2-n32",
+          "official_reference_sha256": "0d3e97e0f3a0bd70655b16f3caab33329b68d6fbd58ef1cd96b44ecfb6c2b257",
+          "category": "regression",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "original_readout_site_class",
+            "baseline_class": "consistent",
+            "proposed_class": "hallucinated"
+          },
+          "parent_endpoint_evidence": {
+            "unit": "original_readout_site_class",
+            "parent_class": "consistent",
+            "proposed_class": "hallucinated"
+          }
+        }
+      ]
+    },
+    {
+      "review_unit_index": 8,
+      "pair_kind": "capped_N1_pairs",
+      "pair_index": 0,
+      "family": "hallucination",
+      "cell_id": "hallucination|chat-dailydialog-0000|L20|p00046",
+      "context_ref": "hallucination|chat-dailydialog-0000|L20|p00046",
+      "context_sha256": "0976d77c010c5e0488036ae2ea97b769f7ba619331b7feeefd31ed9e43f0d9f3",
+      "source_pair_sha256": "5b4d1c927a4ee983b3888e7faacc04f9158fb3da766e2ec88a5af99f270dd6d9",
+      "before_text_sha256": "446f98b7671110d21e242856223c585b648d256e80ae11e7e1a4c38fd69783cf",
+      "after_text_sha256": "ff7bb8c041a544c5681e2a3ae46f5760f0af9004cba1ad0c85d99695e0e907f4",
+      "observed_change": "Both capped and shortened prose are officially consistent and mainly contain incomplete AI-partnership descriptions. No wrong span is recorded; this does not establish that every unfinished proposition is true.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "editing_round2_random_delete_matched_0.005-n32",
+          "parent_condition": null,
+          "official_reference_sha256": "13ed7e941951dee4467e6383c642bc8d8b1241612c5a744eaa624e2fff0e3aea",
+          "category": "changed_no_endpoint_change",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "original_readout_site_class",
+            "baseline_class": "consistent",
+            "proposed_class": "consistent"
+          },
+          "parent_endpoint_evidence": null
+        }
+      ]
+    },
+    {
+      "review_unit_index": 8,
+      "pair_kind": "actual_parent_pairs",
+      "pair_index": 0,
+      "family": "hallucination",
+      "cell_id": "hallucination|chat-dailydialog-0000|L20|p00046",
+      "context_ref": "hallucination|chat-dailydialog-0000|L20|p00046",
+      "context_sha256": "0976d77c010c5e0488036ae2ea97b769f7ba619331b7feeefd31ed9e43f0d9f3",
+      "source_pair_sha256": "d8107534a7a216a8bdbd01fcb5ab20b5ef61439e1a413f1686a4ac4815192791",
+      "before_text_sha256": "84f6d60f607400fab068e73a6d1be5e1195e9789dd92703cfb0a5be0aa43da99",
+      "after_text_sha256": "ff7bb8c041a544c5681e2a3ae46f5760f0af9004cba1ad0c85d99695e0e907f4",
+      "observed_change": "Random deletion removes one creative-partnership bullet and preserves the other three. Parent and output are both consistent; the example shows shortening without a native class change.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "editing_round2_random_delete_matched_0.005-n32",
+          "parent_condition": "editing_round2-n32",
+          "official_reference_sha256": "3458f2a57affd8fdbc52c5b57191e8c23d13aa1630198fc87fbcddf0fae1bce7",
+          "category": "changed_no_endpoint_change",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "original_readout_site_class",
+            "baseline_class": "consistent",
+            "proposed_class": "consistent"
+          },
+          "parent_endpoint_evidence": {
+            "unit": "original_readout_site_class",
+            "parent_class": "consistent",
+            "proposed_class": "consistent"
+          }
+        }
+      ]
+    },
+    {
+      "review_unit_index": 9,
+      "pair_kind": "capped_N1_pairs",
+      "pair_index": 0,
+      "family": "hallucination",
+      "cell_id": "hallucination|chat-dailydialog-0000|L20|p00055",
+      "context_ref": "hallucination|chat-dailydialog-0000|L20|p00055",
+      "context_sha256": "0976d77c010c5e0488036ae2ea97b769f7ba619331b7feeefd31ed9e43f0d9f3",
+      "source_pair_sha256": "aabec63ec0bc3ad21b80b41f652d963c2482ecec541cb84a8b8694322c6844a2",
+      "before_text_sha256": "666e39321ddb02792120f7420dcdaf1be8b4440a52b453f548ada66e03359ad2",
+      "after_text_sha256": "6ceb06064c967076856b93e2cee5f144f7cb3296ad2ad0e85817ffbaa44c4472",
+      "observed_change": "Capped claims about a real partner and London apartment disappear. The replacement still says we have a dog, a cat, and plants despite the supplied AI response, yet receives a consistent label; report the verdict without claiming complete fidelity.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "editing_round2_then_prune_0.005-n32",
+          "parent_condition": null,
+          "official_reference_sha256": "3f0bbd21422c605e5287930a5d4401eb6f45556123d53904e519483472fba122",
+          "category": "win",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "original_readout_site_class",
+            "baseline_class": "hallucinated",
+            "proposed_class": "consistent"
+          },
+          "parent_endpoint_evidence": null
+        }
+      ]
+    },
+    {
+      "review_unit_index": 9,
+      "pair_kind": "actual_parent_pairs",
+      "pair_index": 0,
+      "family": "hallucination",
+      "cell_id": "hallucination|chat-dailydialog-0000|L20|p00055",
+      "context_ref": "hallucination|chat-dailydialog-0000|L20|p00055",
+      "context_sha256": "0976d77c010c5e0488036ae2ea97b769f7ba619331b7feeefd31ed9e43f0d9f3",
+      "source_pair_sha256": "066253d36744a447a4ccb9fe4dbf5cbdfa5404395ef0d6bc5e17c0f6655bb483",
+      "before_text_sha256": "080edd6d314afd98d4d3917e7bb1234b8eba4af1eb1c06651a279e814b68a6be",
+      "after_text_sha256": "6ceb06064c967076856b93e2cee5f144f7cb3296ad2ad0e85817ffbaa44c4472",
+      "observed_change": "Pruning removes only the last partner bullet. The parent's sole flagged dog/cat/plants span survives verbatim after a hallucinated-to-consistent flip, so removal of the flagged proposition cannot explain the official gain.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "editing_round2_then_prune_0.005-n32",
+          "parent_condition": "editing_round2-n32",
+          "official_reference_sha256": "96250587341b3fac0c0a4df41c3821a11dbc6c22389d71199a0ee954ba11b91f",
+          "category": "win",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "original_readout_site_class",
+            "baseline_class": "hallucinated",
+            "proposed_class": "consistent"
+          },
+          "parent_endpoint_evidence": {
+            "unit": "original_readout_site_class",
+            "parent_class": "hallucinated",
+            "proposed_class": "consistent"
+          }
+        }
+      ]
+    },
+    {
+      "review_unit_index": 10,
+      "pair_kind": "capped_N1_pairs",
+      "pair_index": 0,
+      "family": "hallucination",
+      "cell_id": "hallucination|chat-dailydialog-0000|L36|p00055",
+      "context_ref": "hallucination|chat-dailydialog-0000|L36|p00055",
+      "context_sha256": "0976d77c010c5e0488036ae2ea97b769f7ba619331b7feeefd31ed9e43f0d9f3",
+      "source_pair_sha256": "5cc28814ccbda10c190382e4198f5da391314f69e3f89a866e4b01fdff21216c",
+      "before_text_sha256": "3e0db88d101bbfb36ecaaa04e82aa9a8721eb68970339ca66b8f74e0d83f8940",
+      "after_text_sha256": "544f3f36ac5d6998f3d7660910e95d9fd91f3aa7164e3a031c43256deaff68ed",
+      "observed_change": "The revised text replaces unsupported Alibaba/Aliyun attributions with general engineers/developers and training-data descriptions present in the supplied response. The official class changes to consistent; no external factual verification was performed.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "pooled_specificity_mean_random_delete_matched_0.005-n32",
+          "parent_condition": null,
+          "official_reference_sha256": "8a087ccb030540b41a378ae51b4521d5cd536246f3fa129c52aad3379692e948",
+          "category": "win",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "original_readout_site_class",
+            "baseline_class": "hallucinated",
+            "proposed_class": "consistent"
+          },
+          "parent_endpoint_evidence": null
+        }
+      ]
+    },
+    {
+      "review_unit_index": 10,
+      "pair_kind": "actual_parent_pairs",
+      "pair_index": 0,
+      "family": "hallucination",
+      "cell_id": "hallucination|chat-dailydialog-0000|L36|p00055",
+      "context_ref": "hallucination|chat-dailydialog-0000|L36|p00055",
+      "context_sha256": "0976d77c010c5e0488036ae2ea97b769f7ba619331b7feeefd31ed9e43f0d9f3",
+      "source_pair_sha256": "ad91ae2a996db8c7134903a327af2a7c846c2171713eaf3a987898d3ddb9c812",
+      "before_text_sha256": "3a94c931b9636596f4cf62d8e4e49abfe13f244a9132bbc5c4f201bf2c31385c",
+      "after_text_sha256": "544f3f36ac5d6998f3d7660910e95d9fd91f3aa7164e3a031c43256deaff68ed",
+      "observed_change": "The matched-deletion control drops the sole Aliyun technical-team bullet and retains the three other bullets exactly. The parent's only flagged vendor span is actually removed, making this a direct local content-removal illustration, not evidence for a special specificity-pruning mechanism.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "pooled_specificity_mean_random_delete_matched_0.005-n32",
+          "parent_condition": "pooled_specificity_mean-n32",
+          "official_reference_sha256": "624a297f6e544727b6366f2cba240b5ef66ef0c8951f060dd55fd634ba1cfadf",
+          "category": "win",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "original_readout_site_class",
+            "baseline_class": "hallucinated",
+            "proposed_class": "consistent"
+          },
+          "parent_endpoint_evidence": {
+            "unit": "original_readout_site_class",
+            "parent_class": "hallucinated",
+            "proposed_class": "consistent"
+          }
+        }
+      ]
+    },
+    {
+      "review_unit_index": 11,
+      "pair_kind": "capped_N1_pairs",
+      "pair_index": 0,
+      "family": "hallucination",
+      "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+      "context_ref": "hallucination|chat-lmsys-0023|L60|p00464",
+      "context_sha256": "1461fd970b5af5f8be5ea03fc89c7339cd417f9110cd05efa1ad358e0b9ac4e0",
+      "source_pair_sha256": "1aa4d32089da33f86771d3c5d27b976a4d17877820488c4d61ee6699b3089a74",
+      "before_text_sha256": "6f16c5477bec32456fdf659945ae72b7796939b6d350875835bb0a6ae70c462e",
+      "after_text_sha256": "7fb573b0091c10557ebd2e3af0a957f1e553efe253513c1eef26365fe98d5204",
+      "observed_change": "Best-of-four changes the explanatory fragments but retains unsupported DETR variant names. The judge flags DETRv2/DETR-TS in the new readout instead of DETR-D in capped text; both remain hallucinated relative to the supplied response.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "best_n_exact-n4",
+          "parent_condition": null,
+          "official_reference_sha256": "f30ad698592f1a1e0c7d1c8c1962d68db1c96938624f443466452eb51676f384",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": null
+        }
+      ]
+    },
+    {
+      "review_unit_index": 11,
+      "pair_kind": "actual_parent_pairs",
+      "pair_index": 0,
+      "family": "hallucination",
+      "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+      "context_ref": "hallucination|chat-lmsys-0023|L60|p00464",
+      "context_sha256": "1461fd970b5af5f8be5ea03fc89c7339cd417f9110cd05efa1ad358e0b9ac4e0",
+      "source_pair_sha256": "31f46d6a9c87a5d1fcc0648d8119ee7e0b1edaca4a260f86107bd5ac06b3e379",
+      "before_text_sha256": "6f16c5477bec32456fdf659945ae72b7796939b6d350875835bb0a6ae70c462e",
+      "after_text_sha256": "7fb573b0091c10557ebd2e3af0a957f1e553efe253513c1eef26365fe98d5204",
+      "observed_change": "The declared capped parent comparison is the same change: small-object limitations remain, invented variant labels change, and the contradiction class does not improve. Source-response fidelity is separate from real-world truth of the benchmark response.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "best_n_exact-n4",
+          "parent_condition": "capped_n1-n1",
+          "official_reference_sha256": "bffbdc880f28cf69e50b10ee1a171bddf90d67c5157d67210a74d0cd8954b066",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": {
+            "unit": "original_readout_site_class",
+            "parent_class": "hallucinated",
+            "proposed_class": "hallucinated"
+          }
+        }
+      ]
+    },
+    {
+      "review_unit_index": 12,
+      "pair_kind": "capped_N1_pairs",
+      "pair_index": 0,
+      "family": "hallucination",
+      "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+      "context_ref": "hallucination|chat-lmsys-0052|L20|p00253",
+      "context_sha256": "f7b985c1651efa1470519b5ca4b3e57fa1dce70e1ae6b4ea47e71e69444e1b76",
+      "source_pair_sha256": "22ad3355e1092ca3e57a3e807a941bf619d0258ab362f75f5f220ca4652721a1",
+      "before_text_sha256": "734e4cab45de42ed4655d6bf45a5f94e4a4cfda5dcc77344117376e4bb7c0fe9",
+      "after_text_sha256": "4d012bcdd4846636c47ad822f1b30be2896fa809e98a778540f9bb6e09a9a153",
+      "observed_change": "Best-of-four and likelihood-control selection share this exact output. The text changes potassium chloride to potassium nitrate and adds a one-gram room-temperature fragment instead of recovering sodium-nitrite boiling-water detail; both readouts remain officially hallucinated.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "best_n_exact-n4",
+          "parent_condition": null,
+          "official_reference_sha256": "49c1aa06072659207e3691adbaaa77eb38ca12b564e9f72c95a6a082a759dff8",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": null
+        },
+        {
+          "condition": "likelihood_true_minus_mean_two_controls-n8",
+          "parent_condition": null,
+          "official_reference_sha256": "9d46530c8acc6ac89acee317ad2a0044d0743ce217b87e113ede26fa739ace00",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": null
+        }
+      ]
+    },
+    {
+      "review_unit_index": 12,
+      "pair_kind": "actual_parent_pairs",
+      "pair_index": 0,
+      "family": "hallucination",
+      "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+      "context_ref": "hallucination|chat-lmsys-0052|L20|p00253",
+      "context_sha256": "f7b985c1651efa1470519b5ca4b3e57fa1dce70e1ae6b4ea47e71e69444e1b76",
+      "source_pair_sha256": "4f974fbc28806964e7d3dc0df29543e123b902749c6d7597d2efd39ed5b7c0fc",
+      "before_text_sha256": "734e4cab45de42ed4655d6bf45a5f94e4a4cfda5dcc77344117376e4bb7c0fe9",
+      "after_text_sha256": "4d012bcdd4846636c47ad822f1b30be2896fa809e98a778540f9bb6e09a9a153",
+      "observed_change": "Relative to capped N1, the same output retains the wrong-compound theme and is still hallucinated. Fewer established-false spans are different segmentation/tallies, not evidence of uniform atomic precision or a correct solubility answer.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "best_n_exact-n4",
+          "parent_condition": "capped_n1-n1",
+          "official_reference_sha256": "30d49e81f45cfef07739295e8dce4f66dd90be6f07da03134508cea5d5107881",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": {
+            "unit": "original_readout_site_class",
+            "parent_class": "hallucinated",
+            "proposed_class": "hallucinated"
+          }
+        },
+        {
+          "condition": "likelihood_true_minus_mean_two_controls-n8",
+          "parent_condition": "capped_n1-n1",
+          "official_reference_sha256": "6e1263a58ea54d4b1d2be2d95508c44332f89aad5b36f6d4e2886b80fcb9647f",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": {
+            "unit": "original_readout_site_class",
+            "parent_class": "hallucinated",
+            "proposed_class": "hallucinated"
+          }
+        }
+      ]
+    },
+    {
+      "review_unit_index": 13,
+      "pair_kind": "capped_N1_pairs",
+      "pair_index": 0,
+      "family": "multihop_mt",
+      "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+      "context_ref": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+      "context_sha256": "d708658682b79f66c54a747f99f58be4f477d6e32302a2c9f6c30b870e473ab6",
+      "source_pair_sha256": "8c3ea190e61212f3456590c8f75304bf6a2cbbfa1a8a98ff755012375cf87764",
+      "before_text_sha256": "fc71a97c02082652baa73a72e5e165e5eebf085ae8c168c13823ed314106339b",
+      "after_text_sha256": "9c1f375f4f71b76e6c38817a035b1eb9614fcba6be79b0edf4f0c997ee2d6e06",
+      "observed_change": "The revised output explicitly contains Simula 67, which supplies the registered required bridge absent from this capped site. Optional co-designer Nygaard remains absent and other names are inconsistent with the supplied target; bridge matching is not full-answer fidelity.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "editing_round2_then_prune_0.001-n32",
+          "parent_condition": null,
+          "official_reference_sha256": "8d25b4a81d725bed90c1ae9528934be3697f7ceff1892dfb55d782aeb62e4d26",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": null
+        },
+        {
+          "condition": "editing_round2_random_delete_matched_0.001-n32",
+          "parent_condition": null,
+          "official_reference_sha256": "478de5508d154d6be2ebfe820f05092569c3ffadfc94c9e50404b1ffe0dc1e42",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": null
+        }
+      ]
+    },
+    {
+      "review_unit_index": 13,
+      "pair_kind": "actual_parent_pairs",
+      "pair_index": 0,
+      "family": "multihop_mt",
+      "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+      "context_ref": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+      "context_sha256": "d708658682b79f66c54a747f99f58be4f477d6e32302a2c9f6c30b870e473ab6",
+      "source_pair_sha256": "f0811163a1770fd7c7525c6385fad63a6932954077c120f36f3a525072f15559",
+      "before_text_sha256": "64b1601a3b081afb85d8a011a0ec8fca4c2a587af840e563bc6299639882aa0f",
+      "after_text_sha256": "9c1f375f4f71b76e6c38817a035b1eb9614fcba6be79b0edf4f0c997ee2d6e06",
+      "observed_change": "Both derivatives remove only the fourth round2 bullet while retaining required Simula 67. Their parent already passes here and all three grids retain ten passing sites; the local gain relative to capped text was inherited before deletion.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "editing_round2_then_prune_0.001-n32",
+          "parent_condition": "editing_round2-n32",
+          "official_reference_sha256": "184fcb797f0963f5acb3214fb60b39c594c14fa9d00aa1c1d4ce39faf2dfcce6",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "mhh-1967-norwegian-classes-objects-codesigner",
+            "grid_cells": 11,
+            "parent_item_pass": true,
+            "proposed_item_pass": true,
+            "parent_passing_cells": 10,
+            "proposed_passing_cells": 10,
+            "parent_first_passing_cell": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028",
+            "proposed_first_passing_cell": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028",
+            "selected_cell_parent_pass": true,
+            "selected_cell_proposed_pass": true
+          }
+        },
+        {
+          "condition": "editing_round2_random_delete_matched_0.001-n32",
+          "parent_condition": "editing_round2-n32",
+          "official_reference_sha256": "cc60c6dcd9ce35841bec7a20d7ad38cc26a4504f018247e32fd9cf05b9559cd8",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "mhh-1967-norwegian-classes-objects-codesigner",
+            "grid_cells": 11,
+            "parent_item_pass": true,
+            "proposed_item_pass": true,
+            "parent_passing_cells": 10,
+            "proposed_passing_cells": 10,
+            "parent_first_passing_cell": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028",
+            "proposed_first_passing_cell": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028",
+            "selected_cell_parent_pass": true,
+            "selected_cell_proposed_pass": true
+          }
+        }
+      ]
+    },
+    {
+      "review_unit_index": 14,
+      "pair_kind": "capped_N1_pairs",
+      "pair_index": 0,
+      "family": "multihop_mt",
+      "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+      "context_ref": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+      "context_sha256": "503e623a944e93ba31e85192d752575f6ed7172a6dd2ba1b62d3442df8a19caa",
+      "source_pair_sha256": "23abfa415aa57178ba71e8f2fb66ef45ebb938826e3879d24f271dbc0e977313",
+      "before_text_sha256": "1a1d504406f1d93204dc2fa8c0eecda5419af12ced9710240beaf2065d9f0f68",
+      "after_text_sha256": "54c6f1b6f5691f5c3492a1ea967812d21a95436fd2c18b8ab64497a2f3047382",
+      "observed_change": "Both capped and shortened readouts mention optional Humbaba but omit required Enkidu and fail locally. Correct final-answer fragments do not substitute for the hidden bridge.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "editing_round2_then_prune_0.005-n32",
+          "parent_condition": null,
+          "official_reference_sha256": "953e2c656cbf1a559d409536f4247a49e953e6d7bcf8a8a7326f46e91d7ec69d",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": null
+        }
+      ]
+    },
+    {
+      "review_unit_index": 14,
+      "pair_kind": "actual_parent_pairs",
+      "pair_index": 0,
+      "family": "multihop_mt",
+      "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+      "context_ref": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+      "context_sha256": "503e623a944e93ba31e85192d752575f6ed7172a6dd2ba1b62d3442df8a19caa",
+      "source_pair_sha256": "24068b1c370032b593c9632d7aaf1633980351d222e4d2371bf8ad402f075372",
+      "before_text_sha256": "f6f90857d8abd990d0b6aca746e7c7d4e3e36dc7e8ade18ec3276b6946045cce",
+      "after_text_sha256": "54c6f1b6f5691f5c3492a1ea967812d21a95436fd2c18b8ab64497a2f3047382",
+      "observed_change": "Pruning removes the fourth editor bullet containing Enkidu and a third unrelated Goliath/Yaksha bullet. This loses a genuine local bridge hit, but the question remains recovered elsewhere with three passing sites reduced to two.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "editing_round2_then_prune_0.005-n32",
+          "parent_condition": "editing_round2-n32",
+          "official_reference_sha256": "ffc35e60d013a414442402f01cf2df6c6bf736f4f71e92be7dbf104b86122d06",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "mhh-mesopotamian-wildman-cedar",
+            "grid_cells": 11,
+            "parent_item_pass": true,
+            "proposed_item_pass": true,
+            "parent_passing_cells": 3,
+            "proposed_passing_cells": 2,
+            "parent_first_passing_cell": "multihop_mt|mhh-mesopotamian-wildman-cedar|L40|p00046",
+            "proposed_first_passing_cell": "multihop_mt|mhh-mesopotamian-wildman-cedar|L40|p00046",
+            "selected_cell_parent_pass": true,
+            "selected_cell_proposed_pass": false
+          }
+        }
+      ]
+    },
+    {
+      "review_unit_index": 15,
+      "pair_kind": "capped_N1_pairs",
+      "pair_index": 0,
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+      "context_ref": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+      "context_sha256": "337fec5b7e5d9bee005585d7683305b00d42e0a71b028f8f887ccfce0fe5033f",
+      "source_pair_sha256": "243bb79c1b68fd5e49f18cfbcd427e8074a4074216bc7dbf2747d364e97541df",
+      "before_text_sha256": "157fae280b3cba20bff5efe7edd968a7fd89f2694a69d1d0c6a3dac02978ce45",
+      "after_text_sha256": "21752c38064ccba34a78e64fc6563d0b86215ccd486d8eccda1294016e3be066",
+      "observed_change": "The output contracts generic financial summarization prompts to one dodgy-but-successful fragment. Neither reference identifies accountant Marcus deceiving client Priya, while both question grids remain recovered elsewhere.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "editing_round2_random_delete_matched_0.005-n32",
+          "parent_condition": null,
+          "official_reference_sha256": "57368ab206dc294a2aec7ae2b2e3c2a63be1e43ef8c088ecd7cc721739a29562",
+          "category": "changed_no_endpoint_change",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-accountant-client-deceive-ab",
+            "baseline_item_pass": true,
+            "proposed_item_pass": true,
+            "baseline_passing_cells": 9,
+            "proposed_passing_cells": 6,
+            "grid_cells": 114,
+            "witness_rule": "first text-changed site"
+          },
+          "parent_endpoint_evidence": null
+        }
+      ]
+    },
+    {
+      "review_unit_index": 15,
+      "pair_kind": "actual_parent_pairs",
+      "pair_index": 0,
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+      "context_ref": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+      "context_sha256": "337fec5b7e5d9bee005585d7683305b00d42e0a71b028f8f887ccfce0fe5033f",
+      "source_pair_sha256": "ae78d021a8dfde5820a5530e8e1b17573721b24cdef079bfb463bf8795c407f3",
+      "before_text_sha256": "49161d738783e22d199c4e758b5cf35e7d8b6beec264a19d1cba917bc96c48e0",
+      "after_text_sha256": "21752c38064ccba34a78e64fc6563d0b86215ccd486d8eccda1294016e3be066",
+      "observed_change": "Matched deletion retains only the third round2 prompt and leaves this site failed. Passing sites elsewhere increase from five to six, so this local deletion cannot explain a claimed recovery gain.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "editing_round2_random_delete_matched_0.005-n32",
+          "parent_condition": "editing_round2-n32",
+          "official_reference_sha256": "8b91a1ff72d46a5233b67915aac8903a13f33991e6e60edf649a54c5319bdb47",
+          "category": "changed_no_endpoint_change",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-accountant-client-deceive-ab",
+            "baseline_item_pass": true,
+            "proposed_item_pass": true,
+            "baseline_passing_cells": 9,
+            "proposed_passing_cells": 6,
+            "grid_cells": 114,
+            "witness_rule": "first text-changed site"
+          },
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-accountant-client-deceive-ab",
+            "grid_cells": 114,
+            "parent_item_pass": true,
+            "proposed_item_pass": true,
+            "parent_passing_cells": 5,
+            "proposed_passing_cells": 6,
+            "parent_first_passing_cell": "role_bound_association|oa-accountant-client-deceive-ab|L36|p00134",
+            "proposed_first_passing_cell": "role_bound_association|oa-accountant-client-deceive-ab|L36|p00134",
+            "selected_cell_parent_pass": false,
+            "selected_cell_proposed_pass": false
+          }
+        }
+      ]
+    },
+    {
+      "review_unit_index": 16,
+      "pair_kind": "capped_N1_pairs",
+      "pair_index": 0,
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+      "context_ref": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+      "context_sha256": "337fec5b7e5d9bee005585d7683305b00d42e0a71b028f8f887ccfce0fe5033f",
+      "source_pair_sha256": "86633ec2d350ae0488e8e120d688213fb76632fc0dbc825ae6f415d81a66837d",
+      "before_text_sha256": "157fae280b3cba20bff5efe7edd968a7fd89f2694a69d1d0c6a3dac02978ce45",
+      "after_text_sha256": "2d5ede506ecc09dc4805973ac31b5eb31abbe0af899b7adbbe6441c3e8aeffdb",
+      "observed_change": "The shortened text keeps two unrelated financial-summary prompts and never supplies the directed accountant/client deception. Both capped/proposed question endpoints remain recovered elsewhere despite differing witness counts.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "editing_round2_then_prune_0.001-n32",
+          "parent_condition": null,
+          "official_reference_sha256": "e75b91095d0afc051388f806bf86adbe8767bbd60d03e0596771d1b74f841090",
+          "category": "changed_no_endpoint_change",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-accountant-client-deceive-ab",
+            "baseline_item_pass": true,
+            "proposed_item_pass": true,
+            "baseline_passing_cells": 9,
+            "proposed_passing_cells": 5,
+            "grid_cells": 114,
+            "witness_rule": "first text-changed site"
+          },
+          "parent_endpoint_evidence": null
+        }
+      ]
+    },
+    {
+      "review_unit_index": 16,
+      "pair_kind": "actual_parent_pairs",
+      "pair_index": 0,
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+      "context_ref": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+      "context_sha256": "337fec5b7e5d9bee005585d7683305b00d42e0a71b028f8f887ccfce0fe5033f",
+      "source_pair_sha256": "367182efd9eb00f3c587ddc57f7b07636852cc17ccfaececcdfc10c4bc3955e6",
+      "before_text_sha256": "49161d738783e22d199c4e758b5cf35e7d8b6beec264a19d1cba917bc96c48e0",
+      "after_text_sha256": "2d5ede506ecc09dc4805973ac31b5eb31abbe0af899b7adbbe6441c3e8aeffdb",
+      "observed_change": "Pruning removes two round2 prompts, leaving the same failed local outcome and five passing sites elsewhere. There is no new role recovery or whole-question change here.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "editing_round2_then_prune_0.001-n32",
+          "parent_condition": "editing_round2-n32",
+          "official_reference_sha256": "774dea9affc12c8b5708be9353747a030f1221d13a468b796c1ae8f768d5cb11",
+          "category": "changed_no_endpoint_change",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-accountant-client-deceive-ab",
+            "baseline_item_pass": true,
+            "proposed_item_pass": true,
+            "baseline_passing_cells": 9,
+            "proposed_passing_cells": 5,
+            "grid_cells": 114,
+            "witness_rule": "first text-changed site"
+          },
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-accountant-client-deceive-ab",
+            "grid_cells": 114,
+            "parent_item_pass": true,
+            "proposed_item_pass": true,
+            "parent_passing_cells": 5,
+            "proposed_passing_cells": 5,
+            "parent_first_passing_cell": "role_bound_association|oa-accountant-client-deceive-ab|L36|p00134",
+            "proposed_first_passing_cell": "role_bound_association|oa-accountant-client-deceive-ab|L36|p00134",
+            "selected_cell_parent_pass": false,
+            "selected_cell_proposed_pass": false
+          }
+        }
+      ]
+    },
+    {
+      "review_unit_index": 17,
+      "pair_kind": "capped_N1_pairs",
+      "pair_index": 0,
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00133",
+      "context_ref": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00133",
+      "context_sha256": "337fec5b7e5d9bee005585d7683305b00d42e0a71b028f8f887ccfce0fe5033f",
+      "source_pair_sha256": "912f9f1435f9dafedd6daeab53aad64f2380da3ecbce2c2d61746700ea2cc4a6",
+      "before_text_sha256": "1b37abd1a18825b912620395de5d0f2449d477259bee13b2edde884e5a9092c3",
+      "after_text_sha256": "6f12a2cf0adebf36a5c22e084dec1436aec0301876c4b9d66b3631e0bbe3fdc0",
+      "observed_change": "Semantic variants reorder/replace generic summarize instructions without mentioning the actual accountant/client deception. This changed failed site cannot explain the whole-grid witness counts, although all question endpoints remain recovered.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "consensus_semantic_v5_support0_compatoff_vetooff-n16",
+          "parent_condition": null,
+          "official_reference_sha256": "ce52a2ea46ae81db7db5d4f654eaa599b46b33a0811c631614fbc4c266fffca7",
+          "category": "changed_no_endpoint_change",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-accountant-client-deceive-ab",
+            "baseline_item_pass": true,
+            "proposed_item_pass": true,
+            "baseline_passing_cells": 9,
+            "proposed_passing_cells": 7,
+            "grid_cells": 114,
+            "witness_rule": "first text-changed site"
+          },
+          "parent_endpoint_evidence": null
+        },
+        {
+          "condition": "consensus_semantic_v5_support0_compatoff_vetoon-n16",
+          "parent_condition": null,
+          "official_reference_sha256": "51f96ca11bee8d58f39f87d794feafe38e418c20fc5392ee913bb501b066c80a",
+          "category": "changed_no_endpoint_change",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-accountant-client-deceive-ab",
+            "baseline_item_pass": true,
+            "proposed_item_pass": true,
+            "baseline_passing_cells": 9,
+            "proposed_passing_cells": 7,
+            "grid_cells": 114,
+            "witness_rule": "first text-changed site"
+          },
+          "parent_endpoint_evidence": null
+        },
+        {
+          "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+          "parent_condition": null,
+          "official_reference_sha256": "cbe74c1d47162a0cdf6c7664e7a7e20ae125c8356ad3b8c07e710711a0e0efb5",
+          "category": "changed_no_endpoint_change",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-accountant-client-deceive-ab",
+            "baseline_item_pass": true,
+            "proposed_item_pass": true,
+            "baseline_passing_cells": 9,
+            "proposed_passing_cells": 8,
+            "grid_cells": 114,
+            "witness_rule": "first text-changed site"
+          },
+          "parent_endpoint_evidence": null
+        }
+      ]
+    },
+    {
+      "review_unit_index": 17,
+      "pair_kind": "actual_parent_pairs",
+      "pair_index": 0,
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00133",
+      "context_ref": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00133",
+      "context_sha256": "337fec5b7e5d9bee005585d7683305b00d42e0a71b028f8f887ccfce0fe5033f",
+      "source_pair_sha256": "6c10ad1d007cc33d7dd0c72f75536d6e4978282b0e38ce9b22b3e3ca00211a93",
+      "before_text_sha256": "6f12a2cf0adebf36a5c22e084dec1436aec0301876c4b9d66b3631e0bbe3fdc0",
+      "after_text_sha256": "6f12a2cf0adebf36a5c22e084dec1436aec0301876c4b9d66b3631e0bbe3fdc0",
+      "observed_change": "The output is byte-identical to exact support at this site. Ordinary variants have seven versus eight parent passing sites elsewhere, while medium retains eight; do not attribute those grid differences to a local text change or infer a mechanism from this unchanged anchor.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "consensus_semantic_v5_support0_compatoff_vetooff-n16",
+          "parent_condition": "consensus_exact_support0-n16",
+          "official_reference_sha256": "7fc31acebbd73905190431a9f709d7cbd0efa87f246883c09104576824ab05f5",
+          "category": "changed_no_endpoint_change",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-accountant-client-deceive-ab",
+            "baseline_item_pass": true,
+            "proposed_item_pass": true,
+            "baseline_passing_cells": 9,
+            "proposed_passing_cells": 7,
+            "grid_cells": 114,
+            "witness_rule": "first text-changed site"
+          },
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-accountant-client-deceive-ab",
+            "grid_cells": 114,
+            "parent_item_pass": true,
+            "proposed_item_pass": true,
+            "parent_passing_cells": 8,
+            "proposed_passing_cells": 7,
+            "parent_first_passing_cell": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00134",
+            "proposed_first_passing_cell": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00134",
+            "selected_cell_parent_pass": false,
+            "selected_cell_proposed_pass": false
+          }
+        },
+        {
+          "condition": "consensus_semantic_v5_support0_compatoff_vetoon-n16",
+          "parent_condition": "consensus_exact_support0-n16",
+          "official_reference_sha256": "0962607ed69a6aced48441836400833fb34107a9987fd5801f9110babfcb0430",
+          "category": "changed_no_endpoint_change",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-accountant-client-deceive-ab",
+            "baseline_item_pass": true,
+            "proposed_item_pass": true,
+            "baseline_passing_cells": 9,
+            "proposed_passing_cells": 7,
+            "grid_cells": 114,
+            "witness_rule": "first text-changed site"
+          },
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-accountant-client-deceive-ab",
+            "grid_cells": 114,
+            "parent_item_pass": true,
+            "proposed_item_pass": true,
+            "parent_passing_cells": 8,
+            "proposed_passing_cells": 7,
+            "parent_first_passing_cell": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00134",
+            "proposed_first_passing_cell": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00134",
+            "selected_cell_parent_pass": false,
+            "selected_cell_proposed_pass": false
+          }
+        },
+        {
+          "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+          "parent_condition": "consensus_exact_support0-n16",
+          "official_reference_sha256": "ca6d891d14de7df530c11d49797abbafab4c2496ed3c05dbb46bc6058d864d6f",
+          "category": "changed_no_endpoint_change",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-accountant-client-deceive-ab",
+            "baseline_item_pass": true,
+            "proposed_item_pass": true,
+            "baseline_passing_cells": 9,
+            "proposed_passing_cells": 8,
+            "grid_cells": 114,
+            "witness_rule": "first text-changed site"
+          },
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-accountant-client-deceive-ab",
+            "grid_cells": 114,
+            "parent_item_pass": true,
+            "proposed_item_pass": true,
+            "parent_passing_cells": 8,
+            "proposed_passing_cells": 8,
+            "parent_first_passing_cell": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00134",
+            "proposed_first_passing_cell": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00134",
+            "selected_cell_parent_pass": false,
+            "selected_cell_proposed_pass": false
+          }
+        }
+      ]
+    },
+    {
+      "review_unit_index": 18,
+      "pair_kind": "capped_N1_pairs",
+      "pair_index": 0,
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ab|L36|p00089",
+      "context_ref": "role_bound_association|oa-babysitter-toddler-feed-ab|L36|p00089",
+      "context_sha256": "04eeeabbf0dca094b5d592bdc93f2277bb6592682f5cc154ddcf7e9a7e7deb6c",
+      "source_pair_sha256": "34e381e8735e4202f0c634fea7c0dc46e4bbf54369295b6b8124ed5b0fe443c3",
+      "before_text_sha256": "274176d6bf807fb70434bd965689f93b1ae6c1e4fb88e6c71a667270bd8a3435",
+      "after_text_sha256": "7cadaccf26c5b4f2603bd57ce0587c169af1b33058e8b24dd4e1ea4b5b94371b",
+      "observed_change": "Compatibility selection removes the original food-preparation/childcare context and retains only an ambiguous child-arriving fragment. The judge moves from inferred Maya-feeds-Otto to cannot-tell, and the sole whole-grid witness disappears under both ordinary and medium variants.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "consensus_semantic_v5_support0_compaton_vetoon-n16",
+          "parent_condition": null,
+          "official_reference_sha256": "0a8e34fb01fa1e578bcd53151ae6cfb0d8846840e854481885ac6bf215cbda8d",
+          "category": "regression",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-babysitter-toddler-feed-ab",
+            "baseline_item_pass": true,
+            "proposed_item_pass": false,
+            "baseline_passing_cells": 1,
+            "proposed_passing_cells": 0,
+            "grid_cells": 114,
+            "witness_rule": "first passing baseline site"
+          },
+          "parent_endpoint_evidence": null
+        },
+        {
+          "condition": "consensus_semantic_v5_medium_support0_compaton_vetoon-n16",
+          "parent_condition": null,
+          "official_reference_sha256": "09b5e0db98c85ee93d11dd1398753e2a1f4ec8a30a3534b4353d44af9a8d312c",
+          "category": "regression",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-babysitter-toddler-feed-ab",
+            "baseline_item_pass": true,
+            "proposed_item_pass": false,
+            "baseline_passing_cells": 1,
+            "proposed_passing_cells": 0,
+            "grid_cells": 114,
+            "witness_rule": "first passing baseline site"
+          },
+          "parent_endpoint_evidence": null
+        }
+      ]
+    },
+    {
+      "review_unit_index": 18,
+      "pair_kind": "actual_parent_pairs",
+      "pair_index": 0,
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ab|L36|p00089",
+      "context_ref": "role_bound_association|oa-babysitter-toddler-feed-ab|L36|p00089",
+      "context_sha256": "04eeeabbf0dca094b5d592bdc93f2277bb6592682f5cc154ddcf7e9a7e7deb6c",
+      "source_pair_sha256": "654b6d444a429e8bdc5ddacb4f17a81d757bde162328164799553e4f814e282c",
+      "before_text_sha256": "274176d6bf807fb70434bd965689f93b1ae6c1e4fb88e6c71a667270bd8a3435",
+      "after_text_sha256": "7cadaccf26c5b4f2603bd57ce0587c169af1b33058e8b24dd4e1ea4b5b94371b",
+      "observed_change": "Relative to exact support, three bullets are deleted, including the caregiving description used by the original rationale. The sole passing site is this one; this is a local loss and whole-question loss, while the original pass itself involved inference rather than an explicit complete feeding statement.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "consensus_semantic_v5_support0_compaton_vetoon-n16",
+          "parent_condition": "consensus_exact_support0-n16",
+          "official_reference_sha256": "731ef9634cf2735b967e1bae0059f8fdfbae51be7ccaf19e7c915e9b685f6b7b",
+          "category": "regression",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-babysitter-toddler-feed-ab",
+            "baseline_item_pass": true,
+            "proposed_item_pass": false,
+            "baseline_passing_cells": 1,
+            "proposed_passing_cells": 0,
+            "grid_cells": 114,
+            "witness_rule": "first passing baseline site"
+          },
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-babysitter-toddler-feed-ab",
+            "grid_cells": 114,
+            "parent_item_pass": true,
+            "proposed_item_pass": false,
+            "parent_passing_cells": 1,
+            "proposed_passing_cells": 0,
+            "parent_first_passing_cell": "role_bound_association|oa-babysitter-toddler-feed-ab|L36|p00089",
+            "proposed_first_passing_cell": null,
+            "selected_cell_parent_pass": true,
+            "selected_cell_proposed_pass": false
+          }
+        },
+        {
+          "condition": "consensus_semantic_v5_medium_support0_compaton_vetoon-n16",
+          "parent_condition": "consensus_exact_support0-n16",
+          "official_reference_sha256": "2e2b9c9b04f3a7c824070c1efd2b2b59e0840c8fe9cbf6b5803d2c6c805b6e50",
+          "category": "regression",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-babysitter-toddler-feed-ab",
+            "baseline_item_pass": true,
+            "proposed_item_pass": false,
+            "baseline_passing_cells": 1,
+            "proposed_passing_cells": 0,
+            "grid_cells": 114,
+            "witness_rule": "first passing baseline site"
+          },
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-babysitter-toddler-feed-ab",
+            "grid_cells": 114,
+            "parent_item_pass": true,
+            "proposed_item_pass": false,
+            "parent_passing_cells": 1,
+            "proposed_passing_cells": 0,
+            "parent_first_passing_cell": "role_bound_association|oa-babysitter-toddler-feed-ab|L36|p00089",
+            "proposed_first_passing_cell": null,
+            "selected_cell_parent_pass": true,
+            "selected_cell_proposed_pass": false
+          }
+        }
+      ]
+    },
+    {
+      "review_unit_index": 19,
+      "pair_kind": "capped_N1_pairs",
+      "pair_index": 0,
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ba|L36|p00124",
+      "context_ref": "role_bound_association|oa-babysitter-toddler-feed-ba|L36|p00124",
+      "context_sha256": "14493159d4ba7ef61ae86b8ccdfe15dc6a4eceebe8edba77832112f09259ef2d",
+      "source_pair_sha256": "b91a4108297baa1424f73522ab5bfa9ba14e08cf546d9aa7ef9cae0b8786b48a",
+      "before_text_sha256": "65ed386c572a9e9a2a9631d81fb1d328747326b54fee43fb4d765619a9d04101",
+      "after_text_sha256": "dd913e1027ee43e80fcf9bc45573a39097df8f16db49d15a8fc473104e3cd70b",
+      "observed_change": "Likelihood contrast selects text that explicitly says the toddler feeds the babysitter, correcting the native direction at the only passing site of the proposed grid. Surrounding timing and a reversed last fragment remain inconsistent; the win is directed-role recovery, not complete narrative accuracy.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "likelihood_true_minus_mean_two_controls-n8",
+          "parent_condition": null,
+          "official_reference_sha256": "0c400edc298befab9b28b99f2a2d5839e6007f65747734c485493ba10673aae2",
+          "category": "win",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-babysitter-toddler-feed-ba",
+            "baseline_item_pass": false,
+            "proposed_item_pass": true,
+            "baseline_passing_cells": 0,
+            "proposed_passing_cells": 1,
+            "grid_cells": 114,
+            "witness_rule": "first passing proposed site"
+          },
+          "parent_endpoint_evidence": null
+        }
+      ]
+    },
+    {
+      "review_unit_index": 19,
+      "pair_kind": "actual_parent_pairs",
+      "pair_index": 0,
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ba|L36|p00124",
+      "context_ref": "role_bound_association|oa-babysitter-toddler-feed-ba|L36|p00124",
+      "context_sha256": "14493159d4ba7ef61ae86b8ccdfe15dc6a4eceebe8edba77832112f09259ef2d",
+      "source_pair_sha256": "d7ce1afcb53a38bc7e0fba155f036f48592e61ec1a73050de0f7690ff76355c3",
+      "before_text_sha256": "65ed386c572a9e9a2a9631d81fb1d328747326b54fee43fb4d765619a9d04101",
+      "after_text_sha256": "dd913e1027ee43e80fcf9bc45573a39097df8f16db49d15a8fc473104e3cd70b",
+      "observed_change": "Against its actual capped parent, the same sole new grid witness is recovered. The correct first two feeding-direction statements coexist with an incompatible feeding-crumbs-to-toddler fragment, so keep the judge's native win separate from full prose fidelity.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "likelihood_true_minus_mean_two_controls-n8",
+          "parent_condition": "capped_n1-n1",
+          "official_reference_sha256": "ffa2c2ba1a0c543fdfbdd0ebc6504c37a933a90c302ffa95e097072f9a651bfe",
+          "category": "win",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-babysitter-toddler-feed-ba",
+            "baseline_item_pass": false,
+            "proposed_item_pass": true,
+            "baseline_passing_cells": 0,
+            "proposed_passing_cells": 1,
+            "grid_cells": 114,
+            "witness_rule": "first passing proposed site"
+          },
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-babysitter-toddler-feed-ba",
+            "grid_cells": 114,
+            "parent_item_pass": false,
+            "proposed_item_pass": true,
+            "parent_passing_cells": 0,
+            "proposed_passing_cells": 1,
+            "parent_first_passing_cell": null,
+            "proposed_first_passing_cell": "role_bound_association|oa-babysitter-toddler-feed-ba|L36|p00124",
+            "selected_cell_parent_pass": false,
+            "selected_cell_proposed_pass": true
+          }
+        }
+      ]
+    },
+    {
+      "review_unit_index": 20,
+      "pair_kind": "capped_N1_pairs",
+      "pair_index": 0,
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-bride-caterer-yell-ba|L60|p00144",
+      "context_ref": "role_bound_association|oa-bride-caterer-yell-ba|L60|p00144",
+      "context_sha256": "cce2c9bcbeed88223ce0a17718736e169ce1e83eb3c749465f842d4d679cff88",
+      "source_pair_sha256": "b58e816a71bc95212f28674b77863635ad5aa5a794c5635528042975885703e2",
+      "before_text_sha256": "c008ae2f19006dda0c120ece5a736c55ec43bdf1543237ed8f1d0d495bac44af",
+      "after_text_sha256": "bb05229f7afc31fdcac31ef7d16d0a5942e12dc702caefe470ade6fedd00ee1b",
+      "observed_change": "The specificity-pooling deletion still scores the reverse bride-to-groom direction, whereas capped is scored caterer-to-bride. The whole-question loss relative to capped persists, and source-inconsistent groom/altar details remain.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "pooled_specificity_mean_random_delete_matched_0.005-n32",
+          "parent_condition": null,
+          "official_reference_sha256": "f9da91393aed6d4aa4ecc7642a3cebbc1b5044dc7ac3966a74e9a3ca341d8f12",
+          "category": "regression",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-bride-caterer-yell-ba",
+            "baseline_item_pass": true,
+            "proposed_item_pass": false,
+            "baseline_passing_cells": 2,
+            "proposed_passing_cells": 0,
+            "grid_cells": 114,
+            "witness_rule": "first passing baseline site"
+          },
+          "parent_endpoint_evidence": null
+        }
+      ]
+    },
+    {
+      "review_unit_index": 20,
+      "pair_kind": "actual_parent_pairs",
+      "pair_index": 0,
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-bride-caterer-yell-ba|L60|p00144",
+      "context_ref": "role_bound_association|oa-bride-caterer-yell-ba|L60|p00144",
+      "context_sha256": "cce2c9bcbeed88223ce0a17718736e169ce1e83eb3c749465f842d4d679cff88",
+      "source_pair_sha256": "45e88eb77367a61f09b285dbf3fdaf489d8e20d127972d3e200f14477ee3b6cc",
+      "before_text_sha256": "7ec9aa8bf4a85542e371cdaac1c1c9e30487d8800c803605807428ec95dd67bf",
+      "after_text_sha256": "bb05229f7afc31fdcac31ef7d16d0a5942e12dc702caefe470ade6fedd00ee1b",
+      "observed_change": "Matched deletion removes only the bridesmaid-veil bullet from an already failed specificity pool. Correct-direction and reversed-direction fragments survive; both grids already have zero passing sites, so the capped regression is inherited rather than caused by this deletion.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "pooled_specificity_mean_random_delete_matched_0.005-n32",
+          "parent_condition": "pooled_specificity_mean-n32",
+          "official_reference_sha256": "378b280544bb655220aaa98d7684690c032f1b6895d5261b09782b255cd5ff44",
+          "category": "regression",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-bride-caterer-yell-ba",
+            "baseline_item_pass": true,
+            "proposed_item_pass": false,
+            "baseline_passing_cells": 2,
+            "proposed_passing_cells": 0,
+            "grid_cells": 114,
+            "witness_rule": "first passing baseline site"
+          },
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-bride-caterer-yell-ba",
+            "grid_cells": 114,
+            "parent_item_pass": false,
+            "proposed_item_pass": false,
+            "parent_passing_cells": 0,
+            "proposed_passing_cells": 0,
+            "parent_first_passing_cell": null,
+            "proposed_first_passing_cell": null,
+            "selected_cell_parent_pass": false,
+            "selected_cell_proposed_pass": false
+          }
+        }
+      ]
+    },
+    {
+      "review_unit_index": 21,
+      "pair_kind": "capped_N1_pairs",
+      "pair_index": 0,
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+      "context_ref": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+      "context_sha256": "5ab66525cd2bb9d491df6028e2b9187c9e6b5f540077b4afa2fec52579fe5a5f",
+      "source_pair_sha256": "eaf8e97372df793cba15a81fcc19e204bcd818f57df1e207cb5383c00b8e830c",
+      "before_text_sha256": "00a6a2c0134650024f306e8a0e039e480bae464eaf3166c9d6d3f33e41595f0e",
+      "after_text_sha256": "dcc0abf196d068ce9eff8e140f903beecd30a0222b3b9abf25b5f5b6e3cf8bd3",
+      "observed_change": "The output preserves a Marcus-shuts-down-a-heckler statement and passes the native directed action, but unrelated Matthew Reily/Chris names remain. This illustrates native matching without certifying the entire pooled narrative.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "editing_round2_random_delete_matched_0.005-n32",
+          "parent_condition": null,
+          "official_reference_sha256": "83e37a71f78cf82308d73ac428a66dde914dee08b010f10f0711dd5c610c4940",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": null
+        }
+      ]
+    },
+    {
+      "review_unit_index": 21,
+      "pair_kind": "actual_parent_pairs",
+      "pair_index": 0,
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+      "context_ref": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+      "context_sha256": "5ab66525cd2bb9d491df6028e2b9187c9e6b5f540077b4afa2fec52579fe5a5f",
+      "source_pair_sha256": "99fa25d7ac51c04af02920a903e28ff64348350c701f1e082768b790f7ea4d2b",
+      "before_text_sha256": "f1bae61cc861d73fccbb77c1340c9982389ef3b63d6bd86b0781cc50ce8e4a2d",
+      "after_text_sha256": "dcc0abf196d068ce9eff8e140f903beecd30a0222b3b9abf25b5f5b6e3cf8bd3",
+      "observed_change": "Deletion removes one scathing-comeback bullet but another Marcus shutting-down statement survives and still passes. The question remains recovered; passing sites decrease from eleven to nine, which this unchanged local pass does not explain.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "editing_round2_random_delete_matched_0.005-n32",
+          "parent_condition": "editing_round2-n32",
+          "official_reference_sha256": "2977785c4b28f1625bb97f66746874c9ce5fce4c354e93ccafd725720463af7f",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-comedian-heckler-humiliate-ab",
+            "grid_cells": 114,
+            "parent_item_pass": true,
+            "proposed_item_pass": true,
+            "parent_passing_cells": 11,
+            "proposed_passing_cells": 9,
+            "parent_first_passing_cell": "role_bound_association|oa-comedian-heckler-humiliate-ab|L36|p00162",
+            "proposed_first_passing_cell": "role_bound_association|oa-comedian-heckler-humiliate-ab|L36|p00162",
+            "selected_cell_parent_pass": true,
+            "selected_cell_proposed_pass": true
+          }
+        }
+      ]
+    },
+    {
+      "review_unit_index": 22,
+      "pair_kind": "capped_N1_pairs",
+      "pair_index": 0,
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+      "context_ref": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+      "context_sha256": "5ab66525cd2bb9d491df6028e2b9187c9e6b5f540077b4afa2fec52579fe5a5f",
+      "source_pair_sha256": "25114fc90591e39734c3584ca5b8a0d68e04e0efd8c5d37852d67c6a18e46861",
+      "before_text_sha256": "00a6a2c0134650024f306e8a0e039e480bae464eaf3166c9d6d3f33e41595f0e",
+      "after_text_sha256": "2f6ec5b6ae0954d7a85388fbcb10c67321dd34051e339c28cd73c9f8c6977e79",
+      "observed_change": "Likelihood selection keeps comedian/heckler roles and similar silencing/wit language, but the judge now returns cannot-tell for the action. Treat the local loss as a judgment threshold/inference caveat; the question still passes elsewhere.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "likelihood_true_minus_mean_two_controls-n8",
+          "parent_condition": null,
+          "official_reference_sha256": "979cfd683e11a46ac58280402ad7f54060746936a8ee5057862c82efb6a4a955",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": null
+        }
+      ]
+    },
+    {
+      "review_unit_index": 22,
+      "pair_kind": "actual_parent_pairs",
+      "pair_index": 0,
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+      "context_ref": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+      "context_sha256": "5ab66525cd2bb9d491df6028e2b9187c9e6b5f540077b4afa2fec52579fe5a5f",
+      "source_pair_sha256": "661d104f28c74308d7d9ac589c3b56cef0380146ff1cba0fa854fea5521b836a",
+      "before_text_sha256": "00a6a2c0134650024f306e8a0e039e480bae464eaf3166c9d6d3f33e41595f0e",
+      "after_text_sha256": "2f6ec5b6ae0954d7a85388fbcb10c67321dd34051e339c28cd73c9f8c6977e79",
+      "observed_change": "Against capped N1, the action choice alone becomes cannot-tell while agent and patient stay correct. Passing sites decrease from nine to seven but question recovery remains present; this fixed anchor is not a whole-question regression.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "likelihood_true_minus_mean_two_controls-n8",
+          "parent_condition": "capped_n1-n1",
+          "official_reference_sha256": "3239449671d6bb42fc2ad9ecde9a15abb5dc74548f3fc26d5536a910909dc6e9",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-comedian-heckler-humiliate-ab",
+            "grid_cells": 114,
+            "parent_item_pass": true,
+            "proposed_item_pass": true,
+            "parent_passing_cells": 9,
+            "proposed_passing_cells": 7,
+            "parent_first_passing_cell": "role_bound_association|oa-comedian-heckler-humiliate-ab|L36|p00162",
+            "proposed_first_passing_cell": "role_bound_association|oa-comedian-heckler-humiliate-ab|L36|p00163",
+            "selected_cell_parent_pass": true,
+            "selected_cell_proposed_pass": false
+          }
+        }
+      ]
+    },
+    {
+      "review_unit_index": 23,
+      "pair_kind": "capped_N1_pairs",
+      "pair_index": 0,
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+      "context_ref": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+      "context_sha256": "5ab66525cd2bb9d491df6028e2b9187c9e6b5f540077b4afa2fec52579fe5a5f",
+      "source_pair_sha256": "1fd0654dca18f86b0db9039906a60c6ab1968e2bd27e6f120932943368ef66c2",
+      "before_text_sha256": "00a6a2c0134650024f306e8a0e039e480bae464eaf3166c9d6d3f33e41595f0e",
+      "after_text_sha256": "29c8f61d9964d1612cabdcf6713f6b796007a40fd21e572f3cc46cd941c80b1d",
+      "observed_change": "Two retained capped bullets still describe Marcus responding with a sharp comeback, and native directed-role recovery remains true. Shortening does not clean up every implied narrative detail.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "prune_loo_n1_0.005-n1",
+          "parent_condition": null,
+          "official_reference_sha256": "bf0e9bffaf4607e818f5d5c4481799dd02664f15fdac1fd07c64d242b9b0acf3",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": null
+        }
+      ]
+    },
+    {
+      "review_unit_index": 23,
+      "pair_kind": "actual_parent_pairs",
+      "pair_index": 0,
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+      "context_ref": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+      "context_sha256": "5ab66525cd2bb9d491df6028e2b9187c9e6b5f540077b4afa2fec52579fe5a5f",
+      "source_pair_sha256": "5b49b4b0c3533507bbf70959d03f0e292a466c47d7431010d379d8db1ca255f8",
+      "before_text_sha256": "00a6a2c0134650024f306e8a0e039e480bae464eaf3166c9d6d3f33e41595f0e",
+      "after_text_sha256": "29c8f61d9964d1612cabdcf6713f6b796007a40fd21e572f3cc46cd941c80b1d",
+      "observed_change": "Pruning retains the first and third capped bullets and preserves this pass and all nine passing grid sites. This is actual deletion with no recorded recovery gain or loss for this question.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "prune_loo_n1_0.005-n1",
+          "parent_condition": "capped_n1-n1",
+          "official_reference_sha256": "83f0ea1888b56141ee965019ee378eb7ff330a06fc3c77e5c4bbcb3a37b2c351",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-comedian-heckler-humiliate-ab",
+            "grid_cells": 114,
+            "parent_item_pass": true,
+            "proposed_item_pass": true,
+            "parent_passing_cells": 9,
+            "proposed_passing_cells": 9,
+            "parent_first_passing_cell": "role_bound_association|oa-comedian-heckler-humiliate-ab|L36|p00162",
+            "proposed_first_passing_cell": "role_bound_association|oa-comedian-heckler-humiliate-ab|L36|p00162",
+            "selected_cell_parent_pass": true,
+            "selected_cell_proposed_pass": true
+          }
+        }
+      ]
+    },
+    {
+      "review_unit_index": 24,
+      "pair_kind": "capped_N1_pairs",
+      "pair_index": 0,
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-hairdresser-client-compliment-ba|L44|p00121",
+      "context_ref": "role_bound_association|oa-hairdresser-client-compliment-ba|L44|p00121",
+      "context_sha256": "4adb4a57d185245427c72c41f85ad76ded8465c39158de322af2a508497c0eb9",
+      "source_pair_sha256": "d4fc91e61c8cf64cb015a5ec0281e7c4db670ad7a7ee5502bd22ec1a02c09288",
+      "before_text_sha256": "93fef5322c69e80a4fdc21f3e41214c965de9a6948f4dc6c6b3c3888d33ac533",
+      "after_text_sha256": "b42b8ed398257b032c4d88af738ec54ab87d3c6adc7be4354600928375d9f8d1",
+      "observed_change": "Pruning deletes the generic satisfied-client-thanks-hairdresser cue and keeps two praise fragments naming Dan/Megan/Andrea. The action remains correct but the judge returns cannot-tell for both identities, eliminating the sole grid witness.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "prune_loo_n1_0.005-n1",
+          "parent_condition": null,
+          "official_reference_sha256": "cc15ec12e04093633997eb55f14fd52b4b0de303f826fc30e4cec8b4ff9dcefe",
+          "category": "regression",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-hairdresser-client-compliment-ba",
+            "baseline_item_pass": true,
+            "proposed_item_pass": false,
+            "baseline_passing_cells": 1,
+            "proposed_passing_cells": 0,
+            "grid_cells": 114,
+            "witness_rule": "first passing baseline site"
+          },
+          "parent_endpoint_evidence": null
+        }
+      ]
+    },
+    {
+      "review_unit_index": 24,
+      "pair_kind": "actual_parent_pairs",
+      "pair_index": 0,
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-hairdresser-client-compliment-ba|L44|p00121",
+      "context_ref": "role_bound_association|oa-hairdresser-client-compliment-ba|L44|p00121",
+      "context_sha256": "4adb4a57d185245427c72c41f85ad76ded8465c39158de322af2a508497c0eb9",
+      "source_pair_sha256": "7c310e79b5ed09e86ea7930e470e42416162e464c4ee260ad041dd0b50d668bb",
+      "before_text_sha256": "93fef5322c69e80a4fdc21f3e41214c965de9a6948f4dc6c6b3c3888d33ac533",
+      "after_text_sha256": "b42b8ed398257b032c4d88af738ec54ab87d3c6adc7be4354600928375d9f8d1",
+      "observed_change": "The before/after texts both contain praise and inconsistent names, yet only the fuller readout maps client and hairdresser to the bank identities. Record identity-binding/context sensitivity alongside the official local and whole-question loss; do not call praise itself erased.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "prune_loo_n1_0.005-n1",
+          "parent_condition": "capped_n1-n1",
+          "official_reference_sha256": "2b93cca13da168c767ef3c18309f5d9ad1552048d72edf5c50a8b466c2ff6177",
+          "category": "regression",
+          "selection_policy": "deterministic_outcome_selected_supplement",
+          "endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-hairdresser-client-compliment-ba",
+            "baseline_item_pass": true,
+            "proposed_item_pass": false,
+            "baseline_passing_cells": 1,
+            "proposed_passing_cells": 0,
+            "grid_cells": 114,
+            "witness_rule": "first passing baseline site"
+          },
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-hairdresser-client-compliment-ba",
+            "grid_cells": 114,
+            "parent_item_pass": true,
+            "proposed_item_pass": false,
+            "parent_passing_cells": 1,
+            "proposed_passing_cells": 0,
+            "parent_first_passing_cell": "role_bound_association|oa-hairdresser-client-compliment-ba|L44|p00121",
+            "proposed_first_passing_cell": null,
+            "selected_cell_parent_pass": true,
+            "selected_cell_proposed_pass": false
+          }
+        }
+      ]
+    },
+    {
+      "review_unit_index": 25,
+      "pair_kind": "capped_N1_pairs",
+      "pair_index": 0,
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+      "context_ref": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+      "context_sha256": "d3be2b715007fdb620515e3f9d1c2ec30867df9855b4c7712d4b8327e68417ad",
+      "source_pair_sha256": "abe3676c0f3a83ae9ab32cf8fc6463e95e07d1efe496f26aaf9b5014c210d498",
+      "before_text_sha256": "8219d97a4ae9a888658e099406ec06b4f72a333f90e6ae92d0d6eaf5a176576b",
+      "after_text_sha256": "409d7cb0234091aa4da5e0edcc0ccfb920962042dd9043f92e2e1db09d96c373",
+      "observed_change": "The shortened output retains only the first Elias summarization request and still fails waiter-to-customer apology. This fixed failed site does not establish gains or losses elsewhere in the question grid.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "prune_loo_n1_0.005-n1",
+          "parent_condition": null,
+          "official_reference_sha256": "63daca0bf9c3601c00a7b9a9cb5e080954b38909bc81631c78fc9cfdc363b362",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": null
+        },
+        {
+          "condition": "consensus_semantic_v5_support0_compaton_vetoon-n16",
+          "parent_condition": null,
+          "official_reference_sha256": "6c4151fefeb3fbc362079fc0cba3b7355ad5227b81cccd06ae7a93f34f55c437",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": null
+        },
+        {
+          "condition": "consensus_semantic_v5_medium_support0_compaton_vetoon-n16",
+          "parent_condition": null,
+          "official_reference_sha256": "8327177fdd900960f8bc72f3b7f121d554fad7bb08993628330fbfb58468c577",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": null
+        }
+      ]
+    },
+    {
+      "review_unit_index": 25,
+      "pair_kind": "actual_parent_pairs",
+      "pair_index": 0,
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+      "context_ref": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+      "context_sha256": "d3be2b715007fdb620515e3f9d1c2ec30867df9855b4c7712d4b8327e68417ad",
+      "source_pair_sha256": "3dafb33453a0dfe9a7f0550ad8614d7f3e218a3515d8a256eeb51ba250e5088f",
+      "before_text_sha256": "8219d97a4ae9a888658e099406ec06b4f72a333f90e6ae92d0d6eaf5a176576b",
+      "after_text_sha256": "409d7cb0234091aa4da5e0edcc0ccfb920962042dd9043f92e2e1db09d96c373",
+      "observed_change": "Relative to capped/exact-support parents, all three settings shorten the same failed site but have different other-grid counts: N1 pruning six versus four, ordinary compatibility two versus four, medium three versus four. Each question still has a passing witness; the local text cannot explain those differences.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "prune_loo_n1_0.005-n1",
+          "parent_condition": "capped_n1-n1",
+          "official_reference_sha256": "914ab5f8f7aa371ff88bb65b14af399ac72527a8321a0856eb98da205e73abce",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-waiter-customer-apologize-ab",
+            "grid_cells": 114,
+            "parent_item_pass": true,
+            "proposed_item_pass": true,
+            "parent_passing_cells": 4,
+            "proposed_passing_cells": 6,
+            "parent_first_passing_cell": "role_bound_association|oa-waiter-customer-apologize-ab|L36|p00094",
+            "proposed_first_passing_cell": "role_bound_association|oa-waiter-customer-apologize-ab|L36|p00094",
+            "selected_cell_parent_pass": false,
+            "selected_cell_proposed_pass": false
+          }
+        },
+        {
+          "condition": "consensus_semantic_v5_support0_compaton_vetoon-n16",
+          "parent_condition": "consensus_exact_support0-n16",
+          "official_reference_sha256": "16094976c5606a3a9493a295ae7c85b0ca7f45585d06a882d4e2375de1ed3242",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-waiter-customer-apologize-ab",
+            "grid_cells": 114,
+            "parent_item_pass": true,
+            "proposed_item_pass": true,
+            "parent_passing_cells": 4,
+            "proposed_passing_cells": 2,
+            "parent_first_passing_cell": "role_bound_association|oa-waiter-customer-apologize-ab|L36|p00094",
+            "proposed_first_passing_cell": "role_bound_association|oa-waiter-customer-apologize-ab|L36|p00103",
+            "selected_cell_parent_pass": false,
+            "selected_cell_proposed_pass": false
+          }
+        },
+        {
+          "condition": "consensus_semantic_v5_medium_support0_compaton_vetoon-n16",
+          "parent_condition": "consensus_exact_support0-n16",
+          "official_reference_sha256": "fdfeb76a42ee9273aa407934053298a9bc44a19f2f0bfc608763061274398a8d",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-waiter-customer-apologize-ab",
+            "grid_cells": 114,
+            "parent_item_pass": true,
+            "proposed_item_pass": true,
+            "parent_passing_cells": 4,
+            "proposed_passing_cells": 3,
+            "parent_first_passing_cell": "role_bound_association|oa-waiter-customer-apologize-ab|L36|p00094",
+            "proposed_first_passing_cell": "role_bound_association|oa-waiter-customer-apologize-ab|L36|p00103",
+            "selected_cell_parent_pass": false,
+            "selected_cell_proposed_pass": false
+          }
+        }
+      ]
+    },
+    {
+      "review_unit_index": 26,
+      "pair_kind": "capped_N1_pairs",
+      "pair_index": 0,
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+      "context_ref": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+      "context_sha256": "d3be2b715007fdb620515e3f9d1c2ec30867df9855b4c7712d4b8327e68417ad",
+      "source_pair_sha256": "66b94274d7884a3344ceb393da69a16ec9a5b2cbb87cfcd5bda2f56a6890512c",
+      "before_text_sha256": "8219d97a4ae9a888658e099406ec06b4f72a333f90e6ae92d0d6eaf5a176576b",
+      "after_text_sha256": "8d2f85f1894ebca53c8ccf6e0ec62b264e5bc510dc50ad2b5d4a5e20e895e1b4",
+      "observed_change": "Two generic David/John financial fragments replace capped generic prompts and still identify none of the source waiter/customer apology. No local native recovery appears.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "editing_round2_random_delete_matched_0.001-n32",
+          "parent_condition": null,
+          "official_reference_sha256": "4ace80f255472605168f2dfade4c68c5addef4c48302ac04e23d5390fd4c9e85",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": null
+        }
+      ]
+    },
+    {
+      "review_unit_index": 26,
+      "pair_kind": "actual_parent_pairs",
+      "pair_index": 0,
+      "family": "role_bound_association",
+      "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+      "context_ref": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+      "context_sha256": "d3be2b715007fdb620515e3f9d1c2ec30867df9855b4c7712d4b8327e68417ad",
+      "source_pair_sha256": "6b2a8c6ae4e3b5f77dd6d63cc6b34fec60c5ca854e8ad478166e292e2879f764",
+      "before_text_sha256": "56b8b8505a1926b639b4f04c8fbe502ec22da0164eac88d1c66e102f0d35fbe5",
+      "after_text_sha256": "8d2f85f1894ebca53c8ccf6e0ec62b264e5bc510dc50ad2b5d4a5e20e895e1b4",
+      "observed_change": "Matched deletion removes the Elias prompts from round2 and retains David/John fragments. Parent and output both fail this anchor and retain the same four passing sites elsewhere; this is deletion without a local or whole-question endpoint change.",
+      "mechanism_hypothesis": null,
+      "official_verdict_changed": false,
+      "references": [
+        {
+          "condition": "editing_round2_random_delete_matched_0.001-n32",
+          "parent_condition": "editing_round2-n32",
+          "official_reference_sha256": "ffdb36415c7227d5c6f09b659e0f3cdfa54419bd3613ce00dc03a2a0a4f6d80f",
+          "category": "fixed_anchor",
+          "selection_policy": "historical_outcome_blind_panel",
+          "endpoint_evidence": null,
+          "parent_endpoint_evidence": {
+            "unit": "whole_original_question_grid",
+            "item_id": "oa-waiter-customer-apologize-ab",
+            "grid_cells": 114,
+            "parent_item_pass": true,
+            "proposed_item_pass": true,
+            "parent_passing_cells": 4,
+            "proposed_passing_cells": 4,
+            "parent_first_passing_cell": "role_bound_association|oa-waiter-customer-apologize-ab|L36|p00103",
+            "proposed_first_passing_cell": "role_bound_association|oa-waiter-customer-apologize-ab|L36|p00103",
+            "selected_cell_parent_pass": false,
+            "selected_cell_proposed_pass": false
+          }
+        }
+      ]
+    }
+  ],
+  "api_calls": 0,
+  "score_changes": 0,
+  "source_text_changes": 0,
+  "external_fact_checks": 0,
+  "judge_disagreements_or_uncertainty": [
+    {
+      "review_unit_index": 3,
+      "flag": "conflicting_direction_fragments_and_source_role_mismatch",
+      "official_verdict_changed": false
+    },
+    {
+      "review_unit_index": 7,
+      "flag": "retained_span_newly_flagged_after_deletion",
+      "official_verdict_changed": false
+    },
+    {
+      "review_unit_index": 9,
+      "flag": "retained_flagged_pet_span_class_flip",
+      "official_verdict_changed": false
+    },
+    {
+      "review_unit_index": 18,
+      "flag": "original_feeding_pass_requires_inference",
+      "official_verdict_changed": false
+    },
+    {
+      "review_unit_index": 22,
+      "flag": "action_inference_threshold_changes_for_similar_wit_language",
+      "official_verdict_changed": false
+    },
+    {
+      "review_unit_index": 24,
+      "flag": "praise_survives_but_identity_binding_changes",
+      "official_verdict_changed": false
+    }
+  ],
+  "scope": "All61 assigned exact comparisons, full source contexts and selected before/after prose inspected; condition-specific local official evidence and whole-grid metadata preserved. Fixed anchors and outcome-selected supplements remain distinct.",
+  "limits": [
+    "Illustrative selected cases do not estimate frequency or prevalence.",
+    "Native bridge/role matching and first-ranked arithmetic recovery do not certify all surrounding prose.",
+    "Chain credits first ranked extracted integer; lower-ranked/near numerals are diagnostics only.",
+    "Prior-parent effects are separated from new deletion or editing effects. A selected output can retain an eligible unchanged parent.",
+    "Only supplied benchmark context and official evidence reviewed; no external factual adjudication or official verdict rewrite."
+  ]
+}
