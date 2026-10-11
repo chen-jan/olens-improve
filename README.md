@@ -2,9 +2,9 @@
 
 The project tests whether inference-time selection and composition can improve the frozen released Oracle Lens. Maximum quality is the priority: measure recovery/error tradeoffs, explore sampling saturation, and explain any combined method with controlled comparisons.
 
-The [expanded comparison plan](docs/EXPANSION_PLAN.md) is now prepared: broaden full-bank method coverage, report natural output lengths, and overlap CPU/API work with one preemptable H200. **Execution is waiting for the user's start instruction and allocation.** The completed first-study results below remain unchanged.
+The [expanded comparison plan](docs/EXPANSION_PLAN.md) is running with the user's approval: 70 fixed output settings across all 469 questions in four task banks. CPU selection and Standard GPT-6 Luna judging overlap with one preemptable H200 for likelihood scoring and edit encoding. The expansion is exploratory; the completed first-study results below remain unchanged. See [current status](docs/STATUS.md) for a dated checkpoint rather than treating a partial comparison as a final result.
 
-The initial execution target was approximately 20 hours; current timing and remaining work are recorded in [STATUS.md](docs/STATUS.md). The completed dashboard provides key findings, charts, method details, uncertainty, costs and inspectable examples. The presentation has 16 main slides followed by a comprehensive appendix.
+The initial study had an approximately 20-hour execution target. The expanded phase began on October 11 at 00:15 UTC with a 12–20-hour planning window; timing and remaining work are recorded in [STATUS.md](docs/STATUS.md). Its dashboard is being updated at reviewed milestones. The completed original presentation has 16 main slides followed by a comprehensive appendix; the expanded presentation is in preparation.
 
 Read [the execution plan](docs/PLAN.md) and [detailed method specifications](docs/METHODS.md) before continuing. Record each experiment using [the experiment template](docs/experiments/TEMPLATE.md), and follow [AGENTS.md](AGENTS.md) for cluster and storage rules.
 

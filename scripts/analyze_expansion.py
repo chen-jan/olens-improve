@@ -17,8 +17,23 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'src'))
 from olens_improve.expanded_statistics import analyze
 from olens_improve.reporting import family_counts, original_grid_pairs
 from expanded_cpu_cached import atomic, committed_lines, sha
+from verify_expansion_judge_contracts import load_approved_runtime_pin, verify_judge_contract
 
 def load(path):return json.loads(Path(path).read_text())
+
+def runtime_authority(path):
+    """Follow the original root-approved freeze through its exact signed report."""
+    body=load(path);pins={str(path):sha(path)}
+    if body['status']!='root_reviewed_derived_from_approved_pre_expansion_freeze':raise ValueError('Unreviewed runtime authority')
+    for key in ('original_freeze','validation_report','runtime_contract'):
+        entry=body[key]
+        if sha(entry['path'])!=entry['sha256']:raise ValueError('Original runtime authority changed')
+        pins[entry['path']]=entry['sha256']
+    freeze=load(body['original_freeze']['path']);report=load(body['validation_report']['path']);contract=body['runtime_contract']
+    if freeze['status']!='root_reviewed_frozen' or freeze['validation_evidence']['signed_report_path']!=body['validation_report']['path'] or freeze['validation_evidence']['signed_report_sha256']!=body['validation_report']['sha256']:raise ValueError('Runtime report is not bound by the original freeze')
+    arms=[row for row in report['measurement']['conditions'] if row['condition']==contract['condition']]
+    if len(arms)!=1 or arms[0]['source_sha256'].get(contract['path'])!=contract['sha256']:raise ValueError('Runtime contract is not bound by the signed report')
+    return load_approved_runtime_pin(contract['path'],contract['sha256'],pointer=contract['hashes_pointer']),pins
 
 def subsets(cells,pilot):
     cohort={'full':set(cells),'test':{cid for cid,c in cells.items() if c['split']=='test'},
@@ -40,16 +55,22 @@ def main():
     p=argparse.ArgumentParser();p.add_argument('--inventory',type=Path,default=Path('configs/expansion_manifest_v1.json'))
     p.add_argument('--inventory-sha256',required=True);p.add_argument('--analysis',type=Path,default=Path('configs/expansion_analysis_v1.json'))
     p.add_argument('--judgments',type=Path,required=True);p.add_argument('--ready-directory',type=Path,action='append',required=True)
+    p.add_argument('--runtime-authority',type=Path,default=Path('configs/expansion_runtime_authority_v1.json'))
     p.add_argument('--output',type=Path,required=True);a=p.parse_args()
     if not os.environ.get('SLURM_JOB_ID'):raise RuntimeError('Allocated CPUs required')
+    implementation={str(Path(__file__)):sha(__file__),
+        'src/olens_improve/expanded_statistics.py':sha('src/olens_improve/expanded_statistics.py'),
+        'src/olens_improve/reporting.py':sha('src/olens_improve/reporting.py'),
+        'scripts/verify_expansion_judge_contracts.py':sha('scripts/verify_expansion_judge_contracts.py')}
     if sha(a.inventory)!=a.inventory_sha256:raise ValueError('Inventory seal changed')
     inventory=load(a.inventory);analysis=load(a.analysis)
     if analysis['manifest_sha256']!=a.inventory_sha256 or analysis['status']!='frozen_before_new_judgments':raise ValueError('Analysis does not bind frozen inventory')
     fresh_path=Path(inventory['fresh_manifest']['path'])
     if sha(fresh_path)!=inventory['fresh_manifest']['sha256']:raise ValueError('Fresh capture manifest changed')
-    cells={c['cell_id']:c for c in load(fresh_path)['cells']};pilot=load('configs/splits_pilot_shared_v2.json');cohort=subsets(cells,pilot)
+    cells={c['cell_id']:c for c in load(fresh_path)['cells']};pilot_path=Path('configs/splits_pilot_shared_v2.json');pilot=load(pilot_path);cohort=subsets(cells,pilot)
+    runtime_hashes,runtime_pins=runtime_authority(a.runtime_authority)
     active={r['condition_id']:r for r in inventory['conditions'] if r['status'] not in ('exact_alias','obsolete_malformed_transport_diagnostic','computed_numerical_diagnostic_only')}
-    outputs={};descriptors={};source_hashes={str(a.inventory):a.inventory_sha256,str(a.analysis):sha(a.analysis),str(fresh_path):sha(fresh_path)}
+    outputs={};descriptors={};source_hashes={str(a.inventory):a.inventory_sha256,str(a.analysis):sha(a.analysis),str(fresh_path):sha(fresh_path),str(pilot_path):sha(pilot_path),**runtime_pins}
     for directory in a.ready_directory:
         for path in sorted(directory.glob('*.ready.json')):
             descriptor=load(path)
@@ -82,6 +103,11 @@ def main():
             if lookup not in outputs or not all(path.exists() for path in required):
                 missing.append({'condition':condition,'family':family,'reason':'missing_output' if lookup not in outputs else 'judgment_not_terminal'});continue
             summary_body=load(summary);contract=load(folder/'project_contract.json');result=load(folder/'results.json')
+            descriptor=descriptors[lookup]
+            verify_judge_contract(family=family,method=active[condition]['method'],n=active[condition]['n'],
+                expected_cells=sum(c['family']==family for c in cells.values()),inventory_sha256=a.inventory_sha256,
+                descriptor=descriptor,summary=summary_body,result=result,contract=contract,
+                approved_runtime_source_hashes=runtime_hashes)
             if contract['partial_grid'] or contract.get('inventory_sha256')!=a.inventory_sha256 or contract['manifest_missing_cells']!=0:raise ValueError('Wrong judgment grid or authority')
             if contract.get('project_reasoning_effort')!='none' or contract.get('project_judge_model')!=('regex' if family=='multihop_mt' else 'gpt-6-luna'):raise ValueError('Changed judge contract')
             scientific=summary_body['condition'];descriptor=descriptors[lookup]
@@ -138,13 +164,14 @@ def main():
         final[name]=value|{'rows':rows,'comparisons':measured['comparisons'],'missing_comparisons':measured['missing_comparisons'],
             'comparison_family_complete':measured['comparison_family_complete'],'joint_critical_value':measured['joint_critical_value'],
             'declared_contrasts':measured['declared_contrasts'],'bootstrap_replicates':measured['bootstrap_replicates'],
+            'effective_non_degenerate_contrasts':measured['effective_non_degenerate_contrasts'],
+            'joint_interval_contrasts':measured['joint_interval_contrasts'] if not absent else 0,
             'status':'complete' if measured['comparison_family_complete'] else 'partial'}
-    for path,expected in source_hashes.items():
+    for path,expected in (source_hashes|implementation).items():
         if sha(path)!=expected:raise ValueError('Analysis source changed during extraction')
     payload={'status':'complete_exploratory' if not missing else 'partial_exploratory','updated_utc':datetime.now(timezone.utc).isoformat(),
         'manifest_sha256':a.inventory_sha256,'cohorts':final,'complete_condition_families':complete,'missing_condition_families':missing,
-        'source_sha256':source_hashes,'implementation_sha256':{str(Path(__file__)):sha(__file__),
-            'src/olens_improve/expanded_statistics.py':sha('src/olens_improve/expanded_statistics.py')},
+        'source_sha256':source_hashes,'implementation_sha256':implementation,
         'limits':['All questions previously inspected; expansion remains exploratory.','The old TEST subset is an exploratory subcohort, not a fresh test.',
             'Native family endpoints differ; no pooled accuracy.','Pilot recovery remains a partial-grid cell endpoint.',
             'Simultaneous intervals require the full declared four-task contrast family; pointwise uncertainty remains visible.']}

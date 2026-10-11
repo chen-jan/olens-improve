@@ -1,0 +1,3547 @@
+{
+  "status": "completed_source_bound_qualitative_review",
+  "created_utc": "2026-10-11T01:10:11.185866+00:00",
+  "reviewer": "expanded_api delegated Codex qualitative partition1 reviewer",
+  "assigned_model": "gpt-6.1-sol",
+  "source": {
+    "path": "${OLENS_DATA_ROOT}/expansion-v1/qualitative/first-live-v2.json",
+    "sha256": "7ceb7214fd75dce21e672ba77802f4c9a486056ef7e42a15d093963083d7b71e",
+    "v1_equivalent_text_source_sha256": "13ea124509345996ab245ac0eabf163af956f30124fedfc6ade73221b81ace23",
+    "v2_change": "Duplicate case evidence propagated; texts, classes, pass values and endpoints retained."
+  },
+  "partition": "partition_1",
+  "manifest_sha256": "753b2d9cab0daea0d19efef7d3222fd44921dbcf4669e6864d4f1bd4805421f8",
+  "coverage": {
+    "conditions": 17,
+    "case_occurrences": 207,
+    "unique_exact_cell_and_text_pairs": 170,
+    "unique_text_pairs_by_family": {
+      "hallucination": 22,
+      "multihop_mt": 47,
+      "chain_intermediates": 71,
+      "role_bound_association": 30
+    },
+    "missing_family_rule": "Review covers only families available for each condition in this immutable first-live pack; later completed methods/families require another pack."
+  },
+  "scope": {
+    "paid_requests": 0,
+    "numeric_verdicts_changed": 0,
+    "official_rates_unchanged": true,
+    "review_data": "All fixed anchors and all supplied selected win/regression/changed examples inspected; exact cell/text duplicates grouped and every condition reference retained.",
+    "selection_limitation": "Fixed historical anchors plus outcome-selected examples are purposive and not representative prevalence evidence.",
+    "endpoint_limitation": "For nonhallucination families, selected win/regression categories refer to whole-question any-site recovery. The displayed cell may have a different pass transition; rawcell and itemendpoint must not be conflated. Chain top1 recovery is not any-number presence.",
+    "truth_limitation": "No independent external factual audit or activation-truth inference. More faithful or cleaner prose does not establish an internal belief or causal mechanism."
+  },
+  "family_synthesis": {
+    "hallucination": "Some selected methods remove named unsupported details, but anchors can remain wrong substances and score flips occur for retained or whitespace-equivalent prose. State selected label improvements with semantic uncertainty.",
+    "multihop_mt": "Many selected gains reflect required bridge-name strings in otherwise inaccurate answers. Empty support-filter outputs lose coverage. Final-answer-only strings do not satisfy required bridges.",
+    "chain_intermediates": "Correct intermediate numerals frequently occur as answers to unrelated arithmetic or inside wrong equalities. Pruning/ranking changes the preferred extractedvalue, and support/compatibility can trade mixed outputs for empty or one-number outputs.",
+    "role_bound_association": "The strongest selected local improvement removes conflicting directions and explicitly states toddler->feeds->babysitter. Generic early summaries do not recover binding; comedian humiliation depends on semantic inference; one officialwin has contradictory rationale."
+  },
+  "condition_reviews": [
+    {
+      "condition_id": "raw_n1-n1",
+      "available_families": [
+        "hallucination",
+        "multihop_mt",
+        "chain_intermediates",
+        "role_bound_association"
+      ],
+      "fixed_anchor_groups": [
+        "1e2ab5c90616",
+        "a731729ce67b",
+        "77401e6fe216",
+        "b0ac623ddbda",
+        "a1c21d9f0552",
+        "c3ecf97ec6d7",
+        "f7814aad72c6",
+        "83f69bdfe86e"
+      ],
+      "outcome_example_groups": [
+        "ffe7ea14e134",
+        "47e709e77bc9",
+        "708f50545afc",
+        "d8b3fb30c99d",
+        "73054fec7ef4",
+        "321fa7760c49",
+        "267a9c8fe4e1",
+        "d355001e48e7"
+      ],
+      "observation": "Anchors preserve raw baseline contents: wrong chemical identity, named DETR variant, absent required bridge, final answer rather than intermediate, and early generic summary instructions. Extra raw bullets can change ranked-number endpoints without correcting arithmetic. The classroom win is whitespace-only and requires caution; the idiom regression flags claims already retained in the baseline."
+    },
+    {
+      "condition_id": "best_n_exact-n2",
+      "available_families": [
+        "hallucination",
+        "multihop_mt",
+        "chain_intermediates",
+        "role_bound_association"
+      ],
+      "fixed_anchor_groups": [
+        "a731729ce67b",
+        "a1c21d9f0552",
+        "c3ecf97ec6d7",
+        "83f69bdfe86e",
+        "d6888aeeca26",
+        "840a1bc4fce3",
+        "475f2107af31",
+        "774dad09fc2e"
+      ],
+      "outcome_example_groups": [
+        "742f161b3400",
+        "488002e3cdf4",
+        "bc64efb9fe08",
+        "f227c5e4297f",
+        "cb6f7daadf04",
+        "236a2c73e2d0",
+        "0cfcf0c1d83f",
+        "8707e7dad28b",
+        "412445072c3a",
+        "2fb327d151d3",
+        "f4f36ec49e01",
+        "6265ccb31c3e"
+      ],
+      "observation": "More candidate choice recovers Simula67 and Enkidu bridge strings and a clear toddler-to-babysitter relation, while solubility anchors still substitute other chemicals. Win prose often retains incorrect proper names or incidental details. Role and chain regressions can arise from conflicting bullets or changed extraction ranking rather than uniformly worse content."
+    },
+    {
+      "condition_id": "best_n_exact-n16",
+      "available_families": [
+        "hallucination",
+        "multihop_mt",
+        "chain_intermediates",
+        "role_bound_association"
+      ],
+      "fixed_anchor_groups": [
+        "a1c21d9f0552",
+        "840a1bc4fce3",
+        "236f5cfaacea",
+        "1383db12d6ee",
+        "ed6b47131a2c",
+        "7682c77c6378",
+        "ff1fb9e09653",
+        "24dbf2aedb03"
+      ],
+      "outcome_example_groups": [
+        "742f161b3400",
+        "488002e3cdf4",
+        "51d5b5e42dbf",
+        "eb2c87bc7bcd",
+        "fa4bb270f811",
+        "e45544f60f1e",
+        "f50e09a9fa51",
+        "3b491a0b9e55",
+        "241c2c72238c",
+        "b96a021b8f55",
+        "58d3f0e1a365",
+        "e205d8549bf6"
+      ],
+      "observation": "The DETR anchor removes the named variant flagged in baseline but leaves causal mechanism language; chemical anchor remains a different substance. Clear reverse-feeding role recovery is stronger evidence than chain wins naming the right numeral as a final answer. The comedian anchor loses explicit scathing/witty comeback wording and official action recovery, despite keeping comedian-to-heckler direction."
+    },
+    {
+      "condition_id": "random_complete-n32",
+      "available_families": [
+        "hallucination",
+        "multihop_mt",
+        "chain_intermediates",
+        "role_bound_association"
+      ],
+      "fixed_anchor_groups": [
+        "ed6b47131a2c",
+        "a9d521d0eecb",
+        "8d38c99ca14e",
+        "a8a667890c47",
+        "f390326fdbac",
+        "d3cf6fe718c1",
+        "50ee17b091b5",
+        "15f8bf30c33e"
+      ],
+      "outcome_example_groups": [
+        "c80fb6791d33",
+        "3531b3fd6ffe",
+        "1b6b449b4db2",
+        "a3e22c60d31a",
+        "bae5010c1b69",
+        "0d06dc6327a3",
+        "39768d734468",
+        "363e553cc5cd",
+        "cbdb5c452152",
+        "22c237d2fa0a",
+        "1a811d48f403",
+        "6d0bb141a926"
+      ],
+      "observation": "Larger-pool random selection also yields bridge and feeding wins, so these examples do not establish that FVE ranking is the cause of recovery. It can replace correct bridge strings with unrelated titles or generic summaries. Its critic/musician win contains a returned-choice/rationale inconsistency, documented separately."
+    },
+    {
+      "condition_id": "prune_loo_a32_0.001-n32",
+      "available_families": [
+        "hallucination",
+        "multihop_mt",
+        "chain_intermediates",
+        "role_bound_association"
+      ],
+      "fixed_anchor_groups": [
+        "a98c5574deff",
+        "519237a03709",
+        "a8f369e0e5e7",
+        "d8a01e674b7a",
+        "f17de9299417",
+        "b6ef6890e356",
+        "f2d9b1f47f81",
+        "06987bfc2a42"
+      ],
+      "outcome_example_groups": [
+        "c26c7ab2e366",
+        "23beb8f0bb76",
+        "23c5884124f2",
+        "d47f3566b2fd",
+        "aa2b15836dc8",
+        "3f7725653293",
+        "4db30903a6b7",
+        "8df23e5374ad",
+        "0642cb5afc4d",
+        "2b5cf387c59b",
+        "0a988f776ede",
+        "ad5aded5e59a"
+      ],
+      "observation": "The two hallucination anchors still substitute a wrong substance, but the DETR output replaces the flagged named variant with a named deformable-attention variant and scores consistent. Bridge wins and reversals largely track surviving names, not globally faithful explanations. The reverse-feeding example removes contradictory babysitter-to-toddler prose; early accountant/waiter anchors remain generic summaries. A retained AI self-description becomes flagged in a pruning regression."
+    },
+    {
+      "condition_id": "random_delete_matched_a32_0.005-n32",
+      "available_families": [
+        "multihop_mt",
+        "chain_intermediates",
+        "role_bound_association"
+      ],
+      "fixed_anchor_groups": [
+        "43f88d064fc7",
+        "0a0ce39130bf",
+        "3fcfde334320",
+        "515287bdbe3b",
+        "566b805688c6",
+        "da7016fe2f7e"
+      ],
+      "outcome_example_groups": [
+        "ad5aded5e59a",
+        "3417df753b33",
+        "f011efb5f8f3",
+        "af7ec90965d3",
+        "9d414cfc1d71",
+        "9a3ec29fb679",
+        "e12ee4b9c34a",
+        "2f369063d47c",
+        "e820df668ee7"
+      ],
+      "observation": "Deletion preserves bridge wins but drops Coyolxauhqui while retaining final-answer Huitzilopochtli. The role feeding win is the same directional evidence as the LOO-pruning case; the comedian anchor loses explicit comeback wording. A chain regression still prints the intermediate5 in an explanation but ranks other arithmetic values first; this is top1 recovery sensitivity."
+    },
+    {
+      "condition_id": "best_n_specificity_mean-n32",
+      "available_families": [
+        "multihop_mt",
+        "chain_intermediates",
+        "role_bound_association"
+      ],
+      "fixed_anchor_groups": [
+        "c3ecf97ec6d7",
+        "ed6b47131a2c",
+        "eb8f1075046a",
+        "3684125edd35",
+        "895531e188b4",
+        "6d649f61f55d"
+      ],
+      "outcome_example_groups": [
+        "fa4bb270f811",
+        "e45544f60f1e",
+        "58d3f0e1a365",
+        "907858eb49a8",
+        "24921ca7f58b",
+        "6fe23ca27f19",
+        "2e5780f44a5f",
+        "131732782b4f",
+        "800d45c91bc7"
+      ],
+      "observation": "Anchors mix genuine bridge-name recovery with erroneous coparticipant names; one full output includes both a correct named pair and wrong alternatives. Reverse-feeding role recovery is clear, whereas early role outputs are generic summaries. Chain apparent win75 is tied to the explicitly incorrect equality ceil(45/2)=75, so recovered numeral does not establish faithful computation."
+    },
+    {
+      "condition_id": "best_n_specificity_mean_then_prune_0.005-n32",
+      "available_families": [
+        "multihop_mt",
+        "chain_intermediates"
+      ],
+      "fixed_anchor_groups": [
+        "a8f369e0e5e7",
+        "d8a01e674b7a",
+        "f17de9299417",
+        "9bae6f62be85"
+      ],
+      "outcome_example_groups": [
+        "d47f3566b2fd",
+        "aa2b15836dc8",
+        "3f7725653293",
+        "789e350b5e71",
+        "b43a17390ffa",
+        "9ada3b3561cb"
+      ],
+      "observation": "The bridge-name anchors and Adwa win are exact text duplicates of an LOO-pruning case, and can be grouped rather than presented as independent qualitative support. The Tugela regression drops the required waterfall name while still mentioning Drakensberg. Chain win retains the wrong equality yielding75; chain anchors remain unrelated arithmetic/final-answer prose."
+    },
+    {
+      "condition_id": "likelihood_true_minus_mean_two_controls-n8",
+      "available_families": [
+        "chain_intermediates"
+      ],
+      "fixed_anchor_groups": [
+        "a2906216071e",
+        "0a09632b9309"
+      ],
+      "outcome_example_groups": [
+        "6bd91145cbb1",
+        "2da1aec6a88b",
+        "8fc28ac53f74"
+      ],
+      "observation": "Only chain coverage is available in this pack. Both fixed anchors remain wrong for intermediate recovery: repeated14 for an intermediate5 task, and unrelated subtraction narratives for intermediate10. A win mentions16 as a final result of another calculation, while an item regression replaces a formerly recovered6 with other numbers. These examples establish selection changes, not faithful latent reasoning."
+    },
+    {
+      "condition_id": "consensus_semantic_v5_support0_compatoff_vetooff-n16",
+      "available_families": [
+        "multihop_mt",
+        "chain_intermediates"
+      ],
+      "fixed_anchor_groups": [
+        "77401e6fe216",
+        "b0ac623ddbda",
+        "c3ecf97ec6d7",
+        "b19f98ff35ec"
+      ],
+      "outcome_example_groups": [
+        "9fbcfe17ba85",
+        "13c90b9d19ca",
+        "2467c25f3c16",
+        "854917674d73",
+        "54300a1eaaf2"
+      ],
+      "observation": "Without support filtering, both multihop anchors are text-equivalent to baseline or still omit required bridge strings; chain adds/reorders generic source fragments. The selected chain win keeps3 while dropping a conflicting1, but calls3 a final number rather than a state in the original two-step computation. A multihop regression drops the national-park bridge while retaining SonDoong."
+    },
+    {
+      "condition_id": "consensus_semantic_v5_support0.125_compatoff_vetoon-n16",
+      "available_families": [
+        "multihop_mt",
+        "chain_intermediates"
+      ],
+      "fixed_anchor_groups": [
+        "28b622d318f3",
+        "bc8c86d1eb1b",
+        "8f893177717a",
+        "686e1c66fff6"
+      ],
+      "outcome_example_groups": [
+        "d5e7fb779faf",
+        "61c477b86d99",
+        "5f42d5d255e1",
+        "9bb3f33fa65c",
+        "f0b456f20391"
+      ],
+      "observation": "Support filtering empties both multihop anchors and the chain intermediate10 anchor, plus selected low-recovery examples. One chain win becomes a clean numeral list containing24; it improves the official top1 intermediate endpoint but still includes unrelated32/36 and final48. Empty regressions illustrate a precision/coverage tradeoff rather than a recovered explanation."
+    },
+    {
+      "condition_id": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+      "available_families": [
+        "chain_intermediates"
+      ],
+      "fixed_anchor_groups": [
+        "c3ecf97ec6d7",
+        "bee96d56cb3f"
+      ],
+      "outcome_example_groups": [
+        "2467c25f3c16",
+        "14e1f5fb530d",
+        "5c218b569bcd"
+      ],
+      "observation": "Only chain coverage is available here. Medium confirmation reorders repeated14 without recovering intermediate5; intermediate10 anchor is text-identical to baseline. A win extracts9 from the unrelated arithmetic (5-2)*3 rather than the original11-2 step. A regression still contains5 but a newly retained15 arithmetic statement is ranked first."
+    },
+    {
+      "condition_id": "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16",
+      "available_families": [
+        "chain_intermediates"
+      ],
+      "fixed_anchor_groups": [
+        "686e1c66fff6",
+        "08618b2cc452"
+      ],
+      "outcome_example_groups": [
+        "5f42d5d255e1",
+        "1e3e53bf822a",
+        "6b62f3ac0100"
+      ],
+      "observation": "Only chain coverage is available here. Compatibility plus support reduces the14 anchor to one final-result sentence, empties intermediate10 and selected failed examples, and reduces the double/double win to the sole numeral24. This is cleaner and less contradictory, but the solitary value does not itself tie24 to the original computation. Whole-question recovery still falls where all useful source text is removed."
+    },
+    {
+      "condition_id": "random_complete-n4",
+      "available_families": [
+        "multihop_mt",
+        "chain_intermediates"
+      ],
+      "fixed_anchor_groups": [
+        "77401e6fe216",
+        "0a09632b9309",
+        "e0b15eb9b9cc",
+        "4353d3e0730d"
+      ],
+      "outcome_example_groups": [
+        "f78693005d4a",
+        "8344381508f3",
+        "b6fd779af3f8",
+        "7eea280b2061",
+        "159d32f08e0a",
+        "f86dceba6796"
+      ],
+      "observation": "Available only for multihop and chain in this pack. Random candidate selection can recover Adwa while leaving wrong general names, and can lose Tugela while still naming the mountain range. Both fixed chain anchors remain incorrect; the selected chain win merely names3 as a final answer. These are necessary baselines for claims about more specialized selection methods."
+    },
+    {
+      "condition_id": "random_delete_matched_a32_0-n32",
+      "available_families": [
+        "multihop_mt",
+        "chain_intermediates"
+      ],
+      "fixed_anchor_groups": [
+        "3fcfde334320",
+        "b4b022066d39",
+        "773f7aece805",
+        "0dbd4f098159"
+      ],
+      "outcome_example_groups": [
+        "e45544f60f1e",
+        "9d414cfc1d71",
+        "347a89259ad2",
+        "521290916f9f",
+        "9b7327e4c189",
+        "40df335321cc"
+      ],
+      "observation": "Available only for multihop and chain. This deletion keeps Simula67 and a Nygaard alias but can discard Enkidu and all Belisarius/Procopius bridge names. Chain win includes36 as a bare bullet while another bullet describes an unrelated calculation; chain regression loses the top intermediate7. Shorter output alone does not imply retained task information."
+    },
+    {
+      "condition_id": "prune_loo_n1_0-n1",
+      "available_families": [
+        "multihop_mt",
+        "chain_intermediates"
+      ],
+      "fixed_anchor_groups": [
+        "77401e6fe216",
+        "9bae6f62be85",
+        "449162e07171",
+        "f68f91732a43"
+      ],
+      "outcome_example_groups": [
+        "2d52965b2f51",
+        "c4c3e3009943",
+        "dddcc0f5ab6b",
+        "2a2fb5cabd90",
+        "8fd45c6a6b34"
+      ],
+      "observation": "Available only for multihop and chain. Pruning original N1 removes the explicit Simula67 and Tugela phrases in selected items and still leaves noEnkidu at its anchor. Chain anchors retain wrong final-answer14 or unrelated35; one win keeps12 from an unrelated-start narrative and removes competing values. A regression still contains11 but ranks a different arithmetic statement first."
+    },
+    {
+      "condition_id": "random_delete_matched_n1_0.001-n1",
+      "available_families": [
+        "multihop_mt",
+        "chain_intermediates"
+      ],
+      "fixed_anchor_groups": [
+        "77401e6fe216",
+        "139b57fab8f2",
+        "f378411615c0",
+        "919aeb334ef0"
+      ],
+      "outcome_example_groups": [
+        "2d52965b2f51",
+        "075f04890765",
+        "0202eccb7c1f",
+        "86d13c0878c8",
+        "300491eb723a"
+      ],
+      "observation": "Available only for multihop and chain. The strictSimula67 and Tugela bridges are deleted; both fixed multihop anchors still fail. The chain intermediate6 regression literally removes the6 answer bullet, while a win leaves unrelated arithmetic producing2. These illustrate information loss and extraction ranking effects without a claim about semantic truth."
+    }
+  ],
+  "reviewed_text_groups": [
+    {
+      "group_id": "1e2ab5c90616",
+      "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+      "family": "hallucination",
+      "references": [
+        {
+          "condition": "raw_n1-n1",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "734e4cab45de42ed4655d6bf45a5f94e4a4cfda5dcc77344117376e4bb7c0fe9",
+      "proposed_text_sha256": "734e4cab45de42ed4655d6bf45a5f94e4a4cfda5dcc77344117376e4bb7c0fe9",
+      "inspected": true,
+      "same_text": true,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "a731729ce67b",
+      "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+      "family": "hallucination",
+      "references": [
+        {
+          "condition": "raw_n1-n1",
+          "category": "fixed_anchor"
+        },
+        {
+          "condition": "best_n_exact-n2",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "6f16c5477bec32456fdf659945ae72b7796939b6d350875835bb0a6ae70c462e",
+      "proposed_text_sha256": "6f16c5477bec32456fdf659945ae72b7796939b6d350875835bb0a6ae70c462e",
+      "inspected": true,
+      "same_text": true,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "ffe7ea14e134",
+      "cell_id": "hallucination|chat-dailydialog-0001|L36|p00029",
+      "family": "hallucination",
+      "references": [
+        {
+          "condition": "raw_n1-n1",
+          "category": "win"
+        }
+      ],
+      "baseline_text_sha256": "509410e5dbe92320159e4c29f56fddb7ea5816fd45e37b5ab2f85506e8d70f44",
+      "proposed_text_sha256": "bba6e37631cc87d3de1ba33604df32307ed39ff2bfdd9fcb454b9d743dd16522",
+      "inspected": true,
+      "same_text": false,
+      "observation": "All semantic text is unchanged; a doubled space precedes the third bullet. Baselinehallucinated changes to consistent, so this is not persuasive evidence of improved factual prose.",
+      "observation_type": "format_sensitivity"
+    },
+    {
+      "group_id": "47e709e77bc9",
+      "cell_id": "hallucination|chat-dailydialog-0003|L20|p00162",
+      "family": "hallucination",
+      "references": [
+        {
+          "condition": "raw_n1-n1",
+          "category": "changed_no_endpoint_change"
+        }
+      ],
+      "baseline_text_sha256": "3381aff6e7c7ae2e7761e46913bb711346eea4d124b499856a89cdc9b14b444e",
+      "proposed_text_sha256": "ddd6f9d9ea2b63bade376d88a101afe3c1e9149e634dd9956a192c9c2608f86d",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "708f50545afc",
+      "cell_id": "hallucination|chat-dailydialog-0003|L60|p00338",
+      "family": "hallucination",
+      "references": [
+        {
+          "condition": "raw_n1-n1",
+          "category": "regression"
+        }
+      ],
+      "baseline_text_sha256": "0849e694c3f03abb7d1538a44f48837e934d070a55e68fd83af77de02237ab4e",
+      "proposed_text_sha256": "72efb1b99c72694609ea524f1c59ef58aaf7bc33473bbc15e07ef2c8ef1e8b7f",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "77401e6fe216",
+      "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "raw_n1-n1",
+          "category": "fixed_anchor"
+        },
+        {
+          "condition": "consensus_semantic_v5_support0_compatoff_vetooff-n16",
+          "category": "fixed_anchor"
+        },
+        {
+          "condition": "random_complete-n4",
+          "category": "fixed_anchor"
+        },
+        {
+          "condition": "prune_loo_n1_0-n1",
+          "category": "fixed_anchor"
+        },
+        {
+          "condition": "random_delete_matched_n1_0.001-n1",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "fc71a97c02082652baa73a72e5e165e5eebf085ae8c168c13823ed314106339b",
+      "proposed_text_sha256": "fc71a97c02082652baa73a72e5e165e5eebf085ae8c168c13823ed314106339b",
+      "inspected": true,
+      "same_text": true,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "b0ac623ddbda",
+      "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "raw_n1-n1",
+          "category": "fixed_anchor"
+        },
+        {
+          "condition": "consensus_semantic_v5_support0_compatoff_vetooff-n16",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "1a1d504406f1d93204dc2fa8c0eecda5419af12ced9710240beaf2065d9f0f68",
+      "proposed_text_sha256": "1a1d504406f1d93204dc2fa8c0eecda5419af12ced9710240beaf2065d9f0f68",
+      "inspected": true,
+      "same_text": true,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "d8b3fb30c99d",
+      "cell_id": "multihop_mt|mhh-1976philadelphia-bacterium|L60|p00028",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "raw_n1-n1",
+          "category": "changed_no_endpoint_change"
+        }
+      ],
+      "baseline_text_sha256": "aecc25c577a493e21d3a58dc163918eeec77734e41422630141c25032331f928",
+      "proposed_text_sha256": "afde2a9bdc7483542aa66bb5ae89162e5e18842421852e1ef4e9b4edb95dffa3",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "a1c21d9f0552",
+      "cell_id": "chain_intermediates|chain-w2-d2p-0013|L60|p00062",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "raw_n1-n1",
+          "category": "fixed_anchor"
+        },
+        {
+          "condition": "best_n_exact-n2",
+          "category": "fixed_anchor"
+        },
+        {
+          "condition": "best_n_exact-n16",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "a5053af6a6908754c376e975cca5bab0250522e7d8c961d7a183678fc2f1cec3",
+      "proposed_text_sha256": "a5053af6a6908754c376e975cca5bab0250522e7d8c961d7a183678fc2f1cec3",
+      "inspected": true,
+      "same_text": true,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "c3ecf97ec6d7",
+      "cell_id": "chain_intermediates|chain-d2p-0385|L20|p00066",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "raw_n1-n1",
+          "category": "fixed_anchor"
+        },
+        {
+          "condition": "best_n_exact-n2",
+          "category": "fixed_anchor"
+        },
+        {
+          "condition": "best_n_specificity_mean-n32",
+          "category": "fixed_anchor"
+        },
+        {
+          "condition": "consensus_semantic_v5_support0_compatoff_vetooff-n16",
+          "category": "fixed_anchor"
+        },
+        {
+          "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "9121afb97f1b67e0db2ad0856c0ccc74ac8a77549d1d5ccdadc9d9a175b4d2e2",
+      "proposed_text_sha256": "9121afb97f1b67e0db2ad0856c0ccc74ac8a77549d1d5ccdadc9d9a175b4d2e2",
+      "inspected": true,
+      "same_text": true,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "73054fec7ef4",
+      "cell_id": "chain_intermediates|chain-d2p-0200|L40|p00066",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "raw_n1-n1",
+          "category": "changed_no_endpoint_change"
+        }
+      ],
+      "baseline_text_sha256": "2394ea05a5f8c62ef7e444ea69c182f6877ebb57c947be5176340ad078098153",
+      "proposed_text_sha256": "c8512e913e94a619bcdb476973b89451f42749dc027ab90aa9064f843a955702",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "321fa7760c49",
+      "cell_id": "chain_intermediates|chain-w2-d2p-0270|L44|p00063",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "raw_n1-n1",
+          "category": "win"
+        }
+      ],
+      "baseline_text_sha256": "79112edf3dfea4ec390c6a59089df338551b2f56e2015f4ad646949756303781",
+      "proposed_text_sha256": "2cb775a9f75751f95dde4bddec0afced38e5c0d7020ccf96725ecee3c4237a6a",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "267a9c8fe4e1",
+      "cell_id": "chain_intermediates|chain-w2-d3p-0355|L56|p00069",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "raw_n1-n1",
+          "category": "regression"
+        }
+      ],
+      "baseline_text_sha256": "68a5d157d66593a143105ff7b01e6ab7618d34541f433331318cf7f9341d98cf",
+      "proposed_text_sha256": "74a829e0b05f2852023a11f9e6eb952a9e8003fb8ddc1297a236b939f7c350f9",
+      "inspected": true,
+      "same_text": false,
+      "observation": "Added wrong arithmetic30+10=38 shifts the extracted topvalue away from retained28. Under the frozen top1 contract, retaining28 anywhere is insufficient.",
+      "observation_type": "ranking_sensitivity"
+    },
+    {
+      "group_id": "f7814aad72c6",
+      "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+      "family": "role_bound_association",
+      "references": [
+        {
+          "condition": "raw_n1-n1",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "8219d97a4ae9a888658e099406ec06b4f72a333f90e6ae92d0d6eaf5a176576b",
+      "proposed_text_sha256": "8219d97a4ae9a888658e099406ec06b4f72a333f90e6ae92d0d6eaf5a176576b",
+      "inspected": true,
+      "same_text": true,
+      "observation": "Early-layer output consists of incomplete summarization requests and unrelated names; neither role nor directed apology is stated.",
+      "observation_type": "unchanged_generic_anchor"
+    },
+    {
+      "group_id": "83f69bdfe86e",
+      "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+      "family": "role_bound_association",
+      "references": [
+        {
+          "condition": "raw_n1-n1",
+          "category": "fixed_anchor"
+        },
+        {
+          "condition": "best_n_exact-n2",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "00a6a2c0134650024f306e8a0e039e480bae464eaf3166c9d6d3f33e41595f0e",
+      "proposed_text_sha256": "00a6a2c0134650024f306e8a0e039e480bae464eaf3166c9d6d3f33e41595f0e",
+      "inspected": true,
+      "same_text": true,
+      "observation": "ComedianMarcus uses a witty comeback against heckler; official recovery is plausible from an implied humiliation relation, rather than an explicit word-for-word action label.",
+      "observation_type": "retained_directed_action"
+    },
+    {
+      "group_id": "d355001e48e7",
+      "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L28|p00137",
+      "family": "role_bound_association",
+      "references": [
+        {
+          "condition": "raw_n1-n1",
+          "category": "changed_no_endpoint_change"
+        }
+      ],
+      "baseline_text_sha256": "968f1a64c7c9e32cad38ee25d07a98eec65991523ee5ad6b7d4862c63563f9cd",
+      "proposed_text_sha256": "e6aae5cd1eb505326713e240f29c8caa8e7ce2e701973326d10b7de3c0cb666a",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "d6888aeeca26",
+      "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+      "family": "hallucination",
+      "references": [
+        {
+          "condition": "best_n_exact-n2",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "734e4cab45de42ed4655d6bf45a5f94e4a4cfda5dcc77344117376e4bb7c0fe9",
+      "proposed_text_sha256": "0bb69676fc29d0ebdf03b15bb947633bc7c01cdfcc7d2049ec664d9c1aa056c6",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "742f161b3400",
+      "cell_id": "hallucination|chat-dailydialog-0000|L20|p00060",
+      "family": "hallucination",
+      "references": [
+        {
+          "condition": "best_n_exact-n2",
+          "category": "changed_no_endpoint_change"
+        },
+        {
+          "condition": "best_n_exact-n16",
+          "category": "changed_no_endpoint_change"
+        }
+      ],
+      "baseline_text_sha256": "f0d7673836596944fda491ea5f6a45c3d7e51c0f6514b48cca3bdc17f194db56",
+      "proposed_text_sha256": "5cf80ee515c4e2f87afb8781205daec0c061c65fcd8be0799a5205ec0ce42c11",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "488002e3cdf4",
+      "cell_id": "hallucination|chat-dailydialog-0000|L36|p00055",
+      "family": "hallucination",
+      "references": [
+        {
+          "condition": "best_n_exact-n2",
+          "category": "win"
+        },
+        {
+          "condition": "best_n_exact-n16",
+          "category": "win"
+        }
+      ],
+      "baseline_text_sha256": "3e0db88d101bbfb36ecaaa04e82aa9a8721eb68970339ca66b8f74e0d83f8940",
+      "proposed_text_sha256": "a53add7d8d2e8b06febd5a706931aa56a9b692339d962878bed4b9031da6a9cb",
+      "inspected": true,
+      "same_text": false,
+      "observation": "Output replaces a named Alibaba engineering-team assertion with generic developer/data/cloud descriptions. Fewer unsupported identity details is plausible, but this is only selected local evidence.",
+      "observation_type": "plausible_specificity_removal"
+    },
+    {
+      "group_id": "bc64efb9fe08",
+      "cell_id": "hallucination|chat-dailydialog-0000|L44|p00092",
+      "family": "hallucination",
+      "references": [
+        {
+          "condition": "best_n_exact-n2",
+          "category": "regression"
+        }
+      ],
+      "baseline_text_sha256": "7d13eb490e0491ba168a46310c61350f83b86a3a94398a43fab8ebe15cde6281",
+      "proposed_text_sha256": "ee1e12a7bba1aa83a50cb85f2dc4131f32caba3369e778b049c3fc20938f5799",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "840a1bc4fce3",
+      "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "best_n_exact-n2",
+          "category": "fixed_anchor"
+        },
+        {
+          "condition": "best_n_exact-n16",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "fc71a97c02082652baa73a72e5e165e5eebf085ae8c168c13823ed314106339b",
+      "proposed_text_sha256": "34869f680185839dcf115add2e50589cf1277d5b601ea43c3f3fff26f63f91ed",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "475f2107af31",
+      "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "best_n_exact-n2",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "1a1d504406f1d93204dc2fa8c0eecda5419af12ced9710240beaf2065d9f0f68",
+      "proposed_text_sha256": "c531d704df5e9cfe45528861c4c99dd2cb92e2d27cc96c17b24d3409bea2d084",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "f227c5e4297f",
+      "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L40|p00028",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "best_n_exact-n2",
+          "category": "changed_no_endpoint_change"
+        }
+      ],
+      "baseline_text_sha256": "e9f75f4e1bc3f5c24be8b84561b18792affdfb546378d991961540ad875b4bfd",
+      "proposed_text_sha256": "89878d97bc8855c7fafe19e41e119a19a9fc125b8c40f424321916a14c0094cb",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "cb6f7daadf04",
+      "cell_id": "multihop_mt|mhh-adwa-baratieri|L56|p00033",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "best_n_exact-n2",
+          "category": "win"
+        }
+      ],
+      "baseline_text_sha256": "5c6e61e31dfe1ef07b2005a0ef81ba8adf52d21ceeafa3aa5b2d1e87f8d0d555",
+      "proposed_text_sha256": "2a1e96efb859a8a6f1c5c18fae6aa04d9c9dd464682576ac65103d3e662c4aad",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "236a2c73e2d0",
+      "cell_id": "multihop_mt|mhh-pitchblende-jachymov|L52|p00043",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "best_n_exact-n2",
+          "category": "regression"
+        }
+      ],
+      "baseline_text_sha256": "217837c3140460d3bd7eb06e664e7500c3a0a72dc7559f7fd74c0b8584384e5d",
+      "proposed_text_sha256": "5e9ac854ce369cc4a82ebab3a33ac4e79b04101419d1462272e09ea5cb5aef7a",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "0cfcf0c1d83f",
+      "cell_id": "chain_intermediates|chain-d2p-0200|L36|p00066",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "best_n_exact-n2",
+          "category": "changed_no_endpoint_change"
+        }
+      ],
+      "baseline_text_sha256": "d8c39a066323be48bcaeceddfb9c47465054ff25c2c777b3c08f6c64c7e3d279",
+      "proposed_text_sha256": "43822f4ead2e34a00ac2be1fcbb982cbbbc883935f8a7fa82673c8221a7a2378",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "8707e7dad28b",
+      "cell_id": "chain_intermediates|chain-d2p-0238|L44|p00066",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "best_n_exact-n2",
+          "category": "regression"
+        }
+      ],
+      "baseline_text_sha256": "40286583d7f482e533c7f8f3679c7e8558a0e740d47db908cd34c65cb2e25d64",
+      "proposed_text_sha256": "d3b57a368e9612a78234024fb95143583ea26a156f75010451343b8152ce1eb9",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "412445072c3a",
+      "cell_id": "chain_intermediates|chain-d2p-0330|L28|p00064",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "best_n_exact-n2",
+          "category": "win"
+        }
+      ],
+      "baseline_text_sha256": "cd4210ade1e62e7163ac7d21048821a9f062d56b7c7bbb40fae222c2b522fd73",
+      "proposed_text_sha256": "18629b550eb5d21f351bc878de3404ad0bdf996250f418ef97a62240d35ba914",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "774dad09fc2e",
+      "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+      "family": "role_bound_association",
+      "references": [
+        {
+          "condition": "best_n_exact-n2",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "8219d97a4ae9a888658e099406ec06b4f72a333f90e6ae92d0d6eaf5a176576b",
+      "proposed_text_sha256": "b285b4e7f68aff433a5012226325912abe377defe40e9d561d974f8a58c8bea2",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "2fb327d151d3",
+      "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+      "family": "role_bound_association",
+      "references": [
+        {
+          "condition": "best_n_exact-n2",
+          "category": "changed_no_endpoint_change"
+        }
+      ],
+      "baseline_text_sha256": "157fae280b3cba20bff5efe7edd968a7fd89f2694a69d1d0c6a3dac02978ce45",
+      "proposed_text_sha256": "c49df676a288e1e6cae48a0523e576b02d5cd794024939e1c1f2cebac54a3df9",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "f4f36ec49e01",
+      "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ba|L52|p00124",
+      "family": "role_bound_association",
+      "references": [
+        {
+          "condition": "best_n_exact-n2",
+          "category": "win"
+        }
+      ],
+      "baseline_text_sha256": "aa00bbabef532a200d6898708dc0d19105f650346a43b6e9aac5d6f708257f9a",
+      "proposed_text_sha256": "7f43eed7b036f9195a5801dccae647a3f694d3e563edcf7fecf55053c3a5e2cd",
+      "inspected": true,
+      "same_text": false,
+      "observation": "A new bullet explicitly has the child feed the babysitter, while earlier baseline primarily describes babysitter feeding toddler. Crackers versus source banana is still an incidental content mismatch.",
+      "observation_type": "clear_role_direction_gain"
+    },
+    {
+      "group_id": "6265ccb31c3e",
+      "cell_id": "role_bound_association|oa-heiress-butler-underestimate-ab|L36|p00199",
+      "family": "role_bound_association",
+      "references": [
+        {
+          "condition": "best_n_exact-n2",
+          "category": "regression"
+        }
+      ],
+      "baseline_text_sha256": "9005fbba550cdc38ab89e18cd3fcd76fb33e9a441b16f280f62d955638b7db65",
+      "proposed_text_sha256": "4a1d555cad390f684c450280b5a9015e82501e684822fe7de9658b1a1d2e5b20",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "236f5cfaacea",
+      "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+      "family": "hallucination",
+      "references": [
+        {
+          "condition": "best_n_exact-n16",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "734e4cab45de42ed4655d6bf45a5f94e4a4cfda5dcc77344117376e4bb7c0fe9",
+      "proposed_text_sha256": "e65eeaf2c1958c5a587243e0aa74999aac7f4d100eb381ae0ebff112ea876acb",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "1383db12d6ee",
+      "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+      "family": "hallucination",
+      "references": [
+        {
+          "condition": "best_n_exact-n16",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "6f16c5477bec32456fdf659945ae72b7796939b6d350875835bb0a6ae70c462e",
+      "proposed_text_sha256": "c3534239611eef6a2f4642627f420538368e2d202e8276625ee2cd4b146aaf73",
+      "inspected": true,
+      "same_text": false,
+      "observation": "DETR-D wording disappears and score changes to consistent; remaining mechanistic causal phrases are not independently established by this review.",
+      "observation_type": "plausible_specificity_removal"
+    },
+    {
+      "group_id": "51d5b5e42dbf",
+      "cell_id": "hallucination|chat-dailydialog-0000|L20|p00046",
+      "family": "hallucination",
+      "references": [
+        {
+          "condition": "best_n_exact-n16",
+          "category": "regression"
+        }
+      ],
+      "baseline_text_sha256": "446f98b7671110d21e242856223c585b648d256e80ae11e7e1a4c38fd69783cf",
+      "proposed_text_sha256": "c3c15201124c3fe6892895cd1423c74e70dc2c89a4fff7db262416a1bcec70f7",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "ed6b47131a2c",
+      "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "best_n_exact-n16",
+          "category": "fixed_anchor"
+        },
+        {
+          "condition": "random_complete-n32",
+          "category": "fixed_anchor"
+        },
+        {
+          "condition": "best_n_specificity_mean-n32",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "1a1d504406f1d93204dc2fa8c0eecda5419af12ced9710240beaf2065d9f0f68",
+      "proposed_text_sha256": "049a818c9c5e70198e6624d5328dda8279f196d5ef02cec10589fc59546168e3",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "eb2c87bc7bcd",
+      "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "best_n_exact-n16",
+          "category": "changed_no_endpoint_change"
+        }
+      ],
+      "baseline_text_sha256": "da75739799170b4430ff1d828358ca842b7ba22f5075d5a674ee7e6ae869c28e",
+      "proposed_text_sha256": "fe4f37ba474ed050a29ed471412dafcc271513d2eb7c6e7544cea205a9bb8f8c",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "fa4bb270f811",
+      "cell_id": "multihop_mt|mhh-adwa-baratieri|L40|p00033",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "best_n_exact-n16",
+          "category": "win"
+        },
+        {
+          "condition": "best_n_specificity_mean-n32",
+          "category": "win"
+        }
+      ],
+      "baseline_text_sha256": "efe5e8d4818465565d5b057bb4740017ed7daafdf536b8f7558cbae777e14881",
+      "proposed_text_sha256": "88dde2abcdf3097a2043c02f21df4fa422d449d23e85ead3eca31d03016575e2",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "e45544f60f1e",
+      "cell_id": "multihop_mt|mhh-belisarius-procopius-secret-history|L52|p00038",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "best_n_exact-n16",
+          "category": "regression"
+        },
+        {
+          "condition": "best_n_specificity_mean-n32",
+          "category": "regression"
+        },
+        {
+          "condition": "random_delete_matched_a32_0-n32",
+          "category": "regression"
+        }
+      ],
+      "baseline_text_sha256": "699fd828796fc82e93ede24dc23bd559959f9590ff1d57f616c6c59b298a23a3",
+      "proposed_text_sha256": "ed742b6b4b0b3c61ade211189c18a7a8635ad98b0896b4cfcd3de6b1927e000b",
+      "inspected": true,
+      "same_text": false,
+      "observation": "SecretHistory final-title strings remain but neither required Belisarius/Procopius bridge appears, so loss of required-bridge recovery is understandable.",
+      "observation_type": "required_bridge_loss"
+    },
+    {
+      "group_id": "7682c77c6378",
+      "cell_id": "chain_intermediates|chain-d2p-0385|L20|p00066",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "best_n_exact-n16",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "9121afb97f1b67e0db2ad0856c0ccc74ac8a77549d1d5ccdadc9d9a175b4d2e2",
+      "proposed_text_sha256": "629c970b5dec0a2b3a6f93f6c3e521bb2c754574d16f1b43f715e156358b9dfd",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "f50e09a9fa51",
+      "cell_id": "chain_intermediates|chain-d2p-0200|L20|p00066",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "best_n_exact-n16",
+          "category": "changed_no_endpoint_change"
+        }
+      ],
+      "baseline_text_sha256": "b6cd51bc59537fac41af8afe2b911f8eb26728a051298ac3d3edca0626f9bdb7",
+      "proposed_text_sha256": "bffdffd5387e0a559fdfeb15ca0044004eb715cc4c25170f249a0fbdf9f63cfb",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "3b491a0b9e55",
+      "cell_id": "chain_intermediates|chain-d2p-0256|L28|p00061",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "best_n_exact-n16",
+          "category": "regression"
+        }
+      ],
+      "baseline_text_sha256": "84ab2f97782c08346769cf2f062ab43e8d1deda271b9679cbfb82b1720622808",
+      "proposed_text_sha256": "d39d8aa38347864f2b37c133a8d2a2bbf3509060490d3386d1153221283bc450",
+      "inspected": true,
+      "same_text": false,
+      "observation": "Bare leading7 survives and is present fourth in raw extractedvalues [8,5,27,7]; explicit final-number8 is preferred. This is extraction ranking sensitivity, not proof that7 was deleted.",
+      "observation_type": "ranking_sensitivity"
+    },
+    {
+      "group_id": "241c2c72238c",
+      "cell_id": "chain_intermediates|chain-d2p-0263|L24|p00063",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "best_n_exact-n16",
+          "category": "win"
+        }
+      ],
+      "baseline_text_sha256": "bc240f1434685772a18512b000e3a675e7d30f68febccd40182f8cf16e704eed",
+      "proposed_text_sha256": "d9ae073fafa6fbeef1ee84a758f53be12ad7f728428586376f56de8e5c6c76c8",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "ff1fb9e09653",
+      "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+      "family": "role_bound_association",
+      "references": [
+        {
+          "condition": "best_n_exact-n16",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "8219d97a4ae9a888658e099406ec06b4f72a333f90e6ae92d0d6eaf5a176576b",
+      "proposed_text_sha256": "6b3a4f7ce27c027284c89b12a9f6cf93b55a4201ccfe32d034703d8e389496f6",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "24dbf2aedb03",
+      "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+      "family": "role_bound_association",
+      "references": [
+        {
+          "condition": "best_n_exact-n16",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "00a6a2c0134650024f306e8a0e039e480bae464eaf3166c9d6d3f33e41595f0e",
+      "proposed_text_sha256": "2f6ec5b6ae0954d7a85388fbcb10c67321dd34051e339c28cd73c9f8c6977e79",
+      "inspected": true,
+      "same_text": false,
+      "observation": "Comedian and heckler direction remains, but readout mainly resumes/dismisses interruption. Whether this implies humiliating is an action-boundary ambiguity; do not equate loss of the metric with losing every role detail.",
+      "observation_type": "semantic_action_boundary"
+    },
+    {
+      "group_id": "b96a021b8f55",
+      "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+      "family": "role_bound_association",
+      "references": [
+        {
+          "condition": "best_n_exact-n16",
+          "category": "changed_no_endpoint_change"
+        }
+      ],
+      "baseline_text_sha256": "157fae280b3cba20bff5efe7edd968a7fd89f2694a69d1d0c6a3dac02978ce45",
+      "proposed_text_sha256": "df28cd8a95ec3bc80b3b10cb8856ecf43e77d7e762a6f234ace6d29d9ca83bcf",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "58d3f0e1a365",
+      "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ba|L44|p00124",
+      "family": "role_bound_association",
+      "references": [
+        {
+          "condition": "best_n_exact-n16",
+          "category": "win"
+        },
+        {
+          "condition": "best_n_specificity_mean-n32",
+          "category": "win"
+        }
+      ],
+      "baseline_text_sha256": "2c8be4c6c7e1f8b320a280d488046761cb8b8c993d9e35beaeb48881526caa1b",
+      "proposed_text_sha256": "a3400ddd8293e15789b839a41c5700b6112896c849d1465477162a5d23a4a139",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "e205d8549bf6",
+      "cell_id": "role_bound_association|oa-bride-caterer-yell-ab|L36|p00121",
+      "family": "role_bound_association",
+      "references": [
+        {
+          "condition": "best_n_exact-n16",
+          "category": "regression"
+        }
+      ],
+      "baseline_text_sha256": "14f2b28c7ac29945f5a5c350e5cacab5979b96328a02102f9b274274aefb5f4d",
+      "proposed_text_sha256": "a40dc1642842987ca4baef751f8106216ddccc3a21c204a938dabadff266abdc",
+      "inspected": true,
+      "same_text": false,
+      "observation": "New prose describes both chef berating bride and bride reprimanding boss. Cannot-tell agent/patient is reasonable for contradictory readouts; action component alone does not establish binding.",
+      "observation_type": "conflicting_role_direction"
+    },
+    {
+      "group_id": "a9d521d0eecb",
+      "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+      "family": "hallucination",
+      "references": [
+        {
+          "condition": "random_complete-n32",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "734e4cab45de42ed4655d6bf45a5f94e4a4cfda5dcc77344117376e4bb7c0fe9",
+      "proposed_text_sha256": "9eb3c6bbcf93c1e679e29e783b216701fbcba4bc190c367bbf6ba40d0ae4b1bc",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "8d38c99ca14e",
+      "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+      "family": "hallucination",
+      "references": [
+        {
+          "condition": "random_complete-n32",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "6f16c5477bec32456fdf659945ae72b7796939b6d350875835bb0a6ae70c462e",
+      "proposed_text_sha256": "70c2f5e017d804b5eb98c71d29c546ceae58aa049337ee1d50f2262c63b01cbd",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "c80fb6791d33",
+      "cell_id": "hallucination|chat-dailydialog-0000|L20|p00038",
+      "family": "hallucination",
+      "references": [
+        {
+          "condition": "random_complete-n32",
+          "category": "regression"
+        }
+      ],
+      "baseline_text_sha256": "1f1b3897467867a4022dfa61256227b57a14208ff738373c44b018a35d9ba328",
+      "proposed_text_sha256": "05effd2b3505959e063843c6fc1db9dac9fcedbde1ac1b6671d666d5f5a8bcf6",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "3531b3fd6ffe",
+      "cell_id": "hallucination|chat-dailydialog-0000|L20|p00055",
+      "family": "hallucination",
+      "references": [
+        {
+          "condition": "random_complete-n32",
+          "category": "changed_no_endpoint_change"
+        }
+      ],
+      "baseline_text_sha256": "666e39321ddb02792120f7420dcdaf1be8b4440a52b453f548ada66e03359ad2",
+      "proposed_text_sha256": "997342fcb9ecf907eb3614350b59e165f165d607b8cdcbaf9ad4d074b8e9cc97",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "1b6b449b4db2",
+      "cell_id": "hallucination|chat-dailydialog-0000|L36|p00055",
+      "family": "hallucination",
+      "references": [
+        {
+          "condition": "random_complete-n32",
+          "category": "win"
+        }
+      ],
+      "baseline_text_sha256": "3e0db88d101bbfb36ecaaa04e82aa9a8721eb68970339ca66b8f74e0d83f8940",
+      "proposed_text_sha256": "b79a0f5d00c96f30a1b4f706a7a57d56964da9a6456e6ec346c4d5638c86803d",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "a8a667890c47",
+      "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "random_complete-n32",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "fc71a97c02082652baa73a72e5e165e5eebf085ae8c168c13823ed314106339b",
+      "proposed_text_sha256": "35e1a591ba179fdf787372e184f0040af483aef222132336ebad164392e53c67",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "a3e22c60d31a",
+      "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "random_complete-n32",
+          "category": "changed_no_endpoint_change"
+        }
+      ],
+      "baseline_text_sha256": "da75739799170b4430ff1d828358ca842b7ba22f5075d5a674ee7e6ae869c28e",
+      "proposed_text_sha256": "68befabaca409e1c9c53badc58dd2680e267db60d403dc0664f2d15d9f6fab39",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "bae5010c1b69",
+      "cell_id": "multihop_mt|mhh-adwa-baratieri|L52|p00033",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "random_complete-n32",
+          "category": "win"
+        }
+      ],
+      "baseline_text_sha256": "6fce9791f8c884b5322a1ccb77065468b9aedf1d579e60a4872d84d29cc08cf3",
+      "proposed_text_sha256": "c46d26ce17514d34b4d5d8829393984d87ba06efa7379d757ab03687fd150bfa",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "0d06dc6327a3",
+      "cell_id": "multihop_mt|mhh-belisarius-procopius-secret-history|L52|p00038",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "random_complete-n32",
+          "category": "regression"
+        }
+      ],
+      "baseline_text_sha256": "699fd828796fc82e93ede24dc23bd559959f9590ff1d57f616c6c59b298a23a3",
+      "proposed_text_sha256": "02841b5039c008fe5b45ee2d5fed3bed9931c56f4b18b6f8971196a354488345",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "f390326fdbac",
+      "cell_id": "chain_intermediates|chain-w2-d2p-0013|L60|p00062",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "random_complete-n32",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "a5053af6a6908754c376e975cca5bab0250522e7d8c961d7a183678fc2f1cec3",
+      "proposed_text_sha256": "fb3ee306e44cc53c828a721b85931f91c808611cce8a312f2e7c99dc66b8fc85",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "d3cf6fe718c1",
+      "cell_id": "chain_intermediates|chain-d2p-0385|L20|p00066",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "random_complete-n32",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "9121afb97f1b67e0db2ad0856c0ccc74ac8a77549d1d5ccdadc9d9a175b4d2e2",
+      "proposed_text_sha256": "95ef1829d01a8cb0652fd2e5a95a01bd1c45ecd0cace7ad621b33663ba95e571",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "39768d734468",
+      "cell_id": "chain_intermediates|chain-d2p-0200|L28|p00066",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "random_complete-n32",
+          "category": "regression"
+        }
+      ],
+      "baseline_text_sha256": "d33fe730ef60a8f8d509ce380f0110a476cfe16d6b30e5a33db40c57807136f2",
+      "proposed_text_sha256": "79682e56f642dbe39ce253aa705a3531423b16acacf53b417e013a31ffc2d36d",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "363e553cc5cd",
+      "cell_id": "chain_intermediates|chain-d2p-0206|L20|p00067",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "random_complete-n32",
+          "category": "changed_no_endpoint_change"
+        }
+      ],
+      "baseline_text_sha256": "5562888198620dde29b2487b8830674e470f754f1cc4928f64c9428a37164816",
+      "proposed_text_sha256": "3d4ac549821d184db1931500fdd5dcf6141cf983b79baa7f1a2a3b4518957c63",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "cbdb5c452152",
+      "cell_id": "chain_intermediates|chain-d2p-0333|L56|p00068",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "random_complete-n32",
+          "category": "win"
+        }
+      ],
+      "baseline_text_sha256": "e34a676980d2dbc91930cb34eb0889a257119356848fd8fba1d87cc17d2d2f8a",
+      "proposed_text_sha256": "34aef107624066377da03f03800fb7f1564407706a25a00474f462c1436c9184",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "50ee17b091b5",
+      "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+      "family": "role_bound_association",
+      "references": [
+        {
+          "condition": "random_complete-n32",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "8219d97a4ae9a888658e099406ec06b4f72a333f90e6ae92d0d6eaf5a176576b",
+      "proposed_text_sha256": "ba4c91cd80632fc6bfaa1c32d5d27c4821e944cb8b76e4bbba7181545a5612d6",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "15f8bf30c33e",
+      "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+      "family": "role_bound_association",
+      "references": [
+        {
+          "condition": "random_complete-n32",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "00a6a2c0134650024f306e8a0e039e480bae464eaf3166c9d6d3f33e41595f0e",
+      "proposed_text_sha256": "da3ac0620302a3e91d59efa24d9624acc0e7261eadb9ac93035e5fb973a5e307",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "22c237d2fa0a",
+      "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+      "family": "role_bound_association",
+      "references": [
+        {
+          "condition": "random_complete-n32",
+          "category": "changed_no_endpoint_change"
+        }
+      ],
+      "baseline_text_sha256": "157fae280b3cba20bff5efe7edd968a7fd89f2694a69d1d0c6a3dac02978ce45",
+      "proposed_text_sha256": "5b8effc8929dfa32476fc1318648a37f557f33fe906f26d7a06aa750657af9f7",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "1a811d48f403",
+      "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ab|L36|p00089",
+      "family": "role_bound_association",
+      "references": [
+        {
+          "condition": "random_complete-n32",
+          "category": "regression"
+        }
+      ],
+      "baseline_text_sha256": "274176d6bf807fb70434bd965689f93b1ae6c1e4fb88e6c71a667270bd8a3435",
+      "proposed_text_sha256": "ea029405a14ecfec784661ca973fb5c68d7371237bbc165c4674fedfabb46082",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "6d0bb141a926",
+      "cell_id": "role_bound_association|oa-critic-musician-mock-ba|L60|p00132",
+      "family": "role_bound_association",
+      "references": [
+        {
+          "condition": "random_complete-n32",
+          "category": "win"
+        }
+      ],
+      "baseline_text_sha256": "db5a9b4586a842e6b7b474983addebc2649bdd3f575cdf2d5018cbdc7fd6dbfb",
+      "proposed_text_sha256": "fe4294e0cb65655a066e2eed33c08b27977c45620b025eeea538efcae58b4aa7",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "a98c5574deff",
+      "cell_id": "hallucination|chat-lmsys-0052|L20|p00253",
+      "family": "hallucination",
+      "references": [
+        {
+          "condition": "prune_loo_a32_0.001-n32",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "734e4cab45de42ed4655d6bf45a5f94e4a4cfda5dcc77344117376e4bb7c0fe9",
+      "proposed_text_sha256": "f403fd39a33441dcdb623ce469e78f448c37fb686b79a61302da537c63ab8a07",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "519237a03709",
+      "cell_id": "hallucination|chat-lmsys-0023|L60|p00464",
+      "family": "hallucination",
+      "references": [
+        {
+          "condition": "prune_loo_a32_0.001-n32",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "6f16c5477bec32456fdf659945ae72b7796939b6d350875835bb0a6ae70c462e",
+      "proposed_text_sha256": "f0f645153220b4b16bdf6eaa6df31bd0d020e671f613421483f2abecce65d315",
+      "inspected": true,
+      "same_text": false,
+      "observation": "Explicit DETR-D wording is absent from the pruned output; attention/positional explanations remain. Consistency score does not validate each causal explanation.",
+      "observation_type": "plausible_specificity_removal"
+    },
+    {
+      "group_id": "c26c7ab2e366",
+      "cell_id": "hallucination|chat-dailydialog-0000|L20|p00023",
+      "family": "hallucination",
+      "references": [
+        {
+          "condition": "prune_loo_a32_0.001-n32",
+          "category": "changed_no_endpoint_change"
+        }
+      ],
+      "baseline_text_sha256": "4c7ca5e60133fda1dd0b59c6ba4503130e2ce02e74f5f140e2fba021c0bf1827",
+      "proposed_text_sha256": "3f87a2a6d7d4f50e420eb9b3e8ce66ae885e61bc813fb861126bda1337ff36e2",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "23beb8f0bb76",
+      "cell_id": "hallucination|chat-dailydialog-0000|L20|p00038",
+      "family": "hallucination",
+      "references": [
+        {
+          "condition": "prune_loo_a32_0.001-n32",
+          "category": "regression"
+        }
+      ],
+      "baseline_text_sha256": "1f1b3897467867a4022dfa61256227b57a14208ff738373c44b018a35d9ba328",
+      "proposed_text_sha256": "b5e9a2f6871f3fc7a7bc7069e1825405f6b412c152bdac8c9969d5ac2d770fce",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "23c5884124f2",
+      "cell_id": "hallucination|chat-dailydialog-0000|L36|p00055",
+      "family": "hallucination",
+      "references": [
+        {
+          "condition": "prune_loo_a32_0.001-n32",
+          "category": "win"
+        }
+      ],
+      "baseline_text_sha256": "3e0db88d101bbfb36ecaaa04e82aa9a8721eb68970339ca66b8f74e0d83f8940",
+      "proposed_text_sha256": "73f7cf12818d27955f3f0d895a63bbb6f67362c2ceb5edb24099cedd54877cee",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "a8f369e0e5e7",
+      "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "prune_loo_a32_0.001-n32",
+          "category": "fixed_anchor"
+        },
+        {
+          "condition": "best_n_specificity_mean_then_prune_0.005-n32",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "fc71a97c02082652baa73a72e5e165e5eebf085ae8c168c13823ed314106339b",
+      "proposed_text_sha256": "22c056225ab928590e38850585d4d08ad995f9c18a466bec702fdcc962dc454b",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "d8a01e674b7a",
+      "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "prune_loo_a32_0.001-n32",
+          "category": "fixed_anchor"
+        },
+        {
+          "condition": "best_n_specificity_mean_then_prune_0.005-n32",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "1a1d504406f1d93204dc2fa8c0eecda5419af12ced9710240beaf2065d9f0f68",
+      "proposed_text_sha256": "6947009fbd8dc7cb7bc8c8d6e2baade3b881c656f6077804e8835b74fdde8832",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "d47f3566b2fd",
+      "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "prune_loo_a32_0.001-n32",
+          "category": "changed_no_endpoint_change"
+        },
+        {
+          "condition": "best_n_specificity_mean_then_prune_0.005-n32",
+          "category": "changed_no_endpoint_change"
+        }
+      ],
+      "baseline_text_sha256": "da75739799170b4430ff1d828358ca842b7ba22f5075d5a674ee7e6ae869c28e",
+      "proposed_text_sha256": "dd20abbac754de8673281c42f8e89a76871f6852dd471d79ca38b734679cee0c",
+      "inspected": true,
+      "same_text": false,
+      "observation": "Output contains both Ole-JohanDahl and KristenNygaard alongside Simula67, while baseline has wrong named coparticipants. This strengthens factual specificity even though the required-bridge endpoint is unchanged.",
+      "observation_type": "genuine_additional_name_recovery"
+    },
+    {
+      "group_id": "aa2b15836dc8",
+      "cell_id": "multihop_mt|mhh-adwa-baratieri|L40|p00033",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "prune_loo_a32_0.001-n32",
+          "category": "win"
+        },
+        {
+          "condition": "best_n_specificity_mean_then_prune_0.005-n32",
+          "category": "win"
+        }
+      ],
+      "baseline_text_sha256": "efe5e8d4818465565d5b057bb4740017ed7daafdf536b8f7558cbae777e14881",
+      "proposed_text_sha256": "2d1efb7d7f9dfb864cecb5af9d35ae3036108ea24705d6eefba064edf0b32aba",
+      "inspected": true,
+      "same_text": false,
+      "observation": "Adwa is newly explicit, but output also claims a field marshal was killed at that battle. Required bridge can be recovered within an inaccurate narrative.",
+      "observation_type": "bridge_recovery_with_false_details"
+    },
+    {
+      "group_id": "3f7725653293",
+      "cell_id": "multihop_mt|mhh-africa-cataract-range|L48|p00034",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "prune_loo_a32_0.001-n32",
+          "category": "regression"
+        },
+        {
+          "condition": "best_n_specificity_mean_then_prune_0.005-n32",
+          "category": "regression"
+        }
+      ],
+      "baseline_text_sha256": "44f6d8c7581f9806400af988aa8fbd77e99cd2a281f2d208a25479269bf95288",
+      "proposed_text_sha256": "9ae3ff5e1ee420de222d6fb7cc7bcd745c6f7c5d832f77ae5280ef1677ff9c81",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "f17de9299417",
+      "cell_id": "chain_intermediates|chain-w2-d2p-0013|L60|p00062",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "prune_loo_a32_0.001-n32",
+          "category": "fixed_anchor"
+        },
+        {
+          "condition": "best_n_specificity_mean_then_prune_0.005-n32",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "a5053af6a6908754c376e975cca5bab0250522e7d8c961d7a183678fc2f1cec3",
+      "proposed_text_sha256": "abaa46ac6038cac269e009f964abf2c9bdf65f7a44fffd2d673b59c88292700b",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "b6ef6890e356",
+      "cell_id": "chain_intermediates|chain-d2p-0385|L20|p00066",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "prune_loo_a32_0.001-n32",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "9121afb97f1b67e0db2ad0856c0ccc74ac8a77549d1d5ccdadc9d9a175b4d2e2",
+      "proposed_text_sha256": "704ab59e8c88a9a7acc72179d1bedfce61a46355b79817c00f2a3cc4feb1f7b1",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "4db30903a6b7",
+      "cell_id": "chain_intermediates|chain-d2p-0200|L20|p00066",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "prune_loo_a32_0.001-n32",
+          "category": "changed_no_endpoint_change"
+        }
+      ],
+      "baseline_text_sha256": "b6cd51bc59537fac41af8afe2b911f8eb26728a051298ac3d3edca0626f9bdb7",
+      "proposed_text_sha256": "dba0ca795722b2119811efcf50024c5e7bbf95aa3c7457aea7775032a8b397b3",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "8df23e5374ad",
+      "cell_id": "chain_intermediates|chain-d2p-0231|L36|p00068",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "prune_loo_a32_0.001-n32",
+          "category": "regression"
+        }
+      ],
+      "baseline_text_sha256": "e506512aa0689472fc1b042ebda9cf8acb9decc89c69f5c306b477aaf9f9dbed",
+      "proposed_text_sha256": "550c8c3cc24b506e9d3cbc063a4f5f971c6b460a0fcc206c3d68ada86636d13a",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "0642cb5afc4d",
+      "cell_id": "chain_intermediates|chain-d2p-0244|L28|p00062",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "prune_loo_a32_0.001-n32",
+          "category": "win"
+        }
+      ],
+      "baseline_text_sha256": "bd39898c5c2bfa18fbb638b6165741ecb49ee9530b5e6f34f5249815e2aa293e",
+      "proposed_text_sha256": "e7457442d6768cf57918d0e500ae6055ad16310e238d61b173b2a1eb7cad2b80",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "f2d9b1f47f81",
+      "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+      "family": "role_bound_association",
+      "references": [
+        {
+          "condition": "prune_loo_a32_0.001-n32",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "8219d97a4ae9a888658e099406ec06b4f72a333f90e6ae92d0d6eaf5a176576b",
+      "proposed_text_sha256": "097fff45425a4264d1624c144509c8d0f98de79b86647ca811a3076b21903213",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "06987bfc2a42",
+      "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+      "family": "role_bound_association",
+      "references": [
+        {
+          "condition": "prune_loo_a32_0.001-n32",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "00a6a2c0134650024f306e8a0e039e480bae464eaf3166c9d6d3f33e41595f0e",
+      "proposed_text_sha256": "543e1c7f58391d45aa47b78aad76085150c691a44c0cd5a871bd07f1b73135cf",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "2b5cf387c59b",
+      "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+      "family": "role_bound_association",
+      "references": [
+        {
+          "condition": "prune_loo_a32_0.001-n32",
+          "category": "changed_no_endpoint_change"
+        }
+      ],
+      "baseline_text_sha256": "157fae280b3cba20bff5efe7edd968a7fd89f2694a69d1d0c6a3dac02978ce45",
+      "proposed_text_sha256": "50200d4fe684fee0fd3240eee6c8d4e48f00b0cbe4b116c46f211b4e38f219fd",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "0a988f776ede",
+      "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ab|L36|p00089",
+      "family": "role_bound_association",
+      "references": [
+        {
+          "condition": "prune_loo_a32_0.001-n32",
+          "category": "regression"
+        }
+      ],
+      "baseline_text_sha256": "274176d6bf807fb70434bd965689f93b1ae6c1e4fb88e6c71a667270bd8a3435",
+      "proposed_text_sha256": "97247c8554a1999a0048096a552832c1b8c571d55461aa33ba82820b7aec18ac",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "ad5aded5e59a",
+      "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ba|L44|p00124",
+      "family": "role_bound_association",
+      "references": [
+        {
+          "condition": "prune_loo_a32_0.001-n32",
+          "category": "win"
+        },
+        {
+          "condition": "random_delete_matched_a32_0.005-n32",
+          "category": "win"
+        }
+      ],
+      "baseline_text_sha256": "2c8be4c6c7e1f8b320a280d488046761cb8b8c993d9e35beaeb48881526caa1b",
+      "proposed_text_sha256": "e1bdebd732aed2b47577ce7ef71361d4096d70b679ee6d736933726a8cf983e1",
+      "inspected": true,
+      "same_text": false,
+      "observation": "Selected output repeatedly says toddler feeds babysitter. Baseline begins with opposite direction and later mixed alternatives. Directional evidence improves despite cereal/meal details differing from the banana stimulus.",
+      "observation_type": "clear_role_direction_gain"
+    },
+    {
+      "group_id": "43f88d064fc7",
+      "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "random_delete_matched_a32_0.005-n32",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "fc71a97c02082652baa73a72e5e165e5eebf085ae8c168c13823ed314106339b",
+      "proposed_text_sha256": "c56799192282fc824ed343b497e637c363fd59870f0431f726f5851b0def74b2",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "0a0ce39130bf",
+      "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "random_delete_matched_a32_0.005-n32",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "1a1d504406f1d93204dc2fa8c0eecda5419af12ced9710240beaf2065d9f0f68",
+      "proposed_text_sha256": "2e7e8a921223e82e0a2c48e731166ad6629782f8f3a93a3165d1e9d3dc5eedf7",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "3417df753b33",
+      "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "random_delete_matched_a32_0.005-n32",
+          "category": "changed_no_endpoint_change"
+        }
+      ],
+      "baseline_text_sha256": "da75739799170b4430ff1d828358ca842b7ba22f5075d5a674ee7e6ae869c28e",
+      "proposed_text_sha256": "4ddbeb8726bd333b9b7a555ddb22f9eb8cf5265e3488469cd236da74abf4e864",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "f011efb5f8f3",
+      "cell_id": "multihop_mt|mhh-altair-mits-albuquerque|L52|p00030",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "random_delete_matched_a32_0.005-n32",
+          "category": "win"
+        }
+      ],
+      "baseline_text_sha256": "635c25d122575b317b5bde1884b4af51dd6597736abec595a0260f1a5180b952",
+      "proposed_text_sha256": "b4db46966d73ec53770d084a34f875d422d1a561702cb3c2659cdd230b72e231",
+      "inspected": true,
+      "same_text": false,
+      "observation": "The full MITS expansion appears, yielding required-bridge recovery; other city/location assertions remain conflicting. Correct bridge recovery is narrower than whole-readout accuracy.",
+      "observation_type": "bridge_recovery_with_false_details"
+    },
+    {
+      "group_id": "af7ec90965d3",
+      "cell_id": "multihop_mt|mhh-aztec-coatepec-sister|L40|p00034",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "random_delete_matched_a32_0.005-n32",
+          "category": "regression"
+        }
+      ],
+      "baseline_text_sha256": "f4ce4a7be546fcea221f9cb9ff1c498aa78e20025fb07e20812b0f5149a45de8",
+      "proposed_text_sha256": "9f372253c1de34519f1aad2a7012041f4e56bfcda6b59ec253ead859201fa6c3",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "3fcfde334320",
+      "cell_id": "chain_intermediates|chain-w2-d2p-0013|L60|p00062",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "random_delete_matched_a32_0.005-n32",
+          "category": "fixed_anchor"
+        },
+        {
+          "condition": "random_delete_matched_a32_0-n32",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "a5053af6a6908754c376e975cca5bab0250522e7d8c961d7a183678fc2f1cec3",
+      "proposed_text_sha256": "ecf7fbb030143b78daf092e84cff34d54929662daab543bc24d8846ee2cac6d2",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "515287bdbe3b",
+      "cell_id": "chain_intermediates|chain-d2p-0385|L20|p00066",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "random_delete_matched_a32_0.005-n32",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "9121afb97f1b67e0db2ad0856c0ccc74ac8a77549d1d5ccdadc9d9a175b4d2e2",
+      "proposed_text_sha256": "1d87c6d39ef382e62b82ace4d8014935c491acd73c8f92e7744bea0ab5329ecc",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "9d414cfc1d71",
+      "cell_id": "chain_intermediates|chain-d2p-0200|L20|p00066",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "random_delete_matched_a32_0.005-n32",
+          "category": "changed_no_endpoint_change"
+        },
+        {
+          "condition": "random_delete_matched_a32_0-n32",
+          "category": "changed_no_endpoint_change"
+        }
+      ],
+      "baseline_text_sha256": "b6cd51bc59537fac41af8afe2b911f8eb26728a051298ac3d3edca0626f9bdb7",
+      "proposed_text_sha256": "d158d1664ebd6a215dacf1ea8c5fba6ecd6eec207544b094e915f7ae467d5432",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "9a3ec29fb679",
+      "cell_id": "chain_intermediates|chain-d2p-0234|L52|p00068",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "random_delete_matched_a32_0.005-n32",
+          "category": "regression"
+        }
+      ],
+      "baseline_text_sha256": "b6868a69ec5cf114f9b69041216a76c6096cf839e500066ba106cb6502b9f5f8",
+      "proposed_text_sha256": "2b9b73ba9e263e9bcf36eff41eff6624549a6e2f9dbb0f2decd07f7e0ee7312c",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "e12ee4b9c34a",
+      "cell_id": "chain_intermediates|chain-d2p-0244|L28|p00062",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "random_delete_matched_a32_0.005-n32",
+          "category": "win"
+        }
+      ],
+      "baseline_text_sha256": "bd39898c5c2bfa18fbb638b6165741ecb49ee9530b5e6f34f5249815e2aa293e",
+      "proposed_text_sha256": "ea4feb76e6786c7a577db38893e32e75c84f3cd142bcdc41548fd1e4e0680871",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "566b805688c6",
+      "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+      "family": "role_bound_association",
+      "references": [
+        {
+          "condition": "random_delete_matched_a32_0.005-n32",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "8219d97a4ae9a888658e099406ec06b4f72a333f90e6ae92d0d6eaf5a176576b",
+      "proposed_text_sha256": "699730740ff975b62b423a9bbb2018f6e2e189faa4adcb9ce2a7501ff3167378",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "da7016fe2f7e",
+      "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+      "family": "role_bound_association",
+      "references": [
+        {
+          "condition": "random_delete_matched_a32_0.005-n32",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "00a6a2c0134650024f306e8a0e039e480bae464eaf3166c9d6d3f33e41595f0e",
+      "proposed_text_sha256": "5fd3555f6bfe369a5d49fe2a9d8d3346b9ae77cbbcb6ff10ebc422f574bf8e75",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "2f369063d47c",
+      "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+      "family": "role_bound_association",
+      "references": [
+        {
+          "condition": "random_delete_matched_a32_0.005-n32",
+          "category": "changed_no_endpoint_change"
+        }
+      ],
+      "baseline_text_sha256": "157fae280b3cba20bff5efe7edd968a7fd89f2694a69d1d0c6a3dac02978ce45",
+      "proposed_text_sha256": "7ba4d916e5112238bdd9a4b5a162519b3e142939a94f64e0f75c67070bd3584a",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "e820df668ee7",
+      "cell_id": "role_bound_association|oa-babysitter-toddler-feed-ab|L36|p00089",
+      "family": "role_bound_association",
+      "references": [
+        {
+          "condition": "random_delete_matched_a32_0.005-n32",
+          "category": "regression"
+        }
+      ],
+      "baseline_text_sha256": "274176d6bf807fb70434bd965689f93b1ae6c1e4fb88e6c71a667270bd8a3435",
+      "proposed_text_sha256": "c655ea165e01c30997478a2233eaa72121a5a205057d5de0a669e66f3895c7a7",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "eb8f1075046a",
+      "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "best_n_specificity_mean-n32",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "fc71a97c02082652baa73a72e5e165e5eebf085ae8c168c13823ed314106339b",
+      "proposed_text_sha256": "d515a1ad1152747c682d4c8aaca5ddb73ed6c8310b94046e91fb1b6dca8e3257",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "907858eb49a8",
+      "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "best_n_specificity_mean-n32",
+          "category": "changed_no_endpoint_change"
+        }
+      ],
+      "baseline_text_sha256": "da75739799170b4430ff1d828358ca842b7ba22f5075d5a674ee7e6ae869c28e",
+      "proposed_text_sha256": "e5f0b3aaa975c42d4ac7afa88aa69316b34490ae3c2052bfeed78d48d462a839",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "3684125edd35",
+      "cell_id": "chain_intermediates|chain-w2-d2p-0013|L60|p00062",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "best_n_specificity_mean-n32",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "a5053af6a6908754c376e975cca5bab0250522e7d8c961d7a183678fc2f1cec3",
+      "proposed_text_sha256": "e9544e15e02ad0fedd6cf9dea39554b95db3ea8ed4e02cf6d97fea08a3536d27",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "24921ca7f58b",
+      "cell_id": "chain_intermediates|chain-d2p-0200|L28|p00066",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "best_n_specificity_mean-n32",
+          "category": "regression"
+        }
+      ],
+      "baseline_text_sha256": "d33fe730ef60a8f8d509ce380f0110a476cfe16d6b30e5a33db40c57807136f2",
+      "proposed_text_sha256": "1130eebdc56368a92442bdd84db142a156b271132ee9667f842f40ed76c0e856",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "6fe23ca27f19",
+      "cell_id": "chain_intermediates|chain-d2p-0206|L20|p00067",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "best_n_specificity_mean-n32",
+          "category": "changed_no_endpoint_change"
+        }
+      ],
+      "baseline_text_sha256": "5562888198620dde29b2487b8830674e470f754f1cc4928f64c9428a37164816",
+      "proposed_text_sha256": "2a2b382ee7556b1410eee9c2cd017a0629b1bf773034370c28ebe532fc65f010",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "2e5780f44a5f",
+      "cell_id": "chain_intermediates|chain-d2p-0341|L52|p00068",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "best_n_specificity_mean-n32",
+          "category": "win"
+        }
+      ],
+      "baseline_text_sha256": "b8a3a63195b84039120261800a5525d018f2da9ca8466a4566c689c62ff322fb",
+      "proposed_text_sha256": "72e8fce6478cdd13c8c510c462daf413fb8a295b090f2cba849addf7c713b108",
+      "inspected": true,
+      "same_text": false,
+      "observation": "75 is the correct intermediate in the target task, but appears in the wrong equality ceil(45/2)=75. This is a recovery hit without faithful arithmetic explanation.",
+      "observation_type": "incidental_numeric_hit"
+    },
+    {
+      "group_id": "895531e188b4",
+      "cell_id": "role_bound_association|oa-waiter-customer-apologize-ab|L20|p00092",
+      "family": "role_bound_association",
+      "references": [
+        {
+          "condition": "best_n_specificity_mean-n32",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "8219d97a4ae9a888658e099406ec06b4f72a333f90e6ae92d0d6eaf5a176576b",
+      "proposed_text_sha256": "89d97484dadeac62415e8a08526437ecaa031e7b71737ddccab23dc19846deb0",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "6d649f61f55d",
+      "cell_id": "role_bound_association|oa-comedian-heckler-humiliate-ab|L60|p00178",
+      "family": "role_bound_association",
+      "references": [
+        {
+          "condition": "best_n_specificity_mean-n32",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "00a6a2c0134650024f306e8a0e039e480bae464eaf3166c9d6d3f33e41595f0e",
+      "proposed_text_sha256": "a586c6454c76e0a97e146b5ef9bb1ad99bf0daa0fa98fb6d892a487186fca532",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "131732782b4f",
+      "cell_id": "role_bound_association|oa-accountant-client-deceive-ab|L20|p00132",
+      "family": "role_bound_association",
+      "references": [
+        {
+          "condition": "best_n_specificity_mean-n32",
+          "category": "changed_no_endpoint_change"
+        }
+      ],
+      "baseline_text_sha256": "157fae280b3cba20bff5efe7edd968a7fd89f2694a69d1d0c6a3dac02978ce45",
+      "proposed_text_sha256": "aeb371a833c1770b6769dbad3d494b47e01a7b1d8598c50131d6555b044cada4",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "800d45c91bc7",
+      "cell_id": "role_bound_association|oa-critic-musician-mock-ab|L44|p00132",
+      "family": "role_bound_association",
+      "references": [
+        {
+          "condition": "best_n_specificity_mean-n32",
+          "category": "regression"
+        }
+      ],
+      "baseline_text_sha256": "d7a22087a82321fa7c3063945d83286faff6ae0d1ffb298fd107fe6871fbe931",
+      "proposed_text_sha256": "ffe14cb02019726583a582373b65368f525f3a41ab00750b0b566ed8c1993629",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "9bae6f62be85",
+      "cell_id": "chain_intermediates|chain-d2p-0385|L20|p00066",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "best_n_specificity_mean_then_prune_0.005-n32",
+          "category": "fixed_anchor"
+        },
+        {
+          "condition": "prune_loo_n1_0-n1",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "9121afb97f1b67e0db2ad0856c0ccc74ac8a77549d1d5ccdadc9d9a175b4d2e2",
+      "proposed_text_sha256": "425911fe0fe85cbb13b2a76f6c3734a4e2db26c2eea359ba425e9082c234f768",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "789e350b5e71",
+      "cell_id": "chain_intermediates|chain-d2p-0200|L28|p00066",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "best_n_specificity_mean_then_prune_0.005-n32",
+          "category": "regression"
+        }
+      ],
+      "baseline_text_sha256": "d33fe730ef60a8f8d509ce380f0110a476cfe16d6b30e5a33db40c57807136f2",
+      "proposed_text_sha256": "d6fc9f7bffee614335750a313323e543feabf03a353f952f1bc27bab108ad157",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "b43a17390ffa",
+      "cell_id": "chain_intermediates|chain-d2p-0206|L20|p00067",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "best_n_specificity_mean_then_prune_0.005-n32",
+          "category": "changed_no_endpoint_change"
+        }
+      ],
+      "baseline_text_sha256": "5562888198620dde29b2487b8830674e470f754f1cc4928f64c9428a37164816",
+      "proposed_text_sha256": "b208e67a0f8c385a8a80759c06866bff962c8b2e136aed14feefc80e9f89e4c4",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "9ada3b3561cb",
+      "cell_id": "chain_intermediates|chain-d2p-0341|L52|p00068",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "best_n_specificity_mean_then_prune_0.005-n32",
+          "category": "win"
+        }
+      ],
+      "baseline_text_sha256": "b8a3a63195b84039120261800a5525d018f2da9ca8466a4566c689c62ff322fb",
+      "proposed_text_sha256": "bdfbe46651d039212f2c02a83ac47e7ff60ba23ea06bf966e273dfb31f5e637d",
+      "inspected": true,
+      "same_text": false,
+      "observation": "Pruned output retains the same wrong equality yielding75; shortening preserves the numeral but does not repair computation.",
+      "observation_type": "incidental_numeric_hit"
+    },
+    {
+      "group_id": "a2906216071e",
+      "cell_id": "chain_intermediates|chain-w2-d2p-0013|L60|p00062",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "likelihood_true_minus_mean_two_controls-n8",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "a5053af6a6908754c376e975cca5bab0250522e7d8c961d7a183678fc2f1cec3",
+      "proposed_text_sha256": "bc2cda967dd53d6d3d61562e625e6cc1094c9c6054933aa15ca592be0f2132d0",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "0a09632b9309",
+      "cell_id": "chain_intermediates|chain-d2p-0385|L20|p00066",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "likelihood_true_minus_mean_two_controls-n8",
+          "category": "fixed_anchor"
+        },
+        {
+          "condition": "random_complete-n4",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "9121afb97f1b67e0db2ad0856c0ccc74ac8a77549d1d5ccdadc9d9a175b4d2e2",
+      "proposed_text_sha256": "f251823553cb641450879dc914a7a59c42349373635a8a802bd0e571694c5e00",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "6bd91145cbb1",
+      "cell_id": "chain_intermediates|chain-d2p-0200|L28|p00066",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "likelihood_true_minus_mean_two_controls-n8",
+          "category": "regression"
+        }
+      ],
+      "baseline_text_sha256": "d33fe730ef60a8f8d509ce380f0110a476cfe16d6b30e5a33db40c57807136f2",
+      "proposed_text_sha256": "4a26622c407d7cd6e4138282b24d80fe0622d3367c16efc27cc0dda724f7a790",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "2da1aec6a88b",
+      "cell_id": "chain_intermediates|chain-d2p-0206|L20|p00067",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "likelihood_true_minus_mean_two_controls-n8",
+          "category": "changed_no_endpoint_change"
+        }
+      ],
+      "baseline_text_sha256": "5562888198620dde29b2487b8830674e470f754f1cc4928f64c9428a37164816",
+      "proposed_text_sha256": "6443f2c33e2b8f74bb4de1fd539b6518ca47e301b5c713280d9f86059f657889",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "8fc28ac53f74",
+      "cell_id": "chain_intermediates|chain-d2p-0330|L48|p00064",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "likelihood_true_minus_mean_two_controls-n8",
+          "category": "win"
+        }
+      ],
+      "baseline_text_sha256": "630e841ffa305642dc01b17ac32a2ab9d7ef8f1c7a04abf32d31c7c88a49ea30",
+      "proposed_text_sha256": "ead1717ff7d0cd8f760c2828024b65c471e205ec11d93c849116cce8c19ba29f",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "9fbcfe17ba85",
+      "cell_id": "multihop_mt|mhh-1975-kit-chip-designer|L48|p00030",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "consensus_semantic_v5_support0_compatoff_vetooff-n16",
+          "category": "changed_no_endpoint_change"
+        }
+      ],
+      "baseline_text_sha256": "e0405b393810bd865e0999aa2fd29a2d790ca1a8c0ccdba00d763b51fa2ec351",
+      "proposed_text_sha256": "dd8be42220e51fd4c9e65ce111c307cca4afcdb66d5f33d3b34c580b370b2a70",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "13c90b9d19ca",
+      "cell_id": "multihop_mt|mhh-geo-sondoong-phongnha-quangbinh-2|L56|p00024",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "consensus_semantic_v5_support0_compatoff_vetooff-n16",
+          "category": "regression"
+        }
+      ],
+      "baseline_text_sha256": "9a1cc805c5ec4ab6475b361743d9a3eda83a739ec20ae196af310c2301c8f1a9",
+      "proposed_text_sha256": "d2fb63cedec118861f6337c64ad5b3da90bfe760c14c347e01e9e3d2dd441882",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "b19f98ff35ec",
+      "cell_id": "chain_intermediates|chain-w2-d2p-0013|L60|p00062",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "consensus_semantic_v5_support0_compatoff_vetooff-n16",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "a5053af6a6908754c376e975cca5bab0250522e7d8c961d7a183678fc2f1cec3",
+      "proposed_text_sha256": "baabcdc3e70eb3723addcb5f1685dc8f34a66cb5fa34e69428e24d331e25a4d6",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "2467c25f3c16",
+      "cell_id": "chain_intermediates|chain-d2p-0200|L20|p00066",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "consensus_semantic_v5_support0_compatoff_vetooff-n16",
+          "category": "changed_no_endpoint_change"
+        },
+        {
+          "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+          "category": "changed_no_endpoint_change"
+        }
+      ],
+      "baseline_text_sha256": "b6cd51bc59537fac41af8afe2b911f8eb26728a051298ac3d3edca0626f9bdb7",
+      "proposed_text_sha256": "e9ff125bfe40681b9cddeb54d215e5830b82462331bd3c454154c3496a6dc5dc",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "854917674d73",
+      "cell_id": "chain_intermediates|chain-d2p-0244|L28|p00062",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "consensus_semantic_v5_support0_compatoff_vetooff-n16",
+          "category": "win"
+        }
+      ],
+      "baseline_text_sha256": "bd39898c5c2bfa18fbb638b6165741ecb49ee9530b5e6f34f5249815e2aa293e",
+      "proposed_text_sha256": "2354b1d1b57355aa0a5804b0d4d03f3278da1147a10f5239e45aa99afe0f815c",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "54300a1eaaf2",
+      "cell_id": "chain_intermediates|chain-d2p-0256|L28|p00061",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "consensus_semantic_v5_support0_compatoff_vetooff-n16",
+          "category": "regression"
+        }
+      ],
+      "baseline_text_sha256": "84ab2f97782c08346769cf2f062ab43e8d1deda271b9679cbfb82b1720622808",
+      "proposed_text_sha256": "8539232bd8d9b256c30e47a74789d6367c8d8f040f415faaf921adedbe0a50fd",
+      "inspected": true,
+      "same_text": false,
+      "observation": "The formerly recovered7 final-number sentence is removed and replaced by generic instructions, making the recovery regression textually understandable.",
+      "observation_type": "information_loss"
+    },
+    {
+      "group_id": "28b622d318f3",
+      "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "consensus_semantic_v5_support0.125_compatoff_vetoon-n16",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "fc71a97c02082652baa73a72e5e165e5eebf085ae8c168c13823ed314106339b",
+      "proposed_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inspected": true,
+      "same_text": false,
+      "observation": "Support filter empties a Simula anchor; original genericSimula strings were not enough for the required stricter bridge, but empty output is not recovered knowledge.",
+      "observation_type": "coverage_loss"
+    },
+    {
+      "group_id": "bc8c86d1eb1b",
+      "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "consensus_semantic_v5_support0.125_compatoff_vetoon-n16",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "1a1d504406f1d93204dc2fa8c0eecda5419af12ced9710240beaf2065d9f0f68",
+      "proposed_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "d5e7fb779faf",
+      "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "consensus_semantic_v5_support0.125_compatoff_vetoon-n16",
+          "category": "regression"
+        }
+      ],
+      "baseline_text_sha256": "da75739799170b4430ff1d828358ca842b7ba22f5075d5a674ee7e6ae869c28e",
+      "proposed_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inspected": true,
+      "same_text": false,
+      "observation": "Support filtering empties an item cell that previously contained requiredSIMULA67. This is real loss of retained task-relevant string evidence.",
+      "observation_type": "coverage_loss"
+    },
+    {
+      "group_id": "61c477b86d99",
+      "cell_id": "multihop_mt|mhh-1976philadelphia-bacterium|L20|p00028",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "consensus_semantic_v5_support0.125_compatoff_vetoon-n16",
+          "category": "changed_no_endpoint_change"
+        }
+      ],
+      "baseline_text_sha256": "030818024fe5c5312be007b634f4bf3bcb1d3bc1f62a2b1f905988e8abd69628",
+      "proposed_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "8f893177717a",
+      "cell_id": "chain_intermediates|chain-w2-d2p-0013|L60|p00062",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "consensus_semantic_v5_support0.125_compatoff_vetoon-n16",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "a5053af6a6908754c376e975cca5bab0250522e7d8c961d7a183678fc2f1cec3",
+      "proposed_text_sha256": "f88ae7170c734c07e3c21aaa35baeda3328a8f95a71ec7ab908158f1dca2d16a",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "686e1c66fff6",
+      "cell_id": "chain_intermediates|chain-d2p-0385|L20|p00066",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "consensus_semantic_v5_support0.125_compatoff_vetoon-n16",
+          "category": "fixed_anchor"
+        },
+        {
+          "condition": "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "9121afb97f1b67e0db2ad0856c0ccc74ac8a77549d1d5ccdadc9d9a175b4d2e2",
+      "proposed_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "5f42d5d255e1",
+      "cell_id": "chain_intermediates|chain-d2p-0200|L28|p00066",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "consensus_semantic_v5_support0.125_compatoff_vetoon-n16",
+          "category": "regression"
+        },
+        {
+          "condition": "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16",
+          "category": "regression"
+        }
+      ],
+      "baseline_text_sha256": "d33fe730ef60a8f8d509ce380f0110a476cfe16d6b30e5a33db40c57807136f2",
+      "proposed_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "9bb3f33fa65c",
+      "cell_id": "chain_intermediates|chain-d2p-0227|L20|p00062",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "consensus_semantic_v5_support0.125_compatoff_vetoon-n16",
+          "category": "changed_no_endpoint_change"
+        }
+      ],
+      "baseline_text_sha256": "76810b6f2c551a08615fa266afe182eacfadd3d5678b1e659d7e11df42fbe136",
+      "proposed_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "f0b456f20391",
+      "cell_id": "chain_intermediates|chain-d2p-0396|L40|p00061",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "consensus_semantic_v5_support0.125_compatoff_vetoon-n16",
+          "category": "win"
+        }
+      ],
+      "baseline_text_sha256": "74a5322809904e5df152b23855cc7d57e6f00f7b322cb594a3465765c282e062",
+      "proposed_text_sha256": "4eb741a36663dfbd87ea4b052c1290de830833e39ab42ab4dc9ff869ef4817f6",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "bee96d56cb3f",
+      "cell_id": "chain_intermediates|chain-w2-d2p-0013|L60|p00062",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "a5053af6a6908754c376e975cca5bab0250522e7d8c961d7a183678fc2f1cec3",
+      "proposed_text_sha256": "7f0f63e5ad604aa59ca12629ed72ca23fe3328869d718201d5fce7c60c5b1632",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "14e1f5fb530d",
+      "cell_id": "chain_intermediates|chain-d2p-0230|L48|p00066",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+          "category": "win"
+        }
+      ],
+      "baseline_text_sha256": "970ae35055d91591daa1528d1c9ddbf29957f70c885d0a12dc5e144386523d3f",
+      "proposed_text_sha256": "e5f2cae65d86c27fa47c5db7fd254b0b52b594ee5b12760797fcade18f52afdd",
+      "inspected": true,
+      "same_text": false,
+      "observation": "9 is recovered from (5-2)*3 rather than original11-2. It is a correct endpoint numeral inside a different calculation.",
+      "observation_type": "incidental_numeric_hit"
+    },
+    {
+      "group_id": "5c218b569bcd",
+      "cell_id": "chain_intermediates|chain-d2p-0234|L52|p00068",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+          "category": "regression"
+        }
+      ],
+      "baseline_text_sha256": "b6868a69ec5cf114f9b69041216a76c6096cf839e500066ba106cb6502b9f5f8",
+      "proposed_text_sha256": "f2581dd02e5c468333996252190c89ca5eabbbe8339d6e28daf612afc55b995e",
+      "inspected": true,
+      "same_text": false,
+      "observation": "Correct intermediate5 remains in laterceil(9/2) prose but new30/2=15 is ranked first. The score tests top1 extraction, not presence of any correct number.",
+      "observation_type": "ranking_sensitivity"
+    },
+    {
+      "group_id": "08618b2cc452",
+      "cell_id": "chain_intermediates|chain-w2-d2p-0013|L60|p00062",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "a5053af6a6908754c376e975cca5bab0250522e7d8c961d7a183678fc2f1cec3",
+      "proposed_text_sha256": "cfd2f0558814615bf325562902ef37b87cea6da07f54967d0e7baa3f3aa33f99",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "1e3e53bf822a",
+      "cell_id": "chain_intermediates|chain-d2p-0206|L20|p00067",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16",
+          "category": "changed_no_endpoint_change"
+        }
+      ],
+      "baseline_text_sha256": "5562888198620dde29b2487b8830674e470f754f1cc4928f64c9428a37164816",
+      "proposed_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "6b62f3ac0100",
+      "cell_id": "chain_intermediates|chain-d2p-0396|L40|p00061",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16",
+          "category": "win"
+        }
+      ],
+      "baseline_text_sha256": "74a5322809904e5df152b23855cc7d57e6f00f7b322cb594a3465765c282e062",
+      "proposed_text_sha256": "445923cc08c37a16a056ccfafa3901b710d13c5abe1c1e5eb65bf1f1b3d85cae",
+      "inspected": true,
+      "same_text": false,
+      "observation": "The only remaining bullet is24, the correct first intermediate. Lack of contextual arithmetic limits inference beyond cleaner number recovery.",
+      "observation_type": "cleaner_numeric_recovery"
+    },
+    {
+      "group_id": "e0b15eb9b9cc",
+      "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "random_complete-n4",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "1a1d504406f1d93204dc2fa8c0eecda5419af12ced9710240beaf2065d9f0f68",
+      "proposed_text_sha256": "62421faa498bde43f64dc2d0b2257ae6ed106c91d5858b6248910bf87479f376",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "f78693005d4a",
+      "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "random_complete-n4",
+          "category": "changed_no_endpoint_change"
+        }
+      ],
+      "baseline_text_sha256": "da75739799170b4430ff1d828358ca842b7ba22f5075d5a674ee7e6ae869c28e",
+      "proposed_text_sha256": "206509b7489014a66587efe6a28b172f393bff192f73a6f54891fe83f2c8c034",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "8344381508f3",
+      "cell_id": "multihop_mt|mhh-adwa-baratieri|L40|p00033",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "random_complete-n4",
+          "category": "win"
+        }
+      ],
+      "baseline_text_sha256": "efe5e8d4818465565d5b057bb4740017ed7daafdf536b8f7558cbae777e14881",
+      "proposed_text_sha256": "a19717dbea58a0507e6a44810059e388d8c12ef96cf3c74da5569d0110db7a59",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "b6fd779af3f8",
+      "cell_id": "multihop_mt|mhh-africa-cataract-range|L48|p00034",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "random_complete-n4",
+          "category": "regression"
+        }
+      ],
+      "baseline_text_sha256": "44f6d8c7581f9806400af988aa8fbd77e99cd2a281f2d208a25479269bf95288",
+      "proposed_text_sha256": "85f94c1dad70f56949f8626303f30f65dd8865e934850b748a1c6578cb7be509",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "4353d3e0730d",
+      "cell_id": "chain_intermediates|chain-w2-d2p-0013|L60|p00062",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "random_complete-n4",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "a5053af6a6908754c376e975cca5bab0250522e7d8c961d7a183678fc2f1cec3",
+      "proposed_text_sha256": "df4140b93d1bb8bea9c8034433df089ec401252193aa7f7a16087cf9ed084746",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "7eea280b2061",
+      "cell_id": "chain_intermediates|chain-d2p-0200|L28|p00066",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "random_complete-n4",
+          "category": "regression"
+        }
+      ],
+      "baseline_text_sha256": "d33fe730ef60a8f8d509ce380f0110a476cfe16d6b30e5a33db40c57807136f2",
+      "proposed_text_sha256": "e659d1f8611810f42a790a865017ff51dcc437110ac87e5179e804efa262e1de",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "159d32f08e0a",
+      "cell_id": "chain_intermediates|chain-d2p-0206|L20|p00067",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "random_complete-n4",
+          "category": "changed_no_endpoint_change"
+        }
+      ],
+      "baseline_text_sha256": "5562888198620dde29b2487b8830674e470f754f1cc4928f64c9428a37164816",
+      "proposed_text_sha256": "bbfb2c471b913f26cfea2d1a5fd956d4ec1e375b81f39ae8de90af0de2b31a35",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "f86dceba6796",
+      "cell_id": "chain_intermediates|chain-d2p-0244|L28|p00062",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "random_complete-n4",
+          "category": "win"
+        }
+      ],
+      "baseline_text_sha256": "bd39898c5c2bfa18fbb638b6165741ecb49ee9530b5e6f34f5249815e2aa293e",
+      "proposed_text_sha256": "ceb6dd9f57843f54a6d0b2288177ca82ea137f767f76452fa79f33ff67987c4e",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "b4b022066d39",
+      "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L44|p00028",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "random_delete_matched_a32_0-n32",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "fc71a97c02082652baa73a72e5e165e5eebf085ae8c168c13823ed314106339b",
+      "proposed_text_sha256": "74e17182fccd1d3920baa2550751f36533d8149950baa8efbe23104a4de1eb77",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "773f7aece805",
+      "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "random_delete_matched_a32_0-n32",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "1a1d504406f1d93204dc2fa8c0eecda5419af12ced9710240beaf2065d9f0f68",
+      "proposed_text_sha256": "f48a6961afca63020823a3ec2120b0c468c8be7e4135e27ee580d56fa3e085ce",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "347a89259ad2",
+      "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "random_delete_matched_a32_0-n32",
+          "category": "changed_no_endpoint_change"
+        }
+      ],
+      "baseline_text_sha256": "da75739799170b4430ff1d828358ca842b7ba22f5075d5a674ee7e6ae869c28e",
+      "proposed_text_sha256": "754f88423fa08e92055749e5e1797ef10a0ef383d42361a77278a1360dfcee19",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "521290916f9f",
+      "cell_id": "multihop_mt|mhh-adwa-baratieri|L44|p00033",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "random_delete_matched_a32_0-n32",
+          "category": "win"
+        }
+      ],
+      "baseline_text_sha256": "02742cd1ca8b9aef55e5be935a80af1e04e59e06b4474b206061494cc22091aa",
+      "proposed_text_sha256": "8f87b7e5b95131cc6b5c1c1fbd71a213e4eb092de7574e3968c81959571d7db4",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "0dbd4f098159",
+      "cell_id": "chain_intermediates|chain-d2p-0385|L20|p00066",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "random_delete_matched_a32_0-n32",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "9121afb97f1b67e0db2ad0856c0ccc74ac8a77549d1d5ccdadc9d9a175b4d2e2",
+      "proposed_text_sha256": "831003ee5ebb2cb3e56fda823943e156c8baa3d70cf15bda80b603336418fa17",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "9b7327e4c189",
+      "cell_id": "chain_intermediates|chain-d2p-0240|L52|p00068",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "random_delete_matched_a32_0-n32",
+          "category": "regression"
+        }
+      ],
+      "baseline_text_sha256": "20af60570899d71bcc154b12357263f6c5cb4f8d41248fdd5695aa3ee89c34b0",
+      "proposed_text_sha256": "9a52eaaa2588575e1349679b742bb5bab569c849d7a4cf24c2bed1e86b90b950",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "40df335321cc",
+      "cell_id": "chain_intermediates|chain-d2p-0377|L44|p00064",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "random_delete_matched_a32_0-n32",
+          "category": "win"
+        }
+      ],
+      "baseline_text_sha256": "de5a446ddaddbd7d555d125c31a6d3edc3abb62d995647f7577551e5c78c50cf",
+      "proposed_text_sha256": "79ab4933c881532c1b499df8ace339aec23f1eae138f2fdabe8290b6b571aab7",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "449162e07171",
+      "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "prune_loo_n1_0-n1",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "1a1d504406f1d93204dc2fa8c0eecda5419af12ced9710240beaf2065d9f0f68",
+      "proposed_text_sha256": "9ce71056f8f52f979315e324120e63cf72c5528c561d47de3365c71d50e79c0a",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "2d52965b2f51",
+      "cell_id": "multihop_mt|mhh-1967-norwegian-classes-objects-codesigner|L20|p00028",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "prune_loo_n1_0-n1",
+          "category": "changed_no_endpoint_change"
+        },
+        {
+          "condition": "random_delete_matched_n1_0.001-n1",
+          "category": "changed_no_endpoint_change"
+        }
+      ],
+      "baseline_text_sha256": "da75739799170b4430ff1d828358ca842b7ba22f5075d5a674ee7e6ae869c28e",
+      "proposed_text_sha256": "2869ca5aae5226f946765091f1b341117c0780db83c99bff2e34c1f286ed5333",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "c4c3e3009943",
+      "cell_id": "multihop_mt|mhh-africa-cataract-range|L48|p00034",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "prune_loo_n1_0-n1",
+          "category": "regression"
+        }
+      ],
+      "baseline_text_sha256": "44f6d8c7581f9806400af988aa8fbd77e99cd2a281f2d208a25479269bf95288",
+      "proposed_text_sha256": "73fb25aab30418ac66afb5a2831748855dd00c5242c61bde039405d01f2c2d17",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "f68f91732a43",
+      "cell_id": "chain_intermediates|chain-w2-d2p-0013|L60|p00062",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "prune_loo_n1_0-n1",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "a5053af6a6908754c376e975cca5bab0250522e7d8c961d7a183678fc2f1cec3",
+      "proposed_text_sha256": "4b6a1912b8132f9fd91dee5ec2dcb4fad387252881601abc03d1ec5759951a03",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "dddcc0f5ab6b",
+      "cell_id": "chain_intermediates|chain-d2p-0200|L20|p00066",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "prune_loo_n1_0-n1",
+          "category": "changed_no_endpoint_change"
+        }
+      ],
+      "baseline_text_sha256": "b6cd51bc59537fac41af8afe2b911f8eb26728a051298ac3d3edca0626f9bdb7",
+      "proposed_text_sha256": "dff463537e3905bf3512ad425a2942cdce183f1e0454ff26cbff2b3a899db3ed",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "2a2fb5cabd90",
+      "cell_id": "chain_intermediates|chain-d2p-0271|L48|p00066",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "prune_loo_n1_0-n1",
+          "category": "regression"
+        }
+      ],
+      "baseline_text_sha256": "0b56225a91e455cb4b3c2686d1a9c8d4654a87ac0d39a3218f7cd0e07cc00438",
+      "proposed_text_sha256": "7bee3049bd4af2d7d5b412e29df782d29d66556eced576fe557d119670628fa8",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "8fd45c6a6b34",
+      "cell_id": "chain_intermediates|chain-w2-d2p-0095|L36|p00063",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "prune_loo_n1_0-n1",
+          "category": "win"
+        }
+      ],
+      "baseline_text_sha256": "154554c25e90662bfce6b872d7270d089957f634269ec494b025056316bcdb2a",
+      "proposed_text_sha256": "5af93900e0ac76360c5fb421d89ff7fc04b327885e397a8f1d7df86b015c602d",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "139b57fab8f2",
+      "cell_id": "multihop_mt|mhh-mesopotamian-wildman-cedar|L60|p00046",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "random_delete_matched_n1_0.001-n1",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "1a1d504406f1d93204dc2fa8c0eecda5419af12ced9710240beaf2065d9f0f68",
+      "proposed_text_sha256": "5affceb96eed49f268fe0803b5010e200251a2ba85dc3f9ad7570c8edbe32757",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "075f04890765",
+      "cell_id": "multihop_mt|mhh-africa-cataract-range|L48|p00034",
+      "family": "multihop_mt",
+      "references": [
+        {
+          "condition": "random_delete_matched_n1_0.001-n1",
+          "category": "regression"
+        }
+      ],
+      "baseline_text_sha256": "44f6d8c7581f9806400af988aa8fbd77e99cd2a281f2d208a25479269bf95288",
+      "proposed_text_sha256": "eec806051095cc32fc4fe71ccab904bfc0c9d579cafc7182661f8eb0721a7edf",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "f378411615c0",
+      "cell_id": "chain_intermediates|chain-w2-d2p-0013|L60|p00062",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "random_delete_matched_n1_0.001-n1",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "a5053af6a6908754c376e975cca5bab0250522e7d8c961d7a183678fc2f1cec3",
+      "proposed_text_sha256": "17bc5281e4cddae46c589859c94e291c44f49aa585ef2b5237ec112bd6175092",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "919aeb334ef0",
+      "cell_id": "chain_intermediates|chain-d2p-0385|L20|p00066",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "random_delete_matched_n1_0.001-n1",
+          "category": "fixed_anchor"
+        }
+      ],
+      "baseline_text_sha256": "9121afb97f1b67e0db2ad0856c0ccc74ac8a77549d1d5ccdadc9d9a175b4d2e2",
+      "proposed_text_sha256": "db44b661d94f4aa7fd5df43b40f3adf650320a30438c3e8e78d5f373bba589bc",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "0202eccb7c1f",
+      "cell_id": "chain_intermediates|chain-d2p-0200|L28|p00066",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "random_delete_matched_n1_0.001-n1",
+          "category": "regression"
+        }
+      ],
+      "baseline_text_sha256": "d33fe730ef60a8f8d509ce380f0110a476cfe16d6b30e5a33db40c57807136f2",
+      "proposed_text_sha256": "7abc58174b7ac5e05630af3eb14e5794031f578d974464ed01ecdb5f470bdafd",
+      "inspected": true,
+      "same_text": false,
+      "observation": "The original6 answer is removed by matched deletion; remaining1 and9 do not recover the intermediate6.",
+      "observation_type": "information_loss"
+    },
+    {
+      "group_id": "86d13c0878c8",
+      "cell_id": "chain_intermediates|chain-d2p-0227|L20|p00062",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "random_delete_matched_n1_0.001-n1",
+          "category": "changed_no_endpoint_change"
+        }
+      ],
+      "baseline_text_sha256": "76810b6f2c551a08615fa266afe182eacfadd3d5678b1e659d7e11df42fbe136",
+      "proposed_text_sha256": "35179309c651dc615d38c645b3d3c1ebaa5d3d8ee8b7b6223ab663dd4409f6d3",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    },
+    {
+      "group_id": "300491eb723a",
+      "cell_id": "chain_intermediates|chain-d2p-0388|L48|p00066",
+      "family": "chain_intermediates",
+      "references": [
+        {
+          "condition": "random_delete_matched_n1_0.001-n1",
+          "category": "win"
+        }
+      ],
+      "baseline_text_sha256": "f68dbb9197c6f53ffc8913c9493b1df8f268b6ebac4b81080bd4f494940cfdb0",
+      "proposed_text_sha256": "d199123ae14d75c0b640d323819831a62bd48dd3472aa6a803f4c106121748d7",
+      "inspected": true,
+      "same_text": false,
+      "observation": null,
+      "observation_type": null
+    }
+  ],
+  "judge_disagreements": [
+    {
+      "group": "6d0bb141a926",
+      "type": "choice_rationale_inconsistency",
+      "confidence": "high",
+      "observation": "Official rolepass is true with returned/gold indexes [5,1,4], but retained rationale explicitly says the patient cannot be determined. Prose labels Marcus writer/poet and mocks attendees rather than unambiguously musician->critic. This supports a possible false-positive qualitative disagreement; official MC verdict remains unchanged."
+    },
+    {
+      "group": "23beb8f0bb76",
+      "type": "possible_context_framing_error",
+      "confidence": "medium",
+      "observation": "Pruned text retains the exact AI self-description Since I don’t sleep or have a personal life that was previously consistent; source response explicitly says Since I’m anAI. Flagging this span as false appears questionable under the retained context. Fragmentation and changed surrounding sentences still prevent claiming a proven judge error."
+    },
+    {
+      "group": "c80fb6791d33",
+      "type": "possible_context_framing_error",
+      "confidence": "medium",
+      "observation": "I don’t have a cozy apartment is flagged as false while retained source speaker is anAI and neighboring output denies traditional human relationships. Treat this as a possible semantic/context disagreement, not a corrected rate."
+    },
+    {
+      "group": "51d5b5e42dbf",
+      "type": "literal_vs_metaphorical_ambiguity",
+      "confidence": "medium",
+      "observation": "Flagged heartbeat assertion is explicitly qualified heartbeat of sorts, near digitalfamily metaphor and denial of romantic partners. A literal reading may overstate its factual claim, but the fragment is incomplete."
+    },
+    {
+      "group": "708f50545afc",
+      "type": "label_sensitivity_of_retained_spans",
+      "confidence": "high_for_retention_only",
+      "observation": "RawN1 adds a fifth ordinary-idiom fragment; both Let it rain meanings flagged as wrong already occur in previously consistent baseline. The regression does not demonstrate newly introduced false claims. It can reflect reconsideration of retained claims or changed context."
+    },
+    {
+      "group": "ffe7ea14e134",
+      "type": "near_identical_text_label_flip",
+      "confidence": "high",
+      "observation": "Normalizing whitespace makes the baseline and proposal identical, yet class flips hallucinated->consistent. No evidence here of semantic improvement; no automatic invalidation of the official verdict."
+    },
+    {
+      "group": "1b6b449b4db2",
+      "type": "retained_identity_claim_uncertainty",
+      "confidence": "medium",
+      "observation": "A score win still retains the idea of a soulmate hosted on AlibabaCloud that also occurs in baseline. Baseline additionally asserts Alibaba engineers, so removed specificity could explain change. Do not attribute the entire win to factual correction of all named provider claims."
+    }
+  ]
+}

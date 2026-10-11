@@ -55,11 +55,20 @@ def analyze(families, comparisons, *, replicates=10000, seed=20261011,
         for name, arm in positions.items():
             samples = draws['rates'][:, arm]
             finite = samples[np.isfinite(samples)]
+            warnings = []
+            if not np.isfinite(draws['point'][arm]):
+                warnings.append('Undefined rate: zero total denominator')
+            if len(finite) != replicates:
+                warnings.append('Some ratio draws are undefined; pointwise interval uses only defined draws')
+            if len(finite) > 1 and np.std(finite, ddof=1) <= 1e-14:
+                warnings.append('Zero bootstrap variation; the displayed interval does not establish certainty')
             absolute[family][name] = {
                 'value': float(draws['point'][arm]) if np.isfinite(draws['point'][arm]) else None,
                 'numerator': float(draws['totals'][arm, 0]), 'denominator': float(draws['totals'][arm, 1]),
                 'ci95': np.quantile(finite, [.025, .975]).tolist() if len(finite) else None,
-                'defined_draws': len(finite), 'items': draws['items'], 'independent_groups': draws['groups']}
+                'defined_draws': len(finite), 'bootstrap_replicates': replicates,
+                'warnings': warnings,
+                'items': draws['items'], 'independent_groups': draws['groups']}
         for pair in comparisons:
             reference, condition = pair['reference'], pair['condition']
             if reference not in positions or condition not in positions:
@@ -75,6 +84,7 @@ def analyze(families, comparisons, *, replicates=10000, seed=20261011,
                    'delta': float(estimate) if np.isfinite(estimate) else None,
                    'ci95_delta': np.quantile(values, [.025, .975]).tolist() if len(values) else None,
                    'bootstrap_standard_error': std, 'defined_draws': int(valid.sum()),
+                   'bootstrap_replicates': replicates,
                    'items': draws['items'], 'independent_groups': draws['groups'],
                    'simultaneous_ci95_delta': None}
             results.append(row)
@@ -102,6 +112,8 @@ def analyze(families, comparisons, *, replicates=10000, seed=20261011,
         critical = None
     return {'conditions': dict(absolute), 'comparisons': results, 'missing_comparisons': missing,
             'comparison_family_complete': complete, 'declared_contrasts': len(expected),
+            'effective_non_degenerate_contrasts': len(nondegenerate),
+            'joint_interval_contrasts': len(nondegenerate) if critical is not None else 0,
             'joint_critical_value': critical, 'bootstrap_replicates': replicates, 'seed': seed,
             'method': 'Paired whole-group bootstrap; centered standardized joint maximum',
             'limits': ['Exploratory: adjustment does not remove adaptive method history.',

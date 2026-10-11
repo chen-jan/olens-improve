@@ -46,6 +46,29 @@ class ExpandedStatisticsTests(unittest.TestCase):
         result = grouped_draws({'blank': {'a': [0, 0]}}, {'a': 'one'}, replicates=200)
         self.assertNotEqual(result['point'][0], result['point'][0])
 
+    def test_boundary_rate_has_visible_zero_variation_warning(self):
+        source = {'conditions': {'perfect': {'a': [1, 1], 'b': [1, 1]}},
+                  'group_of': {'a': 'g1', 'b': 'g2'}}
+        result = analyze({'task': source}, [], replicates=200)
+        metric = result['conditions']['task']['perfect']
+        self.assertEqual(metric['ci95'], [1, 1])
+        self.assertIn('Zero bootstrap variation', ' '.join(metric['warnings']))
+        self.assertEqual(metric['bootstrap_replicates'], 200)
+
+    def test_undefined_ratio_draws_are_disclosed(self):
+        source = {'conditions': {'sparse': {'a': [1, 1], 'b': [0, 0]}},
+                  'group_of': {'a': 'g1', 'b': 'g2'}}
+        metric = analyze({'task': source}, [], replicates=200)['conditions']['task']['sparse']
+        self.assertLess(metric['defined_draws'], metric['bootstrap_replicates'])
+        self.assertIn('defined draws', ' '.join(metric['warnings']))
+
+    def test_joint_effective_count_excludes_degenerate_contrasts(self):
+        result = analyze({'task': self.source}, [{'reference': 'base', 'condition': 'new'},
+                                                {'reference': 'base', 'condition': 'base'}], replicates=200)
+        self.assertEqual(result['declared_contrasts'], 2)
+        self.assertEqual(result['effective_non_degenerate_contrasts'], 1)
+        self.assertEqual(result['joint_interval_contrasts'], 1)
+
 
 if __name__ == '__main__':
     unittest.main()

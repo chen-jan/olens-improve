@@ -1,5 +1,17 @@
 # Execution status
 
+## Expanded analysis and qualitative review — 2026-10-11 01:47 UTC
+
+The second immutable statistical snapshot contains 209 of 280 complete condition/family measurements, including 37 settings with all four task banks complete. Each finished family uses its entire original question grid. The expanded comparison still includes all 70 settings. The shared multiplicity-adjusted intervals remain pending until all 496 declared family contrasts are available; paired pointwise intervals and related-group counts are shown in the meantime. Source and frozen-judge-contract verification passed before extraction. Snapshot: `expansion-v1/analysis/first-live-v2.json`, SHA `bd501f26f228e1648f2be178b2fa3a1244fe64e4719e1ac304fc47aea99be9ae`.
+
+All 13 CPU combination settings have been materialized for all 19,435 sites, and the additional CPU allocation has been released. The H200 continues the likelihood pass, followed by fresh reconstruction vectors for editing. Luna helpers and judges run concurrently; first-round editing proposals are complete, but the expanded editing results are not yet evaluated. No method is dropped for a weak pilot result.
+
+Three Sol 6.1 agents reviewed the first 591 source-bound examples covering 51 available settings. A separate audit compares pruning with its actual selected parent, rather than attributing the parent's benefit to deletion. The examples show why recovering a required name, number or relation does not establish that the surrounding prose is correct. Remaining methods and newly completed family comparisons still need their own qualitative review.
+
+Reconstruction diagnostics now reuse saved fits and CPU-only replay of existing phrase vectors. A six-site fixture spanning all four tasks and DEV/VAL/TEST exactly reproduced its saved fits; the production replay has started. These secondary diagnostics will show reconstruction gains, paired parent changes, output length and scored-site coverage by task, separately from benchmark correctness. No new generation or encoding is needed for this replay.
+
+Public dashboard version 13 presents the first source-checked expanded matrix and keeps the original study and downloads available. The next reviewed update will add qualitative examples and the newer snapshot. The expanded slide layout passed synthetic checks; final research slides and their downloads are still pending. The latest verified API checkpoint at approximately 01:34 UTC estimated $109.38 settled project usage plus $6.38 retained/reserved amounts, against the $340 ceiling. This is a dated ledger estimate, not an invoice or a live total.
+
 ## Expansion running — 2026-10-11 00:51 UTC
 
 The sealed menu contains 70 usable output settings across all four task banks. Cached selection outputs are complete for 39 settings on all 19,435 activation sites. Eight CPU workers are generating the remaining combinations. The new preemptable H200, job 25536297 on node4603, is scoring activation-conditioned likelihoods; the complete arithmetic family is already published for judging. Three families' first-round edit proposals are queued for later encoding on that GPU.
