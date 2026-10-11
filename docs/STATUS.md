@@ -1,5 +1,9 @@
 # Execution status
 
+## Uncertainty and seven-setting selection clarified — 2026-10-11 13:46 UTC
+
+Public version **19** explains the distinction between uncertainty in an absolute task rate, a paired change on the same questions, and intervals adjusted for many comparisons. The seven illustrative settings match the slide highlights and were chosen after results, not by a predefined winner-selection rule. All 70 settings remain accessible. Existing scientific data and the version-18 slides are unchanged; 22 actual browser views passed, with no new inference, judging or GPU work. See [experiment 064](experiments/064-uncertainty-and-illustrative-settings.md) and the [publication receipt](reviews/ci-labels-site-delivery-v1.json).
+
 ## Clearer dashboard and slides published — 2026-10-11 12:25 UTC
 
 Public version **18** adds early sample-count curves and a focused intervention view. One approach is shown by default; choosing another removes unrelated methods. Hover/focus previews and enlarged, resizable plots are available. All 70 settings and the complete audited examples remain in the detailed views.

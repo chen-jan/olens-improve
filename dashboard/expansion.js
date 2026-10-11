@@ -32,7 +32,8 @@ const aliases = {
   combinations: 'combinations components ablations',
 };
 const defaultReference = 'capped_n1-n1';
-// Presentation contrasts fixed before rendering; no selection by observed outcome.
+// Illustrative settings chosen for the final presentation after results existed.
+// The same seven are shown across tasks; they are not each group's best setting.
 const headlineInterventions = [
   {label: 'More samples', id: 'best_n_exact-n32', parent: defaultReference, parentLabel: 'one capped sample', meaning: 'Choose the highest reconstruction-scoring complete description from 32 samples.'},
   {label: 'Keep repeats', id: 'consensus_semantic_v5_support0.125_compaton_vetoon-n16', parent: 'consensus_exact_support0-n16', parentLabel: 'exact repetition (16 samples)', meaning: 'Keep statements repeated in at least 2 of 16 samples, with semantic matching, compatibility checks and a contradiction filter.'},
@@ -455,7 +456,7 @@ function scaling() {
   const samples = [1, 2, 4, 8, 16, 32];
   const fit = element('scaling-metric').value === 'reconstruction';
   element('headline-scope').textContent = cohort().scope;
-  element('scaling-note').textContent = fit ? 'Secondary all-bank activation-site means with grouped pointwise 95% intervals, regardless of the selected cohort. Reconstruction measures fit, not truthful prose. Focused axes include every displayed interval; missing points remain blank.' : 'Native task endpoints retain the selected cohort and original denominators. Bars show grouped pointwise 95% intervals. Focused axes include every displayed interval and differ across tasks; compare the labeled values.';
+  element('scaling-note').textContent = fit ? 'Secondary all-bank activation-site means with grouped pointwise 95% intervals, regardless of the selected cohort. Reconstruction measures fit, not truthful prose. Focused axes include every displayed interval; missing points remain blank.' : 'These bars show uncertainty in each overall task rate, not uncertainty in the improvement. Overlapping rate intervals can coexist with a paired change that excludes zero. The intervention chart below measures that change directly. Focused axes include every displayed interval and differ across tasks.';
   element('scaling').innerHTML = families.map((family, index) => {
     const rows = samples.map(n => {
       const row = reconstruction(`best_n_exact-n${n}`, family);

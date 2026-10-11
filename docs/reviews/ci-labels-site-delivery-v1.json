@@ -1,0 +1,34 @@
+{
+  "status": "published",
+  "created_utc": "2026-10-11T13:46:46.786505+00:00",
+  "url": "https://olens-improve-research.jan618.chatgpt.site",
+  "audience": "public",
+  "project_id": "appgprj_6aca37fc2878819185850105787209f9",
+  "version_id": "appgprj_6aca37fc2878819185850105787209f9~appgver_b4ecedc498d0819189b039b903230afc",
+  "version_number": 19,
+  "source_commit_sha": "9927c601ff2110901568ad13420a8ec3584ca75b",
+  "deployment_id": "appgdep_6acb93388fc48191ac63e6f0be6ccd66",
+  "archive_storage": {
+    "archive_format": "tar",
+    "sediment_file_id": "file_00000000ee8481f9b5b137af7c4504cb",
+    "content_hash": "sha256:199415c1d91c96c3c55b1f4de6192fd04152e943e8360893db6fd61f06c0f919",
+    "size_bytes": 93214720,
+    "file_count": 90
+  },
+  "scope": "Chart-label clarification only: absolute-rate versus paired-change uncertainty and post-results selection of seven illustrative settings.",
+  "scientific_sources_unchanged": true,
+  "payload_metadata_changed": [
+    "build_utc"
+  ],
+  "local_browser_views": 22,
+  "local_browser_report": "docs/reviews/ci-labels-browser-review-v1.json",
+  "original_reference_supplement": "docs/reviews/original-reference-comparisons-v1.json",
+  "slides_unchanged_from_version": 18,
+  "new_gpu_allocations": 0,
+  "new_inference_calls": 0,
+  "limits": [
+    "Original-reference paired intervals remain post-hoc exploratory and pointwise only.",
+    "The seven illustrative settings were chosen after results and are not a preregistered winner selection.",
+    "Native PowerPoint rendering parity remains unverified."
+  ]
+}

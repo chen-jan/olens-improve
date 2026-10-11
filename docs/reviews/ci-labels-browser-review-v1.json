@@ -1,0 +1,441 @@
+{
+  "status": "pass",
+  "scope": "Actual final source-bound dashboard browser QA. Exact embedded native/numeric/effort/root-review/case objects match explicit immutable expected inputs and remain unchanged through all recorded interactions. No publication or inference.",
+  "authority": {
+    "source_paths": {
+      "chrome": "${HOME}/.cache/ms-playwright/chromium-1234/chrome-linux64/chrome",
+      "html": "/tmp/olens-ci-labels-v1/index.html",
+      "report": "/tmp/olens-ci-labels-v1/qa.json",
+      "review": "docs/reviews/root-expansion-final-v1.json",
+      "native": "${OLENS_DATA_ROOT}/expansion-v1/analysis/final-v1.json",
+      "reconstruction": "${OLENS_DATA_ROOT}/expansion-v1/reconstruction/final-v1.json",
+      "effort": "${OLENS_DATA_ROOT}/expansion-v1/analysis/effort-final-v1/effort.json",
+      "qualitative-notes": "docs/reviews/expanded-qualitative-final-merged-notes-v1.json",
+      "inventory": "configs/expansion_manifest_v1.json",
+      "original-reference": "docs/reviews/original-reference-comparisons-v1.json"
+    },
+    "input_sha256": {
+      "${OLENS_REPO_ROOT}/docs/reviews/root-expansion-final-v1.json": "a861d9b0002b48f2d493b4be6dcf6f06f9cecbfb59af20bdf11561539b91a14d",
+      "${OLENS_REPO_ROOT}/configs/expansion_manifest_v1.json": "753b2d9cab0daea0d19efef7d3222fd44921dbcf4669e6864d4f1bd4805421f8",
+      "${OLENS_DATA_ROOT}/expansion-v1/analysis/final-v1.json": "e2773e297d7724f20d656ecf07c5de00097604d8a85c516938a565626b07876e",
+      "${OLENS_REPO_ROOT}/.state/expanded-final-native-v1.service.json": "fc5452fa80aa8f5a18ad3185fbb95ce0e8950ac081d44bbd7c02b2c7ff603f80",
+      "${OLENS_REPO_ROOT}/.state/expanded-final-native-ready-v1/receipt.json": "ace0481f4d580e12357bcb756e7d571a4f7e5a9740174c2a106e47a6d66c7574",
+      "${OLENS_DATA_ROOT}/expansion-v1/reconstruction/final-v1.json": "0c3f99db532641326d4d432a9587d9ee10d9ea978fe16f9c74c9d96740965ba8",
+      "${OLENS_REPO_ROOT}/.state/expanded-final-reconstruction-v1.service.json": "ce1c0b4ebc1bb0d28157ba9f2a8a1b66cfa6239d4330e678d7d004bcb652ba5e",
+      "${OLENS_DATA_ROOT}/expansion-v1/analysis/effort-final-v1/effort.json": "bb2a14bfbac15d3d76ae9936376c4343d422253f1904d74bcb4717932351121f",
+      "${OLENS_DATA_ROOT}/expansion-v1/analysis/effort-final-v1/receipt.json": "5b17d913981ec0b60174e5de5c5703f33c3d1733e7f51f20a84d1147e078f246",
+      "${OLENS_REPO_ROOT}/docs/reviews/expanded-qualitative-final-merged-notes-v1.json": "1c6afcd2c051c6411a1a45fba716879239abe71a7f9940c55e7db02958cb3a69",
+      "${OLENS_REPO_ROOT}/docs/reviews/expanded-qualitative-partition1-v1.json": "0f1a8384a392bb44849c6fcbd1b239b8978d7688f2eb435fe61075dbe612dd71",
+      "${OLENS_REPO_ROOT}/docs/reviews/expanded-qualitative-partition2-v1.json": "a1921f256f5095c75e53c41571bddd18418b4cd60e304fb6aaf2d258294cf870",
+      "${OLENS_REPO_ROOT}/docs/reviews/expanded-qualitative-partition3-v1.json": "70cc0cf89d90ecfe9abfd5d139df6c6e37893d7ffb84d1cb877bb50ca35f7dd7",
+      "${OLENS_REPO_ROOT}/docs/reviews/expanded-pruning-parent-qualitative-v1.json": "95e5fa9f9fe99a767c6860eeadb583464b123ad10b654396943d95beb9bbfccc",
+      "${OLENS_REPO_ROOT}/docs/reviews/expanded-qualitative-delta-root-v1.json": "1136a3b3f3bfd1592570257958a8178f716e95b5c50f96dcfac14b38affdd7e1",
+      "${OLENS_REPO_ROOT}/docs/reviews/expanded-qualitative-v3-agent1-v1.json": "f71f3bbd9751b845eae46d95f98810353eab58b399e0463a785f2d5ba7add998",
+      "${OLENS_REPO_ROOT}/docs/reviews/expanded-qualitative-delta-agent2-v1.json": "ffdd9416978d5b48e91b36864563646a8896c07eb20e19a797348886c99656ed",
+      "${OLENS_REPO_ROOT}/docs/reviews/expanded-qualitative-delta-agent3-v1.json": "66e16afd3253737dfc2f2e978ce37152eeb90ab51cc00328b6fa4f1d17dd19d4",
+      "${OLENS_REPO_ROOT}/docs/reviews/expanded-reconstruction-adversarial-v1.md": "1f9551f2053eceb7ab3c17ce8ecf9411cf6478c785c3eb9bf88431717f962b6e",
+      "${OLENS_REPO_ROOT}/docs/reviews/expanded-reconstruction-v2-equivalence-receipt-v1.json": "3c041b9ade925501daafd6bf412869e24337d8da820ead4fe41423fe5d58fa15",
+      "${OLENS_REPO_ROOT}/docs/reviews/expanded-native-v3-overlap-receipt-v1.json": "2876378585dd54dca90b02e7bcbbf76498032d999abc29185706c0d7f500b1b6",
+      "${OLENS_REPO_ROOT}/docs/reviews/expanded-reconstruction-v3-overlap-receipt-v1.json": "9959dd7a1bb1683818f7f84e9a8530934ebe2a70ab31f52088dabe645fe7ef75",
+      "${OLENS_REPO_ROOT}/docs/reviews/expanded-reconstruction-addons-terminal-v1.json": "8e709824d7afdb483caa5f384460ddd13bfd9098ef194e4e142fce6a7d15b3d4",
+      "${OLENS_REPO_ROOT}/docs/reviews/expanded-qualitative-v4-merged-notes-v1.json": "1ff9945d87c319266daec27109f0ead60b64b358141725a7e9927f0178973ffc",
+      "${OLENS_REPO_ROOT}/docs/reviews/expanded-qualitative-v4-condition-notes-v1.json": "e11e4dc3c11b36ef35f206c54d5d575ccc1ca84d16a894e8d37be0c1bb167ab8",
+      "${OLENS_REPO_ROOT}/docs/reviews/expanded-qualitative-v4-root-v2.json": "6031ca2d526e1aeb6d0ee8fe54f9a380f178f477cee94b02fca8ac15beee68be",
+      "${OLENS_REPO_ROOT}/docs/reviews/expanded-qualitative-v4-agent1-v2.json": "a32253119b7b55c22660bd0c8e0aed084c1f6bb2bd8e3d8c41bebf6cb1ba7081",
+      "${OLENS_REPO_ROOT}/docs/reviews/expanded-qualitative-v4-agent2-v2.json": "6de2e076238724dfd6c76e65e1eb813b33ba10ee47cfa8bf0045692d4192a483",
+      "${OLENS_REPO_ROOT}/docs/reviews/expanded-qualitative-v4-agent3-v1.json": "78a23630e987e95889b765c1d8a5fb2f24a72bab33e7ba5aab9157fe3b5d8d0a",
+      "${OLENS_REPO_ROOT}/docs/reviews/expanded-reconstruction-scaling-fields-v3.json": "f86253d531e108a4c48fb27a70ecb08ce0499766b9bb13ab44ad2182792fb81a",
+      "${OLENS_REPO_ROOT}/docs/reviews/expanded-reconstruction-scaling-slide-v1.md": "84abeadf002c3e4233440a25346fccb322fdd2dfdee2d03827e3fae3bfc93fb5",
+      "${OLENS_REPO_ROOT}/docs/reviews/root-expansion-progress-v5.json": "c9a5d4eaaf376a6b56bd0a9a6ce858ab7e0667638ff1c06a3d539efefa115b84",
+      "${OLENS_REPO_ROOT}/.state/expanded-final-review-draft-v3.json": "d1889a8c31c5422b5805577cf00e8df9b353e81af9ac84a79a72a5c9bb17b2f7",
+      "${OLENS_REPO_ROOT}/.state/reconstruction-analysis-final-ready-v1/receipt.json": "676e63437c859c2d8d35edc278ee280c9bdf0660059dedbdf234cf32b64b6885",
+      "${OLENS_DATA_ROOT}/expansion-v1/qualitative/final-delta-index-v1.json": "b1d5e441b301a19748691d8f1509faea5e8c76c02276b2d705787d46824436b5",
+      "${OLENS_REPO_ROOT}/docs/reviews/expanded-qualitative-final-root-v1.json": "2c1d47a91c3d0d816ddf7f18aa78cd21a383858a5b0558cf16129c6ea7ca9aea",
+      "${OLENS_REPO_ROOT}/docs/reviews/expanded-qualitative-final-agent1-v1.json": "1c9c642fc55c96fb1e98d381c3481427d8f0e52b744ab35139d58892fc9afa91",
+      "${OLENS_REPO_ROOT}/docs/reviews/expanded-qualitative-final-agent2-v1.json": "431e65c9721d0fdd8e84dbfbdabb2792effb7db9c6572242c8831ba0969b07d6",
+      "${OLENS_REPO_ROOT}/docs/reviews/expanded-qualitative-final-agent3-v1.json": "e7cdc51e37a252c9cbc78bc94aba78499cacdcaee3f299b2200ce0e8b22ad141",
+      "${OLENS_REPO_ROOT}/.state/expanded-final-narrative-v1.json": "c12bc4cd181498dccc427040905de4264a9235fafc2bc1c2c617142b98aa4ecb",
+      "${OLENS_REPO_ROOT}/.state/expanded-final-evidence-lookup-v2.json": "32db04a8bcceb6553a35d318f663630dddb212d5ad23ff2a1216c7ec748f1c3c",
+      "${OLENS_DATA_ROOT}/expansion-v1/reconstruction/editor-selection-final-v1.json": "6d93f5a51b228a3d3295ab4e0d8856d53137cc41ddb05cf923fc691839147c84",
+      "${OLENS_REPO_ROOT}/docs/reviews/expanded-final-fit-quality-interpretation-v1.md": "c4aaea8f0bcbe60015940c372d631b8d2952706fd07ac0718651a89f5a965247",
+      "${OLENS_REPO_ROOT}/docs/reviews/expanded-final-fit-quality-interpretation-v1.json": "daefc55fca5d23cb413b516e2bd258b61027f939010f696d3d3a7818a193fe8b",
+      "${OLENS_REPO_ROOT}/docs/reviews/expanded-final-retained-editor-example-review-v1.json": "57dc0d5b6a00101f5857923e361aa3a2bbcfa1607847722877a93d2334032d96",
+      "${OLENS_REPO_ROOT}/.state/expanded-final-editing-slide-example-v1.json": "e3d1c9beef2a5d9bbc1419aaa434393a540a5d2bc6ac5da482de41282363acd3",
+      "${OLENS_REPO_ROOT}/.state/expanded-whole-project-storage-v1.json": "5a34c2b02dafee56d1547faf53d2d4a33546a9cd2c9a997c9182b8a015d882e2",
+      "${OLENS_REPO_ROOT}/.state/expanded-final-qualitative-v1.service.json": "9e988c28375bb4c09b452a05853f4b5787b8431bb500986ee46f531a25edb7ee",
+      "${OLENS_DATA_ROOT}/expansion-v1/qualitative/final-v1.json": "3644c6d6451a638b0cfee8ae7b2542332dd8f5cafd6203441ef15e77e9023f59",
+      "${OLENS_DATA_ROOT}/expansion-v1/qualitative/parent-comparisons-final-v1.json": "8bfa89c96a6db8024b7813bdcd6f8db4a1ca2dafc7e1f7850db782493e0b8f11",
+      "${OLENS_DATA_ROOT}/expansion-v1/qualitative/first-live-v2.json": "7ceb7214fd75dce21e672ba77802f4c9a486056ef7e42a15d093963083d7b71e",
+      "${OLENS_DATA_ROOT}/expansion-v1/qualitative/parent-comparisons-first-live-v1.json": "0fd1956f674d203522caf9adcf08e5a265c499a9301054fb1035ff65382a7d25",
+      "${OLENS_DATA_ROOT}/expansion-v1/qualitative/first-live-v3.json": "d688338f8eada00de8d7f0c3ba6a39c56c2e8f137b010a1cc686181ff2fe9b88",
+      "${OLENS_DATA_ROOT}/expansion-v1/qualitative/parent-comparisons-first-live-v2.json": "a078ecb9d20d747a219bb772fdb2a24420371eaea5cb3b6ecd1a880dde5a1903",
+      "${OLENS_DATA_ROOT}/expansion-v1/qualitative/first-live-v4.json": "15139648dd09b10ae931e7600a2aa643fae3e02ec37ccd0098a34443d9ee320c",
+      "${OLENS_DATA_ROOT}/expansion-v1/qualitative/parent-comparisons-first-live-v3.json": "f471b3bda848701547a973e0b766b67a5c8a3c3934809caab75b420f76eed4e5",
+      "/tmp/olens-ci-labels-v1/index.html": "2016e2f1008274b27dc4fbe9896bf747a1c715c61a3859148d3f436346764955",
+      "/tmp/olens-ci-labels-v1/expansion-data.json": "25f5ef513f71ce1208c22966e81aa5799220138ba619fc35170a010932432795",
+      "/tmp/olens-ci-labels-v1/expansion.js": "ef3435edf9a8a299a357f0e4b45c1353eeb48680c63765e3de590971721b061e",
+      "/tmp/olens-ci-labels-v1/expansion.css": "2c93cfb690023d03f28f64c0cc13b53f088cda557796b8d4743640c847cdf04a",
+      "${OLENS_DATA_ROOT}/runs/whole-cohort-descriptive-v1.json": "a6510b74fabb410efe859197d295c31ba67bc7274537eeb084c1d16382d5e00f",
+      "${OLENS_REPO_ROOT}/dashboard/report.json": "772b76af273d17151bd03c0b735a5a17a7aa28442695ec40d5184ee419e0ae62",
+      "${OLENS_REPO_ROOT}/docs/reviews/original-reference-comparisons-v1.json": "079bc1426b89cfb774433032f3144219289d42ade57ae37e0d23eea8f45f1355",
+      "/tmp/olens-ci-labels-v1/original-reference-comparisons.json": "59c2f3adc288e2d615e8abd928c10745a98ad4a57e6572cbf75c9aefc9441011",
+      "${OLENS_REPO_ROOT}/configs/expansion_analysis_v1.json": "c59b77fb2fc005eae0a34ac43f39d657259c45835d117e090cbf52eec6d8e909",
+      "${OLENS_COMPUTE_ROOT}/activations/core-v1/fresh_manifest_v2.json": "5a61cff89aca532f3e022233b6d2d8e12dab0d3a3f4f44085097bc6dc58fc385",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/raw_n1-n1/hallucination/results.json": "eb0c0087c5f7c70d0afdd0147f13c2f391d7ef249195c04222d2ad6bb51a72c4",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/raw_n1-n1/hallucination.readouts.jsonl": "59536d48c36baff8ce17d45229e9bc06a75e32af61d41be1450ef71b6c440c5a",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_exact-n32/hallucination/results.json": "42ba43726d606877c71737b7eeb8994caf85e79aabafd6bab4d5c082af0dc539",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_exact-n32/hallucination.readouts.jsonl": "d59188efb9bd6fdee2ede08bd95890dfd656ce91bea4bc74e6cc7db26f9d4683",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/consensus_semantic_v5_support0.125_compaton_vetoon-n16/hallucination/results.json": "40ab1c1848150e35a02eacb4bf33cce9fcca36f5626dcfa19bad08347ddeef86",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/consensus_semantic_v5_support0.125_compaton_vetoon-n16/hallucination.readouts.jsonl": "39f048dc406fe63d868347fdefa3a8130263f643b7914060376460f062cd64d3",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/prune_loo_a32_0.005-n32/hallucination/results.json": "d6f60aff340c7a911345c15b4103b19db5fa1cd7f69f41995a87815a0fb5ec6c",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/prune_loo_a32_0.005-n32/hallucination.readouts.jsonl": "f579f459eabb3456e1ea39defc78189e87e8642c26fb79769015052c58b6a3b9",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap-n32/hallucination/results.json": "079306d1c9d654ab93ff3812da4a8005dbdefa6bf43bbe26c8e5d467e3d48229",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap-n32/hallucination.readouts.jsonl": "db0c4ecc66a6340d0fa3f930bcec11981eb360d94875f5b5e6423950d2f2633a",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_specificity_mean-n32/hallucination/results.json": "5992602ac575ff2782dd36a96cdbee311c4eaa8f44ceb58889bc0d3b35d55306",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_specificity_mean-n32/hallucination.readouts.jsonl": "0ee29ae93d57e1f71e8c122a7168a8eae6fe1469b063214e9cf78ee1a93fce06",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/editing_round2-n32/hallucination/results.json": "f9a486a28992ffba256c46ea9ffcd9ed5a11a2faf5230cf5c882045aaa15fcb9",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/editing_round2-n32/hallucination.readouts.jsonl": "4fb605f64b03300c1669d21f7c7605a35c0e95ad2b72f28b5da8939d89fa1473",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_specificity_mean_then_prune_0.005-n32/hallucination/results.json": "9151c6fa6e068d7bb22b480148567d1a47f2cd0f48cc1c6d61f2306cec7ce6a6",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_specificity_mean_then_prune_0.005-n32/hallucination.readouts.jsonl": "d38d63bb59c9936ee03d066291b21775346c65c4ea89eb0e70aac4f642bbca16",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/raw_n1-n1/multihop_mt/results.json": "7e94d78aaa208b1375882ad3e36e5ef141d42f21f5f2927c808d7ddacabd1902",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/raw_n1-n1/multihop_mt.readouts.jsonl": "98267f25ac8e8a6dfed514ddac04e81f81192279bff87a8793166fef167377a2",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_exact-n32/multihop_mt/results.json": "47288023a201e2a30b925d90e8fc91a37d5643daec968e3e0dfd9a3b5b85e0ac",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_exact-n32/multihop_mt.readouts.jsonl": "d336ebab9e8145f6962bfadcda31f5b9f3e1f32ddcc75c082a40d69647f72949",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/consensus_semantic_v5_support0.125_compaton_vetoon-n16/multihop_mt/results.json": "d15a309e6e24a3b3ad5edcdf089c69c5f09122b4b40ec51b01eeed51987dc3f7",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/consensus_semantic_v5_support0.125_compaton_vetoon-n16/multihop_mt.readouts.jsonl": "6a57b81eb25863f1f279933fb089c834ec71d88f0446336b46018ae66451cc4e",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/prune_loo_a32_0.005-n32/multihop_mt/results.json": "525cf80acaef6fe4e0b5dc6691d331982f674e555cd27c0fcc2249312f63603f",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/prune_loo_a32_0.005-n32/multihop_mt.readouts.jsonl": "4ea4609c87aeb5fafe1dc13f43ee41f4afa2e68b183abe5163fd602a5b1f591f",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap-n32/multihop_mt/results.json": "6ca199109e4e902c72d5b732aa8ea934f42949588c6326bfa4f72811b36fe410",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap-n32/multihop_mt.readouts.jsonl": "5037890ea0771eec287a7365b955eff34d21ed396d4e26b4c05c6bbfc586ddfd",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_specificity_mean-n32/multihop_mt/results.json": "654d16fe5e45f1f91b4f086e6878bfc780dedd464ef26bc7ab8a63188824f22d",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_specificity_mean-n32/multihop_mt.readouts.jsonl": "808ba261c3f6b1a01aee5272acad72c458bb18f608c208b85e963d8d1f5c5f61",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/editing_round2-n32/multihop_mt/results.json": "6ca199109e4e902c72d5b732aa8ea934f42949588c6326bfa4f72811b36fe410",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/editing_round2-n32/multihop_mt.readouts.jsonl": "df8a76d05e0cde76f268f042caee818b68db41ab16cab926656295b16e9f5034",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_specificity_mean_then_prune_0.005-n32/multihop_mt/results.json": "5281293fe921790ee4ee5ba64c6a046b8267e9950c675dd508f9c12f789a5d07",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_specificity_mean_then_prune_0.005-n32/multihop_mt.readouts.jsonl": "fe177f3863912c9c6c16460943b101957a372a95f457bcdce5b6769bc191b4d7",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/raw_n1-n1/chain_intermediates/results.json": "33275920952d8dea7ff304b775c3eb7791219bd993e35c400d79637ef9fc6ff4",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/raw_n1-n1/chain_intermediates.readouts.jsonl": "5058c8eff3703e7415b8bbd01a08417a258a6e595c40fe1f47f341ae6dca2d96",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_exact-n32/chain_intermediates/results.json": "636eccf30b21df77a57bc7facb7de8e9ca07ab48235c51e722928848ec1e5944",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_exact-n32/chain_intermediates.readouts.jsonl": "0b33be7b8fb46a0fcf5b29005bca265f9715097183a1f51374538f53d36dde56",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/consensus_semantic_v5_support0.125_compaton_vetoon-n16/chain_intermediates/results.json": "4c95b71737bf05467c45aad0bd7ed530e38869dc4d1d5ba9d80d903757597b37",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/consensus_semantic_v5_support0.125_compaton_vetoon-n16/chain_intermediates.readouts.jsonl": "f8c322d04ac621c114f11a8e1de94fa66c3e832cdd7a245cb3c4b277e62f5b45",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/prune_loo_a32_0.005-n32/chain_intermediates/results.json": "585efcf20f75331f8f07db1783e27734ec521f2a5d81a4cdb0f2cd8d0b765099",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/prune_loo_a32_0.005-n32/chain_intermediates.readouts.jsonl": "99a4a191fd87900c693f75f06d0ba18630da92e47d5242c286d5652654c90d93",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap-n32/chain_intermediates/results.json": "69c9016c6e9d5ef02a3163f5d175d61db0e21757646e945931d5854daece1996",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap-n32/chain_intermediates.readouts.jsonl": "75ef3c725fdb18b86fca937013672aabc1934a8713108ed6f67ea7a6c61e3473",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_specificity_mean-n32/chain_intermediates/results.json": "e7dc647a755f8f17932604683d318ee225027d58ce42923a8457211af4aa2cf8",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_specificity_mean-n32/chain_intermediates.readouts.jsonl": "fb017f40a727dd17f5e4d48ff62c4e478ddef9481fbc1a1c754ac387892ad9fe",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/editing_round2-n32/chain_intermediates/results.json": "5a775962e1d0fccea9eedc9ce3dc202beac8b63301daf038453648e5b6e49b36",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/editing_round2-n32/chain_intermediates.readouts.jsonl": "b5b4613e41d11c4b529d5ca6b606209a1ba529bfef5aecef6f7d8d99e39427cb",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_specificity_mean_then_prune_0.005-n32/chain_intermediates/results.json": "ea91163684b7e1569efa6d7247b5213cd32bd10e53aef9f3e9f58b469807fbfc",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_specificity_mean_then_prune_0.005-n32/chain_intermediates.readouts.jsonl": "503615718c6a0eb8ececa785d1824259a8018aa69b2e3a9bbc7c9279539efdeb",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/raw_n1-n1/role_bound_association/results.json": "f4ef5e6004901ced3913c7755cd5bcc33e9c8b41d1dce873be753c7caf5d821f",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/raw_n1-n1/role_bound_association.readouts.jsonl": "3573d7d5c6faa541169563b544499f5ba3a90817393dcbcd6712844dbf29843b",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_exact-n32/role_bound_association/results.json": "b2f145cc161f855e0a0ea7b0df0d766c13e2cbf373f4f6e01535cc850fef1186",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_exact-n32/role_bound_association.readouts.jsonl": "13f2abcd989c4cdb84fc4417fb67ba948d38a6d706826f9319882f4813c3d55f",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/consensus_semantic_v5_support0.125_compaton_vetoon-n16/role_bound_association/results.json": "fe964145ded81e4e9d79725a1c7712ba181a5b67086b8611a0d5cc16c3128599",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/consensus_semantic_v5_support0.125_compaton_vetoon-n16/role_bound_association.readouts.jsonl": "37e2ad2227f6e3b202804481db96738459ad349d216974172f54fd257a2a8d89",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/prune_loo_a32_0.005-n32/role_bound_association/results.json": "077ecd73850efb67ed0df23ae8bacfe78939039ef4476464003bf2769cc56ad1",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/prune_loo_a32_0.005-n32/role_bound_association.readouts.jsonl": "9e349ff12d6a348f211ad4118af65d236dda5e793ca2ac2d19c67c6c835c0382",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap-n32/role_bound_association/results.json": "9fbcf874155092472e9135eae98bd4a97aa067ac27f1c80caf03b293e55a3075",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_greedy_swap-n32/role_bound_association.readouts.jsonl": "9caaed7a8ddb8d4f8b8ddfff848ae92f3c1bc0dae8cdddae56bf55c5dc5f13fc",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_specificity_mean-n32/role_bound_association/results.json": "591e71f407d8574ce1fa41d2ea4db34b38ab9c2aa94639654491887964f8668a",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/best_n_specificity_mean-n32/role_bound_association.readouts.jsonl": "dc31515e13d5dd54299c3aad9c419c66e6b77acbba5fefb3eddac99482966e1d",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/editing_round2-n32/role_bound_association/results.json": "023ad8cefaf25d11d68032376c14096960d998be8840960408b02abe9af3aeaa",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/editing_round2-n32/role_bound_association.readouts.jsonl": "59a5f6a92efb61cd847efcccf750b4adf67e30f6cd51593c966b65847befb3fd",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_specificity_mean_then_prune_0.005-n32/role_bound_association/results.json": "5b4b7cdb78073ca387c5be84763efab1f09d3da7f7981a2ae59e6f65108ba865",
+      "${OLENS_DATA_ROOT}/expansion-v1/judgments/pooled_specificity_mean_then_prune_0.005-n32/role_bound_association.readouts.jsonl": "d3750e62e3c52562e2ed311166bbda9c6413152284b57d920fe9d2542f6043ee",
+      "${OLENS_REPO_ROOT}/scripts/build_original_reference_comparisons.py": "c4735860699e2124daa768db1813dc87284b5f1ef2078c3ec7baa1f04f477320",
+      "${OLENS_REPO_ROOT}/src/olens_improve/reporting.py": "7bc728136f19eac771ed3fb8c3b9077f416d047197bb3c9c0de2c431985ee319",
+      "${OLENS_REPO_ROOT}/src/olens_improve/expanded_statistics.py": "66dc640a6a4c0760f2a9591e78554bdd5dfb3dba35e306675448c4280b1458c9"
+    },
+    "active_conditions": 70,
+    "condition_family_rows": 280,
+    "declared_contrasts": 496,
+    "dashboard_case_entries": 2206,
+    "dashboard_case_reference_identities": 2130,
+    "approved_repeated_case_identity_entries": 76,
+    "final_new_review_references": 475,
+    "final_inherited_review_references": 44,
+    "prior_audited_references": 330,
+    "pending_partition_counts": {
+      "root": 61,
+      "agent_1": 61,
+      "agent_2": 61,
+      "agent_3": 61
+    },
+    "source_pin_map_digests": {
+      "native": "a9cdf2f86b28326e24375ac6230130a310f5e8470f671106899dcfcd6a6c9f19",
+      "reconstruction": "b270d44f1f87eb6aec094714a797eab8432e26dc558fd968208c8505f7a1f5bd",
+      "qualitative_notes": "2ef08ebdf93aff7eaf6f096378c3d6e85ad381a1ed160c649d6fb0ec6c609d20"
+    },
+    "limits": [
+      "Partial reconstruction diagnostic status is permitted only with all280 selection sources complete, exact terminal numeric gate and root binding; invalid/unavailable fits remain explicit.",
+      "Historical dashboard comparison records may coexist; every frozen final declared comparison is matched exactly once without double-counting native metric rows.",
+      "Every root-approved dashboard entry is matched exactly, including preserved historical repeated identities; entry and unique-reference counts are distinct.",
+      "No rejudging, statistical recomputation, paid calls, source mutation, native-PPTX or hosted-browser attestation."
+    ]
+  },
+  "sources": {
+    "original_whole": "a6510b74fabb410efe859197d295c31ba67bc7274537eeb084c1d16382d5e00f",
+    "original_report": "772b76af273d17151bd03c0b735a5a17a7aa28442695ec40d5184ee419e0ae62",
+    "expanded_results": "e2773e297d7724f20d656ecf07c5de00097604d8a85c516938a565626b07876e",
+    "root_review": "a861d9b0002b48f2d493b4be6dcf6f06f9cecbfb59af20bdf11561539b91a14d",
+    "reconstruction": "0c3f99db532641326d4d432a9587d9ee10d9ea978fe16f9c74c9d96740965ba8",
+    "effort": "bb2a14bfbac15d3d76ae9936376c4343d422253f1904d74bcb4717932351121f"
+  },
+  "measurements": {
+    "failures": [],
+    "formattedMeans": 276,
+    "taskPanels": 4,
+    "exactParents": 8,
+    "interventionChecks": [
+      {
+        "mode": "sample",
+        "kind": "quality",
+        "measured": 28,
+        "unavailable": 0
+      },
+      {
+        "mode": "sample",
+        "kind": "reconstruction",
+        "measured": 12,
+        "unavailable": 16
+      },
+      {
+        "mode": "parent",
+        "kind": "quality",
+        "measured": 28,
+        "unavailable": 0
+      },
+      {
+        "mode": "parent",
+        "kind": "reconstruction",
+        "measured": 28,
+        "unavailable": 0
+      },
+      {
+        "mode": "original",
+        "kind": "quality",
+        "measured": 28,
+        "unavailable": 0
+      },
+      {
+        "mode": "original",
+        "kind": "reconstruction",
+        "measured": 0,
+        "unavailable": 28
+      }
+    ],
+    "focusChecks": [
+      {
+        "condition": "best_n_exact-n32",
+        "visible": 4,
+        "preview": true,
+        "enlargement": true
+      },
+      {
+        "condition": "pooled_greedy_swap-n32",
+        "visible": 4,
+        "preview": true,
+        "enlargement": true
+      }
+    ],
+    "sourceObjectsMutated": false,
+    "projectAccounting": {
+      "settled": 142.728601935,
+      "unknown": 4.8945515,
+      "pending": 0.173992375,
+      "committed": 147.79714581000002,
+      "ceiling": 340
+    },
+    "resourceCards": 4
+  },
+  "initial": {
+    "panels": 4,
+    "hiddenTitle": true,
+    "chainTitle": true,
+    "officialNames": true,
+    "rankingRule": true,
+    "caption": true
+  },
+  "checked": [
+    {
+      "name": "desktop-overview",
+      "width": 1280,
+      "documentWidth": 1265,
+      "dialogWidth": 0,
+      "dialogClientWidth": 0,
+      "fitPanels": 4
+    },
+    {
+      "name": "desktop-variance-scaling",
+      "width": 1280,
+      "documentWidth": 1265,
+      "dialogWidth": 0,
+      "dialogClientWidth": 0,
+      "fitPanels": 4
+    },
+    {
+      "name": "desktop-quality-scaling",
+      "width": 1280,
+      "documentWidth": 1265,
+      "dialogWidth": 0,
+      "dialogClientWidth": 0,
+      "fitPanels": 4
+    },
+    {
+      "name": "desktop-intervention-effects",
+      "width": 1280,
+      "documentWidth": 1265,
+      "dialogWidth": 0,
+      "dialogClientWidth": 0,
+      "fitPanels": 4
+    },
+    {
+      "name": "mobile-intervention-effects",
+      "width": 390,
+      "documentWidth": 390,
+      "dialogWidth": 0,
+      "dialogClientWidth": 0,
+      "fitPanels": 4
+    },
+    {
+      "name": "desktop-intervention-fit",
+      "width": 1280,
+      "documentWidth": 1265,
+      "dialogWidth": 0,
+      "dialogClientWidth": 0,
+      "fitPanels": 4
+    },
+    {
+      "name": "desktop-focused-intervention",
+      "width": 1280,
+      "documentWidth": 1265,
+      "dialogWidth": 0,
+      "dialogClientWidth": 0,
+      "fitPanels": 4
+    },
+    {
+      "name": "mobile-focused-intervention",
+      "width": 390,
+      "documentWidth": 390,
+      "dialogWidth": 0,
+      "dialogClientWidth": 0,
+      "fitPanels": 4
+    },
+    {
+      "name": "desktop-enlarged-intervention",
+      "width": 1280,
+      "documentWidth": 1265,
+      "dialogWidth": 0,
+      "dialogClientWidth": 0,
+      "fitPanels": 4
+    },
+    {
+      "name": "mobile-enlarged-intervention",
+      "width": 390,
+      "documentWidth": 390,
+      "dialogWidth": 0,
+      "dialogClientWidth": 0,
+      "fitPanels": 4
+    },
+    {
+      "name": "desktop-quality-details",
+      "width": 1280,
+      "documentWidth": 1265,
+      "dialogWidth": 983,
+      "dialogClientWidth": 983,
+      "fitPanels": 4
+    },
+    {
+      "name": "desktop-variance-details",
+      "width": 1280,
+      "documentWidth": 1265,
+      "dialogWidth": 983,
+      "dialogClientWidth": 983,
+      "fitPanels": 4
+    },
+    {
+      "name": "mobile-variance-details",
+      "width": 390,
+      "documentWidth": 390,
+      "dialogWidth": 357,
+      "dialogClientWidth": 357,
+      "fitPanels": 4
+    },
+    {
+      "name": "mobile-parent-details",
+      "width": 390,
+      "documentWidth": 390,
+      "dialogWidth": 357,
+      "dialogClientWidth": 357,
+      "fitPanels": 4
+    },
+    {
+      "name": "mobile-variance-scaling",
+      "width": 390,
+      "documentWidth": 390,
+      "dialogWidth": 0,
+      "dialogClientWidth": 0,
+      "fitPanels": 4
+    },
+    {
+      "name": "mobile-overview",
+      "width": 390,
+      "documentWidth": 390,
+      "dialogWidth": 0,
+      "dialogClientWidth": 0,
+      "fitPanels": 4
+    },
+    {
+      "name": "desktop-project-resources",
+      "width": 1280,
+      "documentWidth": 1265,
+      "dialogWidth": 0,
+      "dialogClientWidth": 0,
+      "fitPanels": 4
+    },
+    {
+      "name": "mobile-project-resources",
+      "width": 390,
+      "documentWidth": 390,
+      "dialogWidth": 0,
+      "dialogClientWidth": 0,
+      "fitPanels": 4
+    },
+    {
+      "name": "desktop-likelihood-details",
+      "width": 1280,
+      "documentWidth": 1265,
+      "dialogWidth": 983,
+      "dialogClientWidth": 983,
+      "fitPanels": 4
+    },
+    {
+      "name": "desktop-pruning-details",
+      "width": 1280,
+      "documentWidth": 1265,
+      "dialogWidth": 983,
+      "dialogClientWidth": 983,
+      "fitPanels": 4
+    },
+    {
+      "name": "desktop-method-audited-examples",
+      "width": 1280,
+      "documentWidth": 1265,
+      "dialogWidth": 983,
+      "dialogClientWidth": 983,
+      "fitPanels": 4
+    },
+    {
+      "name": "mobile-method-audited-examples",
+      "width": 390,
+      "documentWidth": 390,
+      "dialogWidth": 357,
+      "dialogClientWidth": 357,
+      "fitPanels": 4
+    }
+  ],
+  "engine": "Chrome/151.0.7922.34"
+}

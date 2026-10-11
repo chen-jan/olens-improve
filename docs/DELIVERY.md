@@ -1,6 +1,6 @@
 # Completed expanded Oracle Lens study
 
-The [public dashboard](https://olens-improve-research.jan618.chatgpt.site) now shows all **70 settings on all four complete benchmark banks**: 469 questions and 19,435 fixed activation sites. Version 18 preserves the original study separately; the [original delivery record](ORIGINAL_DELIVERY.md) is retained.
+The [public dashboard](https://olens-improve-research.jan618.chatgpt.site) now shows all **70 settings on all four complete benchmark banks**: 469 questions and 19,435 fixed activation sites. Version 19 preserves the original study separately; the [original delivery record](ORIGINAL_DELIVERY.md) is retained.
 
 - [Final report](https://olens-improve-research.jan618.chatgpt.site/downloads/expanded-report.md)
 - [Slides — PDF](https://olens-improve-research.jan618.chatgpt.site/downloads/expanded-slides.pdf)
@@ -13,6 +13,8 @@ The [public dashboard](https://olens-improve-research.jan618.chatgpt.site) now s
 The revised deck has 27 main slides and 67 detail/appendix slides. Plain method explanations and a guide to sample counts, thresholds and editing rounds precede the results. Every task result explicitly references the original released lens; the four-bullet original remains a separate comparator. Every approach has a visual explanation and four-task results; appendices retain every setting, recorded comparison and reconstruction result. Each method also has task-specific interpretation and a source-bound qualitative example. The dashboard includes sampling curves, paired comparisons, uncertainty, costs and 2,206 audited case entries, including preserved earlier entries.
 
 ## Clearer charts and original-reference comparisons
+
+Version 19 explains why absolute-rate uncertainty bars can overlap while paired-change bars exclude zero. The seven highlighted settings match the method-result slides; they are illustrative choices made after results, not a predefined winner selection. All 70 settings remain accessible. See [experiment 064](experiments/064-uncertainty-and-illustrative-settings.md) and the [publication receipt](reviews/ci-labels-site-delivery-v1.json).
 
 The [sample curves](https://olens-improve-research.jan618.chatgpt.site/#sample-trends) show all six sample counts. The [intervention view](https://olens-improve-research.jan618.chatgpt.site/#intervention-effects) shows one approach at a time, with paired changes versus the original Oracle Lens, uncertainty bars, hover previews and enlarged plots. Other approaches are hidden when one is selected. All methods and variants remain available below.
 
