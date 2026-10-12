@@ -1,5 +1,7 @@
 # Execution status
 
+**Presentation restored, 2026-10-12:** public version 21 restores the earlier overview and unchanged 94-slide deck, with error bars. The new swaps/refill page and 12-slide supplement remain separate. Current charts show 58 eligible settings; 12 control-activation settings remain in the historical archive. Desktop/mobile interactions and eight public asset checks passed. No new model calls or scientific recomputation. See [experiment 066](experiments/066-restore-overview-and-slides.md) and the [delivery receipt](reviews/restored-overview-site-delivery-v1.json).
+
 ## Current follow-up: search within the current activation — 2026-10-11
 
 The approved [follow-up](TARGET_ONLY_SEARCH_PLAN.md) has completed selection, frozen evaluation, paired statistics and qualitative review on **469 questions and 19,435 fixed sites**. Four new methods and six existing references cover all four tasks: **Hallucination (chat)**, **Multihop (multi-token)**, **Chained intermediates** and **Role-bound association**. All **40 method–task records** are complete with no missing required verdicts. Selection uses only the current activation and its own saved 32-sample pool. Control-activation methods and their combinations are ineligible for current comparisons; historical evidence remains intact.

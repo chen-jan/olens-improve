@@ -1,6 +1,8 @@
 'use strict';
 
 const element = id => document.getElementById(id);
+const currentScope = typeof document !== 'undefined' && document.body?.dataset.eligibleOnly === 'true';
+let allowedConditions = null;
 const families = ['hallucination', 'multihop_mt', 'chain_intermediates', 'role_bound_association'];
 const titles = ['Hallucination (chat)', 'Multihop (multi-token)', 'Chained intermediates', 'Role-bound association'];
 const taskDescriptions = ['Transcript contradictions', 'Required intermediate names', 'Intermediate numbers', 'Who did what to whom'];
@@ -9,7 +11,7 @@ const groups = {
   consensus: 'Keep repeated statements',
   pruning: 'Remove weak bullets',
   pooling: 'Combine original bullets',
-  verification: 'Compare activation evidence',
+  verification: currentScope ? 'Check text likelihood' : 'Compare activation evidence',
   editing: 'Edit a readout',
   combinations: 'Combine approaches',
 };
@@ -18,7 +20,7 @@ const descriptions = {
   consensus: 'Keep original bullets supported by repeated samples. Semantic helpers check equivalence and, in some settings, compatibility.',
   pruning: 'Delete bullets with little reconstruction contribution, or small fitted weights. Random deletion gives a shortening control.',
   pooling: 'Choose up to four original bullets from several samples, refitting their joint reconstruction after each addition.',
-  verification: 'Compare scores under the true activation and frozen control activations. Likelihood is a separate signal from reconstruction.',
+  verification: currentScope ? 'Score text likelihood under the current activation. No other activations are available.' : 'Compare scores under the true activation and frozen control activations. Likelihood is a separate signal from reconstruction.',
   editing: 'A separate Luna helper proposes bounded edits. The frozen reconstructor chooses among them; one or two rounds are tested.',
   combinations: 'Apply recorded components together, with parent and component-off controls. This is a fixed menu, not an unrestricted search.',
 };
@@ -34,7 +36,7 @@ const aliases = {
 const defaultReference = 'capped_n1-n1';
 // Illustrative settings chosen for the final presentation after results existed.
 // The same seven are shown across tasks; they are not each group's best setting.
-const headlineInterventions = [
+const historicalInterventions = [
   {label: 'More samples', id: 'best_n_exact-n32', parent: defaultReference, parentLabel: 'one capped sample', meaning: 'Choose the highest reconstruction-scoring complete description from 32 samples.'},
   {label: 'Keep repeats', id: 'consensus_semantic_v5_support0.125_compaton_vetoon-n16', parent: 'consensus_exact_support0-n16', parentLabel: 'exact repetition (16 samples)', meaning: 'Keep statements repeated in at least 2 of 16 samples, with semantic matching, compatibility checks and a contradiction filter.'},
   {label: 'Remove weak bullets', id: 'prune_loo_a32_0.005-n32', parent: 'best_n_exact-n32', parentLabel: 'best of 32 samples', meaning: 'Start with the best of 32 samples, then remove bullets contributing less than the frozen 0.005 reconstruction threshold.'},
@@ -43,6 +45,31 @@ const headlineInterventions = [
   {label: 'Edit pooled text', id: 'editing_round2-n32', parent: 'pooled_greedy_swap-n32', parentLabel: 'pooled bullets (32 samples)', meaning: 'Use two bounded rounds of helper edits and reconstruction scoring; compare the result with pooled bullets from 32 samples.'},
   {label: 'Combine + prune', id: 'pooled_specificity_mean_then_prune_0.005-n32', parent: 'pooled_specificity_mean-n32', parentLabel: 'pooling with control activations', meaning: 'Combine bullets from 32 samples using control activations, then remove weak bullets at the frozen 0.005 threshold.'},
 ];
+const headlineInterventions = currentScope ? [
+  ...historicalInterventions.filter(setting => !setting.id.includes('specificity')),
+  {label: 'Combine + prune', id: 'pooled_greedy_swap_then_prune_0.005-n32', parent: 'pooled_greedy_swap-n32', parentLabel: 'pooled bullets (32 samples)', meaning: 'Combine original bullets, then remove weak bullets at the frozen 0.005 threshold, using only the current activation.'},
+] : historicalInterventions;
+
+function applyCurrentScope(source) {
+  if (!currentScope) return source;
+  const excluded = new Set(source.conditions.filter(condition =>
+    condition.method.includes('specificity') ||
+    ['likelihood_true_minus_mean_two_controls', 'control_mean_log_likelihood'].includes(condition.method)
+  ).map(condition => condition.condition_id));
+  let changed = true;
+  while (changed) {
+    changed = false;
+    for (const condition of source.conditions) {
+      if (!excluded.has(condition.condition_id) && (condition.parent_condition_ids ?? []).some(id => excluded.has(id))) {
+        excluded.add(condition.condition_id);
+        changed = true;
+      }
+    }
+  }
+  const conditions = source.conditions.filter(condition => !excluded.has(condition.condition_id));
+  allowedConditions = new Set(conditions.map(condition => condition.condition_id));
+  return {...source, conditions};
+}
 function methodDescription(condition) {
   if (condition.method === 'raw_n1') return 'Use the first original Oracle Lens sample as emitted.';
   if (condition.method === 'capped_n1') return 'Keep the first original sample, with the frozen deterministic cap of four bullets.';
@@ -170,7 +197,8 @@ function reconstructionDetails(id) {
 }
 
 function eligibleComparison(row) {
-  return !row.scope || row.scope === 'original_item' || row.scope === 'original_grid';
+  return (!row.scope || row.scope === 'original_item' || row.scope === 'original_grid') &&
+    (!allowedConditions || (allowedConditions.has(row.condition) && allowedConditions.has(comparisonReference(row))));
 }
 
 function comparisonReference(row) {
@@ -647,6 +675,7 @@ function detailTask(id, family, index) {
 
 function detail(id, reference = element('reference').value) {
   const condition = data.conditions.find(row => row.condition_id === id);
+  if (!condition) return;
   const parts = [
     `<h2>${escape(condition.label)}</h2><p>${escape(methodDescription(condition))}</p>`,
     `<p class='detail-note'>${escape(cohort().scope)}</p>`,
@@ -797,6 +826,7 @@ async function start() {
       if (!response.ok) throw Error('Data request failed');
       data = await response.json();
     }
+    data = applyCurrentScope(data);
     // Additive, separately reviewed raw-original contrasts; frozen data stays intact.
     try {
       const originalEmbedded = element('original-reference-data');
@@ -813,7 +843,7 @@ async function start() {
         row.family === family && row.metric?.value != null))).length;
     const finished = data.status === 'complete' || data.status === 'complete_exploratory';
     element('status').textContent = finished ? 'Expanded comparison complete' : 'Expanded comparison running';
-    element('coverage').textContent = `${complete} / ${data.conditions.length} settings cover all four tasks`;
+    element('coverage').textContent = `${complete} / ${data.conditions.length} ${currentScope ? 'eligible ' : ''}settings cover all four tasks`;
     element('updated').textContent = `Scientific source snapshot: ${new Date(data.updated_utc).toLocaleString()}`;
     populateReferences();
     setupTradeoff();
@@ -822,7 +852,7 @@ async function start() {
     element('scaling-metric').querySelector('[value="reconstruction"]').disabled = !data.reconstruction;
     element('scaling-metric').addEventListener('change', scaling);
     element('intervention-metric').querySelector('[value="reconstruction"]').disabled = !data.reconstruction;
-    element('intervention-approach').innerHTML = `<option value='all'>All seven approaches</option>` + headlineInterventions.map(setting => `<option value='${escape(setting.id)}'>${escape(setting.label)}</option>`).join('');
+    element('intervention-approach').innerHTML = `<option value='all'>All ${headlineInterventions.length} approaches</option>` + headlineInterventions.map(setting => `<option value='${escape(setting.id)}'>${escape(setting.label)}</option>`).join('');
     element('intervention-approach').value = headlineInterventions[0].id;
     if (originalComparisons.length) element('intervention-reference').value = 'original';
     for (const id of ['intervention-metric', 'intervention-reference', 'intervention-approach']) element(id).addEventListener('change', interventions);

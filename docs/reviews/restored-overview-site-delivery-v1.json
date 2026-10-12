@@ -1,0 +1,607 @@
+{
+  "status": "published_and_verified",
+  "completed_utc": "2026-10-12T16:24:35.849459+00:00",
+  "publication": {
+    "project_id": "appgprj_6aca37fc2878819185850105787209f9",
+    "commit_sha": "2ba56a212dde815bf3b8ae920f91a54bc9ee7002",
+    "archive": "${OLENS_REPO_ROOT}/.state/restored-overview-v1.tar.gz",
+    "version": 21,
+    "version_id": "appgprj_6aca37fc2878819185850105787209f9~appgver_27f9322a4c708191b66053e86ec59f0d",
+    "deployment_id": "appgdep_6acd0990d9908191ae739e56ce132ea8",
+    "status": "succeeded",
+    "url": "https://olens-improve-research.jan618.chatgpt.site",
+    "updated_at": "2026-10-12T16:23:56.876445+00:00"
+  },
+  "assembly": {
+    "status": "final_sources_verified_pending_browser_and_publication",
+    "previous_landing_sha256": "bf44facc557e7b2298025f7202c5ce84dd985b5199c7f93321f3bb712752a944",
+    "preserved_assets": {
+      "delivery-review.json": "395d1ab1442fdf9249ff14ee880a7c842871e68834443204af1b04cf206be768",
+      "descriptive-whole-469.json": "4805f4e068870d8b5b8671e43e759ab8095fb25c2a0a9f4603bb519bc79f4221",
+      "details.html": "764259b644e05c541deefd64138b64cbf705f76b1f36659f1ffbab07c80ba37d",
+      "expansion-data.json": "25f5ef513f71ce1208c22966e81aa5799220138ba619fc35170a010932432795",
+      "expansion.css": "2c93cfb690023d03f28f64c0cc13b53f088cda557796b8d4743640c847cdf04a",
+      "expansion.js": "ef3435edf9a8a299a357f0e4b45c1353eeb48680c63765e3de590971721b061e",
+      "figures.html": "78fee2581c5e0b6c75350d9f9de779752edeab1bcc4f07112948a233bd89c7a7",
+      "original-reference-comparisons.json": "59c2f3adc288e2d615e8abd928c10745a98ad4a57e6572cbf75c9aefc9441011",
+      "original-study.html": "4da71927f3d392b83be1a9c02769712c056902b9a9cebedf8703887591818261",
+      "qualitative-evidence.json": "eb0f9520da3aa49fbe3bcc38c87e03ed6973493583e8f1719a95e769fcbf5d51",
+      "report.json": "e5d3abfea187ff970787ed033ff6273301f8c75c5cbcfa1ab84e366c7246c573",
+      "report.md": "4656777df5a3687f7150f00937524c4222ad618ead6f49660d364d8389ba08e1",
+      "historical-expanded-study.html": "416a42bceb2bcf8a9039d45847deecf0d64af95dab30f96cea1e82dfd47d3cbe",
+      "target-only-data.json": "000da6c4de7c4123067fc2dc779991e1c0e5085997f73ebb001bfc6a81586af6",
+      "target-only.css": "802800868a9686f9a9cc84f25a635913d3a5ae57c18c4bffee78694d1dc8c355",
+      "target-only.js": "9c85d9b0785513b171686e839ed9366375110f64950db49e98db8b425b840d14",
+      "downloads/expanded-editor-selection.json": "6d93f5a51b228a3d3295ab4e0d8856d53137cc41ddb05cf923fc691839147c84",
+      "downloads/expanded-effort.json": "bb2a14bfbac15d3d76ae9936376c4343d422253f1904d74bcb4717932351121f",
+      "downloads/expanded-manifest.json": "753b2d9cab0daea0d19efef7d3222fd44921dbcf4669e6864d4f1bd4805421f8",
+      "downloads/expanded-native-results.json": "e2773e297d7724f20d656ecf07c5de00097604d8a85c516938a565626b07876e",
+      "downloads/expanded-reconstruction.json": "0c3f99db532641326d4d432a9587d9ee10d9ea978fe16f9c74c9d96740965ba8",
+      "downloads/expanded-report.md": "a703853063d66b54d59c9df8beec558d870c8ba318e418ca09faef8cd96d0a90",
+      "downloads/expanded-resource-supplement.json": "5adf7be6709d0f93e0d60081c234c4d80ff77b9a886b4bdf8077c80038ee3edc",
+      "downloads/expanded-review.json": "a861d9b0002b48f2d493b4be6dcf6f06f9cecbfb59af20bdf11561539b91a14d",
+      "downloads/expanded-reviewed-notes.json": "1c6afcd2c051c6411a1a45fba716879239abe71a7f9940c55e7db02958cb3a69",
+      "downloads/expanded-slides.html": "4b8cd605123ce76d3fa21e175f693c51d5ba7d313a2b39fc418dbd7080dbd647",
+      "downloads/expanded-slides.pdf": "71041a77358161ff7eda8400a20af06150f1ef5bb8fb5492c2901cbd867fa830",
+      "downloads/expanded-slides.pptx": "5e794e3cfecfa256bbf0498eba1a5953938a27d6088f6bbdcd4452fe0059c0c8",
+      "downloads/expanded-speaker-notes.md": "d77c93b7499897d0dab2859f1c33a71f0590618236b1c4afd4cbff426d8524d7",
+      "downloads/final-v1.json": "0c3f99db532641326d4d432a9587d9ee10d9ea978fe16f9c74c9d96740965ba8",
+      "downloads/original-reference-comparisons.json": "079bc1426b89cfb774433032f3144219289d42ade57ae37e0d23eea8f45f1355",
+      "downloads/research-report.md": "4656777df5a3687f7150f00937524c4222ad618ead6f49660d364d8389ba08e1",
+      "downloads/slides.pdf": "36a60a626cba978433c3f221ab06bb7ce88ffb3832e75b3a8348dba2de8acf8a",
+      "downloads/slides.pptx": "4126df455c474dabd1e62a0f2328f7833e55fe8c44649cbc989c058f60fb5532",
+      "downloads/speaker-notes.md": "f8418fe9cbea96ec7e2306e8814ac3d43cd9df9404bc45e8d23a4f755c1944f8",
+      "downloads/target-only-slides.pdf": "46ad230842a4d0cc3c7e6025d797f0232a3518f5c71d2aa48042197242593732",
+      "downloads/target-only-slides.pptx": "350a408efd7b20cbbcac82adeef911c76ae7036175fda399d8b367b5d678ef8e",
+      "downloads/target-only-slides.html": "2713ec601dd715eee2080ba2fcba431264be5e4490c2b082c8cac49a95bb4fac",
+      "downloads/target-only-speaker-notes.md": "b847129ec4cad2203878e1169aaed245135fedca2e86319be33abf388d94d067",
+      "downloads/target-only-report.md": "8fa7c33233f96e733e81b9aba5372162ed4fa7ac9ec4bbb901b53fec12cc2e08",
+      "downloads/target-only-native-results.json": "c1456e2f960d04726e5a57e4f25638b33553d3c548a1647274bb04830a05def6",
+      "downloads/target-only-qualitative.json": "368ccb9f92f369b0152480f1017b14e4894053b21b9cb2ca4e4803fee70e0515",
+      "downloads/target-only-behavior.json": "6e0840b37350f7571fa16b6d4869554d2dc725c6a9a2171e261a60d8a0700d85",
+      "downloads/target-only-resources.json": "e61e11da8b870c78dc5a824c9fd02c02f361442c7a119e09dca1e3d5f4751034",
+      "downloads/target-only-inventory.json": "181fcc259ed81213a7b26ea18142b6cd35648e89b83100a5cf07590ed75b2c47",
+      "downloads/target-only-root-review.json": "b0ee97b2f7048afcf570223753a18e8d3bfbd27ee0a6fd772bc44a6fab8a181b",
+      "figures/development-scaling-v2/development-scaling-cell.pdf": "d70afb72e390089234381568788f070ea1ad62750af27cf688bf64d0d4e9e96b",
+      "figures/development-scaling-v2/development-scaling-cell.png": "f60bcb0d1eb84a65bdcc01a7f361f034d094136aef49ccceb51e04ce16170899",
+      "figures/development-scaling-v2/development-scaling-item.pdf": "0cbd770c293a02373b9d04ee150ab8ecb5c82bf9826ee632d87665ac7869e68f",
+      "figures/development-scaling-v2/development-scaling-item.png": "854efa57ff3b4b255d5d6255ebce0fbe8c053785964cc342ce5fe192ffe77ec5",
+      "figures/read-sites/development-chain_intermediates.pdf": "12c161d48a4bcfdad0b3fc0fb6f53444cb4b300bb27f4b11e5030b45327f6419",
+      "figures/read-sites/development-chain_intermediates.png": "0d94307e16adb50bea4151f1266fa3636178b32ea3fd4028d1aa116e3f4e09c0",
+      "figures/read-sites/development-hallucination.pdf": "d8beb2156b80c70ccf5a43834479d643f4211c565e275480384ac3481d72cbb9",
+      "figures/read-sites/development-hallucination.png": "ef249c94cb1e5e028400ca91fe78163a51a97eb4778084917b372591e7261869",
+      "figures/read-sites/development-multihop_mt.pdf": "cbe7253d4846517abb6bc0c96350916c44839c59d5d33d49816e9d8fa18a04dc",
+      "figures/read-sites/development-multihop_mt.png": "879177a221c397aab2b2f9ef60c5919746d74cc6d7b321249a4a0b4a058ec074",
+      "figures/read-sites/development-role_bound_association.pdf": "a3fe3513dc008c50fbb6a838f4742a2c5e60e3eb307739a19b6d33601e8bc218",
+      "figures/read-sites/development-role_bound_association.png": "b051cc10b8a8924fc664b67108c49c94ec0a3dd8848be15ff1be51e67b1c6253",
+      "figures/read-sites/grid-data.json": "683f22f2642ef8d8fa84e66bbc9b5bc3973fde00972cf9e9de3a7a35af2493b2",
+      "figures/read-sites/review.json": "8af372913bd3c49fd796cbacc0bcd870878ea09bbf8ac1e31ee7421346b1a7c4",
+      "figures/read-sites/validation-chain_intermediates.pdf": "73f892bb2ccb0c32d64396b8efa41a105eefc2234ec6ec6742ceb0d9e0f3cc1f",
+      "figures/read-sites/validation-chain_intermediates.png": "1aecfcc9034ea5215609de6ada2f26f2cd29c6b995048ab9fa8cbe48d1957eb2",
+      "figures/read-sites/validation-hallucination.pdf": "d1e3ee0c63c4fb0eb5e0bd97970b93d1c2e1514d5bd6b055d2790281bd33c225",
+      "figures/read-sites/validation-hallucination.png": "551e4d3836c70f2446199df83b7fdc80f03c5ef0cd496bd6c047db3f83833e59",
+      "figures/read-sites/validation-multihop_mt.pdf": "7a3197ef9ddc324db5b5a68c40dca89bb1372ec670da7e0692b32685fc30e1c5",
+      "figures/read-sites/validation-multihop_mt.png": "793504293a9f957762d22b59bac9c498a7bb5f638d31979151d93bad70175b2f",
+      "figures/read-sites/validation-role_bound_association.pdf": "e5ffe457ed50d7078c2d05e21690aac6042839e68380f38e0499a6883e3bbd08",
+      "figures/read-sites/validation-role_bound_association.png": "dacc5a5a6fbacb30491693b2338e316db4a8ffc581c531f0c553c731746fea8c",
+      "figures/test-final/cross-task-error-recovery-zoom.pdf": "74c43b19d94986b8728ab8c5cb4790d26bdcea321fdcfa12f6c753ea5b1fb36f",
+      "figures/test-final/cross-task-error-recovery-zoom.png": "8c217347f6c100c95d733b7f7861c27306592c0bd0d9dd99083a8a7ef6cf7325",
+      "figures/test-final/family-cell-rates.pdf": "a8202218fbb63b60fa1ea48dd11ce4da82472658e1080528e977ee1b5fe1300b",
+      "figures/test-final/family-cell-rates.png": "e90601e74e8ab32d18e939d99029c82994e75b1e11baae85d1409124d161f57f",
+      "figures/test-final/family-question-rates.pdf": "da0e083f0526150df0273a379c992a27d4042ff7c3dd58bec1014b1229b27273",
+      "figures/test-final/family-question-rates.png": "49067c5b3552e3635cea81cc6bb573ec473a974fcb719481eb321e0f66f4a559",
+      "figures/test-final/paired-cell-deltas-01.pdf": "24167a882ee6e4d95881919477f479f004f46d1eaa0a887e4abc3f5ca7c3adeb",
+      "figures/test-final/paired-cell-deltas-01.png": "5e181544c57a8b5e3a40402a2e25edbdb37e3823e22bc4428c93fae2aa4dce34",
+      "figures/test-final/paired-cell-deltas-02.pdf": "00a9e2bac5c7c7b622a08bedd970bf063c10c0da97781cd8955bf2934342ec55",
+      "figures/test-final/paired-cell-deltas-02.png": "c0448c7f95bd3b62f243743f9b09fa410da98ab32ca32bf430d9eb66492d850b",
+      "figures/test-final/paired-cell-deltas-03.pdf": "d73f0af12b2077bed4089136fb9a8fb7b051014ff4520abe2de8de984283691b",
+      "figures/test-final/paired-cell-deltas-03.png": "4e3e253227720f0046e889a43bb09197dd75020b49cf1b01cbcf38b332e9faa1",
+      "figures/test-final/paired-cell-deltas-04.pdf": "5860d3c6f74d0019d3c1541d109137fca05bf857a44bd3f3b662ec57cdb5f3db",
+      "figures/test-final/paired-cell-deltas-04.png": "7fad0a00b57799a31ef38dc381a9b35a93a217260182f70142976a6ff1ee9d39",
+      "figures/test-final/paired-cell-deltas-05.pdf": "5c8006ecdf66ad340c96d4aab9a0bc10e3ed98a45a2cf073f38ab4377ac217c1",
+      "figures/test-final/paired-cell-deltas-05.png": "95130e6c42b9e06a3d7ce5766a04ea40f89f832ac13a100658673b0aae62c4b9",
+      "figures/test-final/paired-question-deltas-01.pdf": "8f941bef987667a49358c9fb5e1cd4af7e7e29bbcce2d9a42b055ded373cdc75",
+      "figures/test-final/paired-question-deltas-01.png": "c2ebd8b84e1c035450581bb54d5f969505c5774738baa851aa583a4616c55a5c",
+      "figures/test-final/paired-question-deltas-02.pdf": "72692984b89328d2d271bd1c1bd2d1cb3ed1979e03234ee59ae316666fe6df8c",
+      "figures/test-final/paired-question-deltas-02.png": "a10725dd75b3731285b4c298e15610e706dd55b4cb553c4c1116081a444eb80a",
+      "figures/test-final/paired-question-deltas-03.pdf": "90e07d0be1964a868fbca25568e083135e2c0ae4cb4daa4a8d5fd20568895a40",
+      "figures/test-final/paired-question-deltas-03.png": "d18e5e36342f029a7eeabab3b48101a83ca07490e79e44a1745b688e24680aa5",
+      "figures/test-final/paired-question-deltas-04.pdf": "57f1c319a3d26d4671fe0a93591964e0650a6e262fd26af26e60d948665a08f9",
+      "figures/test-final/paired-question-deltas-04.png": "e9388169c5a55fedec276e9b00701daa18fc7e9ab653a49d57b8e75a646762c4",
+      "figures/test-final/paired-question-deltas-05.pdf": "3969f4c954b51b4fb86c3afc950e41ccad17cc20c7550007de7f057fb5966ada",
+      "figures/test-final/paired-question-deltas-05.png": "2eea53bc54343285d0aa257263cae4ca347d5bc06eba59531ac45c2255715eff",
+      "figures/test-final/provenance.json": "8f0216297fca6dd602b3b12eafdabe7ab78fd15715ed654853515538ea2af569",
+      "figures/validation-v1/cross-task-error-recovery.pdf": "c3575ddb1bba9f8e48f12cc70c2c46661b866d7fcf411dee6034c5f71517a2ef",
+      "figures/validation-v1/cross-task-error-recovery.png": "d461db8edb5a72b9e55232db1ecf61c713549ea8ae189056ba7bb91772471951",
+      "figures/validation-v1/family-cell-rates.pdf": "3feac20d6fbc439764971188f9b781a68e7e87286fbd06c26174a6f1152477ec",
+      "figures/validation-v1/family-cell-rates.png": "48b0ca004fd236e331909ce2c8f9a263580a6bf4c4cfffa1605bb67cb31deb8f",
+      "figures/validation-v2/cross-task-error-recovery-zoom.pdf": "b80bc568057853d1d0db12dbaaed20b657006b774477690ea0f158efeca6c285",
+      "figures/validation-v2/cross-task-error-recovery-zoom.png": "2b6c66b9756db28c3fa0fb6a7b59560ca8f8895c0833133fe0a56e87f0b112a2",
+      "figures/validation-v2/family-cell-rates.pdf": "c60e7c9ca3b2f93ede7b9286e62708521537d828cd9d3941de4326df29b55e02",
+      "figures/validation-v2/family-cell-rates.png": "48b0ca004fd236e331909ce2c8f9a263580a6bf4c4cfffa1605bb67cb31deb8f"
+    },
+    "outputs_sha256": {
+      "index.html": "4de6ee703a2c9aa24618c5fb53a56961b8cc86052624c275cd1bbfbc22e86e7e",
+      "overview.js": "45b86e7e0ce239285155a67a4cd3fb1a09e8a870929b9af426310840d86319b5",
+      "follow-up.html": "bf44facc557e7b2298025f7202c5ce84dd985b5199c7f93321f3bb712752a944"
+    },
+    "embedded_payload_sha256": [
+      "41a67ea8a42e8863ee22ff7a6bc78b39deeb5708be262cb4ab10e1900c78454f",
+      "346a5b1fc3d8d33e24babf70ab2b870438fa8c377bf15221bd639f90ff60c736"
+    ],
+    "scientific_records_modified": false,
+    "model_calls": 0,
+    "preserved_native_payloads": true
+  },
+  "browser_checks": {
+    "status": "pass",
+    "checks": [
+      {
+        "summary": {
+          "conditions": 58,
+          "groups": 7,
+          "headlines": 6,
+          "options": 7,
+          "ownMean": true,
+          "ids": [
+            "raw_n1-n1",
+            "capped_n1-n1",
+            "best_n_exact-n1",
+            "best_n_exact-n2",
+            "best_n_exact-n4",
+            "best_n_exact-n8",
+            "best_n_exact-n16",
+            "best_n_exact-n32",
+            "random_complete-n16",
+            "random_complete-n32",
+            "pooled_greedy_swap-n16",
+            "pooled_greedy_swap-n32",
+            "prune_loo_a32_0.001-n32",
+            "prune_loo_a32_0.005-n32",
+            "random_delete_matched_a32_0.001-n32",
+            "random_delete_matched_a32_0.005-n32",
+            "prune_loo_n1_0.005-n1",
+            "random_delete_matched_n1_0.005-n1",
+            "own_mean_log_likelihood-n8",
+            "consensus_exact_support0-n16",
+            "consensus_exact_support0.125-n16",
+            "consensus_exact_support0.25-n16",
+            "editing_round1-n32",
+            "editing_round2-n32",
+            "pooled_greedy_swap_then_prune_0.001-n32",
+            "pooled_greedy_swap_random_delete_matched_0.001-n32",
+            "pooled_greedy_swap_then_prune_0.005-n32",
+            "pooled_greedy_swap_random_delete_matched_0.005-n32",
+            "editing_round2_then_prune_0.001-n32",
+            "editing_round2_random_delete_matched_0.001-n32",
+            "editing_round2_then_prune_0.005-n32",
+            "editing_round2_random_delete_matched_0.005-n32",
+            "pooling_exact_support_lambda0.05-n16",
+            "pooling_exact_support_lambda0.2-n16",
+            "exact_support_only-n16",
+            "consensus_semantic_v5_support0_compatoff_vetooff-n16",
+            "consensus_semantic_v5_support0_compatoff_vetoon-n16",
+            "consensus_semantic_v5_support0_compaton_vetoon-n16",
+            "consensus_semantic_v5_support0.125_compatoff_vetoon-n16",
+            "consensus_semantic_v5_support0.125_compaton_vetoon-n16",
+            "consensus_semantic_v5_medium_support0_compatoff_vetoon-n16",
+            "consensus_semantic_v5_medium_support0_compaton_vetoon-n16",
+            "consensus_semantic_v5_medium_support0.125_compatoff_vetoon-n16",
+            "consensus_semantic_v5_medium_support0.125_compaton_vetoon-n16",
+            "random_complete-n1",
+            "random_complete-n2",
+            "random_complete-n4",
+            "random_complete-n8",
+            "prune_loo_a32_0-n32",
+            "random_delete_matched_a32_0-n32",
+            "prune_coefficient_a32_0.01-n32",
+            "prune_coefficient_a32_0.05-n32",
+            "prune_loo_n1_0-n1",
+            "random_delete_matched_n1_0-n1",
+            "prune_loo_n1_0.001-n1",
+            "random_delete_matched_n1_0.001-n1",
+            "prune_coefficient_n1_0.01-n1",
+            "prune_coefficient_n1_0.05-n1"
+          ],
+          "references": [
+            "capped_n1-n1",
+            "random_delete_matched_a32_0-n32",
+            "random_delete_matched_a32_0.001-n32",
+            "random_delete_matched_a32_0.005-n32",
+            "best_n_exact-n16",
+            "best_n_exact-n32",
+            "pooled_greedy_swap-n16",
+            "pooled_greedy_swap-n32",
+            "pooled_greedy_swap_random_delete_matched_0.001-n32",
+            "pooled_greedy_swap_random_delete_matched_0.005-n32",
+            "editing_round2-n32",
+            "editing_round2_random_delete_matched_0.001-n32",
+            "editing_round2_random_delete_matched_0.005-n32",
+            "exact_support_only-n16",
+            "consensus_exact_support0-n16",
+            "random_delete_matched_n1_0-n1",
+            "random_delete_matched_n1_0.001-n1",
+            "random_delete_matched_n1_0.005-n1",
+            "raw_n1-n1"
+          ],
+          "coverage": "58 / 58 eligible settings cover all four tasks",
+          "scope": "true"
+        }
+      },
+      {
+        "width": 1440,
+        "result": {
+          "scaling": 4,
+          "interventions": 4,
+          "samples": [
+            [
+              "1",
+              "2",
+              "4",
+              "8",
+              "16",
+              "32"
+            ],
+            [
+              "1",
+              "2",
+              "4",
+              "8",
+              "16",
+              "32"
+            ],
+            [
+              "1",
+              "2",
+              "4",
+              "8",
+              "16",
+              "32"
+            ],
+            [
+              "1",
+              "2",
+              "4",
+              "8",
+              "16",
+              "32"
+            ]
+          ],
+          "originalReferences": 34,
+          "pageWidth": 1425,
+          "viewport": 1440,
+          "allIds": [
+            "best_n_exact-n32",
+            "consensus_semantic_v5_support0.125_compaton_vetoon-n16",
+            "prune_loo_a32_0.005-n32",
+            "pooled_greedy_swap-n32",
+            "editing_round2-n32",
+            "pooled_greedy_swap_then_prune_0.005-n32",
+            "best_n_exact-n32",
+            "consensus_semantic_v5_support0.125_compaton_vetoon-n16",
+            "prune_loo_a32_0.005-n32",
+            "pooled_greedy_swap-n32",
+            "editing_round2-n32",
+            "pooled_greedy_swap_then_prune_0.005-n32",
+            "best_n_exact-n32",
+            "consensus_semantic_v5_support0.125_compaton_vetoon-n16",
+            "prune_loo_a32_0.005-n32",
+            "pooled_greedy_swap-n32",
+            "editing_round2-n32",
+            "pooled_greedy_swap_then_prune_0.005-n32",
+            "best_n_exact-n32",
+            "consensus_semantic_v5_support0.125_compaton_vetoon-n16",
+            "prune_loo_a32_0.005-n32",
+            "pooled_greedy_swap-n32",
+            "editing_round2-n32",
+            "pooled_greedy_swap_then_prune_0.005-n32"
+          ],
+          "filteredIds": [
+            "prune_loo_a32_0.005-n32",
+            "prune_loo_a32_0.005-n32",
+            "prune_loo_a32_0.005-n32",
+            "prune_loo_a32_0.005-n32"
+          ],
+          "selected": "prune_loo_a32_0.005-n32",
+          "dialogOpened": true,
+          "enlargedSvg": 1,
+          "dialogClosed": true,
+          "detailsOpened": true,
+          "beforeAfter": 20,
+          "detailOverflow": false
+        },
+        "cohorts": [
+          {
+            "cohort": "full",
+            "scaling": 4,
+            "interventions": 8,
+            "scope": "Original complete question grids; exploratory \u00b7 Per-method grouped 95% intervals."
+          },
+          {
+            "cohort": "test",
+            "scaling": 4,
+            "interventions": 8,
+            "scope": "Original test subset, 268 questions; expanded comparisons are exploratory \u00b7 Per-method grouped 95% intervals."
+          },
+          {
+            "cohort": "development",
+            "scaling": 4,
+            "interventions": 4,
+            "scope": "121 questions, complete grids \u00b7 Per-method grouped 95% intervals."
+          },
+          {
+            "cohort": "pilot",
+            "scaling": 4,
+            "interventions": 4,
+            "scope": "31 questions, 189 selected activations; diagnostic only \u00b7 Per-method grouped 95% intervals."
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "result": {
+          "scaling": 4,
+          "interventions": 4,
+          "samples": [
+            [
+              "1",
+              "2",
+              "4",
+              "8",
+              "16",
+              "32"
+            ],
+            [
+              "1",
+              "2",
+              "4",
+              "8",
+              "16",
+              "32"
+            ],
+            [
+              "1",
+              "2",
+              "4",
+              "8",
+              "16",
+              "32"
+            ],
+            [
+              "1",
+              "2",
+              "4",
+              "8",
+              "16",
+              "32"
+            ]
+          ],
+          "originalReferences": 39,
+          "pageWidth": 390,
+          "viewport": 390,
+          "allIds": [
+            "best_n_exact-n32",
+            "consensus_semantic_v5_support0.125_compaton_vetoon-n16",
+            "prune_loo_a32_0.005-n32",
+            "pooled_greedy_swap-n32",
+            "editing_round2-n32",
+            "pooled_greedy_swap_then_prune_0.005-n32",
+            "best_n_exact-n32",
+            "consensus_semantic_v5_support0.125_compaton_vetoon-n16",
+            "prune_loo_a32_0.005-n32",
+            "pooled_greedy_swap-n32",
+            "editing_round2-n32",
+            "pooled_greedy_swap_then_prune_0.005-n32",
+            "best_n_exact-n32",
+            "consensus_semantic_v5_support0.125_compaton_vetoon-n16",
+            "prune_loo_a32_0.005-n32",
+            "pooled_greedy_swap-n32",
+            "editing_round2-n32",
+            "pooled_greedy_swap_then_prune_0.005-n32",
+            "best_n_exact-n32",
+            "consensus_semantic_v5_support0.125_compaton_vetoon-n16",
+            "prune_loo_a32_0.005-n32",
+            "pooled_greedy_swap-n32",
+            "editing_round2-n32",
+            "pooled_greedy_swap_then_prune_0.005-n32"
+          ],
+          "filteredIds": [
+            "prune_loo_a32_0.005-n32",
+            "prune_loo_a32_0.005-n32",
+            "prune_loo_a32_0.005-n32",
+            "prune_loo_a32_0.005-n32"
+          ],
+          "selected": "prune_loo_a32_0.005-n32",
+          "dialogOpened": true,
+          "enlargedSvg": 1,
+          "dialogClosed": true,
+          "detailsOpened": true,
+          "beforeAfter": 20,
+          "detailOverflow": false
+        },
+        "cohorts": [
+          {
+            "cohort": "full",
+            "scaling": 4,
+            "interventions": 8,
+            "scope": "Original complete question grids; exploratory \u00b7 Per-method grouped 95% intervals."
+          },
+          {
+            "cohort": "test",
+            "scaling": 4,
+            "interventions": 8,
+            "scope": "Original test subset, 268 questions; expanded comparisons are exploratory \u00b7 Per-method grouped 95% intervals."
+          },
+          {
+            "cohort": "development",
+            "scaling": 4,
+            "interventions": 4,
+            "scope": "121 questions, complete grids \u00b7 Per-method grouped 95% intervals."
+          },
+          {
+            "cohort": "pilot",
+            "scaling": 4,
+            "interventions": 4,
+            "scope": "31 questions, 189 selected activations; diagnostic only \u00b7 Per-method grouped 95% intervals."
+          }
+        ]
+      },
+      {
+        "ci": {
+          "qualityWhiskers": 24,
+          "reconstructionWhiskers": 24,
+          "pairedIntervals": 40,
+          "links": [
+            "index.html",
+            "downloads/expanded-report.md",
+            "downloads/expanded-slides.pdf",
+            "follow-up.html",
+            "follow-up.html",
+            "historical-expanded-study.html",
+            "downloads/expanded-slides.pptx",
+            "downloads/expanded-speaker-notes.md",
+            "downloads/expanded-native-results.json",
+            "downloads/expanded-resource-supplement.json",
+            "original-study.html"
+          ],
+          "rateLabel": "Secondary all-bank activation-site means with grouped pointwise 95% intervals, regardless of the selected cohort. Reconstruction measures fit, not truthful prose. Focused axes include every displayed interval; missing points remain blank.",
+          "differenceLabel": "Original complete question grids; exploratory. Paired changes against the original are unavailable here; these plots show measured rates. Axes include the original and every interval."
+        }
+      },
+      {
+        "historical": {
+          "conditions": 70,
+          "script": [
+            "expansion.js"
+          ]
+        }
+      },
+      {
+        "followup": {
+          "methods": 10,
+          "charts": 4,
+          "rows": 10
+        }
+      }
+    ],
+    "scopeCounts": {
+      "conditions": 58,
+      "cohorts": {
+        "full": {
+          "rows": 280,
+          "comparisons": 584
+        },
+        "test": {
+          "rows": 280,
+          "comparisons": 724
+        },
+        "development": {
+          "rows": 280,
+          "comparisons": 496
+        },
+        "pilot": {
+          "rows": 280,
+          "comparisons": 496
+        }
+      },
+      "examples": 70,
+      "reconstructionRows": 280
+    },
+    "engine": "Chrome/151.0.7922.34",
+    "hosted_rendering_verified": false,
+    "preservedAssetHashes": {
+      "downloads/expanded-slides.pdf": true,
+      "downloads/expanded-slides.pptx": true,
+      "expansion.js": true,
+      "downloads/expanded-native-results.json": true,
+      "downloads/target-only-native-results.json": true
+    },
+    "sourceHashes": {
+      "index.html": "4de6ee703a2c9aa24618c5fb53a56961b8cc86052624c275cd1bbfbc22e86e7e",
+      "overview.js": "45b86e7e0ce239285155a67a4cd3fb1a09e8a870929b9af426310840d86319b5",
+      "follow-up.html": "bf44facc557e7b2298025f7202c5ce84dd985b5199c7f93321f3bb712752a944"
+    }
+  },
+  "public_readback": {
+    "status": "pass",
+    "checked_utc": "2026-10-12T16:24:24.717319+00:00",
+    "checks": [
+      {
+        "path": "index.html",
+        "http_status": 200,
+        "expected_sha256": "4de6ee703a2c9aa24618c5fb53a56961b8cc86052624c275cd1bbfbc22e86e7e",
+        "served_sha256": "91204b90e801cfea233d1f548603434f599a13a5209caddfa23ecb15c102c930",
+        "matches": true,
+        "hosting_script_added_bytes": 938,
+        "normalized_sha256": "4de6ee703a2c9aa24618c5fb53a56961b8cc86052624c275cd1bbfbc22e86e7e"
+      },
+      {
+        "path": "overview.js",
+        "http_status": 200,
+        "expected_sha256": "45b86e7e0ce239285155a67a4cd3fb1a09e8a870929b9af426310840d86319b5",
+        "served_sha256": "45b86e7e0ce239285155a67a4cd3fb1a09e8a870929b9af426310840d86319b5",
+        "matches": true
+      },
+      {
+        "path": "follow-up.html",
+        "http_status": 200,
+        "expected_sha256": "bf44facc557e7b2298025f7202c5ce84dd985b5199c7f93321f3bb712752a944",
+        "served_sha256": "9c6fb5a46421612af1766d907d437dd96c7b923a407a39a7c0bd3ce7bd49d7ac",
+        "matches": true,
+        "hosting_script_added_bytes": 938,
+        "normalized_sha256": "bf44facc557e7b2298025f7202c5ce84dd985b5199c7f93321f3bb712752a944"
+      },
+      {
+        "path": "historical-expanded-study.html",
+        "http_status": 200,
+        "expected_sha256": "416a42bceb2bcf8a9039d45847deecf0d64af95dab30f96cea1e82dfd47d3cbe",
+        "served_sha256": "56b49fc6704ffbd0148bae47a3f09f74db9a9717002f8495d26d0a2c962783e8",
+        "matches": true,
+        "hosting_script_added_bytes": 938,
+        "normalized_sha256": "416a42bceb2bcf8a9039d45847deecf0d64af95dab30f96cea1e82dfd47d3cbe"
+      },
+      {
+        "path": "downloads/expanded-slides.pdf",
+        "http_status": 200,
+        "expected_sha256": "71041a77358161ff7eda8400a20af06150f1ef5bb8fb5492c2901cbd867fa830",
+        "served_sha256": "71041a77358161ff7eda8400a20af06150f1ef5bb8fb5492c2901cbd867fa830",
+        "matches": true
+      },
+      {
+        "path": "downloads/expanded-slides.pptx",
+        "http_status": 200,
+        "expected_sha256": "5e794e3cfecfa256bbf0498eba1a5953938a27d6088f6bbdcd4452fe0059c0c8",
+        "served_sha256": "5e794e3cfecfa256bbf0498eba1a5953938a27d6088f6bbdcd4452fe0059c0c8",
+        "matches": true
+      },
+      {
+        "path": "downloads/target-only-slides.pdf",
+        "http_status": 200,
+        "expected_sha256": "46ad230842a4d0cc3c7e6025d797f0232a3518f5c71d2aa48042197242593732",
+        "served_sha256": "46ad230842a4d0cc3c7e6025d797f0232a3518f5c71d2aa48042197242593732",
+        "matches": true
+      },
+      {
+        "path": "downloads/expanded-native-results.json",
+        "http_status": 200,
+        "expected_sha256": "e2773e297d7724f20d656ecf07c5de00097604d8a85c516938a565626b07876e",
+        "served_sha256": "e2773e297d7724f20d656ecf07c5de00097604d8a85c516938a565626b07876e",
+        "matches": true
+      }
+    ],
+    "hosted_browser_rendering_verified": false
+  },
+  "research_sources": {
+    "dashboard/overview.html": "cb3918249da809b3c26c5bb9b592b915e25c22904d3c720000f1c90ec760dfd5",
+    "dashboard/expansion.js": "45b86e7e0ce239285155a67a4cd3fb1a09e8a870929b9af426310840d86319b5",
+    "scripts/restore_dashboard_overview.py": "492c9bb0526554a3315ba019221dd0a392231754191980d748b38eeb1dbb4103"
+  },
+  "model_calls": 0,
+  "statistical_recomputation": false,
+  "gpu_work": false,
+  "research_repository_pushed": false,
+  "limitations": [
+    "Native PowerPoint rendering unverified; full PDF and PPTX are byte-identical to prior release.",
+    "Actual hosted browser rendering unverified; local browser checks and public asset readback passed."
+  ]
+}

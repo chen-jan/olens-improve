@@ -1,8 +1,8 @@
 # Target-only follow-up delivery
 
-**Complete and public, 2026-10-11.** Version **20** is live. Native deployment succeeded with public access, and all 16 checked public assets match the reviewed sources. Three HTML files have only the hosting layer's inserted Cloudflare script; their original source bytes are intact. See the [publication receipt](reviews/target-only-site-delivery-v1.json).
+**Complete and public, 2026-10-11; presentation moved 2026-10-12.** The version-20 follow-up remains at [its separate page](https://olens-improve-research.jan618.chatgpt.site/follow-up.html); version 21 restores the earlier overview and full deck on the main page. Native deployment succeeded with public access, and all 16 checked public assets match the reviewed sources. Three HTML files have only the hosting layer's inserted Cloudflare script; their original source bytes are intact. See the [publication receipt](reviews/target-only-site-delivery-v1.json).
 
-- [Dashboard](https://olens-improve-research.jan618.chatgpt.site)
+- [Follow-up dashboard](https://olens-improve-research.jan618.chatgpt.site/follow-up.html)
 - [Report](https://olens-improve-research.jan618.chatgpt.site/downloads/target-only-report.md)
 - [12-slide supplement — PDF](https://olens-improve-research.jan618.chatgpt.site/downloads/target-only-slides.pdf)
 - [12-slide supplement — PowerPoint](https://olens-improve-research.jan618.chatgpt.site/downloads/target-only-slides.pptx)

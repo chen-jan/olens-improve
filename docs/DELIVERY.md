@@ -1,6 +1,17 @@
-# Completed Oracle Lens follow-up
+# Current dashboard and full slide deck
 
-The [public dashboard](https://olens-improve-research.jan618.chatgpt.site) is version **20**, with the four new activation-only selectors, six existing references, all four complete banks, paired uncertainty and exact before/after examples. The original Oracle Lens remains visible. Control-activation methods and their combinations are excluded from the current valid-method scope.
+Public version **21** restores the earlier overview, sampling curves, expandable method comparisons and original **94-slide deck**, with the existing error bars. The recent follow-up is available separately.
+
+- [Main dashboard](https://olens-improve-research.jan618.chatgpt.site)
+- [Full slides — PDF](https://olens-improve-research.jan618.chatgpt.site/downloads/expanded-slides.pdf)
+- [Full slides — PowerPoint](https://olens-improve-research.jan618.chatgpt.site/downloads/expanded-slides.pptx)
+- [Newer swaps/refill follow-up](https://olens-improve-research.jan618.chatgpt.site/follow-up.html)
+
+The main charts retain 58 eligible settings. Control-activation methods remain outside current valid comparisons and are preserved in the historical archive and historical full deck. Existing results and confidence intervals are unchanged. [Verification receipt](reviews/restored-overview-site-delivery-v1.json).
+
+## Follow-up results
+
+The [separate follow-up](https://olens-improve-research.jan618.chatgpt.site/follow-up.html) preserves the version-20 presentation, with the four new activation-only selectors, six existing references, all four complete banks, paired uncertainty and exact before/after examples. The original Oracle Lens remains visible. Control-activation methods and their combinations are excluded from the current valid-method scope.
 
 - [Follow-up report](https://olens-improve-research.jan618.chatgpt.site/downloads/target-only-report.md)
 - [12-slide supplement — PDF](https://olens-improve-research.jan618.chatgpt.site/downloads/target-only-slides.pdf)
