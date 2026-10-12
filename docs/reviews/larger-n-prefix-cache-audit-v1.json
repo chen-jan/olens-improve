@@ -1,0 +1,166 @@
+{
+  "schema_version": "larger_n_prefix_cache_audit_v1",
+  "created_utc": "2026-10-12T23:08:59.064259+00:00",
+  "scope": "Read-only numerical and selected-output comparison between completed provisional score64 and score128 runs; no quality evaluation.",
+  "authority": "Final score256 computes every N prefix against one common cache and is authoritative for final metrics. Independent interim-prefix numerics remain provisional.",
+  "source_files": [
+    {
+      "path": "${OLENS_DATA_ROOT}/larger-n-pilot-v1/score128/ar-cache/batches.jsonl",
+      "sha256": "d0da333d2dbea64efcccfa1662bc9b39c4739d5714c42d881e1d6510c22fc4c9"
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/larger-n-pilot-v1/score128/ar-cache/contract.json",
+      "sha256": "4bf97d2b013791219b51e688250543a80eb44f57028a058f6ae93c99ffda2cd4"
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/larger-n-pilot-v1/score128/ar-cache/raw_24698450eab160640aea.index.json",
+      "sha256": "62dbda56acaf64cb58f8cd67991f5c9954ff276b67ae6334119729cdd4c80fb4"
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/larger-n-pilot-v1/score128/ar-cache/raw_24698450eab160640aea.safetensors",
+      "sha256": "63222338cc62693cce7de00d2f635282031f8bdd700486974adb17f7420d0200"
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/larger-n-pilot-v1/score128/ar-cache/raw_42e61588ebcf35ecd93b.index.json",
+      "sha256": "5b322dcd4267eaf9ad32b713335fca9939658655a1b4f43f21d8051039e18c2b"
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/larger-n-pilot-v1/score128/ar-cache/raw_42e61588ebcf35ecd93b.safetensors",
+      "sha256": "273128090e28261d8c0433c036054623130a55845ed3c5d13b80b31da7db003d"
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/larger-n-pilot-v1/score128/ar-cache/raw_6017d36d97438be798df.index.json",
+      "sha256": "2f570abfabb83cb3cc50fc01dbb8df8894ac2bd36d50c32b7fcd34ed79d99f5b"
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/larger-n-pilot-v1/score128/ar-cache/raw_6017d36d97438be798df.safetensors",
+      "sha256": "480e5114eb86531a3dc60d519187e89b22a5420eb3d958d9ac3102d3e8a56221"
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/larger-n-pilot-v1/score128/ar-cache/raw_842ff9b28feb0973bcfb.index.json",
+      "sha256": "0d252d0f98b592a64fd307e1ea85cf28b87907661aae4f41f14d378163992fff"
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/larger-n-pilot-v1/score128/ar-cache/raw_842ff9b28feb0973bcfb.safetensors",
+      "sha256": "27d097156aad5dccdea82aeba57d59a41790796d655b8fe48bdcb1e4f6e732a3"
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/larger-n-pilot-v1/score128/ar-cache/raw_bc1ef4f610defc199dff.index.json",
+      "sha256": "24644e24117dfb591249211133464f37352562172882a73732f03a587540dbd9"
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/larger-n-pilot-v1/score128/ar-cache/raw_bc1ef4f610defc199dff.safetensors",
+      "sha256": "25aecea38c8f0a41e15bca7fe3b5d79f973cfd53fb8c898f2abf23e4f2b00c59"
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/larger-n-pilot-v1/score128/selections.jsonl",
+      "sha256": "3ceb577144bde5bb32d5693c76a6b1466bcb6e9b18c7a4b42eaaadfec73aed17"
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/larger-n-pilot-v1/score128/spec.json",
+      "sha256": "3da4e2a1e7c1c87eb766f1be203094ef0f9732ae6c155004df2fedc549ca9d88"
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/larger-n-pilot-v1/score128/status.json",
+      "sha256": "8aaf73380484e06b1317a530c66c750429bb76336de2009fd4b2b7d41fc58f72"
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/larger-n-pilot-v1/score64/ar-cache/batches.jsonl",
+      "sha256": "9790e51c5e135439e74146125c45602764005bb0c0b1223e05038a8c15afb47b"
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/larger-n-pilot-v1/score64/ar-cache/contract.json",
+      "sha256": "4bf97d2b013791219b51e688250543a80eb44f57028a058f6ae93c99ffda2cd4"
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/larger-n-pilot-v1/score64/ar-cache/raw_2684913ba7295cda4884.index.json",
+      "sha256": "ee331afd89623d84b3ba2b4abd582bdcf9a24280421b40b25ef3a71b50f88c84"
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/larger-n-pilot-v1/score64/ar-cache/raw_2684913ba7295cda4884.safetensors",
+      "sha256": "ff4650bbff70adbcf1bd31bdda893515f07a412975ea50bf5098d3ed134db45f"
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/larger-n-pilot-v1/score64/ar-cache/raw_4700e513a242e35d2299.index.json",
+      "sha256": "11cd11c5e47a43c644665447641f2286aa94dd3c8968e89ef6f02763f275c853"
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/larger-n-pilot-v1/score64/ar-cache/raw_4700e513a242e35d2299.safetensors",
+      "sha256": "c1f43dfb62383694ae089e704bcf9800946fbfb4ca833cecb9903832f4c9c326"
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/larger-n-pilot-v1/score64/selections.jsonl",
+      "sha256": "4c739b5f8ccd3f071cd3e90d79de29e7ae97cd4fb3fc6605111aa9d4a43f88e3"
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/larger-n-pilot-v1/score64/spec.json",
+      "sha256": "6387b2f3110ce7bb3b8df7b053be98eafb9763f6513eca3961768f8fadd9d844"
+    },
+    {
+      "path": "${OLENS_DATA_ROOT}/larger-n-pilot-v1/score64/status.json",
+      "sha256": "f67647a39957e29216b3d62dce3d566d8259aeafe099823cdcb94b8a16d81ea3"
+    }
+  ],
+  "selection_rule": {
+    "source": "score64/ar-cache/batches.jsonl in committed line order",
+    "last_partial": "last journal event with new_unique_vectors < 128",
+    "random_full": "random.Random(20261012).choice([(zero_based_index,event) for each committed event with new_unique_vectors == 128])",
+    "ordered_key_union": "all vector cache keys in each selected index in stored order, final partial first then selected full batch",
+    "seed": 20261012,
+    "selected_batches": [
+      {
+        "journal_index_zero_based": 29,
+        "new_unique_vectors": 47,
+        "index_path": "${OLENS_DATA_ROOT}/larger-n-pilot-v1/score64/ar-cache/raw_2684913ba7295cda4884.index.json",
+        "index_sha256": "ee331afd89623d84b3ba2b4abd582bdcf9a24280421b40b25ef3a71b50f88c84"
+      },
+      {
+        "journal_index_zero_based": 13,
+        "new_unique_vectors": 128,
+        "index_path": "${OLENS_DATA_ROOT}/larger-n-pilot-v1/score64/ar-cache/raw_4700e513a242e35d2299.index.json",
+        "index_sha256": "11cd11c5e47a43c644665447641f2286aa94dd3c8968e89ef6f02763f275c853"
+      }
+    ],
+    "ordered_keys_sha256": "4d5b756f154a003929a4c8bc84d58a1038a2c8076cb107f5376b977302b702b8"
+  },
+  "raw_vector_comparison": {
+    "score64_new_keys_all_present_in_score128": 3759,
+    "sampled_vectors": 175,
+    "sampled_partial_batch_vectors": 47,
+    "sampled_full_batch_vectors": 128,
+    "bitwise_equal_vectors": 128,
+    "bitwise_equal_full_batch_vectors": 128,
+    "raw_relative_l2_max": 0.026160098612308502,
+    "raw_relative_l2_median": 0.0,
+    "raw_max_absolute_difference": 2.387859344482422,
+    "relative_l2_definition": "norm(score128 - score64) / max(norm(score64), 1e-12), per raw 5120-vector",
+    "finding": "The sampled full batch is bitwise identical; the sampled partial batch has measurable batch-shape sensitivity."
+  },
+  "selection_comparison": {
+    "cells": 32,
+    "prefixes": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32,
+      64
+    ],
+    "text_and_phrase_id_comparisons": 224,
+    "changed_text_or_phrase_id_comparisons": 0,
+    "N64_changed_text_phrase_id_or_sample_index_cells": 0,
+    "N64_max_absolute_FVE_difference": 9.70046565296201e-09,
+    "N64_mean_signed_FVE_difference_score128_minus_score64": 5.991800597349162e-10,
+    "N64_winners_using_sampled_partial_batch_keys": 0
+  },
+  "candidate_fit_comparison": {
+    "complete_candidate_FVE_comparisons": 2048,
+    "eligibility_changes": 0,
+    "max_absolute_FVE_difference": 4.455558039140328e-05,
+    "median_absolute_FVE_difference": 1.8439408888681896e-09,
+    "units": "FVE fraction, not percentage points"
+  },
+  "conclusion": "No selected-output differences observed across any shared prefix. No production code or cache changes were made for this audit. Use only the final score256 common-cache curve for final reported metrics.",
+  "future_untested_suggestion": "Padding the final AR batch to 128 might stabilize batch shape. This was neither tested nor implemented and is not required for interpreting the common-cache final curve."
+}

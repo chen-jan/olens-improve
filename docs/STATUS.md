@@ -1,5 +1,7 @@
 # Execution status
 
+**Larger-sample pilot complete, 2026-10-12:** 7,168 new readouts extend 32 development activation sites (eight per family) through N256. All 32 historical N32 results replay correctly. Mean reconstruction FVE is 30.8563%, 31.7763%, 32.1015% and 32.4544% at N32/64/128/256. The run used 21 minutes elapsed, 0.461944 H200-hours including profiles, 0.947 GB and no new judge API calls. The 32-site qualitative review records mixed changes; these are not official question-level quality scores. GPU steps and watchers finished while the two user allocations remain intact. Full-bank extensions have only been costed, not launched. See [experiment 068](experiments/068-larger-sample-pilot.md). Public version 21 and all earlier study artifacts remain unchanged.
+
 **Presentation restored, 2026-10-12:** public version 21 restores the earlier overview and unchanged 94-slide deck, with error bars. The new swaps/refill page and 12-slide supplement remain separate. Current charts show 58 eligible settings; 12 control-activation settings remain in the historical archive. Desktop/mobile interactions and eight public asset checks passed. No new model calls or scientific recomputation. See [experiment 066](experiments/066-restore-overview-and-slides.md) and the [delivery receipt](reviews/restored-overview-site-delivery-v1.json).
 
 ## Current follow-up: search within the current activation — 2026-10-11

@@ -1,0 +1,199 @@
+{
+  "status": "complete",
+  "updated_utc": "2026-10-12T23:18:21.661412+00:00",
+  "scope": "32 development sites for measured pilot; hypothetical full four-family bank of19435sites for forecasts",
+  "full_bank_extension_started": false,
+  "new_judge_API_calls": 0,
+  "GPU_price_USD_per_hour": null,
+  "generation": {
+    "new_samples": 7168,
+    "output_tokens": 725236,
+    "generation_seconds": 897.0917512653396,
+    "step_wall_seconds": 917.5406798273325,
+    "output_tokens_per_second": 808.4301287767515,
+    "samples_per_second": 7.990264083790318,
+    "peak_allocated_GB": 102.846034432
+  },
+  "forecast_formula": "additional_readouts / measured_pilot_samples_per_second /3600 +6.784023*(N-32)/32",
+  "forecasts": [
+    {
+      "target_n": 64,
+      "existing_n": 32,
+      "additional_readouts": 621920,
+      "generation_H200_task_hours": 21.62075667887137,
+      "AR_H200_task_hours_historical_linear_estimate": 6.784023,
+      "total_H200_task_hours_central": 28.40477967887137,
+      "ideal_4_gpu_hours": 7.101194919717843,
+      "ideal_8_gpu_hours": 3.5505974598589214,
+      "planning_ranges": {
+        "gpu_hours": [
+          29,
+          35
+        ],
+        "4_gpu_wall_hours": [
+          8,
+          10
+        ],
+        "8_gpu_wall_hours": [
+          4,
+          5
+        ]
+      }
+    },
+    {
+      "target_n": 128,
+      "existing_n": 32,
+      "additional_readouts": 1865760,
+      "generation_H200_task_hours": 64.86227003661412,
+      "AR_H200_task_hours_historical_linear_estimate": 20.352069,
+      "total_H200_task_hours_central": 85.21433903661412,
+      "ideal_4_gpu_hours": 21.30358475915353,
+      "ideal_8_gpu_hours": 10.651792379576765,
+      "planning_ranges": {
+        "gpu_hours": [
+          86,
+          104
+        ],
+        "4_gpu_wall_hours": [
+          22,
+          28
+        ],
+        "8_gpu_wall_hours": [
+          11,
+          14
+        ]
+      }
+    },
+    {
+      "target_n": 256,
+      "existing_n": 32,
+      "additional_readouts": 4353440,
+      "generation_H200_task_hours": 151.34529675209959,
+      "AR_H200_task_hours_historical_linear_estimate": 47.488161000000005,
+      "total_H200_task_hours_central": 198.8334577520996,
+      "ideal_4_gpu_hours": 49.7083644380249,
+      "ideal_8_gpu_hours": 24.85418221901245,
+      "planning_ranges": {
+        "gpu_hours": [
+          201,
+          243
+        ],
+        "4_gpu_wall_hours": [
+          48,
+          72
+        ],
+        "8_gpu_wall_hours": [
+          26,
+          33
+        ]
+      }
+    }
+  ],
+  "limits": [
+    "Arithmetic central estimates do not include queue, preemption or final judging.",
+    "Pilot has two source layers and equal family weighting; full bank has different family and layer proportions.",
+    "Eight-GPU forecasts assume all four preemptable GPUs stay available.",
+    "AR cost scales from historical full-bank work; this is not a new full-bank timing run.",
+    "Generation and AR are local; no cluster dollar rate is available."
+  ],
+  "source_sha256": {
+    "${OLENS_DATA_ROOT}/larger-n-pilot-v1/sampling/status.json": "3992dce7396d2448103db5a2af9ea5f2f0a3fb1340a88048cceb4a9ac6fda1c6",
+    "${OLENS_DATA_ROOT}/larger-n-pilot-v1/batch-profile/profile.json": "f72124082b8296f7c5c9ed72139f1b9a5af22cbe8ce44f1e21815920e0533c9d",
+    "${OLENS_DATA_ROOT}/larger-n-pilot-v1/ar-profile/results.json": "d3a2c88e16d022404a72087de412d5f07edb2c0c01465727d069c3bddcd7bcfa",
+    "docs/experiments/054-final-resources.md": "f7b9e2a58b20999462dbd8e6aca6f8ae51e0ffa7550fb28cd2d5577e47e28019",
+    "${OLENS_DATA_ROOT}/larger-n-pilot-v1/score256/summary.json": "1971a3807c886ebae316dc51f8ccbce35d09ff3c9ba49ca66c763a3db2e7fa22"
+  },
+  "completed_H200_steps": [
+    {
+      "step_id": "25637237.6",
+      "task": "generation batch profile",
+      "elapsed_seconds": 95,
+      "state": "COMPLETED",
+      "gpus": 1
+    },
+    {
+      "step_id": "25637237.7",
+      "task": "pilot generation",
+      "elapsed_seconds": 918,
+      "state": "COMPLETED",
+      "gpus": 1
+    },
+    {
+      "step_id": "25637240.4",
+      "task": "AR batch profile",
+      "elapsed_seconds": 90,
+      "state": "COMPLETED",
+      "gpus": 1
+    },
+    {
+      "step_id": "25637240.5",
+      "task": "score64",
+      "elapsed_seconds": 79,
+      "state": "COMPLETED",
+      "gpus": 1
+    },
+    {
+      "step_id": "25637240.6",
+      "task": "score128",
+      "elapsed_seconds": 159,
+      "state": "COMPLETED",
+      "gpus": 1
+    },
+    {
+      "step_id": "25637240.7",
+      "task": "score256",
+      "elapsed_seconds": 322,
+      "state": "COMPLETED",
+      "gpus": 1
+    }
+  ],
+  "pilot_wall_seconds": 1270,
+  "profiles_plus_pilot_wall_seconds": 1393,
+  "pilot_H200_task_hours": 0.41055555555555556,
+  "total_profiles_and_pilot_H200_task_hours": 0.46194444444444444,
+  "accounting_scope": "Only named project srun steps, not the user-held parent allocations; Slurm times are whole seconds.",
+  "orchestration_note": "A local receipt read briefly returned FileNotFound after the remote scoring step completed. Completed stdout, subsequent file visibility and hashes confirmed success; no GPU rerun.",
+  "pilot_storage_snapshot": {
+    "path": "${OLENS_DATA_ROOT}/larger-n-pilot-v1",
+    "files": 795,
+    "logical_bytes": 946761549,
+    "excludes_shared_weights": true,
+    "utc": "2026-10-12T23:18:21.706496+00:00"
+  },
+  "final_score_summary": {
+    "status": "complete",
+    "spec_sha256": "f741f6bbcfb0e5d88ca0e7c997b074dc08135c94b5b55f37d921eb57517bab43",
+    "scope": "32-cell larger-N pilot; descriptive diagnostic only",
+    "cells": 32,
+    "mean_FVE_by_N": {
+      "1": 0.25051903593168157,
+      "2": 0.26718592193250423,
+      "4": 0.2803160012323337,
+      "8": 0.2873195890688653,
+      "16": 0.3030959781456997,
+      "32": 0.3085628766796174,
+      "64": 0.31776254399032156,
+      "128": 0.32101457257518057,
+      "256": 0.32454419780202964
+    },
+    "mean_FVE_gain_over_N32": {
+      "1": -0.05804384074793584,
+      "2": -0.04137695474711317,
+      "4": -0.028246875447283715,
+      "8": -0.021243287610752115,
+      "16": -0.005466898533917686,
+      "32": 0.0,
+      "64": 0.009199667310704152,
+      "128": 0.012451695895563164,
+      "256": 0.01598132112241224
+    },
+    "historical_n32_audit_counts": {
+      "match": 32
+    },
+    "selections_path": "${OLENS_DATA_ROOT}/larger-n-pilot-v1/score256/selections.jsonl",
+    "selections_sha256": "7b8c9488f4a65931ddba49e07bc45db42914e2b46a3d2116bcc2f4c43066b81e",
+    "new_unique_vectors": 26252,
+    "existing_unique_vectors_reused": 3960,
+    "official_whole_question_evaluation": false
+  }
+}
