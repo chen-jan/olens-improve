@@ -1,0 +1,36 @@
+{
+  "status": "published",
+  "public_browser": "Navigation exceeded the 30-second load timeout; hosted rendering not verified. Native deployment succeeded.",
+  "changed_assets": [
+    "dist/index.html",
+    "dist/sampling-overlay.js"
+  ],
+  "preserved_assets": 106,
+  "scientific_payloads_unchanged": true,
+  "browser": {
+    "status": "passed",
+    "points": 48,
+    "task_bars": 24,
+    "unexpected_bars": 0,
+    "accessible_ar_intervals": 24,
+    "original_references": 4,
+    "viewports": [
+      1440,
+      390
+    ],
+    "enlarge": true,
+    "single_axis_modes": true,
+    "page_errors": []
+  },
+  "new_model_calls": 0,
+  "new_gpu_work": false,
+  "publication": {
+    "project_id": "appgprj_6aca37fc2878819185850105787209f9",
+    "version_number": 24,
+    "version_id": "appgprj_6aca37fc2878819185850105787209f9~appgver_549f02c6eef88191a183082cbc71f8f5",
+    "commit_sha": "6695b5d0950e407332bef330d2e2ff3870d718d2",
+    "deployment_id": "appgdep_6acd8c9316088191b71dd0f7c25d7fb6",
+    "url": "https://olens-improve-research.jan618.chatgpt.site",
+    "updated_at": "2026-10-13T01:42:53.540099+00:00"
+  }
+}

@@ -21,7 +21,7 @@
   window.renderSamplingOverlay = source => {
     lastSource = source;
     el('headline-scope').textContent = source.cohorts.full.scope;
-    el('scaling-note').textContent = 'Blue circles use the left task axis; amber squares use the right AR reconstruction axis. Axes have separate scales: line crossings do not mean equal values. Bars are existing grouped pointwise 95% intervals for each mean/rate, not paired-change intervals. AR fit averages activation sites; the recovery tasks aggregate questions. This overlay is available only for all 469 questions, matching the reconstruction data. No fitted scaling law or new evaluation.';
+    el('scaling-note').textContent = 'Blue circles use the left task axis; amber squares use the right AR reconstruction axis. Axes have separate scales: line crossings do not mean equal values. Error bars show existing grouped pointwise 95% intervals for task rates only, not paired-change intervals. AR intervals remain available on hover or focus. AR fit averages activation sites; the recovery tasks aggregate questions. This overlay is available only for all 469 questions, matching the reconstruction data. No fitted scaling law or new evaluation.';
     el('scaling').innerHTML = families.map(([family, title, endpoint, direction]) => {
       const metric = id => source.cohorts.full.rows.find(r => r.condition === id && r.family === family)?.metric;
       const original = metric('raw_n1-n1');
@@ -50,7 +50,7 @@
           if (!Number.isFinite(value)) return;
           const previous=rows[i-1]?.[key]?.value;
           if(Number.isFinite(previous))parts.push(`<path d="M${x(rows[i-1].n)} ${y(previous)}L${x(row.n)} ${y(value)}" fill="none" stroke="${color}" stroke-width="2" ${key==='r'?'stroke-dasharray="7 3"':''}/>`);
-          if(ci)parts.push(`<path d="M${x(row.n)} ${y(ci[0])}V${y(ci[1])}M${x(row.n)-3} ${y(ci[0])}H${x(row.n)+3}M${x(row.n)-3} ${y(ci[1])}H${x(row.n)+3}" stroke="${color}" opacity=".45" fill="none"/>`);
+          if(key==='q'&&ci)parts.push(`<path class="so-task-interval" d="M${x(row.n)} ${y(ci[0])}V${y(ci[1])}M${x(row.n)-4} ${y(ci[0])}H${x(row.n)+4}M${x(row.n)-4} ${y(ci[1])}H${x(row.n)+4}" stroke="${color}" stroke-width="1.5" opacity=".85" fill="none"/>`);
           const what=key==='q'?`${endpoint}: ${pct(value)}; ${row.q.numerator}/${row.q.denominator}`:`AR reconstruction: ${pct(value)}; ${row.r.sites}/${row.r.intended} sites`;
           const hint=`${row.n} samples. ${what}. ${ci?`95% interval ${pct(ci[0])} to ${pct(ci[1])}.`:'Interval unavailable.'}`;
           parts.push(`<g class="so-point" tabindex="0" role="img" aria-label="${esc(hint)}" data-series="${key==='q'?'task':'reconstruction'}" data-family="${family}" data-n="${row.n}" data-value="${value}"><title>${esc(hint)}</title>${key==='q'?`<circle cx="${x(row.n)}" cy="${y(value)}" r="4" fill="${color}"/>`:`<rect x="${x(row.n)-4}" y="${y(value)-4}" width="8" height="8" fill="${color}"/>`}</g>`);

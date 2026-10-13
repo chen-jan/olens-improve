@@ -1,6 +1,6 @@
 # Current dashboard and full slide deck
 
-Public version **23** retains the earlier overview, expandable method comparisons and original **94-slide deck**, with the existing error bars. Sampling curves now show task quality and AR reconstruction on separate vertical axes. The reconstruction-versus-task plots below the six-method section support any custom subset of methods through independent toggles. All results are unchanged. The recent follow-up is available separately.
+Public version **24** retains the earlier overview, expandable method comparisons and original **94-slide deck**. Sampling curves show task quality and AR reconstruction on separate vertical axes, with stronger error bars for task performance only; AR intervals remain available on hover or keyboard focus. The reconstruction-versus-task plots below the six-method section support any custom subset of methods through independent toggles. All results are unchanged. The recent follow-up is available separately. See the [display verification receipt](reviews/task-error-bars-v1.json).
 
 - [Main dashboard](https://olens-improve-research.jan618.chatgpt.site)
 - [Reconstruction and task performance together](https://olens-improve-research.jan618.chatgpt.site/#fit-quality)
