@@ -121,6 +121,13 @@ pre{white-space:pre-wrap;overflow-wrap:anywhere;font:14px/1.55 Aptos,'Segoe UI',
 .fq-legend{display:flex;flex-wrap:wrap;gap:8px 12px;margin:14px 0}
 .fq-legend button{display:flex;align-items:center;gap:8px;background:white;padding:7px 10px;font-size:13px}
 .fq-legend button[aria-pressed=true]{border-color:var(--ink);box-shadow:inset 0 -2px var(--ink)}
+.fq-legend button[aria-pressed=false]{border-style:dashed;color:var(--muted)}
+.fq-legend button[aria-pressed=false] span{opacity:.4}
+.fq-selection-controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.fq-selection-controls span{font-size:13px;color:var(--muted)}
+.sampling-overlay svg text{font:12px Aptos,'Segoe UI',Arial,sans-serif;fill:var(--muted)}
+.sampling-overlay .so-task-label{color:var(--blue);fill:var(--blue)}.sampling-overlay .so-fit-label{color:var(--orange);fill:var(--orange)}
+.so-endpoints{display:flex;justify-content:space-between;gap:12px;font-weight:600}.so-point:focus{outline:2px solid var(--ink);outline-offset:3px}
+@media(max-width:650px){.sampling-overlay svg text{font-size:13px}.so-endpoints{flex-direction:column;gap:3px}}
 .fq-legend span{display:inline-flex;align-items:center;justify-content:center;border-radius:50%;width:21px;height:21px;color:white;font-weight:650}
 .fq-checkbox{flex-direction:row;align-items:center;gap:9px;padding-bottom:9px}.fq-checkbox input{min-width:0;width:17px;height:17px;accent-color:var(--blue)}
 .fq-overlap{color:var(--muted);font-size:12px!important;min-height:36px}.fq-values{margin-top:24px}

@@ -11,6 +11,7 @@
     ['Edit pooled text', 'editing_round2-n32', 'pooled_greedy_swap-n32', '#745b99'],
     ['Combine + prune', 'pooled_greedy_swap_then_prune_0.005-n32', 'pooled_greedy_swap-n32', '#536b31'],
   ].map(([label, id, parent, color], i) => ({label, id, parent, color, number: i + 1}));
+  const selectedMethods = new Set(settings.map(s => s.id));
   const families = [
     ['hallucination', 'Hallucination (chat)', 'Contradicted specific readouts; lower is better.', true],
     ['multihop_mt', 'Multihop (multi-token)', 'Questions recovering all required intermediate names; higher is better.', false],
@@ -34,10 +35,14 @@
   };
 
   function render() {
-    const chosen = document.getElementById('fit-quality-method').value;
-    const selected = settings.filter(s => chosen === 'all' || s.id === chosen);
+    const selected = settings.filter(s => selectedMethods.has(s.id));
     const parents = document.getElementById('fit-quality-parents').checked;
-    document.querySelectorAll('#fit-quality-legend button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.method === chosen)));
+    document.querySelectorAll('#fit-quality-legend button').forEach(b => {
+      const enabled = selectedMethods.has(b.dataset.method);
+      b.setAttribute('aria-pressed', String(enabled));
+      b.title = `${enabled ? 'Hide' : 'Show'} ${b.textContent.trim()}`;
+    });
+    document.getElementById('fit-quality-selection').textContent = `${selected.length} of ${settings.length} methods selected`;
     document.getElementById('fit-quality-preview').textContent = 'Hover or focus a numbered dot for both values and uncertainty; select it for the existing method details.';
     document.getElementById('fit-quality-plots').innerHTML = families.map(([family, title, explanation, errors], fi) => {
       const rows = selected.map(s => ({s, p: point(s.id, family), parent: point(s.parent, family)}));
@@ -88,7 +93,7 @@
       bits.push(`<text x="${(left + right) / 2}" y="${h - 13}" text-anchor="middle">AR reconstruction (%) →</text><text transform="translate(17 ${(top + bottom) / 2}) rotate(-90)" text-anchor="middle">${errors ? 'Contradicted readouts (%)' : 'Questions recovered (%)'}</text><text x="${right}" y="18" text-anchor="end">Better task result ↑</text>`);
       const defs = settings.map(s => `<marker id="fq-arrow-${fi}-${s.number}" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7" fill="${s.color}"/></marker>`).join('');
       const overlap = rows.some((a, i) => rows.some((b, j) => i < j && valid(a.p) && valid(b.p) && Math.hypot(x(a.p.r.mean_fve) - x(b.p.r.mean_fve), y(a.p.q.value) - y(b.p.q.value)) < 20));
-      const selectedValues = rows.length === 1 ? `<p class="fq-selected-values"><strong>${esc(rows[0].s.label)}</strong><br>AR reconstruction: <strong>${pct(rows[0].p.r?.mean_fve, 2)}</strong> · ${errors ? 'Contradicted readouts' : 'Questions recovered'}: <strong>${pct(rows[0].p.q?.value)}</strong></p>` : '';
+      const selectedValues = rows.length === 0 ? '<p class="fq-selected-values">Choose methods above to build your comparison. Original references remain visible.</p>' : rows.length === 1 ? `<p class="fq-selected-values"><strong>${esc(rows[0].s.label)}</strong><br>AR reconstruction: <strong>${pct(rows[0].p.r?.mean_fve, 2)}</strong> · ${errors ? 'Contradicted readouts' : 'Questions recovered'}: <strong>${pct(rows[0].p.q?.value)}</strong></p>` : '';
       return `<article class="fq-panel" id="fit-quality-${family}"><div class="chart-heading"><h3>${title}</h3><button type="button" class="chart-expand" data-expand-chart="fit-quality-${family}" data-chart-title="${title}: reconstruction and task performance">Enlarge</button></div><p class="fq-endpoint">${explanation}</p><p class="original-reference"><strong>Original released lens: ${pct(original?.value)}</strong><br>Four-bullet original: ${pct(capped.q?.value)}; AR fit ${pct(capped.r?.mean_fve, 2)}.</p><svg viewBox="0 0 ${w} ${h}" role="group" aria-label="${title}: AR reconstruction horizontally and task rate vertically, with higher performance toward the upper right"><defs>${defs}</defs>${bits.join('')}</svg>${selectedValues}${overlap ? '<p class="fq-overlap">Some methods overlap. Choose one above to inspect its values and starting point.</p>' : ''}</article>`;
     }).join('');
     root.querySelectorAll('.fq-point').forEach(p => {
@@ -98,23 +103,29 @@
       p.addEventListener('click', open);
       p.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
     });
+    renderValues(selected);
   }
 
   function initialize(data) {
     source = data;
-    document.getElementById('fit-quality-method').innerHTML = '<option value="all">All six methods</option>' + settings.map(s => `<option value="${s.id}">${s.number}. ${s.label}</option>`).join('');
-    document.getElementById('fit-quality-legend').innerHTML = settings.map(s => `<button type="button" data-method="${s.id}" aria-pressed="false"><span style="background:${s.color}">${s.number}</span>${s.label}</button>`).join('');
+    document.getElementById('fit-quality-legend').innerHTML = settings.map(s => `<button type="button" data-method="${s.id}" aria-pressed="true"><span style="background:${s.color}">${s.number}</span>${s.label}</button>`).join('');
     document.getElementById('fit-quality-legend').addEventListener('click', e => {
       const b = e.target.closest('button[data-method]'); if (!b) return;
-      const select = document.getElementById('fit-quality-method'); select.value = select.value === b.dataset.method ? 'all' : b.dataset.method; render();
+      if (selectedMethods.has(b.dataset.method)) selectedMethods.delete(b.dataset.method);
+      else selectedMethods.add(b.dataset.method);
+      render();
     });
-    for (const id of ['fit-quality-method', 'fit-quality-parents']) document.getElementById(id).addEventListener('change', render);
+    document.getElementById('fit-quality-all').addEventListener('click', () => { settings.forEach(s => selectedMethods.add(s.id)); render(); });
+    document.getElementById('fit-quality-clear').addEventListener('click', () => { selectedMethods.clear(); render(); });
+    document.getElementById('fit-quality-parents').addEventListener('change', render);
     window.addEventListener('resize', render);
-    document.getElementById('fit-quality-values').innerHTML = families.map(([family, title, explanation]) => `<h3>${title}</h3><p>${explanation}</p><div class="table-wrap"><table><thead><tr><th>Method</th><th>AR reconstruction</th><th>Task rate</th><th>Starting method</th></tr></thead><tbody>${settings.map(s => {
+    render();
+  }
+  function renderValues(selected) {
+    document.getElementById('fit-quality-values').innerHTML = families.map(([family, title, explanation]) => `<h3>${title}</h3><p>${explanation}</p><div class="table-wrap"><table><thead><tr><th>Method</th><th>AR reconstruction</th><th>Task rate</th><th>Starting method</th></tr></thead><tbody>${selected.map(s => {
       const p = point(s.id, family);
       return `<tr><td>${s.number}. ${s.label}</td><td>${pct(p.r?.mean_fve, 2)}<small>95%: ${interval(p.r?.mean_fve_ci95, 2)}</small></td><td>${pct(p.q?.value)}<small>95%: ${interval(p.q?.ci95)}; ${p.q?.numerator ?? '?'} / ${p.q?.denominator ?? '?'}</small></td><td>${esc(name(s.parent))}</td></tr>`;
-    }).join('')}</tbody></table></div>`).join('');
-    render();
+    }).join('') || '<tr><td colspan="4">No methods selected.</td></tr>'}</tbody></table></div>`).join('');
   }
   const embedded = document.getElementById('embedded-data');
   try {

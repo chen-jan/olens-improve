@@ -481,6 +481,15 @@ function tradeoff() {
 }
 
 function scaling() {
+  const both = element('scaling-metric').querySelector('[value="both"]');
+  if (both) {
+    both.disabled = element('cohort').value !== 'full' || !data.reconstruction;
+    if (both.disabled && element('scaling-metric').value === 'both') element('scaling-metric').value = 'quality';
+    if (element('scaling-metric').value === 'both' && typeof window.renderSamplingOverlay === 'function') {
+      window.renderSamplingOverlay(data);
+      return;
+    }
+  }
   const samples = [1, 2, 4, 8, 16, 32];
   const fit = element('scaling-metric').value === 'reconstruction';
   element('headline-scope').textContent = cohort().scope;

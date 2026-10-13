@@ -1,0 +1,58 @@
+{
+  "status": "published_and_public_browser_verified",
+  "changed_assets": [
+    "dist/expansion.css",
+    "dist/index.html",
+    "dist/overview.js",
+    "dist/fit-quality.js"
+  ],
+  "new_asset": "dist/sampling-overlay.js",
+  "preserved_existing_assets": 103,
+  "scientific_payloads_unchanged": true,
+  "browser": {
+    "status": "passed",
+    "overlay": {
+      "points": 48,
+      "task": 24,
+      "ar": 24,
+      "bad": []
+    },
+    "allSubsets": {
+      "combinations": 64
+    },
+    "viewports": [
+      1440,
+      390
+    ],
+    "keyboard": true,
+    "mobile_toggle": true,
+    "single_axis_modes": true,
+    "cohort_guard": true,
+    "references_retained": true,
+    "page_errors": []
+  },
+  "new_model_calls": 0,
+  "new_gpu_work": false,
+  "source_sha256": {
+    "dashboard/overview.html": "663ec0497d021f58c9d73c9b85ca05c4376192c4819e88ccb1f8d420125a4b5b",
+    "dashboard/expansion.js": "d73ecdbf267cfb4e907af2a7c9a182f43293c6b2d2886948680e6f9c3ccaa546",
+    "dashboard/expansion.css": "33ebffd4c7a36f381097c7c4838cc686598660c4bd69144b3cdd91954a48bc3d",
+    "dashboard/fit-quality.js": "2a227d882c652d9adefcb07eb0892567e0e90ce9ded0481efa5fe81e7164db5d",
+    "dashboard/sampling-overlay.js": "db4efe1826573dfc11d64c32d84b2308e4b86e8d35fa58794fcfff842474ae28"
+  },
+  "publication": {
+    "project_id": "appgprj_6aca37fc2878819185850105787209f9",
+    "version_number": 23,
+    "version_id": "appgprj_6aca37fc2878819185850105787209f9~appgver_b2786c142d2481918b1d1a34d81b1dff",
+    "commit_sha": "89fb324af3e71a1196115f6715d228841e36c7ef",
+    "deployment_id": "appgdep_6acd8b99c7d0819186dbba0e61d96213",
+    "url": "https://olens-improve-research.jan618.chatgpt.site",
+    "updated_at": "2026-10-13T01:38:44.612036+00:00"
+  },
+  "public_browser": {
+    "status": 200,
+    "url": "https://olens-improve-research.jan618.chatgpt.site/#sample-trends",
+    "overlay_points": 48,
+    "selected_method_points": 8
+  }
+}
