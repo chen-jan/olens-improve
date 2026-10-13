@@ -1,0 +1,783 @@
+{
+  "status": "complete",
+  "scope": "partial-grid cell diagnostics",
+  "sites": 32,
+  "conditions": [
+    {
+      "condition": "raw_n1-n1",
+      "families": {
+        "hallucination": {
+          "expected_cells": 8,
+          "empty_abstentions": 0,
+          "missing_stage1": 0,
+          "missing_stage2": 0,
+          "metrics": {
+            "contradiction_rate": {
+              "numerator": 5,
+              "denominator": 8,
+              "value": 0.625,
+              "ci95": [
+                0.25,
+                0.875
+              ],
+              "items": 8,
+              "independent_groups": 8,
+              "defined_draws": 2000,
+              "warning": "Tiny group count; intervals cannot establish robustness"
+            },
+            "assertion_share": {
+              "numerator": 8,
+              "denominator": 8,
+              "value": 1.0,
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "items": 8,
+              "independent_groups": 8,
+              "defined_draws": 2000,
+              "warning": "Tiny group count; intervals cannot establish robustness"
+            },
+            "off_topic_rate": {
+              "numerator": 1,
+              "denominator": 8,
+              "value": 0.125,
+              "ci95": [
+                0.0,
+                0.375
+              ],
+              "items": 8,
+              "independent_groups": 8,
+              "defined_draws": 2000,
+              "warning": "Tiny group count; intervals cannot establish robustness"
+            },
+            "false_span_tally": {
+              "numerator": 19,
+              "denominator": 8,
+              "value": 2.375,
+              "ci95": [
+                0.875,
+                4.125
+              ],
+              "items": 8,
+              "independent_groups": 8,
+              "defined_draws": 2000,
+              "warning": "Tiny group count; intervals cannot establish robustness"
+            },
+            "true_claim_tally": {
+              "numerator": 9,
+              "denominator": 8,
+              "value": 1.125,
+              "ci95": [
+                0.125,
+                2.25
+              ],
+              "items": 8,
+              "independent_groups": 8,
+              "defined_draws": 2000,
+              "warning": "Tiny group count; intervals cannot establish robustness"
+            },
+            "unverifiable_claims_per_output": {
+              "numerator": 24,
+              "denominator": 8,
+              "value": 3.0,
+              "ci95": [
+                1.25,
+                4.875
+              ],
+              "items": 8,
+              "independent_groups": 8,
+              "defined_draws": 2000,
+              "warning": "Tiny group count; intervals cannot establish robustness"
+            }
+          }
+        },
+        "multihop_mt": {
+          "expected_cells": 8,
+          "empty_abstentions": 0,
+          "missing_stage1": 0,
+          "missing_stage2": 0,
+          "metrics": {
+            "cell_recovery": {
+              "numerator": 0,
+              "denominator": 8,
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "items": 8,
+              "independent_groups": 8,
+              "defined_draws": 2000,
+              "warning": "Tiny group count; intervals cannot establish robustness"
+            }
+          }
+        },
+        "chain_intermediates": {
+          "expected_cells": 8,
+          "empty_abstentions": 0,
+          "missing_stage1": 0,
+          "missing_stage2": 0,
+          "metrics": {
+            "cell_recovery": {
+              "numerator": 1,
+              "denominator": 8,
+              "value": 0.125,
+              "ci95": [
+                0.0,
+                0.42857142857142855
+              ],
+              "items": 7,
+              "independent_groups": 7,
+              "defined_draws": 2000,
+              "warning": "Tiny group count; intervals cannot establish robustness"
+            }
+          }
+        },
+        "role_bound_association": {
+          "expected_cells": 8,
+          "empty_abstentions": 0,
+          "missing_stage1": 0,
+          "missing_stage2": 0,
+          "metrics": {
+            "cell_recovery": {
+              "numerator": 0,
+              "denominator": 8,
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "items": 8,
+              "independent_groups": 8,
+              "defined_draws": 2000,
+              "warning": "Tiny group count; intervals cannot establish robustness"
+            }
+          }
+        }
+      }
+    },
+    {
+      "condition": "capped_n1-n1",
+      "families": {
+        "hallucination": {
+          "expected_cells": 8,
+          "empty_abstentions": 0,
+          "missing_stage1": 0,
+          "missing_stage2": 0,
+          "metrics": {
+            "contradiction_rate": {
+              "numerator": 5,
+              "denominator": 8,
+              "value": 0.625,
+              "ci95": [
+                0.25,
+                0.875
+              ],
+              "items": 8,
+              "independent_groups": 8,
+              "defined_draws": 2000,
+              "warning": "Tiny group count; intervals cannot establish robustness"
+            },
+            "assertion_share": {
+              "numerator": 8,
+              "denominator": 8,
+              "value": 1.0,
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "items": 8,
+              "independent_groups": 8,
+              "defined_draws": 2000,
+              "warning": "Tiny group count; intervals cannot establish robustness"
+            },
+            "off_topic_rate": {
+              "numerator": 1,
+              "denominator": 8,
+              "value": 0.125,
+              "ci95": [
+                0.0,
+                0.375
+              ],
+              "items": 8,
+              "independent_groups": 8,
+              "defined_draws": 2000,
+              "warning": "Tiny group count; intervals cannot establish robustness"
+            },
+            "false_span_tally": {
+              "numerator": 19,
+              "denominator": 8,
+              "value": 2.375,
+              "ci95": [
+                0.875,
+                4.125
+              ],
+              "items": 8,
+              "independent_groups": 8,
+              "defined_draws": 2000,
+              "warning": "Tiny group count; intervals cannot establish robustness"
+            },
+            "true_claim_tally": {
+              "numerator": 9,
+              "denominator": 8,
+              "value": 1.125,
+              "ci95": [
+                0.125,
+                2.25
+              ],
+              "items": 8,
+              "independent_groups": 8,
+              "defined_draws": 2000,
+              "warning": "Tiny group count; intervals cannot establish robustness"
+            },
+            "unverifiable_claims_per_output": {
+              "numerator": 24,
+              "denominator": 8,
+              "value": 3.0,
+              "ci95": [
+                1.25,
+                4.875
+              ],
+              "items": 8,
+              "independent_groups": 8,
+              "defined_draws": 2000,
+              "warning": "Tiny group count; intervals cannot establish robustness"
+            }
+          }
+        },
+        "multihop_mt": {
+          "expected_cells": 8,
+          "empty_abstentions": 0,
+          "missing_stage1": 0,
+          "missing_stage2": 0,
+          "metrics": {
+            "cell_recovery": {
+              "numerator": 0,
+              "denominator": 8,
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "items": 8,
+              "independent_groups": 8,
+              "defined_draws": 2000,
+              "warning": "Tiny group count; intervals cannot establish robustness"
+            }
+          }
+        },
+        "chain_intermediates": {
+          "expected_cells": 8,
+          "empty_abstentions": 0,
+          "missing_stage1": 0,
+          "missing_stage2": 0,
+          "metrics": {
+            "cell_recovery": {
+              "numerator": 1,
+              "denominator": 8,
+              "value": 0.125,
+              "ci95": [
+                0.0,
+                0.42857142857142855
+              ],
+              "items": 7,
+              "independent_groups": 7,
+              "defined_draws": 2000,
+              "warning": "Tiny group count; intervals cannot establish robustness"
+            }
+          }
+        },
+        "role_bound_association": {
+          "expected_cells": 8,
+          "empty_abstentions": 0,
+          "missing_stage1": 0,
+          "missing_stage2": 0,
+          "metrics": {
+            "cell_recovery": {
+              "numerator": 0,
+              "denominator": 8,
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "items": 8,
+              "independent_groups": 8,
+              "defined_draws": 2000,
+              "warning": "Tiny group count; intervals cannot establish robustness"
+            }
+          }
+        }
+      }
+    },
+    {
+      "condition": "best_n_exact-n32",
+      "families": {
+        "hallucination": {
+          "expected_cells": 8,
+          "empty_abstentions": 0,
+          "missing_stage1": 0,
+          "missing_stage2": 0,
+          "metrics": {
+            "contradiction_rate": {
+              "numerator": 5,
+              "denominator": 8,
+              "value": 0.625,
+              "ci95": [
+                0.25,
+                0.875
+              ],
+              "items": 8,
+              "independent_groups": 8,
+              "defined_draws": 2000,
+              "warning": "Tiny group count; intervals cannot establish robustness"
+            },
+            "assertion_share": {
+              "numerator": 8,
+              "denominator": 8,
+              "value": 1.0,
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "items": 8,
+              "independent_groups": 8,
+              "defined_draws": 2000,
+              "warning": "Tiny group count; intervals cannot establish robustness"
+            },
+            "off_topic_rate": {
+              "numerator": 1,
+              "denominator": 8,
+              "value": 0.125,
+              "ci95": [
+                0.0,
+                0.375
+              ],
+              "items": 8,
+              "independent_groups": 8,
+              "defined_draws": 2000,
+              "warning": "Tiny group count; intervals cannot establish robustness"
+            },
+            "false_span_tally": {
+              "numerator": 17,
+              "denominator": 8,
+              "value": 2.125,
+              "ci95": [
+                0.75,
+                3.625
+              ],
+              "items": 8,
+              "independent_groups": 8,
+              "defined_draws": 2000,
+              "warning": "Tiny group count; intervals cannot establish robustness"
+            },
+            "true_claim_tally": {
+              "numerator": 10,
+              "denominator": 8,
+              "value": 1.25,
+              "ci95": [
+                0.625,
+                1.875
+              ],
+              "items": 8,
+              "independent_groups": 8,
+              "defined_draws": 2000,
+              "warning": "Tiny group count; intervals cannot establish robustness"
+            },
+            "unverifiable_claims_per_output": {
+              "numerator": 14,
+              "denominator": 8,
+              "value": 1.75,
+              "ci95": [
+                0.875,
+                2.75
+              ],
+              "items": 8,
+              "independent_groups": 8,
+              "defined_draws": 2000,
+              "warning": "Tiny group count; intervals cannot establish robustness"
+            }
+          }
+        },
+        "multihop_mt": {
+          "expected_cells": 8,
+          "empty_abstentions": 0,
+          "missing_stage1": 0,
+          "missing_stage2": 0,
+          "metrics": {
+            "cell_recovery": {
+              "numerator": 1,
+              "denominator": 8,
+              "value": 0.125,
+              "ci95": [
+                0.0,
+                0.375
+              ],
+              "items": 8,
+              "independent_groups": 8,
+              "defined_draws": 2000,
+              "warning": "Tiny group count; intervals cannot establish robustness"
+            }
+          }
+        },
+        "chain_intermediates": {
+          "expected_cells": 8,
+          "empty_abstentions": 0,
+          "missing_stage1": 0,
+          "missing_stage2": 0,
+          "metrics": {
+            "cell_recovery": {
+              "numerator": 0,
+              "denominator": 8,
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "items": 7,
+              "independent_groups": 7,
+              "defined_draws": 2000,
+              "warning": "Tiny group count; intervals cannot establish robustness"
+            }
+          }
+        },
+        "role_bound_association": {
+          "expected_cells": 8,
+          "empty_abstentions": 0,
+          "missing_stage1": 0,
+          "missing_stage2": 0,
+          "metrics": {
+            "cell_recovery": {
+              "numerator": 0,
+              "denominator": 8,
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "items": 8,
+              "independent_groups": 8,
+              "defined_draws": 2000,
+              "warning": "Tiny group count; intervals cannot establish robustness"
+            }
+          }
+        }
+      }
+    },
+    {
+      "condition": "best_n_exact-n64",
+      "families": {
+        "hallucination": {
+          "expected_cells": 8,
+          "empty_abstentions": 0,
+          "missing_stage1": 0,
+          "missing_stage2": 0,
+          "metrics": {
+            "contradiction_rate": {
+              "numerator": 4,
+              "denominator": 8,
+              "value": 0.5,
+              "ci95": [
+                0.125,
+                0.875
+              ],
+              "items": 8,
+              "independent_groups": 8,
+              "defined_draws": 2000,
+              "warning": "Tiny group count; intervals cannot establish robustness"
+            },
+            "assertion_share": {
+              "numerator": 8,
+              "denominator": 8,
+              "value": 1.0,
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "items": 8,
+              "independent_groups": 8,
+              "defined_draws": 2000,
+              "warning": "Tiny group count; intervals cannot establish robustness"
+            },
+            "off_topic_rate": {
+              "numerator": 1,
+              "denominator": 8,
+              "value": 0.125,
+              "ci95": [
+                0.0,
+                0.375
+              ],
+              "items": 8,
+              "independent_groups": 8,
+              "defined_draws": 2000,
+              "warning": "Tiny group count; intervals cannot establish robustness"
+            },
+            "false_span_tally": {
+              "numerator": 13,
+              "denominator": 8,
+              "value": 1.625,
+              "ci95": [
+                0.375,
+                3.25
+              ],
+              "items": 8,
+              "independent_groups": 8,
+              "defined_draws": 2000,
+              "warning": "Tiny group count; intervals cannot establish robustness"
+            },
+            "true_claim_tally": {
+              "numerator": 9,
+              "denominator": 8,
+              "value": 1.125,
+              "ci95": [
+                0.375,
+                1.875
+              ],
+              "items": 8,
+              "independent_groups": 8,
+              "defined_draws": 2000,
+              "warning": "Tiny group count; intervals cannot establish robustness"
+            },
+            "unverifiable_claims_per_output": {
+              "numerator": 14,
+              "denominator": 8,
+              "value": 1.75,
+              "ci95": [
+                0.75,
+                2.75
+              ],
+              "items": 8,
+              "independent_groups": 8,
+              "defined_draws": 2000,
+              "warning": "Tiny group count; intervals cannot establish robustness"
+            }
+          }
+        },
+        "multihop_mt": {
+          "expected_cells": 8,
+          "empty_abstentions": 0,
+          "missing_stage1": 0,
+          "missing_stage2": 0,
+          "metrics": {
+            "cell_recovery": {
+              "numerator": 1,
+              "denominator": 8,
+              "value": 0.125,
+              "ci95": [
+                0.0,
+                0.375
+              ],
+              "items": 8,
+              "independent_groups": 8,
+              "defined_draws": 2000,
+              "warning": "Tiny group count; intervals cannot establish robustness"
+            }
+          }
+        },
+        "chain_intermediates": {
+          "expected_cells": 8,
+          "empty_abstentions": 0,
+          "missing_stage1": 0,
+          "missing_stage2": 0,
+          "metrics": {
+            "cell_recovery": {
+              "numerator": 0,
+              "denominator": 8,
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "items": 7,
+              "independent_groups": 7,
+              "defined_draws": 2000,
+              "warning": "Tiny group count; intervals cannot establish robustness"
+            }
+          }
+        },
+        "role_bound_association": {
+          "expected_cells": 8,
+          "empty_abstentions": 0,
+          "missing_stage1": 0,
+          "missing_stage2": 0,
+          "metrics": {
+            "cell_recovery": {
+              "numerator": 0,
+              "denominator": 8,
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "items": 8,
+              "independent_groups": 8,
+              "defined_draws": 2000,
+              "warning": "Tiny group count; intervals cannot establish robustness"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "n32_to_n64": [
+    {
+      "baseline_condition": "best_n_exact-n32",
+      "condition": "best_n_exact-n64",
+      "family": "hallucination",
+      "endpoint": "contradiction_rate",
+      "baseline": 0.625,
+      "proposed": 0.5,
+      "delta": -0.125,
+      "ci95_delta": [
+        -0.375,
+        0.0
+      ],
+      "items": 8,
+      "independent_groups": 8,
+      "seed": 20261010,
+      "bootstrap_replicates": 2000,
+      "defined_draws": 2000,
+      "warning": "Tiny group count; intervals cannot establish robustness"
+    },
+    {
+      "baseline_condition": "best_n_exact-n32",
+      "condition": "best_n_exact-n64",
+      "family": "hallucination",
+      "endpoint": "assertion_share",
+      "baseline": 1.0,
+      "proposed": 1.0,
+      "delta": 0.0,
+      "ci95_delta": [
+        0.0,
+        0.0
+      ],
+      "items": 8,
+      "independent_groups": 8,
+      "seed": 20261010,
+      "bootstrap_replicates": 2000,
+      "defined_draws": 2000,
+      "warning": "Tiny group count; intervals cannot establish robustness"
+    },
+    {
+      "baseline_condition": "best_n_exact-n32",
+      "condition": "best_n_exact-n64",
+      "family": "hallucination",
+      "endpoint": "off_topic_rate",
+      "baseline": 0.125,
+      "proposed": 0.125,
+      "delta": 0.0,
+      "ci95_delta": [
+        0.0,
+        0.0
+      ],
+      "items": 8,
+      "independent_groups": 8,
+      "seed": 20261010,
+      "bootstrap_replicates": 2000,
+      "defined_draws": 2000,
+      "warning": "Tiny group count; intervals cannot establish robustness"
+    },
+    {
+      "baseline_condition": "best_n_exact-n32",
+      "condition": "best_n_exact-n64",
+      "family": "hallucination",
+      "endpoint": "unverifiable_claims_per_output",
+      "baseline": 1.75,
+      "proposed": 1.75,
+      "delta": 0.0,
+      "ci95_delta": [
+        -0.375,
+        0.375
+      ],
+      "items": 8,
+      "independent_groups": 8,
+      "seed": 20261010,
+      "bootstrap_replicates": 2000,
+      "defined_draws": 2000,
+      "warning": "Tiny group count; intervals cannot establish robustness"
+    },
+    {
+      "baseline_condition": "best_n_exact-n32",
+      "condition": "best_n_exact-n64",
+      "family": "multihop_mt",
+      "endpoint": "cell_recovery",
+      "baseline": 0.125,
+      "proposed": 0.125,
+      "delta": 0.0,
+      "ci95_delta": [
+        0.0,
+        0.0
+      ],
+      "items": 8,
+      "independent_groups": 8,
+      "seed": 20261010,
+      "bootstrap_replicates": 2000,
+      "defined_draws": 2000,
+      "warning": "Tiny group count; intervals cannot establish robustness"
+    },
+    {
+      "baseline_condition": "best_n_exact-n32",
+      "condition": "best_n_exact-n64",
+      "family": "chain_intermediates",
+      "endpoint": "cell_recovery",
+      "baseline": 0.0,
+      "proposed": 0.0,
+      "delta": 0.0,
+      "ci95_delta": [
+        0.0,
+        0.0
+      ],
+      "items": 7,
+      "independent_groups": 7,
+      "seed": 20261010,
+      "bootstrap_replicates": 2000,
+      "defined_draws": 2000,
+      "warning": "Tiny group count; intervals cannot establish robustness"
+    },
+    {
+      "baseline_condition": "best_n_exact-n32",
+      "condition": "best_n_exact-n64",
+      "family": "role_bound_association",
+      "endpoint": "cell_recovery",
+      "baseline": 0.0,
+      "proposed": 0.0,
+      "delta": 0.0,
+      "ci95_delta": [
+        0.0,
+        0.0
+      ],
+      "items": 8,
+      "independent_groups": 8,
+      "seed": 20261010,
+      "bootstrap_replicates": 2000,
+      "defined_draws": 2000,
+      "warning": "Tiny group count; intervals cannot establish robustness"
+    }
+  ],
+  "cost": {
+    "run_id": "larger-n-pilot-quality-v1",
+    "by_status": [
+      {
+        "status": "settled",
+        "attempts": 12,
+        "reserved_usd": 0.06100125,
+        "actual_usd": 0.000809352
+      },
+      {
+        "status": "unknown",
+        "attempts": 2,
+        "reserved_usd": 0.009825125,
+        "actual_usd": 0.0
+      }
+    ],
+    "invoice_reconciled": false,
+    "gpu_work": false
+  },
+  "sources": {
+    "${OLENS_DATA_ROOT}/larger-n-quality-v1/report.json": "1d8964645669dadd9ced320d2757bd92d138544941ada5dd3f6a0fe760cad37d",
+    "${OLENS_DATA_ROOT}/larger-n-quality-v1/approval.json": "61630c9cd3a24741a652fb09f15aa954a927aa391d771dfa8acce34a11091cb9",
+    "${OLENS_DATA_ROOT}/larger-n-quality-v1/manifest.json": "bdae50bff67af30a84fb7e8673efdae0bd8dd88f773061adde0638446032f4d4",
+    "${OLENS_DATA_ROOT}/larger-n-quality-v1/selections.jsonl": "c168abb29e8f467a64936e64144f51a79cee0f206fc2966a64fcf33219576904"
+  }
+}

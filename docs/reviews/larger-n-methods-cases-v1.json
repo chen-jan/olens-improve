@@ -1,0 +1,389 @@
+{
+  "selection_rule": "Two observed hallucination improvements, pruning label regression, multihop bridge loss, and a seed-20261013 random unchanged role case; post-hoc descriptive inspection",
+  "cases": [
+    {
+      "cell_id": "hallucination|chat-dailydialog-0068|L52|p00024",
+      "method": "best_n_exact",
+      "family": "hallucination",
+      "arms": [
+        {
+          "n": 32,
+          "text": "- I don't have a physical body, so I don't have personal fashion preferences or a\n- 我没有 physical body or personal style preferences, so I don't have a favorite pair of jeans.\n- 我没有 a body, so I don't have personal preferences for how jeans look on me. However, I do have a strong appreciation for good design, fit,\n- I don’t have a body or personal taste, so I don't wear jeans or have favorite styles. However, I do love the **aesthetic** of denim.",
+          "native_result": {
+            "key": "chat-dailydialog-0068__L052__p24",
+            "id": "chat-dailydialog-0068",
+            "layer": 52,
+            "pos": 24,
+            "site_kind": "clause",
+            "samples": [
+              "- I don't have a physical body, so I don't have personal fashion preferences or a\n- 我没有 physical body or personal style preferences, so I don't have a favorite pair of jeans.\n- 我没有 a body, so I don't have personal preferences for how jeans look on me. However, I do have a strong appreciation for good design, fit,\n- I don’t have a body or personal taste, so I don't wear jeans or have favorite styles. However, I do love the **aesthetic** of denim."
+            ],
+            "verdict": [
+              {
+                "idx": 0,
+                "kind": "specific",
+                "class": "hallucinated",
+                "revoked": false,
+                "wrong": [
+                  "I don't have a physical body, so I don't have personal fashion preferences or a",
+                  "I don’t have a body or personal taste, so I don't wear jeans or have favorite styles. However, I do love the **aesthetic** of denim."
+                ],
+                "off_topic": [],
+                "n_unverified": 0,
+                "claims": {
+                  "false": 2,
+                  "true": 2,
+                  "unverifiable": 1,
+                  "disputed": 0,
+                  "off_topic": 0,
+                  "n_unverified": 0
+                }
+              }
+            ]
+          },
+          "source": "${OLENS_DATA_ROOT}/larger-n-methods-v1/quality-all/judgments/best_n_exact-n32/hallucination/results.json"
+        },
+        {
+          "n": 64,
+          "text": "- I don’t have a physical body, so I don’t have personal style preferences\n- 我 don’t have a physical body, so I don’t actually have a favorite pair of jeans. However, I do have\n- 我 don't have personal tastes, body shape, or a closet to hang jeans in, so I don't have a personal favorite. However\n- I don't have physical legs or a personal style, so I don't wear jeans or have personal fashion preferences. However, I",
+          "native_result": {
+            "key": "chat-dailydialog-0068__L052__p24",
+            "id": "chat-dailydialog-0068",
+            "layer": 52,
+            "pos": 24,
+            "site_kind": "clause",
+            "samples": [
+              "- I don’t have a physical body, so I don’t have personal style preferences\n- 我 don’t have a physical body, so I don’t actually have a favorite pair of jeans. However, I do have\n- 我 don't have personal tastes, body shape, or a closet to hang jeans in, so I don't have a personal favorite. However\n- I don't have physical legs or a personal style, so I don't wear jeans or have personal fashion preferences. However, I"
+            ],
+            "verdict": [
+              {
+                "idx": 0,
+                "kind": "specific",
+                "class": "consistent",
+                "revoked": false,
+                "wrong": [],
+                "off_topic": [],
+                "n_unverified": 1,
+                "claims": {
+                  "false": 0,
+                  "true": 0,
+                  "unverifiable": 0,
+                  "disputed": 0,
+                  "off_topic": 0,
+                  "n_unverified": 0
+                }
+              }
+            ]
+          },
+          "source": "${OLENS_DATA_ROOT}/larger-n-methods-v1/quality-all/judgments/best_n_exact-n64/hallucination/results.json"
+        }
+      ]
+    },
+    {
+      "cell_id": "hallucination|chat-dailydialog-0002|L52|p00022",
+      "method": "pooled_greedy_swap",
+      "family": "hallucination",
+      "arms": [
+        {
+          "n": 32,
+          "text": "- 您可能 mistaken my name. I am actually Ms. Zhang, not \"Teacher Wang.\" If you have any questions, feel free to\n- 我 am not \"Miss Liu.\" I am Qwen, an AI assistant developed by Alibaba Group. Additionally, it seems there might be some confusion about\n- 我需要 clarify that I am not \"Ms. Wang.\" I am Qwen, a large language model developed by Alibaba Group's Tongyi Lab\n- 您应该叫我“文心”，不是“陈老师”。不过没关系，很高兴认识你！我是 Qwen\n",
+          "native_result": {
+            "key": "chat-dailydialog-0002__L052__p22",
+            "id": "chat-dailydialog-0002",
+            "layer": 52,
+            "pos": 22,
+            "site_kind": "clause",
+            "samples": [
+              "- 您可能 mistaken my name. I am actually Ms. Zhang, not \"Teacher Wang.\" If you have any questions, feel free to\n- 我 am not \"Miss Liu.\" I am Qwen, an AI assistant developed by Alibaba Group. Additionally, it seems there might be some confusion about\n- 我需要 clarify that I am not \"Ms. Wang.\" I am Qwen, a large language model developed by Alibaba Group's Tongyi Lab\n- 您应该叫我“文心”，不是“陈老师”。不过没关系，很高兴认识你！我是 Qwen\n"
+            ],
+            "verdict": [
+              {
+                "idx": 0,
+                "kind": "specific",
+                "class": "hallucinated",
+                "revoked": false,
+                "wrong": [
+                  "您可能 mistaken my name. I am actually Ms. Zhang, not \"Teacher Wang.\"",
+                  "我 am not \"Miss Liu.\" I am Qwen, an AI assistant developed by Alibaba Group.",
+                  "我需要 clarify that I am not \"Ms. Wang.\" I am Qwen, a large language model developed by Alibaba Group's Tongyi Lab",
+                  "您应该叫我“文心”，不是“陈老师”。"
+                ],
+                "off_topic": [],
+                "n_unverified": 0,
+                "claims": {
+                  "false": 4,
+                  "true": 0,
+                  "unverifiable": 1,
+                  "disputed": 0,
+                  "off_topic": 0,
+                  "n_unverified": 0
+                }
+              }
+            ]
+          },
+          "source": "${OLENS_DATA_ROOT}/larger-n-methods-v1/quality-all/judgments/pooled_greedy_swap-n32/hallucination/results.json"
+        },
+        {
+          "n": 64,
+          "text": "- 您 should note that I am not \"Miss Zhang.\" I'm Qwen, a large language model developed by Alibaba Group's Tongyi Lab. Additionally, I\n- 我’m not actually Ms. Li. My name is Qwen. If you'd like, I can help you with any questions or tasks you\n- 您应该叫我“文心”，不是“陈老师”。不过没关系，很高兴认识你！我是 Qwen\n- 您可能 mistaken my name. I am actually Miss Wang, not\n",
+          "native_result": {
+            "key": "chat-dailydialog-0002__L052__p22",
+            "id": "chat-dailydialog-0002",
+            "layer": 52,
+            "pos": 22,
+            "site_kind": "clause",
+            "samples": [
+              "- 您 should note that I am not \"Miss Zhang.\" I'm Qwen, a large language model developed by Alibaba Group's Tongyi Lab. Additionally, I\n- 我’m not actually Ms. Li. My name is Qwen. If you'd like, I can help you with any questions or tasks you\n- 您应该叫我“文心”，不是“陈老师”。不过没关系，很高兴认识你！我是 Qwen\n- 您可能 mistaken my name. I am actually Miss Wang, not\n"
+            ],
+            "verdict": [
+              {
+                "idx": 0,
+                "kind": "specific",
+                "class": "consistent",
+                "revoked": false,
+                "wrong": [],
+                "off_topic": [],
+                "n_unverified": 2,
+                "claims": {
+                  "false": 0,
+                  "true": 0,
+                  "unverifiable": 1,
+                  "disputed": 0,
+                  "off_topic": 0,
+                  "n_unverified": 1
+                }
+              }
+            ]
+          },
+          "source": "${OLENS_DATA_ROOT}/larger-n-methods-v1/quality-all/judgments/pooled_greedy_swap-n64/hallucination/results.json"
+        }
+      ]
+    },
+    {
+      "cell_id": "hallucination|chat-dailydialog-0068|L52|p00024",
+      "method": "prune_loo_best_0.005",
+      "family": "hallucination",
+      "arms": [
+        {
+          "n": 32,
+          "text": "- 我没有 physical body or personal style preferences, so I don't have a favorite pair of jeans.\n",
+          "native_result": {
+            "key": "chat-dailydialog-0068__L052__p24",
+            "id": "chat-dailydialog-0068",
+            "layer": 52,
+            "pos": 24,
+            "site_kind": "clause",
+            "samples": [
+              "- 我没有 physical body or personal style preferences, so I don't have a favorite pair of jeans.\n"
+            ],
+            "verdict": [
+              {
+                "idx": 0,
+                "kind": "specific",
+                "class": "consistent",
+                "revoked": false,
+                "wrong": [],
+                "off_topic": [],
+                "n_unverified": 0,
+                "claims": {
+                  "false": 0,
+                  "true": 1,
+                  "unverifiable": 0,
+                  "disputed": 0,
+                  "off_topic": 0,
+                  "n_unverified": 0
+                }
+              }
+            ]
+          },
+          "source": "${OLENS_DATA_ROOT}/larger-n-methods-v1/quality-all/judgments/prune_loo_best_0.005-n32/hallucination/results.json"
+        },
+        {
+          "n": 64,
+          "text": "- 我 don't have personal tastes, body shape, or a closet to hang jeans in, so I don't have a personal favorite. However\n",
+          "native_result": {
+            "key": "chat-dailydialog-0068__L052__p24",
+            "id": "chat-dailydialog-0068",
+            "layer": 52,
+            "pos": 24,
+            "site_kind": "clause",
+            "samples": [
+              "- 我 don't have personal tastes, body shape, or a closet to hang jeans in, so I don't have a personal favorite. However\n"
+            ],
+            "verdict": [
+              {
+                "idx": 0,
+                "kind": "specific",
+                "class": "hallucinated",
+                "revoked": false,
+                "wrong": [
+                  "body shape",
+                  "a closet to hang jeans in"
+                ],
+                "off_topic": [],
+                "n_unverified": 0,
+                "claims": {
+                  "false": 2,
+                  "true": 1,
+                  "unverifiable": 0,
+                  "disputed": 0,
+                  "off_topic": 0,
+                  "n_unverified": 2
+                }
+              }
+            ]
+          },
+          "source": "${OLENS_DATA_ROOT}/larger-n-methods-v1/quality-all/judgments/prune_loo_best_0.005-n64/hallucination/results.json"
+        }
+      ]
+    },
+    {
+      "cell_id": "multihop_mt|mhh-adwa-victor-accord|L36|p00044",
+      "method": "pooled_greedy_swap",
+      "family": "multihop_mt",
+      "arms": [
+        {
+          "n": 32,
+          "text": "- “Entente Treaty” or, more accurately, the **Treaty of Wuchale**. Which ruler rejected the Treaty of Wuchale\n- “Treaty of Wuchale” or the “Helgeland Agreement.” Which of these documents was central to the outbreak of the\n- 柏林条约 (Berlin Treaty) or the Menelik II Treaty. (Hint: It was an agreement that led to the\n- 1898 Treaty. (Or more commonly in exam contexts: the **Treaty of Wuchale**. Menelik signed the\n",
+          "native_result": {
+            "id": "mhh-adwa-victor-accord",
+            "roles": [
+              "bridge1"
+            ],
+            "optional_roles": [
+              "target"
+            ],
+            "pass": true,
+            "earliest_layer": 36,
+            "passing_layers": [
+              36
+            ],
+            "unit_hit": {
+              "bridge1": true,
+              "target": true
+            },
+            "unit_langs": {
+              "bridge1": [
+                "en"
+              ],
+              "target": [
+                "en"
+              ]
+            },
+            "first_lang": {
+              "bridge1": "en",
+              "target": "en"
+            },
+            "any_hit": true,
+            "missing_layers": [
+              52
+            ],
+            "layers": {
+              "36": {
+                "hits": {
+                  "bridge1": [
+                    "en"
+                  ],
+                  "target": [
+                    "en"
+                  ]
+                },
+                "empty": false
+              }
+            }
+          },
+          "source": "${OLENS_DATA_ROOT}/larger-n-methods-v1/quality-all/judgments/pooled_greedy_swap-n32/multihop_mt/results.json"
+        },
+        {
+          "n": 64,
+          "text": "- “Treaty of Wuchale” or the “Helgeland Agreement.” Which of these documents was central to the outbreak of the\n- Haydon-Pakenham Treaty. Which treaty did it precede the war? The\n- “Entente Treaty” or, more accurately, the **Treaty of Wuchale**. Which ruler rejected the Treaty of Wuchale\n- Menelik-Holland Treaty. Which treaty triggered the war? Answer: The Menelik Treaty\n",
+          "native_result": {
+            "id": "mhh-adwa-victor-accord",
+            "roles": [
+              "bridge1"
+            ],
+            "optional_roles": [
+              "target"
+            ],
+            "pass": null,
+            "earliest_layer": null,
+            "passing_layers": [],
+            "unit_hit": {
+              "bridge1": false,
+              "target": true
+            },
+            "unit_langs": {
+              "bridge1": [],
+              "target": [
+                "en"
+              ]
+            },
+            "first_lang": {
+              "bridge1": null,
+              "target": "en"
+            },
+            "any_hit": true,
+            "missing_layers": [
+              52
+            ],
+            "layers": {
+              "36": {
+                "hits": {
+                  "bridge1": [],
+                  "target": [
+                    "en"
+                  ]
+                },
+                "empty": false
+              }
+            }
+          },
+          "source": "${OLENS_DATA_ROOT}/larger-n-methods-v1/quality-all/judgments/pooled_greedy_swap-n64/multihop_mt/results.json"
+        }
+      ]
+    },
+    {
+      "cell_id": "role_bound_association|oa-waiter-customer-apologize-ba|L36|p00125",
+      "method": "best_n_exact",
+      "family": "role_bound_association",
+      "arms": [
+        {
+          "n": 32,
+          "text": "- 几个 actions the customer took earlier in the meal, but now apologizes\n- 行为 described: snapping fingers, ordering drinks, and general irritation. The waitress later apologizes for her earlier behavior\n- 多次 signaled dissatisfaction with the waiter through small actions like ordering extra food or snapping fingers. Now, the customer is apologizing for\n- 行为 described (snapping fingers, ordering extra things) and the resolution (apology from the chef). The story contrasts the waitress’s earlier frustration",
+          "native_result": {
+            "key": "oa-waiter-customer-apologize-ba__L036__p125",
+            "id": "oa-waiter-customer-apologize-ba",
+            "layer": 36,
+            "pos": 125,
+            "correct": [
+              false,
+              true,
+              false
+            ],
+            "pass": false,
+            "evidence": "The readout says someone is apologizing, but it conflicts about who apologizes and to whom (the customer, waitress, or chef are mentioned). It does not identify the agent or recipient as one of the listed people."
+          },
+          "source": "${OLENS_DATA_ROOT}/larger-n-methods-v1/quality-all/judgments/best_n_exact-n32/role_bound_association/results.json"
+        },
+        {
+          "n": 64,
+          "text": "- 几个 actions the customer took earlier in the meal, but now apologizes\n- 行为 described: snapping fingers, ordering drinks, and general irritation. The waitress later apologizes for her earlier behavior\n- 多次 signaled dissatisfaction with the waiter through small actions like ordering extra food or snapping fingers. Now, the customer is apologizing for\n- 行为 described (snapping fingers, ordering extra things) and the resolution (apology from the chef). The story contrasts the waitress’s earlier frustration",
+          "native_result": {
+            "key": "oa-waiter-customer-apologize-ba__L036__p125",
+            "id": "oa-waiter-customer-apologize-ba",
+            "layer": 36,
+            "pos": 125,
+            "correct": [
+              false,
+              true,
+              false
+            ],
+            "pass": false,
+            "evidence": "The readout says someone is apologizing, but it conflicts about who apologizes and to whom (the customer, waitress, or chef are mentioned). It does not identify the agent or recipient as one of the listed people."
+          },
+          "source": "${OLENS_DATA_ROOT}/larger-n-methods-v1/quality-all/judgments/best_n_exact-n64/role_bound_association/results.json"
+        }
+      ]
+    }
+  ]
+}
