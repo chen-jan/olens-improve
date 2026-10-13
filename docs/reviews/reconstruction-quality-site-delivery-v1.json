@@ -1,0 +1,26 @@
+{
+  "status": "published_and_public_browser_verified",
+  "publication": {
+    "project_id": "appgprj_6aca37fc2878819185850105787209f9",
+    "version_number": 22,
+    "version_id": "appgprj_6aca37fc2878819185850105787209f9~appgver_26fb8ee189ac8191be40cb4431dfe55f",
+    "commit_sha": "f5461f095012e1bf8608554ba8049d9f78d15c9b",
+    "deployment_id": "appgdep_6acd7f814614819195cb6cc0a05fbe22",
+    "url": "https://olens-improve-research.jan618.chatgpt.site#fit-quality",
+    "updated_at": "2026-10-13T00:47:08.543748+00:00",
+    "audience": "public"
+  },
+  "validation_receipt": "docs/reviews/reconstruction-quality-figure-v1.json",
+  "new_inference_calls": 0,
+  "new_gpu_work": false,
+  "public_browser": {
+    "url": "https://olens-improve-research.jan618.chatgpt.site/#fit-quality",
+    "status": 200,
+    "points": 24,
+    "panels": 4
+  },
+  "public_screenshot": {
+    "path": "output/playwright/fit-quality-v1/public-desktop.png",
+    "sha256": "f3f47c6490441310cbdbce7b15af92db0ffb8f0fdc1db02ade7eba756bf1fb2e"
+  }
+}

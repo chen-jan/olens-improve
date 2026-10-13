@@ -1,8 +1,9 @@
 # Current dashboard and full slide deck
 
-Public version **21** restores the earlier overview, sampling curves, expandable method comparisons and original **94-slide deck**, with the existing error bars. The recent follow-up is available separately.
+Public version **22** retains the earlier overview, sampling curves, expandable method comparisons and original **94-slide deck**, with the existing error bars. It adds four interactive reconstruction-versus-task plots below the six-method section, using the unchanged full-bank results. The recent follow-up is available separately.
 
 - [Main dashboard](https://olens-improve-research.jan618.chatgpt.site)
+- [Reconstruction and task performance together](https://olens-improve-research.jan618.chatgpt.site/#fit-quality)
 - [Full slides — PDF](https://olens-improve-research.jan618.chatgpt.site/downloads/expanded-slides.pdf)
 - [Full slides — PowerPoint](https://olens-improve-research.jan618.chatgpt.site/downloads/expanded-slides.pptx)
 - [Newer swaps/refill follow-up](https://olens-improve-research.jan618.chatgpt.site/follow-up.html)

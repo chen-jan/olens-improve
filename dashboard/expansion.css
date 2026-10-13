@@ -110,6 +110,24 @@ pre{white-space:pre-wrap;overflow-wrap:anywhere;font:14px/1.55 Aptos,'Segoe UI',
 .detail-note{font-size:14px;color:var(--muted)}
 [hidden]{display:none!important}
 .tradeoffs{margin-top:40px}.tradeoffs svg{display:block;width:100%;max-width:1000px;height:auto}.tradeoffs svg [data-condition]{cursor:pointer}
+#fit-quality-plots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 42px;margin-top:24px}
+.fq-panel{min-width:0;border-top:1px solid var(--line);padding-top:16px}
+.fq-panel h3{font-size:18px;margin:0 0 8px}.fq-panel p{font-size:13px}
+.fq-panel svg{display:block;width:100%;height:auto;max-width:650px}
+.fq-panel svg text{font:13px Aptos,'Segoe UI',Arial,sans-serif;fill:var(--muted)}
+.fq-panel svg .fq-number{font-size:12px;fill:white;font-weight:700;pointer-events:none}
+.fq-point{cursor:pointer}.fq-point:focus{outline:none}.fq-point:focus circle,.fq-point:hover circle{stroke:var(--ink);stroke-width:3}
+.fq-interval{stroke-width:1.4;opacity:.55;fill:none}.fq-point:hover .fq-interval,.fq-point:focus .fq-interval{opacity:1;stroke-width:2}
+.fq-legend{display:flex;flex-wrap:wrap;gap:8px 12px;margin:14px 0}
+.fq-legend button{display:flex;align-items:center;gap:8px;background:white;padding:7px 10px;font-size:13px}
+.fq-legend button[aria-pressed=true]{border-color:var(--ink);box-shadow:inset 0 -2px var(--ink)}
+.fq-legend span{display:inline-flex;align-items:center;justify-content:center;border-radius:50%;width:21px;height:21px;color:white;font-weight:650}
+.fq-checkbox{flex-direction:row;align-items:center;gap:9px;padding-bottom:9px}.fq-checkbox input{min-width:0;width:17px;height:17px;accent-color:var(--blue)}
+.fq-overlap{color:var(--muted);font-size:12px!important;min-height:36px}.fq-values{margin-top:24px}
+.fq-selected-values{padding:10px 12px;background:var(--wash);line-height:1.7}
+.fq-values table{min-width:620px}.fq-values td small{display:block;color:var(--muted);font-size:12px}
+#chart-content .fq-panel{max-width:900px;margin:auto;border:0}#chart-content .fq-panel svg{max-width:none}
+@media(max-width:650px){#fit-quality-plots{grid-template-columns:1fr;gap:26px}.fq-panel svg text{font-size:14px}.fq-checkbox{padding-bottom:0}.fq-legend{gap:8px}.fq-legend button{font-size:12px}.fq-panel .original-reference{font-size:12px!important}}
 @media(max-width:650px){.controls label{min-width:0;max-width:100%}.controls select{width:100%;max-width:100%;min-width:0}}
 @media(max-width:1000px){main{padding:24px}
 .intro{gap:32px}

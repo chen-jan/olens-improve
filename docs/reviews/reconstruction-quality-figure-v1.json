@@ -1,0 +1,46 @@
+{
+  "status": "verified",
+  "changed_assets": [
+    "dist/expansion.css",
+    "dist/index.html"
+  ],
+  "new_assets": [
+    "dist/fit-quality.js"
+  ],
+  "existing_assets_preserved": 104,
+  "scientific_payloads_unchanged": true,
+  "new_model_calls": 0,
+  "gpu_work": false,
+  "frontend_files": {
+    "dashboard/overview.html": "ed7ea1c1d51f86350ce0f0cc2d7df18c46c2f7152e8a21570997bda9d2486bce",
+    "dashboard/expansion.css": "ab5a57198ac8f13618f9f5ef5552c111392d506b666b8e0ac427e765cc6a625c",
+    "dashboard/fit-quality.js": "8796db3b57097d3525ca21f488461a823619d3382f2703c6e3f46025bdcfc20d"
+  },
+  "browser_checks": {
+    "status": "passed",
+    "exact": {
+      "points": 24,
+      "problems": []
+    },
+    "filter_states": 7,
+    "viewports": [
+      1440,
+      390
+    ],
+    "parent_toggle": true,
+    "legend": true,
+    "keyboard_details": true,
+    "enlarge": true,
+    "page_errors": []
+  },
+  "browser_receipt": {
+    "path": "output/playwright/fit-quality-v1/browser-check.txt",
+    "sha256": "12d53d5516f2a4a7684527d355cf32f3359df81cbce6d34fefc2f090728c127d"
+  },
+  "screenshots": {
+    "desktop.png": "f3f47c6490441310cbdbce7b15af92db0ffb8f0fdc1db02ade7eba756bf1fb2e",
+    "mobile.png": "cf8da4d014d3c274a3f16ac48afb19512ebf2513987d8abf930e1fd8f27e6b52",
+    "mobile-selected.png": "488beb6dd757b18e48034dfae1e247b1e5511c04158ca300562aec6e55ae9611",
+    "enlarged.png": "44ae525358ca9cffff31511f1a2255da91e6de481431ade7f223affbb8705270"
+  }
+}
