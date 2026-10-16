@@ -1,0 +1,913 @@
+<title>Multihop FVE Explorer</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+/* Layout: answer card first (the verdict on FVE selection), then a bench: a filter rail with the
+   cell list on the left and a reading pane on the right (prompt and bridges, three readouts, all
+   32 samples). Under 900px everything stacks into one column. */
+:root{
+  --bg:#f1f3f6; --surface:#ffffff; --sunken:#e7ebf0; --raise:#f7f8fa;
+  --ink:#151a21; --ink-2:#3e4856; --muted:#5b6674; --line:#d6dce3; --line-strong:#aeb8c4;
+  --accent:#4a3db5; --accent-soft:#e9e6fa; --on-accent:#ffffff; --focus:#4a3db5;
+  --pass:#13672f; --pass-dot:#1b9a47; --pass-bg:#dff2e5; --pass-solid:#17793a; --on-pass:#ffffff;
+  --fail:#5b6674; --fail-bg:#eceff3;
+  --hit-bg:#c9ecd5; --hit-line:#1b8a46;
+  --len:#8a5a00; --len-bg:#fbefd0;
+  --wrong:#c2302f; --wrong-bg:#fde2e0;
+  --ans:#2768c4; --ans-bg:#e1ecfb;
+  --bar-fve:#4a3db5; --bar-nofve:#8d99a8; --bar-ceil:#c3cbd5;
+  --warn-bg:#fff4d6; --warn-ink:#7a5200;
+  --shadow:0 1px 2px rgb(21 26 33 / .06), 0 8px 24px rgb(21 26 33 / .06);
+  --font-sans:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-cond:"IBM Plex Sans Condensed", "Arial Narrow", "Roboto Condensed", system-ui, sans-serif;
+  --font-mono:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --radius:8px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1216; --surface:#171b21; --sunken:#1f252d; --raise:#1b2027;
+    --ink:#e6eaef; --ink-2:#b5bec9; --muted:#8e98a5; --line:#2a323c; --line-strong:#3e4854;
+    --accent:#a99df5; --accent-soft:#2a2552; --on-accent:#14102c; --focus:#b6abff;
+    --pass:#74d48f; --pass-dot:#3cbf63; --pass-bg:#173322; --pass-solid:#3cbf63; --on-pass:#0b1f12;
+    --fail:#8e98a5; --fail-bg:#232a33;
+    --hit-bg:#1f4a32; --hit-line:#5fd38a;
+    --len:#e7b350; --len-bg:#3b2e10;
+    --wrong:#f07c79; --wrong-bg:#4a2120;
+    --ans:#7fb2f2; --ans-bg:#18304f;
+    --bar-fve:#9085e9; --bar-nofve:#66717f; --bar-ceil:#38414c;
+    --warn-bg:#3b2e10; --warn-ink:#f0c25a;
+    --shadow:0 1px 2px rgb(0 0 0 / .4), 0 8px 24px rgb(0 0 0 / .3);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f1216; --surface:#171b21; --sunken:#1f252d; --raise:#1b2027;
+  --ink:#e6eaef; --ink-2:#b5bec9; --muted:#8e98a5; --line:#2a323c; --line-strong:#3e4854;
+  --accent:#a99df5; --accent-soft:#2a2552; --on-accent:#14102c; --focus:#b6abff;
+  --pass:#74d48f; --pass-dot:#3cbf63; --pass-bg:#173322; --pass-solid:#3cbf63; --on-pass:#0b1f12;
+  --fail:#8e98a5; --fail-bg:#232a33;
+  --hit-bg:#1f4a32; --hit-line:#5fd38a;
+  --len:#e7b350; --len-bg:#3b2e10;
+  --wrong:#f07c79; --wrong-bg:#4a2120;
+  --ans:#7fb2f2; --ans-bg:#18304f;
+  --bar-fve:#9085e9; --bar-nofve:#66717f; --bar-ceil:#38414c;
+  --warn-bg:#3b2e10; --warn-ink:#f0c25a;
+  --shadow:0 1px 2px rgb(0 0 0 / .4), 0 8px 24px rgb(0 0 0 / .3);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-sans);font-size:14px;line-height:1.5;margin:0}
+.wrap{max-width:1480px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:20px 48px;display:flex;flex-direction:column;gap:20px}
+h1,h2,h3{text-wrap:balance;margin:0}
+p{margin:0}
+code,.mono{font-family:var(--font-mono);font-size:12.5px}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px;border-radius:4px}
+.num{font-variant-numeric:tabular-nums}
+
+/* top */
+.top{display:flex;flex-direction:column;gap:6px}
+.eyebrow{font-family:var(--font-cond);font-weight:600;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.eyebrow .ex{color:var(--warn-ink);background:var(--warn-bg);padding:1px 6px;border-radius:3px;margin-right:6px}
+h1{font-family:var(--font-cond);font-weight:600;font-size:28px;letter-spacing:-.01em}
+.lede{color:var(--ink-2);max-width:78ch}
+
+/* answer card */
+.answer{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px;display:grid;gap:18px}
+.answer h2{font-family:var(--font-cond);font-weight:600;font-size:20px}
+.takeaway{font-size:15px;max-width:96ch;color:var(--ink)}
+.takeaway b{font-weight:600}
+.ans-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:24px;align-items:start}
+@media (max-width:1050px){.ans-grid{grid-template-columns:minmax(0,1fr)}}
+.tscroll{overflow-x:auto;min-width:0}
+table.kt{border-collapse:collapse;width:100%;min-width:600px;font-size:13px}
+.kt th{font-family:var(--font-cond);font-weight:600;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);text-align:left;padding:6px 8px;border-bottom:1px solid var(--line-strong)}
+.kt td{padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+.kt td.r,.kt th.r{text-align:right}
+.kt tr.grp td{font-family:var(--font-cond);font-weight:600;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);background:var(--raise);padding-top:8px}
+.kt tr.set td:first-child{font-weight:600}
+.kt .diff{font-family:var(--font-mono);font-size:12px;white-space:nowrap}
+.kt .vs{color:var(--muted);font-family:var(--font-sans);font-size:12px;white-space:normal}
+.kt .dl{display:flex;flex-direction:column;gap:2px}
+.pos{color:var(--pass)} .neg{color:var(--wrong)} .flat{color:var(--muted)}
+.fvetag{font-family:var(--font-cond);font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:1px 6px;border-radius:3px;white-space:nowrap}
+.fvetag.y{background:var(--accent-soft);color:var(--accent)}
+.fvetag.n{background:var(--sunken);color:var(--muted)}
+.foot{font-size:12px;color:var(--muted);max-width:96ch}
+.side{display:flex;flex-direction:column;gap:16px;min-width:0}
+.side h3{font-family:var(--font-cond);font-weight:600;font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.cbar{display:flex;flex-direction:column;gap:6px}
+.cb-row{display:grid;grid-template-columns:132px minmax(0,1fr);gap:8px;align-items:center;font-size:12.5px}
+.cb-lab{color:var(--ink-2);line-height:1.2}
+.cb-track{position:relative;height:18px}
+.cb-grid{position:absolute;top:-2px;bottom:-2px;width:1px;background:var(--line)}
+.cb-fill{position:absolute;left:0;top:2px;bottom:2px;border-radius:0 4px 4px 0;background:var(--bar-fve)}
+.cb-fill.nofve{background:var(--bar-nofve)}
+.cb-fill.ceil{background:repeating-linear-gradient(135deg,var(--bar-ceil) 0 4px,transparent 4px 7px);border:1.5px solid var(--line-strong);border-left:0}
+.cb-val{position:absolute;top:0;font-family:var(--font-mono);font-size:11.5px;line-height:18px;padding-left:6px;color:var(--ink);white-space:nowrap}
+.cb-axis{display:grid;grid-template-columns:132px minmax(0,1fr);gap:8px;font-family:var(--font-mono);font-size:11px;color:var(--muted)}
+.cb-axis .ticks{position:relative;height:14px}
+.cb-axis .ticks span{position:absolute;transform:translateX(-50%)}
+.cb-axis .ticks span:first-child{transform:none}
+.cb-axis .ticks span:last-child{transform:translateX(-100%)}
+.cb-track{margin-right:44px}
+.cb-axis .ticks{margin-right:44px}
+.cb-note{font-size:12.5px;color:var(--ink-2)}
+.statline{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.stat{background:var(--raise);border:1px solid var(--line);border-radius:6px;padding:8px 10px}
+.stat b{display:block;font-family:var(--font-mono);font-size:17px;font-weight:500}
+.stat span{font-size:12px;color:var(--muted);line-height:1.3;display:block}
+.gloss{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 18px;font-size:12.5px;color:var(--ink-2);border-top:1px solid var(--line);padding-top:12px}
+.gloss b{color:var(--ink);font-weight:600}
+.warnbox{background:var(--warn-bg);color:var(--warn-ink);border-radius:6px;padding:8px 10px;font-size:12.5px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+/* key table: one compact card per row on narrow screens instead of a 600px table in a scroll box */
+@media (max-width:700px){
+  table.kt{min-width:0;display:block}
+  .kt thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+  .kt tbody{display:block}
+  .kt tr{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"m p" "f c" "d d";gap:3px 12px;padding:8px 2px;border-bottom:1px solid var(--line)}
+  .kt td{border:0;padding:0}
+  .kt td:nth-child(1){grid-area:m}
+  .kt td:nth-child(2){grid-area:f}
+  .kt td:nth-child(3){grid-area:c;color:var(--muted);font-size:12px}
+  .kt td:nth-child(3)::after{content:" cells"}
+  .kt td:nth-child(4){grid-area:p;font-weight:600}
+  .kt td:nth-child(5){grid-area:d}
+  .kt td:empty{display:none}
+  .kt tr.grp{display:block;padding:0;border:0}
+  .kt tr.grp td{display:block;padding:10px 6px 4px}
+}
+
+/* bench */
+.bench{display:grid;grid-template-columns:minmax(260px,310px) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:900px){.bench{grid-template-columns:minmax(0,1fr)}}
+/* The rail scrolls as one unit (filters, then the whole cell list), so the list is never squeezed
+   to a few rows on short screens. Under 900px the rail is static and the list scrolls on its own. */
+.rail{position:sticky;top:calc(env(safe-area-inset-top, 0px) + 12px);max-height:calc(100vh - 24px);overflow-y:auto;overscroll-behavior:contain;display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px;min-width:0}
+@media (max-width:900px){.rail{position:static;max-height:none;overflow:visible}}
+.rail h2{font-family:var(--font-cond);font-weight:600;font-size:16px}
+.fl{display:flex;flex-direction:column;gap:6px}
+.fl-lab{font-family:var(--font-cond);font-weight:600;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.inp{width:100%;font:inherit;font-size:14px;padding:7px 10px;border:1px solid var(--line-strong);border-radius:6px;background:var(--surface);color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:4px}
+.fchip{border:1px solid var(--line);background:var(--raise);border-radius:5px;padding:3px 7px;font-size:12px;cursor:pointer;display:inline-flex;gap:4px;align-items:baseline;line-height:1.3}
+.fchip .n{font-family:var(--font-mono);font-size:10.5px;color:var(--muted)}
+.fchip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.fchip[aria-pressed="true"] .n{color:var(--on-accent);opacity:.85}
+.fchip:disabled{opacity:.45;cursor:default}
+.olist{display:flex;flex-direction:column;gap:3px}
+.oitem{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;text-align:left;border:1px solid transparent;background:none;border-radius:5px;padding:4px 7px;font-size:12.5px;cursor:pointer;line-height:1.3}
+.oitem:hover{background:var(--raise)}
+.oitem .n{font-family:var(--font-mono);font-size:11px;color:var(--muted);align-self:center}
+.oitem[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--ink)}
+.oitem[aria-pressed="true"] .n{color:var(--accent)}
+.oitem:disabled{opacity:.45;cursor:default}
+.sel{width:100%;font:inherit;font-size:13px;padding:6px 8px;border:1px solid var(--line-strong);border-radius:6px;background:var(--surface);color:var(--ink)}
+.rail-foot{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:12.5px;color:var(--ink-2)}
+.linkbtn{background:none;border:0;padding:0;color:var(--accent);cursor:pointer;font-size:12.5px;text-decoration:underline;text-underline-offset:2px}
+.clist{flex:none;border-top:1px solid var(--line);margin:0 -14px -14px;padding:4px 6px 8px}
+@media (max-width:900px){.clist{max-height:300px;overflow-y:auto;overscroll-behavior:contain}}
+.crow{display:grid;grid-template-columns:minmax(0,1fr) auto auto auto;gap:8px;align-items:center;width:100%;text-align:left;border:0;background:none;border-radius:5px;padding:5px 8px;cursor:pointer;font-size:12.5px}
+.crow:hover{background:var(--raise)}
+.crow[aria-current="true"]{background:var(--accent-soft);box-shadow:inset 3px 0 0 var(--accent)}
+.crow .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.crow .ly{font-family:var(--font-mono);font-size:11.5px;color:var(--muted)}
+.crow .np{font-family:var(--font-mono);font-size:11px;color:var(--muted);min-width:36px;text-align:right}
+.dots{display:inline-flex;gap:2px}
+.dot{width:16px;height:16px;border-radius:3px;display:inline-grid;place-items:center;font-family:var(--font-cond);font-weight:600;font-size:10px;border:1.5px solid var(--line-strong);color:var(--muted);background:var(--surface)}
+.dot.y{background:var(--pass-solid);border-color:var(--pass-solid);color:var(--on-pass)}
+.empty{padding:16px 8px;color:var(--muted);font-size:13px}
+
+/* view */
+.view{display:flex;flex-direction:column;gap:18px;min-width:0}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px;min-width:0}
+.cv-nav{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:13px;color:var(--ink-2)}
+.nbtn{border:1px solid var(--line-strong);background:var(--surface);border-radius:6px;padding:5px 12px;cursor:pointer;font-size:13px}
+.nbtn:hover:not(:disabled){border-color:var(--accent);color:var(--accent)}
+.nbtn:disabled{opacity:.45;cursor:default}
+.kbd{font-family:var(--font-mono);font-size:11px;border:1px solid var(--line-strong);border-bottom-width:2px;border-radius:4px;padding:0 4px;color:var(--muted)}
+.cv-title{font-family:var(--font-cond);font-weight:600;font-size:22px;overflow-wrap:anywhere;margin-top:10px}
+.cv-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip{display:inline-flex;align-items:center;gap:4px;border-radius:4px;background:var(--sunken);color:var(--ink-2);padding:2px 8px;font-size:12px}
+.cv-id{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:8px;min-width:0}
+.cv-id code{color:var(--muted);overflow-wrap:anywhere;min-width:0}
+.mini{border:1px solid var(--line);background:var(--raise);border-radius:4px;padding:1px 8px;font-size:12px;cursor:pointer;color:var(--ink-2);text-decoration:none}
+.mini:hover{border-color:var(--accent);color:var(--accent)}
+.ctx{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:18px}
+@media (max-width:1200px){.ctx{grid-template-columns:minmax(0,1fr)}}
+.lbl{font-family:var(--font-cond);font-weight:600;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.prompt{font-size:15px;line-height:1.55;max-width:70ch}
+.prompt .tok{background:var(--accent-soft);color:var(--accent);border-radius:3px;padding:0 2px}
+.note{font-size:12.5px;color:var(--muted)}
+.units{display:flex;flex-direction:column;gap:10px}
+.unit{border-left:2px solid var(--line-strong);padding-left:10px;display:flex;flex-direction:column;gap:4px}
+.unit-head{display:flex;flex-wrap:wrap;gap:6px;align-items:baseline}
+.role{font-family:var(--font-cond);font-weight:600;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.unit-head b{font-size:15px;font-weight:600}
+.forms{display:flex;flex-wrap:wrap;gap:4px;align-items:baseline;font-size:12.5px}
+.fk{font-size:11.5px;color:var(--muted);min-width:96px}
+.fm{border-radius:3px;padding:0 5px;font-size:12.5px}
+.verdict{display:flex;flex-wrap:wrap;gap:8px}
+.vp{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:6px;padding:5px 10px;font-size:13px;background:var(--surface)}
+.vp.y{border-color:var(--pass-dot);background:var(--pass-bg)}
+.vp .ic{font-weight:600}
+.vp.y .ic{color:var(--pass)} .vp.n .ic{color:var(--muted)}
+.vp .sub{font-family:var(--font-mono);font-size:11.5px;color:var(--muted)}
+.sec-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 16px;margin-bottom:10px}
+.sec-head h3{font-family:var(--font-cond);font-weight:600;font-size:17px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:12px;color:var(--ink-2);align-items:center}
+.mnote{font-size:12px;color:var(--muted);margin-bottom:10px;max-width:100ch}
+
+/* highlights */
+mark.hl{background:none;color:inherit;border-radius:2px;padding:0 1px}
+.hl.S{background:var(--hit-bg);box-shadow:inset 0 -2px 0 var(--hit-line);font-weight:600}
+.hl.L{background:var(--len-bg);text-decoration:underline dashed var(--len) 1.5px;text-underline-offset:3px}
+.hl.D{background:var(--wrong-bg);text-decoration:underline wavy var(--wrong) 1px;text-underline-offset:3px}
+.hl.T{text-decoration:underline dotted var(--ans) 2px;text-underline-offset:3px}
+
+/* readouts */
+.read-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:1250px){.read-grid{grid-template-columns:minmax(0,1fr)}}
+.rc{border:1px solid var(--line);border-radius:7px;background:var(--raise);display:flex;flex-direction:column;min-width:0}
+.rc.is-pass{border-color:var(--pass-dot)}
+.rc header{padding:10px 12px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px}
+.rc-name{font-family:var(--font-cond);font-weight:600;font-size:16px}
+.rc-sub{grid-column:1/2;font-size:12px;color:var(--muted)}
+.rc-stats{grid-row:1/3;grid-column:2;display:flex;flex-direction:column;align-items:flex-end;gap:3px}
+.fve{font-family:var(--font-mono);font-size:12px;color:var(--ink-2)}
+.fve b{font-weight:600;color:var(--ink)}
+.pb{font-family:var(--font-cond);font-weight:600;font-size:12px;letter-spacing:.04em;border-radius:4px;padding:1px 8px}
+.pb.y{background:var(--pass-solid);color:var(--on-pass)}
+.pb.n{background:var(--fail-bg);color:var(--fail)}
+.rc-units{grid-column:1/3;display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.u{font-size:11.5px;border-radius:3px;padding:0 6px;border:1px solid var(--line)}
+.u.y{color:var(--pass);border-color:var(--pass-dot)}
+.u.n{color:var(--muted)}
+.bls{list-style:none;margin:0;padding:6px 0;display:flex;flex-direction:column}
+.bl{padding:8px 12px;display:flex;flex-direction:column;gap:4px;border-top:1px dashed var(--line)}
+.bl:first-child{border-top:0}
+.bl-top{display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.bl-text{white-space:pre-wrap;overflow-wrap:anywhere;font-size:13.5px;line-height:1.5}
+.bl-m{display:flex;flex-wrap:wrap;gap:4px 12px;font-family:var(--font-mono);font-size:11.5px;color:var(--muted)}
+.bl-m b{color:var(--ink-2);font-weight:500}
+.lab{font-family:var(--font-cond);font-weight:600;font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-radius:3px;padding:0 6px;line-height:18px}
+.lab.h{background:var(--hit-bg);color:var(--pass)}
+.lab.w{background:var(--wrong-bg);color:var(--wrong)}
+.lab.m{background:var(--sunken);color:var(--muted)}
+.lab.near{background:var(--len-bg);color:var(--len)}
+.tag{font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:3px;padding:0 5px;line-height:16px}
+.tag.quirk{color:var(--warn-ink);background:var(--warn-bg);border-color:transparent}
+details.l4{margin-top:12px;border:1px solid var(--line);border-radius:7px;background:var(--raise)}
+details.l4 summary{cursor:pointer;padding:9px 12px;font-size:13px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+details.l4 .bls{border-top:1px solid var(--line)}
+
+/* samples */
+.smry{font-size:13.5px;color:var(--ink-2);max-width:100ch;margin-bottom:10px}
+.smry b{color:var(--ink);font-weight:600}
+.strip{width:100%;min-height:80px;overflow:hidden}
+.strip svg{display:block}
+.strip .ax{stroke:var(--line-strong);stroke-width:1}
+.strip .gr{stroke:var(--line);stroke-width:1}
+.strip .tk{fill:var(--muted);font-family:var(--font-mono);font-size:10.5px}
+.strip .mkl{fill:var(--ink);font-family:var(--font-cond);font-weight:600;font-size:11.5px}
+.strip .cl{stroke:var(--accent);stroke-width:1.5;stroke-dasharray:4 3}
+.strip .clt{fill:var(--accent);font-family:var(--font-cond);font-weight:600;font-size:11px}
+.strip .dp{fill:var(--pass-dot);stroke:var(--surface);stroke-width:2}
+.strip .df{fill:var(--surface);stroke:var(--muted);stroke-width:1.5}
+.strip .ring{fill:none;stroke:var(--ink);stroke-width:1.5}
+.strip .hit{fill:transparent;cursor:pointer}
+.strip g.d:hover .df,.strip g.d:hover .dp{stroke:var(--accent);stroke-width:2.5}
+.sleg{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:var(--ink-2);margin-top:4px;align-items:center}
+.sw{display:inline-block;width:10px;height:10px;border-radius:50%;vertical-align:-1px;margin-right:4px}
+.sw.p{background:var(--pass-dot)} .sw.f{border:1.5px solid var(--muted);background:var(--surface)}
+.sw.c{width:14px;height:0;border-radius:0;border-top:1.5px dashed var(--accent);vertical-align:3px}
+.s-tools{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 8px;align-items:center;font-size:12.5px;color:var(--muted)}
+.s-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.sr{border-bottom:1px solid var(--line)}
+.sr.flash{animation:fl 1.2s ease-out}
+@keyframes fl{from{background:var(--accent-soft)}to{background:transparent}}
+@media (prefers-reduced-motion:reduce){.sr.flash{animation:none;background:var(--accent-soft)}}
+.sr-h{width:100%;display:grid;grid-template-columns:34px 40px minmax(110px,150px) 64px minmax(64px,auto) minmax(0,1fr);gap:8px;align-items:center;border:0;background:none;padding:6px 6px;text-align:left;cursor:pointer;font-size:12.5px}
+.sr-h:hover{background:var(--raise)}
+.sr.p .sr-h{background:linear-gradient(90deg,var(--pass-bg),transparent 55%)}
+.sr-rank{font-family:var(--font-mono);color:var(--muted);text-align:right}
+.sr-i{font-family:var(--font-mono);font-weight:600}
+.sr-f{display:flex;align-items:center;gap:6px;font-family:var(--font-mono)}
+.fbar{flex:1 1 auto;height:6px;background:var(--sunken);border-radius:3px;position:relative;min-width:40px}
+.fbar i{position:absolute;left:0;top:0;bottom:0;border-radius:3px;background:var(--bar-nofve)}
+.sr.p .fbar i{background:var(--pass-dot)}
+.ok{color:var(--pass);font-weight:600} .no{color:var(--muted)}
+.sr-mk{display:flex;gap:3px}
+.mk{font-style:normal;font-family:var(--font-cond);font-weight:600;font-size:11px;border-radius:3px;padding:0 5px;line-height:17px;border:1px solid var(--line-strong);color:var(--ink-2)}
+.mk.b{border-color:var(--accent);color:var(--accent)}
+.mk.c{border-style:dashed;border-color:var(--accent);color:var(--accent)}
+.sr-bl{display:flex;gap:3px;justify-self:end}
+.lb{display:inline-block;width:12px;height:12px;border-radius:2px;background:var(--sunken);border:1px solid var(--line-strong)}
+.lb.h{background:var(--hit-line);border-color:var(--hit-line)}
+.lb.w{background:var(--wrong);border-color:var(--wrong)}
+.lb.near{background:var(--len-bg);border-color:var(--len)}
+.sr-b{padding:4px 10px 12px 48px;display:flex;flex-direction:column;gap:6px}
+.sr-b .bls{padding:0;border:1px solid var(--line);border-radius:6px;background:var(--raise)}
+.flags{display:flex;flex-wrap:wrap;gap:4px}
+details.raw summary{cursor:pointer;font-size:12px;color:var(--muted)}
+details.raw pre{white-space:pre-wrap;overflow-wrap:anywhere;font-family:var(--font-mono);font-size:12px;background:var(--sunken);border-radius:6px;padding:8px;margin:6px 0 0}
+@media (max-width:720px){
+  .sr-h{grid-template-columns:30px 36px minmax(0,1fr) 58px;grid-template-areas:"r i f p" ". mk mk bl";row-gap:4px}
+  .sr-rank{grid-area:r}.sr-i{grid-area:i}.sr-f{grid-area:f}.sr-p{grid-area:p}.sr-mk{grid-area:mk}.sr-bl{grid-area:bl}
+  .sr-b{padding-left:10px}
+  .fk{min-width:0}
+  .cb-row,.cb-axis{grid-template-columns:96px minmax(0,1fr)}
+  .answer{padding:14px}
+  .panel{padding:12px}
+}
+.loading{color:var(--muted);font-size:13px;padding:24px 0}
+.err{background:var(--wrong-bg);color:var(--wrong);border-radius:6px;padding:10px 12px;font-size:13px}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow"><span class="ex">Exploratory</span>WorkspaceBench Multihop (multi-token) &middot; Oracle Lens on Qwen3.6-27B &middot; regex judge</div>
+    <h1>Multihop FVE Explorer</h1>
+    <p class="lede">Every one of the 32 raw lens samples per cell, re-judged with the pinned regex. Use it to check whether the AR&rsquo;s FVE score picks readouts that name every hidden bridge entity.</p>
+  </header>
+
+  <section class="answer" aria-labelledby="ans-h">
+    <h2 id="ans-h">Does AR/FVE selection help on Multihop?</h2>
+    <p class="takeaway">FVE helps a little here: <b>Combine 32 beats 4 random pool bullets by 2.8 points</b> [1.1, 4.8]. Best of 32 is 0.9 points ahead of one random sample, but its interval [&minus;0.1, 2.0] includes zero. And <b>picking the 4 longest bullets, with no AR at all, gets most of the gain</b> (Combine 32 is only 0.8 points ahead [&minus;1.4, 2.9]). Every method also leaves most of the available answers unused: in 31% of cells some sample names every bridge, yet the methods pass only 9.5&ndash;13.3% of cells.</p>
+    <div id="sumwarn" class="warnbox" hidden></div>
+    <div class="ans-grid">
+      <div class="tscroll">
+        <table class="kt" aria-label="Cells passed by each method">
+          <thead><tr><th>Method</th><th>Uses FVE</th><th class="r">Cells passed</th><th class="r">% of 1,100</th><th>Difference, points [95% CI]</th></tr></thead>
+          <tbody>
+            <tr class="grp"><td colspan="5">The three settings</td></tr>
+            <tr class="set"><td>Original <span class="vs">(sample 0)</span></td><td><span class="fvetag n">no</span></td><td class="r num">106</td><td class="r num">9.6%</td>
+              <td><div class="dl"><span class="diff neg">&minus;1.2 [&minus;2.2, &minus;0.3]</span><span class="vs">vs one random sample</span></div></td></tr>
+            <tr class="set"><td>Best of 32 <span class="vs">(highest-FVE sample)</span></td><td><span class="fvetag y">yes</span></td><td class="r num">129</td><td class="r num">11.7%</td>
+              <td><div class="dl"><span class="diff flat">+0.9 [&minus;0.1, +2.0]</span><span class="vs">vs one random sample</span></div></td></tr>
+            <tr class="set"><td>Combine 32 <span class="vs">(up to 4 pool bullets chosen by FVE)</span></td><td><span class="fvetag y">yes</span></td><td class="r num">146</td><td class="r num">13.3%</td>
+              <td><div class="dl"><span class="diff pos">+2.8 [+1.1, +4.8]</span><span class="vs">vs 4 random pool bullets</span>
+                <span class="diff flat">+0.8 [&minus;1.4, +2.9]</span><span class="vs">vs 4 longest pool bullets</span>
+                <span class="diff pos">+1.8 [+0.1, +3.5]</span><span class="vs">vs 4 random bullets from the longer half</span></div></td></tr>
+            <tr class="grp"><td colspan="5">Baselines without FVE</td></tr>
+            <tr><td>One random sample</td><td><span class="fvetag n">no</span></td><td class="r num">119.0*</td><td class="r num">10.8%</td><td class="vs">exact expectation over the 32 samples</td></tr>
+            <tr><td>4 random pool bullets</td><td><span class="fvetag n">no</span></td><td class="r num">114.7*</td><td class="r num">10.4%</td><td class="vs">exact expectation</td></tr>
+            <tr><td>4 most frequent pool bullets</td><td><span class="fvetag n">no</span></td><td class="r num">104</td><td class="r num">9.5%</td><td class="vs">Combine 32 is +3.8 [+1.8, +5.9] ahead</td></tr>
+            <tr><td>4 longest pool bullets</td><td><span class="fvetag n">no</span></td><td class="r num">137</td><td class="r num">12.5%</td><td class="vs">by character count</td></tr>
+            <tr><td>4 random bullets from the longer half</td><td><span class="fvetag n">no</span></td><td class="r num">125.9*</td><td class="r num">11.4%</td><td class="vs">400 draws per cell</td></tr>
+            <tr class="grp"><td colspan="5">Ceilings</td></tr>
+            <tr><td>Answer in at least one of the 32 samples</td><td></td><td class="r num">344</td><td class="r num">31.3%</td><td class="vs">some whole sample passes</td></tr>
+            <tr><td>Answer in some pool bullet</td><td></td><td class="r num">356</td><td class="r num">32.4%</td><td class="vs">some 4-bullet set could pass</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="side">
+        <div>
+          <h3>Picked vs available</h3>
+          <div class="cbar" id="cbar" role="img" aria-label="Percent of 1,100 cells passed: Original 9.6, Best of 32 11.7, Combine 32 13.3, 4 longest bullets without FVE 12.5, answer present in some sample 31.3"></div>
+          <div class="sleg"><span><i class="sw" style="border-radius:2px;background:var(--bar-fve)"></i>chosen by FVE</span><span><i class="sw" style="border-radius:2px;background:var(--bar-nofve)"></i>no FVE</span><span><i class="sw" style="border-radius:2px;border:1.5px solid var(--line-strong);background:var(--bar-ceil)"></i>ceiling</span><span class="note">% of 1,100 cells</span></div>
+          <p class="cb-note">Best of 32 misses <b>215</b> of the 344 cells where some sample has the answer (62.5%). Combine 32 passes 146 of the 356 cells where the pool has it, so 59% go unused.</p>
+        </div>
+        <div>
+          <h3>Does FVE rank passing samples higher, within a cell?</h3>
+          <div class="statline">
+            <div class="stat"><b class="num">0.548</b><span>AUROC of FVE, passing vs failing samples in the same cell (0.5 = chance); 36,938 pairs, 316 mixed cells</span></div>
+            <div class="stat"><b class="num">11.6 &rarr; 10.1%</b><span>pass rate by within-cell FVE quarter, top to bottom: 11.6 / 11.0 / 10.6 / 10.1% (8,800 samples each)</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="foot">* Expected number of cells over random draws, not a count of cells, so it can be fractional (one random sample happens to come out at exactly 119.0). Differences are in percentage points of the 1,100 cells; 95% CIs come from a cluster bootstrap over the 100 items (2,000 reps). Source: <code>tasks/multihop_mt/baseline/analysis2.json</code> and <code>out.json</code>.</p>
+    <div class="gloss">
+      <span><b>Cell</b>: one item read at one layer; 100 items &times; 11 layers (20&ndash;60) = 1,100.</span>
+      <span><b>Pass</b>: the readout names every hidden bridge entity, under the pinned regex judge (no LLM).</span>
+      <span><b>FVE</b>: how much of the activation the readout&rsquo;s bullets explain when the AR re-encodes them; higher is a better fit.</span>
+      <span><b>Pool</b>: every distinct bullet from the 32 samples of a cell (about 128; range 114&ndash;128).</span>
+    </div>
+  </section>
+
+  <div class="bench">
+    <aside class="rail" aria-label="Cell filters">
+      <h2>Browse cells</h2>
+      <div class="fl"><label class="fl-lab" for="q">Search items</label><input id="q" class="inp" type="search" placeholder="item, bridge or answer name" autocomplete="off"></div>
+      <div class="fl"><span class="fl-lab">Outcome</span><div class="olist" id="f-out"></div></div>
+      <div class="fl"><span class="fl-lab">Layer</span><div class="chips" id="f-layer"></div></div>
+      <div class="fl"><span class="fl-lab">Hops</span><div class="chips" id="f-hop"></div></div>
+      <div class="fl"><label class="fl-lab" for="f-item">Item</label><select id="f-item" class="sel"></select></div>
+      <div class="rail-foot"><span id="f-count" class="num">Loading&hellip;</span><button class="linkbtn" id="f-reset" type="button">Clear filters</button></div>
+      <div class="clist" id="clist"></div>
+    </aside>
+    <main class="view" id="view">
+      <div class="panel loading">Loading cell data&hellip;</div>
+    </main>
+    <div id="live" class="sr-only" aria-live="polite"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+'use strict';
+if (!document.documentElement.lang) document.documentElement.lang = 'en';
+var $ = function(s, r){ return (r || document).querySelector(s); };
+function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function fmt(v, d){ if (v === null || v === undefined || !isFinite(v)) return '\u2014'; return Number(v).toFixed(d === undefined ? 3 : d); }
+function pct(v){ return (v === null || !isFinite(v)) ? '\u2014' : Math.round(v * 100) + '%'; }
+var CHECK = '\u2713', CROSS = '\u2717';
+var SETS = [['orig', 'Original'], ['best', 'Best of 32'], ['comb', 'Combine 32']];
+var LABN = {h: 'hit', w: 'wrong-specific', m: 'miss'};
+var KINDN = {S: 'accepted form, counts toward pass', L: 'lenient alias, does not count', D: 'wrong value (bank distractor)', T: 'final answer, optional, does not count'};
+var FLAGN = {deterministically_capped: 'more than 4 bullets; the first 4 were kept', output_token_capped: 'over 256 tokens; trailing bullets dropped',
+  preamble_before_first_bullet: 'text before the first bullet (not eligible)', unmarked_text: 'unmarked text', empty: 'no bullets', empty_bullet: 'an empty bullet'};
+function roleName(r){ return r === 'bridge1' ? 'Bridge 1' : r === 'bridge2' ? 'Bridge 2' : r === 'target' ? 'Final answer' : r; }
+var LAYERS = [20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60];
+var OUT = [
+  ['all', 'All cells', function(){ return true; }],
+  ['any_not_best', 'Answer in some sample, but Best of 32 missed', function(r){ return r.a && !r.b; }],
+  ['comb_not_best', 'Combine 32 passes, Best of 32 fails', function(r){ return r.c && !r.b; }],
+  ['best_not_comb', 'Best of 32 passes, Combine 32 fails', function(r){ return r.b && !r.c; }],
+  ['best_not_orig', 'Original fails, Best of 32 passes', function(r){ return r.b && !r.o; }],
+  ['long_not_comb', '4 longest bullets pass, Combine 32 fails', function(r){ return r.l && !r.c; }],
+  ['none', 'Nothing passes', function(r){ return !r.a && !r.c && !r.l; }],
+  ['all3', 'All three pass', function(r){ return r.o && r.b && r.c; }]
+];
+var OUTF = {}; OUT.forEach(function(o){ OUTF[o[0]] = o[2]; });
+var OUT_TIP = {none: 'No sample passes, and neither Combine 32 nor the 4 longest bullets pass', any_not_best: 'At least one of the 32 samples names every bridge, but the sample Best of 32 chose does not'};
+var DEFAULT_KEY = 'mhh-pilgrim-monk-novelist.L20';
+
+var st = {idx: null, items: {}, cells: [], byKey: {}, filtered: [], curKey: null, cur: null, f: {q: '', layer: 'all', hop: 'all', out: 'all', item: 'all'}, open: {}, chunks: {}, seq: 0};
+function keyOf(r){ return r.it + '.L' + r.L; }
+
+/* ---------- ceiling bars (static numbers, cross-checked against the data file) ---------- */
+var CB = [
+  ['Original', 106 / 11, 'fve0'], ['Best of 32', 129 / 11, 'fve'], ['Combine 32', 146 / 11, 'fve'],
+  ['4 longest bullets, no FVE', 137 / 11, 'nofve'], ['Answer in some sample', 344 / 11, 'ceil']
+];
+function drawCeil(){
+  var max = 40, h = '';
+  CB.forEach(function(b){
+    var w = b[1] / max * 100;
+    var cls = b[2] === 'nofve' ? 'nofve' : b[2] === 'ceil' ? 'ceil' : b[2] === 'fve0' ? 'nofve' : '';
+    var grid = '';
+    for (var t = 10; t <= max; t += 10) grid += '<i class="cb-grid" style="left:' + (t / max * 100) + '%"></i>';
+    h += '<div class="cb-row" title="' + esc(b[0]) + ': ' + b[1].toFixed(1) + '% of 1,100 cells"><span class="cb-lab">' + esc(b[0]) + '</span><span class="cb-track">' + grid +
+      '<i class="cb-fill ' + cls + '" style="width:' + w + '%"></i><span class="cb-val num" style="left:' + w + '%">' + b[1].toFixed(1) + '%</span></span></div>';
+  });
+  h += '<div class="cb-axis"><span></span><span class="ticks">';
+  for (var t = 0; t <= max; t += 10) h += '<span style="left:' + (t / max * 100) + '%">' + t + (t === max ? '%' : '') + '</span>';
+  h += '</span></div>';
+  $('#cbar').innerHTML = h;
+}
+drawCeil();
+
+function crossCheck(a2){
+  var want = {orig_pass: [106, 9.64], rand1_pass: [119.0, 10.82], best32_pass: [129, 11.73], comb_pass: [146, 13.27], rand4_pool_pass: [114.7, 10.42],
+    freq4: [104, 9.45], long4: [137, 12.45], randlong4: [125.9, 11.44], any_pass: [344, 31.27], pool_oracle: [356, 32.36]};
+  var diffs = {'best32_pass - rand1_pass': [0.91, -0.12, 2.03], 'orig_pass - rand1_pass': [-1.18, -2.15, -0.25], 'comb_pass - rand4_pool_pass': [2.85, 1.12, 4.75],
+    'comb_pass - long4': [0.82, -1.36, 2.91], 'comb_pass - randlong4': [1.83, 0.13, 3.53], 'comb_pass - freq4': [3.82, 1.82, 5.91]};
+  var bad = [];
+  Object.keys(want).forEach(function(k){ var v = a2[k]; if (!v || Math.abs(v.cells - want[k][0]) > 0.05 || Math.abs(v.pct - want[k][1]) > 0.005) bad.push(k); });
+  Object.keys(diffs).forEach(function(k){ var v = a2[k]; if (!v || v.some(function(x, j){ return Math.abs(x - diffs[k][j]) > 0.005; })) bad.push(k); });
+  var au = a2.within_cell_auroc_all32 || {};
+  if (au.auroc !== 0.548 || au.pairs !== 36938 || au.mixed_cells !== 316) bad.push('within_cell_auroc_all32');
+  if (a2.cells_where_answer_in_some_sample_but_best32_fails !== 215) bad.push('cells_where_answer_in_some_sample_but_best32_fails');
+  if (bad.length){ var w = $('#sumwarn'); w.hidden = false; w.textContent = 'The numbers on this card differ from data/index.json for: ' + bad.join(', ') + '. Rebuild the page data.'; }
+}
+
+/* ---------- boot ---------- */
+function boot(){
+  fetch('data/index.json').then(function(res){ if (!res.ok) throw new Error('HTTP ' + res.status); return res.json(); }).then(function(idx){
+    st.idx = idx; st.cells = idx.cells;
+    idx.items.forEach(function(it){ it.search = [it.id, it.prompt, it.target].concat(it.gold || []).join(' \u0001 ').toLowerCase(); st.items[it.id] = it; });
+    st.cells.forEach(function(r){ st.byKey[keyOf(r)] = r; });
+    crossCheck(idx.analysis2);
+    wireFilters();
+    var k = keyFromHash() || DEFAULT_KEY;
+    st.curKey = st.byKey[k] ? k : keyOf(st.cells[0]);
+    applyFilters(false);
+    select(st.curKey, true);
+  }).catch(function(e){
+    $('#view').innerHTML = '<div class="panel err">Could not load <code>data/index.json</code> (' + esc(e.message) + '). Serve this folder over HTTP (for example <code>python -m http.server</code> inside <code>mh_page/</code>); browsers block fetch from file:// pages.</div>';
+    $('#f-count').textContent = 'No data';
+  });
+}
+
+function keyFromHash(){
+  var h = '';
+  try { h = decodeURIComponent((location.hash || '').slice(1)); } catch (e) { h = (location.hash || '').slice(1); }
+  if (!h) return null;
+  if (st.byKey[h]) return h;
+  var m = /^multihop_mt\|([^|]+)\|L(\d+)\|/.exec(h);
+  if (m && st.byKey[m[1] + '.L' + m[2]]) return m[1] + '.L' + m[2];
+  return null;
+}
+function setHash(k){
+  if (keyFromHash() === k) return;
+  try { history.replaceState(null, '', '#' + k); } catch (e) { st.skipHash = true; location.hash = k; }
+}
+window.addEventListener('hashchange', function(){
+  if (st.skipHash){ st.skipHash = false; return; }
+  var k = keyFromHash(); if (k && k !== st.curKey) select(k);
+});
+
+/* ---------- filters ---------- */
+function match(r, f, skip){
+  if (skip !== 'q' && f.q && st.items[r.it].search.indexOf(f.q) < 0) return false;
+  if (skip !== 'layer' && f.layer !== 'all' && r.L !== +f.layer) return false;
+  if (skip !== 'hop' && f.hop !== 'all' && r.sub !== f.hop) return false;
+  if (skip !== 'out' && f.out !== 'all' && !OUTF[f.out](r)) return false;
+  if (skip !== 'item' && f.item !== 'all' && r.it !== f.item) return false;
+  return true;
+}
+function countWith(dim, val){
+  var f = st.f, n = 0;
+  for (var j = 0; j < st.cells.length; j++){
+    var r = st.cells[j];
+    if (!match(r, f, dim)) continue;
+    if (dim === 'out' && !OUTF[val](r)) continue;
+    if (dim === 'layer' && val !== 'all' && r.L !== +val) continue;
+    if (dim === 'hop' && val !== 'all' && r.sub !== val) continue;
+    if (dim === 'item' && val !== 'all' && r.it !== val) continue;
+    n++;
+  }
+  return n;
+}
+function wireFilters(){
+  $('#q').addEventListener('input', function(e){ st.f.q = e.target.value.trim().toLowerCase(); applyFilters(true); });
+  $('#f-item').addEventListener('change', function(e){ st.f.item = e.target.value; applyFilters(true); });
+  $('#f-reset').addEventListener('click', function(){ st.f = {q: '', layer: 'all', hop: 'all', out: 'all', item: 'all'}; $('#q').value = ''; applyFilters(true); });
+  document.addEventListener('click', function(e){
+    var b = e.target.closest('[data-f]');
+    if (b && !b.disabled){ st.f[b.getAttribute('data-f')] = b.getAttribute('data-v'); applyFilters(true); }
+  });
+  $('#clist').addEventListener('click', function(e){ var b = e.target.closest('.crow'); if (b) select(b.getAttribute('data-k')); });
+}
+function renderFilters(){
+  var f = st.f;
+  $('#f-out').innerHTML = OUT.map(function(o){
+    var n = countWith('out', o[0]);
+    return '<button type="button" class="oitem" data-f="out" data-v="' + o[0] + '" aria-pressed="' + (f.out === o[0]) + '"' + (n === 0 && f.out !== o[0] ? ' disabled' : '') +
+      (OUT_TIP[o[0]] ? ' title="' + esc(OUT_TIP[o[0]]) + '"' : '') + '><span>' + esc(o[1]) + '</span><span class="n num">' + n + '</span></button>';
+  }).join('');
+  $('#f-layer').innerHTML = ['all'].concat(LAYERS).map(function(L){
+    var v = String(L), n = countWith('layer', v);
+    return '<button type="button" class="fchip" data-f="layer" data-v="' + v + '" aria-pressed="' + (f.layer === v) + '"' + (n === 0 && f.layer !== v ? ' disabled' : '') + '>' + (L === 'all' ? 'All' : 'L' + L) + ' <span class="n">' + n + '</span></button>';
+  }).join('');
+  $('#f-hop').innerHTML = [['all', 'All'], ['2hop', '2-hop'], ['3hop', '3-hop']].map(function(h){
+    var n = countWith('hop', h[0]);
+    return '<button type="button" class="fchip" data-f="hop" data-v="' + h[0] + '" aria-pressed="' + (f.hop === h[0]) + '"' + (n === 0 && f.hop !== h[0] ? ' disabled' : '') + '>' + h[1] + ' <span class="n">' + n + '</span></button>';
+  }).join('');
+  var opts = '<option value="all">All items (' + countWith('item', 'all') + ' cells)</option>';
+  st.idx.items.forEach(function(it){
+    var n = countWith('item', it.id);
+    if (n > 0 || f.item === it.id) opts += '<option value="' + esc(it.id) + '"' + (f.item === it.id ? ' selected' : '') + '>' + esc(it.id.replace(/^mhh-/, '')) + ' (' + n + ')</option>';
+  });
+  $('#f-item').innerHTML = opts;
+  $('#f-item').value = f.item;
+}
+function applyFilters(fromUser){
+  st.filtered = st.cells.filter(function(r){ return match(r, st.f); }).map(keyOf);
+  renderFilters();
+  $('#f-count').textContent = st.filtered.length + ' of ' + st.cells.length + ' cells';
+  renderList();
+  if (fromUser && st.filtered.length && st.filtered.indexOf(st.curKey) < 0) select(st.filtered[0], true);
+  else updateNav();
+}
+function renderList(){
+  if (!st.filtered.length){ $('#clist').innerHTML = '<div class="empty">No cells match these filters. <button class="linkbtn" type="button" onclick="document.getElementById(\'f-reset\').click()">Clear filters</button></div>'; return; }
+  var h = '';
+  st.filtered.forEach(function(k){
+    var r = st.byKey[k];
+    h += '<button type="button" class="crow" data-k="' + esc(k) + '" aria-current="' + (k === st.curKey) + '" title="' + esc(r.it + ' layer ' + r.L) + '">' +
+      '<span class="nm">' + esc(r.it.replace(/^mhh-/, '')) + '</span><span class="ly">L' + r.L + '</span>' +
+      '<span class="dots">' + dot('O', r.o, 'Original') + dot('B', r.b, 'Best of 32') + dot('C', r.c, 'Combine 32') + '</span>' +
+      '<span class="np" title="samples passing / eligible">' + r.np + '/' + r.ne + '</span></button>';
+  });
+  $('#clist').innerHTML = h;
+  scrollListToCurrent(false);
+}
+function dot(l, y, name){ return '<span class="dot ' + (y ? 'y' : 'n') + '" title="' + name + (y ? ' passes' : ' fails') + '">' + l + '</span>'; }
+/* Keep the current row visible. Under 900px the list scrolls on its own; above it the whole rail
+   scrolls, and the rail is only moved on navigation (not after a filter click, so the filter just
+   clicked stays in view). */
+function scrollListToCurrent(moveRail){
+  var list = $('#clist'), el = list.querySelector('[aria-current="true"]');
+  if (!el) return;
+  var box = list.scrollHeight > list.clientHeight + 1 ? list : (moveRail ? $('.rail') : null);
+  if (!box || box.scrollHeight <= box.clientHeight + 1) return;
+  var br = box.getBoundingClientRect(), er = el.getBoundingClientRect();
+  if (er.top < br.top + 4) box.scrollTop -= br.top - er.top + 8;
+  else if (er.bottom > br.bottom - 4) box.scrollTop += er.bottom - br.bottom + 8;
+}
+function markList(keepRail){
+  var prev = $('#clist').querySelector('[aria-current="true"]'); if (prev) prev.setAttribute('aria-current', 'false');
+  var el = $('#clist').querySelector('[data-k="' + (window.CSS && CSS.escape ? CSS.escape(st.curKey) : st.curKey) + '"]');
+  if (el) el.setAttribute('aria-current', 'true');
+  scrollListToCurrent(!keepRail);
+}
+
+/* ---------- navigation ---------- */
+function step(d){
+  if (!st.filtered.length) return;
+  var i = st.filtered.indexOf(st.curKey);
+  var j = i < 0 ? 0 : Math.max(0, Math.min(st.filtered.length - 1, i + d));
+  if (st.filtered[j] !== st.curKey) select(st.filtered[j]);
+}
+function updateNav(){
+  var i = st.filtered.indexOf(st.curKey), n = st.filtered.length;
+  var pos = $('#cv-pos'); if (!pos) return;
+  pos.innerHTML = i >= 0 ? 'Cell <b class="num">' + (i + 1) + '</b> of <span class="num">' + n + '</span> matching' : 'Not in the current filter (' + n + (n === 1 ? ' cell matches)' : ' cells match)');
+  $('#prev').disabled = !(n && (i > 0 || i < 0));
+  $('#next').disabled = !(n && i < n - 1);
+}
+document.addEventListener('keydown', function(e){
+  var t = e.target, tag = t && t.tagName;
+  if (tag === 'INPUT' || tag === 'SELECT' || tag === 'TEXTAREA' || e.altKey || e.ctrlKey || e.metaKey) return;
+  if (e.key === 'ArrowRight' || e.key === 'j'){ e.preventDefault(); step(1); }
+  else if (e.key === 'ArrowLeft' || e.key === 'k'){ e.preventDefault(); step(-1); }
+});
+
+/* ---------- data ---------- */
+function loadChunk(name){
+  if (st.chunks[name]) return st.chunks[name];
+  st.chunks[name] = fetch('data/' + name).then(function(res){ if (!res.ok) throw new Error('HTTP ' + res.status); return res.json(); })
+    .catch(function(e){ delete st.chunks[name]; throw e; });
+  return st.chunks[name];
+}
+function select(k, keepRail){
+  var r = st.byKey[k]; if (!r) return;
+  st.curKey = k; markList(keepRail); setHash(k); updateNav();
+  var seq = ++st.seq;
+  var view = $('#view'); view.setAttribute('aria-busy', 'true');
+  loadChunk(st.items[r.it].chunk).then(function(chunk){
+    if (seq !== st.seq) return;
+    var it = chunk[r.it], c = it.cells[String(r.L)];
+    st.cur = {r: r, spec: it.spec, c: c};
+    st.open = defaultOpen(c);
+    renderCell();
+    view.removeAttribute('aria-busy');
+  }).catch(function(e){
+    if (seq !== st.seq) return;
+    view.innerHTML = '<div class="panel err">Could not load <code>data/' + esc(st.items[r.it].chunk) + '</code> (' + esc(e.message) + ').</div>';
+  });
+}
+function ranked(c){ return c.samples.slice().sort(function(a, b){ return (b.el - a.el) || (b.f - a.f) || (a.i - b.i); }); }
+function defaultOpen(c){
+  var o = {}; o[c.best_i] = true;
+  var rk = ranked(c);
+  for (var j = 0; j < rk.length; j++) if (rk[j].p){ o[rk[j].i] = true; break; }
+  return o;
+}
+
+/* ---------- text rendering ---------- */
+function trimEnd(t, s, e){ while (e > s && /\s/.test(t.charAt(e - 1))) e--; return e; }
+function renderRange(t, runs, a, b, forms){
+  var out = '', pos = a;
+  for (var j = 0; j < runs.length; j++){
+    var R = runs[j], s = R[0], e = R[1];
+    if (e <= a || s >= b) continue;
+    var s2 = Math.max(s, a, pos), e2 = Math.min(e, b);
+    if (e2 <= s2) continue;
+    if (s2 > pos) out += esc(t.slice(pos, s2));
+    var fm = forms[R[3]] || ['', R[2], ''];
+    var tip = '"' + fm[0] + '" ' + (fm[2] && fm[2] !== 'target' ? '(' + roleName(fm[2]) + ') ' : '') + '\u2014 ' + KINDN[R[2]];
+    out += '<mark class="hl ' + R[2] + '" title="' + esc(tip) + '">' + esc(t.slice(s2, e2)) + '</mark>';
+    pos = e2;
+  }
+  if (pos < b) out += esc(t.slice(pos, b));
+  return out;
+}
+function labChip(lab, near){
+  var h = '<span class="lab ' + lab + '" title="' + (lab === 'h' ? 'names a required bridge with an accepted form' : lab === 'w' ? 'names a wrong value of the right kind (bank distractor), no bridge' : 'no accepted bridge form') + '">' + LABN[lab] + '</span>';
+  if (near) h += '<span class="lab near" title="names the bridge only through a lenient alias, which the judge does not credit">lenient only</span>';
+  return h;
+}
+var XB_TAG = '<span class="tag quirk" title="The judge matched an accepted form across a bullet break (for example &quot;the&quot; at the end of one bullet and &quot;Great Dying&quot; at the start of the next), so the text passes although no single bullet names that bridge.">passes only via a match across a bullet break</span>';
+function passBadge(p){ return '<span class="pb ' + (p ? 'y' : 'n') + '">' + (p ? CHECK + ' pass' : CROSS + ' fail') + '</span>'; }
+function legendHTML(){
+  return '<div class="legend"><span><mark class="hl S">accepted form</mark> counts</span><span><mark class="hl L">lenient alias</mark> does not count</span>' +
+    '<span><mark class="hl D">wrong value</mark> distractor</span><span><mark class="hl T">final answer</mark> optional, does not count</span></div>';
+}
+
+/* ---------- cell view ---------- */
+function renderCell(){
+  var spec = st.cur.spec, c = st.cur.c, r = st.cur.r;
+  var forms = spec.forms;
+  var three = spec.roles.length > 1;
+  var tok = c.token;
+  var prompt = spec.prompt;
+  var promptHTML = esc(prompt);
+  if (tok && prompt.slice(-tok.length) === tok) promptHTML = esc(prompt.slice(0, prompt.length - tok.length)) + '<span class="tok" title="read position: final prompt token">' + esc(tok) + '</span>';
+
+  var units = spec.roles.map(function(u){
+    function chips(list, k){ return list.map(function(f){ return '<mark class="hl ' + k + ' fm">' + esc(f) + '</mark>'; }).join(' '); }
+    return '<div class="unit"><div class="unit-head"><span class="role">' + roleName(u.role) + '</span><b>' + esc(u.gold || '') + '</b></div>' +
+      '<div class="forms"><span class="fk">Counts</span>' + chips(u.strict, 'S') + '</div>' +
+      (u.lenient_only.length ? '<div class="forms"><span class="fk">Does not count</span>' + chips(u.lenient_only, 'L') + '</div>' : '') +
+      (u.distractors.length ? '<div class="forms"><span class="fk">Wrong values</span>' + chips(u.distractors, 'D') + '</div>' : '') + '</div>';
+  }).join('');
+  units += '<div class="unit"><div class="unit-head"><span class="role">Final answer</span><b>' + esc(spec.target) + '</b><span class="note">optional; never needed to pass</span></div>' +
+    (spec.target_forms.length ? '<div class="forms"><span class="fk">Forms</span>' + spec.target_forms.map(function(f){ return '<mark class="hl T fm">' + esc(f) + '</mark>'; }).join(' ') + '</div>' : '') + '</div>';
+
+  var s = c.stats;
+  var verdict = SETS.map(function(x){
+    var R = c.read[x[0]];
+    return '<span class="vp ' + (R.p ? 'y' : 'n') + '"><span class="ic">' + (R.p ? CHECK : CROSS) + '</span>' + x[1] + ' <span class="sub">FVE ' + fmt(R.f) + '</span></span>';
+  }).join('') +
+    '<span class="vp ' + (c.long4.p ? 'y' : 'n') + '" title="Baseline without FVE: the 4 longest distinct bullets of the pool"><span class="ic">' + (c.long4.p ? CHECK : CROSS) + '</span>4 longest bullets <span class="sub">no FVE</span></span>' +
+    '<span class="vp ' + (s.any ? 'y' : 'n') + '"><span class="ic num">' + s.n_pass + '/' + s.n_el + '</span>samples pass</span>' +
+    '<span class="vp ' + (s.pool_oracle ? 'y' : 'n') + '" title="distinct bullets in the 32 samples, and how many name a required bridge"><span class="ic num">' + s.pool_hit + '/' + s.pool + '</span>pool bullets name a bridge</span>';
+
+  var srcCount = {};
+  c.read.comb.b.forEach(function(b){ srcCount[b.src] = (srcCount[b.src] || 0) + 1; });
+  var srcs = Object.keys(srcCount).map(Number).sort(function(a, b){ return a - b; });
+
+  var cards = SETS.map(function(x){
+    var k = x[0], R = c.read[k];
+    var sub = k === 'orig' ? 'Sample #0, capped to 4 bullets' : k === 'best' ? 'Sample #' + c.best_i + ', the highest FVE of the 32' :
+      R.b.length + ' bullets from sample' + (srcs.length > 1 ? 's ' : ' ') + srcs.map(function(i){ return '#' + i; }).join(', ');
+    var uh = c.req.map(function(role, j){ return '<span class="u ' + (R.u[j] ? 'y' : 'n') + '">' + roleName(role) + ' ' + (R.u[j] ? CHECK : CROSS) + '</span>'; }).join('');
+    var bl = R.b.map(function(b){
+      var tags = '';
+      if (b.cut) tags += '<span class="tag" title="the bullet ends partway through a bridge name">name cut off</span>';
+      if (!b.vis) tags += '<span class="tag" title="the accepted form lies after the 32-token prefix that the AR vector encodes">hit after AR prefix</span>';
+      if (b.trunc) tags += '<span class="tag" title="the AR encoded only the first 32 tokens of this bullet">AR saw first 32 tokens</span>';
+      return '<li class="bl"><div class="bl-top">' + labChip(b.lab, b.near) + tags + '</div>' +
+        '<div class="bl-text">' + renderRange(R.t, R.h, b.s, trimEnd(R.t, b.s, b.e), forms) + '</div>' +
+        '<div class="bl-m num"><span title="Shapley share of the joint FVE">share <b>' + pct(b.share) + '</b></span><span title="FVE of this bullet alone">solo <b>' + fmt(b.solo) + '</b></span>' +
+        '<span title="FVE lost when this bullet is removed">drop <b>' + fmt(b.drop) + '</b></span>' + (k === 'comb' ? '<span title="the sample this bullet came from">from #' + b.src + '</span>' : '') + '</div></li>';
+    }).join('');
+    if (R.xb) uh += XB_TAG;
+    return '<article class="rc ' + (R.p ? 'is-pass' : 'is-fail') + '"><header><div class="rc-name">' + x[1] + '</div><div class="rc-stats"><span class="fve">FVE <b>' + fmt(R.f) + '</b></span>' + passBadge(R.p) + '</div>' +
+      '<div class="rc-sub">' + esc(sub) + '</div><div class="rc-units">' + uh + '</div></header><ol class="bls">' + bl + '</ol></article>';
+  }).join('');
+
+  var l4 = c.long4.b.map(function(b){
+    return '<li class="bl"><div class="bl-top">' + labChip(b.lab, false) + '<span class="tag">sample #' + b.from[0] + ', bullet ' + (b.from[1] + 1) + '</span><span class="tag">' + b.chars + ' chars</span></div>' +
+      '<div class="bl-text">' + renderRange(b.t, b.h, 0, trimEnd(b.t, 0, b.t.length), forms) + '</div></li>';
+  }).join('');
+
+  // samples
+  var rk = ranked(c), best = null, firstPass = null, firstRank = 0;
+  rk.forEach(function(x, j){ if (x.i === c.best_i) best = x; if (x.p && !firstPass){ firstPass = x; firstRank = j + 1; } });
+  var P = c.samples.filter(function(x){ return x.el && x.p; }), F = c.samples.filter(function(x){ return x.el && !x.p; });
+  var auc = null;
+  if (P.length && F.length){ var num = 0; P.forEach(function(p){ F.forEach(function(q){ num += p.f > q.f ? 1 : p.f === q.f ? 0.5 : 0; }); }); auc = num / (P.length * F.length); }
+  var smry = '<b>' + s.n_pass + ' of ' + c.samples.length + '</b> samples pass. Best of 32 chose <b>#' + c.best_i + '</b>, which ' + (best && best.p ? 'passes' : 'fails') + '. ';
+  if (firstPass && firstPass.i !== c.best_i) smry += 'The highest-FVE passing sample is <b>#' + firstPass.i + '</b> at rank ' + firstRank + ' (FVE ' + fmt(firstPass.f) + ', ' + fmt(best.f - firstPass.f) + ' below the pick). ';
+  else if (!firstPass) smry += 'No sample passes. ';
+  if (auc !== null) smry += 'In this cell FVE ranks a passing sample above a failing one in <b>' + Math.round(auc * 100) + '%</b> of pairs (50% = chance).';
+  var maxF = Math.max.apply(null, c.samples.map(function(x){ return x.f; }));
+  var rows = rk.map(function(x, j){ return sampleRow(x, j + 1, c, srcCount, maxF, forms); }).join('');
+
+  $('#live').textContent = 'Showing ' + spec.id + ', layer ' + c.layer + '. ' + SETS.map(function(x){ return x[1] + (c.read[x[0]].p ? ' passes' : ' fails'); }).join(', ') + '.';
+  var html =
+    '<section class="panel" aria-label="Cell">' +
+      '<div class="cv-nav"><button type="button" class="nbtn" id="prev">&larr; Prev</button><span id="cv-pos"></span><button type="button" class="nbtn" id="next">Next &rarr;</button>' +
+      '<span class="note">or <span class="kbd">&larr;</span> <span class="kbd">&rarr;</span> keys</span></div>' +
+      '<h2 class="cv-title">' + esc(spec.id) + '</h2>' +
+      '<div class="cv-meta"><span class="chip">Layer ' + c.layer + '</span><span class="chip">' + (three ? '3-hop' : '2-hop') + '</span><span class="chip">' + esc(c.split) + ' split</span><span class="chip">position ' + c.pos + '</span></div>' +
+      '<div class="cv-id"><code id="cid">' + esc(c.cell_id) + '</code><button type="button" class="mini" id="copy">Copy id</button><a class="mini" href="#' + esc(st.curKey) + '">Link to this cell</a></div>' +
+    '</section>' +
+    '<section class="panel ctx" aria-label="Prompt and hidden bridges">' +
+      '<div><h3 class="lbl">Prompt</h3><p class="prompt">' + promptHTML + '</p><p class="note" style="margin-top:6px">The lens reads the activation at the final prompt token (highlighted).</p></div>' +
+      '<div><h3 class="lbl">Hidden bridge' + (three ? 's: the readout must name both' : ': the readout must name it') + '</h3><div class="units">' + units + '</div></div>' +
+    '</section>' +
+    '<div class="verdict" aria-label="Outcomes">' + verdict + '</div>' +
+    '<section class="panel" aria-label="Three readouts">' +
+      '<div class="sec-head"><h3>Three readouts</h3>' + legendHTML() + '</div>' +
+      '<p class="mnote">Label: <b>hit</b> names a required bridge with an accepted form; <b>wrong-specific</b> names only a wrong value of the right kind; <b>miss</b> is everything else. Share = the bullet&rsquo;s Shapley share of the joint FVE. Solo = FVE of the bullet alone. Drop = FVE lost when the bullet is removed.</p>' +
+      '<div class="read-grid">' + cards + '</div>' +
+      '<details class="l4"><summary><b>No-FVE baseline: the 4 longest pool bullets</b>' + passBadge(c.long4.p) + '<span class="note">longest by character count among the ' + s.pool + ' distinct bullets of the 32 samples</span></summary><ol class="bls">' + l4 + '</ol></details>' +
+    '</section>' +
+    '<section class="panel" aria-label="All 32 samples">' +
+      '<div class="sec-head"><h3>All 32 samples, sorted by FVE</h3>' + legendHTML() + '</div>' +
+      '<p class="smry">' + smry + '</p>' +
+      '<div class="strip" id="strip"></div>' +
+      '<div class="sleg"><span><i class="sw p"></i>passes</span><span><i class="sw f"></i>fails</span><span><b>O</b> Original (sample 0)</span><span><b>B</b> Best of 32 pick</span><span><i class="sw c"></i>Combine 32 joint FVE</span><span class="note">Click a dot to open that sample.</span></div>' +
+      '<div class="s-tools"><span>Open texts:</span><button type="button" class="mini" data-open="pass">passing</button><button type="button" class="mini" data-open="all">all</button><button type="button" class="mini" data-open="none">none</button>' +
+      '<span>Judged text = the sample split into dash bullets, at most 4 bullets and 256 tokens; exactly what the regex judge saw.</span></div>' +
+      '<ol class="s-list" id="slist">' + rows + '</ol>' +
+    '</section>';
+  var view = $('#view');
+  view.innerHTML = html;
+  $('#prev').addEventListener('click', function(){ step(-1); });
+  $('#next').addEventListener('click', function(){ step(1); });
+  $('#copy').addEventListener('click', function(){
+    var t = c.cell_id, btn = this;
+    function sel(){ var r = document.createRange(); r.selectNodeContents($('#cid')); var w = getSelection(); w.removeAllRanges(); w.addRange(r); btn.textContent = 'Selected'; }
+    try { navigator.clipboard.writeText(t).then(function(){ btn.textContent = 'Copied'; }, sel); } catch (e) { sel(); }
+  });
+  $('#slist').addEventListener('click', function(e){ var b = e.target.closest('.sr-h'); if (b) toggleSample(+b.getAttribute('data-i')); });
+  view.querySelectorAll('[data-open]').forEach(function(b){ b.addEventListener('click', function(){
+    var m = b.getAttribute('data-open'); st.open = {};
+    c.samples.forEach(function(x){ if (m === 'all' || (m === 'pass' && x.p)) st.open[x.i] = true; });
+    $('#slist').innerHTML = ranked(c).map(function(x, j){ return sampleRow(x, j + 1, c, srcCount, maxF, forms); }).join('');
+  }); });
+  updateNav();
+  drawStrip();
+}
+
+function sampleRow(x, rank, c, srcCount, maxF, forms){
+  var open = !!st.open[x.i];
+  var mk = (x.i === 0 ? '<i class="mk o" title="Original = sample 0">O</i>' : '') + (x.i === c.best_i ? '<i class="mk b" title="Best of 32 chose this sample">B</i>' : '') +
+    (srcCount[x.i] ? '<i class="mk c" title="Combine 32 used ' + srcCount[x.i] + ' bullet' + (srcCount[x.i] > 1 ? 's' : '') + ' from this sample">C' + (srcCount[x.i] > 1 ? '\u00d7' + srcCount[x.i] : '') + '</i>' : '');
+  var bl = x.b.map(function(b){ return '<i class="lb ' + b[2] + (b[3] && b[2] !== 'h' ? ' near' : '') + '" title="' + LABN[b[2]] + (b[3] ? ', lenient alias only' : '') + '"></i>'; }).join('');
+  var w = maxF > 0 ? Math.max(0, x.f / maxF * 100) : 0;
+  return '<li class="sr ' + (x.p ? 'p' : 'f') + '" id="s-' + x.i + '"><button type="button" class="sr-h" data-i="' + x.i + '" aria-expanded="' + open + '">' +
+    '<span class="sr-rank num" title="rank by FVE">' + (x.el ? rank : '\u2014') + '</span><span class="sr-i">#' + x.i + '</span>' +
+    '<span class="sr-f num" title="FVE of this sample\'s judged bullets"><span class="fbar"><i style="width:' + w.toFixed(1) + '%"></i></span>' + fmt(x.f) + '</span>' +
+    '<span class="sr-p">' + (x.p ? '<span class="ok"' + (x.xb ? ' title="passes only via a match across a bullet break">' + CHECK + ' pass*' : '>' + CHECK + ' pass') + '</span>' : '<span class="no">' + CROSS + ' fail</span>') + '</span>' +
+    '<span class="sr-mk">' + mk + '</span><span class="sr-bl" title="bullet labels">' + bl + '</span></button>' +
+    (open ? sampleBody(x, c, forms) : '') + '</li>';
+}
+function sampleBody(x, c, forms){
+  var u = c.req.map(function(role, j){ return '<span class="u ' + (x.u[j] ? 'y' : 'n') + '">' + roleName(role) + ' ' + (x.u[j] ? CHECK : CROSS) + '</span>'; }).join('');
+  var bl = x.b.map(function(b){
+    return '<li class="bl"><div class="bl-top">' + labChip(b[2], b[3]) + '</div><div class="bl-text">' + renderRange(x.t, x.h, b[0], trimEnd(x.t, b[0], b[1]), forms) + '</div></li>';
+  }).join('');
+  var flags = (x.fl || []).map(function(f){ return '<span class="tag">' + esc(FLAGN[f] || f) + '</span>'; }).join('');
+  if (!x.el) flags += '<span class="tag">not eligible for Best of 32</span>';
+  if (x.xb) flags += XB_TAG;
+  return '<div class="sr-b"><div class="flags">' + u + flags + '</div><ol class="bls">' + bl + '</ol>' +
+    (x.raw ? '<details class="raw"><summary>Raw sample text before parsing (differs from the judged text)</summary><pre>' + esc(x.raw) + '</pre></details>' : '') + '</div>';
+}
+function toggleSample(i){
+  var c = st.cur.c, li = document.getElementById('s-' + i); if (!li) return;
+  var x = c.samples.filter(function(s){ return s.i === i; })[0];
+  var btn = li.querySelector('.sr-h'), body = li.querySelector('.sr-b');
+  if (st.open[i]){ delete st.open[i]; if (body) body.remove(); btn.setAttribute('aria-expanded', 'false'); }
+  else { st.open[i] = true; li.insertAdjacentHTML('beforeend', sampleBody(x, c, st.cur.spec.forms)); btn.setAttribute('aria-expanded', 'true'); }
+}
+function openSample(i){
+  if (!st.open[i]) toggleSample(i);
+  var li = document.getElementById('s-' + i); if (!li) return;
+  li.scrollIntoView({block: 'center', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
+  li.classList.remove('flash'); void li.offsetWidth; li.classList.add('flash');
+}
+
+/* ---------- strip chart ---------- */
+function niceStep(span, n){
+  var raw = span / n, p = Math.pow(10, Math.floor(Math.log10(raw))), m = raw / p;
+  return (m < 1.5 ? 1 : m < 3 ? 2 : m < 7 ? 5 : 10) * p;
+}
+function drawStrip(){
+  var el = $('#strip'); if (!el || !st.cur) return;
+  var c = st.cur.c, W = Math.max(260, Math.floor(el.clientWidth));
+  var r = 5, gap = 1.5, padL = 14, padR = 14, top = 24;
+  var S = c.samples, cf = c.read.comb.f;
+  var vals = S.map(function(s){ return s.f; }).concat([cf]);
+  var lo = Math.min.apply(null, vals), hi = Math.max.apply(null, vals), span = (hi - lo) || 0.01;
+  lo -= span * 0.05; hi += span * 0.05;
+  function X(v){ return padL + (v - lo) / (hi - lo) * (W - padL - padR); }
+  var sorted = S.slice().sort(function(a, b){ return a.f - b.f || a.i - b.i; });
+  var lanes = [], pos = {};
+  sorted.forEach(function(s){
+    var x = X(s.f), L = -1;
+    for (var j = 0; j < lanes.length; j++) if (x - lanes[j] >= 2 * r + gap){ L = j; break; }
+    if (L < 0){ L = lanes.length; lanes.push(x); } else lanes[L] = x;
+    pos[s.i] = {x: x, lane: L};
+  });
+  var laneH = 2 * r + gap, nl = Math.max(1, lanes.length), base = top + nl * laneH + 2, H = base + 40;
+  function Y(l){ return base - r - 1 - l * laneH; }
+  var stepv = niceStep(hi - lo, W < 480 ? 3 : 6), dec = Math.max(0, -Math.floor(Math.log10(stepv) + 1e-9));
+  var g = '';
+  for (var t = Math.ceil(lo / stepv) * stepv; t <= hi + 1e-12; t += stepv){
+    var tx = X(t), lab = t.toFixed(dec), hw = lab.length * 3.4;  // ~half the label width (10.5px mono)
+    var lx = Math.max(hw + 1, Math.min(W - hw - 1, tx));          // keep the label inside the chart
+    g += '<line class="gr" x1="' + tx.toFixed(1) + '" x2="' + tx.toFixed(1) + '" y1="' + (top - 4) + '" y2="' + base + '"></line>' +
+      '<text class="tk" x="' + lx.toFixed(1) + '" y="' + (base + 14) + '" text-anchor="middle">' + lab + '</text>';
+  }
+  g += '<line class="ax" x1="' + padL + '" x2="' + (W - padR) + '" y1="' + base + '" y2="' + base + '"></line>';
+  var cx = X(cf);
+  // the dashed line stops at the axis so it never crosses a tick label; its label sits below the ticks
+  g += '<line class="cl" x1="' + cx.toFixed(1) + '" x2="' + cx.toFixed(1) + '" y1="' + (top - 6) + '" y2="' + base + '"></line>' +
+    '<text class="clt" x="' + cx.toFixed(1) + '" y="' + (base + 31) + '" text-anchor="' + (cx > W * 0.75 ? 'end' : cx < W * 0.25 ? 'start' : 'middle') + '">Combine 32 FVE ' + fmt(cf) + '</text>';
+  var dots = '';
+  S.forEach(function(s){
+    var p = pos[s.i], x = p.x.toFixed(1), y = Y(p.lane).toFixed(1);
+    var tip = 'Sample #' + s.i + ' \u00b7 FVE ' + fmt(s.f) + ' \u00b7 ' + (s.p ? 'passes' : 'fails') + (s.i === 0 ? ' \u00b7 Original' : '') + (s.i === c.best_i ? ' \u00b7 Best of 32 pick' : '');
+    dots += '<g class="d" data-i="' + s.i + '" tabindex="0" role="button" aria-label="' + esc(tip) + '"><title>' + esc(tip) + '</title>' +
+      ((s.i === 0 || s.i === c.best_i) ? '<circle class="ring" cx="' + x + '" cy="' + y + '" r="' + (r + 2.5) + '"></circle>' : '') +
+      '<circle class="' + (s.p ? 'dp' : 'df') + '" cx="' + x + '" cy="' + y + '" r="' + r + '"></circle><circle class="hit" cx="' + x + '" cy="' + y + '" r="' + (r + 4) + '"></circle></g>';
+  });
+  var marks = [];
+  if (c.best_i === 0) marks.push([pos[0].x, 'O = B']);
+  else { marks.push([pos[0].x, 'O']); marks.push([pos[c.best_i].x, 'B']); }
+  if (marks.length === 2 && Math.abs(marks[0][0] - marks[1][0]) < 14){ var mid = (marks[0][0] + marks[1][0]) / 2; marks[0][0] = mid - 7; marks[1][0] = mid + 7; if (marks[0][1] === 'B'){ var tmp = marks[0][1]; marks[0][1] = marks[1][1]; marks[1][1] = tmp; } }
+  var ml = marks.map(function(m){ var mx = Math.max(padL + 6, Math.min(W - padR - 6, m[0])); return '<text class="mkl" x="' + mx.toFixed(1) + '" y="12" text-anchor="middle">' + m[1] + '</text>'; }).join('');
+  el.innerHTML = '<svg width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '" role="group" aria-label="FVE of the 32 samples; filled dots pass">' + g + ml + dots + '</svg>';
+  el.querySelectorAll('g.d').forEach(function(n){
+    n.addEventListener('click', function(){ openSample(+n.getAttribute('data-i')); });
+    n.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openSample(+n.getAttribute('data-i')); } });
+  });
+}
+var rz = null;
+window.addEventListener('resize', function(){ clearTimeout(rz); rz = setTimeout(drawStrip, 120); });
+
+boot();
+})();
+</script>
